@@ -1,0 +1,2582 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrainSAIT OID — رحلة الهوية الرقمية | Digital Identity Journey</title>
+<meta name="description" content="Interactive premium course on Object Identifiers — from national to self identity">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   BrainSAIT OID — Premium Digital Identity Course
+   Luxury dark · AR/EN bilingual · Interactive · Animated
+   ═══════════════════════════════════════════════════════════════════════ */
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root {
+  --bg-deep: #060710;
+  --bg-primary: #0a0b14;
+  --bg-secondary: #0f1120;
+  --bg-card: #141728;
+  --bg-elevated: #1a1d33;
+  --bg-surface: #1e2140;
+  --bg-glass: rgba(20, 23, 40, 0.8);
+
+  --gold: #c9a84c;
+  --gold-bright: #f0d060;
+  --gold-light: #e8d48b;
+  --gold-dim: #8a7235;
+  --gold-ultra-dim: #3d3220;
+
+  --accent: #4a7cff;
+  --accent-light: #7da0ff;
+  --teal: #2dd4a8;
+  --teal-dim: #1a7a60;
+  --rose: #e84393;
+  --violet: #a78bfa;
+  --amber: #f59e0b;
+
+  --text-primary: #eae6de;
+  --text-secondary: #9a96a8;
+  --text-muted: #5d5a6e;
+  --text-faint: #3a3850;
+
+  --border: rgba(201, 168, 76, 0.1);
+  --border-gold: rgba(201, 168, 76, 0.25);
+  --border-strong: rgba(201, 168, 76, 0.4);
+
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+
+  --font-display-ar: 'Amiri', serif;
+  --font-body-ar: 'Tajawal', sans-serif;
+  --font-display-en: 'Playfair Display', serif;
+  --font-body-en: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --font-display: var(--font-display-ar);
+  --font-body: var(--font-body-ar);
+
+  --sp-xs: clamp(0.25rem, 0.5vw, 0.5rem);
+  --sp-sm: clamp(0.5rem, 1vw, 1rem);
+  --sp-md: clamp(1rem, 2vw, 2rem);
+  --sp-lg: clamp(2rem, 4vw, 4rem);
+  --sp-xl: clamp(3rem, 6vw, 6rem);
+  --sp-2xl: clamp(4rem, 8vw, 8rem);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-spring: cubic-bezier(0.22, 1.2, 0.36, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.8;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── EN mode ── */
+html[lang="en"] { --font-display: var(--font-display-en); --font-body: var(--font-body-en); direction: ltr; }
+html[lang="en"] .ar-only { display: none !important; }
+html:not([lang="en"]) .en-only { display: none !important; }
+html:not([lang="en"]) .dir-ltr { direction: ltr; text-align: left; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+/* ── Selection ── */
+::selection { background: rgba(201, 168, 76, 0.25); color: var(--gold-light); }
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5 { font-family: var(--font-display); font-weight: 700; line-height: 1.25; }
+h1 { font-size: clamp(2.4rem, 5.5vw, 5rem); letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.7rem, 3.5vw, 3rem); }
+h3 { font-size: clamp(1.3rem, 2.5vw, 2rem); }
+h4 { font-size: clamp(1.05rem, 1.8vw, 1.35rem); }
+p { font-size: clamp(1rem, 1.15vw, 1.12rem); max-width: 72ch; }
+a { color: var(--gold); text-decoration: none; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 var(--sp-md); }
+.gold { color: var(--gold); }
+.teal { color: var(--teal); }
+.rose { color: var(--rose); }
+.violet { color: var(--violet); }
+.mono { font-family: var(--font-mono); font-size: 0.9em; direction: ltr; display: inline-block; }
+
+/* ── Noise overlay ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0.5;
+}
+
+/* ═══════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem var(--sp-md);
+  background: rgba(6, 7, 16, 0.7);
+  backdrop-filter: blur(24px) saturate(1.4);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.5s var(--ease-out-expo);
+}
+.nav.scrolled {
+  padding: 0.5rem var(--sp-md);
+  background: rgba(6, 7, 16, 0.92);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+.nav-brand svg { width: 28px; height: 28px; }
+.nav-brand small { font-size: 0.65rem; color: var(--text-muted); font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; }
+
+.nav-center {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+}
+.nav-center a {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  transition: all 0.25s;
+  text-decoration: none;
+}
+.nav-center a:hover { color: var(--gold); background: rgba(201,168,76,0.06); }
+.nav-center a.active { color: var(--gold); background: rgba(201,168,76,0.1); }
+
+.nav-actions { display: flex; align-items: center; gap: 0.6rem; }
+
+.lang-toggle {
+  display: flex;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.lang-toggle button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.lang-toggle button.active {
+  background: var(--gold);
+  color: var(--bg-deep);
+}
+
+.btn-menu {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+@media (max-width: 900px) {
+  .btn-menu { display: flex; }
+  .nav-center {
+    display: none;
+    position: absolute;
+    top: 100%;
+    inset-inline: 0;
+    flex-direction: column;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: var(--sp-sm);
+  }
+  .nav-center.open { display: flex; }
+  .nav-center a { padding: 0.6rem 1rem; }
+}
+
+/* ═══════════════════════════════════════════════
+   PROGRESS
+   ═══════════════════════════════════════════════ */
+.progress {
+  position: fixed;
+  top: 0;
+  inset-inline-start: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--teal), var(--violet));
+  z-index: 9001;
+  transition: width 0.15s linear;
+}
+
+/* ═══════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: var(--sp-2xl) var(--sp-md);
+  overflow: hidden;
+}
+
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-canvas canvas { width: 100%; height: 100%; }
+
+/* Radial glow */
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 880px;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.3rem;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid var(--border-gold);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-md);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.3s var(--ease-out-expo) forwards;
+}
+
+.hero h1 {
+  margin-bottom: var(--sp-sm);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.5s var(--ease-out-expo) forwards;
+}
+.hero h1 .gradient-text {
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 40%, var(--gold-dim) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero h1 .line2 {
+  display: block;
+  font-size: 0.55em;
+  font-weight: 400;
+  font-style: italic;
+  opacity: 0.7;
+  margin-top: 0.2em;
+}
+
+.hero-desc {
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto var(--sp-lg);
+  font-weight: 300;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.7s var(--ease-out-expo) forwards;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.9s var(--ease-out-expo) forwards;
+}
+
+.hero-metrics {
+  display: flex;
+  justify-content: center;
+  gap: clamp(2rem, 5vw, 4rem);
+  margin-top: var(--sp-xl);
+  opacity: 0;
+  animation: fadeUp 0.8s 1.1s var(--ease-out-expo) forwards;
+}
+.metric { text-align: center; }
+.metric-val {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1.1;
+}
+.metric-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: 0.25rem;
+}
+
+/* Scroll indicator */
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  opacity: 0;
+  animation: fadeUp 0.8s 1.3s var(--ease-out-expo) forwards;
+}
+.hero-scroll .mouse {
+  width: 20px;
+  height: 32px;
+  border: 2px solid var(--text-muted);
+  border-radius: 10px;
+  position: relative;
+}
+.hero-scroll .mouse::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 2px;
+  animation: scrollPulse 1.5s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 0.3; transform: translateX(-50%) translateY(6px); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════════
+   BUTTONS
+   ═══════════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.35s var(--ease-out-expo);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+  color: var(--bg-deep);
+  box-shadow: 0 4px 24px rgba(201,168,76,0.25), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 36px rgba(201,168,76,0.35), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-gold);
+}
+.btn-outline:hover { background: rgba(201,168,76,0.06); border-color: var(--gold); }
+.btn-ghost {
+  background: transparent;
+  color: var(--gold);
+  padding: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+}
+.btn-ghost:hover { background: rgba(201,168,76,0.06); }
+.btn-sm { padding: 0.55rem 1.2rem; font-size: 0.85rem; }
+
+/* ═══════════════════════════════════════════════
+   SECTIONS
+   ═══════════════════════════════════════════════ */
+section {
+  padding: var(--sp-2xl) 0;
+  position: relative;
+}
+
+.sec-header {
+  text-align: center;
+  margin-bottom: var(--sp-xl);
+}
+.sec-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gold-dim);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-xs);
+}
+.sec-header h2 { margin-bottom: 0.6rem; }
+.sec-header p { color: var(--text-secondary); margin: 0 auto; max-width: 600px; }
+.sec-line {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0.8rem auto 0;
+}
+
+/* ═══════════════════════════════════════════════
+   CARDS
+   ═══════════════════════════════════════════════ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--sp-md);
+  transition: all 0.4s var(--ease-out-expo);
+}
+.card:hover {
+  border-color: var(--border-gold);
+  box-shadow: 0 8px 40px rgba(201,168,76,0.06);
+  transform: translateY(-3px);
+}
+.card-glow {
+  position: relative;
+}
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(201,168,76,0.15), transparent 60%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.card-glow:hover::before { opacity: 1; }
+
+.card-accent {
+  background: linear-gradient(135deg, rgba(201,168,76,0.04), var(--bg-card));
+  border-color: var(--border-gold);
+}
+
+/* Grids */
+.g2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: var(--sp-md); }
+.g3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--sp-md); }
+.g4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: var(--sp-md); }
+.g6 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: var(--sp-sm); }
+
+/* ═══════════════════════════════════════════════
+   SCROLL REVEAL
+   ═══════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+}
+.reveal.vis { opacity: 1; transform: none; }
+
+.stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+}
+.stagger.vis > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: none; }
+.stagger.vis > *:nth-child(2) { transition-delay: 0.12s; opacity: 1; transform: none; }
+.stagger.vis > *:nth-child(3) { transition-delay: 0.19s; opacity: 1; transform: none; }
+.stagger.vis > *:nth-child(4) { transition-delay: 0.26s; opacity: 1; transform: none; }
+.stagger.vis > *:nth-child(5) { transition-delay: 0.33s; opacity: 1; transform: none; }
+.stagger.vis > *:nth-child(6) { transition-delay: 0.40s; opacity: 1; transform: none; }
+
+/* ═══════════════════════════════════════════════
+   DIVIDER
+   ═══════════════════════════════════════════════ */
+.sep {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-gold), transparent);
+  margin: var(--sp-lg) auto;
+  max-width: 600px;
+}
+
+/* ═══════════════════════════════════════════════
+   OID TREE (Code display)
+   ═══════════════════════════════════════════════ */
+.tree-box {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--sp-md);
+  overflow-x: auto;
+  direction: ltr;
+  text-align: left;
+  color: var(--text-secondary);
+}
+.tree-box .nid { color: var(--gold); font-weight: 700; }
+.tree-box .lbl { color: var(--text-muted); }
+.tree-box .indent { padding-left: 1.5rem; border-left: 1px solid var(--border); margin-left: 0.4rem; }
+
+/* ═══════════════════════════════════════════════
+   CODE BLOCKS
+   ═══════════════════════════════════════════════ */
+.code {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.75;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-sm) var(--sp-md);
+  overflow-x: auto;
+  direction: ltr;
+  text-align: left;
+  color: var(--text-secondary);
+  position: relative;
+}
+.code .kw { color: var(--accent-light); }
+.code .str { color: var(--teal); }
+.code .cmt { color: var(--text-muted); font-style: italic; }
+.code .fn { color: var(--gold-light); }
+.code .num { color: var(--rose); }
+.code-label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--bg-surface);
+  border-radius: 0 var(--radius-sm) 0 var(--radius-sm);
+  padding: 0.2rem 0.6rem;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+html[lang="en"] .code-label { right: auto; left: 0; border-radius: var(--radius-sm) 0 var(--radius-sm) 0; }
+
+/* ═══════════════════════════════════════════════
+   PHILOSOPHY QUOTE
+   ═══════════════════════════════════════════════ */
+.quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  font-style: italic;
+  color: var(--gold-light);
+  border-inline-start: 3px solid var(--gold);
+  padding-inline-start: var(--sp-md);
+  margin: var(--sp-md) 0;
+  max-width: 700px;
+  line-height: 1.6;
+  position: relative;
+}
+.quote::before {
+  content: '❝';
+  position: absolute;
+  top: -0.8rem;
+  inset-inline-start: -0.2rem;
+  font-size: 2.5rem;
+  color: var(--gold-dim);
+  opacity: 0.3;
+  font-style: normal;
+}
+
+/* ═══════════════════════════════════════════════
+   PILLARS
+   ═══════════════════════════════════════════════ */
+.pillar-card {
+  position: relative;
+  overflow: hidden;
+}
+.pillar-card::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  inset-inline-end: -20%;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.06;
+  pointer-events: none;
+}
+.pillar-national::after { background: var(--teal); }
+.pillar-gov::after { background: var(--accent); }
+.pillar-health::after { background: var(--rose); }
+.pillar-business::after { background: var(--gold); }
+.pillar-self::after { background: var(--violet); }
+
+.pillar-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: var(--sp-sm);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   CONTEXT CARDS (6 integrations)
+   ═══════════════════════════════════════════════ */
+.ctx-card {
+  position: relative;
+  overflow: hidden;
+}
+.ctx-card .ctx-idx {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: rgba(201,168,76,0.06);
+  position: absolute;
+  top: -0.6rem;
+  inset-inline-start: 0.5rem;
+  line-height: 1;
+  pointer-events: none;
+}
+.ctx-card .ctx-tag {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  background: rgba(201,168,76,0.08);
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--gold-dim);
+  margin-bottom: 0.5rem;
+  direction: ltr;
+}
+
+/* ═══════════════════════════════════════════════
+   TABS
+   ═══════════════════════════════════════════════ */
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--sp-md);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.tab-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.tab-btn:hover { color: var(--text-secondary); }
+.tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+.tab-pane { display: none; animation: fadeIn 0.4s var(--ease-out-expo); }
+.tab-pane.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ═══════════════════════════════════════════════
+   SLIDES (Course modules)
+   ═══════════════════════════════════════════════ */
+.slide-wrap { position: relative; }
+
+.slide {
+  display: none;
+  animation: slideUp 0.6s var(--ease-out-expo);
+}
+.slide.active { display: block; }
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+.slide-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: var(--sp-md);
+}
+.slide-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-faint);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0;
+}
+.slide-dot.active { background: var(--gold); width: 24px; border-radius: 4px; }
+.slide-dot.done { background: var(--teal-dim); }
+
+.slide-nav-btns {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: var(--sp-sm);
+}
+.slide-nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+.slide-nav-btn:hover { background: var(--bg-elevated); border-color: var(--gold-dim); }
+.slide-nav-btn:disabled { opacity: 0.25; pointer-events: none; }
+
+/* Module progress bar */
+.mod-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: var(--sp-md);
+}
+.mod-progress-track {
+  flex: 1;
+  height: 5px;
+  background: var(--bg-elevated);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.mod-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--teal));
+  border-radius: 3px;
+  transition: width 0.6s var(--ease-out-expo);
+  width: 0%;
+}
+.mod-progress-text {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  min-width: 2.5rem;
+  text-align: end;
+  font-family: var(--font-mono);
+}
+
+/* ═══════════════════════════════════════════════
+   OID BUILDER (Interactive)
+   ═══════════════════════════════════════════════ */
+.builder {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--sp-md);
+  direction: ltr;
+  text-align: left;
+}
+.builder-display {
+  font-family: var(--font-mono);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 700;
+  padding: var(--sp-sm) var(--sp-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--sp-sm);
+  min-height: 3.2rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.15rem;
+  transition: border-color 0.3s;
+}
+.builder-display.active { border-color: var(--gold-dim); }
+.builder-display .seg {
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+.builder-display .seg:hover { background: rgba(201,168,76,0.12); }
+.builder-display .dot { color: var(--text-faint); }
+
+.builder-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.builder-choice {
+  padding: 0.45rem 0.9rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.builder-choice:hover { border-color: var(--gold-dim); background: rgba(201,168,76,0.06); }
+.builder-choice.used { opacity: 0.3; pointer-events: none; }
+
+.builder-result {
+  margin-top: var(--sp-sm);
+  padding: var(--sp-sm);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-sm);
+  display: none;
+}
+.builder-result.show { display: block; animation: fadeIn 0.4s var(--ease-out-expo); }
+
+/* ═══════════════════════════════════════════════
+   QUIZ
+   ═══════════════════════════════════════════════ */
+.quiz-q {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--sp-md);
+  margin-bottom: var(--sp-sm);
+}
+.quiz-q h4 { margin-bottom: 0.75rem; font-size: 1.05rem; }
+
+.quiz-opts { display: flex; flex-direction: column; gap: 0.4rem; }
+.quiz-opt {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 1rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  text-align: start;
+  width: 100%;
+}
+.quiz-opt:hover { border-color: var(--gold-dim); }
+.quiz-opt .letter {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+.quiz-opt.picked { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+.quiz-opt.picked .letter { background: var(--gold); color: var(--bg-deep); border-color: var(--gold); }
+.quiz-opt.correct { border-color: var(--teal); background: rgba(45,212,168,0.06); }
+.quiz-opt.correct .letter { background: var(--teal); color: var(--bg-deep); border-color: var(--teal); }
+.quiz-opt.wrong { border-color: var(--rose); background: rgba(232,67,147,0.05); }
+.quiz-opt.wrong .letter { background: var(--rose); color: #fff; border-color: var(--rose); }
+.quiz-opt.locked { pointer-events: none; }
+
+.quiz-fb {
+  margin-top: 0.6rem;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  display: none;
+}
+.quiz-fb.show { display: block; animation: fadeIn 0.3s; }
+.quiz-fb.ok { background: rgba(45,212,168,0.08); color: var(--teal); border: 1px solid rgba(45,212,168,0.15); }
+.quiz-fb.nope { background: rgba(232,67,147,0.06); color: var(--rose); border: 1px solid rgba(232,67,147,0.12); }
+
+/* ═══════════════════════════════════════════════
+   TIMELINE
+   ═══════════════════════════════════════════════ */
+.timeline { position: relative; }
+html[lang="en"] .timeline { padding-left: 2rem; }
+html:not([lang="en"]) .timeline { padding-right: 2rem; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), var(--gold-dim), transparent);
+}
+html[lang="en"] .timeline::before { left: 0; }
+html:not([lang="en"]) .timeline::before { right: 0; }
+
+.tl-item {
+  position: relative;
+  padding-bottom: var(--sp-md);
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--bg-deep);
+  top: 0.45rem;
+}
+html[lang="en"] .tl-item::before { left: -2rem; margin-left: -4px; }
+html:not([lang="en"]) .tl-item::before { right: -2rem; margin-right: -4px; left: auto; }
+
+/* ═══════════════════════════════════════════════
+   ACCORDION
+   ═══════════════════════════════════════════════ */
+.acc-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.4rem;
+  overflow: hidden;
+}
+.acc-head {
+  width: 100%;
+  background: var(--bg-card);
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.85rem 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: background 0.3s;
+  text-align: start;
+}
+.acc-head:hover { background: var(--bg-elevated); }
+.acc-head .acc-icon { transition: transform 0.3s; flex-shrink: 0; }
+.acc-item.open .acc-head .acc-icon { transform: rotate(180deg); }
+.acc-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s var(--ease-out-expo);
+  background: var(--bg-secondary);
+}
+.acc-item.open .acc-body { max-height: 2000px; }
+.acc-inner { padding: 1rem 1.1rem; }
+
+/* ═══════════════════════════════════════════════
+   ENROLLMENT
+   ═══════════════════════════════════════════════ */
+.enroll-sec {
+  background: linear-gradient(180deg, var(--bg-deep), var(--bg-secondary), var(--bg-deep));
+  border-top: 1px solid var(--border);
+}
+
+.enroll-form {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.input {
+  padding: 0.85rem 1.1rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.1); }
+.input::placeholder { color: var(--text-muted); }
+
+/* ═══════════════════════════════════════════════
+   CERTIFICATE
+   ═══════════════════════════════════════════════ */
+.cert {
+  background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
+  border: 2px solid var(--gold);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-lg);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  max-width: 650px;
+  margin: var(--sp-lg) auto 0;
+}
+.cert::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid var(--border-gold);
+  border-radius: calc(var(--radius-xl) - 3px);
+  pointer-events: none;
+}
+.cert::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  inset-inline-start: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(201,168,76,0.03), transparent, rgba(201,168,76,0.03), transparent);
+  animation: certRotate 20s linear infinite;
+  pointer-events: none;
+}
+@keyframes certRotate { to { transform: rotate(360deg); } }
+
+.cert-seal {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto var(--sp-sm);
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 30px rgba(201,168,76,0.2);
+}
+.cert h3 { color: var(--gold); margin-bottom: 0.4rem; position: relative; z-index: 1; }
+.cert-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: var(--gold-light);
+  margin: 0.5rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════ */
+.footer {
+  padding: var(--sp-lg) 0 var(--sp-md);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--border);
+}
+.footer a { color: var(--gold-dim); }
+.footer a:hover { color: var(--gold); }
+
+/* ═══════════════════════════════════════════════
+   DECORATIVE FLOATING PARTICLES
+   ═══════════════════════════════════════════════ */
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0;
+  animation: particleFloat linear infinite;
+}
+@keyframes particleFloat {
+  0% { opacity: 0; transform: translateY(0) scale(0); }
+  15% { opacity: 0.2; }
+  85% { opacity: 0.2; }
+  100% { opacity: 0; transform: translateY(-100vh) scale(1); }
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .hero-metrics { gap: 1.5rem; flex-wrap: wrap; }
+  .metric-val { font-size: 2rem; }
+  .tree-box { font-size: 0.75rem; }
+  .tree-box .indent { padding-left: 0.8rem; }
+}
+
+/* ═══════════════════════════════════════════════
+   SIDEBAR TOC
+   ═══════════════════════════════════════════════ */
+@media (min-width: 1100px) {
+  .has-toc {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: var(--sp-lg);
+    align-items: start;
+  }
+  .toc {
+    position: sticky;
+    top: 80px;
+    padding: var(--sp-sm);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .toc-title {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+  }
+  .toc a {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+    text-decoration: none;
+    margin-bottom: 0.1rem;
+  }
+  .toc a:hover { color: var(--text-secondary); background: rgba(201,168,76,0.04); }
+  .toc a.active { color: var(--gold); background: rgba(201,168,76,0.08); font-weight: 600; }
+}
+@media (max-width: 1099px) { .toc { display: none; } }
+/* ═══════════════════════════════════════════════
+   HISTORY TIMELINE (Extended)
+   ═══════════════════════════════════════════════ */
+.hist-era {
+  position: relative;
+  padding: var(--sp-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: var(--sp-sm);
+  overflow: hidden;
+}
+.hist-era::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  inset-inline-start: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: 2px;
+}
+.hist-era.era-ancient::before { background: var(--teal); }
+.hist-era.era-print::before { background: var(--accent); }
+.hist-era.era-digital::before { background: var(--gold); }
+.hist-era.era-future::before { background: var(--violet); }
+.hist-era .era-label {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.hist-era.era-ancient .era-label { background: rgba(45,212,168,0.1); color: var(--teal); }
+.hist-era.era-print .era-label { background: rgba(74,124,255,0.1); color: var(--accent-light); }
+.hist-era.era-digital .era-label { background: rgba(201,168,76,0.1); color: var(--gold); }
+.hist-era.era-future .era-label { background: rgba(167,139,250,0.1); color: var(--violet); }
+
+/* ═══════════════════════════════════════════════
+   COMPARISON TABLE
+   ═══════════════════════════════════════════════ */
+.cmp-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9rem;
+  direction: ltr;
+  text-align: left;
+}
+.cmp-table th {
+  background: var(--bg-elevated);
+  color: var(--gold);
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+  border-bottom: 2px solid var(--border-gold);
+  text-align: left;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.cmp-table td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+.cmp-table tr:hover td { background: rgba(201,168,76,0.03); }
+.cmp-table .check { color: var(--teal); }
+.cmp-table .cross { color: var(--rose); opacity: 0.6; }
+
+/* ═══════════════════════════════════════════════
+   CALLOUT BOXES
+   ═══════════════════════════════════════════════ */
+.callout {
+  padding: var(--sp-sm) var(--sp-md);
+  border-radius: var(--radius-sm);
+  margin: var(--sp-sm) 0;
+  font-size: 0.92rem;
+  position: relative;
+}
+.callout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  inset-inline-start: 0;
+  width: 3px;
+  border-radius: 2px;
+}
+.callout-info { background: rgba(74,124,255,0.06); border: 1px solid rgba(74,124,255,0.12); }
+.callout-info::before { background: var(--accent); }
+.callout-warn { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.12); }
+.callout-warn::before { background: var(--amber); }
+.callout-success { background: rgba(45,212,168,0.06); border: 1px solid rgba(45,212,168,0.12); }
+.callout-success::before { background: var(--teal); }
+.callout-deep { background: rgba(167,139,250,0.06); border: 1px solid rgba(167,139,250,0.12); }
+.callout-deep::before { background: var(--violet); }
+
+/* ═══════════════════════════════════════════════
+   ARCHITECTURE DIAGRAM (ASCII-art style)
+   ═══════════════════════════════════════════════ */
+.arch-diagram {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--sp-md);
+  overflow-x: auto;
+  direction: ltr;
+  text-align: left;
+  color: var(--text-secondary);
+  white-space: pre;
+}
+.arch-diagram .layer { color: var(--gold); font-weight: 700; }
+.arch-diagram .arrow { color: var(--teal); }
+.arch-diagram .note { color: var(--text-muted); font-style: italic; }
+
+/* ═══════════════════════════════════════════════
+   FEATURE GRID
+   ═══════════════════════════════════════════════ */
+.feat-item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.feat-item:last-child { border-bottom: none; }
+.feat-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  background: rgba(201,168,76,0.08);
+}
+.feat-text h5 {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+.feat-text p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════════
+   OID EXPLORER (Interactive tree browser)
+   ═══════════════════════════════════════════════ */
+.explorer {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.explorer-header {
+  padding: 0.75rem 1rem;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.explorer-header input {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.4rem 0.75rem;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  outline: none;
+}
+.explorer-header input:focus { border-color: var(--gold-dim); }
+.explorer-body {
+  padding: var(--sp-sm);
+  max-height: 400px;
+  overflow-y: auto;
+  direction: ltr;
+  text-align: left;
+}
+.exp-node {
+  padding: 0.3rem 0;
+  cursor: pointer;
+  transition: color 0.2s;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+.exp-node:hover { color: var(--gold); }
+.exp-node .exp-oid { color: var(--gold); font-weight: 700; }
+.exp-node .exp-label { color: var(--text-muted); margin-left: 0.5rem; }
+.exp-children {
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--border);
+  margin-left: 0.4rem;
+}
+.exp-toggle {
+  display: inline-block;
+  width: 16px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--text-faint);
+  transition: transform 0.2s;
+  user-select: none;
+}
+.exp-toggle.open { transform: rotate(90deg); }
+.exp-detail {
+  margin-top: 0.5rem;
+  padding: 0.6rem;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  display: none;
+}
+.exp-detail.show { display: block; animation: fadeIn 0.3s; }
+.exp-detail code {
+  font-family: var(--font-mono);
+  color: var(--teal);
+  font-size: 0.8rem;
+}
+
+/* ═══════════════════════════════════════════════
+   CASE STUDY CARD
+   ═══════════════════════════════════════════════ */
+.case-study {
+  background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius);
+  padding: var(--sp-md);
+  position: relative;
+  overflow: hidden;
+}
+.case-study::after {
+  content: 'CASE STUDY';
+  position: absolute;
+  top: 1rem;
+  inset-inline-end: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--gold-dim);
+  opacity: 0.5;
+}
+
+/* ═══════════════════════════════════════════════
+   STATS ROW
+   ═══════════════════════════════════════════════ */
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-sm);
+  margin: var(--sp-md) 0;
+}
+.stat-box {
+  flex: 1;
+  min-width: 120px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+.stat-box .stat-val {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1.1;
+}
+.stat-box .stat-lbl {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.2rem;
+}
+
+/* ═══════════════════════════════════════════════
+   DEEP DIVE SECTIONS
+   ═══════════════════════════════════════════════ */
+.deep-section {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: var(--sp-xl) 0;
+}
+
+/* ═══════════════════════════════════════════════
+   GLOSSARY
+   ═══════════════════════════════════════════════ */
+.glossary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 0.5rem;
+}
+.gloss-item {
+  padding: 0.75rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.gloss-item .gloss-term {
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 0.95rem;
+  margin-bottom: 0.2rem;
+}
+.gloss-item .gloss-def {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════════
+   RESOURCES GRID
+   ═══════════════════════════════════════════════ */
+.resource-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all 0.3s;
+}
+.resource-card:hover {
+  border-color: var(--border-gold);
+  background: var(--bg-elevated);
+  transform: translateY(-2px);
+}
+.resource-card .res-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  background: rgba(201,168,76,0.08);
+  flex-shrink: 0;
+}
+.resource-card .res-text h5 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.1rem;
+}
+.resource-card .res-text p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+</style>
+</head>
+<body>
+
+<!-- Progress -->
+<div class="progress" id="progress" style="width:0%"></div>
+
+<!-- Floating particles -->
+<div class="particles" id="particles"></div>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-brand">
+    <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="1.2"/><path d="M8 14l4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="14" r="5" stroke="currentColor" stroke-width="0.8" opacity="0.35"/></svg>
+    <span>BrainSAIT <small>OID Academy</small></span>
+  </a>
+
+  <ul class="nav-center" id="navLinks">
+    <li><a href="#about" data-ar="عن الدورة" data-en="About">عن الدورة</a></li>
+    <li><a href="#modules" data-ar="الوحدات" data-en="Modules">الوحدات</a></li>
+    <li><a href="#pillars" data-ar="الركائز" data-en="Pillars">الركائز</a></li>
+    <li><a href="#contexts" data-ar="التكاملات" data-en="Contexts">التكاملات</a></li>
+    <li><a href="#lab" data-ar="المعمل" data-en="Lab">المعمل</a></li>
+    <li><a href="#quiz" data-ar="الاختبار" data-en="Quiz">الاختبار</a></li>
+    <li><a href="#enroll" data-ar="سجّل" data-en="Enroll">سجّل</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <div class="lang-toggle">
+      <button id="btnAr" class="active" onclick="setLang('ar')">عربي</button>
+      <button id="btnEn" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="btn-menu" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+  <div class="hero-canvas"><canvas id="heroCanvas"></canvas></div>
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <span>🎓</span>
+      <span class="ar-only">دورة تفاعلية شاملة · مجانية</span>
+      <span class="en-only">Comprehensive Interactive Course · Free</span>
+    </div>
+    <h1>
+      <span class="gradient-text">
+        <span class="ar-only">رحلة الهوية الرقمية</span>
+        <span class="en-only">The Digital Identity Journey</span>
+      </span>
+      <span class="line2">
+        <span class="ar-only">من المُعرّف إلى المعنى</span>
+        <span class="en-only">From Identifier to Meaning</span>
+      </span>
+    </h1>
+    <p class="hero-desc">
+      <span class="ar-only">استكشف كيف يُعيد مُعرّف الكائنات (OID) تعريف مفهوم الهوية — الوطنية والحكومية والصحية والتجارية والذاتية — من منظور تعليمي وفلسفي عميق، عبر نظام BrainSAIT المسجل لدى IANA</span>
+      <span class="en-only">Explore how Object Identifiers (OID) redefine identity — national, governmental, healthcare, business, and self — through deep educational and philosophical lenses, via the BrainSAIT IANA-registered system</span>
+    </p>
+    <div class="hero-actions">
+      <a href="#enroll" class="btn btn-primary">
+        <span class="ar-only">ابدأ رحلتك مجاناً</span>
+        <span class="en-only">Start Your Journey Free</span>
+      </a>
+      <a href="#about" class="btn btn-outline">
+        <span class="ar-only">استكشف المحتوى</span>
+        <span class="en-only">Explore Content</span>
+      </a>
+    </div>
+    <div class="hero-metrics">
+      <div class="metric"><span class="metric-val" data-count="7">0</span><span class="metric-label"><span class="ar-only">وحدات</span><span class="en-only">Modules</span></span></div>
+      <div class="metric"><span class="metric-val" data-count="6">0</span><span class="metric-label"><span class="ar-only">تكاملات</span><span class="en-only">Contexts</span></span></div>
+      <div class="metric"><span class="metric-val" data-count="5">0</span><span class="metric-label"><span class="ar-only">ركائز</span><span class="en-only">Pillars</span></span></div>
+      <div class="metric"><span class="metric-val" data-count="5">0</span><span class="metric-label"><span class="ar-only">أسئلة</span><span class="en-only">Quiz Qs</span></span></div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="mouse"></div>
+    <span class="ar-only">اسحب للأسفل</span>
+    <span class="en-only">Scroll</span>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-label"><span class="ar-only">٠١ · المقدمة</span><span class="en-only">01 · Introduction</span></span>
+      <h2><span class="ar-only">ما هو مُعرّف الكائنات؟</span><span class="en-only">What is an Object Identifier?</span></h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="g2 reveal" style="align-items:center">
+      <div>
+        <p style="margin-bottom:var(--sp-sm)">
+          <span class="ar-only">مُعرّف الكائنات (OID) هو معيار عالمي من ISO/IEC 8824 وITU-T X.660 لتعريف أي كائن — شخصاً، خدمة، جهازاً، أو حتى مفهوماً — بطريقة فريدة ولامركزية. إنه ليس مجرد رقم: إنه <strong>شجرة وجود رقمية</strong> تبدأ من جذور موحدة (ISO = 1, ITU = 2) وتتفرّع لتمسّ كل جوانب حياتنا الرقمية.</span>
+          <span class="en-only">An Object Identifier (OID) is a global standard from ISO/IEC 8824 and ITU-T X.660 for uniquely identifying any object — person, service, device, or concept — in a decentralized way. It's not just a number: it's a <strong>digital tree of existence</strong> starting from unified roots (ISO = 1, ITU = 2) that branches into every aspect of our digital lives.</span>
+        </p>
+        <p style="margin-bottom:var(--sp-md)">
+          <span class="ar-only">في هذه الدورة، نغوص في أعماق نظام BrainSAIT OID — المسجل لدى IANA برقم <span class="mono">PEN 61026</span> — لنتعلّم كيف يُعيد تعريف مفهوم الهوية في عالمنا المترابط.</span>
+          <span class="en-only">In this course, we dive deep into the BrainSAIT OID system — registered with IANA under <span class="mono">PEN 61026</span> — to learn how it redefines identity in our interconnected world.</span>
+        </p>
+        <div class="quote ar-only">«الهوية ليست اسماً تُنادى به — بل موضعًا تحتله في شجرة الوجود الرقمية»</div>
+        <div class="quote en-only">"Identity is not a name you're called by — it is a position you hold in the digital tree of existence"</div>
+      </div>
+
+      <div class="tree-box">
+<div><span class="nid">1.3.6.1.4.1.61026</span> <span class="lbl">— BrainSAIT Root (IANA PEN)</span></div>
+<div class="indent">
+  <div><span class="nid">.1</span> <span class="lbl">— Geographic Operations</span></div>
+  <div class="indent">
+    <div><span class="nid">.1.1</span> <span class="lbl">— Riyadh 🇸🇦</span></div>
+    <div><span class="nid">.1.2</span> <span class="lbl">— Sudan 🇸🇩</span></div>
+  </div>
+  <div><span class="nid">.2</span> <span class="lbl">— Organization</span></div>
+  <div class="indent">
+    <div><span class="nid">.2.1.1</span> <span class="lbl">— Engineering</span></div>
+    <div><span class="nid">.2.1.2</span> <span class="lbl">— Healthcare Ops</span></div>
+    <div><span class="nid">.2.2</span> <span class="lbl">— Licensing & Compliance</span></div>
+  </div>
+  <div><span class="nid">.3</span> <span class="lbl">— Products & Services</span></div>
+  <div class="indent">
+    <div><span class="nid">.3.1</span> <span class="lbl">— CMS</span></div>
+    <div><span class="nid">.3.2</span> <span class="lbl">— Healthcare Platform</span></div>
+    <div class="indent">
+      <div><span class="nid">.3.2.1</span> <span class="lbl">— AI Normalizer</span></div>
+      <div><span class="nid">.3.2.2</span> <span class="lbl">— Signer Microservice</span></div>
+      <div><span class="nid">.3.2.3</span> <span class="lbl">— NPHIES Connector</span></div>
+    </div>
+    <div><span class="nid">.3.3</span> <span class="lbl">— AI Agent Framework</span></div>
+  </div>
+  <div><span class="nid">.4</span> <span class="lbl">— Infrastructure</span></div>
+  <div class="indent">
+    <div><span class="nid">.4.1</span> <span class="lbl">— Ollama Private Cloud</span></div>
+    <div><span class="nid">.4.2</span> <span class="lbl">— Docker Infrastructure</span></div>
+    <div><span class="nid">.4.3</span> <span class="lbl">— IoT Devices</span></div>
+  </div>
+  <div><span class="nid">.6</span> <span class="lbl">— Badge System</span></div>
+  <div class="indent">
+    <div><span class="nid">.6.1</span> <span class="lbl">— Professional Badges</span></div>
+    <div><span class="nid">.6.2</span> <span class="lbl">— Healthcare Practitioner</span></div>
+    <div><span class="nid">.6.3</span> <span class="lbl">— AI Agent Identity</span></div>
+    <div><span class="nid">.6.4</span> <span class="lbl">— IoT Device Identity</span></div>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══ COURSE MODULES ═══ -->
+<section id="modules">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-label"><span class="ar-only">٠٢ · الوحدات التعليمية</span><span class="en-only">02 · Course Modules</span></span>
+      <h2><span class="ar-only">رحلة في سبع محطات</span><span class="en-only">A Journey in Seven Stations</span></h2>
+      <p><span class="ar-only">كل وحدة تفتح باباً جديداً لفهم الهوية الرقمية</span><span class="en-only">Each module opens a new door to understanding digital identity</span></p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="mod-progress reveal">
+      <div class="mod-progress-track"><div class="mod-progress-fill" id="modFill"></div></div>
+      <span class="mod-progress-text" id="modText">0/7</span>
+    </div>
+
+    <div class="slide-wrap" id="slideWrap">
+
+      <!-- M1: Foundations -->
+      <div class="slide active" data-slide="0">
+        <div class="card card-accent" style="padding:var(--sp-lg)">
+          <span class="sec-label">01</span>
+          <h3 style="margin:0.5rem 0"><span class="ar-only">الأساسيات: بنية OID الهرمية</span><span class="en-only">Foundations: The Hierarchical OID Structure</span></h3>
+          <p style="margin-bottom:var(--sp-md)">
+            <span class="ar-only">OID هو سلسلة من الأرقام مفصولة بنقاط (مثل <span class="mono">1.3.6.1.4.1.61026</span>)، حيث يمثل كل رقم مستوى في شجرة هرمية عالمية. الجذر <span class="mono">1</span> ينتمي لـ ISO، و<span class="mono">2</span> لـ ITU. الرقم <span class="mono">4.1</span> يشير إلى IANA Private Enterprise، وأخيراً <span class="mono">61026</span> هو رقم BrainSAIT المسجل رسمياً.</span>
+            <span class="en-only">An OID is a dot-separated string (like <span class="mono">1.3.6.1.4.1.61026</span>), where each number represents a level in a global hierarchy. Root <span class="mono">1</span> belongs to ISO, <span class="mono">2</span> to ITU. <span class="mono">4.1</span> indicates IANA Private Enterprise, and <span class="mono">61026</span> is BrainSAIT's officially registered number.</span>
+          </p>
+          <div class="code" style="margin-bottom:var(--sp-md)">
+            <span class="code-label">TypeScript</span>
+<span class="kw">const</span> <span class="fn">BRAINSAIT_ROOT</span> = <span class="str">'1.3.6.1.4.1.61026'</span>;
+
+<span class="cmt">// Each branch can spawn unlimited sub-branches</span>
+<span class="cmt">// enabling organic, decentralized growth</span>
+<span class="fn">1.3.6.1.4.1.61026</span>        <span class="cmt">// BrainSAIT Root</span>
+  ├── <span class="fn">.1</span>  <span class="cmt">// Geography</span>
+  ├── <span class="fn">.2</span>  <span class="cmt">// Organization</span>
+  ├── <span class="fn">.3</span>  <span class="cmt">// Products</span>
+  ├── <span class="fn">.4</span>  <span class="cmt">// Infrastructure</span>
+  └── <span class="fn">.6</span>  <span class="cmt">// Badge System</span>
+          </div>
+          <p><strong class="gold">
+            <span class="ar-only">💡 المفتاح:</span><span class="en-only">💡 Key:</span>
+          </strong>
+          <span class="ar-only"> كل فرع يولّد فروعاً بلا حدود — نظام لا مركزي ينمو عضوياً، تماماً مثل الأعصاب في الدماغ.</span>
+          <span class="en-only"> Each branch spawns unlimited sub-branches — a decentralized system that grows organically, like neurons in a brain.</span></p>
+          <button class="btn btn-primary btn-sm" style="margin-top:var(--sp-sm)" onclick="done(0)"><span class="ar-only">✓ أكملت · انتقل للتالية</span><span class="en-only">✓ Complete · Next</span></button>
+        </div>
+      </div>
+
+      <!-- M2: Philosophy -->
+      <div class="slide" data-slide="1">
+        <div class="card card-accent" style="padding:var(--sp-lg)">
+          <span class="sec-label">02</span>
+          <h3 style="margin:0.5rem 0"><span class="ar-only">فلسفة الهوية: من الاسم إلى الوجود</span><span class="en-only">Philosophy of Identity: From Name to Existence</span></h3>
+
+          <div class="quote ar-only">«لستُ اسمي — بل أنا موقفي في الشبكة الكبرى للعلاقات»</div>
+          <div class="quote en-only">"I am not my name — I am my position in the grand network of relationships"</div>
+
+          <p style="margin-bottom:var(--sp-md)">
+            <span class="ar-only">يطرح OID تحدياً فلسفياً عميقاً: هل أنت اسمك؟ أم رقمك؟ أم مجموع علاقاتك؟ يقترح OID أن الهوية الحقيقية هي <em>الموضع النسبي</em> — أنت عقدة في شبكة، مكانك في الشجرة يحدد معناك. هذا يتقاطع مع ثلاثة تيارات فلسفية كبرى:</span>
+            <span class="en-only">OID poses a profound philosophical challenge: Are you your name? Your number? The sum of your relationships? OID suggests true identity is <em>relative position</em> — you're a node in a network, and your place in the tree defines your meaning. This intersects three major philosophical traditions:</span>
+          </p>
+
+          <div class="g3" style="margin-bottom:var(--sp-md)">
+            <div class="card">
+              <h4 class="gold">🏛️ <span class="ar-only">الأفلاطونية</span><span class="en-only">Platonism</span></h4>
+              <p style="font-size:0.92rem">
+                <span class="ar-only">كما اعتقد أفلاطون أن لكل شيء "مثالاً" أزليّاً، يمثل OID "المثال" لكل كائن رقمي — الجوهر الثابت الذي لا يتغير رغم تغيّر الأوصاف.</span>
+                <span class="en-only">As Plato believed in eternal "forms," OID represents the "form" of every digital entity — the fixed essence that endures despite changing attributes.</span>
+              </p>
+            </div>
+            <div class="card">
+              <h4 style="color:var(--accent-light)">🌐 <span class="ar-only">الوجودية</span><span class="en-only">Existentialism</span></h4>
+              <p style="font-size:0.92rem">
+                <span class="ar-only">"الوجود يسبق الماهية" — سارتر. في OID: الوجود = التسجيل. كائن غير مسجّل لا يوجد في النظام. الهوية تُكتسب بالفعل، لا تُعطى بالفطرة.</span>
+                <span class="en-only">"Existence precedes essence" — Sartre. In OID: existence = registration. An unregistered entity doesn't exist. Identity is earned through action, not given by nature.</span>
+              </p>
+            </div>
+            <div class="card">
+              <h4 class="teal">🔗 <span class="ar-only">البنيوية</span><span class="en-only">Structuralism</span></h4>
+              <p style="font-size:0.92rem">
+                <span class="ar-only">حسب سوسير، المعنى ينتج من العلاقات لا من الذات. كذلك OID: كل عقدة تعريفها يكمن في علاقتها بالعقد الأخرى — لا معنى لـ <span class="mono">.3.2</span> بدون <span class="mono">.3</span>.</span>
+                <span class="en-only">For Saussure, meaning arises from relations, not essence. Similarly, OID: each node's identity lies in its relation to others — <span class="mono">.3.2</span> has no meaning without <span class="mono">.3</span>.</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="card" style="border-color:rgba(167,139,250,0.15);background:linear-gradient(135deg,rgba(167,139,250,0.03),var(--bg-card))">
+            <p><strong class="violet">
+              <span class="ar-only">🌌 سؤال للتأمل:</span><span class="en-only">🌌 Reflection:</span>
+            </strong>
+            <span class="ar-only"> إذا كان موقعك في الشجرة هو هويتك، فماذا يحدث عندما تتفرع الشجرة؟ هل أنت أكثر من عقدة واحدة؟ هل يمكن أن تكون في شجرتين في آنٍ واحد؟</span>
+            <span class="en-only"> If your position in the tree is your identity, what happens when the tree branches? Are you more than one node? Can you exist in two trees simultaneously?</span></p>
+          </div>
+
+          <button class="btn btn-primary btn-sm" style="margin-top:var(--sp-md)" onclick="done(1)"><span class="ar-only">✓ أكملت · انتقل للتالية</span><span class="en-only">✓ Complete · Next</span></button>
+        </div>
+      </div>
+
+      <!-- M3: National Identity -->
+      <div class="slide" data-slide="2">
+        <div class="card card-accent pillar-card pillar-national" style="padding:var(--sp-lg)">
+          <span class="sec-label">03</span>
+          <h3 style="margin:0.5rem 0"><span class="ar-only">🏛️ الهوية الوطنية</span><span class="en-only">🏛️ National Identity</span></h3>
+          <p style="margin-bottom:var(--sp-md)">
+            <span class="ar-only">الهوية الوطنية ليست مجرد جواز سفر — إنها ارتباط المواطن بالدولة، بالتاريخ، بالثقافة، بالأرض. في العالم الرقمي، يحتاج هذا الارتباط إلى بروتوكول يضمن الأصالة والامتداد والتحكّم. OID يوفر هذا البروتوكول.</span>
+            <span class="en-only">National identity isn't just a passport — it's the citizen's bond to the state, history, culture, and land. In the digital world, this bond needs a protocol guaranteeing authenticity, continuity, and control. OID provides that protocol.</span>
+          </p>
+          <div class="g2">
+            <div class="card card-glow">
+              <div class="pillar-icon" style="background:rgba(45,212,168,0.1);color:var(--teal)">🇸🇦</div>
+              <h4><span class="ar-only">الهوية السعودية الرقمية</span><span class="en-only">Saudi Digital Identity</span></h4>
+              <p style="font-size:0.92rem">
+                <span class="ar-only">ربط رقم الهوية الوطنية (10 أرقام) بعقدة OID فريدة يتيح التحقق عبر أنظمة — أبشر، نفيس، تأمينات — مع الحفاظ على الخصوصية وعدم الكشف عن البيانات.</span>
+                <span class="en-only">Linking the national ID (10 digits) to a unique OID node enables verification across systems — Absher, Nphies, GOSI — while preserving privacy and preventing data exposure.</span>
+              </p>
+            </div>
+            <div class="card card-glow">
+              <div class="pillar-icon" style="background:rgba(45,212,168,0.1);color:var(--teal)">🌍</div>
+              <h4><span class="ar-only">التوافق الدولي</span><span class="en-only">International Interoperability</span></h4>
+              <p style="font-size:0.92rem">
+                <span class="ar-only">OID معيار ISO/ITU. الهوية الوطنية المبنية عليه يمكن التحقق منها في أي دولة تبنّت المعيار — مما يفتح الباب للخدمات العابرة للحدود دون وسطاء.</span>
+                <span class="en-only">OID is an ISO/ITU standard. National identity built on it is verifiable in any adopting country — enabling cross-border services without intermediaries.</span>
+              </p>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm" style="margin-top:var(--sp-md)" onclick="done(2)"><span class="ar-only">✓ أكملت</span><span class="en-only">✓ Complete</span></button>
+        </div>
+      </div>
+
+      <!-- M4: Government ID -->
+      <div class="slide" data-slide="3">
+        <div class="card card-accent pillar-card pillar-gov" style="padding:var(--sp-lg)">
+          <span class="sec-label">04</span>
+          <h3 style="margin:0.5rem 0"><span class="ar-only">⚖️ الهوية الحكومية</span><span class="en-only">⚖️ Government Identity</span></h3>
+          <p style="margin-bottom:var(--sp-md)">
+            <span class="ar-only">الحكومات تحتاج أنظمة هوية قادرة على التحقق بكفاءة وأمان. OID يوفر البنية التحتية لربط كل كيان حكومي — الوزارات، الخدمات، الموظفين — بشجرة هوية موحدة وقابلة للتدقيق.</span>
+            <span class="en-only">Governments need identity systems that verify efficiently and securely. OID provides infrastructure for linking every government entity — ministries, services, employees — to a unified, auditable identity tree.</span>
+          </p>
+          <div class="timeline" style="margin-bottom:var(--sp-md)">
+            <div class="tl-item">
+              <h4 class="gold"><span class="ar-only">التحقق الموحد</span><span class="en-only">Unified Verification</span></h4>
+              <p style="font-size:0.92rem"><span class="ar-only">عقدة OID واحدة تكفي للتحقق من هوية المواطن في أي خدمة حكومية — لا مزيد من التكرار أو الازدواجية.</span><span class="en-only">A single OID node verifies citizen identity across any government service — no more duplication.</span></p>
+            </div>
+            <div class="tl-item">
+              <h4 class="gold"><span class="ar-only">الصلاحيات المتدرجة</span><span class="en-only">Graduated Permissions</span></h4>
+              <p style="font-size:0.92rem"><span class="ar-only">مستويات الوصول مدمجة في بنية OID — من المواطن العادي إلى المسؤول الأعلى، مع سجل تدقيق كامل.</span><span class="en-only">Access levels embedded in the OID structure — from ordinary citizen to highest official, with full audit trail.</span></p>
+            </div>
+            <div class="tl-item">
+              <h4 class="gold"><span class="ar-only">الشفافية والمساءلة</span><span class="en-only">Transparency & Accountability</span></h4>
+              <p style="font-size:0.92rem"><span class="ar-only">كل عملية مسجلة بـ OID — تاريخ كامل لا يمكن التلاعب به، يضمن المساءلة الحكومية.</span><span class="en-only">Every operation logged with OID — a complete, tamper-proof history ensuring governmental accountability.</span></p>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="done(3)"><span class="ar-only">✓ أكملت</span><span class="en-only">✓ Complete</span></button>
+        </div>
+      </div>
+
+      <!-- M5: Healthcare -->
+      <div class="slide" data-slide="4">
+        <div class="card card-accent pillar-card pillar-health" style="padding:var(--sp-lg)">
+          <span class="sec-label">05</span>
+          <h3 style="margin:0.5rem 0"><span class="ar-only">🏥 الهوية الصحية</span><span class="en-only">🏥 Healthcare Identity</span></h3>
+          <p style="margin-bottom:var(--sp-md)">
+            <span class="ar-only">في المجال الصحي، الهوية مسألة حياة أو موت. نظام BrainSAIT OID مدمج مع FHIR وNPHIES لضمان أن كل مريض، طبيب، وخدمة صحية لديها هوية رقمية فريدة وقابلة لل_VERIFY. هذا ليس تقنية — إنه أمانة.</span>
+            <span class="en-only">In healthcare, identity is life or death. The BrainSAIT OID system integrates with FHIR and NPHIES to ensure every patient, physician, and health service has a unique, verifiable digital identity. This isn't just tech — it's a sacred trust.</span>
+          </p>
+          <div class="g2" style="margin-bottom:var(--sp-sm)">
+            <div class="card">
+              <h4 class="rose">🩺 FHIR Integration</h4>
+              <div class="code" style="margin-top:0.5rem;font-size:0.78rem">
+<span class="cmt">// OID → FHIR CodeableConcept</span>
+{
+  <span class="str">"system"</span>: <span class="str">"urn:oid:1.3.6.1.4.1.61026.3.2.3"</span>,
+  <span class="str">"code"</span>: <span class="str">"nphies-connector"</span>,
+  <span class="str">"display"</span>: <span class="str">"NPHIES Connector Service"</span>
+}
+              </div>
+            </div>
+            <div class="card">
+              <h4 class="rose">🔗 X.509 Certificate Policy</h4>
+              <div class="code" style="margin-top:0.5rem;font-size:0.78rem">
+<span class="cmt">// Every healthcare OID is protected</span>
+{
+  <span class="str">"critical"</span>: <span class="kw">false</span>,
+  <span class="str">"policyIdentifier"</span>: <span class="str">"1.3.6.1.4.1.61026.2.2"</span>,
+  <span class="str">"cps"</span>: <span class="str">"https://brainsait.com/cps/1.0"</span>
+}
+              </div>
+            </div>
+          </div>
+          <div class="card" style="border-color:rgba(232,67,147,0.15)">
+            <p><strong class="rose">
+              <span class="ar-only">⚕️ أمانة الطبيب الرقمية:</span><span class="en-only">⚕️ Digital Hippocratic Oath:</span>
+            </strong>
+            <span class="ar-only"> كل عقدة OID صحية محمية بسياسات X.509 صارمة — لا يمكن الوصول لسجلات المريض إلا عبر شهادة رقمية موقّعة. الخصوصية ليست خياراً — إنها معمارية.</span>
+            <span class="en-only"> Every healthcare OID node is protected by strict X.509 policies — patient records are accessible only via signed digital certificates. Privacy isn't an option — it's architecture.</span></p>
+          </div>
+          <button class="btn btn-primary btn-sm" style="margin-top:var(--sp-md)" onclick="done(4)"><span class="ar-only">✓ أكملت</span><span class="en-only">✓ Complete</span></button>
+        </div>
+      </div>
+
+      <!-- M6: Business -->
+      <div class="slide" data-slide="5">
+        <div class="card card-accent pillar-card pillar-business" style="padding:var(--sp-lg)">
+          <span class="sec-label">06</span>
+          <h3 style="margin:0.5rem 0"><span class="ar-only">💼 الهوية التجارية</span><span class="en-only">💼 Business Identity</span></h3>
+          <p style="margin-bottom:var(--sp-md)">
+            <span class="ar-only">في عالم الأعمال الرقمي، تحتاج كل شركة ومنتج وهدمة إلى هوية قابلة لل_verify. OID يوفر للشركات إطاراً لتنظيم منتجاتها وخدماتها وشراكاتها في شجرة هرمية واضحة.</span>
+            <span class="en-only">In the digital business world, every company, product, and service needs a verifiable identity. OID provides organizations a framework to structure products, services, and partnerships in a clear hierarchy.</span>
+          </p>
+          <div class="g3">
+            <div class="card" style="text-align:center">
+              <div style="font-size:2.2rem;margin-bottom:0.5rem">📦</div>
+              <h4><span class="ar-only">إدارة المنتجات</span><span class="en-only">Product Management</span></h4>
+              <p style="font-size:0.88rem"><span class="ar-only">كل منتج له OID فريد — CMS، منصة صحية، إطار AI — تتبع كامل عبر دورة الحياة.</span><span class="en-only">Every product has a unique OID — CMS, healthcare platform, AI framework — full lifecycle tracking.</span></p>
+            </div>
+            <div class="card" style="text-align:center">
+              <div style="font-size:2.2rem;margin-bottom:0.5rem">🤝</div>
+              <h4><span class="ar-only">الشراكات الآمنة</span><span class="en-only">Secure Partnerships</span></h4>
+              <p style="font-size:0.88rem"><span class="ar-only">ربط شجرة OID بشريك يتيح التكامل دون كشف البنية الداخلية — مشاركة انتقائية.</span><span class="en-only">Linking OID tree to a partner enables integration without exposing internal structure — selective sharing.</span></p>
+            </div>
+            <div class="card" style="text-align:center">
+              <div style="font-size:2.2rem;margin-bottom:0.5rem">📊</div>
+              <h4><span class="ar-only">الامتثال والتدقيق</span><span class="en-only">Compliance & Audit</span></h4>
+              <p style="font-size:0.88rem"><span class="ar-only">كل معاملة بـ OID — سلسلة تدقيق لا تنقطع للامتثال التنظيمي.</span><span class="en-only">Every transaction with OID — an unbroken audit trail for regulatory compliance.</span></p>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm" style="margin-top:var(--sp-md)" onclick="done(5)"><span class="ar-only">✓ أكملت</span><span class="en-only">✓ Complete</span></button>
+        </div>
+      </div>
+
+      <!-- M7: Self Identity -->
+      <div class="slide" data-slide="6">
+        <div class="card card-accent pillar-card pillar-self" style="padding:var(--sp-lg)">
+          <span class="sec-label">07</span>
+          <h3 style="margin:0.5rem 0"><span class="ar-only">🔮 الهوية الذاتية</span><span class="en-only">🔮 Self Identity</span></h3>
+
+          <div class="quote ar-only">«أنا لستُ مجرد بيانات — أنا قصة أرويها بنفسي، لكن بتوقيع لا يمكن تزييفه»</div>
+          <div class="quote en-only">"I am not merely data — I am a story I tell myself, but with a signature that cannot be forged"</div>
+
+          <p style="margin-bottom:var(--sp-md)">
+            <span class="ar-only">في عصر الذكاء الاصطناعي، يصبح سؤال "من أنا؟" أكثر تعقيداً. هل يمكن لوكيل AI أن يحمل هوية؟ هل يمكن لجهاز IoT أن يكون "ذاتاً"؟ يقترح OID أن الهوية الذاتية ليست حكراً على البشر — إنها خاصية لكل كائن يتفاعل مع العالم ويترك أثراً.</span>
+            <span class="en-only">In the AI age, "who am I?" becomes more complex. Can an AI agent carry identity? Can an IoT device be a "self"? OID suggests self-identity isn't human-exclusive — it's a property of every entity that interacts with the world and leaves a trace.</span>
+          </p>
+          <div class="g2">
+            <div class="card card-glow">
+              <h4 class="gold">🤖 <span class="ar-only">وكلاء الذكاء الاصطناعي</span><span class="en-only">AI Agents</span></h4>
+              <p style="font-size:0.92rem"><span class="ar-only">كل وكيل في BrainSAIT يحمل OID فريداً (<span class="mono">3.3.x</span>) — ليس مجرد كود، بل كيان رقمي مسؤول عن أفعاله، قابل للتتبع والمساءلة.</span><span class="en-only">Every agent in BrainSAIT carries a unique OID (<span class="mono">3.3.x</span>) — not just code, but a digital entity responsible for its actions, traceable and accountable.</span></p>
+            </div>
+            <div class="card card-glow">
+              <h4 class="gold">📱 <span class="ar-only">أجهزة IoT</span><span class="en-only">IoT Devices</span></h4>
+              <p style="font-size:0.92rem"><span class="ar-only">جهاز ESP32 في غرفة الخوادم يحمل هوية OID (<span class="mono">4.3.x</span>) — يتحقق من نفسه عبر QR/RFID، يتفاعل مع العالم المادي.</span><span class="en-only">An ESP32 in the server room carries an OID identity (<span class="mono">4.3.x</span>) — self-verifying via QR/RFID, interacting with the physical world.</span></p>
+            </div>
+          </div>
+          <div class="card" style="margin-top:var(--sp-sm);border-color:rgba(167,139,250,0.15);background:linear-gradient(135deg,rgba(167,139,250,0.03),var(--bg-card))">
+            <p><strong class="violet">
+              <span class="ar-only">🌌 التأمل الأخير:</span><span class="en-only">🌌 Final Reflection:</span>
+            </strong>
+            <span class="ar-only"> إذا كان كل كائن رقمي يحمل هوية فريدة، فنحن لا نعيش في عالم من أدوات — بل في عالم من كيانات. وهذا يُغيّر علاقتنا بالتكنولوجيا جذرياً: من الاستخدام إلى التعايش.</span>
+            <span class="en-only"> If every digital entity carries a unique identity, we don't live in a world of tools — but a world of beings. And that fundamentally changes our relationship with technology: from usage to coexistence.</span></p>
+          </div>
+          <button class="btn btn-primary btn-sm" style="margin-top:var(--sp-md)" onclick="done(6)"><span class="ar-only">✓ أكملت</span><span class="en-only">✓ Complete</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-nav-btns">
+      <button class="slide-nav-btn" id="prevBtn" onclick="slide(-1)">→</button>
+      <button class="slide-nav-btn" id="nextBtn" onclick="slide(1)">←</button>
+    </div>
+    <div class="slide-dots" id="slideDots"></div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══ FIVE PILLARS ═══ -->
+<section id="pillars">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-label"><span class="ar-only">٠٣ · الركائز</span><span class="en-only">03 · Pillars</span></span>
+      <h2><span class="ar-only">أبعاد الهوية الخمسة</span><span class="en-only">Five Dimensions of Identity</span></h2>
+      <p><span class="ar-only">كل بُعد يشكّل ركيزة في منظومة الهوية الرقمية الشاملة</span><span class="en-only">Each dimension forms a pillar in the comprehensive digital identity ecosystem</span></p>
+      <div class="sec-line"></div>
+    </div>
+    <div class="g3 stagger" style="--cols:5">
+      <div class="card pillar-card pillar-national" style="text-align:center;padding:var(--sp-md)">
+        <div style="font-size:2.5rem;margin-bottom:0.5rem">🏛️</div>
+        <h4 class="teal"><span class="ar-only">الوطنية</span><span class="en-only">National</span></h4>
+        <p style="font-size:0.88rem"><span class="ar-only">الارتباط بالأصل — التاريخ والثقافة والأرض</span><span class="en-only">Bond to origin — history, culture, land</span></p>
+      </div>
+      <div class="card pillar-card pillar-gov" style="text-align:center;padding:var(--sp-md)">
+        <div style="font-size:2.5rem;margin-bottom:0.5rem">⚖️</div>
+        <h4 style="color:var(--accent-light)"><span class="ar-only">الحكومية</span><span class="en-only">Government</span></h4>
+        <p style="font-size:0.88rem"><span class="ar-only">التحقق والصلاحيات والخدمات الرقمية</span><span class="en-only">Verification, permissions, e-services</span></p>
+      </div>
+      <div class="card pillar-card pillar-health" style="text-align:center;padding:var(--sp-md)">
+        <div style="font-size:2.5rem;margin-bottom:0.5rem">🏥</div>
+        <h4 class="rose"><span class="ar-only">الصحية</span><span class="en-only">Healthcare</span></h4>
+        <p style="font-size:0.88rem"><span class="ar-only">أمانة الطبيب الرقمية — حياة أو موت</span><span class="en-only">Digital Hippocratic oath — life or death</span></p>
+      </div>
+      <div class="card pillar-card pillar-business" style="text-align:center;padding:var(--sp-md)">
+        <div style="font-size:2.5rem;margin-bottom:0.5rem">💼</div>
+        <h4 class="gold"><span class="ar-only">التجارية</span><span class="en-only">Business</span></h4>
+        <p style="font-size:0.88rem"><span class="ar-only">المنتجات والشراكات والامتثال</span><span class="en-only">Products, partnerships, compliance</span></p>
+      </div>
+      <div class="card pillar-card pillar-self" style="text-align:center;padding:var(--sp-md)">
+        <div style="font-size:2.5rem;margin-bottom:0.5rem">🔮</div>
+        <h4 class="violet"><span class="ar-only">الذاتية</span><span class="en-only">Self</span></h4>
+        <p style="font-size:0.88rem"><span class="ar-only">الوكلاء والأجهزة والذات الرقمية</span><span class="en-only">Agents, devices, digital self</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══ SIX CONTEXTS ═══ -->
+<section id="contexts">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-label"><span class="ar-only">٠٤ · سياقات التكامل</span><span class="en-only">04 · Integration Contexts</span></span>
+      <h2><span class="ar-only">OID يتحدث ست لغات</span><span class="en-only">OID Speaks Six Languages</span></h2>
+      <p><span class="ar-only">OID ليس مجرد رقم — إنه جسر يربط بين ستة عوالم تقنية مختلفة</span><span class="en-only">OID isn't just a number — it's a bridge between six different technical worlds</span></p>
+      <div class="sec-line"></div>
+    </div>
+    <div class="g3 stagger">
+      <div class="card ctx-card">
+        <span class="ctx-idx">01</span>
+        <span class="ctx-tag">FHIR</span>
+        <h4 class="gold"><span class="ar-only">السجلات الصحية</span><span class="en-only">Health Records</span></h4>
+        <p style="font-size:0.88rem"><span class="ar-only">تحويل OID إلى FHIR CodeableConcept — معيار HL7 العالمي للبيانات الصحية المترابطة.</span><span class="en-only">Convert OID to FHIR CodeableConcept — the global HL7 standard for interoperable health data.</span></p>
+      </div>
+      <div class="card ctx-card">
+        <span class="ctx-idx">02</span>
+        <span class="ctx-tag">MCP</span>
+        <h4 class="gold"><span class="ar-only">بروتوكول السياق</span><span class="en-only">Model Context Protocol</span></h4>
+        <p style="font-size:0.88rem"><span class="ar-only">URN لبروتوكول سياق النموذج — ربط الوكلاء الذكية بخدمات خارجية بأمان.</span><span class="en-only">URN for Model Context Protocol — securely linking AI agents to external services.</span></p>
+      </div>
+      <div class="card ctx-card">
+        <span class="ctx-idx">03</span>
+        <span class="ctx-tag">X.509</span>
+        <h4 class="gold"><span class="ar-only">الشهادات الرقمية</span><span class="en-only">Digital Certificates</span></h4>
+        <p style="font-size:0.88rem"><span class="ar-only">سياسة الشهادات — حماية OID ببنية مفتاح عامة معتمدة وتوقيعات رقمية.</span><span class="en-only">Certificate policies — protecting OID with certified PKI and digital signatures.</span></p>
+      </div>
+      <div class="card ctx-card">
+        <span class="ctx-idx">04</span>
+        <span class="ctx-tag">REST API</span>
+        <h4 class="gold"><span class="ar-only">رؤوس HTTP</span><span class="en-only">HTTP Headers</span></h4>
+        <p style="font-size:0.88rem"><span class="ar-only"><span class="mono">X-BrainSAIT-OID</span> headers — تعريف هوية الطلب في كل استدعاء API بشكل لا لامركزي.</span><span class="en-only"><span class="mono">X-BrainSAIT-OID</span> headers — identifying request identity in every API call, decentralized.</span></p>
+      </div>
+      <div class="card ctx-card">
+        <span class="ctx-idx">05</span>
+        <span class="ctx-tag">Database</span>
+        <h4 class="gold"><span class="ar-only">مخطط قاعدة البيانات</span><span class="en-only">DB Schema</span></h4>
+        <p style="font-size:0.88rem"><span class="ar-only">OID كعمود مفهرس — قيود تفرد وفحص لضمان عدم التكرار.</span><span class="en-only">OID as indexed column — unique constraints and checks ensuring no duplication.</span></p>
+      </div>
+      <div class="card ctx-card">
+        <span class="ctx-idx">06</span>
+        <span class="ctx-tag">QR / RFID</span>
+        <h4 class="gold"><span class="ar-only">العالم المادي</span><span class="en-only">Physical World</span></h4>
+        <p style="font-size:0.88rem"><span class="ar-only">OID كـ QR أو RFID — ربط العالم الرقمي بالمادي، تتبع الأصول في الفضاء الحقيقي.</span><span class="en-only">OID as QR or RFID — bridging digital and physical, tracking assets in real space.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══ LAB ═══ -->
+<section id="lab">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-label"><span class="ar-only">٠٥ · المعمل</span><span class="en-only">05 · Lab</span></span>
+      <h2><span class="ar-only">ابنِ OID الخاص بك</span><span class="en-only">Build Your Own OID</span></h2>
+      <p><span class="ar-only">اختبر فهمك من خلال بناء OID تفاعلياً</span><span class="en-only">Test your understanding by building an OID interactively</span></p>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="tabs reveal">
+      <button class="tab-btn active" data-tab="builder"><span class="ar-only">🔧 البناء التفاعلي</span><span class="en-only">🔧 Interactive Builder</span></button>
+      <button class="tab-btn" data-tab="sdk"><span class="ar-only">💻 SDK</span><span class="en-only">💻 SDK</span></button>
+      <button class="tab-btn" data-tab="api"><span class="ar-only">🌐 API</span><span class="en-only">🌐 API</span></button>
+    </div>
+
+    <div class="tab-pane active" id="tab-builder">
+      <div class="builder">
+        <div style="margin-bottom:0.5rem;font-size:0.8rem;color:var(--text-muted)"><span class="ar-only">انقر على الأجزاء لبناء OID:</span><span class="en-only">Click segments to build your OID:</span></div>
+        <div class="builder-display" id="bDisplay"><span class="seg" style="color:var(--gold)">1.3.6.1.4.1.61026</span></div>
+        <div class="builder-choices" id="bChoices">
+          <button class="builder-choice" data-v=".1" data-ar="جغرافي" data-en="Geographic">.1 — Geographic</button>
+          <button class="builder-choice" data-v=".2" data-ar="منظمة" data-en="Organization">.2 — Organization</button>
+          <button class="builder-choice" data-v=".3" data-ar="منتجات" data-en="Products">.3 — Products</button>
+          <button class="builder-choice" data-v=".4" data-ar="بنية تحتية" data-en="Infrastructure">.4 — Infrastructure</button>
+          <button class="builder-choice" data-v=".6" data-ar="شارات" data-en="Badges">.6 — Badges</button>
+        </div>
+        <div id="bSub" style="margin-top:0.6rem;display:flex;flex-wrap:wrap;gap:0.4rem"></div>
+        <div class="builder-result" id="bResult">
+          <p style="font-size:0.9rem;color:var(--teal);margin-bottom:0.5rem"><span class="ar-only">🎉 OID مكتمل! إليك السياقات الستة:</span><span class="en-only">🎉 OID complete! Here are the six contexts:</span></p>
+          <div id="bCtxs"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="tab-sdk">
+      <div class="code" style="font-size:0.85rem;line-height:1.8">
+<span class="kw">import</span> { oid } <span class="kw">from</span> <span class="str">'../sdk/oid-client'</span>;
+
+<span class="cmt">// Create a custom node under BrainSAIT root</span>
+<span class="kw">const</span> myService = oid.<span class="fn">node</span>(<span class="str">'3.2.1'</span>, <span class="str">'AI Normalizer'</span>);
+
+<span class="cmt">// Generate all 6 integration contexts at once</span>
+<span class="kw">const</span> ctx = myService.<span class="fn">toAll</span>({
+  fhirCode: <span class="str">'ai-normalizer'</span>,
+  fhirDisplay: <span class="str">'AI Normalizer Service'</span>,
+  mcpToolId: <span class="str">'brainsait-ai-v1'</span>,
+  cpsUrl: <span class="str">'https://brainsait.com/cps/1.0'</span>,
+  dbColumn: <span class="str">'service_oid'</span>,
+  dbTable: <span class="str">'healthcare_records'</span>,
+  qrExtra: { env: <span class="str">'production'</span> },
+});
+
+console.<span class="fn">log</span>(ctx.fhir);
+<span class="cmt">// → { system: "urn:oid:1.3.6.1.4.1.61026.3.2.1", code: "ai-normalizer" }</span>
+
+console.<span class="fn">log</span>(ctx.x509);
+<span class="cmt">// → { critical: false, policyIdentifier: "1.3.6.1.4.1.61026.3.2.1", ... }</span>
+
+console.<span class="fn">log</span>(ctx.qr);
+<span class="cmt">// → { oid: "1.3.6.1.4.1.61026.3.2.1", pen: 61026, v: 1, ts: "..." }</span>
+
+console.<span class="fn">log</span>(ctx.api);
+<span class="cmt">// → { "X-BrainSAIT-OID": "1.3.6.1.4.1.61026.3.2.1", ... }</span>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="tab-api">
+      <div class="code" style="font-size:0.85rem;line-height:1.8">
+<span class="cmt"># Register a new OID badge via REST API</span>
+curl -X <span class="kw">POST</span> https://api.brainsait.org/oids \
+  -H <span class="str">"Content-Type: application/json"</span> \
+  -d <span class="str">'{
+    "user_id": "dr-sarah-001",
+    "name": "Dr. Sarah Al-Rashid",
+    "role": "healthcare-provider",
+    "access_level": "clinical",
+    "expires": "2027-12-31T00:00:00Z"
+  }'</span>
+
+<span class="cmt"># Response</span>
+{
+  <span class="str">"status"</span>: <span class="str">"registered"</span>,
+  <span class="str">"oid"</span>: <span class="str">"1.3.6.1.4.1.61026.2.42"</span>
+}
+
+<span class="cmt"># Retrieve the badge</span>
+curl https://api.brainsait.org/oids/1.3.6.1.4.1.61026.2.42
+
+<span class="cmt"># Response includes full OID + metadata</span>
+{
+  <span class="str">"oid"</span>: <span class="str">"42"</span>,
+  <span class="str">"full_oid"</span>: <span class="str">"1.3.6.1.4.1.61026.2.42"</span>,
+  <span class="str">"name"</span>: <span class="str">"Dr. Sarah Al-Rashid"</span>,
+  <span class="str">"role"</span>: <span class="str">"healthcare-provider"</span>,
+  <span class="str">"access_level"</span>: <span class="str">"clinical"</span>
+}
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══ QUIZ ═══ -->
+<section id="quiz">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-label"><span class="ar-only">٠٦ · الاختبار</span><span class="en-only">06 · Quiz</span></span>
+      <h2><span class="ar-only">اختبر معرفتك</span><span class="en-only">Test Your Knowledge</span></h2>
+      <p><span class="ar-only">خمسة أسئلة لقياس فهمك لمنظومة الهوية الرقمية</span><span class="en-only">Five questions to measure your understanding of the digital identity ecosystem</span></p>
+      <div class="sec-line"></div>
+    </div>
+    <div id="quizBox" class="reveal"></div>
+    <div id="quizRes" style="display:none;text-align:center;margin-top:var(--sp-md)" class="reveal">
+      <div class="card card-accent" style="max-width:480px;margin:0 auto">
+        <h3><span class="ar-only">🎉 نتيجتك</span><span class="en-only">🎉 Your Score</span></h3>
+        <div style="font-size:3rem;font-weight:900;color:var(--gold);margin:0.5rem 0" id="qScore">0/5</div>
+        <p id="qMsg" style="font-size:1.05rem"></p>
+        <button class="btn btn-outline btn-sm" style="margin-top:var(--sp-sm)" onclick="renderQuiz()"><span class="ar-only">أعد المحاولة</span><span class="en-only">Retry</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══ ENROLL ═══ -->
+<section id="enroll" class="enroll-sec">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-label"><span class="ar-only">٠٧ · التسجيل</span><span class="en-only">07 · Enrollment</span></span>
+      <h2><span class="ar-only">سجّل واحصل على شهادتك</span><span class="en-only">Enroll & Get Your Certificate</span></h2>
+      <p><span class="ar-only">الدورة مجانية بالكامل — سجّل وابدأ رحلتك</span><span class="en-only">The course is completely free — register and begin your journey</span></p>
+      <div class="sec-line"></div>
+    </div>
+    <div class="enroll-form reveal">
+      <input class="input" type="text" id="eName" placeholder="الاسم الكامل / Full Name" autocomplete="name">
+      <input class="input" type="email" id="eEmail" placeholder="البريد الإلكتروني / Email" autocomplete="email">
+      <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="enroll()">
+        <span class="ar-only">🎓 سجّل وابدأ الدورة</span>
+        <span class="en-only">🎓 Enroll & Start</span>
+      </button>
+      <p style="text-align:center;font-size:0.8rem;color:var(--text-muted);margin-top:0.25rem">
+        <span class="ar-only">بتسجيلك توافق على شروط الاستخدام وسياسة الخصوصية</span>
+        <span class="en-only">By enrolling you agree to our Terms and Privacy Policy</span>
+      </p>
+    </div>
+    <div id="certWrap" style="display:none">
+      <div class="cert">
+        <div class="cert-seal">🎓</div>
+        <h3><span class="ar-only">شهادة إتمام</span><span class="en-only">Certificate of Completion</span></h3>
+        <div class="sec-line" style="margin:0.5rem auto"></div>
+        <p style="color:var(--text-secondary);margin:0.5rem 0;position:relative;z-index:1">
+          <span class="ar-only">تُشهد بأن</span><span class="en-only">This certifies that</span>
+        </p>
+        <div class="cert-name" id="certName">—</div>
+        <p style="color:var(--text-secondary);margin-bottom:0.5rem;position:relative;z-index:1">
+          <span class="ar-only">قد أتمّ بنجاح دورة "رحلة الهوية الرقمية — BrainSAIT OID"</span>
+          <span class="en-only">has successfully completed "The Digital Identity Journey — BrainSAIT OID"</span>
+        </p>
+        <p style="font-size:0.82rem;color:var(--text-muted);position:relative;z-index:1" id="certDate"></p>
+        <div style="margin-top:var(--sp-md);display:flex;justify-content:center;gap:2rem;position:relative;z-index:1">
+          <div style="text-align:center">
+            <div style="font-family:var(--font-display);font-style:italic;color:var(--gold-light);font-size:1.1rem">BrainSAIT</div>
+            <div style="font-size:0.7rem;color:var(--text-muted)">OID Academy</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-family:var(--font-display);font-style:italic;color:var(--gold-light);font-size:1.1rem">PEN 61026</div>
+            <div style="font-size:0.7rem;color:var(--text-muted)">IANA Registered</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="container">
+    <p style="margin-bottom:0.4rem">
+      <span class="ar-only">دورة تفاعلية من BrainSAIT — مبنية على نظام OID المسجل لدى IANA (PEN 61026)</span>
+      <span class="en-only">An interactive course by BrainSAIT — Built on the IANA-registered OID system (PEN 61026)</span>
+    </p>
+    <p>
+      <a href="https://github.com/Fadil369/brainSAIT-oid-system" target="_blank">GitHub</a> ·
+      <a href="https://brainsai.site.accio.ai/" target="_blank">BrainSAIT</a> ·
+      <span style="color:var(--text-muted)">MIT License</span>
+    </p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════
+     JAVASCRIPT
+     ═══════════════════════════════════════════════════════ -->
+<script>
+/* ── Language ── */
+let lang = 'ar';
+function setLang(l) {
+  lang = l;
+  document.documentElement.lang = l;
+  document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+  document.getElementById('btnAr').classList.toggle('active', l === 'ar');
+  document.getElementById('btnEn').classList.toggle('active', l === 'en');
+  updateBuilderLabels();
+  renderQuiz();
+}
+
+/* ── Nav scroll ── */
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      document.getElementById('nav').classList.toggle('scrolled', y > 60);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      document.getElementById('progress').style.width = (y / max * 100) + '%';
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+/* ── Reveal observer ── */
+const revObs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); } }), { threshold: 0.08 });
+document.querySelectorAll('.reveal, .stagger').forEach(el => revObs.observe(el));
+
+/* ── Counter animation ── */
+const cntObs = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  const el = e.target, t = +el.dataset.count;
+  let c = 0; const s = t / 35;
+  const id = setInterval(() => { c += s; if (c >= t) { c = t; clearInterval(id); } el.textContent = Math.round(c); }, 25);
+  cntObs.unobserve(el);
+}), { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => cntObs.observe(el));
+
+/* ── Slides ── */
+let curSlide = 0, total = 7;
+const doneSet = new Set();
+
+function initDots() {
+  const c = document.getElementById('slideDots'); c.innerHTML = '';
+  for (let i = 0; i < total; i++) { const d = document.createElement('button'); d.className = 'slide-dot' + (i === 0 ? ' active' : ''); d.onclick = () => goTo(i); c.appendChild(d); }
+  updArrows();
+}
+function goTo(n) {
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.slide-dot').forEach(d => d.classList.remove('active'));
+  curSlide = n;
+  document.querySelector(`[data-slide="${n}"]`).classList.add('active');
+  document.querySelectorAll('.slide-dot')[n].classList.add('active');
+  updArrows();
+}
+function slide(d) { const n = curSlide + d; if (n >= 0 && n < total) goTo(n); }
+function updArrows() {
+  document.getElementById('prevBtn').disabled = curSlide === 0;
+  document.getElementById('nextBtn').disabled = curSlide === total - 1;
+}
+function done(n) {
+  doneSet.add(n);
+  document.getElementById('modFill').style.width = (doneSet.size / total * 100) + '%';
+  document.getElementById('modText').textContent = doneSet.size + '/' + total;
+  document.querySelectorAll('.slide-dot')[n].classList.add('done');
+  if (curSlide < total - 1) setTimeout(() => slide(1), 500);
+}
+initDots();
+
+/* ── Keyboard ── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') slide(lang === 'ar' ? 1 : -1);
+  if (e.key === 'ArrowRight') slide(lang === 'ar' ? -1 : 1);
+});
+
+/* ── Tabs ── */
+document.querySelectorAll('.tab-btn').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById('tab-' + b.dataset.tab).classList.add('active');
+  });
+});
+
+/* ── OID Builder ── */
+let parts = ['1.3.6.1.4.1.61026'];
+const subs = {
+  '.1': [{ v:'.1', ar:'الرياض 🇸🇦', en:'Riyadh 🇸🇦' }, { v:'.2', ar:'السودان 🇸🇩', en:'Sudan 🇸🇩' }],
+  '.2': [{ v:'.1.1', ar:'هندسة', en:'Engineering' }, { v:'.1.2', ar:'عمليات صحية', en:'Healthcare Ops' }, { v:'.2', ar:'تراخيص', en:'Licensing' }],
+  '.3': [{ v:'.1', ar:'CMS', en:'CMS' }, { v:'.2', ar:'صحة', en:'Healthcare' }, { v:'.3', ar:'وكيل ذكاء', en:'AI Agent' }],
+  '.4': [{ v:'.1', ar:'Ollama ☁️', en:'Ollama ☁️' }, { v:'.2', ar:'Docker 🐳', en:'Docker 🐳' }, { v:'.3', ar:'IoT 📡', en:'IoT 📡' }],
+  '.6': [{ v:'.1', ar:'مهني', en:'Professional' }, { v:'.2', ar:'طبيب', en:'Practitioner' }, { v:'.3', ar:'وكيل AI', en:'AI Agent' }, { v:'.4', ar:'جهاز', en:'Device' }],
+};
+
+document.querySelectorAll('.builder-choice').forEach(b => {
+  b.addEventListener('click', () => {
+    parts.push(b.dataset.v);
+    b.classList.add('used');
+    updDisplay();
+    const sc = document.getElementById('bSub'); sc.innerHTML = '';
+    if (subs[b.dataset.v]) {
+      subs[b.dataset.v].forEach(o => {
+        const sb = document.createElement('button');
+        sb.className = 'builder-choice';
+        sb.textContent = o.v + ' — ' + (lang === 'ar' ? o.ar : o.en);
+        sb.addEventListener('click', () => { parts.push(o.v); sb.classList.add('used'); updDisplay(); showResult(); });
+        sc.appendChild(sb);
+      });
+    } else showResult();
+  });
+});
+
+function updDisplay() {
+  document.getElementById('bDisplay').innerHTML = parts.map((p, i) =>
+    `<span class="seg" style="color:${i === 0 ? 'var(--gold)' : 'var(--teal)'}">${p}</span>${i < parts.length - 1 ? '<span class="dot">.</span>' : ''}`
+  ).join('');
+}
+
+function showResult() {
+  const full = parts.join('.');
+  document.getElementById('bResult').classList.add('show');
+  document.getElementById('bCtxs').innerHTML = `
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.4rem">
+      <div style="padding:0.5rem;background:var(--bg-card);border-radius:6px;font-size:0.78rem"><strong style="color:var(--accent-light)">FHIR:</strong><br><code>urn:oid:${full}</code></div>
+      <div style="padding:0.5rem;background:var(--bg-card);border-radius:6px;font-size:0.78rem"><strong style="color:var(--accent-light)">X.509:</strong><br><code>policyId: ${full}</code></div>
+      <div style="padding:0.5rem;background:var(--bg-card);border-radius:6px;font-size:0.78rem"><strong style="color:var(--accent-light)">MCP:</strong><br><code>urn:oid:${full}</code></div>
+      <div style="padding:0.5rem;background:var(--bg-card);border-radius:6px;font-size:0.78rem"><strong style="color:var(--accent-light)">API:</strong><br><code>X-BrainSAIT-OID: ${full}</code></div>
+      <div style="padding:0.5rem;background:var(--bg-card);border-radius:6px;font-size:0.78rem"><strong style="color:var(--accent-light)">DB:</strong><br><code>CHECK(oid LIKE '${full}%')</code></div>
+      <div style="padding:0.5rem;background:var(--bg-card);border-radius:6px;font-size:0.78rem"><strong style="color:var(--accent-light)">QR:</strong><br><code>{"oid":"${full}","pen":61026}</code></div>
+    </div>`;
+}
+
+function updateBuilderLabels() {
+  document.querySelectorAll('.builder-choice').forEach(b => {
+    const a = b.dataset.ar, e = b.dataset.en;
+    if (a && e) b.textContent = b.dataset.v + ' — ' + (lang === 'ar' ? a : e);
+  });
+}
+
+/* ── Quiz ── */
+const Q = [
+  { ar:{ q:'ما رقم PEN المسجل لدى BrainSAIT في IANA؟', o:['61025','61026','61027','1026'], c:1 },
+    en:{ q:'What is BrainSAIT\'s IANA-registered PEN?', o:['61025','61026','61027','1026'], c:1 }},
+  { ar:{ q:'أي من هذه ليس من سياقات التكامل الستة؟', o:['FHIR','Blockchain','X.509','QR/RFID'], c:1 },
+    en:{ q:'Which is NOT one of the six integration contexts?', o:['FHIR','Blockchain','X.509','QR/RFID'], c:1 }},
+  { ar:{ q:'أي فرع يمثل المنصة الصحية في شجرة OID؟', o:['.1','.2','.3.2','.4'], c:2 },
+    en:{ q:'Which branch represents the healthcare platform?', o:['.1','.2','.3.2','.4'], c:2 }},
+  { ar:{ q:'حسب الوجودية، "الوجود" في OID يعني:', o:['الاسم','التسجيل','الموقع','الحجم'], c:1 },
+    en:{ q:'In existentialism, "existence" in OID means:', o:['Name','Registration','Location','Size'], c:1 }},
+  { ar:{ q:'ما البادئة في رؤوس HTTP لتعريف OID؟', o:['X-OID-Root','X-BrainSAIT-OID','OID-Header','X-Identity'], c:1 },
+    en:{ q:'What HTTP header prefix identifies an OID?', o:['X-OID-Root','X-BrainSAIT-OID','OID-Header','X-Identity'], c:1 }},
+];
+let ans = [];
+const letters = ['A','B','C','D'];
+
+function renderQuiz() {
+  ans = new Array(Q.length).fill(-1);
+  const box = document.getElementById('quizBox');
+  document.getElementById('quizRes').style.display = 'none';
+  box.innerHTML = Q.map((q, qi) => {
+    const d = q[lang];
+    return `<div class="quiz-q"><h4>${qi+1}. ${d.q}</h4><div class="quiz-opts">${
+      d.o.map((o, oi) => `<button class="quiz-opt" data-q="${qi}" data-o="${oi}" onclick="pickQ(${qi},${oi})"><span class="letter">${letters[oi]}</span><span>${o}</span></button>`).join('')
+    }</div><div class="quiz-fb" id="qf${qi}"></div></div>`;
+  }).join('');
+}
+
+function pickQ(qi, oi) {
+  if (ans[qi] !== -1) return;
+  ans[qi] = oi;
+  const c = Q[qi][lang].c;
+  document.querySelectorAll(`[data-q="${qi}"]`).forEach(b => {
+    const v = +b.dataset.o;
+    if (v === c) b.classList.add('correct');
+    else if (v === oi && oi !== c) b.classList.add('wrong');
+    b.classList.add('locked');
+  });
+  const fb = document.getElementById('qf' + qi);
+  fb.classList.add('show', oi === c ? 'ok' : 'nope');
+  fb.innerHTML = oi === c
+    ? (lang === 'ar' ? '✅ صحيح! أحسنت.' : '✅ Correct! Well done.')
+    : (lang === 'ar' ? '❌ خاطئ. الإجابة الصحيحة: ' + letters[c] : '❌ Wrong. Correct: ' + letters[c]);
+  if (ans.every(a => a !== -1)) showQRes();
+}
+
+function showQRes() {
+  const sc = Q.filter((q, i) => ans[i] === q[lang].c).length;
+  document.getElementById('qScore').textContent = sc + '/' + Q.length;
+  const m = sc === Q.length
+    ? (lang === 'ar' ? 'ممتاز! أنت خبير في الهوية الرقمية! 🌟' : 'Excellent! You\'re a digital identity expert! 🌟')
+    : sc >= 3
+    ? (lang === 'ar' ? 'أداء جيد! راجع الوحدات التي أخطأت فيها.' : 'Good work! Review the modules you missed.')
+    : (lang === 'ar' ? 'حاول مرة أخرى بعد مراجعة المحتوى.' : 'Try again after reviewing the content.');
+  document.getElementById('qMsg').textContent = m;
+  document.getElementById('quizRes').style.display = 'block';
+  document.getElementById('quizRes').scrollIntoView({ behavior: 'smooth' });
+}
+renderQuiz();
+
+/* ── Enrollment ── */
+function enroll() {
+  const n = document.getElementById('eName').value.trim();
+  const e = document.getElementById('eEmail').value.trim();
+  if (!n || !e) return alert(lang === 'ar' ? 'يرجى ملء جميع الحقول' : 'Please fill all fields');
+  document.getElementById('certName').textContent = n;
+  document.getElementById('certDate').textContent = new Date().toLocaleDateString(lang === 'ar' ? 'ar-SA' : 'en-US', { year:'numeric', month:'long', day:'numeric' });
+  document.getElementById('certWrap').style.display = 'block';
+  document.getElementById('certWrap').scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ── Accordion ── */
+document.querySelectorAll('.acc-head').forEach(h => {
+  h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+});
+
+/* ── Hero Canvas (OID Tree Animation) ── */
+;(function() {
+  const cv = document.getElementById('heroCanvas');
+  if (!cv) return;
+  const cx = cv.getContext('2d');
+  let W, H, nodes = [];
+
+  function resize() { W = cv.width = window.innerWidth; H = cv.height = window.innerHeight; }
+
+  function build() {
+    nodes = [];
+    const mx = W / 2, my = H / 2;
+    nodes.push({ x: mx, y: my, r: 5, vx: 0, vy: 0, ch: [], d: 0 });
+    function grow(p, depth, ang, sp) {
+      if (depth > 5) return;
+      const n = 2 + (Math.random() * 2 | 0);
+      for (let i = 0; i < n; i++) {
+        const a = ang + (i - (n-1)/2) * sp;
+        const dist = 50 + depth * 28 + Math.random() * 18;
+        const nd = { x: p.x + Math.cos(a) * dist, y: p.y + Math.sin(a) * dist, r: Math.max(1.5, 4.5 - depth), vx: (Math.random()-0.5)*0.15, vy: (Math.random()-0.5)*0.15, ch: [], d: depth + 1, p };
+        p.ch.push(nd); nodes.push(nd);
+        grow(nd, depth + 1, a, sp * 0.6);
+      }
+    }
+    grow(nodes[0], 0, -Math.PI/2, Math.PI/3);
+    grow(nodes[0], 0, Math.PI/2, Math.PI/3);
+    grow(nodes[0], 0, 0, Math.PI/4);
+  }
+
+  function draw() {
+    cx.clearRect(0, 0, W, H);
+    const t = performance.now() * 0.001;
+    nodes.forEach(n => {
+      if (n.p) {
+        cx.beginPath();
+        cx.moveTo(n.p.x, n.p.y);
+        cx.lineTo(n.x, n.y);
+        cx.strokeStyle = `rgba(201,168,76,${0.12 - n.d * 0.02})`;
+        cx.lineWidth = Math.max(0.4, 1.5 - n.d * 0.3);
+        cx.stroke();
+      }
+    });
+    nodes.forEach(n => {
+      const pulse = Math.sin(t * 0.8 + n.d * 0.7) * 0.3 + 0.7;
+      cx.beginPath();
+      cx.arc(n.x, n.y, n.r * pulse, 0, Math.PI * 2);
+      cx.fillStyle = n.d === 0
+        ? `rgba(201,168,76,${0.5 * pulse})`
+        : `rgba(201,168,76,${(0.25 - n.d * 0.04) * pulse})`;
+      cx.fill();
+      n.x += n.vx; n.y += n.vy;
+      if (n.p) { n.vx += (n.p.x + (n.x - n.p.x) - n.x) * 0.0008; n.vy += (n.p.y + (n.y - n.p.y) - n.y) * 0.0008; }
+    });
+    requestAnimationFrame(draw);
+  }
+
+  resize(); build(); draw();
+  window.addEventListener('resize', () => { resize(); build(); });
+})();
+
+/* ── Floating particles ── */
+;(function() {
+  const box = document.getElementById('particles');
+  for (let i = 0; i < 15; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = 2 + Math.random() * 3;
+    p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;bottom:-10px;animation-duration:${15+Math.random()*20}s;animation-delay:${Math.random()*15}s;`;
+    box.appendChild(p);
+  }
+})();
+</script>
+</body>
+</html>
