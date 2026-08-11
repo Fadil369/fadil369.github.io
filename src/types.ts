@@ -64,6 +64,10 @@ export interface Program {
   slug: string; stage: 'build'; kind: 'program';
   name: string; nameAr: string;
   price: number; currency: string;
+  standardPrice?: number;
+  offerPrice?: number;
+  offerEnds?: string;
+  shopifyUrl?: string;
   billingEn?: string; billingAr?: string;
   tagline?: string; taglineAr?: string;
   description?: string; descriptionAr?: string;

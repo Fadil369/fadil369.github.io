@@ -3658,7 +3658,11 @@
         "Mentored",
         "Ship a real product"
       ],
-      "available": true
+      "available": true,
+      "standardPrice": 14900,
+      "offerPrice": 9630,
+      "offerEnds": "2026-12-31",
+      "shopifyUrl": "https://store.brainsait.org/products/brainsait-incubation-program"
     },
     "courses": [
       {
