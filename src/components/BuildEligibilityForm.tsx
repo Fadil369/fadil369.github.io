@@ -56,11 +56,11 @@ export default function BuildEligibilityForm() {
     // Build Shopify cart URL with line item properties for tracking eligibility
     // Format: /cart/add?id=VARIANT_ID&quantity=1&properties[tier]=TIER&properties[price]=PRICE
     const variantMap: Record<string, string> = {
-      sa_sd_free: '51234567890001', // Replace with actual variant IDs from Shopify
-      healthcare_50: '51234567890002',
-      warrior_35: '51234567890003',
-      academic_30: '51234567890004',
-      standard: '51234567890005',
+      sa_sd_free: '45950044635219', // Saudi/Sudanese (Free)
+      healthcare_50: '45950044667987', // Healthcare Professional
+      warrior_35: '45950044700755', // Warrior Entrepreneur
+      academic_30: '45950044733523', // Academic (Student/Researcher)
+      standard: '45950044766291', // Standard
     };
 
     const variantId = variantMap[tier] || variantMap.standard;
