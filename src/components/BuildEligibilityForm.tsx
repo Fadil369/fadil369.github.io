@@ -50,8 +50,36 @@ export default function BuildEligibilityForm() {
   };
 
   const handleProceedToPayment = () => {
-    const shopifyUrl = 'https://store.brainsait.org/products/brainsait-incubation-program';
-    window.location.href = shopifyUrl;
+    const tier = pricing.eligibilityId;
+    const finalPrice = pricing.finalPrice;
+
+    // Build Shopify cart URL with line item properties for tracking eligibility
+    // Format: /cart/add?id=VARIANT_ID&quantity=1&properties[tier]=TIER&properties[price]=PRICE
+    const variantMap: Record<string, string> = {
+      sa_sd_free: '51234567890001', // Replace with actual variant IDs from Shopify
+      healthcare_50: '51234567890002',
+      warrior_35: '51234567890003',
+      academic_30: '51234567890004',
+      standard: '51234567890005',
+    };
+
+    const variantId = variantMap[tier] || variantMap.standard;
+    const shopifyBaseUrl = 'https://store.brainsait.org';
+
+    // Pass eligibility data through cart properties for Shopify to track
+    const cartUrl = `${shopifyBaseUrl}/cart/add?id=${variantId}&quantity=1&properties[eligibility_tier]=${encodeURIComponent(tier)}&properties[discount_percent]=${pricing.discount}&properties[final_price]=${finalPrice}`;
+
+    // Store application data in sessionStorage for post-purchase confirmation
+    sessionStorage.setItem('buildApplicationData', JSON.stringify({
+      tier,
+      discount: pricing.discount,
+      finalPrice,
+      originalPrice: pricing.originalPrice,
+      formData: data,
+      timestamp: new Date().toISOString(),
+    }));
+
+    window.location.href = cartUrl;
   };
 
   const isIdentityTier = pricing.eligibilityId === 'sa_sd_free';
