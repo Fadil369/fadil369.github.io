@@ -52,13 +52,17 @@ export default function ProductCard({ p }: { p: Product }) {
             {buyable ? (
               <a className="button primary sm" href={p.shopifyUrl!}
                  target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                {t('cta.buy')} <ExternalLink size={14} aria-hidden="true" />
+                {p.free ? t('cta.getFree') : t('cta.buy')} <ExternalLink size={14} aria-hidden="true" />
               </a>
             ) : p.demoUrl ? (
               <a className="button primary sm" href={p.demoUrl}
                  target="_blank" rel="noopener noreferrer" onClick={onDemo}>
                 {t('cta.demo')} <ExternalLink size={14} aria-hidden="true" />
               </a>
+            ) : p.free ? (
+              <Link className="button primary sm" to={`/products/${p.slug}`}>
+                {t('cta.getFree')}
+              </Link>
             ) : (
               <span className="button disabled sm">{t('cta.soon')}</span>
             )}

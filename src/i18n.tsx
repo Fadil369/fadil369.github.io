@@ -7,7 +7,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
   en: {
     'nav.learn': 'Learn', 'nav.build': 'Build', 'nav.solutions': 'Solutions',
     'nav.all': 'All titles', 'brand': 'BrainSAIT Store',
-    'cta.buy': 'Buy now', 'cta.details': 'Details', 'cta.demo': 'View demo',
+    'cta.buy': 'Buy now', 'cta.details': 'Details', 'cta.demo': 'View demo', 'cta.getFree': 'Get free',
     'cta.apply': 'Apply now', 'cta.soon': 'Coming soon',
     'checkout.note': 'Secure checkout with PayPal on store.brainsait.org',
     'filter.all': 'All', 'sub.healthcare': 'Healthcare', 'sub.business': 'Business',
@@ -20,7 +20,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
   ar: {
     'nav.learn': 'تعلّم', 'nav.build': 'ابنِ', 'nav.solutions': 'حلول',
     'nav.all': 'كل العناوين', 'brand': 'متجر برينسايت',
-    'cta.buy': 'اشترِ الآن', 'cta.details': 'التفاصيل', 'cta.demo': 'عرض تجريبي',
+    'cta.buy': 'اشترِ الآن', 'cta.details': 'التفاصيل', 'cta.demo': 'عرض تجريبي', 'cta.getFree': 'احصل مجاناً',
     'cta.apply': 'قدّم الآن', 'cta.soon': 'قريباً',
     'checkout.note': 'دفع آمن عبر PayPal على store.brainsait.org',
     'filter.all': 'الكل', 'sub.healthcare': 'الرعاية الصحية', 'sub.business': 'الأعمال',

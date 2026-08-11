@@ -59,11 +59,19 @@ export default function Product() {
             <>
               <a className="button primary lg" href={p.shopifyUrl}
                  target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                {t('cta.buy')} <ExternalLink size={16} />
+                {p.free ? t('cta.getFree') : t('cta.buy')} <ExternalLink size={16} />
               </a>
-              <p className="fineprint">
-                <ShieldCheck size={14} /> {t('checkout.note')}
-              </p>
+              {p.free ? (
+                <p className="fineprint">
+                  {ar
+                    ? '🎓 مجاني لأصحاب الحسابات — مرحلة التعلّم مفتوحة بالكامل'
+                    : '🎓 Free for account holders — the Learn stage is fully open'}
+                </p>
+              ) : (
+                <p className="fineprint">
+                  <ShieldCheck size={14} /> {t('checkout.note')}
+                </p>
+              )}
             </>
           ) : p.demoUrl ? (
             <>
@@ -76,6 +84,15 @@ export default function Product() {
                   <Lock size={14} /> {ar ? 'ديمو وصول محدود — يرجى طلب حساب تجريبي' : 'Limited-access demo — request a trial account'}
                 </p>
               )}
+            </>
+          ) : p.free ? (
+            <>
+              <Link className="button primary lg" to={`/products/${p.slug}`}>
+                {t('cta.getFree')}
+              </Link>
+              <p className="fineprint">
+                🎓 {ar ? 'مجاني لأصحاب الحسابات — مرحلة التعلّم مفتوحة بالكامل' : 'Free for account holders — the Learn stage is fully open'}
+              </p>
             </>
           ) : (
             <span className="button disabled lg">{t('cta.soon')}</span>
