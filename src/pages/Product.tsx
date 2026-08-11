@@ -26,7 +26,7 @@ export default function Product() {
 
   return (
     <main className="page product-page">
-      <div className="product-grid">
+      <div className="product-grid reveal">
         <div className="product-media">
           {p.image
             ? <img src={p.image} alt={name} width={420} height={630} />

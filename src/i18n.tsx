@@ -15,6 +15,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     'program.price': 'Program fee', 'program.tracks': 'Who is it for',
     'program.exceptions': 'Reduced fee', 'program.pick': 'Pick a solution to build',
     'free': 'Free', 'demo': 'Demo', 'from': 'from',
+    'theme.dark': 'Switch to dark mode', 'theme.light': 'Switch to light mode',
   },
   ar: {
     'nav.learn': 'تعلّم', 'nav.build': 'ابنِ', 'nav.solutions': 'حلول',
@@ -27,6 +28,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     'program.price': 'رسوم البرنامج', 'program.tracks': 'لمن هذا البرنامج',
     'program.exceptions': 'رسوم مخفّضة', 'program.pick': 'اختر حلاً لتبنيه',
     'free': 'مجاني', 'demo': 'تجريبي', 'from': 'من',
+    'theme.dark': 'الوضع الداكن', 'theme.light': 'الوضع الفاتح',
   },
 };
 

@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, NavLink, Link } from 'react-router-dom';
-import { Languages } from 'lucide-react';
+import { Languages, Sun, Moon } from 'lucide-react';
 import { I18nProvider, useI18n } from './i18n';
 import Home from './pages/Home';
 import Shelf from './pages/Shelf';
@@ -7,8 +8,28 @@ import Build from './pages/Build';
 import Product from './pages/Product';
 import './styles/app.css';
 
+type Theme = 'dark' | 'light';
+
+function useTheme(): { theme: Theme; toggle: () => void } {
+  const [theme, setTheme] = useState<Theme>(() => {
+    try {
+      const t = localStorage.getItem('bs-theme');
+      return t === 'light' ? 'light' : 'dark';
+    } catch {
+      return 'dark';
+    }
+  });
+  useEffect(() => {
+    try { localStorage.setItem('bs-theme', theme); } catch { /* ignore */ }
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+  return { theme, toggle: () => setTheme(t => (t === 'dark' ? 'light' : 'dark')) };
+}
+
 function Header() {
   const { ar, t, toggle } = useI18n();
+  const { theme, toggle: toggleTheme } = useTheme();
+
   return (
     <header className="site-head">
       <div className="head-inner">
@@ -24,9 +45,14 @@ function Header() {
         <div className="head-actions">
           <a className="button secondary sm" href="https://brainsait.org"
              target="_blank" rel="noopener noreferrer">brainsait.org</a>
-          <button className="lang-btn" onClick={toggle}
+          <button className="icon-btn round" onClick={toggleTheme}
+                  aria-label={theme === 'dark' ? t('theme.light') : t('theme.dark')}
+                  title={theme === 'dark' ? t('theme.light') : t('theme.dark')}>
+            {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
+          </button>
+          <button className="lang-btn icon-btn" onClick={toggle}
                   aria-label={ar ? 'Switch to English' : 'التبديل إلى العربية'}>
-            <Languages size={16} /> {ar ? 'EN' : 'ع'}
+            <Languages size={15} /> {ar ? 'EN' : 'ع'}
           </button>
         </div>
       </div>
@@ -51,6 +77,11 @@ export default function App() {
   return (
     <I18nProvider>
       <BrowserRouter>
+        <div className="bg-aurora" aria-hidden="true">
+          <span className="orb orb-1" />
+          <span className="orb orb-2" />
+          <span className="orb orb-3" />
+        </div>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />

@@ -22,12 +22,12 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
 
   return (
     <main className="page">
-      <header className="page-head">
+      <header className="page-head reveal">
         <h1>{ar ? def.ar : def.en}</h1>
         <p className="lede">{ar ? def.blurbAr : def.blurbEn}</p>
       </header>
 
-      <div className="filters" role="tablist">
+      <div className="filters reveal" role="tablist">
         <button role="tab" aria-selected={sub === 'all'}
                 className={'chip' + (sub === 'all' ? ' active' : '')}
                 onClick={() => setSub('all')}>
@@ -45,7 +45,7 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
         })}
       </div>
 
-      <div className="grid">
+      <div className="grid reveal">
         {shown.map(p => <ProductCard key={p.slug} p={p} />)}
       </div>
     </main>

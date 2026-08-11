@@ -24,16 +24,16 @@ export default function Build() {
 
   return (
     <main className="page">
-      <header className="page-head">
+      <header className="page-head reveal">
         <h1>{ar ? program.nameAr : program.name}</h1>
         <p className="lede">{ar ? program.taglineAr : program.tagline}</p>
       </header>
 
-      <section className="build-engine">
+      <section className="build-engine reveal">
         <BuildEligibilityForm />
       </section>
 
-      <section className="program-benefits">
+      <section className="program-benefits reveal">
         <h2>{ar ? 'استحقاقات البناء' : 'Build Benefits'}</h2>
         <p className="benefits-intro">
           {ar
@@ -63,7 +63,7 @@ export default function Build() {
         )}
       </section>
 
-      <section className="program-info">
+      <section className="program-info reveal">
         <h2>{ar ? 'ما يشمله البرنامج' : "What's Included"}</h2>
         <p>{ar ? program.descriptionAr : program.description}</p>
 
