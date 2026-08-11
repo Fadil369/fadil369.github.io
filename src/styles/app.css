@@ -303,6 +303,72 @@ img { max-width: 100%; }
   margin-top: 1.2rem;
 }
 
+/* ── Entity profile — Saudi government identity ─────────────── */
+.entity {
+  position: relative; text-align: center;
+  margin: 1.6rem 0 1.2rem; padding: 2.6rem 1.8rem;
+  border-radius: 30px; overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% -20%, rgba(201, 162, 39, 0.16), transparent 55%),
+    var(--surface);
+  border: 1px solid var(--line);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+.entity .hero-eyebrow { margin-bottom: 1.1rem; }
+.entity .dot.gold { background: var(--gold-l); box-shadow: 0 0 12px var(--gold-l); }
+.entity-mark {
+  width: 72px; height: 72px; margin: 0 auto 0.9rem; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1.5px solid var(--gold); color: var(--gold-l);
+  font-size: 2rem; font-weight: 800;
+  box-shadow: 0 0 26px rgba(201, 162, 39, 0.35);
+}
+.entity-abbr {
+  font-size: 1.4rem; letter-spacing: 0.42em; font-weight: 800;
+  color: var(--gold-l); text-transform: uppercase; margin: 0 0 0.9rem;
+}
+.entity-official {
+  max-width: 860px; margin: 0 auto 1rem;
+  font-size: 1.05rem; line-height: 1.95; color: var(--ink-soft);
+}
+.entity-slogan {
+  display: inline-block; padding: 0.45rem 1.3rem; border-radius: 999px;
+  background: linear-gradient(135deg, rgba(201,162,39,0.16), rgba(41,216,255,0.12));
+  border: 1px solid rgba(201,162,39,0.4);
+  color: var(--gold-l); font-weight: 700; font-size: 1rem;
+}
+.entity-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem; margin: 1.8rem 0 1.4rem; text-align: start;
+}
+.entity-card {
+  padding: 1.3rem 1.35rem; border-radius: 20px;
+  background: var(--surface-2, rgba(255,255,255,0.03));
+  border: 1px solid var(--line);
+  transition: transform 0.25s var(--ease-out), border-color 0.25s ease;
+}
+.entity-card:hover { transform: translateY(-3px); border-color: rgba(201,162,39,0.5); }
+.entity-card h3 {
+  font-size: 1.02rem; color: var(--gold-l); margin: 0 0 0.55rem; font-weight: 800;
+}
+.entity-card p { font-size: 0.92rem; line-height: 1.85; color: var(--ink-soft); margin: 0; }
+.entity-sectors {
+  display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center;
+  max-width: 880px; margin: 0 auto;
+}
+.entity-sector {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.5rem 1rem; border-radius: 999px;
+  background: rgba(41, 216, 255, 0.06); border: 1px solid var(--line);
+  font-size: 0.84rem; color: var(--ink-soft);
+}
+.entity-sector b { color: var(--ink); font-weight: 700; }
+.entity-sector b:first-child {
+  width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--ink); color: var(--gold-l); font-size: 0.72rem;
+}
+
 /* ── Stage cards — phosphoric LEARN · BUILD · SOLUTIONS ───── */
 .stages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; margin: 2.4rem 0 1rem; }
 .stage-card {

@@ -5,6 +5,7 @@ import data from '../data/catalog.json';
 import type { Catalog, Product as P } from '../types';
 import { useI18n, money } from '../i18n';
 import { track, trackViewItem } from '../analytics';
+import { useAccountHolder } from '../hooks/useAccountHolder';
 
 const cat = data as unknown as Catalog;
 const ALL: P[] = [...cat.learn, ...cat.solutions, ...cat.build.courses];
@@ -12,6 +13,7 @@ const ALL: P[] = [...cat.learn, ...cat.solutions, ...cat.build.courses];
 export default function Product() {
   const { slug } = useParams();
   const { ar, t } = useI18n();
+  const accountHolder = useAccountHolder();
   const p = ALL.find(x => x.slug === slug);
 
   useEffect(() => {
@@ -31,6 +33,8 @@ export default function Product() {
 
   const name = ar ? p.nameAr || p.name : p.name;
   const desc = ar ? p.descriptionAr || p.description : p.description;
+  const freeForYou = accountHolder === true;
+  const shownPrice = freeForYou ? 0 : p.price;
 
   const onBuy = () =>
     track('begin_checkout', {
@@ -39,6 +43,7 @@ export default function Product() {
       items: [{ item_id: p.slug, item_name: p.name, price: p.price }],
     });
   const onDemo = () => track('view_demo', { item_id: p.slug, item_name: p.name });
+  const onFree = () => track('begin_checkout', { currency: 'SAR', value: 0, items: [{ item_id: p.slug, item_name: p.name, price: 0 }] });
 
   return (
     <main className="page product-page">
@@ -53,26 +58,32 @@ export default function Product() {
           <h1>{name}</h1>
           {desc && <p className="lede">{desc}</p>}
 
-          <p className="product-price">{money(p.price, ar)}</p>
+          <p className="product-price">{money(shownPrice, ar)}</p>
 
           {p.shopifyUrl ? (
-            <>
-              <a className="button primary lg" href={p.shopifyUrl}
-                 target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                {p.free ? t('cta.getFree') : t('cta.buy')} <ExternalLink size={16} />
-              </a>
-              {p.free ? (
+            freeForYou ? (
+              <>
+                <a className="button primary lg" href={p.shopifyUrl}
+                   target="_blank" rel="noopener noreferrer" onClick={onFree}>
+                  {t('cta.getFree')} <ExternalLink size={16} />
+                </a>
                 <p className="fineprint">
                   {ar
                     ? '🎓 مجاني لأصحاب الحسابات — مرحلة التعلّم مفتوحة بالكامل'
                     : '🎓 Free for account holders — the Learn stage is fully open'}
                 </p>
-              ) : (
+              </>
+            ) : (
+              <>
+                <a className="button primary lg" href={p.shopifyUrl}
+                   target="_blank" rel="noopener noreferrer" onClick={onBuy}>
+                  {t('cta.buy')} <ExternalLink size={16} />
+                </a>
                 <p className="fineprint">
                   <ShieldCheck size={14} /> {t('checkout.note')}
                 </p>
-              )}
-            </>
+              </>
+            )
           ) : p.demoUrl ? (
             <>
               <a className="button primary lg" href={p.demoUrl}
@@ -84,15 +95,6 @@ export default function Product() {
                   <Lock size={14} /> {ar ? 'ديمو وصول محدود — يرجى طلب حساب تجريبي' : 'Limited-access demo — request a trial account'}
                 </p>
               )}
-            </>
-          ) : p.free ? (
-            <>
-              <Link className="button primary lg" to={`/products/${p.slug}`}>
-                {t('cta.getFree')}
-              </Link>
-              <p className="fineprint">
-                🎓 {ar ? 'مجاني لأصحاب الحسابات — مرحلة التعلّم مفتوحة بالكامل' : 'Free for account holders — the Learn stage is fully open'}
-              </p>
             </>
           ) : (
             <span className="button disabled lg">{t('cta.soon')}</span>
