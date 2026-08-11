@@ -99,6 +99,59 @@ export default function Build() {
         <p className="fineprint">{ar ? 'دفع آمن عبر PayPal على store.brainsait.org' : 'Secure PayPal checkout on store.brainsait.org'}</p>
       </section>
 
+      {/* ── HOW TO REGISTER VIA TELEGRAM ── */}
+      <section className="build-register reveal">
+        <h2>{ar ? 'كيف تسجّل عبر تيليغرام' : 'How to register via Telegram'}</h2>
+        <p className="benefits-intro">
+          {ar
+            ? 'أرسل رسالة إلى البوت الرسمي واتبع 3 خطوات فقط — كل شيء شفاف ومباشر.'
+            : 'Message the official bot and follow just 3 steps — everything is clear and direct.'}
+        </p>
+        <div className="register-steps">
+          <div className="register-step">
+            <span className="rs-num">1</span>
+            <h3>{ar ? 'افتح البوت' : 'Open the bot'}</h3>
+            <p>
+              {ar
+                ? 'ابحث في تيليغرام عن <b>@BrainSAITForgeBot</b> واضغط Start، أو اضغط الزر أدناه.'
+                : 'Search <b>@BrainSAITForgeBot</b> on Telegram and press Start, or tap the button below.'}
+            </p>
+            <a className="button primary sm" href="https://t.me/BrainSAITForgeBot" target="_blank" rel="noopener noreferrer">
+              {ar ? 'افتح البوت' : 'Open @BrainSAITForgeBot'} ↗
+            </a>
+          </div>
+          <div className="register-step">
+            <span className="rs-num">2</span>
+            <h3>{ar ? 'أرسل /start' : 'Send /start'}</h3>
+            <p>
+              {ar
+                ? 'البوت يحفظ معرّف تيليغرام الخاص بك كمعرّف مؤسس. ثم أنشئ مشروعك بـ <code>/startup &lt;اسم المشروع&gt;</code>.'
+                : 'The bot saves your Telegram ID as your founder ID. Then create your startup with <code>/startup &lt;name&gt;</code>.'}
+            </p>
+          </div>
+          <div className="register-step">
+            <span className="rs-num">3</span>
+            <h3>{ar ? 'قدّم يومياً' : 'Ship daily'}</h3>
+            <p>
+              {ar
+                ? 'استخدم <code>/day</code> للتقدم، و<code>/standup</code> و<code>/blocker</code> للتحديثات، و<code>/coach</code> لاستشارة الذكاء الاصطناعي، و<code>/launch</code> عند الإطلاق.'
+                : 'Use <code>/day</code> to advance, <code>/standup</code> & <code>/blocker</code> for updates, <code>/coach</code> for AI advice, and <code>/launch</code> when ready.'}
+            </p>
+          </div>
+        </div>
+        <div className="register-commands">
+          <span className="rc-title">{ar ? 'الأوامر' : 'Commands'}</span>
+          {['/start', '/startup', '/day', '/status', '/standup', '/blocker', '/score', '/coach', '/promo', '/launch', '/help'].map((c) => (
+            <code key={c}>{c}</code>
+          ))}
+        </div>
+        <p className="fineprint">
+          {ar
+            ? 'المسار كله مدعوم بـ Cloudflare Worker AI + AI Gateway — مجاني ودائم، مع توجيه ذكي وتقييم فوري.'
+            : 'The whole journey runs on Cloudflare Worker AI + AI Gateway — free & permanent, with smart coaching and instant scoring.'}
+        </p>
+      </section>
+
       {/* ── PRICING CARD ── */}
       <section className="build-price reveal">
         <div className="price-card">

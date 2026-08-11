@@ -780,6 +780,37 @@ img { max-width: 100%; }
   color: var(--gold-l); font-weight: 700; font-size: 0.92rem;
 }
 .timer-icon { font-size: 1rem; }
+
+/* ── Build page — Telegram registration ────────────────────── */
+.build-register { max-width: 1020px; margin: 3rem auto; text-align: center; }
+.build-register h2 { font-size: 1.9rem; margin-bottom: 0.5rem; }
+.register-steps {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem; margin: 1.8rem 0;
+}
+.register-step {
+  position: relative; text-align: start; padding: 1.4rem 1.2rem;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+}
+.rs-num {
+  position: absolute; top: 1rem; right: 1rem;
+  width: 26px; height: 26px; border-radius: 50%;
+  display: grid; place-items: center; font-weight: 800; font-size: 0.8rem;
+  background: linear-gradient(135deg, var(--gold), var(--gold-l)); color: var(--navy);
+}
+.register-step h3 { font-size: 1.05rem; margin-bottom: 0.5rem; padding-inline-end: 2.2rem; }
+.register-step p { font-size: 0.86rem; color: var(--muted); line-height: 1.75; margin-bottom: 1rem; }
+.register-step code { font-size: 0.78rem; background: var(--surface-2); padding: 0.1rem 0.35rem; border-radius: 6px; color: var(--gold); }
+.register-commands {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin: 1rem 0;
+}
+.register-commands code {
+  padding: 0.35rem 0.8rem; border-radius: 999px; font-size: 0.78rem;
+  background: color-mix(in srgb, var(--gold) 10%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--gold) 25%, var(--line)); color: var(--gold);
+}
+.rc-title { width: 100%; color: var(--muted); font-size: 0.82rem; }
 .program-teaser {
   position: relative; text-align: center;
   border-radius: 30px; padding: 3rem 2rem; margin-top: 3rem; overflow: hidden;
