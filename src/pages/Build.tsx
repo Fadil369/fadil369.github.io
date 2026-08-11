@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Rocket, Shield, Lock, Workflow, BookOpen, Calendar, BadgeCheck,
@@ -19,6 +19,42 @@ export default function Build() {
   const { program } = cat.build;
   const [promo, setPromo] = useState('');
   const [promoState, setPromoState] = useState<{ checking?: boolean; ok?: boolean; error?: string; discount?: number; price?: number }>({});
+  const [tgLogin, setTgLogin] = useState<{ ok?: boolean; founder_id?: string; name?: string; error?: string }>({});
+
+  // Telegram Login Widget — one-click founder registration.
+  useEffect(() => {
+    const tgBtn = document.getElementById('telegram-login-btn');
+    if (!tgBtn || (window as any).TelegramLoginWidgetLoaded) return;
+    (window as any).TelegramLoginWidgetLoaded = true;
+    (window as any).onTelegramAuth = (user: any) => {
+      setTgLogin({ checking: true } as any);
+      fetch(`${PROMO_API}/forge/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ auth: user }),
+      })
+        .then((r) => r.json())
+        .then((d) => {
+          if (d && d.ok) {
+            setTgLogin({ ok: true, founder_id: d.founder_id, name: d.name || user.first_name });
+            track('tg_login', { founder_id: d.founder_id });
+          } else {
+            setTgLogin({ error: d?.error || 'login failed' });
+          }
+        })
+        .catch(() => setTgLogin({ error: 'network error' }));
+    };
+    const s = document.createElement('script');
+    s.src = 'https://telegram.org/js/telegram-widget.js?22';
+    s.async = true;
+    s.setAttribute('data-telegram-login', 'brainsait_forge_bot');
+    s.setAttribute('data-size', 'large');
+    s.setAttribute('data-radius', '12');
+    s.setAttribute('data-request-access', 'write');
+    s.setAttribute('data-userpic', 'false');
+    s.setAttribute('data-onauth', 'onTelegramAuth');
+    tgBtn.appendChild(s);
+  }, []);
 
   const standardPrice = program.standardPrice ?? 14900;
   const offerPrice = program.offerPrice ?? program.price ?? 9630;
@@ -104,9 +140,27 @@ export default function Build() {
         <h2>{ar ? 'كيف تسجّل عبر تيليغرام' : 'How to register via Telegram'}</h2>
         <p className="benefits-intro">
           {ar
-            ? 'أرسل رسالة إلى البوت الرسمي واتبع 3 خطوات فقط — كل شيء شفاف ومباشر.'
-            : 'Message the official bot and follow just 3 steps — everything is clear and direct.'}
+            ? 'سجّل دخولك بنقرة واحدة عبر تيليغرام، أو اتبع 3 خطوات مع البوت — كل شيء شفاف ومباشر.'
+            : 'Log in with one click via Telegram, or follow 3 steps with the bot — everything is clear and direct.'}
         </p>
+
+        {/* One-click Telegram Login */}
+        <div className="tg-login-box">
+          <p className="tg-login-title">{ar ? 'تسجيل دخول فوري بنقرة واحدة' : 'Instant one-click login'}</p>
+          <div id="telegram-login-btn"></div>
+          {tgLogin.ok ? (
+            <p className="tg-login-ok">✅ {ar ? `مرحباً ${tgLogin.name} — تم تسجيلك كمؤسس (${tgLogin.founder_id})` : `Welcome ${tgLogin.name} — you're registered as a founder (${tgLogin.founder_id})`}</p>
+          ) : tgLogin.error ? (
+            <p className="tg-login-err">⚠️ {tgLogin.error}</p>
+          ) : (
+            <p className="tg-login-note">
+              {ar
+                ? 'اضغط الزر أعلاه — سنتحقق من هويتك ونسجّل حسابك كمسؤول تلقائياً. (الزر يظهر بعد تحميل أداة تيليغرام)'
+                : 'Tap the button above — we verify your identity and register you as a founder automatically. (The button appears once Telegram\'s widget loads.)'}
+            </p>
+          )}
+        </div>
+
         <div className="register-steps">
           <div className="register-step">
             <span className="rs-num">1</span>
