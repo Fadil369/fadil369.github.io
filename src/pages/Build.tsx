@@ -1,33 +1,26 @@
-import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Stethoscope, Rocket, Shield, Check } from 'lucide-react';
 import data from '../data/catalog.json';
 import type { Catalog } from '../types';
-import { useI18n, money } from '../i18n';
+import { useI18n } from '../i18n';
 import ProductCard from '../components/ProductCard';
+import BuildEligibilityForm from '../components/BuildEligibilityForm';
 
 const cat = data as unknown as Catalog;
-import type { LucideIcon } from 'lucide-react';
-const ICONS: Record<string, LucideIcon> = {
-  stethoscope: Stethoscope, rocket: Rocket, shield: Shield,
-};
 
 /**
  * Build stage — the BrainSAIT incubation program.
- * Fixed fee 9,360 SAR, reduced for verified Saudi / Sudanese national IDs.
- * Candidates pick a track and a solution from the Solutions shelf to build.
+ * SAR 9,630 base price with eligibility-based tiers:
+ * - Saudi/Sudanese: 100% (FREE)
+ * - Healthcare professionals: 50% off (SAR 4,815)
+ * - Warrior Entrepreneurs: 35% off (SAR 6,259.50)
+ * - Students/Researchers: 30% off (SAR 6,741)
+ * - Standard: Full price (SAR 9,630)
+ *
+ * Progressive eligibility engine powered by Airtable + Shopify.
  */
 export default function Build() {
   const { ar, t } = useI18n();
   const { program, courses } = cat.build;
-  const [exception, setException] = useState<string>('');
-  const [track, setTrack] = useState<string>('');
-
-  const price = useMemo(() => {
-    const ex = program.exceptions.find(e => e.id === exception);
-    if (!ex) return program.price;
-    return Math.round(program.price * (1 - ex.discountPct / 100));
-  }, [exception, program]);
 
   return (
     <main className="page">
@@ -36,52 +29,49 @@ export default function Build() {
         <p className="lede">{ar ? program.taglineAr : program.tagline}</p>
       </header>
 
-      <section className="program">
-        <div className="program-price">
-          <span className="label">{t('program.price')}</span>
-          <strong className={price !== program.price ? 'cut' : ''}>
-            {money(program.price, ar)}
-          </strong>
-          {price !== program.price && (
-            <strong className="now">{money(price, ar)}</strong>
-          )}
-        </div>
+      <section className="build-engine">
+        <BuildEligibilityForm />
+      </section>
 
-        <fieldset className="program-block">
-          <legend>{t('program.exceptions')}</legend>
-          <label className="opt">
-            <input type="radio" name="exc" value="" checked={exception === ''}
-                   onChange={() => setException('')} />
-            <span>{ar ? 'بدون' : 'None'}</span>
-          </label>
-          {program.exceptions.map(e => (
-            <label className="opt" key={e.id}>
-              <input type="radio" name="exc" value={e.id}
-                     checked={exception === e.id}
-                     onChange={() => setException(e.id)} />
-              <span>{ar ? e.labelAr : e.labelEn} — {e.discountPct}%</span>
-            </label>
-          ))}
-        </fieldset>
+      <section className="program-benefits">
+        <h2>{ar ? 'استحقاقات البناء' : 'Build Benefits'}</h2>
+        <p className="benefits-intro">
+          {ar
+            ? 'نحن ندعم البنّاة من جميع الخلفيات. اختر ما ينطبق عليك وحسّن سعرك.'
+            : 'We support builders from all backgrounds. Pick what applies and optimize your price.'}
+        </p>
 
-        <fieldset className="program-block">
-          <legend>{t('program.tracks')}</legend>
-          <div className="tracks">
-            {program.tracks.map(tr => {
-              const Icon = ICONS[tr.icon || ''] || Check;
-              return (
-                <button key={tr.id} type="button"
-                        className={'track' + (track === tr.id ? ' active' : '')}
-                        onClick={() => setTrack(tr.id)}>
-                  <Icon size={20} />
-                  <span>{ar ? tr.labelAr : tr.labelEn}</span>
-                </button>
-              );
-            })}
+        {program.benefits && program.benefits.length > 0 && (
+          <div className="benefits-grid">
+            {program.benefits.map((benefit) => (
+              <div key={benefit.id} className="benefit-card">
+                <div className="benefit-icon">{benefit.icon}</div>
+                <h3>{ar ? benefit.titleAr : benefit.titleEn}</h3>
+                <p className="benefit-desc">
+                  {ar ? benefit.descriptionAr : benefit.descriptionEn}
+                </p>
+                <p className="benefit-discount">
+                  {benefit.discount === 100 ? (
+                    ar ? '🎉 مجاني تماماً' : '🎉 Completely free'
+                  ) : (
+                    `${benefit.discount}% off`
+                  )}
+                </p>
+              </div>
+            ))}
           </div>
-        </fieldset>
+        )}
+      </section>
 
-        <p className="desc">{ar ? program.descriptionAr : program.description}</p>
+      <section className="program-info">
+        <h2>{ar ? 'ما يشمله البرنامج' : "What's Included"}</h2>
+        <p>{ar ? program.descriptionAr : program.description}</p>
+
+        <div className="badges-list">
+          {program.badges && program.badges.map((badge) => (
+            <span key={badge} className="badge">{badge}</span>
+          ))}
+        </div>
 
         <Link className="button primary" to="/solutions">
           {t('program.pick')}

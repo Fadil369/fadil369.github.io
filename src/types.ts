@@ -34,13 +34,30 @@ export interface Product {
   available?: boolean;
 }
 
+export interface Benefit {
+  id: string;
+  icon: string;
+  titleEn: string;
+  titleAr: string;
+  discount: number;
+  category: string;
+  identityTypes?: string[];
+  professions?: string[];
+  academicTypes?: string[];
+  descriptionEn: string;
+  descriptionAr: string;
+  requiresVerification: boolean;
+}
+
 export interface Exception {
   id: string; labelEn: string; labelAr: string;
   discountPct: number; note?: string;
 }
+
 export interface Track {
   id: string; labelEn: string; labelAr: string; icon?: string;
 }
+
 export interface Program {
   slug: string; stage: 'build'; kind: 'program';
   name: string; nameAr: string;
@@ -48,7 +65,8 @@ export interface Program {
   billingEn?: string; billingAr?: string;
   tagline?: string; taglineAr?: string;
   description?: string; descriptionAr?: string;
-  exceptions: Exception[];
+  exceptions?: Exception[];
+  benefits?: Benefit[];
   tracks: Track[];
   badges?: string[];
   available?: boolean;

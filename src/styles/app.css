@@ -159,6 +159,45 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.
 .pcard-cta { display: flex; gap: .4rem; flex-wrap: wrap; justify-content: flex-end; }
 
 /* ---- build program ---- */
+.build-engine { margin: 2.4rem auto; max-width: 100%; }
+.program-benefits { background: #f9fafb; border-radius: 18px; padding: 2.4rem; margin: 2.4rem auto; max-width: 1000px; }
+.program-benefits h2 { font-size: 1.8rem; margin-bottom: .5rem; text-align: center; }
+.benefits-intro { text-align: center; color: var(--muted); margin-bottom: 2rem; font-size: 1rem; }
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.benefit-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.benefit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(10, 23, 51, 0.1);
+}
+.benefit-icon { font-size: 2.5rem; margin-bottom: .75rem; display: block; }
+.benefit-card h3 { font-size: 1.1rem; margin: .5rem 0; color: var(--navy); }
+.benefit-desc { color: var(--muted); font-size: .9rem; margin: .75rem 0; }
+.benefit-discount { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: var(--gold); margin: .5rem 0 0; }
+.program-info { max-width: 720px; margin: 2.4rem auto; }
+.program-info h2 { font-size: 1.6rem; margin-bottom: 1rem; }
+.program-info p { color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; }
+.badges-list { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 2rem; justify-content: center; }
+.badge {
+  display: inline-block;
+  background: var(--gold-2);
+  color: var(--navy);
+  padding: .4rem .9rem;
+  border-radius: 12px;
+  font-size: .85rem;
+  font-weight: 600;
+}
 .program { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 1.8rem; box-shadow: var(--shadow); max-width: 720px; margin: 0 auto; }
 .program-price { font-size: 1.1rem; margin-bottom: 1rem; }
 .program-price .label { display: block; color: var(--muted); font-size: .85rem; }
