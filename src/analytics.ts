@@ -1,0 +1,48 @@
+/**
+ * Analytics — Google Tag Manager + GA4 (via GTM) + Meta (Facebook) Pixel.
+ * Shared with store.brainsait.org (GTM-TP24GSTF · GA4 G-75ZCDM8R74 ·
+ * Meta pixel 850048551165707).
+ *
+ * Every call is safe: it no-ops if the tag libraries are not loaded yet
+ * (offline, ad-blockers) and never blocks the UI.
+ */
+
+declare global {
+  interface Window {
+    dataLayer: unknown[];
+    fbq?: (...args: unknown[]) => void;
+  }
+}
+
+export const GTM_ID = 'GTM-TP24GSTF';
+export const GA4_ID = 'G-75ZCDM8R74';
+export const META_PIXEL_ID = '850048551165707';
+
+export function track(event: string, params: Record<string, unknown> = {}): void {
+  try {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event, ...params });
+    if (typeof window.fbq === 'function') {
+      window.fbq('trackCustom', event, params);
+    }
+  } catch {
+    /* analytics must never break the storefront */
+  }
+}
+
+export function trackViewItem(item: {
+  item_id: string;
+  item_name: string;
+  item_category?: string;
+  price?: number;
+}): void {
+  track('view_item', {
+    currency: 'SAR',
+    value: item.price ?? 0,
+    items: [{ ...item, item_category: item.item_category || 'General' }],
+  });
+}
+
+export function trackBeginCheckout(value: number, items: unknown[] = []): void {
+  track('begin_checkout', { currency: 'SAR', value, items });
+}

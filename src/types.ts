@@ -27,6 +27,8 @@ export interface Product {
   users?: number;
   flag?: string;
   demoUrl?: string;
+  /** Demo is gated behind Cloudflare Access / API token — visitors must request an account. */
+  limitedDemo?: boolean;
   /** Live Shopify product page — payment completes there via PayPal. */
   shopifyUrl?: string | null;
   shopifyHandle?: string | null;

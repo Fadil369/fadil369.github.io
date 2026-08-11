@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { ChevronRight, ChevronLeft, Check } from 'lucide-react';
 import {
   calculatePrice,
@@ -8,9 +8,17 @@ import {
   BASE_PRICE,
 } from '../utils/pricingEngine';
 import { useI18n } from '../i18n';
+import { track } from '../analytics';
 import '../styles/BuildEligibilityForm.css';
 
 type FormStep = 'welcome' | 'identity' | 'profession' | 'verification' | 'result' | 'checkout';
+
+function ResultTracker({ tier, discount, price }: { tier: string; discount: number; price: number }) {
+  useEffect(() => {
+    track('build_eligibility', { tier, discount, final_price: price });
+  }, [tier, discount, price]);
+  return null;
+}
 
 export default function BuildEligibilityForm() {
   const { ar, t } = useI18n();
@@ -68,6 +76,14 @@ export default function BuildEligibilityForm() {
 
     // Pass eligibility data through cart properties for Shopify to track
     const cartUrl = `${shopifyBaseUrl}/cart/add?id=${variantId}&quantity=1&properties[eligibility_tier]=${encodeURIComponent(tier)}&properties[discount_percent]=${pricing.discount}&properties[final_price]=${finalPrice}`;
+
+    track('begin_checkout', {
+      currency: 'SAR',
+      value: finalPrice,
+      items: [{ item_id: 'build-ticket', item_name: 'Build Ticket', price: finalPrice }],
+      eligibility_tier: tier,
+      discount_percent: pricing.discount,
+    });
 
     // Store application data in sessionStorage for post-purchase confirmation
     sessionStorage.setItem('buildApplicationData', JSON.stringify({
@@ -375,6 +391,7 @@ export default function BuildEligibilityForm() {
       {/* Result Screen */}
       {step === 'result' && (
         <div className="form-step result-step">
+          <ResultTracker tier={pricing.eligibilityId} discount={pricing.discount} price={pricing.finalPrice} />
           {isIdentityTier ? (
             <>
               <div className="tier-icon">{pricing.tier.icon}</div>

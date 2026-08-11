@@ -1,8 +1,10 @@
 import { useParams, Link } from 'react-router-dom';
-import { ExternalLink, ShieldCheck } from 'lucide-react';
+import { useEffect } from 'react';
+import { ExternalLink, ShieldCheck, Lock } from 'lucide-react';
 import data from '../data/catalog.json';
 import type { Catalog, Product as P } from '../types';
 import { useI18n, money } from '../i18n';
+import { track, trackViewItem } from '../analytics';
 
 const cat = data as unknown as Catalog;
 const ALL: P[] = [...cat.learn, ...cat.solutions, ...cat.build.courses];
@@ -11,6 +13,12 @@ export default function Product() {
   const { slug } = useParams();
   const { ar, t } = useI18n();
   const p = ALL.find(x => x.slug === slug);
+
+  useEffect(() => {
+    if (p) {
+      trackViewItem({ item_id: p.slug, item_name: p.name, item_category: p.category, price: p.price ?? undefined });
+    }
+  }, [p]);
 
   if (!p) {
     return (
@@ -23,6 +31,14 @@ export default function Product() {
 
   const name = ar ? p.nameAr || p.name : p.name;
   const desc = ar ? p.descriptionAr || p.description : p.description;
+
+  const onBuy = () =>
+    track('begin_checkout', {
+      currency: 'SAR',
+      value: p.price,
+      items: [{ item_id: p.slug, item_name: p.name, price: p.price }],
+    });
+  const onDemo = () => track('view_demo', { item_id: p.slug, item_name: p.name });
 
   return (
     <main className="page product-page">
@@ -42,7 +58,7 @@ export default function Product() {
           {p.shopifyUrl ? (
             <>
               <a className="button primary lg" href={p.shopifyUrl}
-                 target="_blank" rel="noopener noreferrer">
+                 target="_blank" rel="noopener noreferrer" onClick={onBuy}>
                 {t('cta.buy')} <ExternalLink size={16} />
               </a>
               <p className="fineprint">
@@ -50,10 +66,17 @@ export default function Product() {
               </p>
             </>
           ) : p.demoUrl ? (
-            <a className="button primary lg" href={p.demoUrl}
-               target="_blank" rel="noopener noreferrer">
-              {t('cta.demo')} <ExternalLink size={16} />
-            </a>
+            <>
+              <a className="button primary lg" href={p.demoUrl}
+                 target="_blank" rel="noopener noreferrer" onClick={onDemo}>
+                {t('cta.demo')} <ExternalLink size={16} />
+              </a>
+              {p.limitedDemo && (
+                <p className="fineprint">
+                  <Lock size={14} /> {ar ? 'ديمو وصول محدود — يرجى طلب حساب تجريبي' : 'Limited-access demo — request a trial account'}
+                </p>
+              )}
+            </>
           ) : (
             <span className="button disabled lg">{t('cta.soon')}</span>
           )}

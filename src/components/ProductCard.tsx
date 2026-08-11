@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ExternalLink, ArrowLeft } from 'lucide-react';
 import type { Product } from '../types';
 import { useI18n, money } from '../i18n';
+import { track } from '../analytics';
 
 /**
  * Product card — visual system preserved from the original store:
@@ -15,6 +16,14 @@ export default function ProductCard({ p }: { p: Product }) {
   const name = ar ? p.nameAr || p.name : p.name;
   const tagline = ar ? p.taglineAr || p.tagline : p.tagline;
   const buyable = Boolean(p.shopifyUrl);
+
+  const onBuy = () =>
+    track('add_to_cart', {
+      currency: 'SAR',
+      value: p.price,
+      items: [{ item_id: p.slug, item_name: p.name, price: p.price }],
+    });
+  const onDemo = () => track('view_demo', { item_id: p.slug, item_name: p.name });
 
   return (
     <article className="pcard">
@@ -42,12 +51,12 @@ export default function ProductCard({ p }: { p: Product }) {
           <div className="pcard-cta">
             {buyable ? (
               <a className="button primary sm" href={p.shopifyUrl!}
-                 target="_blank" rel="noopener noreferrer">
+                 target="_blank" rel="noopener noreferrer" onClick={onBuy}>
                 {t('cta.buy')} <ExternalLink size={14} aria-hidden="true" />
               </a>
             ) : p.demoUrl ? (
               <a className="button primary sm" href={p.demoUrl}
-                 target="_blank" rel="noopener noreferrer">
+                 target="_blank" rel="noopener noreferrer" onClick={onDemo}>
                 {t('cta.demo')} <ExternalLink size={14} aria-hidden="true" />
               </a>
             ) : (

@@ -4084,11 +4084,11 @@
       "rating": null,
       "users": "Live demo",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://wathq.brainsait.org",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-WATHQ-001",
-      "available": false
+      "available": true
     },
     {
       "slug": "museum-hilton-concierge",
@@ -4125,11 +4125,11 @@
       "rating": null,
       "users": "Live demo",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://museum-hilton.pages.dev",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-MUSEUM-002",
-      "available": false
+      "available": true
     },
     {
       "slug": "hotel-elfadil-stays",
@@ -4166,11 +4166,11 @@
       "rating": null,
       "users": "Live demo",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://elfadil.com",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-HOTEL-003",
-      "available": false
+      "available": true
     },
     {
       "slug": "brainsait-academy-live",
@@ -4207,11 +4207,12 @@
       "rating": null,
       "users": "Live demo",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://academy.brainsait.org",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-ACADEMY-004",
-      "available": false
+      "available": true,
+      "limitedDemo": true
     },
     {
       "slug": "iris-academy",
@@ -4248,11 +4249,11 @@
       "rating": null,
       "users": "Live demo",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://iris-academy.pages.dev",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-IRIS-005",
-      "available": false
+      "available": true
     },
     {
       "slug": "iris-academy-v2",
@@ -4289,11 +4290,11 @@
       "rating": null,
       "users": "Live demo",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://iris-academy.pages.dev",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-IRISV2-006",
-      "available": false
+      "available": true
     },
     {
       "slug": "brainsait-gtm-arabic",
@@ -4330,11 +4331,11 @@
       "rating": null,
       "users": "Live demo",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://brainsait-gtm-arabic.pages.dev",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-GTM-007",
-      "available": false
+      "available": true
     },
     {
       "slug": "sbs-elfadil-site",
@@ -4494,11 +4495,11 @@
       "rating": null,
       "users": "Live demo",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://momfood.com",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-MOMFOOD-011",
-      "available": false
+      "available": true
     },
     {
       "slug": "naracafe-majlis",
@@ -4535,11 +4536,11 @@
       "rating": null,
       "users": "Live demo",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://naracafe.de",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-NARA-012",
-      "available": false
+      "available": true
     },
     {
       "slug": "hnh-care-coordination",
@@ -4576,11 +4577,11 @@
       "rating": null,
       "users": "Live demo",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://hnh.brainsait.org",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-HNH-013",
-      "available": false
+      "available": true
     },
     {
       "slug": "basma-health-suite",
@@ -4658,11 +4659,12 @@
       "rating": null,
       "users": "Live demo",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://api.brainsait.org/health",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-NPHIESDRG-015",
-      "available": false
+      "available": true,
+      "limitedDemo": true
     },
     {
       "slug": "brainsait-linc-fhir",
@@ -4699,11 +4701,11 @@
       "rating": null,
       "users": "Live demo",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://brainsait-linc-fhir-prod.brainsait-fadil.workers.dev",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-LINCFHIR-016",
-      "available": false
+      "available": true
     },
     {
       "slug": "clinics-directory-demo",
@@ -4740,11 +4742,12 @@
       "rating": null,
       "users": "Live demo",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://clinics.brainsait.org",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-CLINICS-017",
-      "available": false
+      "available": true,
+      "limitedDemo": true
     },
     {
       "slug": "brainsait-sdc-engine",
@@ -4781,11 +4784,11 @@
       "rating": null,
       "users": "Live demo",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://brainsait-sdc-engine.brainsait-fadil.workers.dev",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-SDC-018",
-      "available": false
+      "available": true
     },
     {
       "slug": "brainsait-healthcare-directory",
@@ -4822,11 +4825,11 @@
       "rating": null,
       "users": "Live demo",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://hnh.brainsait.org",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-HCDIR-019",
-      "available": false
+      "available": true
     },
     {
       "slug": "brainsait-doctor-hub",
@@ -4863,11 +4866,12 @@
       "rating": null,
       "users": "Live demo",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://ai.brainsait.org/health",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-DOCTOR-020",
-      "available": false
+      "available": true,
+      "limitedDemo": true
     },
     {
       "slug": "oid-badging-platform",
@@ -4904,11 +4908,11 @@
       "rating": null,
       "users": "Scaffold",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://portal.brainsait.org",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-OID-021",
-      "available": false
+      "available": true
     },
     {
       "slug": "hetzner-guide-ehn",
@@ -5027,11 +5031,12 @@
       "rating": null,
       "users": "Live endpoint",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://brainsait-mcp.brainsait-fadil.workers.dev",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-MCP-024",
-      "available": false
+      "available": true,
+      "limitedDemo": true
     },
     {
       "slug": "brainsait-mcp-worker",
@@ -5068,11 +5073,12 @@
       "rating": null,
       "users": "Live endpoint",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://brainsait-mcp.brainsait-fadil.workers.dev",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-MCPW-025",
-      "available": false
+      "available": true,
+      "limitedDemo": true
     },
     {
       "slug": "travel-code-secure-vault",
@@ -5150,11 +5156,12 @@
       "rating": null,
       "users": "Live demo",
       "flag": "demo",
-      "demoUrl": null,
+      "demoUrl": "https://ai.brainsait.org/health",
       "shopifyUrl": null,
       "shopifyHandle": null,
       "sku": "BSP-SOL-NEURAL-027",
-      "available": false
+      "available": true,
+      "limitedDemo": true
     },
     {
       "slug": "hermes-assistant-gateway",
