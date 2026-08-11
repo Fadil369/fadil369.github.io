@@ -33,6 +33,29 @@ export default function Build() {
         <BuildEligibilityForm />
       </section>
 
+      <section className="forge-teaser reveal">
+        <div className="forge-mark">ب</div>
+        <h2>{ar ? 'منصة الإطلاق — Launch Forge' : 'Launch Forge'}</h2>
+        <p className="forge-lead">
+          {ar
+            ? 'دخولك إلى البرنامج يبدأ من منصة الإطلاق: رحلة موجهة من 5 أيام من الفكرة إلى الإطلاق — مع جلسات تدريب، نقاط إطلاق، ومشرفين ذكيين.'
+            : 'Your program journey runs on Launch Forge: a guided 5-day track from idea to launch — with coaching sessions, ForgeScores, and intelligent mentors.'}
+        </p>
+        <ul className="forge-points">
+          {[
+            [ar ? 'مسار 5 أيام' : '5-day track', ar ? 'انطلاق · تحديد · بناء · دمج · تحقق · إطلاق' : 'Ignition · Define · Build · Integrate · Validate · Launch'],
+            [ar ? 'نقاط الإطلاق' : 'ForgeScore', ar ? 'مقياس جاهزية محدد عبر 7 أبعاد' : 'deterministic readiness score across 7 dimensions'],
+            [ar ? 'مراقبة ذكية' : 'Smart oversight', ar ? 'بوابات موافقة + سجل أحداث + عودة آمنة' : 'approval gates + audit trail + rollback'],
+          ].map(([k, v], i) => (
+            <li key={i}><b>{k}</b> — {v}</li>
+          ))}
+        </ul>
+        <a className="button primary" href="https://forge.brainsait.org" target="_blank" rel="noopener noreferrer">
+          {ar ? 'افتح منصة الإطلاق' : 'Open Launch Forge'} ↗
+        </a>
+        <p className="fineprint">forge.brainsait.org · Launch Forge (BEOS)</p>
+      </section>
+
       <section className="program-benefits reveal">
         <h2>{ar ? 'استحقاقات البناء' : 'Build Benefits'}</h2>
         <p className="benefits-intro">

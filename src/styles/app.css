@@ -539,6 +539,38 @@ img { max-width: 100%; }
   pointer-events: none;
 }
 .program-benefits h2 { font-size: 1.9rem; margin-bottom: 0.5rem; text-align: center; }
+
+/* ── Launch Forge teaser on Build page ─────────────────────── */
+.forge-teaser {
+  position: relative; text-align: center; overflow: hidden;
+  margin: 2.4rem 0; padding: 3rem 2rem; border-radius: 30px;
+  background:
+    radial-gradient(ellipse at 50% -30%, rgba(233, 196, 106, 0.18), transparent 55%),
+    linear-gradient(160deg, var(--navy, #0b1f3a), #12294f);
+  border: 1px solid rgba(233, 196, 106, 0.35);
+  color: #f7f2e7;
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+.forge-mark {
+  width: 64px; height: 64px; margin: 0 auto 1rem; border-radius: 50%;
+  display: grid; place-items: center; font-weight: 800; font-size: 1.8rem;
+  border: 1.5px solid var(--gold, #c9a227); color: var(--gold-l, #e3c565);
+  box-shadow: 0 0 24px rgba(233, 196, 106, 0.35);
+}
+.forge-teaser h2 { font-size: 1.9rem; color: #fff; margin-bottom: 0.6rem; }
+.forge-lead { max-width: 720px; margin: 0 auto 1.4rem; color: #cdd6e6; }
+.forge-points {
+  list-style: none; display: flex; flex-wrap: wrap; gap: 0.7rem;
+  justify-content: center; margin: 0 0 1.8rem; padding: 0;
+}
+.forge-points li {
+  padding: 0.55rem 1.1rem; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 0.86rem; color: #cdd6e6;
+}
+.forge-points b { color: var(--gold-l, #e3c565); }
+.forge-teaser .fineprint { color: #8a9bb8; margin-top: 0.9rem; }
 .benefits-intro { text-align: center; color: var(--muted); margin-bottom: 2.2rem; font-size: 1rem; }
 .benefits-grid {
   display: grid;
