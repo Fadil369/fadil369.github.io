@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Shelf from './pages/Shelf';
 import Build from './pages/Build';
 import Product from './pages/Product';
+import Account from './pages/Account';
 import './styles/app.css';
 
 type Theme = 'dark' | 'light';
@@ -41,6 +42,7 @@ function Header() {
           <NavLink to="/learn">{t('nav.learn')}</NavLink>
           <NavLink to="/build">{t('nav.build')}</NavLink>
           <NavLink to="/solutions">{t('nav.solutions')}</NavLink>
+          <NavLink to="/account">{ar ? 'حسابي' : 'Account'}</NavLink>
         </nav>
         <div className="head-actions">
           <a className="button secondary sm" href="https://brainsait.org"
@@ -89,6 +91,7 @@ export default function App() {
           <Route path="/solutions" element={<Shelf stage="solutions" />} />
           <Route path="/build" element={<Build />} />
           <Route path="/products/:slug" element={<Product />} />
+          <Route path="/account" element={<Account />} />
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />
