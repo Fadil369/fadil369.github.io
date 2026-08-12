@@ -838,6 +838,12 @@ img { max-width: 100%; }
 .cap { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: var(--ink-soft); background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; padding: 0.25rem 0.7rem; }
 .account-lang { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
 .account-lang .active { border-color: var(--gold); color: var(--gold); }
+.acct-input {
+  flex: 1; min-width: 160px; padding: 0.5rem 0.7rem;
+  background: var(--surface-2); border: 1.5px solid var(--line); border-radius: 12px;
+  font-family: inherit; font-size: 0.9rem; color: var(--ink);
+}
+.acct-input:focus { outline: none; border-color: var(--gold); }
 
 /* ── Build page — Telegram registration ────────────────────── */
 .build-register { max-width: 1020px; margin: 3rem auto; text-align: center; }

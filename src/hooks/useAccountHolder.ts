@@ -11,6 +11,8 @@ declare global {
     BrainSAIT?: {
       session: {
         resolve: () => Promise<Identity | null>;
+        login: (email: string, password: string) => Promise<any>;
+        logout: () => void;
       };
     };
   }

@@ -166,6 +166,24 @@ export default function BuildEligibilityForm() {
         final_price: result.finalPrice,
       });
 
+      // Persist the application ref + profile locally so the Account page can
+      // surface build progress without requiring a full portal sign-in.
+      try {
+        localStorage.setItem('bs_build_ref', result.applicationId);
+        const existing = (() => { try { return JSON.parse(localStorage.getItem('bs_profile') || 'null'); } catch { return null; } })();
+        const merged = {
+          id: existing?.id || 'local-' + Date.now(),
+          name: existing?.name || contact.fullName.trim(),
+          email: existing?.email || contact.email.trim(),
+          phone: existing?.phone || contact.phone.trim(),
+          country: existing?.country || contact.country.trim(),
+          roles: existing?.roles || ['customer'],
+          local: true,
+          buildRef: result.applicationId,
+        };
+        localStorage.setItem('bs_profile', JSON.stringify(merged));
+      } catch { /* ignore */ }
+
       if (result.checkoutUrl) {
         window.location.href = result.checkoutUrl;
         return;
