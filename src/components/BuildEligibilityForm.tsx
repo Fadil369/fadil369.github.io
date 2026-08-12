@@ -493,7 +493,12 @@ export default function BuildEligibilityForm() {
           </p>
           <p className="step-description">{submitResult.message}</p>
           <div className="form-actions" style={{ marginTop: '1.5rem' }}>
-            <a className="btn-primary" href={submitResult.notionUrl} target="_blank" rel="noopener noreferrer">
+            <a className="btn-primary" href={`/track?ref=${submitResult.applicationId}`}>
+              {ar ? 'لوحة تقدمك →' : 'Track your progress →'}
+            </a>
+          </div>
+          <div className="form-actions" style={{ marginTop: '0.75rem' }}>
+            <a className="btn-secondary" href={submitResult.notionUrl} target="_blank" rel="noopener noreferrer">
               {ar ? 'عرض في Notion' : 'View in Notion'}
             </a>
             <a className="btn-secondary" href="https://t.me/BrainSAITForgeBot" target="_blank" rel="noopener noreferrer">

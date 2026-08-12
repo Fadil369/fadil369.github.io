@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { Award, CheckCircle2, Circle, Loader2, ExternalLink, Trophy } from 'lucide-react';
+import { Award, CheckCircle2, Circle, Loader2, ExternalLink, Trophy, RefreshCw, Sparkles } from 'lucide-react';
 import { useI18n } from '../i18n';
-import { BUILD_APPLY_API } from '../config/build';
+import { BUILD_APPLY_BASE } from '../config/build';
 
 interface Task {
   name: string;
@@ -29,6 +29,7 @@ interface ProgressData {
   badges: string[];
   tasks: Task[];
   milestones: Milestone[];
+  nextTask?: string | null;
   error?: string;
 }
 
@@ -50,14 +51,15 @@ export default function Track() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
+  const load = useCallback(() => {
     if (!ref) {
       setError(ar ? 'لم يتم توفير رقم الطلب' : 'No application ref provided');
       setLoading(false);
       return;
     }
     setLoading(true);
-    fetch(`${BUILD_APPLY_API.replace('/apply', '')}/progress/${encodeURIComponent(ref)}`)
+    setError('');
+    fetch(`${BUILD_APPLY_BASE}/progress/${encodeURIComponent(ref)}`)
       .then((r) => r.json())
       .then((d) => {
         if (d.ok) setData(d);
@@ -66,6 +68,10 @@ export default function Track() {
       .catch(() => setError(ar ? 'تعذر الاتصال' : 'Could not reach server'))
       .finally(() => setLoading(false));
   }, [ref, ar]);
+
+  useEffect(() => {
+    load();
+  }, [load]);
 
   if (loading) {
     return (
@@ -92,7 +98,32 @@ export default function Track() {
       <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
         <h1 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{ar ? 'لوحة تقدمك' : 'Your Progress Dashboard'}</h1>
         <p style={{ color: 'var(--muted)' }}>{data.name} · {data.track}</p>
+        <button
+          className="button secondary sm"
+          onClick={load}
+          style={{ marginTop: '0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
+        >
+          <RefreshCw size={14} /> {ar ? 'تحديث' : 'Refresh'}
+        </button>
       </div>
+
+      {/* Next task */}
+      {data.nextTask && (
+        <div style={{
+          background: 'linear-gradient(90deg, rgba(233,196,106,0.12), rgba(41,216,255,0.10))',
+          border: '1px solid var(--gold)', borderRadius: 16,
+          padding: '1rem 1.2rem', marginBottom: '1.5rem',
+          display: 'flex', alignItems: 'center', gap: '0.75rem',
+        }}>
+          <Sparkles size={18} color="var(--gold)" style={{ flexShrink: 0 }} />
+          <div>
+            <div style={{ fontSize: '0.78rem', color: 'var(--muted)', fontWeight: 600 }}>
+              {ar ? 'خطوتك التالية' : 'Your next step'}
+            </div>
+            <div style={{ fontWeight: 700 }}>{data.nextTask}</div>
+          </div>
+        </div>
+      )}
 
       {/* Progress bar */}
       <div style={{ background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 20, padding: '1.5rem', marginBottom: '1.5rem' }}>
