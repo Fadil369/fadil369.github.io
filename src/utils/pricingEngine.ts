@@ -73,24 +73,33 @@ const tiers: Record<string, PricingTier> = {
 };
 
 export function calculatePrice(data: EligibilityData): PricingResult {
-  // As of 2026-08-12 all Build tickets are standard 9,630 SAR.
-  // Eligibility data is still collected for verification and program matching,
-  // but no automatic discounts are applied at checkout.
   const identity = data.identity || 'OTHER';
   const profession = data.profession || data.category || 'general';
-  const tierId: keyof typeof tiers =
-    identity === 'SA' || identity === 'SD' ? 'standard'
-    : ['doctor', 'nurse', 'healthcare'].includes(profession) ? 'standard'
-    : ['entrepreneur', 'student', 'researcher'].includes(profession) ? 'standard'
-    : 'standard';
+
+  let tierId: keyof typeof tiers = 'standard';
+
+  if (identity === 'SA' || identity === 'SD') {
+    tierId = 'sa_sd_free';
+  } else if (['doctor', 'nurse', 'healthcare'].includes(profession)) {
+    tierId = 'healthcare_50';
+  } else if (profession === 'entrepreneur') {
+    tierId = 'warrior_35';
+  } else if (['student', 'researcher'].includes(profession)) {
+    tierId = 'academic_30';
+  }
+
+  const tier = tiers[tierId];
+  const discount = tier.discount;
+  const finalPrice = tier.price;
+  const savings = BASE_PRICE - finalPrice;
 
   return {
-    tier: tiers[tierId],
+    tier,
     eligibilityId: tierId,
-    discount: 0,
+    discount,
     originalPrice: BASE_PRICE,
-    finalPrice: BASE_PRICE,
-    savings: 0,
+    finalPrice,
+    savings,
   };
 }
 

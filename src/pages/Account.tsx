@@ -25,6 +25,8 @@ declare global {
 
 const ROLE_LABELS: Record<string, { ar: string; en: string }> = {
   admin: { ar: 'مدير', en: 'Admin' },
+  founder: { ar: 'مؤسس', en: 'Founder' },
+  telegram_user: { ar: 'عضو تيليغرام', en: 'Telegram user' },
   customer: { ar: 'عميل', en: 'Customer' },
   investor: { ar: 'مستثمر', en: 'Investor' },
   developer: { ar: 'مطوّر', en: 'Developer' },
@@ -57,14 +59,15 @@ export default function Account() {
           setProfile(d.profile);
         } else {
           // fall back to the SSO identity
-          setProfile({ id: id.profile_id, name: id.name || '', email: '', roles: id.roles || [], lang: 'ar' });
+          setProfile({ id: id.profile_id, name: id.name || '', email: '', roles: id.roles || [], lang: ar ? 'ar' : 'en' });
         }
       } catch {
         setError(ar ? 'تعذر تحميل الحساب' : 'Could not load account');
       } finally { setLoading(false); }
     };
     load();
-  }, [ar]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const setLang = async (lang: 'ar' | 'en') => {
     try {

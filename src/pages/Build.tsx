@@ -1,14 +1,14 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Rocket, Shield, Lock, Workflow, BookOpen, Calendar, BadgeCheck,
-  BrainCircuit, Sparkles, Target, Users, CloudCog, Store, ArrowLeft,
-  CheckCircle2, Zap,
+  BrainCircuit, Sparkles, Target, Users, CloudCog, Store,
 } from 'lucide-react';
 import data from '../data/catalog.json';
 import type { Catalog } from '../types';
-import { useI18n, money } from '../i18n';
+import { useI18n } from '../i18n';
 import { track } from '../analytics';
+import BuildEligibilityForm from '../components/BuildEligibilityForm';
 
 const cat = data as unknown as Catalog;
 const PROMO_API = 'https://forge.brainsait.org';
@@ -17,8 +17,6 @@ const CALENDAR_URL = 'https://calendar.app.google/rAqiE6pNumtECdnd7';
 export default function Build() {
   const { ar, t } = useI18n();
   const { program } = cat.build;
-  const [promo, setPromo] = useState('');
-  const [promoState, setPromoState] = useState<{ checking?: boolean; ok?: boolean; error?: string; discount?: number; price?: number }>({});
   const [tgLogin, setTgLogin] = useState<{ ok?: boolean; founder_id?: string; name?: string; error?: string }>({});
 
   // Telegram Login Widget — one-click founder registration.
@@ -56,48 +54,6 @@ export default function Build() {
     tgBtn.appendChild(s);
   }, []);
 
-  const standardPrice = program.standardPrice ?? 14900;
-  const offerPrice = program.offerPrice ?? program.price ?? 9630;
-
-  const displayedPrice = useMemo(() => {
-    if (promoState.ok && promoState.price != null) return promoState.price;
-    return offerPrice;
-  }, [promoState, offerPrice]);
-
-  const savingsPct = promoState.ok && promoState.discount
-    ? promoState.discount
-    : Math.round((1 - offerPrice / standardPrice) * 100);
-
-  const checkPromo = async () => {
-    const code = promo.trim();
-    if (!code) { setPromoState({ error: ar ? 'أدخل رمز الخصم' : 'Enter a promo code' }); return; }
-    setPromoState({ checking: true });
-    track('promo_attempt', { code });
-    try {
-      const r = await fetch(`${PROMO_API}/promo/price`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code, base: offerPrice }),
-      });
-      const d = await r.json();
-      if (d.ok) {
-        setPromoState({ ok: true, discount: d.discount_percent, price: d.final_price });
-        track('promo_valid', { code, discount: d.discount_percent });
-      } else {
-        setPromoState({ error: d.error || ar ? 'رمز غير صالح' : 'Invalid code' });
-      }
-    } catch {
-      setPromoState({ error: ar ? 'تعذر الاتصال' : 'Could not reach validation' });
-    }
-  };
-
-  const onPay = () =>
-    track('begin_checkout', {
-      currency: 'SAR',
-      value: displayedPrice,
-      items: [{ item_id: program.slug, item_name: program.name, price: displayedPrice }],
-    });
-
   const journey = [
     { icon: Sparkles, t: ar ? 'اليوم 0 · الانطلاق' : 'Day 0 · Ignition', d: ar ? 'الفكرة، لوحة الليّن، اختيار التقنية' : 'Idea, lean canvas, stack selection' },
     { icon: Target, t: ar ? 'اليوم 1 · التحديد' : 'Day 1 · Define', d: ar ? 'PRD، UX، العمارة، معايير القبول' : 'PRD, UX, architecture, acceptance criteria' },
@@ -124,15 +80,19 @@ export default function Build() {
         <h1>{ar ? program.nameAr : program.name}</h1>
         <p className="lede">{ar ? program.taglineAr : program.tagline}</p>
         <div className="build-hero-cta">
-          <a className="button primary lg" href={program.shopifyUrl}
-             target="_blank" rel="noopener noreferrer" onClick={onPay}>
-            {ar ? 'سجّل الآن' : 'Join now'} <Rocket size={18} />
+          <a className="button primary lg" href="#apply" onClick={() => track('build_cta', { location: 'hero' })}>
+            {ar ? 'تحقق من استحقاقك' : 'Check your eligibility'} <Rocket size={18} />
           </a>
           <a className="button secondary lg" href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
             <Calendar size={18} /> {ar ? 'احجز جلسة تقييم' : 'Book an evaluation'}
           </a>
         </div>
         <p className="fineprint">{ar ? 'دفع آمن عبر PayPal على store.brainsait.org' : 'Secure PayPal checkout on store.brainsait.org'}</p>
+      </section>
+
+      {/* ── ELIGIBILITY & APPLICATION FORM ── */}
+      <section id="apply" className="build-price reveal">
+        <BuildEligibilityForm />
       </section>
 
       {/* ── HOW TO REGISTER VIA TELEGRAM ── */}
@@ -204,56 +164,6 @@ export default function Build() {
             ? 'المسار كله مدعوم بـ Cloudflare Worker AI + AI Gateway — مجاني ودائم، مع توجيه ذكي وتقييم فوري.'
             : 'The whole journey runs on Cloudflare Worker AI + AI Gateway — free & permanent, with smart coaching and instant scoring.'}
         </p>
-      </section>
-
-      {/* ── PRICING CARD ── */}
-      <section className="build-price reveal">
-        <div className="price-card">
-          <span className="price-badge">{ar ? 'عرض لفترة محدودة' : 'Limited-time offer'}</span>
-          <div className="price-row">
-            <span className="price-was">{money(standardPrice, ar)}</span>
-            <span className="price-now">{money(offerPrice, ar)}</span>
-          </div>
-          <p className="price-note">
-            {ar
-              ? `السعر القياسي ${money(standardPrice, ar)} — الآن ${money(offerPrice, ar)} لمدة محدودة`
-              : `Standard ${money(standardPrice, ar)} — now ${money(offerPrice, ar)} for a limited time`}
-          </p>
-          <div className="price-off">−{savingsPct}%</div>
-
-          <div className="promo-box">
-            <label>{ar ? 'لديك رمز خصم؟' : 'Have a promo code?'}</label>
-            <div className="promo-row">
-              <input
-                value={promo}
-                onChange={(e) => { setPromo(e.target.value); setPromoState({}); }}
-                placeholder={ar ? 'مثال: FORGE-XXXXXX' : 'e.g. FORGE-XXXXXX'}
-              />
-              <button className="button secondary" onClick={checkPromo} disabled={promoState.checking}>
-                {promoState.checking ? '…' : ar ? 'تحقق' : 'Apply'}
-              </button>
-            </div>
-            {promoState.ok && (
-              <p className="promo-ok">
-                <CheckCircle2 size={14} /> {ar ? `خصم ${promoState.discount}% — السعر ${money(displayedPrice, ar)}` : `${promoState.discount}% off — ${money(displayedPrice, ar)}`}
-              </p>
-            )}
-            {promoState.error && <p className="promo-err">{promoState.error}</p>}
-            <a className="promo-link" href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
-              <Sparkles size={12} /> {ar ? 'احجز معي لتقييم خصمك — اضغط هنا' : 'Book with me to evaluate your discount — press here'}
-            </a>
-          </div>
-
-          <a className="button primary lg price-pay" href={program.shopifyUrl}
-             target="_blank" rel="noopener noreferrer" onClick={onPay}>
-            {ar ? `ادفع ${money(displayedPrice, ar)} الآن` : `Pay ${money(displayedPrice, ar)} now`} <ArrowLeft size={18} />
-          </a>
-          <p className="fineprint">
-            {ar
-              ? 'عند الموافقة على حالتك سيصلك رمز تفعيل — فعّل حسابك لتطبيق الخصم'
-              : 'Once your case is approved you\'ll receive an activation code — activate your account to apply the discount'}
-          </p>
-        </div>
       </section>
 
       {/* ── OVERVIEW / WHAT YOU BUILD ── */}
