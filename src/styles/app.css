@@ -494,6 +494,13 @@ img { max-width: 100%; }
   background: var(--gold-grad); color: #131320; border-color: transparent;
   box-shadow: 0 4px 16px rgba(233, 196, 106, 0.4);
 }
+.pcard-badge.comm {
+  position: absolute; top: 0.7rem; inset-inline-start: 0.7rem; inset-inline-end: auto;
+  font-size: 0.66rem;
+}
+.pcard-badge.comm-product { background: linear-gradient(135deg, rgba(233,196,106,.2), rgba(233,196,106,.1)); color: var(--gold-l); border-color: rgba(233,196,106,.45); }
+.pcard-badge.comm-demo { background: rgba(41,216,255,.12); color: #38bdf8; border-color: rgba(41,216,255,.4); }
+.pcard-badge.comm-service { background: rgba(52,211,153,.12); color: #34d399; border-color: rgba(52,211,153,.4); }
 .pcard-body { padding: 1.05rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: 0.45rem; flex: 1; }
 .pcard-eyebrow {
   font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;

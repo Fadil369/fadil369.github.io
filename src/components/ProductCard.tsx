@@ -19,6 +19,10 @@ export default function ProductCard({ p }: { p: Product }) {
   const tagline = ar ? p.taglineAr || p.tagline : p.tagline;
   const buyable = Boolean(p.shopifyUrl);
   const freeForYou = accountHolder === true;
+  const commercial = p.commercial || (p.demoUrl ? 'demo' : 'product');
+  const commBadge = commercial === 'product' ? '🛒' : commercial === 'service' ? '💰' : '🧩';
+  const commLabel = commercial === 'product' ? (ar ? 'منتج' : 'Product')
+    : commercial === 'service' ? (ar ? 'خدمة' : 'Service') : (ar ? 'عرض' : 'Demo');
 
   const onBuy = () =>
     track('add_to_cart', {
@@ -38,6 +42,7 @@ export default function ProductCard({ p }: { p: Product }) {
             : <div className="pcard-cover-fallback" aria-hidden="true">{name.slice(0, 1)}</div>}
         </Link>
         {p.flag === 'demo' && <span className="pcard-badge">{t('demo')}</span>}
+        <span className={`pcard-badge comm comm-${commercial}`}>{commBadge} {commLabel}</span>
         {freeForYou && <span className="pcard-badge pcard-badge-free">{t('free')}</span>}
       </div>
 
@@ -67,10 +72,13 @@ export default function ProductCard({ p }: { p: Product }) {
             ) : p.demoUrl ? (
               <a className="button primary sm" href={p.demoUrl}
                  target="_blank" rel="noopener noreferrer" onClick={onDemo}>
-                {t('cta.demo')} <ExternalLink size={14} aria-hidden="true" />
+                {commercial === 'service' ? (ar ? 'احجز الجلسة' : 'Book session') : t('cta.demo')}
+                <ExternalLink size={14} aria-hidden="true" />
               </a>
             ) : (
-              <span className="button disabled sm">{t('cta.soon')}</span>
+              <Link className="button primary sm" to={`/products/${p.slug}`} onClick={onBuy}>
+                {ar ? 'اطلب' : 'Request'} <ArrowLeft size={14} aria-hidden="true" />
+              </Link>
             )}
             <Link className="button secondary sm" to={`/products/${p.slug}`}>
               {t('cta.details')} <ArrowLeft size={14} aria-hidden="true" />

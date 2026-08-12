@@ -10,6 +10,7 @@ const cat = data as unknown as Catalog;
 export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
   const { ar, t } = useI18n();
   const [sub, setSub] = useState('all');
+  const [comm, setComm] = useState('all');
   const items: Product[] = stage === 'learn' ? cat.learn : cat.solutions;
 
   const subs = useMemo(() => {
@@ -17,7 +18,7 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
     return cat.subcategories.filter(s => present.has(s.id));
   }, [items]);
 
-  const shown = sub === 'all' ? items : items.filter(i => i.sub === sub);
+  const shown = items.filter(i => (sub === 'all' || i.sub === sub) && (comm === 'all' || (i.commercial || 'demo') === comm));
   const def = cat.stages.find(s => s.id === stage)!;
 
   return (
@@ -44,6 +45,20 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
           );
         })}
       </div>
+
+      {stage === 'solutions' && (
+        <div className="filters reveal comm-filters" role="tablist" aria-label="Commercial type">
+          {[['all', ar ? 'الكل' : 'All'], ['product', '🛒 ' + (ar ? 'منتجات' : 'Products')],
+            ['demo', '🧩 ' + (ar ? 'عروض' : 'Demos')], ['service', '💰 ' + (ar ? 'خدمات' : 'Services')]]
+            .map(([v, label]) => (
+              <button role="tab" key={v} aria-selected={comm === v}
+                      className={'chip' + (comm === v ? ' active' : '')}
+                      onClick={() => setComm(v)}>
+                {label}
+              </button>
+            ))}
+        </div>
+      )}
 
       <div className="grid reveal">
         {shown.map(p => <ProductCard key={p.slug} p={p} />)}
