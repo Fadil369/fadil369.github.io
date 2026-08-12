@@ -34,6 +34,53 @@ const ROLE_LABELS: Record<string, { ar: string; en: string }> = {
 
 const PROFILE_KEY = 'bs_profile';
 const BUILD_REF_KEY = 'bs_build_ref';
+const FORGE_TOKEN_KEY = 'bs_forge_token';
+const FORGE_PROFILE_KEY = 'bs_forge_profile';
+const FORGE_ME = 'https://forge.brainsait.org/profile/me';
+
+function readForgeToken(): string {
+  try { return localStorage.getItem(FORGE_TOKEN_KEY) || ''; } catch { return ''; }
+}
+
+function readForgeProfile(): ProfileView | null {
+  try {
+    const raw = localStorage.getItem(FORGE_PROFILE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch { return null; }
+}
+
+/** Resolve the Builder launch identity — network first, then the locally
+ *  persisted forge profile (the gateway returns it at login time). */
+async function resolveForgeIdentity(): Promise<ProfileView | null> {
+  const token = readForgeToken();
+  if (token) {
+    try {
+      const r = await fetch(FORGE_ME, { headers: { 'X-Token': token } });
+      if (r.ok) {
+        const d = await r.json();
+        if (d?.authenticated && d.profile) {
+          const p = d.profile;
+          return {
+            id: p.id || 'forge',
+            oid: p.oid,
+            name: p.name || '',
+            name_ar: p.name_ar || p.name || '',
+            email: p.email || '',
+            roles: Array.isArray(p.roles) ? p.roles : ['telegram_user'],
+            lang: p.lang,
+            capabilities: p.capabilities,
+            local: false,
+          };
+        }
+      }
+    } catch { /* fall through to local profile */ }
+  }
+  const local = readForgeProfile();
+  if (local && local.name) {
+    return { ...local, id: local.id || 'forge', local: false };
+  }
+  return null;
+}
 
 function readLocalProfile(): ProfileView | null {
   try {
@@ -98,13 +145,28 @@ export default function Account() {
           if (r.ok) {
             const d = await r.json();
             const p: ProfileView = { id: id.profile_id, name: id.name || '', email: d.profile?.email || '', phone: d.profile?.phone, roles: id.roles || [], capabilities: d.profile?.capabilities, lang: d.profile?.lang, oid: d.profile?.oid, name_ar: d.profile?.name_ar };
+            // Enrich with the forge (Builder launch) identity when a forge
+            // session exists on this device — roles/oid merge for display.
+            const forge = await resolveForgeIdentity();
+            if (forge) {
+              p.roles = Array.from(new Set([...(p.roles || []), ...(forge.roles || [])]));
+              p.oid = p.oid || forge.oid;
+            }
             setProfile(p);
             setLoading(false);
             return;
           }
         } catch { /* fall through to local */ }
         const local = readLocalProfile();
-        setProfile({ ...(local || {}), id: id.profile_id, name: local?.name || id.name || '', roles: id.roles || [], local: false });
+        const forge = await resolveForgeIdentity();
+        setProfile({ ...(local || {}), ...(forge || {}), id: id.profile_id, name: (forge?.name || local?.name || id.name || ''), roles: forge?.roles || local?.roles || id.roles || [], local: false });
+        setLoading(false);
+        return;
+      }
+      // No portal session → try the forge (Telegram) identity, then local.
+      const forge = await resolveForgeIdentity();
+      if (forge?.name) {
+        setProfile({ ...readLocalProfile(), ...forge, local: false });
         setLoading(false);
         return;
       }
@@ -186,8 +248,22 @@ export default function Account() {
         body: JSON.stringify({ lang }),
       });
       if (r.ok) setLangMsg(ar ? 'تم حفظ تفضيل اللغة ✓' : 'Language preference saved ✓');
+      else throw new Error('portal');
     } catch {
-      setLangMsg(ar ? 'تم الحفظ محليًا ✓' : 'Saved locally ✓');
+      // Portal has no session → try the forge (OID) identity instead.
+      const forgeTok = readForgeToken();
+      let ok = false;
+      if (forgeTok) {
+        try {
+          const r = await fetch(`${FORGE_ME.replace('/profile/me', '')}/profile/lang`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'X-Token': forgeTok },
+            body: JSON.stringify({ lang }),
+          });
+          ok = r.ok;
+        } catch { /* ignore */ }
+      }
+      setLangMsg(ok ? (ar ? 'تم حفظ تفضيل اللغة عبر بوابة البناء ✓' : 'Saved via Build gateway ✓') : (ar ? 'تم الحفظ محليًا ✓' : 'Saved locally ✓'));
     }
   };
 
@@ -195,6 +271,8 @@ export default function Account() {
     try { window.BrainSAIT?.session?.logout(); } catch { /* ignore */ }
     try { localStorage.removeItem('brainsait_x_token'); } catch { /* ignore */ }
     try { localStorage.removeItem(PROFILE_KEY); } catch { /* ignore */ }
+    try { localStorage.removeItem(FORGE_TOKEN_KEY); } catch { /* ignore */ }
+    try { localStorage.removeItem(FORGE_PROFILE_KEY); } catch { /* ignore */ }
     setProfile(null);
     setMode('signin');
   };

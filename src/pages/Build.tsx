@@ -13,6 +13,8 @@ import BuildEligibilityForm from '../components/BuildEligibilityForm';
 const cat = data as unknown as Catalog;
 const PROMO_API = 'https://forge.brainsait.org';
 const CALENDAR_URL = 'https://calendar.app.google/rAqiE6pNumtECdnd7';
+const FORGE_TOKEN_KEY = 'bs_forge_token';
+const FORGE_PROFILE_KEY = 'bs_forge_profile';
 
 export default function Build() {
   const { ar, t } = useI18n();
@@ -36,6 +38,12 @@ export default function Build() {
           if (d && d.ok) {
             setTgLogin({ ok: true, founder_id: d.founder_id, name: d.name || user.first_name });
             track('tg_login', { founder_id: d.founder_id });
+            // Persist the forge (OID) identity so the Account page can
+            // resolve the same profile across the ecosystem.
+            try {
+              if (d.token) localStorage.setItem(FORGE_TOKEN_KEY, d.token);
+              localStorage.setItem(FORGE_PROFILE_KEY, JSON.stringify(d.profile || {}));
+            } catch { /* ignore */ }
           } else {
             setTgLogin({ error: d?.error || 'login failed' });
           }
@@ -109,14 +117,16 @@ export default function Build() {
           <p className="tg-login-title">{ar ? 'تسجيل دخول فوري بنقرة واحدة' : 'Instant one-click login'}</p>
           <div id="telegram-login-btn"></div>
           {tgLogin.ok ? (
-            <p className="tg-login-ok">✅ {ar ? `مرحباً ${tgLogin.name} — تم تسجيلك كمؤسس (${tgLogin.founder_id})` : `Welcome ${tgLogin.name} — you're registered as a founder (${tgLogin.founder_id})`}</p>
+            <p className="tg-login-ok">✅ {ar
+              ? `مرحباً ${tgLogin.name} — تم ربط هوية تيليغرام وحسابك (${tgLogin.founder_id}) جاهز للمزامنة عبر البيئة. فعّل مقعدك من صفحة البناء أدناه.`
+              : `Welcome ${tgLogin.name} — your Telegram identity is linked (${tgLogin.founder_id}) and synced across the ecosystem. Activate your seat via the build form below.`}</p>
           ) : tgLogin.error ? (
             <p className="tg-login-err">⚠️ {tgLogin.error}</p>
           ) : (
             <p className="tg-login-note">
               {ar
-                ? 'اضغط الزر أعلاه — سنتحقق من هويتك ونسجّل حسابك كمسؤول تلقائياً. (الزر يظهر بعد تحميل أداة تيليغرام)'
-                : 'Tap the button above — we verify your identity and register you as a founder automatically. (The button appears once Telegram\'s widget loads.)'}
+                ? 'اضغط الزر أعلاه — سنتحقق من هويتك ونسجّل حسابك تلقائياً. (الزر يظهر بعد تحميل أداة تيليغرام)'
+                : 'Tap the button above — we verify your identity and register your account automatically. (The button appears once Telegram\'s widget loads.)'}
             </p>
           )}
         </div>
