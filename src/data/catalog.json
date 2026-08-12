@@ -522,8 +522,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Take control of your health knowledge in the digital age. This comprehensive eBook walks you through the essentials of modern healthcare — from understanding me",
-      "description": "Take control of your health knowledge in the digital age. This comprehensive eBook walks you through the essentials of modern healthcare — from understanding medical data and digital health tools to navigating telemedicine and making informed decisions for yourself and your family.\n Whether you're a healthcare professional looking to upskill or someone who wants to take charge of their wellbeing, this masterclass delivers real, actionable knowledge you can use immediately.",
+      "tagline": "Masterclass covering digital health strategy, workflow automation and AI in clinical settings.",
+      "description": "A complete masterclass on digital healthcare: strategy, clinical workflow automation, patient-facing AI and implementation roadmap. Includes frameworks, case studies and templates you can apply immediately.",
       "price": 5.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -534,7 +534,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/digital-healthcare-masterclass",
       "shopifyHandle": "digital-healthcare-masterclass",
       "sku": "BSP-DIGITAL-HC-MASTERCLASS",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "ماستركلاس شامل في الصحة الرقمية: الاستراتيجية، وأتمتة مسارات العمل، والذكاء الاصطناعي في البيئات السريرية.",
+      "descriptionAr": "ماستركلاس متكامل في الصحة الرقمية يغطي الاستراتيجية وأتمتة سير العمل السريري والذكاء الاصطناعي الموجه للمرضى وخارطة التنفيذ، مع أطر عمل ودراسات حالة وقوالب جاهزة للتطبيق."
     },
     {
       "slug": "hook-architect",
@@ -545,8 +547,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Generate 15-20 high-impact hooks for any marketing content. Instant digital delivery via BrainSAIT.",
-      "description": "Generate 15-20 high-impact hooks for any marketing content. Instant digital delivery via BrainSAIT.",
+      "tagline": "Generate 15–20 high-impact hooks for any marketing content in seconds.",
+      "description": "An AI hook machine that generates 15–20 proven high-impact hooks for any campaign, post or ad — engineered for CTR, retention and Arabic-English audiences.",
       "price": 49.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -557,7 +559,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/hook-architect",
       "shopifyHandle": "hook-architect",
       "sku": "BSP-HOOK-ARCHITECT",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "ولّد 15–20 عنوانًا جذابًا عالي التأثير لأي محتوى تسويقي في ثوانٍ.",
+      "descriptionAr": "محرك عناوين ذكي يولّد 15–20 عنوانًا مجربًا عالي التأثير لأي حملة أو منشور أو إعلان، مصمم لرفع نسبة النقر والاحتفاظ، يدعم الجمهور العربي والإنجليزي."
     },
     {
       "slug": "nphies-assistant",
@@ -568,8 +572,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "Navigate the Saudi insurance claims platform (NPHIES) and validate submissions. Instant digital delivery via BrainSAIT.",
-      "description": "Navigate the Saudi insurance claims platform (NPHIES) and validate submissions. Instant digital delivery via BrainSAIT.",
+      "tagline": "Navigate the Saudi insurance claims platform (NPHIES) and validate submissions with confidence.",
+      "description": "An assistant for the Saudi claims platform: step-by-step navigation, submission validation and denial-prevention guidance for providers and payers.",
       "price": 249.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -580,7 +584,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/nphies-assistant",
       "shopifyHandle": "nphies-assistant",
       "sku": "BSP-NPHIES-ASSISTANT",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "تنقّل في منصة المطالبات السعودية NPHIES وتحقق من الإرساليات بثقة.",
+      "descriptionAr": "مساعد لمنصة المطالبات السعودية: إرشاد خطوة بخطوة والتحقق من الإرساليات وإرشادات منع الرفض لمقدمي الخدمات وشركات التأمين."
     },
     {
       "slug": "investor-pitch-agent",
@@ -591,8 +597,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Create a complete investor pitch with narrative and templates. Instant digital delivery via BrainSAIT.",
-      "description": "Create a complete investor pitch with narrative and templates. Instant digital delivery via BrainSAIT.",
+      "tagline": "Turn your startup story into an investor-ready pitch deck with structured feedback.",
+      "description": "An AI agent that structures your pitch, sharpens your value proposition, and gives investor-grade feedback — deck by deck, section by section.",
       "price": 199.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -603,7 +609,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/investor-pitch-agent",
       "shopifyHandle": "investor-pitch-agent",
       "sku": "BSP-INVESTOR-PITCH",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "حوّل قصة شركتك الناشئة إلى عرض تقديمي جاهز للمستثمرين مع تغذية راجعة منظمة.",
+      "descriptionAr": "وكيل ذكاء اصطناعي ينظّم عرضك التقديمي، ويصقل عرض القيمة، ويقدّم ملاحظات بمستوى المستثمرين — قسمًا بعد قسم."
     },
     {
       "slug": "clinical-documentation-agent",
@@ -614,8 +622,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "AI-powered clinical note generation with compliance standards. Instant digital delivery via BrainSAIT.",
-      "description": "AI-powered clinical note generation with compliance standards. Instant digital delivery via BrainSAIT.",
+      "tagline": "AI-powered clinical note generation with compliance standards built in.",
+      "description": "Generates structured, compliant clinical documentation from dictation or notes — built to align with documentation and privacy standards.",
       "price": 199.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -626,7 +634,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/clinical-documentation-agent",
       "shopifyHandle": "clinical-documentation-agent",
       "sku": "BSP-CLINICAL-DOC",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "توليد ملاحظات سريرية مدعومة بالذكاء الاصطناعي مع معايير الامتثال مدمجة.",
+      "descriptionAr": "يولّد وثائق سريرية منظمة ومتوافقة من الإملاء أو الملاحظات، مصممة للتوافق مع معايير التوثيق والخصوصية."
     },
     {
       "slug": "landing-page-engineer",
@@ -637,8 +647,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Complete landing page copy with conversion optimization. Instant digital delivery via BrainSAIT.",
-      "description": "Complete landing page copy with conversion optimization. Instant digital delivery via BrainSAIT.",
+      "tagline": "Design and copy a conversion-focused landing page in minutes.",
+      "description": "An AI landing page engineer: headline, structure, social proof and CTA blocks wired for conversion — not just pretty design.",
       "price": 99.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -649,7 +659,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/landing-page-engineer",
       "shopifyHandle": "landing-page-engineer",
       "sku": "BSP-LANDING-PAGE",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "صمّم صفحة هبوط تركز على التحويل خلال دقائق، من التصميم إلى النص.",
+      "descriptionAr": "مهندس صفحات هبوط بالذكاء الاصطناعي: عناوين وبنية وإثبات اجتماعي وأزرار دعوة مصممة لزيادة التحويل، لا مجرد تصميم جميل."
     },
     {
       "slug": "ai-system-architect",
@@ -660,8 +672,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "Multi-agent AI system architecture for enterprises. Instant digital delivery via BrainSAIT.",
-      "description": "Multi-agent AI system architecture for enterprises. Instant digital delivery via BrainSAIT.",
+      "tagline": "Multi-agent AI system architecture for enterprises, ready to implement.",
+      "description": "Architecture blueprints for production multi-agent AI systems: roles, orchestration, security boundaries, observability and cost controls.",
       "price": 249.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -672,7 +684,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/ai-system-architect",
       "shopifyHandle": "ai-system-architect",
       "sku": "BSP-AI-ARCHITECT",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "معمارية أنظمة ذكاء اصطناعي متعددة الوكلاء للمؤسسات، جاهزة للتنفيذ.",
+      "descriptionAr": "مخططات معمارية جاهزة للإنتاج لأنظمة ذكاء اصطناعي متعددة الوكلاء: الأدوار والتنسيق وحدود الأمان والمراقبة والتحكم في التكاليف."
     },
     {
       "slug": "vision-2030-aligner",
@@ -683,8 +697,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Align products and proposals with Saudi Vision 2030. Instant digital delivery via BrainSAIT.",
-      "description": "Align products and proposals with Saudi Vision 2030. Instant digital delivery via BrainSAIT.",
+      "tagline": "Align your products and proposals with Saudi Vision 2030 pillars.",
+      "description": "Maps any product, proposal or initiative to Vision 2030 priorities, with the evidence language and framing Saudi stakeholders expect.",
       "price": 199.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -695,7 +709,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/vision-2030-aligner",
       "shopifyHandle": "vision-2030-aligner",
       "sku": "BSP-VISION2030",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "وائم منتجاتك ومقترحاتك مع ركائز رؤية السعودية 2030.",
+      "descriptionAr": "يربط أي منتج أو مقترح أو مبادرة بأولويات رؤية 2030، بلغة الإثبات والتأطير التي يتوقعها أصحاب القرار في السعودية."
     },
     {
       "slug": "workflow-architect",
@@ -706,8 +722,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "End-to-end workflow automation design. Instant digital delivery via BrainSAIT.",
-      "description": "End-to-end workflow automation design. Instant digital delivery via BrainSAIT.",
+      "tagline": "Design and document business workflows that teams actually follow.",
+      "description": "An AI workflow architect that turns messy processes into clear, documented, automatable workflows with handoff points and owners.",
       "price": 149.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -718,7 +734,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/workflow-architect",
       "shopifyHandle": "workflow-architect",
       "sku": "BSP-WORKFLOW-ARCHITECT",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "صمّم ووثّق مسارات العمل التي تتبعها فرقك فعليًا.",
+      "descriptionAr": "مهندس مسارات عمل بالذكاء الاصطناعي يحوّل العمليات المعقدة إلى مسارات واضحة وموثقة وقابلة للأتمتة مع نقاط التسليم والمسؤوليات."
     },
     {
       "slug": "brand-voice-dna",
@@ -729,8 +747,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Complete brand voice guide with examples, vocabulary, and principles. Instant digital delivery via BrainSAIT.",
-      "description": "Complete brand voice guide with examples, vocabulary, and principles. Instant digital delivery via BrainSAIT.",
+      "tagline": "Extract and document a consistent brand voice from your existing content.",
+      "description": "Analyzes your copy to define a Brand Voice DNA — tone, vocabulary, do/don'ts and a mini style guide your team and AI can reuse.",
       "price": 149.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -741,7 +759,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/brand-voice-dna",
       "shopifyHandle": "brand-voice-dna",
       "sku": "BSP-BRAND-VOICE",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "استخرج ووثّق هوية صوتية متسقة لعلامتك التجارية من محتواك الحالي.",
+      "descriptionAr": "يحلّل نصوصك ليحدد الحمض النووي لصوت العلامة: النبرة والمفردات والأفعال والأمتناع ودليل أسلوب مصغر يعيد استخدامه فريقك والذكاء الاصطناعي."
     },
     {
       "slug": "enterprise-auditor",
@@ -752,8 +772,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "Security, performance, and compliance audit for enterprises. Instant digital delivery via BrainSAIT.",
-      "description": "Security, performance, and compliance audit for enterprises. Instant digital delivery via BrainSAIT.",
+      "tagline": "Run a structured readiness audit of your enterprise AI setup.",
+      "description": "An enterprise audit agent covering governance, data, security, ops and vendor risk — producing a scored readiness report with fixes.",
       "price": 199.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -764,7 +784,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/enterprise-auditor",
       "shopifyHandle": "enterprise-auditor",
       "sku": "BSP-ENTERPRISE-AUDITOR",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "نفّذ تدقيق جاهزية منظمًا لإعداد الذكاء الاصطناعي في مؤسستك.",
+      "descriptionAr": "وكيل تدقيق مؤسسي يغطي الحوكمة والبيانات والأمان والعمليات ومخاطر البائعين، وينتج تقرير جاهزية مُقيّم مع إصلاحات."
     },
     {
       "slug": "brainsait-ai-masterclass",
@@ -775,8 +797,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "BrainSAIT AI Masterclass — a BrainSAIT skill from the digital library. Instant delivery via secure link after payment.",
-      "description": "BrainSAIT AI Masterclass — a BrainSAIT skill from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "The BrainSAIT AI Masterclass — master AI from strategy to deployment.",
+      "description": "A complete masterclass: AI fundamentals, agentic systems, automation and how to deploy them in your business.",
       "price": 89.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -788,7 +810,7 @@
       "shopifyHandle": "brainsait-ai-masterclass",
       "sku": "BSP-AI-MASTERCLASS",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "ماستركلاس شامل: أساسيات الذكاء الاصطناعي والأنظمة الوكلائية والأتمتة وكيفية نشرها في عملك.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -863,7 +885,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "ماستركلاس BrainSAIT في الذكاء الاصطناعي — أتقن الذكاء الاصطناعي من الاستراتيجية إلى النشر."
     },
     {
       "slug": "healthcare-ai-2025",
@@ -874,8 +897,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "Healthcare AI 2025 — a BrainSAIT healthcare guide from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF. A c",
-      "description": "Healthcare AI 2025 — a BrainSAIT healthcare guide from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF. A condensed Mini-Book version is also available.",
+      "tagline": "The full Healthcare AI 2025 guide — the standalone PDF.",
+      "description": "The complete standalone edition covering AI in Saudi and global healthcare: clinical, operational and patient-facing applications, with a condensed Mini-Book also available.",
       "price": 119.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -887,7 +910,7 @@
       "shopifyHandle": "healthcare-ai-2025",
       "sku": "BSP-HEALTHCARE-AI-2025",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "النسخة الكاملة المستقلة التي تغطي الذكاء الاصطناعي في الرعاية الصحية السعودية والعالمية: التطبيقات السريرية والتشغيلية والموجهة للمرضى، مع نسخة Mini-Book مختصرة.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -962,7 +985,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "دليل Healthcare AI 2025 الكامل — نسخة PDF المستقلة."
     },
     {
       "slug": "strategic-ai-blueprint",
@@ -973,8 +997,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF (Drive Edition). A condensed Mini",
-      "description": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF (Drive Edition). A condensed Mini-Book version is also available.",
+      "tagline": "A strategic playbook for adopting AI across your organization.",
+      "description": "A blueprint for AI strategy: where it pays off, how to sequence pilots, governance guardrails and the operating model that sustains it.",
       "price": 69.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -985,7 +1009,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/strategic-ai-blueprint",
       "shopifyHandle": "strategic-ai-blueprint",
       "sku": "BSP-STRATEGIC-AI-BLUEPRINT",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "كتاب استراتيجي لتبني الذكاء الاصطناعي عبر مؤسستك.",
+      "descriptionAr": "مخطط استراتيجي للذكاء الاصطناعي: أين يحقق العائد، وكيف تُسلسَل التجارب، وضوابط الحوكمة، ونموذج التشغيل المستدام."
     },
     {
       "slug": "brainsait-abeer-group-saudi-healthcare-transformation-blueprint",
@@ -996,8 +1022,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "Saudi Healthcare Transformation Blueprint, co-developed with Abeer Group. Instant digital delivery via BrainSAIT.",
-      "description": "Saudi Healthcare Transformation Blueprint, co-developed with Abeer Group. Instant digital delivery via BrainSAIT.",
+      "tagline": "The BrainSAIT × Abeer Group blueprint for Saudi healthcare transformation.",
+      "description": "A partnership blueprint applying the BrainSAIT stack to Abeer Group's Saudi healthcare transformation: NPHIES, FHIR, care coordination and digital patient journeys.",
       "price": 299.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1008,7 +1034,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/brainsait-abeer-group-saudi-healthcare-transformation-blueprint",
       "shopifyHandle": "brainsait-abeer-group-saudi-healthcare-transformation-blueprint",
       "sku": "BSP-SAUDI-HC-TRANSFORM",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "مخطط تحول الرعاية الصحية السعودية من BrainSAIT بالشراكة مع مجموعة عبير.",
+      "descriptionAr": "مخطط شراكة يطبّق منصة BrainSAIT على تحول الرعاية الصحية لدى مجموعة عبير: NPHIES وFHIR وتنسيق الرعاية ومسارات المرضى الرقمية."
     },
     {
       "slug": "solo-ai-business-blueprint",
@@ -1019,8 +1047,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Physician-Led Enterprise from Scratch. Instant digital delivery via BrainSAIT. This is the complete, flagship edition. See also the shorter Mini-Book and the st",
-      "description": "Physician-Led Enterprise from Scratch. Instant digital delivery via BrainSAIT. This is the complete, flagship edition. See also the shorter Mini-Book and the standalone PDF Drive Edition if you want a quicker read first.",
+      "tagline": "Physician-led enterprise from scratch — the flagship solo AI business blueprint.",
+      "description": "The complete flagship blueprint for building a physician-led AI business from zero: positioning, offer, delivery, pricing and scaling. Includes the shorter Mini-Book and PDF Drive Edition for a faster read.",
       "price": 69.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1032,7 +1060,7 @@
       "shopifyHandle": "solo-ai-business-blueprint",
       "sku": "BSP-SOLO-AI-BUSINESS",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "المخطط الرائد الكامل لبناء مشروع ذكاء اصطناعي بقيادة طبيب من الصفر: التموضع والعرض والتسليم والتسعير والتوسع، مع نسخ مختصرة إضافية.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -1107,7 +1135,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "النسخة الكاملة لبناء مشروع ذكاء اصطناعي بقيادة طبيب من الصفر."
     },
     {
       "slug": "linkedin-authority-builder",
@@ -1118,8 +1147,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "30-day LinkedIn content calendar. Instant digital delivery via BrainSAIT.",
-      "description": "30-day LinkedIn content calendar. Instant digital delivery via BrainSAIT.",
+      "tagline": "Grow professional authority on LinkedIn with a system, not luck.",
+      "description": "A LinkedIn authority system: positioning, content calendar, engagement loops and profile optimization that compound over time.",
       "price": 79.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1130,7 +1159,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/linkedin-authority-builder",
       "shopifyHandle": "linkedin-authority-builder",
       "sku": "BSP-LINKEDIN-AUTHORITY",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "بني حضورًا مهنيًا على لينكدإن بنظام وليس بالصدفة.",
+      "descriptionAr": "نظام لبناء السلطة المهنية على لينكدإن: التموضع وتقويم المحتوى وحلقات التفاعل وتحسين الملف الشخصي بتراكم مستمر."
     },
     {
       "slug": "email-sequence-architect",
@@ -1141,8 +1172,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "5-7 email nurture sequence. Instant digital delivery via BrainSAIT.",
-      "description": "5-7 email nurture sequence. Instant digital delivery via BrainSAIT.",
+      "tagline": "Design email sequences that convert, from welcome to reactivation.",
+      "description": "An AI email architect that maps your funnel into sequences: hooks, value, objection handling, CTA rhythm and reactivation flows.",
       "price": 89.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1153,7 +1184,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/email-sequence-architect",
       "shopifyHandle": "email-sequence-architect",
       "sku": "BSP-EMAIL-SEQUENCE",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "صمّم تسلسلات بريدية تحوّل: من الترحيب حتى إعادة التنشيط.",
+      "descriptionAr": "مهندس بريد إلكتروني بالذكاء الاصطناعي يحوّل مسارك إلى تسلسلات: خطافات وقيمة ومعالجة الاعتراضات وإيقاع الدعوة وتدفقات إعادة التنشيط."
     },
     {
       "slug": "content-multiplier",
@@ -1164,8 +1197,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Turn one idea into 12+ content formats. Instant digital delivery via BrainSAIT.",
-      "description": "Turn one idea into 12+ content formats. Instant digital delivery via BrainSAIT.",
+      "tagline": "Turn one piece of content into a full multi-format campaign.",
+      "description": "A content engine that repurposes a single asset into posts, threads, emails, scripts and summaries — consistent and on-brand.",
       "price": 69.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1176,7 +1209,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/content-multiplier",
       "shopifyHandle": "content-multiplier",
       "sku": "BSP-CONTENT-MULTIPLIER",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "حوّل قطعة محتوى واحدة إلى حملة كاملة متعددة الصيغ.",
+      "descriptionAr": "محرك محتوى يعيد استخدام أصل واحد إلى منشورات وسلاسل ورسائل وسيناريوهات وملخصات متسقة مع هوية العلامة."
     },
     {
       "slug": "social-listening-agent",
@@ -1187,8 +1222,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Monitor brand mentions and signals. Instant digital delivery via BrainSAIT.",
-      "description": "Monitor brand mentions and signals. Instant digital delivery via BrainSAIT.",
+      "tagline": "Monitor mentions, trends and sentiment about your brand in real time.",
+      "description": "A social listening agent that tracks brand mentions, competitors and emerging topics, and summarizes actionable insights.",
       "price": 59.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1199,7 +1234,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/social-listening-agent",
       "shopifyHandle": "social-listening-agent",
       "sku": "BSP-SOCIAL-LISTENING",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "راقب الإشارات والاتجاهات والمشاعر حول علامتك في الوقت الفعلي.",
+      "descriptionAr": "وكيل استماع اجتماعي يتتبع إشارات العلامة والمنافسين والمواضيع الناشئة ويلخّص رؤى قابلة للتنفيذ."
     },
     {
       "slug": "seo-aeo-optimizer",
@@ -1210,8 +1247,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Optimize content for search and AI discovery. Instant digital delivery via BrainSAIT.",
-      "description": "Optimize content for search and AI discovery. Instant digital delivery via BrainSAIT.",
+      "tagline": "Optimize for both search engines and AI answer engines.",
+      "description": "An SEO + AEO optimizer: keywords, structured data, entity framing and answer-ready content for Google and AI assistants.",
       "price": 89.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1222,7 +1259,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/seo-aeo-optimizer",
       "shopifyHandle": "seo-aeo-optimizer",
       "sku": "BSP-SEO-OPTIMIZER",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "حسّن ظهورك في محركات البحث ومحركات الإجابات الذكية معًا.",
+      "descriptionAr": "محسّن SEO وAEO: كلمات مفتاحية وبيانات منظمة وتأطير كيانات ومحتوى جاهز للإجابات لمحركات البحث والمساعدين الذكيين."
     },
     {
       "slug": "icd-10-coding-agent",
@@ -1233,8 +1272,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "Automatic medical coding assignment. Instant digital delivery via BrainSAIT.",
-      "description": "Automatic medical coding assignment. Instant digital delivery via BrainSAIT.",
+      "tagline": "Get accurate ICD-10 code suggestions from clinical descriptions.",
+      "description": "An ICD-10 coding agent that maps clinical descriptions to precise codes with confidence and documentation guidance.",
       "price": 149.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1245,7 +1284,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/icd-10-coding-agent",
       "shopifyHandle": "icd-10-coding-agent",
       "sku": "BSP-ICD10-CODER",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "احصل على اقتراحات دقيقة لرموز ICD-10 من الوصف السريري.",
+      "descriptionAr": "وكيل ترميز ICD-10 يربط الأوصاف السريرية بالرموز الدقيقة مع مستوى ثقة وإرشادات التوثيق."
     },
     {
       "slug": "fhir-interoperability-agent",
@@ -1256,8 +1297,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "Map and validate FHIR R4 resources. Instant digital delivery via BrainSAIT.",
-      "description": "Map and validate FHIR R4 resources. Instant digital delivery via BrainSAIT.",
+      "tagline": "Navigate FHIR resources, profiles and integration decisions.",
+      "description": "A FHIR agent for developers and architects: resource selection, profile mapping, extension design and integration pitfalls.",
       "price": 299.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1268,7 +1309,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/fhir-interoperability-agent",
       "shopifyHandle": "fhir-interoperability-agent",
       "sku": "BSP-FHIR-AGENT",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "تنقّل في موارد FHIR والملفات الشخصية وقرارات التكامل بسهولة.",
+      "descriptionAr": "وكيل FHIR للمطورين والمعماريين: اختيار الموارد وربط الملفات الشخصية وتصميم الإضافات ومزالق التكامل."
     },
     {
       "slug": "prior-authorization-agent",
@@ -1279,8 +1322,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "Automate insurance prior authorization. Instant digital delivery via BrainSAIT.",
-      "description": "Automate insurance prior authorization. Instant digital delivery via BrainSAIT.",
+      "tagline": "Prepare and validate prior authorization submissions with confidence.",
+      "description": "An agent that structures PA submissions, checks coverage rules and documentation requirements, and reduces denials.",
       "price": 179.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1291,7 +1334,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/prior-authorization-agent",
       "shopifyHandle": "prior-authorization-agent",
       "sku": "BSP-PRIOR-AUTH",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "أعدّ وثائق الموافقات المسبقة وتحقق منها بثقة.",
+      "descriptionAr": "وكيل ينظّم ملفات الموافقة المسبقة ويتحقق من قواعد التغطية ومتطلبات التوثيق ويقلل نسب الرفض."
     },
     {
       "slug": "patient-engagement-agent",
@@ -1302,8 +1347,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "Automate patient communication. Instant digital delivery via BrainSAIT.",
-      "description": "Automate patient communication. Instant digital delivery via BrainSAIT.",
+      "tagline": "Design patient communication journeys that improve outcomes and loyalty.",
+      "description": "A patient engagement agent covering appointment flow, education, reminders and follow-ups — compliant and empathetic.",
       "price": 129.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1314,7 +1359,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/patient-engagement-agent",
       "shopifyHandle": "patient-engagement-agent",
       "sku": "BSP-PATIENT-ENGAGEMENT",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "صمّم رحلات تواصل مع المرضى تحسّن النتائج والولاء.",
+      "descriptionAr": "وكيل مشاركة المرضى يغطي تدفق المواعيد والتثقيف والتذكيرات والمتابعة بأسلوب متعاطف ومتوافق."
     },
     {
       "slug": "clinical-trial-matcher",
@@ -1325,8 +1372,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "Match patients to clinical trials. Instant digital delivery via BrainSAIT.",
-      "description": "Match patients to clinical trials. Instant digital delivery via BrainSAIT.",
+      "tagline": "Match patients to suitable clinical trials from eligibility criteria.",
+      "description": "A clinical trial matcher that screens eligibility criteria against patient profiles and surfaces realistic matches.",
       "price": 199.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1337,7 +1384,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/clinical-trial-matcher",
       "shopifyHandle": "clinical-trial-matcher",
       "sku": "BSP-CLINICAL-TRIAL",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "طابق المرضى مع التجارب السريرية المناسبة وفق معايير الأهلية.",
+      "descriptionAr": "مطابق تجارب سريرية يفحص معايير الأهلية مقابل ملفات المرضى ويعرض المطابقات الواقعية."
     },
     {
       "slug": "medical-arabic-translator",
@@ -1348,8 +1397,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "Accurate medical terminology translation. Instant digital delivery via BrainSAIT.",
-      "description": "Accurate medical terminology translation. Instant digital delivery via BrainSAIT.",
+      "tagline": "Accurate Arabic medical translation tuned for clarity and safety.",
+      "description": "A translator specialized in medical terminology — Arabic and English — with glossary consistency and safety-first phrasing.",
       "price": 99.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1360,7 +1409,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/medical-arabic-translator",
       "shopifyHandle": "medical-arabic-translator",
       "sku": "BSP-MEDICAL-TRANSLATION",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "ترجمة طبية عربية دقيقة تضع الوضوح والسلامة في الأولوية.",
+      "descriptionAr": "مترجم متخصص في المصطلحات الطبية بين العربية والإنجليزية مع اتساق المصطلحات وصياغة تراعي السلامة."
     },
     {
       "slug": "ceo-speech-writer",
@@ -1371,8 +1422,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Write executive speeches. Instant digital delivery via BrainSAIT.",
-      "description": "Write executive speeches. Instant digital delivery via BrainSAIT.",
+      "tagline": "Write leadership speeches with gravitas, structure and impact.",
+      "description": "A speech agent that drafts keynote, town-hall and crisis messages — calibrated to audience, tone and message discipline.",
       "price": 149.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1383,7 +1434,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/ceo-speech-writer",
       "shopifyHandle": "ceo-speech-writer",
       "sku": "BSP-CEO-SPEECH",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "اكتب خطابات قيادية بروح وبنية وتأثير.",
+      "descriptionAr": "وكيل خطابات يصيغ كلمات رئيسية ورسائل اجتماعات وأزمات بمستوى عالٍ من النبرة والانضباط في الرسالة."
     },
     {
       "slug": "partnership-proposal-generator",
@@ -1394,8 +1447,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Partnership proposals for institutions. Instant digital delivery via BrainSAIT.",
-      "description": "Partnership proposals for institutions. Instant digital delivery via BrainSAIT.",
+      "tagline": "Generate structured, persuasive partnership proposals fast.",
+      "description": "An agent that turns goals into a partnership proposal: value exchange, terms, success metrics and next steps.",
       "price": 179.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1406,7 +1459,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/partnership-proposal-generator",
       "shopifyHandle": "partnership-proposal-generator",
       "sku": "BSP-PARTNERSHIP-PROPOSAL",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "ولّد مقترحات شراكة منظمة ومقنعة بسرعة.",
+      "descriptionAr": "وكيل يحوّل الأهداف إلى مقترح شراكة: تبادل القيمة والشروط ومقاييس النجاح والخطوات التالية."
     },
     {
       "slug": "board-report-generator",
@@ -1417,8 +1472,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Monthly report with performance KPIs. Instant digital delivery via BrainSAIT.",
-      "description": "Monthly report with performance KPIs. Instant digital delivery via BrainSAIT.",
+      "tagline": "Produce clear board-ready reports from scattered data.",
+      "description": "A board report agent that structures metrics, risks and decisions into a concise, readable executive report.",
       "price": 129.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1429,7 +1484,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/board-report-generator",
       "shopifyHandle": "board-report-generator",
       "sku": "BSP-BOARD-REPORT",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "أعدّ تقارير جاهزة لمجلس الإدارة من البيانات المتناثرة.",
+      "descriptionAr": "وكيل تقارير مجالس ينظّم المقاييس والمخاطر والقرارات في تقرير تنفيذي موجز وقابل للقراءة."
     },
     {
       "slug": "competitive-intelligence-agent",
@@ -1440,8 +1497,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Competitor analysis and battlecards. Instant digital delivery via BrainSAIT.",
-      "description": "Competitor analysis and battlecards. Instant digital delivery via BrainSAIT.",
+      "tagline": "Track competitors and surface strategic signals automatically.",
+      "description": "A competitive intel agent that monitors rivals, pricing, launches and sentiment, and distills actionable strategy.",
       "price": 169.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1452,7 +1509,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/competitive-intelligence-agent",
       "shopifyHandle": "competitive-intelligence-agent",
       "sku": "BSP-COMPETITIVE-INTEL",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "تتبع المنافسين وارصد الإشارات الاستراتيجية تلقائيًا.",
+      "descriptionAr": "وكيل ذكاء تنافسي يراقب المنافسين والتسعير والإطلاقات والمشاعر ويستخلص استراتيجية قابلة للتنفيذ."
     },
     {
       "slug": "decision-scorecard-agent",
@@ -1463,8 +1522,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Weighted scorecards for strategic decisions. Instant digital delivery via BrainSAIT.",
-      "description": "Weighted scorecards for strategic decisions. Instant digital delivery via BrainSAIT.",
+      "tagline": "Score decisions against your criteria before you commit.",
+      "description": "A decision agent that builds weighted scorecards, scores options and surfaces trade-offs for confident choices.",
       "price": 99.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1475,7 +1534,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/decision-scorecard-agent",
       "shopifyHandle": "decision-scorecard-agent",
       "sku": "BSP-DECISION-SCORECARD",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "قيّم القرارات وفق معاييرك قبل أن تلتزم.",
+      "descriptionAr": "وكيل قرارات يبني بطاقات تقييم مرجّحة ويقيّم الخيارات ويكشف المفاضلات لاتخاذ قرارات واثقة."
     },
     {
       "slug": "market-sizing-agent",
@@ -1486,8 +1547,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "TAM/SAM/SOM analysis with Saudi market data. Instant digital delivery via BrainSAIT.",
-      "description": "TAM/SAM/SOM analysis with Saudi market data. Instant digital delivery via BrainSAIT.",
+      "tagline": "Estimate market size with defensible, bottom-up logic.",
+      "description": "A market sizing agent that builds TAM/SAM/SOM estimates with assumptions, sources and sensitivity ranges.",
       "price": 149.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1498,7 +1559,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/market-sizing-agent",
       "shopifyHandle": "market-sizing-agent",
       "sku": "BSP-MARKET-SIZING",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "قدّر حجم السوق بمنطق من الأسفل إلى الأعلى قابل للدفاع.",
+      "descriptionAr": "وكيل تقدير حجم السوق يبني تقديرات TAM/SAM/SOM مع الافتراضات والمصادر ونطاقات الحساسية."
     },
     {
       "slug": "prd-architect",
@@ -1509,8 +1572,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "Complete product requirements doc with user stories. Instant digital delivery via BrainSAIT.",
-      "description": "Complete product requirements doc with user stories. Instant digital delivery via BrainSAIT.",
+      "tagline": "Turn a rough idea into a structured product requirements document.",
+      "description": "A PRD agent that extracts goals, users, scope, success metrics and acceptance criteria into a clean spec.",
       "price": 149.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1521,7 +1584,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/prd-architect",
       "shopifyHandle": "prd-architect",
       "sku": "BSP-PRD-ARCHITECT",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "حوّل الفكرة الخام إلى وثيقة متطلبات منتج منظمة.",
+      "descriptionAr": "وكيل متطلبات يستخرج الأهداف والمستخدمين والنطاق ومقاييس النجاح ومعايير القبول في مواصفة نظيفة."
     },
     {
       "slug": "api-designer",
@@ -1532,8 +1597,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "Design RESTful API interfaces. Instant digital delivery via BrainSAIT.",
-      "description": "Design RESTful API interfaces. Instant digital delivery via BrainSAIT.",
+      "tagline": "Design clean, versioned APIs with contracts teams can build to.",
+      "description": "An API design agent that drafts endpoints, models, error handling and versioning strategies with examples.",
       "price": 129.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1544,7 +1609,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/api-designer",
       "shopifyHandle": "api-designer",
       "sku": "BSP-API-DESIGNER",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "صمّم واجهات برمجية نظيفة وذات إصدارات بعقود واضحة للفرق.",
+      "descriptionAr": "وكيل تصميم واجهات برمجية يصيغ النقاط النهائية والنماذج ومعالجة الأخطاء واستراتيجيات الإصدار مع أمثلة."
     },
     {
       "slug": "code-review-agent",
@@ -1555,8 +1622,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "Automated code review with security checks. Instant digital delivery via BrainSAIT.",
-      "description": "Automated code review with security checks. Instant digital delivery via BrainSAIT.",
+      "tagline": "Get structured code review feedback on correctness, security and style.",
+      "description": "A code review agent that flags bugs, security issues, performance traps and style drift with actionable comments.",
       "price": 99.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1567,7 +1634,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/code-review-agent",
       "shopifyHandle": "code-review-agent",
       "sku": "BSP-CODE-REVIEWER",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "احصل على مراجعة كود منظمة تغطي الصحة والأمان والأسلوب.",
+      "descriptionAr": "وكيل مراجعة كود يرصد الأخطاء والثغرات ومشاكل الأداء والانحراف الأسلوبي مع تعليقات قابلة للتنفيذ."
     },
     {
       "slug": "database-architect",
@@ -1578,8 +1647,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "Schema design with FHIR alignment. Instant digital delivery via BrainSAIT.",
-      "description": "Schema design with FHIR alignment. Instant digital delivery via BrainSAIT.",
+      "tagline": "Design normalized schemas and data models that scale.",
+      "description": "A database agent that produces schemas, index strategy, relationships and migration notes for your domain.",
       "price": 129.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1590,7 +1659,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/database-architect",
       "shopifyHandle": "database-architect",
       "sku": "BSP-DB-ARCHITECT",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "صمّم مخططات بيانات طبيعية تتوسع مع نموك.",
+      "descriptionAr": "وكيل قواعد بيانات ينتج المخططات واستراتيجية الفهارس والعلاقات وملاحظات الترحيل لمجال عملك."
     },
     {
       "slug": "devops-pipeline-agent",
@@ -1601,8 +1672,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "Design and optimize CI/CD pipelines. Instant digital delivery via BrainSAIT.",
-      "description": "Design and optimize CI/CD pipelines. Instant digital delivery via BrainSAIT.",
+      "tagline": "Design CI/CD pipelines and deployment strategies that ship safely.",
+      "description": "A DevOps agent covering pipeline stages, environments, rollback and observability for reliable delivery.",
       "price": 149.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1613,7 +1684,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/devops-pipeline-agent",
       "shopifyHandle": "devops-pipeline-agent",
       "sku": "BSP-DEVOPS-PIPELINE",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "صمّم خطوط CI/CD واستراتيجيات نشر تُطلق بثقة وأمان.",
+      "descriptionAr": "وكيل DevOps يغطي مراحل خطوط النشر والبيئات والتراجع والمراقبة لتسليم موثوق."
     },
     {
       "slug": "security-auditor",
@@ -1624,8 +1697,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "OWASP and PDPL compliance scanning. Instant digital delivery via BrainSAIT.",
-      "description": "OWASP and PDPL compliance scanning. Instant digital delivery via BrainSAIT.",
+      "tagline": "Scan your architecture for vulnerabilities and hardening gaps.",
+      "description": "A security agent that reviews design and configs, lists threats and provides prioritized hardening actions.",
       "price": 199.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1636,7 +1709,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/security-auditor",
       "shopifyHandle": "security-auditor",
       "sku": "BSP-SECURITY-AUDITOR",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "افحص بنيتك بحثًا عن الثغرات وثغرات التحصين.",
+      "descriptionAr": "وكيل أمني يراجع التصميم والإعدادات ويسرد التهديدات ويقدّم إجراءات تحصين مرتبة بالأولوية."
     },
     {
       "slug": "book-writer-agent",
@@ -1647,8 +1722,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Chapter-by-chapter book writing assistant. Instant digital delivery via BrainSAIT.",
-      "description": "Chapter-by-chapter book writing assistant. Instant digital delivery via BrainSAIT.",
+      "tagline": "Structure and draft a book from outline to chapters.",
+      "description": "A writing agent that builds outlines, chapters and consistent voice for books, guides and long-form content.",
       "price": 199.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1659,7 +1734,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/book-writer-agent",
       "shopifyHandle": "book-writer-agent",
       "sku": "BSP-BOOK-WRITER",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "أعد هيكلة ومسودة كتاب من المخطط الأولي إلى الفصول.",
+      "descriptionAr": "وكيل كتابة يبني الخطوط والفصول وصوتًا متسقًا للكتب والأدلة والمحتوى الطويل."
     },
     {
       "slug": "course-builder",
@@ -1670,8 +1747,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Complete course outline with modules and assessments. Instant digital delivery via BrainSAIT.",
-      "description": "Complete course outline with modules and assessments. Instant digital delivery via BrainSAIT.",
+      "tagline": "Design a complete course: modules, lessons, assessments and delivery.",
+      "description": "A course builder agent that structures learning outcomes, modules, activities and assessment into a teachable plan.",
       "price": 149.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1682,7 +1759,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/course-builder",
       "shopifyHandle": "course-builder",
       "sku": "BSP-COURSE-BUILDER",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "صمّم دورة كاملة: وحدات ودروس وتقييمات وتسليم.",
+      "descriptionAr": "وكيل بناء دورات ينظّم مخرجات التعلم والوحدات والأنشطة والتقييم في خطة قابلة للتدريس."
     },
     {
       "slug": "podcast-producer",
@@ -1693,8 +1772,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Episode planning and scripts. Instant digital delivery via BrainSAIT.",
-      "description": "Episode planning and scripts. Instant digital delivery via BrainSAIT.",
+      "tagline": "Plan episodes, scripts and show structure for a professional podcast.",
+      "description": "A podcast agent covering episode ideas, outlines, scripts, segments and guest prep.",
       "price": 99.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1705,7 +1784,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/podcast-producer",
       "shopifyHandle": "podcast-producer",
       "sku": "BSP-PODCAST-PRODUCER",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "خطط حلقات ونصوص وبنية بودكاست احترافية.",
+      "descriptionAr": "وكيل بودكاست يغطي أفكار الحلقات والخطوط والنصوص والأجزاء وتجهيز الضيوف."
     },
     {
       "slug": "video-script-architect",
@@ -1716,8 +1797,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "YouTube and social media video scripts. Instant digital delivery via BrainSAIT.",
-      "description": "YouTube and social media video scripts. Instant digital delivery via BrainSAIT.",
+      "tagline": "Write scroll-stopping video scripts with hooks and structure.",
+      "description": "A video script agent that drafts hooks, beats, captions and CTAs for short and long-form video.",
       "price": 129.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1728,7 +1809,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/video-script-architect",
       "shopifyHandle": "video-script-architect",
       "sku": "BSP-VIDEO-SCRIPT",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "اكتب سيناريوهات فيديو توقف التمرير مع خطافات وبنية.",
+      "descriptionAr": "وكيل سيناريوهات فيديو يصيغ الخطافات واللقطات والتعليقات والدعوات للفيديو القصير والطويل."
     },
     {
       "slug": "infographic-designer",
@@ -1739,8 +1822,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Data visualization and infographic design. Instant digital delivery via BrainSAIT.",
-      "description": "Data visualization and infographic design. Instant digital delivery via BrainSAIT.",
+      "tagline": "Turn dense information into clear visual storyboards.",
+      "description": "An infographic agent that structures data, hierarchy and narrative into a design-ready brief.",
       "price": 79.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1751,7 +1834,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/infographic-designer",
       "shopifyHandle": "infographic-designer",
       "sku": "BSP-INFOGRAPHIC",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "حوّل المعلومات الكثيفة إلى لوحات مرئية واضحة.",
+      "descriptionAr": "وكيل إنفوجرافيك ينظّم البيانات والتسلسل والسرد في ملخص جاهز للتصميم."
     },
     {
       "slug": "newsletter-architect",
@@ -1762,8 +1847,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Weekly newsletter architect. Instant digital delivery via BrainSAIT.",
-      "description": "Weekly newsletter architect. Instant digital delivery via BrainSAIT.",
+      "tagline": "Build newsletters people open, read and act on.",
+      "description": "A newsletter agent covering positioning, subject lines, structure and cadence for audience growth.",
       "price": 89.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1774,7 +1859,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/newsletter-architect",
       "shopifyHandle": "newsletter-architect",
       "sku": "BSP-NEWSLETTER",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "ابنِ نشرات إخبارية يفتحها الناس ويقرؤونها ويتفاعلون معها.",
+      "descriptionAr": "وكيل نشرات إخبارية يغطي التموضع وسطور الموضوع والبنية والإيقاع لنمو الجمهور."
     },
     {
       "slug": "arabic-content-stylist",
@@ -1785,8 +1872,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Culturally accurate Arabic content styling. Instant digital delivery via BrainSAIT.",
-      "description": "Culturally accurate Arabic content styling. Instant digital delivery via BrainSAIT.",
+      "tagline": "Polish Arabic content for clarity, tone and impact.",
+      "description": "An Arabic stylist that refines wording, grammar and rhythm while preserving meaning and voice.",
       "price": 69.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1797,7 +1884,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/arabic-content-stylist",
       "shopifyHandle": "arabic-content-stylist",
       "sku": "BSP-ARABIC-STYLIST",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "تهذيب المحتوى العربي للوضوح والنبرة والتأثير.",
+      "descriptionAr": "محرر أسلوب عربي يحسّن الصياغة والقواعد والإيقاع مع الحفاظ على المعنى والصوت."
     },
     {
       "slug": "presentation-designer",
@@ -1808,8 +1897,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Executive presentation design. Instant digital delivery via BrainSAIT.",
-      "description": "Executive presentation design. Instant digital delivery via BrainSAIT.",
+      "tagline": "Structure persuasive presentations slide by slide.",
+      "description": "A presentation agent that builds narrative arcs, slide structures and speaker notes for impact.",
       "price": 119.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1820,7 +1909,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/presentation-designer",
       "shopifyHandle": "presentation-designer",
       "sku": "BSP-PRESENTATION",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "نظّم عروضًا تقديمية مقنعة شريحة بشريحة.",
+      "descriptionAr": "وكيل عروض تقديمية يبني أقواس السرد وبنية الشرائح وملاحظات المتحدث للتأثير."
     },
     {
       "slug": "invoice-processor",
@@ -1831,8 +1922,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Automatic invoice generation and tracking. Instant digital delivery via BrainSAIT.",
-      "description": "Automatic invoice generation and tracking. Instant digital delivery via BrainSAIT.",
+      "tagline": "Extract and normalize invoice data automatically.",
+      "description": "An invoice agent that reads invoices, extracts fields, flags discrepancies and exports to your systems.",
       "price": 99.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1843,7 +1934,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/invoice-processor",
       "shopifyHandle": "invoice-processor",
       "sku": "BSP-INVOICE-PROCESSOR",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "استخرج وطبيع بيانات الفواتير تلقائيًا.",
+      "descriptionAr": "وكيل فواتير يقرأ الفواتير ويستخرج الحقول ويرصد التباينات ويصدّرها إلى أنظمتك."
     },
     {
       "slug": "crm-optimizer",
@@ -1854,8 +1947,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Optimize CRM workflows. Instant digital delivery via BrainSAIT.",
-      "description": "Optimize CRM workflows. Instant digital delivery via BrainSAIT.",
+      "tagline": "Clean your CRM and design workflows that keep it accurate.",
+      "description": "A CRM agent that fixes data hygiene, dedupes records and designs pipeline stages and automations.",
       "price": 119.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1866,7 +1959,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/crm-optimizer",
       "shopifyHandle": "crm-optimizer",
       "sku": "BSP-CRM-OPTIMIZER",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "نظّف نظام إدارة العملاء وصمّم مسارات تحافظ على دقته.",
+      "descriptionAr": "وكيل CRM يصلح نظافة البيانات ويزيل التكرار ويصمم مراحل خط الأنابيب والأتمتة."
     },
     {
       "slug": "report-generator",
@@ -1877,8 +1972,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Automatic report generation from data. Instant digital delivery via BrainSAIT.",
-      "description": "Automatic report generation from data. Instant digital delivery via BrainSAIT.",
+      "tagline": "Turn raw data into clear, decision-ready reports.",
+      "description": "A report agent that summarizes data, surfaces insights and formats findings for stakeholders.",
       "price": 89.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1889,7 +1984,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/report-generator",
       "shopifyHandle": "report-generator",
       "sku": "BSP-REPORT-GENERATOR",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "حوّل البيانات الخام إلى تقارير واضحة جاهزة للقرار.",
+      "descriptionAr": "وكيل تقارير يلخص البيانات ويبرز الرؤى ويصيغ النتائج لأصحاب القرار."
     },
     {
       "slug": "compliance-checker",
@@ -1900,8 +1997,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Automate PDPL compliance. Instant digital delivery via BrainSAIT.",
-      "description": "Automate PDPL compliance. Instant digital delivery via BrainSAIT.",
+      "tagline": "Check documents and workflows against regulatory requirements.",
+      "description": "A compliance agent that flags gaps against standards like PDPL, HIPAA or internal policy, with remediation notes.",
       "price": 169.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1912,7 +2009,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/compliance-checker",
       "shopifyHandle": "compliance-checker",
       "sku": "BSP-COMPLIANCE-CHECKER",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "افحص المستندات وسير العمل مقابل المتطلبات التنظيمية.",
+      "descriptionAr": "وكيل امتثال يرصد الفجوات مقابل معايير مثل PDPL أو HIPAA أو السياسة الداخلية مع ملاحظات المعالجة."
     },
     {
       "slug": "meeting-intelligence",
@@ -1923,8 +2022,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Meeting notes and action items. Instant digital delivery via BrainSAIT.",
-      "description": "Meeting notes and action items. Instant digital delivery via BrainSAIT.",
+      "tagline": "Turn meeting recordings into notes, decisions and actions.",
+      "description": "A meeting intelligence agent that produces summaries, decisions, owners and follow-up tasks from transcripts.",
       "price": 79.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1935,7 +2034,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/meeting-intelligence",
       "shopifyHandle": "meeting-intelligence",
       "sku": "BSP-MEETING-INTEL",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "حوّل تسجيلات الاجتماعات إلى ملاحظات وقرارات وإجراءات.",
+      "descriptionAr": "وكيل ذكاء اجتماعات ينتج الملخصات والقرارات والمسؤولين والمهام من النصوص."
     },
     {
       "slug": "document-generator",
@@ -1946,8 +2047,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Proposals, contracts, and business documents. Instant digital delivery via BrainSAIT.",
-      "description": "Proposals, contracts, and business documents. Instant digital delivery via BrainSAIT.",
+      "tagline": "Generate polished business documents from a brief.",
+      "description": "A document agent that drafts contracts, memos, SOPs and one-pagers from a short brief.",
       "price": 99.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1958,7 +2059,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/document-generator",
       "shopifyHandle": "document-generator",
       "sku": "BSP-DOC-GENERATOR",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "أنشئ مستندات أعمال احترافية من ملخص موجز.",
+      "descriptionAr": "وكيل مستندات يصيغ العقود والمذكرات وإجراءات التشغيل والملخصات من موجز قصير."
     },
     {
       "slug": "notification-engine",
@@ -1969,8 +2072,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Smart notification routing. Instant digital delivery via BrainSAIT.",
-      "description": "Smart notification routing. Instant digital delivery via BrainSAIT.",
+      "tagline": "Design omnichannel notification flows that engage without annoying.",
+      "description": "A notification agent that designs channels, timing, content and throttling for messages that users value.",
       "price": 69.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -1981,7 +2084,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/notification-engine",
       "shopifyHandle": "notification-engine",
       "sku": "BSP-NOTIFICATION-ENGINE",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "صمّم تدفقات إشعارات متعددة القنوات تتفاعل دون إزعاج.",
+      "descriptionAr": "وكيل إشعارات يصمم القنوات والتوقيت والمحتوى والحدود لرسائل يقدرها المستخدم."
     },
     {
       "slug": "abeer-connected-healthcare-platform",
@@ -1992,8 +2097,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "Fully-connected healthcare ecosystem: bookings, medical market, and a unified profile engine wired into the BrainSAIT ecosystem — a paid enterprise solution for",
-      "description": "Fully-connected healthcare ecosystem: bookings, medical market, and a unified profile engine wired into the BrainSAIT ecosystem — a paid enterprise solution for care groups.",
+      "tagline": "A fully-connected healthcare platform for care groups.",
+      "description": "A paid enterprise platform: bookings, medical market and a unified profile engine wired into the BrainSAIT ecosystem — for care groups.",
       "price": 4999.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2004,7 +2109,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/abeer-connected-healthcare-platform",
       "shopifyHandle": "abeer-connected-healthcare-platform",
       "sku": "BSP-ABEER-MEDICAL-PLATFORM",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "منصة رعاية صحية مترابطة بالكامل لمجموعات الرعاية.",
+      "descriptionAr": "منصة مؤسسية مدفوعة: حجوزات وسوق طبي ومحرك ملفات موحد مرتبط بمنظومة BrainSAIT — لمجموعات الرعاية."
     },
     {
       "slug": "momfood-cloud-kitchen-incubator",
@@ -2015,8 +2122,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Voice-first cloud-kitchen incubator: home-cooked orders, kitchen onboarding, driver delivery, and social impact — connected to the BrainSAIT ecosystem.",
-      "description": "Voice-first cloud-kitchen incubator: home-cooked orders, kitchen onboarding, driver delivery, and social impact — connected to the BrainSAIT ecosystem.",
+      "tagline": "The MomFood cloud-kitchen incubator playbook for F&B operators.",
+      "description": "A practical playbook for building and scaling cloud kitchens: menus, operations, delivery economics and growth.",
       "price": 3999.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2027,7 +2134,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/momfood-cloud-kitchen-incubator",
       "shopifyHandle": "momfood-cloud-kitchen-incubator",
       "sku": "BSP-MOMFOOD-CLOUD-KITCHEN",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "دليل حاضنة المطابخ السحابية MomFood لمشغلي الأغذية.",
+      "descriptionAr": "دليل عملي لبناء وتوسيع المطابخ السحابية: القوائم والعمليات واقتصاديات التوصيل والنمو."
     },
     {
       "slug": "1984-survival-notebook",
@@ -2038,8 +2147,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT novel from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT novel from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A BrainSAIT novel — a survival notebook for the digital age.",
+      "description": "A literary novel about surviving — and thriving — in a digitally controlled world, written for modern readers.",
       "price": 79.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2050,7 +2159,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/1984-survival-notebook",
       "shopifyHandle": "1984-survival-notebook",
       "sku": "BSP-1984-SURVIVAL-NOTEBOOK",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "رواية BrainSAIT — دفتر بقاء في العصر الرقمي.",
+      "descriptionAr": "رواية أدبية عن البقاء والازدهار في عالم خاضع للسيطرة الرقمية، كتبت لقراء اليوم."
     },
     {
       "slug": "absolute-zero-mindset",
@@ -2061,8 +2172,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT mini-book from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT mini-book from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A mini-book on building an unshakable founder mindset.",
+      "description": "A focused mini-book on mental discipline, decision-making and momentum for founders under pressure.",
       "price": 49.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2073,7 +2184,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/absolute-zero-mindset",
       "shopifyHandle": "absolute-zero-mindset",
       "sku": "BSP-ABSOLUTE-ZERO-MINDSET",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "كتاب مصغر عن بناء عقلية مؤسس لا تتزعزع.",
+      "descriptionAr": "كتاب مصغر مركّز حول الانضباط الذهني واتخاذ القرار والزخم للمؤسسين تحت الضغط."
     },
     {
       "slug": "anatomy-of-a-torn-soul",
@@ -2084,8 +2197,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT novel from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT novel from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A literary work exploring identity, conflict and healing.",
+      "description": "A reflective literary title on identity and healing — written with precision for readers who value depth.",
       "price": 79.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2096,7 +2209,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/anatomy-of-a-torn-soul",
       "shopifyHandle": "anatomy-of-a-torn-soul",
       "sku": "BSP-ANATOMY-TORN-SOUL",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "عمل أدبي يستكشف الهوية والصراع والشفاء.",
+      "descriptionAr": "عنوان أدبي تأملي حول الهوية والشفاء، كُتب بدقة لعشاق العمق."
     },
     {
       "slug": "api-revision-notebook",
@@ -2107,8 +2222,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "A BrainSAIT software notebook from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT software notebook from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A software notebook for mastering API design revision.",
+      "description": "A practical notebook to revise API fundamentals: REST, contracts, versioning, security and real-world patterns.",
       "price": 99.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2120,7 +2235,7 @@
       "shopifyHandle": "api-revision-notebook",
       "sku": "BSP-DRIVE-API-REVISION-NB",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "دفتر عملي لمراجعة أساسيات الواجهات البرمجية: REST والعقود والإصدارات والأمان والأنماط الواقعية.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -2195,7 +2310,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "دفتر برمجيات لمراجعة تصميم الواجهات البرمجية."
     },
     {
       "slug": "apple-ai-anatomy",
@@ -2206,8 +2322,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "A BrainSAIT healthcare title from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT healthcare title from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A healthcare-focused analysis of Apple's AI architecture.",
+      "description": "A title dissecting Apple's approach to health and on-device AI, and what it means for care delivery.",
       "price": 119.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2219,7 +2335,7 @@
       "shopifyHandle": "apple-ai-anatomy",
       "sku": "BSP-APPLE-AI-ANATOMY",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "عنوان يحلل نهج Apple في الصحة والذكاء الاصطناعي على الجهاز وماذا يعني لتقديم الرعاية.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -2294,7 +2410,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "تحليل صحي لمعمارية الذكاء الاصطناعي لدى Apple."
     },
     {
       "slug": "autonomous-ai-blogging-engine",
@@ -2305,8 +2422,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "A BrainSAIT skill guide from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT skill guide from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A blueprint for a fully autonomous AI blogging engine.",
+      "description": "A system blueprint for automated content research, drafting, publishing and distribution at scale.",
       "price": 89.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2317,7 +2434,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/autonomous-ai-blogging-engine",
       "shopifyHandle": "autonomous-ai-blogging-engine",
       "sku": "BSP-AUTONOMOUS-AI-BLOGGING",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "مخطط لمحرك تدوين ذكاء اصطناعي مستقل بالكامل.",
+      "descriptionAr": "مخطط نظام لأتمتة البحث والصياغة والنشر والتوزيع للمحتوى على نطاق واسع."
     },
     {
       "slug": "bite-model-scientific-assessment-of-authoritarian-control",
@@ -2328,8 +2447,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT blueprint from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF. A condensed Mini-Book version i",
-      "description": "A BrainSAIT blueprint from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF. A condensed Mini-Book version is also available.",
+      "tagline": "A scientific assessment using the BITE model of control.",
+      "description": "A rigorous analysis applying the BITE model to authoritarian control dynamics, with implications for psychology and governance.",
       "price": 89.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2340,7 +2459,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/bite-model-scientific-assessment-of-authoritarian-control",
       "shopifyHandle": "bite-model-scientific-assessment-of-authoritarian-control",
       "sku": "BSP-BITE-MODEL",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "تقييم علمي لنموذج BITE للسيطرة الاستبدادية.",
+      "descriptionAr": "تحليل دقيق يطبق نموذج BITE على ديناميكيات السيطرة الاستبدادية مع دلالات نفسية وحوكمية."
     },
     {
       "slug": "brainsait-health-os",
@@ -2351,8 +2472,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "The BrainSAIT Health OS — a template for integrated care systems.",
+      "description": "A template operating system for health organizations: care pathways, patient data and operations unified on one layer.",
       "price": 69.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2364,7 +2485,7 @@
       "shopifyHandle": "brainsait-health-os",
       "sku": "BSP-HEALTH-OS",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "نظام تشغيل قالب للمؤسسات الصحية: مسارات الرعاية وبيانات المرضى والعمليات موحدة على طبقة واحدة.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -2439,7 +2560,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "نظام BrainSAIT الصحي — قالب لأنظمة الرعاية المتكاملة."
     },
     {
       "slug": "clinical-code",
@@ -2450,8 +2572,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "A BrainSAIT software title from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT software title from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "Clinical Code — software thinking applied to medicine.",
+      "description": "A software title applying engineering thinking to clinical work: logic, automation and precision in care.",
       "price": 99.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2463,7 +2585,7 @@
       "shopifyHandle": "clinical-code",
       "sku": "BSP-CLINICAL-CODE",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "عنوان برمجي يطبق التفكير الهندسي على العمل السريري: المنطق والأتمتة والدقة في الرعاية.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -2538,7 +2660,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "Clinical Code — تطبيق التفكير البرمجي على الطب."
     },
     {
       "slug": "digital-autonomy-blueprint",
@@ -2549,8 +2672,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A blueprint for digital autonomy in a connected world.",
+      "description": "A template for owning your data, tools and identity — practical autonomy in the digital age.",
       "price": 69.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2562,7 +2685,7 @@
       "shopifyHandle": "digital-autonomy-blueprint",
       "sku": "BSP-DIGITAL-AUTONOMY-BP",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "قالب لامتلاك بياناتك وأدواتك وهويتك — استقلالية عملية في العصر الرقمي.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -2637,7 +2760,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "مخطط للاستقلالية الرقمية في عالم مترابط."
     },
     {
       "slug": "digital-childhood",
@@ -2648,8 +2772,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT mini-book from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT mini-book from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A guide to raising children in a digital-first world.",
+      "description": "Practical guidance for parents and educators navigating screens, safety and healthy digital habits.",
       "price": 49.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2660,7 +2784,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/digital-childhood",
       "shopifyHandle": "digital-childhood",
       "sku": "BSP-DIGITAL-CHILDHOOD",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "دليل لتربية الأطفال في عالم رقمي أول.",
+      "descriptionAr": "إرشادات عملية للآباء والمعلمين حول الشاشات والسلامة والعادات الرقمية الصحية."
     },
     {
       "slug": "digital-health-bridge",
@@ -2671,8 +2797,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "A BrainSAIT healthcare title from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT healthcare title from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A healthcare title on bridging digital tools and patient care.",
+      "description": "How digital tools connect clinicians, patients and systems — with practical integration guidance.",
       "price": 119.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2684,7 +2810,7 @@
       "shopifyHandle": "digital-health-bridge",
       "sku": "BSP-DIGITAL-HEALTH-BRIDGE",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "كيف تربط الأدوات الرقمية بين الأطباء والمرضى والأنظمة مع إرشادات تكامل عملية.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -2759,7 +2885,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "عنوان صحي حول جسر الأدوات الرقمية ورعاية المرضى."
     },
     {
       "slug": "digital-income-strategy-your-three-pathways",
@@ -2770,8 +2897,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT blueprint from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT blueprint from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A blueprint for building three streams of digital income.",
+      "description": "A structured blueprint for product, services and audience income pathways — and how to sequence them.",
       "price": 89.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2783,7 +2910,7 @@
       "shopifyHandle": "digital-income-strategy-your-three-pathways",
       "sku": "BSP-DIGITAL-INCOME-STRATEGY",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "مخطط منظم لمسارات الدخل: المنتجات والخدمات والجمهور — وكيفية تسلسلها.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -2858,7 +2985,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "مخطط لبناء ثلاثة مسارات للدخل الرقمي."
     },
     {
       "slug": "digital-organization-handbook-drive-edition",
@@ -2869,8 +2997,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF (Drive Edition). A condensed Mini",
-      "description": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF (Drive Edition). A condensed Mini-Book version is also available.",
+      "tagline": "The Drive Edition handbook for AI-first digital organizations.",
+      "description": "The full handbook on organizing teams, processes and technology for AI-first operations. A condensed Mini-Book is also available.",
       "price": 69.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2881,7 +3009,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/digital-organization-handbook-drive-edition",
       "shopifyHandle": "digital-organization-handbook-drive-edition",
       "sku": "BSP-DIGITAL-ORG-HANDBOOK-D",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "النسخة الكاملة لدليل المنظمات الرقمية بتوجه ذكاء اصطناعي أول.",
+      "descriptionAr": "الدليل الكامل لتنظيم الفرق والعمليات والتقنية للعمليات الرقمية أولًا، مع نسخة Mini-Book مختصرة."
     },
     {
       "slug": "dom-study-notes-drive-edition",
@@ -2892,8 +3022,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF (Drive Edition). A visual-guide N",
-      "description": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF (Drive Edition). A visual-guide Notebook version is also available.",
+      "tagline": "The Drive Edition of the DOM study notes — full PDF.",
+      "description": "A complete visual guide to the Document Object Model for developers, from fundamentals to manipulation patterns.",
       "price": 69.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2904,7 +3034,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/dom-study-notes-drive-edition",
       "shopifyHandle": "dom-study-notes-drive-edition",
       "sku": "BSP-DOM-STUDY-NOTES-D",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "النسخة الكاملة من ملاحظات دراسة DOM.",
+      "descriptionAr": "دليل مرئي كامل لنموذج كائن المستند للمطورين، من الأساسيات إلى أنماط التعامل معه."
     },
     {
       "slug": "etimad-and-nphies-integration",
@@ -2915,8 +3047,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "A BrainSAIT healthcare title from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT healthcare title from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A healthcare title on integrating Etimad and NPHIES.",
+      "description": "How to connect Etimad financial workflows with NPHIES claims — architecture, flows and compliance.",
       "price": 119.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -2928,7 +3060,7 @@
       "shopifyHandle": "etimad-and-nphies-integration",
       "sku": "BSP-ETIMAD-NPHIES",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "كيف تربط مسارات Etimad المالية مع مطالبات NPHIES — المعمارية والتدفقات والامتثال.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -3003,7 +3135,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "عنوان صحي حول تكامل Etimad وNPHIES."
     },
     {
       "slug": "etimad-digital-governance-blueprint",
@@ -3014,8 +3147,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A blueprint for digital governance on Etimad.",
+      "description": "A template for compliant digital governance, e-payments and institutional workflows on the Etimad platform.",
       "price": 69.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -3027,7 +3160,7 @@
       "shopifyHandle": "etimad-digital-governance-blueprint",
       "sku": "BSP-ETIMAD-GOVERNANCE-BP",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "قالب للحوكمة الرقمية المتوافقة والمدفوعات الإلكترونية والمسارات المؤسسية على Etimad.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -3102,7 +3235,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "مخطط للحوكمة الرقمية على منصة Etimad."
     },
     {
       "slug": "from-mind-to-market",
@@ -3113,8 +3247,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT mini-book from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT mini-book from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A mini-book taking you from idea to market with clarity.",
+      "description": "A concise journey from validated idea to market entry: positioning, packaging and first customers.",
       "price": 49.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -3126,7 +3260,7 @@
       "shopifyHandle": "from-mind-to-market",
       "sku": "BSP-MIND-TO-MARKET",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "رحلة موجزة من الفكرة المختبرة إلى دخول السوق: التموضع والتغليف وأول العملاء.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -3201,7 +3335,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "كتاب مصغر ينقلك من الفكرة إلى السوق بوضوح."
     },
     {
       "slug": "game-theory-for-parents",
@@ -3212,8 +3347,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT mini-book from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT mini-book from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A fresh lens on parenting using game theory.",
+      "description": "How incentives, strategy and negotiation illuminate everyday parenting decisions.",
       "price": 49.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -3224,7 +3359,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/game-theory-for-parents",
       "shopifyHandle": "game-theory-for-parents",
       "sku": "BSP-GAME-THEORY-PARENTS",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "نظرة جديدة للأبوة عبر نظرية الألعاب.",
+      "descriptionAr": "كيف تُضيء الحوافز والاستراتيجية والتفاوض قرارات الأبوة اليومية."
     },
     {
       "slug": "hyper-scalable-agency-system",
@@ -3235,8 +3372,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "A BrainSAIT software title from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT software title from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A software title on building a hyper-scalable agency system.",
+      "description": "Systems, pricing and delivery models to scale a services agency beyond your personal hours.",
       "price": 99.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -3248,7 +3385,7 @@
       "shopifyHandle": "hyper-scalable-agency-system",
       "sku": "BSP-HYPER-SCALABLE-AGENCY",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "أنظمة وتسعير ونماذج تسليم لتوسيع وكالة خدمات تتجاوز ساعاتك الشخصية.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -3323,7 +3460,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "عنوان برمجي عن بناء نظام وكالات فائق التوسع."
     },
     {
       "slug": "izhar-ul-haq-forensic-analysis",
@@ -3334,8 +3472,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT novel from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT novel from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A forensic literary analysis of Izhar ul-Haq.",
+      "description": "A scholarly forensic reading of the text — structure, argument and historical context.",
       "price": 79.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -3346,7 +3484,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/izhar-ul-haq-forensic-analysis",
       "shopifyHandle": "izhar-ul-haq-forensic-analysis",
       "sku": "BSP-IZHAR-UL-HAQ-FORENSIC",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "تحليل أدبي تحقيقي لنص إظهار الحق.",
+      "descriptionAr": "قراءة تحليلية دقيقة للنص — البنية والحجة والسياق التاريخي."
     },
     {
       "slug": "leading-joy-in-healthcare",
@@ -3357,8 +3497,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "A BrainSAIT healthcare title from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT healthcare title from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A healthcare title on leading with joy and resilience.",
+      "description": "Leadership practices for clinicians and managers that sustain joy, resilience and team morale.",
       "price": 119.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -3370,7 +3510,7 @@
       "shopifyHandle": "leading-joy-in-healthcare",
       "sku": "BSP-LEADING-JOY-HEALTHCARE",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "ممارسات قيادية للأطباء والمدراء تحافظ على الفرح والمرونة وروح الفريق.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -3445,7 +3585,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "عنوان صحي عن القيادة بالفرح والمرونة."
     },
     {
       "slug": "one-ecosystem-limitless-intelligence",
@@ -3456,8 +3597,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT mini-book from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT mini-book from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A mini-book on one connected ecosystem of intelligence.",
+      "description": "How unifying platforms, data and AI creates compounding value across an organization.",
       "price": 49.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -3469,7 +3610,7 @@
       "shopifyHandle": "one-ecosystem-limitless-intelligence",
       "sku": "BSP-ONE-ECOSYSTEM",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "كيف يؤدي توحيد المنصات والبيانات والذكاء الاصطناعي إلى قيمة متراكمة عبر المؤسسة.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -3544,7 +3685,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "كتاب مصغر عن نظام بيئي واحد للذكاء غير المحدود."
     },
     {
       "slug": "one-million-rps-achieved",
@@ -3555,8 +3697,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT mini-book from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT mini-book from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A mini-book chronicling the one-million RPS milestone.",
+      "description": "The engineering story behind achieving one million requests per second — and the lessons for scale.",
       "price": 49.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -3568,7 +3710,7 @@
       "shopifyHandle": "one-million-rps-achieved",
       "sku": "BSP-ONE-MILLION-RPS",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "القصة الهندسية خلف تحقيق مليون طلب في الثانية — والدروس المستفادة في التوسع.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -3643,7 +3785,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "كتاب مصغر يروي إنجاز المليون طلب في الثانية."
     },
     {
       "slug": "private-ai-blueprint",
@@ -3654,8 +3797,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A template for running AI privately on your own infrastructure.",
+      "description": "How to deploy private, self-hosted AI: models, data control, security and cost.",
       "price": 69.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -3667,7 +3810,7 @@
       "shopifyHandle": "private-ai-blueprint",
       "sku": "BSP-PRIVATE-AI-BLUEPRINT",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "كيف تنشر ذكاءً اصطناعيًا خاصًا مستضافًا ذاتيًا: النماذج والتحكم في البيانات والأمان والتكلفة.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -3742,7 +3885,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "قالب لتشغيل ذكاء اصطناعي خاص على بنيتك الخاصة."
     },
     {
       "slug": "professional-writing-mastery",
@@ -3753,8 +3897,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "A BrainSAIT skill guide from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT skill guide from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A skill guide for mastering professional writing.",
+      "description": "A systematic guide to clear, persuasive professional writing — structure, style and editing.",
       "price": 89.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -3766,7 +3910,7 @@
       "shopifyHandle": "professional-writing-mastery",
       "sku": "BSP-PROF-WRITING-MASTERY",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "دليل منهجي للكتابة الاحترافية الواضحة والمقنعة — البنية والأسلوب والتحرير.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -3841,7 +3985,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "دليل مهارة لإتقان الكتابة الاحترافية."
     },
     {
       "slug": "saudi-health-innovation-guide",
@@ -3852,8 +3997,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "A BrainSAIT healthcare title from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT healthcare title from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A healthcare title on innovation in Saudi health.",
+      "description": "A guide to the Saudi health innovation landscape: priorities, players and where builders can contribute.",
       "price": 119.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -3865,7 +4010,7 @@
       "shopifyHandle": "saudi-health-innovation-guide",
       "sku": "BSP-SAUDI-HEALTH-INNOVATION",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "دليل لمشهد الابتكار الصحي السعودي: الأولويات والجهات وأين يمكن للبنّائين المساهمة.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -3940,7 +4085,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "عنوان صحي حول الابتكار في الصحة السعودية."
     },
     {
       "slug": "saudi-health-transformation-drive-edition",
@@ -3951,8 +4097,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "A BrainSAIT healthcare title from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF (Drive Edition). A conden",
-      "description": "A BrainSAIT healthcare title from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF (Drive Edition). A condensed Mini-Book version is also available; the BrainSAIT × Abeer Group Blueprint is a separate, co-developed enterprise report.",
+      "tagline": "The full Drive Edition on Saudi healthcare transformation.",
+      "description": "The complete standalone PDF on how Saudi Arabia is transforming healthcare through AI and digital innovation. A condensed Mini-Book is also available.",
       "price": 119.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -3963,7 +4109,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/saudi-health-transformation-drive-edition",
       "shopifyHandle": "saudi-health-transformation-drive-edition",
       "sku": "BSP-SAUDI-HEALTH-TRANSFORM-D",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "النسخة الكاملة من تحول الصحة السعودي.",
+      "descriptionAr": "النسخة الكاملة المستقلة عن تحول الرعاية الصحية السعودية عبر الذكاء الاصطناعي والابتكار الرقمي، مع نسخة Mini-Book مختصرة."
     },
     {
       "slug": "sbs-nphies-integration-blueprint",
@@ -3974,8 +4122,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A template for SBS NPHIES integration.",
+      "description": "A technical blueprint for connecting SBS systems to NPHIES: flows, mapping and go-live checklist.",
       "price": 69.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -3987,7 +4135,7 @@
       "shopifyHandle": "sbs-nphies-integration-blueprint",
       "sku": "BSP-SBS-NPHIES-BP",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "مخطط تقني لربط أنظمة SBS بـ NPHIES: التدفقات والربط وقائمة الجاهزية.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -4062,7 +4210,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "قالب لتكامل SBS مع NPHIES."
     },
     {
       "slug": "sdc-fhir-stu-4-notes",
@@ -4073,8 +4222,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A template of SDC FHIR STU 4 study notes.",
+      "description": "Focused notes on the SDC FHIR STU 4 implementation guide for form and data capture design.",
       "price": 69.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -4086,7 +4235,7 @@
       "shopifyHandle": "sdc-fhir-stu-4-notes",
       "sku": "BSP-SDC-FHIR-STU4",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "ملاحظات مركّزة حول دليل تنفيذ SDC FHIR STU 4 لتصميم النماذج والتقاط البيانات.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -4161,7 +4310,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "ملاحظات دراسة SDC FHIR STU 4."
     },
     {
       "slug": "solo-ai-business-blueprint-drive-edition",
@@ -4172,8 +4322,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF (Drive Edition). A condensed Mini",
-      "description": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF (Drive Edition). A condensed Mini-Book version and a complete flagship edition are also available.",
+      "tagline": "The standalone PDF Drive Edition of the Solo AI Business Blueprint.",
+      "description": "The full PDF edition of the physician-led enterprise blueprint — deeper than the Mini-Book, complete with execution detail.",
       "price": 69.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -4184,7 +4334,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/solo-ai-business-blueprint-drive-edition",
       "shopifyHandle": "solo-ai-business-blueprint-drive-edition",
       "sku": "BSP-SOLO-AI-BUSINESS-D",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "نسخة PDF المستقلة من مخطط أعمال الذكاء الاصطناعي الفردي.",
+      "descriptionAr": "النسخة الكاملة PDF من مخطط المشروع بقيادة طبيب — أعمق من Mini-Book مع تفاصيل تنفيذ."
     },
     {
       "slug": "stealth-python-networking",
@@ -4195,8 +4347,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "A BrainSAIT software title from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT software title from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A software title on stealth Python networking.",
+      "description": "Low-level Python networking: sockets, protocols and bypass techniques for advanced builders.",
       "price": 99.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -4208,7 +4360,7 @@
       "shopifyHandle": "stealth-python-networking",
       "sku": "BSP-STEALTH-PYTHON-NET",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "شبكات بايثون منخفضة المستوى: المقابس والبروتوكولات وتقنيات متقدمة للبنّائين.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -4283,7 +4435,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "عنوان برمجي عن شبكات بايثون المتقدمة."
     },
     {
       "slug": "the-ai-skill-economy",
@@ -4294,8 +4447,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "A BrainSAIT skill guide from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT skill guide from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A skill guide on thriving in the AI skill economy.",
+      "description": "Which skills compound in the AI economy, how to build them, and how to monetize them.",
       "price": 89.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -4307,7 +4460,7 @@
       "shopifyHandle": "the-ai-skill-economy",
       "sku": "BSP-AI-SKILL-ECONOMY",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "أي المهارات تتراكم في اقتصاد الذكاء الاصطناعي، وكيف تبنيها وتحولها إلى دخل.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -4382,7 +4535,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "دليل مهارة للازدهار في اقتصاد مهارات الذكاء الاصطناعي."
     },
     {
       "slug": "the-api-blueprint",
@@ -4393,8 +4547,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "A BrainSAIT software title from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT software title from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A software title — the complete API blueprint.",
+      "description": "The full blueprint for designing, building and operating production APIs, from contracts to deployment.",
       "price": 99.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -4406,7 +4560,7 @@
       "shopifyHandle": "the-api-blueprint",
       "sku": "BSP-THE-API-BLUEPRINT",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "المخطط الكامل لتصميم وبناء وتشغيل واجهات برمجية إنتاجية، من العقود إلى النشر.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -4481,7 +4635,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "عنوان برمجي — المخطط الكامل للواجهات البرمجية."
     },
     {
       "slug": "the-architecture-of-self",
@@ -4492,8 +4647,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "A BrainSAIT skill guide from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF. A condensed Mini-Book version",
-      "description": "A BrainSAIT skill guide from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF. A condensed Mini-Book version is also available.",
+      "tagline": "A mini-book on the architecture of the self.",
+      "description": "A reflective exploration of identity, habits and decision architecture — the self as a system.",
       "price": 89.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -4504,7 +4659,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/the-architecture-of-self",
       "shopifyHandle": "the-architecture-of-self",
       "sku": "BSP-ARCHITECTURE-OF-SELF-D",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "كتاب مصغر عن معمارية الذات.",
+      "descriptionAr": "استكشاف تأملي للهوية والعادات ومعمارية القرار — الذات كنظام."
     },
     {
       "slug": "the-decentralized-hospital",
@@ -4515,8 +4672,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "A BrainSAIT healthcare title from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT healthcare title from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A healthcare title on the decentralized hospital.",
+      "description": "How care moves to the home, community and digital layers — a blueprint for distributed healthcare.",
       "price": 119.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -4528,7 +4685,7 @@
       "shopifyHandle": "the-decentralized-hospital",
       "sku": "BSP-DECENTRALIZED-HOSPITAL",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "كيف تنتقل الرعاية إلى المنزل والمجتمع والطبقات الرقمية — مخطط للرعاية الموزعة.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -4603,7 +4760,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "عنوان صحي عن المستشفى اللامركزي."
     },
     {
       "slug": "the-hospital-at-home",
@@ -4614,8 +4772,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "A BrainSAIT healthcare title from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT healthcare title from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A healthcare title on delivering hospital care at home.",
+      "description": "A practical blueprint for hospital-at-home programs: eligibility, monitoring, staffing and reimbursement.",
       "price": 119.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -4627,7 +4785,7 @@
       "shopifyHandle": "the-hospital-at-home",
       "sku": "BSP-HOSPITAL-AT-HOME",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "مخطط عملي لبرامج المستشفى في المنزل: الأهلية والمراقبة والتوظيف والسداد.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -4702,7 +4860,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "عنوان صحي عن تقديم الرعاية الاستشفائية في المنزل."
     },
     {
       "slug": "the-outlier-equation",
@@ -4713,8 +4872,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT novel from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT novel from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A novel about the outlier equation.",
+      "description": "A literary novel exploring what separates outliers from the ordinary — told through compelling characters.",
       "price": 79.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -4726,7 +4885,7 @@
       "shopifyHandle": "the-outlier-equation",
       "sku": "BSP-OUTLIER-EQUATION",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "رواية أدبية تستكشف ما يميز المتفردين عن العاديين عبر شخصيات جذابة.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -4801,7 +4960,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "رواية عن معادلة الخارج عن المألوف."
     },
     {
       "slug": "the-ultimate-persistent-ai-agent",
@@ -4812,8 +4972,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "A BrainSAIT skill guide from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF. A condensed Mini-Book version",
-      "description": "A BrainSAIT skill guide from the digital library. Instant delivery via secure link after payment. This is the full standalone PDF. A condensed Mini-Book version is also available.",
+      "tagline": "The full skill guide on building a persistent AI agent.",
+      "description": "The complete standalone PDF on building agents with memory, identity and persistence across sessions. A condensed Mini-Book is also available.",
       "price": 89.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -4825,7 +4985,7 @@
       "shopifyHandle": "the-ultimate-persistent-ai-agent",
       "sku": "BSP-PERSISTENT-AI-AGENT-D",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "النسخة الكاملة PDF لبناء وكلاء بذاكرة وهوية واستمرارية عبر الجلسات، مع نسخة Mini-Book مختصرة.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -4900,7 +5060,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "الدليل الكامل لبناء وكيل ذكاء اصطناعي دائم."
     },
     {
       "slug": "voice-agent-production-blueprint",
@@ -4911,8 +5072,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment.",
-      "description": "A BrainSAIT template from the digital library. Instant delivery via secure link after payment.",
+      "tagline": "A template for shipping production voice agents.",
+      "description": "A production blueprint for voice AI: telephony, ASR/TTS, latency, guardrails and deployment.",
       "price": 69.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -4924,7 +5085,7 @@
       "shopifyHandle": "voice-agent-production-blueprint",
       "sku": "BSP-VOICE-AGENT-PRODUCTION",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "مخطط إنتاجي للذكاء الصوتي: الاتصالات والتعرف والتوليف وزمن الاستجابة وضوابط النشر.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -4999,7 +5160,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "قالب لإطلاق وكلاء صوتيين في الإنتاج."
     },
     {
       "slug": "strategic-ai-blueprint-mini-book",
@@ -5010,8 +5172,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Strategic framework for building AI-powered businesses from zero to scale. Instant digital delivery via BrainSAIT. This is the condensed Mini-Book edition — a q",
-      "description": "Strategic framework for building AI-powered businesses from zero to scale. Instant digital delivery via BrainSAIT. This is the condensed Mini-Book edition — a quick-start summary. The full PDF (Drive Edition) goes deeper.",
+      "tagline": "The condensed Mini-Book of the Strategic AI Blueprint.",
+      "description": "A quick-start summary of AI strategy — where it pays off and how to sequence it. The full PDF goes deeper.",
       "price": 37.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5022,7 +5184,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/strategic-ai-blueprint-mini-book",
       "shopifyHandle": "strategic-ai-blueprint-mini-book",
       "sku": "BSP-NB-STRATEGIC-AI-BP",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "نسخة Mini-Book المختصرة من مخطط الذكاء الاصطناعي الاستراتيجي.",
+      "descriptionAr": "ملخص سريع لاستراتيجية الذكاء الاصطناعي — أين يحقق العائد وكيف تُسلسَل، مع نسخة كاملة أعمق."
     },
     {
       "slug": "solo-ai-business-blueprint-mini-book",
@@ -5033,8 +5197,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Complete guide to running an AI business as a solo founder. Instant digital delivery via BrainSAIT. This is the condensed Mini-Book edition — a quick-start summ",
-      "description": "Complete guide to running an AI business as a solo founder. Instant digital delivery via BrainSAIT. This is the condensed Mini-Book edition — a quick-start summary. The full PDF (Drive Edition) and complete flagship edition go deeper.",
+      "tagline": "The condensed Mini-Book of the Solo AI Business Blueprint.",
+      "description": "A quick-start summary of the physician-led AI business. The full PDF and Drive Edition go deeper.",
       "price": 37.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5045,7 +5209,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/solo-ai-business-blueprint-mini-book",
       "shopifyHandle": "solo-ai-business-blueprint-mini-book",
       "sku": "BSP-NB-SOLO-AI-BUSINESS",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "نسخة Mini-Book المختصرة من مخطط أعمال الذكاء الاصطناعي الفردي.",
+      "descriptionAr": "ملخص سريع للمشروع بقيادة طبيب، مع النسخ الكاملة للتعمق."
     },
     {
       "slug": "healthcare-ai-2025-mini-book",
@@ -5056,8 +5222,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "Comprehensive overview of AI applications in healthcare for 2025 and beyond. Instant digital delivery via BrainSAIT. This is the condensed Mini-Book edition — a",
-      "description": "Comprehensive overview of AI applications in healthcare for 2025 and beyond. Instant digital delivery via BrainSAIT. This is the condensed Mini-Book edition — a quick-start summary. The full PDF goes deeper.",
+      "tagline": "The condensed Mini-Book of Healthcare AI 2025.",
+      "description": "A quick-start summary of AI in healthcare. The full standalone PDF covers everything in depth.",
       "price": 37.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5068,7 +5234,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/healthcare-ai-2025-mini-book",
       "shopifyHandle": "healthcare-ai-2025-mini-book",
       "sku": "BSP-NB-HEALTHCARE-AI-2025",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "نسخة Mini-Book المختصرة من Healthcare AI 2025.",
+      "descriptionAr": "ملخص سريع للذكاء الاصطناعي في الصحة، مع النسخة الكاملة للتعمق."
     },
     {
       "slug": "saudi-health-transformation-mini-book",
@@ -5079,8 +5247,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "How Saudi Arabia is transforming healthcare through AI and digital innovation. Instant digital delivery via BrainSAIT. This is the condensed Mini-Book edition —",
-      "description": "How Saudi Arabia is transforming healthcare through AI and digital innovation. Instant digital delivery via BrainSAIT. This is the condensed Mini-Book edition — a quick-start summary. The full PDF (Drive Edition) goes deeper.",
+      "tagline": "The condensed Mini-Book of Saudi Health Transformation.",
+      "description": "A quick-start summary of Saudi healthcare transformation. The full Drive Edition goes deeper.",
       "price": 89.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5092,7 +5260,7 @@
       "shopifyHandle": "saudi-health-transformation-mini-book",
       "sku": "BSP-NB-SAUDI-HEALTH-TRANSFORM",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "ملخص سريع لتحول الصحة السعودية، مع النسخة الكاملة للتعمق.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -5167,7 +5335,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "نسخة Mini-Book المختصرة من تحول الصحة السعودي."
     },
     {
       "slug": "ultimate-persistent-ai-agent-mini-book",
@@ -5178,8 +5347,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Deep dive into persistent memory, learning, and autonomous AI agents. Instant digital delivery via BrainSAIT. This is the condensed Mini-Book edition — a quick-",
-      "description": "Deep dive into persistent memory, learning, and autonomous AI agents. Instant digital delivery via BrainSAIT. This is the condensed Mini-Book edition — a quick-start summary. The full PDF goes deeper.",
+      "tagline": "The condensed Mini-Book of the Ultimate Persistent AI Agent.",
+      "description": "A quick-start summary of building persistent agents. The full PDF goes deeper.",
       "price": 37.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5190,7 +5359,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/ultimate-persistent-ai-agent-mini-book",
       "shopifyHandle": "ultimate-persistent-ai-agent-mini-book",
       "sku": "BSP-NB-PERSISTENT-AI-AGENT",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "نسخة Mini-Book المختصرة من الوكيل الدائم.",
+      "descriptionAr": "ملخص سريع لبناء الوكلاء الدائمين، مع النسخة الكاملة للتعمق."
     },
     {
       "slug": "digital-organization-handbook-mini-book",
@@ -5201,8 +5372,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "How to organize teams, processes, and technology for AI-first operations. Instant digital delivery via BrainSAIT. This is the condensed Mini-Book edition — a qu",
-      "description": "How to organize teams, processes, and technology for AI-first operations. Instant digital delivery via BrainSAIT. This is the condensed Mini-Book edition — a quick-start summary. The full PDF (Drive Edition) goes deeper.",
+      "tagline": "The condensed Mini-Book of the Digital Organization Handbook.",
+      "description": "A quick-start summary on AI-first organizations. The full Drive Edition goes deeper.",
       "price": 71.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5214,7 +5385,7 @@
       "shopifyHandle": "digital-organization-handbook-mini-book",
       "sku": "BSP-NB-DIGITAL-ORG",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "ملخص سريع للمنظمات الرقمية أولًا، مع النسخة الكاملة للتعمق.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -5289,7 +5460,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "نسخة Mini-Book المختصرة من دليل المنظمة الرقمية."
     },
     {
       "slug": "developer-api-notebook",
@@ -5300,8 +5472,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "Essential API design patterns for modern AI applications. Instant digital delivery via BrainSAIT.",
-      "description": "Essential API design patterns for modern AI applications. Instant digital delivery via BrainSAIT.",
+      "tagline": "A developer notebook for API work.",
+      "description": "A hands-on notebook for API developers: patterns, security, debugging and production checklists.",
       "price": 52.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5312,7 +5484,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/developer-api-notebook",
       "shopifyHandle": "developer-api-notebook",
       "sku": "BSP-NB-API-NOTEBOOK",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "دفتر مطور لتصميم الواجهات البرمجية.",
+      "descriptionAr": "دفتر عملي لمطوري الواجهات: الأنماط والأمان وتصحيح الأخطاء وقوائم الإنتاج."
     },
     {
       "slug": "dom-study-notes-notebook",
@@ -5323,8 +5497,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "Visual guide to understanding and manipulating the DOM. Instant digital delivery via BrainSAIT. This is the visual-guide Notebook edition. The full PDF (Drive E",
-      "description": "Visual guide to understanding and manipulating the DOM. Instant digital delivery via BrainSAIT. This is the visual-guide Notebook edition. The full PDF (Drive Edition) is also available.",
+      "tagline": "The visual-guide Notebook edition of the DOM study notes.",
+      "description": "A visual, hands-on guide to the DOM for developers. The full PDF (Drive Edition) is also available.",
       "price": 52.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5336,7 +5510,7 @@
       "shopifyHandle": "dom-study-notes-notebook",
       "sku": "BSP-NB-DOM-STUDY-NOTES",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "دليل مرئي وعملي لنموذج كائن المستند، مع النسخة الكاملة PDF المتاحة أيضًا.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -5411,7 +5585,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "نسخة الدفتر المرئي من ملاحظات DOM."
     },
     {
       "slug": "architecture-of-self-mini-book",
@@ -5422,8 +5597,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "Exploring consciousness, identity, and the philosophy of AI systems. Instant digital delivery via BrainSAIT. This is the condensed Mini-Book edition — a quick-s",
-      "description": "Exploring consciousness, identity, and the philosophy of AI systems. Instant digital delivery via BrainSAIT. This is the condensed Mini-Book edition — a quick-start summary. The full PDF goes deeper.",
+      "tagline": "The condensed Mini-Book of The Architecture of Self.",
+      "description": "A quick-start summary on identity and decision architecture.",
       "price": 37.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5434,7 +5609,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/architecture-of-self-mini-book",
       "shopifyHandle": "architecture-of-self-mini-book",
       "sku": "BSP-NB-ARCHITECTURE-SELF",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "نسخة Mini-Book المختصرة من معمارية الذات.",
+      "descriptionAr": "ملخص سريع حول الهوية ومعمارية القرار."
     },
     {
       "slug": "bite-scientific-assessment-mini-book",
@@ -5445,8 +5622,8 @@
       "categoryAr": "Business",
       "sub": "business",
       "tier": "product",
-      "tagline": "Scientific framework for assessing and improving AI decision-making. Instant digital delivery via BrainSAIT. This is the condensed Mini-Book edition — a quick-s",
-      "description": "Scientific framework for assessing and improving AI decision-making. Instant digital delivery via BrainSAIT. This is the condensed Mini-Book edition — a quick-start summary. The full PDF goes deeper.",
+      "tagline": "The condensed Mini-Book of the BITE scientific assessment.",
+      "description": "A quick-start summary of the BITE model analysis of authoritarian control.",
       "price": 37.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5457,7 +5634,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/bite-scientific-assessment-mini-book",
       "shopifyHandle": "bite-scientific-assessment-mini-book",
       "sku": "BSP-NB-BITE-MODEL",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "نسخة Mini-Book المختصرة من التقييم العلمي لنموذج BITE.",
+      "descriptionAr": "ملخص سريع لتحليل نموذج BITE للسيطرة الاستبدادية."
     },
     {
       "slug": "republic-of-cells-complete-edition",
@@ -5468,7 +5647,7 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "A literary science novel telling the story of the human body as a republic of cells — written for physicians and health professionals, blending immunology preci",
+      "tagline": "The complete edition of Republic of Cells.",
       "description": "A literary science novel telling the story of the human body as a republic of cells — written for physicians and health professionals, blending immunology precision with literary craft.",
       "price": 369.0,
       "billingEn": "one-time",
@@ -5481,7 +5660,7 @@
       "shopifyHandle": "republic-of-cells-complete-edition",
       "sku": "BSP-REPUBLIC-OF-CELLS",
       "commercial": "product",
-      "descriptionAr": null,
+      "descriptionAr": "رواية علمية أدبية تروي قصة الجسد البشري كجمهورية من الخلايا — كتبت للأطباء والمهنيين الصحيين.",
       "benefits": [
         "Read on any device",
         "Instant delivery",
@@ -5527,7 +5706,8 @@
       "rating": null,
       "users": "Instant Drive delivery",
       "flag": null,
-      "demoUrl": null
+      "demoUrl": null,
+      "taglineAr": "النسخة الكاملة من جمهورية الخلايا."
     },
     {
       "slug": "brainsait-operating-system-bos-complete-course",
@@ -5538,8 +5718,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "The complete curriculum for building and running an AI-native healthcare and business operating system.",
-      "description": "The complete curriculum for building and running an AI-native healthcare and business operating system.",
+      "tagline": "The complete BrainSAIT Operating System (BOS) course.",
+      "description": "A full course on the BrainSAIT Operating System: the stack, integration patterns and how to operate an intelligent organization.",
       "price": 749.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5550,7 +5730,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/brainsait-operating-system-bos-complete-course",
       "shopifyHandle": "brainsait-operating-system-bos-complete-course",
       "sku": "BSP-BOS-COURSE",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "دورة نظام BrainSAIT التشغيلي الكاملة.",
+      "descriptionAr": "دورة شاملة عن نظام BrainSAIT التشغيلي: التكديس التقني وأنماط التكامل وتشغيل منظمة ذكية."
     },
     {
       "slug": "brainsait-oid-registry-explorer-platform-license",
@@ -5561,8 +5743,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "The Complete OID Registry Platform for BrainSAIT Enterprise Full access to the BrainSAIT OID Registry Explorer — a production-grade web application for visualiz",
-      "description": "The Complete OID Registry Platform for BrainSAIT Enterprise Full access to the BrainSAIT OID Registry Explorer — a production-grade web application for visualizing, managing, and generating code from the 1.3.6.1.4.1.61026 namespace (BrainSAIT IANA PEN 61026). Platform Features\n\n Interactive OID Tree — Browse the full BrainSAIT namespace hierarchy with expandable, collapsible branches\n\n Visual Path Builder — Select any node and instantly generate production-ready code for 6 integration contexts\n\n Code Generator — One-click copy for FHIR extensions, MCP URNs, X.509 policies, API headers, DB schemas, and QR data\n\n QR Code Preview — Render and download scannable QR codes for physical asset tagging, with adjustable size and error-correction\n\n AI Naming Suggestions — Describe a use case; get 3 enterprise-grade node name suggestions aligned to BrainSAIT's architecture\n\n Node Registration — Add custom leaf nodes to extend the namespace with AI-assisted naming\n\n Full-text Search — Instant filter across paths, descriptions, and use cases\n Tech Stack React 19 · TypeScript · Vite 7 · Tailwind CSS 4 · Radix UI Components · TanStack Query Instant digital delivery. Platform source code and deployment guide included.",
+      "tagline": "Platform license for the BrainSAIT OID Registry Explorer.",
+      "description": "A platform license to deploy the OID registry explorer across your organization — identifiers, namespaces and governance.",
       "price": 699.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5573,7 +5755,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/brainsait-oid-registry-explorer-platform-license",
       "shopifyHandle": "brainsait-oid-registry-explorer-platform-license",
       "sku": "BSP-OID-REGISTRY-PLATFORM",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "رخصة منصة لمستكشف سجل OID من BrainSAIT.",
+      "descriptionAr": "رخصة منصة لنشر مستكشف سجل OID عبر مؤسستك — المعرّفات والنطاقات والحوكمة."
     },
     {
       "slug": "nphies-oid-healthcare-identity-bundle",
@@ -5584,8 +5768,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "Saudi Healthcare System Identity — End-to-End The complete OID solution for healthcare organizations operating within the Saudi National Platform for Health Inf",
-      "description": "Saudi Healthcare System Identity — End-to-End The complete OID solution for healthcare organizations operating within the Saudi National Platform for Health Information Exchange (NPHIES). Combines the OID Registry Platform with FHIR-specific templates, compliance documentation, and X.509 certificate OID configuration for Saudi health IT environments. Bundle Contents\n\n OID Registry Explorer Platform — Full platform license (see separate listing)\n\n NPHIES FHIR Templates Pack — 12 StructureDefinitions pre-configured with BrainSAIT OID extensions for claims, eligibility, prior authorization, and clinical documents\n\n X.509 Certificate OID Policy — Complete configuration for embedding OID policy extensions in signing certificates used with NPHIES\n\n Saudi Healthcare Compliance Guide — Mapping of BrainSAIT OID branches to NPHIES system codes, SNOMED CT references, and ICD-10-AM coding\n\n Integration Checklist — Step-by-step verification for NPHIES sandbox and production environments\n Who This Is For Healthcare IT teams, system integrators, and clinical informatics specialists deploying AI-driven healthcare systems in Saudi Arabia who need globally-unique, standards-compliant resource identification. Instant digital delivery. Bilingual Arabic/English documentation throughout.",
+      "tagline": "A bundle for healthcare identity on NPHIES + OID.",
+      "description": "The NPHIES-OID healthcare identity bundle: identity primitives and integration guidance for healthcare systems.",
       "price": 1299.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5596,7 +5780,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/nphies-oid-healthcare-identity-bundle",
       "shopifyHandle": "nphies-oid-healthcare-identity-bundle",
       "sku": "BSP-OID-NPHIES-BUNDLE",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "حزمة الهوية الصحية NPHIES-OID.",
+      "descriptionAr": "حزمة هوية الرعاية الصحية NPHIES-OID: أساسيات الهوية وإرشادات التكامل للأنظمة الصحية."
     },
     {
       "slug": "enterprise-oid-badge-management-system-self-hosted-license",
@@ -5607,8 +5793,8 @@
       "categoryAr": "Development",
       "sub": "development",
       "tier": "product",
-      "tagline": "Full OID Badge Infrastructure for Enterprise Deployment The complete BrainSAIT OID Badge Management System — a production-ready, self-hosted platform for managi",
-      "description": "Full OID Badge Infrastructure for Enterprise Deployment The complete BrainSAIT OID Badge Management System — a production-ready, self-hosted platform for managing OID allocations, access control, and badge issuance at enterprise scale. Backed by the same system running BrainSAIT's internal operations. System Architecture\n\n React.js Frontend — Dark-themed, responsive admin portal with interactive OID tree visualization\n\n FastAPI Backend — High-performance Python REST API with automatic OpenAPI/Swagger documentation\n\n PostgreSQL Database — Relational schema with full audit trail and badge lifecycle management\n\n Docker Compose — One-command deployment to any cloud or on-premises infrastructure\n\n LLM-Powered Assistant — Integrated AI assistant for contextual help and OID allocation recommendations\n Capabilities\n Create, edit, and revoke OID badges with granular access control\n Full OID tree visualization for the organizational namespace\n REST API for integration with identity management systems (LDAP, Azure AD)\n Audit logging and compliance reporting\n Multi-user support with role-based permissions\n License Single-organization license. Includes source code, Docker configuration, database initialization scripts, and deployment guide. Instant digital delivery. Enterprise support available separately. Deploy on your infrastructure — data never leaves your environment.",
+      "tagline": "Self-hosted license for the Enterprise OID Badge Management System.",
+      "description": "A self-hosted enterprise system for issuing, managing and auditing OID identity badges — with full control and governance.",
       "price": 3499.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5619,7 +5805,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/enterprise-oid-badge-management-system-self-hosted-license",
       "shopifyHandle": "enterprise-oid-badge-management-system-self-hosted-license",
       "sku": "BSP-OID-ENTERPRISE-BADGE",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "رخصة استضافة ذاتية لنظام إدارة شارات OID المؤسسي.",
+      "descriptionAr": "نظام مؤسسي مستضاف ذاتيًا لإصدار وإدارة وتدقيق شارات هوية OID مع تحكم كامل وحوكمة."
     },
     {
       "slug": "oid-enterprise-namespace-architect-مهندس-نطاق-الهوية-المؤسسي",
@@ -5630,8 +5818,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "OID Enterprise Namespace Architect\n Full enterprise Object Identifier namespace allocation under IANA PEN 1.3.6.1.4.1.61026 — BrainSAIT's globally-registered ro",
-      "description": "OID Enterprise Namespace Architect\n Full enterprise Object Identifier namespace allocation under IANA PEN 1.3.6.1.4.1.61026 — BrainSAIT's globally-registered root. Architect your organization's entire digital identity tree across FHIR, MCP agents, X.509 certificates, REST APIs, database schemas, and physical QR/RFID systems.\n What's Included\n\n Dedicated OID sub-tree (up to 25 nodes) under BrainSAIT's IANA-registered enterprise number\n FHIR StructureDefinition namespace bundles (R4 + R5 ready)\n MCP Agent URN schema configurations for AI identity chains\n X.509 certificate policy OID assignments\n REST API header namespace templates\n Database schema OID integration package\n QR/RFID physical tag generator templates\n 6-context code generator access (12 months)\n BrainSAIT OID Registry portal access (Airtable-backed)\n Priority onboarding call (60 min) with namespace architect\n Lifetime namespace reservation documentation\n\n\n مهندس نطاق الهوية المؤسسي OID\n تخصيص نطاق هوية مؤسسي كامل تحت رقم المؤسسة الخاص بـ BrainSAIT المسجل دولياً لدى IANA ( 1.3.6.1.4.1.61026 ). صمّم شجرة الهوية الرقمية الكاملة لمؤسستك عبر FHIR وعملاء MCP وشهادات X.509 وواجهات REST APIs وقواعد البيانات وأنظمة QR/RFID الفيزيائية.\n ما يتضمنه المنتج\n\n شجرة OID فرعية مخصصة (حتى 25 عقدة) تحت رقم المؤسسة المسجل دولياً\n حزم نطاق FHIR StructureDefinition (جاهز لـ R4 و R5)\n إعدادات مخطط URN لسلاسل هوية عملاء الذكاء الاصطناعي MCP\n تعيينات OID لسياسات شهادات X.509\n قوالب نطاق رؤوس REST API\n حزمة تكامل OID مع مخطط قاعدة البيانات\n قوالب مولد العلامات الفيزيائية QR/RFID\n وصول لمولد الكود بـ 6 سياقات (12 شهراً)\n وصول لبوابة سجل OID من BrainSAIT (مدعومة بـ Airtable)\n جلسة تأهيل أولوية (60 دقيقة) مع مهندس النطاق\n وثائق حجز النطاق مدى الحياة",
+      "tagline": "OID Enterprise Namespace Architect | مهندس نطاق الهوية المؤسسي",
+      "description": "An architecture role and playbook for designing enterprise OID namespaces — structure, delegation and governance.",
       "price": 8499.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5642,7 +5830,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/oid-enterprise-namespace-architect-مهندس-نطاق-الهوية-المؤسسي",
       "shopifyHandle": "oid-enterprise-namespace-architect-مهندس-نطاق-الهوية-المؤسسي",
       "sku": "OID-ENT-ARCH-001",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "مهندس نطاق الهوية المؤسسي OID — دليل معمارية النطاقات.",
+      "descriptionAr": "دور ودليل معماري لتصميم نطاقات OID المؤسسية — البنية والتفويض والحوكمة."
     },
     {
       "slug": "healthcare-ai-identity-infrastructure-suite-حزمة-البنية-التحتية-لهوية-الذكاء-الاصطناعي-الصحي",
@@ -5653,8 +5843,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "Healthcare AI Identity Infrastructure Suite\n The complete OID-backed identity layer for healthcare AI deployments. Purpose-built for HIPAA-compliant environment",
-      "description": "Healthcare AI Identity Infrastructure Suite\n The complete OID-backed identity layer for healthcare AI deployments. Purpose-built for HIPAA-compliant environments, HL7 FHIR R4/R5 ecosystems, and AI agent orchestration platforms operating under clinical standards.\n What's Included\n\n Everything in Enterprise Namespace Architect\n Dedicated OID sub-tree (up to 50 nodes)\n DICOM UID allocation block for imaging systems\n HL7 FHIR R4/R5 namespace bundles with extension registry\n SNOMED CT extension OID mapping documentation\n ICD-10 coding system OID integration templates\n AI agent identity chains for clinical MCP server deployments\n HIPAA-compliant namespace documentation package\n Audit trail OID schema for regulatory compliance\n 3 onboarding sessions (60 min each) with health informatics specialist\n 12 months priority support (4-hour SLA)\n Annual namespace audit report\n\n\n حزمة البنية التحتية لهوية الذكاء الاصطناعي الصحي\n طبقة الهوية الكاملة المدعومة بـ OID لتطبيقات الذكاء الاصطناعي في قطاع الرعاية الصحية. مصممة خصيصاً للبيئات المتوافقة مع معايير HIPAA وأنظمة HL7 FHIR R4/R5 ومنصات تنظيم عملاء الذكاء الاصطناعي وفق المعايير السريرية.\n ما يتضمنه المنتج\n\n كل ما في حزمة مهندس النطاق المؤسسي\n شجرة OID فرعية مخصصة (حتى 50 عقدة)\n كتلة تخصيص DICOM UID لأنظمة التصوير الطبي\n حزم نطاق HL7 FHIR R4/R5 مع سجل الامتدادات\n وثائق تعيين OID لامتدادات SNOMED CT\n قوالب تكامل OID مع نظام ترميز ICD-10\n سلاسل هوية عملاء الذكاء الاصطناعي لنشر خوادم MCP السريرية\n حزمة وثائق النطاق المتوافقة مع HIPAA\n مخطط OID لمسار التدقيق والامتثال التنظيمي\n 3 جلسات تأهيل (60 دقيقة لكل منها) مع متخصص في المعلوماتية الصحية\n دعم أولوية 12 شهراً (SLA: 4 ساعات)\n تقرير تدقيق سنوي للنطاق",
+      "tagline": "Healthcare AI Identity Infrastructure Suite | حزمة البنية التحتية لهوية الذكاء الاصطناعي الصحي",
+      "description": "A suite of identity infrastructure patterns for healthcare AI — secure, auditable and interoperable.",
       "price": 16999.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5665,7 +5855,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/healthcare-ai-identity-infrastructure-suite-حزمة-البنية-التحتية-لهوية-الذكاء-الاصطناعي-الصحي",
       "shopifyHandle": "healthcare-ai-identity-infrastructure-suite-حزمة-البنية-التحتية-لهوية-الذكاء-الاصطناعي-الصحي",
       "sku": "OID-HLTH-SUITE-001",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "حزمة بنية هوية للذكاء الاصطناعي الصحي.",
+      "descriptionAr": "مجموعة أنماط بنية هوية للذكاء الاصطناعي الصحي — آمنة وقابلة للتدقيق والتشغيل البيني."
     },
     {
       "slug": "brainsait-oid-white-label-enterprise-license-رخصة-المؤسسة-بالعلامة-التجارية-الخاصة",
@@ -5676,8 +5868,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "BrainSAIT OID White-Label Enterprise License\n The ultimate OID identity platform — reseller rights included. Deploy the full BrainSAIT OID system under your own",
-      "description": "BrainSAIT OID White-Label Enterprise License\n The ultimate OID identity platform — reseller rights included. Deploy the full BrainSAIT OID system under your own brand, sub-allocate namespaces to your clients, and operate a fully-managed identity infrastructure business built on IANA PEN 1.3.6.1.4.1.61026.\n What's Included\n\n Everything in Healthcare AI Identity Infrastructure Suite\n Unlimited OID sub-namespace nodes under BrainSAIT's IANA root\n Sub-allocation reseller rights (provision your own clients)\n White-label branding in the OID portal (your logo, domain, colors)\n Custom domain for OID registry (e.g. oid.yourcompany.com)\n Multi-tenant architecture support documentation\n SLA: 99.9% uptime guarantee with dedicated infrastructure\n Dedicated account manager (named contact)\n Quarterly strategic review sessions\n Annual namespace audit + compliance certification\n Priority CI/CD integration support for custom deployments\n Source code license for OID portal React frontend\n Custom FHIR Implementation Guide co-authoring (1 IG)\n 24/7 emergency support hotline\n\n\n رخصة المؤسسة بالعلامة التجارية الخاصة من BrainSAIT\n النظام الأمثل لمنصة هوية OID — مع حقوق إعادة البيع. انشر نظام BrainSAIT OID الكامل تحت علامتك التجارية الخاصة، وخصّص نطاقات لعملائك، وأدر أعمال بنية تحتية للهوية الرقمية مُدارة بالكامل مبنية على IANA PEN 1.3.6.1.4.1.61026.\n ما يتضمنه المنتج\n\n كل ما في حزمة البنية التحتية لهوية الذكاء الاصطناعي الصحي\n عقد OID فرعية غير محدودة تحت جذر IANA الخاص بـ BrainSAIT\n حقوق إعادة البيع لتخصيص النطاق (توفير نطاقات لعملائك)\n علامة تجارية خاصة في بوابة OID (شعارك، نطاقك، ألوانك)\n نطاق مخصص لسجل OID (مثل oid.yourcompany.com)\n وثائق دعم البنية متعددة المستأجرين\n SLA: ضمان وقت تشغيل 99.9% مع بنية تحتية مخصصة\n مدير حساب مخصص (جهة اتصال مسماة)\n جلسات مراجعة استراتيجية ربع سنوية\n تدقيق سنوي للنطاق + شهادة الامتثال\n دعم أولوية CI/CD لعمليات النشر المخصصة\n رخصة كود مصدر لواجهة React الأمامية لبوابة OID\n تأليف مشترك لدليل تطبيق FHIR مخصص (دليل واحد)\n خط دعم طوارئ 24/7",
+      "tagline": "BrainSAIT OID White-Label Enterprise License | رخصة المؤسسة بالعلامة التجارية الخاصة",
+      "description": "A white-label license to deploy OID infrastructure under your own brand.",
       "price": 24999.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5688,7 +5880,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/brainsait-oid-white-label-enterprise-license-رخصة-المؤسسة-بالعلامة-التجارية-الخاصة",
       "shopifyHandle": "brainsait-oid-white-label-enterprise-license-رخصة-المؤسسة-بالعلامة-التجارية-الخاصة",
       "sku": "OID-WL-ENT-001",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "رخصة علامة بيضاء لنشر بنية OID بعلامتك التجارية الخاصة.",
+      "descriptionAr": "رخصة العلامة البيضاء لنشر البنية التحتية لهوية OID تحت علامتك التجارية."
     },
     {
       "slug": "oid-fhir-integration-platform-منصة-تكامل-oid-مع-fhir",
@@ -5699,8 +5893,8 @@
       "categoryAr": "Healthcare",
       "sub": "healthcare",
       "tier": "product",
-      "tagline": "OID FHIR Integration Platform\n The definitive OID namespace solution purpose-built for HL7 FHIR implementors. Automate StructureDefinition authoring, ValueSet r",
-      "description": "OID FHIR Integration Platform\n The definitive OID namespace solution purpose-built for HL7 FHIR implementors. Automate StructureDefinition authoring, ValueSet registration, CodeSystem publishing, and terminology binding — all anchored to your own globally-unique OID namespace under BrainSAIT's IANA PEN.\n What's Included\n\n Dedicated FHIR-optimized OID sub-tree (up to 30 nodes)\n StructureDefinition generator with OID-anchored canonical URLs\n Automated ValueSet registration workflow\n CodeSystem publishing with official OID assignment\n Terminology binding automation scripts (SNOMED CT, LOINC, ICD-10)\n FHIR Implementation Guide (IG) template with your OID namespace\n Bulk StructureDefinition OID migration tool\n FHIR Validator integration for namespace consistency checks\n HL7 FHIR Shorthand (FSH) template library\n 2 onboarding sessions (90 min each) with FHIR specialist\n 12 months updates + support\n\n\n منصة تكامل OID مع FHIR\n الحل الأمثل لنطاق OID المصمم خصيصاً لمنفذي HL7 FHIR. أتمتة تأليف StructureDefinition وتسجيل ValueSet ونشر CodeSystem وربط المصطلحات — كلها مرتبطة بنطاق OID الفريد الخاص بك عالمياً تحت رقم BrainSAIT IANA PEN.\n ما يتضمنه المنتج\n\n شجرة OID فرعية محسّنة لـ FHIR (حتى 30 عقدة)\n مولد StructureDefinition بعناوين URL عشوائية مرسّخة في OID\n سير عمل تسجيل ValueSet آلي\n نشر CodeSystem مع تعيين OID رسمي\n نصوص أتمتة ربط المصطلحات (SNOMED CT، LOINC، ICD-10)\n قالب دليل تطبيق FHIR (IG) بنطاق OID الخاص بك\n أداة ترحيل StructureDefinition OID بالجملة\n تكامل FHIR Validator لفحوصات اتساق النطاق\n مكتبة قوالب HL7 FHIR Shorthand (FSH)\n جلستا تأهيل (90 دقيقة لكل منهما) مع متخصص FHIR\n تحديثات ودعم لمدة 12 شهراً",
+      "tagline": "OID FHIR Integration Platform | منصة تكامل OID مع FHIR",
+      "description": "A platform for integrating OID identity with FHIR-based clinical systems.",
       "price": 11999.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
@@ -5711,7 +5905,9 @@
       "shopifyUrl": "https://store.brainsait.org/products/oid-fhir-integration-platform-منصة-تكامل-oid-مع-fhir",
       "shopifyHandle": "oid-fhir-integration-platform-منصة-تكامل-oid-مع-fhir",
       "sku": "OID-FHIR-PLAT-001",
-      "commercial": "product"
+      "commercial": "product",
+      "taglineAr": "منصة لدمج هوية OID مع الأنظمة السريرية القائمة على FHIR.",
+      "descriptionAr": "منصة لتكامل هوية OID مع الأنظمة السريرية القائمة على FHIR."
     }
   ],
   "meta": {

@@ -528,6 +528,36 @@ img { max-width: 100%; }
 }
 .pcard-cta { display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: flex-end; }
 
+/* Enhanced card meta: category + rating row */
+.pcard-meta {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+}
+.pcard-rating {
+  display: inline-flex; align-items: center; gap: 0.25rem;
+  font-size: 0.72rem; font-weight: 700; color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+  padding: 0.14rem 0.5rem; border-radius: 999px; white-space: nowrap;
+}
+/* Format chip on the cover (top-left, next to commercial badge) */
+.pcard-badge.pcard-format {
+  position: absolute; bottom: 0.7rem; inset-inline-end: 0.7rem; top: auto;
+  background: color-mix(in srgb, var(--cyan) 16%, var(--glass));
+  color: #7dd3fc; border-color: rgba(41, 216, 255, 0.4);
+}
+/* Specific tagline with soft fade instead of hard clip */
+.pcard-prop {
+  -webkit-line-clamp: 3;
+  mask-image: linear-gradient(180deg, #000 0%, #000 82%, transparent);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 82%, transparent);
+}
+/* Benefit snippet (first bullet) */
+.pcard-benefit {
+  margin: 0; color: var(--ink-soft); font-size: 0.78rem;
+  display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;
+  padding-inline-start: 0.6rem; border-inline-start: 2px solid var(--gold);
+}
+
 /* ── Build program ────────────────────────────────────────── */
 .build-engine { margin: 2.6rem auto; max-width: 100%; }
 .program-benefits {
