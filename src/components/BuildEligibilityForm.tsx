@@ -61,21 +61,12 @@ export default function BuildEligibilityForm() {
     const tier = pricing.eligibilityId;
     const finalPrice = pricing.finalPrice;
 
-    // Build Shopify cart URL with line item properties for tracking eligibility
-    // Format: /cart/add?id=VARIANT_ID&quantity=1&properties[tier]=TIER&properties[price]=PRICE
-    const variantMap: Record<string, string> = {
-      sa_sd_free: '45950044635219', // Saudi/Sudanese (Free)
-      healthcare_50: '45950044667987', // Healthcare Professional
-      warrior_35: '45950044700755', // Warrior Entrepreneur
-      academic_30: '45950044733523', // Academic (Student/Researcher)
-      standard: '45950044766291', // Standard
-    };
-
-    const variantId = variantMap[tier] || variantMap.standard;
+    // All Build tickets are standard 9,630 SAR. Use the single standard variant.
+    const STANDARD_VARIANT_ID = '45950044766291';
     const shopifyBaseUrl = 'https://store.brainsait.org';
 
-    // Pass eligibility data through cart properties for Shopify to track
-    const cartUrl = `${shopifyBaseUrl}/cart/add?id=${variantId}&quantity=1&properties[eligibility_tier]=${encodeURIComponent(tier)}&properties[discount_percent]=${pricing.discount}&properties[final_price]=${finalPrice}`;
+    // Pass collected eligibility data through cart properties for downstream automation.
+    const cartUrl = `${shopifyBaseUrl}/cart/add?id=${STANDARD_VARIANT_ID}&quantity=1&properties[eligibility_tier]=${encodeURIComponent(tier)}&properties[discount_percent]=0&properties[final_price]=${finalPrice}`;
 
     track('begin_checkout', {
       currency: 'SAR',
@@ -98,8 +89,7 @@ export default function BuildEligibilityForm() {
     window.location.href = cartUrl;
   };
 
-  const isIdentityTier = pricing.eligibilityId === 'sa_sd_free';
-  const requiresVerification = data.identity === 'SA' || data.identity === 'SD';
+  const requiresVerification = false; // all tiers are paid standard; verification data kept for program matching only
 
   return (
     <div className="build-form-container">
@@ -392,31 +382,15 @@ export default function BuildEligibilityForm() {
       {step === 'result' && (
         <div className="form-step result-step">
           <ResultTracker tier={pricing.eligibilityId} discount={pricing.discount} price={pricing.finalPrice} />
-          {isIdentityTier ? (
-            <>
-              <div className="tier-icon">{pricing.tier.icon}</div>
-              <h2>
-                {ar
-                  ? `تذكرة البناء الخاصة بك من عندنا`
-                  : `Your Build Ticket is on us`}
-              </h2>
-              <p className="tier-subtitle">
-                {ar
-                  ? 'لأنك من المملكة العربية السعودية أو السودان، تستحق استحقاق البناء بنسبة 100٪.'
-                  : 'Because of your Saudi/Sudanese identity, you qualify for a 100% Build Benefit.'}
-              </p>
-            </>
-          ) : (
-            <>
-              <div className="tier-icon">{pricing.tier.icon}</div>
-              <h2>{ar ? pricing.tier.titleAr : pricing.tier.titleEn}</h2>
-              <p className="tier-subtitle">
-                {ar
-                  ? `أنت مؤهل للحصول على خصم ${pricing.discount}%`
-                  : `You qualify for a ${pricing.discount}% discount`}
-              </p>
-            </>
-          )}
+          <>
+            <div className="tier-icon">{pricing.tier.icon}</div>
+            <h2>{ar ? pricing.tier.titleAr : pricing.tier.titleEn}</h2>
+            <p className="tier-subtitle">
+              {ar
+                ? 'تذكرة بناء موحدة بـ ٩٬٦٣٠ ريال سعودي'
+                : 'Standard Build Ticket — SAR 9,630'}
+            </p>
+          </>
 
           <div className="price-display">
             <div className="price-row original">
@@ -458,9 +432,7 @@ export default function BuildEligibilityForm() {
               className="btn-primary"
               onClick={handleProceedToPayment}
             >
-              {pricing.finalPrice === 0
-                ? ar ? 'أكمل التحقق →' : 'Complete verification →'
-                : ar ? 'الذهاب إلى الدفع →' : 'Go to payment →'}
+              {ar ? 'الذهاب إلى الدفع →' : 'Go to payment →'}
             </button>
           </div>
         </div>

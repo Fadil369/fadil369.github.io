@@ -73,58 +73,20 @@ const tiers: Record<string, PricingTier> = {
 };
 
 export function calculatePrice(data: EligibilityData): PricingResult {
-  // Priority #1 — Saudi or Sudanese (100% discount = FREE)
-  if (data.identity === 'SA' || data.identity === 'SD') {
-    return {
-      tier: tiers.sa_sd_free,
-      eligibilityId: 'sa_sd_free',
-      discount: 100,
-      originalPrice: BASE_PRICE,
-      finalPrice: 0,
-      savings: BASE_PRICE,
-    };
-  }
+  // As of 2026-08-12 all Build tickets are standard 9,630 SAR.
+  // Eligibility data is still collected for verification and program matching,
+  // but no automatic discounts are applied at checkout.
+  const identity = data.identity || 'OTHER';
+  const profession = data.profession || data.category || 'general';
+  const tierId: keyof typeof tiers =
+    identity === 'SA' || identity === 'SD' ? 'standard'
+    : ['doctor', 'nurse', 'healthcare'].includes(profession) ? 'standard'
+    : ['entrepreneur', 'student', 'researcher'].includes(profession) ? 'standard'
+    : 'standard';
 
-  // Priority #2 — Doctor/Nurse (50% discount)
-  if (['doctor', 'nurse', 'healthcare'].includes(data.profession || '')) {
-    return {
-      tier: tiers.healthcare_50,
-      eligibilityId: 'healthcare_50',
-      discount: 50,
-      originalPrice: BASE_PRICE,
-      finalPrice: 4815,
-      savings: BASE_PRICE * 0.5,
-    };
-  }
-
-  // Priority #3 — Warrior Entrepreneur (35% discount)
-  if (data.category === 'entrepreneur') {
-    return {
-      tier: tiers.warrior_35,
-      eligibilityId: 'warrior_35',
-      discount: 35,
-      originalPrice: BASE_PRICE,
-      finalPrice: 6259.5,
-      savings: BASE_PRICE * 0.35,
-    };
-  }
-
-  // Priority #4 — Student/Researcher (30% discount)
-  if (['student', 'researcher'].includes(data.category || '')) {
-    return {
-      tier: tiers.academic_30,
-      eligibilityId: 'academic_30',
-      discount: 30,
-      originalPrice: BASE_PRICE,
-      finalPrice: 6741,
-      savings: BASE_PRICE * 0.3,
-    };
-  }
-
-  // Default — Standard pricing (0% discount)
   return {
-    tier: tiers.standard,
-    eligibilityId: 'standard',
+    tier: tiers[tierId],
+    eligibilityId: tierId,
     discount: 0,
     originalPrice: BASE_PRICE,
     finalPrice: BASE_PRICE,
