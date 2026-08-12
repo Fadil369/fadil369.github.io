@@ -7,6 +7,7 @@ import Shelf from './pages/Shelf';
 import Build from './pages/Build';
 import Product from './pages/Product';
 import Account from './pages/Account';
+import Track from './pages/Track';
 import './styles/app.css';
 
 type Theme = 'dark' | 'light';
@@ -92,6 +93,7 @@ export default function App() {
           <Route path="/build" element={<Build />} />
           <Route path="/products/:slug" element={<Product />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/track" element={<Track />} />
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />
