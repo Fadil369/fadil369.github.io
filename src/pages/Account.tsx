@@ -37,6 +37,7 @@ const BUILD_REF_KEY = 'bs_build_ref';
 const FORGE_TOKEN_KEY = 'bs_forge_token';
 const FORGE_PROFILE_KEY = 'bs_forge_profile';
 const FORGE_ME = 'https://forge.brainsait.org/profile/me';
+const CUSTOMER_SYNC_API = 'https://build-apply.brainsait.org/customer/sync';
 
 function readForgeToken(): string {
   try { return localStorage.getItem(FORGE_TOKEN_KEY) || ''; } catch { return ''; }
@@ -97,6 +98,27 @@ function saveLocalProfile(p: ProfileView) {
 
 function readBuildRef(): string {
   try { return localStorage.getItem(BUILD_REF_KEY) || ''; } catch { return ''; }
+}
+
+/** Register the account holder in the Shopify store's customer/marketing
+ *  record so their email lands in the messaging centre (storefront-registered,
+ *  build-applicant, forge-member tags). Best-effort and non-blocking. */
+async function syncShopifyCustomer(p: ProfileView) {
+  if (!p?.email) return;
+  try {
+    await fetch(CUSTOMER_SYNC_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: p.email,
+        fullName: p.name,
+        phone: p.phone || '',
+        country: p.country || '',
+        applicationRef: p.buildRef || readBuildRef() || undefined,
+        acceptsMarketing: true,
+      }),
+    });
+  } catch { /* non-fatal */ }
 }
 
 /** Wait up to ~4s for the deferred SSO bridge, then resolve. */
@@ -212,6 +234,7 @@ export default function Account() {
           const p: ProfileView = { id: id.profile_id, name: local?.name || id.name || email, email, roles: id.roles || [], local: false, phone: local?.phone, country: local?.country };
           setProfile(p);
           setMode('view');
+          syncShopifyCustomer(p);
         } else {
           setAuthError(ar ? 'تعذر التحقق من الحساب' : 'Could not verify account');
         }
@@ -229,6 +252,7 @@ export default function Account() {
     saveLocalProfile(p);
     setProfile(p);
     setMode('view');
+    syncShopifyCustomer(p);
   };
 
   const updateLocalField = (patch: Partial<ProfileView>) => {
