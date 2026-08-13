@@ -89,7 +89,7 @@ export default function Build() {
         <p className="lede">{ar ? program.taglineAr : program.tagline}</p>
         <div className="build-hero-cta">
           <a className="button primary lg" href="#apply" onClick={() => track('build_cta', { location: 'hero' })}>
-            {ar ? 'تحقق من استحقاقك' : 'Check your eligibility'} <Rocket size={18} />
+            {ar ? 'ابدأ طلبك' : 'Start your application'} <Rocket size={18} />
           </a>
           <a className="button secondary lg" href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
             <Calendar size={18} /> {ar ? 'احجز جلسة تقييم' : 'Book an evaluation'}

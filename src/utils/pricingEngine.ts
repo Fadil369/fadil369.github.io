@@ -73,29 +73,17 @@ const tiers: Record<string, PricingTier> = {
 };
 
 export function calculatePrice(data: EligibilityData): PricingResult {
-  const identity = data.identity || 'OTHER';
-  const profession = data.profession || data.category || 'general';
-
-  let tierId: keyof typeof tiers = 'standard';
-
-  if (identity === 'SA' || identity === 'SD') {
-    tierId = 'sa_sd_free';
-  } else if (['doctor', 'nurse', 'healthcare'].includes(profession)) {
-    tierId = 'healthcare_50';
-  } else if (profession === 'entrepreneur') {
-    tierId = 'warrior_35';
-  } else if (['student', 'researcher'].includes(profession)) {
-    tierId = 'academic_30';
-  }
-
-  const tier = tiers[tierId];
+  // Launch pricing is FLAT: every BUILD seat is SAR 9,630. Identity and
+  // profession are still collected (stored with the application) for cohort
+  // routing and CRM, but no longer change the price.
+  const tier = tiers.standard;
   const discount = tier.discount;
   const finalPrice = tier.price;
   const savings = BASE_PRICE - finalPrice;
 
   return {
     tier,
-    eligibilityId: tierId,
+    eligibilityId: tier.id,
     discount,
     originalPrice: BASE_PRICE,
     finalPrice,

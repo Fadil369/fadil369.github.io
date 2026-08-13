@@ -210,11 +210,11 @@ export default function BuildEligibilityForm() {
           />
           <p className="step-description">
             {ar
-              ? 'تحقق من استحقاقك — قد تحصل على خصم مجاني أو مخفض بناءً على هويتك أو مهنتك.'
-              : 'Check your eligibility — you may qualify for a free or discounted seat based on your identity or profession.'}
+              ? 'جميع مقاعد البناء بسعر موحد ٩٬٦٣٠ ر.س — أخبرنا عنك لنختار لك المسار المناسب.'
+              : 'Every Build seat is a flat SAR 9,630 — tell us about yourself so we can route you to the right cohort.'}
           </p>
           <button className="btn-primary" onClick={() => setStep('contact')}>
-            {ar ? 'تحقق من استحقاقي →' : 'Check my eligibility →'}
+            {ar ? 'ابدأ الطلب →' : 'Start your application →'}
           </button>
         </div>
       )}
@@ -455,26 +455,14 @@ export default function BuildEligibilityForm() {
           <h2>{ar ? pricing.tier.titleAr : pricing.tier.titleEn}</h2>
           <p className="tier-subtitle">
             {ar
-              ? `تذكرة البناء الخاصة بك — ${pricing.finalPrice === 0 ? 'مجانية' : formatPrice(pricing.finalPrice, true)}`
-              : `Your Build Ticket — ${pricing.finalPrice === 0 ? 'FREE' : formatPrice(pricing.finalPrice)}`}
+              ? `تذكرة البناء الخاصة بك — ${formatPrice(pricing.finalPrice, true)}`
+              : `Your Build Ticket — ${formatPrice(pricing.finalPrice)}`}
           </p>
 
           <div className="price-display">
-            <div className="price-row original">
-              <span>{ar ? 'السعر الأصلي' : 'Original Price'}</span>
-              <span className="price crossed">{formatPrice(pricing.originalPrice, ar)}</span>
-            </div>
-            {pricing.discount > 0 && (
-              <div className="price-row discount">
-                <span>{ar ? `الخصم ${pricing.discount}%` : `Discount ${pricing.discount}%`}</span>
-                <span className="price-savings">−{formatPrice(pricing.savings, ar)}</span>
-              </div>
-            )}
             <div className="price-row final">
               <span className="label-final">{ar ? 'تذكرة البناء الخاصة بك' : 'Your Build Ticket'}</span>
-              <span className="price-final">
-                {pricing.finalPrice === 0 ? (ar ? 'مجاني' : 'FREE') : formatPrice(pricing.finalPrice, ar)}
-              </span>
+              <span className="price-final">{formatPrice(pricing.finalPrice, ar)}</span>
             </div>
           </div>
 
@@ -502,9 +490,7 @@ export default function BuildEligibilityForm() {
                 </>
               ) : (
                 <>
-                  {pricing.finalPrice === 0
-                    ? ar ? 'إرسال الطلب المجاني →' : 'Submit free application →'
-                    : ar ? 'إرسال الطلب والدفع →' : 'Submit application & pay →'}
+                  {ar ? 'إرسال الطلب والدفع →' : 'Submit application & pay →'}
                 </>
               )}
             </button>
