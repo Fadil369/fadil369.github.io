@@ -97,11 +97,7 @@ export default function BuildEligibilityForm() {
 
   const handleProfessionSelect = (profession: string) => {
     updateData({ profession });
-    if (profession === 'other' || profession === 'entrepreneur') {
-      setStep('verification');
-    } else {
-      setStep('result');
-    }
+    setStep('verification');
   };
 
   const handleCategorySelect = (category: string) => {
@@ -198,7 +194,10 @@ export default function BuildEligibilityForm() {
     }
   };
 
-  const requiresVerification = data.identity === 'SA' || data.identity === 'SD';
+  const requiresIdVerification = data.identity === 'SA' || data.identity === 'SD';
+  const requiresCredentialEvidence =
+    !requiresIdVerification && ['doctor', 'nurse', 'healthcare'].includes(data.profession || '');
+  const requiresEvidence = requiresIdVerification || requiresCredentialEvidence;
 
   return (
     <div className="build-form-container">
@@ -344,18 +343,30 @@ export default function BuildEligibilityForm() {
       {step === 'verification' && (
         <div className="form-step verification-step">
           <h2>
-            {requiresVerification
+            {requiresIdVerification
               ? ar ? 'تحقق من هويتك' : 'Verify your identity'
+              : requiresCredentialEvidence
+              ? ar ? 'تحقق من مهنتك' : 'Verify your profession'
               : ar ? 'أخبرنا عن مشروعك' : 'Tell us about your project'}
           </h2>
 
-          {requiresVerification ? (
+          {requiresIdVerification ? (
             <div className="verification-form">
               <div className="form-field">
                 <label>
                   {data.identity === 'SA'
                     ? ar ? 'هوية وطنية سعودية' : 'Saudi National ID'
                     : ar ? 'جواز السفر أو الهوية الوطنية' : 'Passport or National ID'}
+                </label>
+                <input type="file" accept="image/*,.pdf" onChange={handleFileUpload} className="file-input" />
+                {verificationFile && <p className="file-name">{verificationFile.name}</p>}
+              </div>
+            </div>
+          ) : requiresCredentialEvidence ? (
+            <div className="verification-form">
+              <div className="form-field">
+                <label>
+                  {ar ? 'رخصة مزاولة المهنة أو بطاقة هوية العمل' : 'Professional license or work ID'}
                 </label>
                 <input type="file" accept="image/*,.pdf" onChange={handleFileUpload} className="file-input" />
                 {verificationFile && <p className="file-name">{verificationFile.name}</p>}
@@ -428,7 +439,7 @@ export default function BuildEligibilityForm() {
             <button
               className="btn-primary"
               onClick={() => setStep('result')}
-              disabled={requiresVerification && !verificationFile}
+              disabled={requiresEvidence && !verificationFile}
             >
               {ar ? 'متابعة →' : 'Continue →'}
             </button>
