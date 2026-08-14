@@ -3604,65 +3604,7 @@
       "taglineAr": "من الفكرة إلى منتج جاهز — ابنِ حلّك مع محرّك برينسايت.",
       "description": "A guided incubation track: pick a solution from the Solutions shelf, and build it into a production product with BrainSAIT's stack, mentorship, and infrastructure.",
       "descriptionAr": "مسار احتضان موجَّه: اختر حلاً من رفّ الحلول، وابنِه ليصبح منتجاً جاهزاً للإنتاج باستخدام منصة برينسايت والإرشاد والبنية التحتية.",
-      "benefits": [
-        {
-          "id": "sa_sd_free",
-          "icon": "🇸🇦🇸🇩",
-          "titleEn": "Founding Identity Benefit",
-          "titleAr": "استحقاق الهوية التأسيسية",
-          "discount": 100,
-          "category": "identity",
-          "identityTypes": [
-            "SA",
-            "SD"
-          ],
-          "descriptionEn": "For builders from Saudi Arabia or Sudan",
-          "descriptionAr": "للبنّاة من المملكة العربية السعودية أو السودان",
-          "requiresVerification": true
-        },
-        {
-          "id": "healthcare_50",
-          "icon": "🩺",
-          "titleEn": "Healthcare Builder Benefit",
-          "titleAr": "استحقاق بناة الرعاية الصحية",
-          "discount": 50,
-          "category": "profession",
-          "professions": [
-            "doctor",
-            "nurse",
-            "healthcare"
-          ],
-          "descriptionEn": "For doctors, nurses, and healthcare professionals",
-          "descriptionAr": "للأطباء والممرضات والمتخصصين في الرعاية الصحية",
-          "requiresVerification": true
-        },
-        {
-          "id": "warrior_entrepreneur_35",
-          "icon": "⚔️",
-          "titleEn": "Warrior Entrepreneur Benefit",
-          "titleAr": "استحقاق رائد الأعمال المحارب",
-          "discount": 35,
-          "category": "entrepreneur",
-          "descriptionEn": "For founders building something real",
-          "descriptionAr": "لرواد الأعمال الذين يبنون شيئاً حقيقياً",
-          "requiresVerification": true
-        },
-        {
-          "id": "academic_30",
-          "icon": "🎓",
-          "titleEn": "Knowledge Builder Benefit",
-          "titleAr": "استحقاق بناة المعرفة",
-          "discount": 30,
-          "category": "academic",
-          "academicTypes": [
-            "student",
-            "researcher"
-          ],
-          "descriptionEn": "For students and researchers",
-          "descriptionAr": "للطلاب والباحثين",
-          "requiresVerification": true
-        }
-      ],
+      "benefits": [],
       "tracks": [
         {
           "id": "doctors",

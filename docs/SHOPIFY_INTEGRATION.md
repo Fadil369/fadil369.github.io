@@ -1,344 +1,81 @@
 # BrainSAIT Build Program - Shopify Integration Guide
 
-This guide explains how to set up the Shopify store (`store.brainsait.org`) to properly handle the Build Eligibility Engine pricing tiers and integrate with PayPal.
+**Last updated:** 2026-08-14
 
-## Overview
+This guide explains how the Shopify store (`store.brainsait.org`) handles the Build Program today.
 
-The Build Eligibility Engine calculates eligibility-based prices (SAR 0 to SAR 9,630) and passes the applicant's tier information to Shopify via cart line item properties. Shopify must be configured to:
+## Current state: one flat ticket, no tiers
 
-1. Accept the pricing data from the form
-2. Route to the correct payment gateway (PayPal)
-3. Track eligibility tier for post-purchase CRM integration
-4. Handle zero-price orders (free tier) appropriately
+Tiers and eligibility pricing are **cancelled**. There is exactly **one standard Build Ticket** at a flat **9,630 SAR** (was 14,960 SAR) for every applicant. The eligibility form on the Build page was replaced with a slim intake (contact + GitHub username + promo code) — there is no identity/profession/verification flow anymore.
 
-## Shopify Product Setup
+### Canonical Shopify product
 
-### Step 1: Create Product Variants
+| Field | Value |
+|---|---|
+| Product | BUILD Ticket — Incubation Pass |
+| Handle | `build-ticket` |
+| Product ID | `gid://shopify/Product/8046917353555` |
+| Variant | Standard — `gid://shopify/ProductVariant/45947217870931` |
+| SKU | `BSP-BUILD-TICKET-IDENTITY` |
+| Price | 9,630 SAR (flat) |
+| Status | ACTIVE |
 
-The form currently routes to this base product:
-```
-https://store.brainsait.org/products/brainsait-incubation-program
-```
+The obsolete tiered product `brainsait-incubation-program` (product id `8047612067923`) is **archived** — do not re-activate it. Verify the canonical product any time with `node Store/verifyIntegration.mjs` or by querying the Admin API for the single ACTIVE variant.
 
-Create 5 variants in Shopify with these exact SKUs (mapped in the form):
+### Storefront → checkout chain
 
-| Variant Name | SKU | Base Price | Actual Price | Purpose |
-|---|---|---|---|---|
-| Saudi/Sudanese (Free) | BSP-BUILD-FREE | SAR 9,630 | SAR 0 | Founding identity benefit |
-| Healthcare Professional | BSP-BUILD-HC-50 | SAR 9,630 | SAR 4,815 | Doctor/Nurse 50% off |
-| Warrior Entrepreneur | BSP-BUILD-WARRIOR-35 | SAR 9,630 | SAR 6,259.50 | Entrepreneur 35% off |
-| Academic (Student/Researcher) | BSP-BUILD-ACADEMIC-30 | SAR 9,630 | SAR 6,741 | Student/Researcher 30% off |
-| Standard | BSP-BUILD-STANDARD | SAR 9,630 | SAR 9,630 | Full price, no discount |
+1. Applicant fills the flat intake on `https://fadil369.github.io/build` (name, email, phone, country, GitHub username, promo code).
+2. `build-apply.brainsait.org/apply` creates the application (Notion page when configured, KV fallback), registers the applicant as a Shopify customer, and returns a checkout URL:
+   ```
+   https://store.brainsait.org/cart/add?id=45947217870931&quantity=1&properties[eligibility_tier]=standard&properties[discount_percent]=<promo%>&properties[final_price]=9630&properties[application_ref]=<ref>&properties[applicant_email]=<email>
+   ```
+   With a promo code the URL goes through the Shopify `/discount/CODE` flow first.
+3. `orders/paid` webhook → `build-apply.brainsait.org/webhook/shopify` (HMAC-verified with `SHOPIFY_WEBHOOK_SECRET`) → application marked **Paid + Approved**.
 
-**Note:** To handle free orders, use a Shopify discount code or app that allows 100% discounts for verified Saudi/Sudanese applicants.
+## Flow after payment (automated)
 
-### Step 2: Update Variant IDs in Form
+- **Notion onboarding** — the candidate's Notion page is updated to Paid/Approved, the onboarding plan is created (cohort & sprint plan, GitHub repo invite, onboarding call), and all 16 milestones are seeded. Progress is tracked per candidate.
+- **Shopify customer account (Partner API)** — the customer record is promoted with `build-partner`, `paid`, `partner-profile` tags via the Admin API so they appear in the store's customer/partner directory. Customer accounts are managed through the Shopify Partner org using the Partner API (store-level custom app `brainsait-fulfillment` token in `SHOPIFY_ADMIN_TOKEN`).
+- **GitHub repo** — when a GitHub username is on the application, a private-ish repo is generated from `Fadil369/brainsait-build-starter` and the candidate is invited as a repo-scoped collaborator (idempotent via KV). The repo URL is surfaced on the Track page.
+- **Paid welcome email** — via Resend with the Second Brain gift, companion links, and the application ref.
+- **Certificate** — issued automatically (once, idempotent) when all 16 milestones are Completed; served at `build-apply.brainsait.org/certificate/<ref>`.
 
-In `src/components/BuildEligibilityForm.tsx`, update the `variantMap` with actual Shopify variant IDs:
+## Telegram bot status
 
-```typescript
-const variantMap: Record<string, string> = {
-  sa_sd_free: 'REPLACE_WITH_ACTUAL_VARIANT_ID',
-  healthcare_50: 'REPLACE_WITH_ACTUAL_VARIANT_ID',
-  warrior_35: 'REPLACE_WITH_ACTUAL_VARIANT_ID',
-  academic_30: 'REPLACE_WITH_ACTUAL_VARIANT_ID',
-  standard: 'REPLACE_WITH_ACTUAL_VARIANT_ID',
-};
-```
+The Telegram bot (`@BrainSAITForgeBot`) is **no longer the registration/entry gate** — the flow now runs on GitHub. The Build page no longer shows Telegram login or bot commands. Backend `/bot/*` endpoints on `build-apply` may remain for legacy progress tracking, but the onboarding task is now `Invite to GitHub repository` (channel `GitHub`).
 
-Get variant IDs from Shopify Admin:
-1. Go to Products → Brainsait Incubation Program
-2. Click each variant
-3. Copy the ID from the URL (e.g., `https://admin.shopify.com/store/brainsait/products/7891234/variants/39817261`)
+## Promo codes
 
-### Step 3: Configure Product Metafields
+| Code | Discount | Note |
+|---|---|---|
+| LAUNCH10 | 10% off 9,630 | Validated server-side on build-apply; applied via Shopify `/discount/CODE` flow |
+| FOUNDER15 | 15% off 9,630 | Same |
 
-Add these metafields to the product for tracking:
+## Shopify webhook
 
-| Field Name | Namespace | Key | Type | Description |
-|---|---|---|---|---|
-| Eligibility Tier | `brainsait` | `eligibility_tier` | single_line_text | Current tier |
-| Base Price SAR | `brainsait` | `base_price` | number | Canonical SAR 9,630 |
-| Discount Percent | `brainsait` | `discount_percent` | number | Discount % applied |
+- Topic: `orders/paid` → `https://build-apply.brainsait.org/webhook/shopify` (JSON)
+- HMAC verified against `SHOPIFY_WEBHOOK_SECRET` (wrangler secret on the build-apply worker). Fail-closed: without the secret the route returns 503 so Shopify retries.
+- Orders without an `application_ref` property are acknowledged and ignored (regular store purchases).
+- Deduplicated per order via KV (`webhook-processed:<orderId>`) to survive duplicate deliveries.
 
-## PayPal Integration on Shopify
+## Environment (build-apply worker secrets)
 
-### Step 1: Enable PayPal Payment Method
+- `SHOPIFY_STORE_DOMAIN` — default `store.brainsait.org`
+- `SHOPIFY_ADMIN_TOKEN` — `shpat_...` from the store-level custom app (Partner org)
+- `SHOPIFY_WEBHOOK_SECRET` — signs/verifies webhook HMAC
+- `GITHUB_TOKEN` — enables GitHub repo provisioning after payment (scope: `repo`)
+- `NOTION_TOKEN`, `NOTION_BUILD_DB_ID`, `NOTION_TASKS_DB_ID`, `NOTION_MILESTONES_DB_ID` — Notion onboarding
 
-1. **Admin Dashboard:**
-   - Settings → Payments
-   - Under "Payment providers," click "Add payment method"
-   - Select "PayPal" from the list
-   - Click "Complete setup"
+## Testing checklist (flat flow)
 
-2. **PayPal Account Requirements:**
-   - Business account (not Personal)
-   - Must be verified in Saudi Arabia or region serving MENA
-   - Currency support for SAR (Saudi Riyal)
+- [x] Single ACTIVE variant `45947217870931` @ 9,630 SAR, SKU `BSP-BUILD-TICKET-IDENTITY`
+- [x] Obsolete tiered product archived
+- [x] Checkout URL carries `application_ref` + `applicant_email` properties
+- [x] `orders/paid` webhook live and HMAC-protected
+- [x] Notion onboarding + milestone seeding on payment
+- [x] Shopify customer upsert with partner tags via Partner API
+- [x] GitHub repo generation + collaborator invite when username present
+- [ ] Airtable automation (optional, legacy)
 
-3. **Connect Your PayPal Account:**
-   - Log in with your PayPal business email
-   - Authorize Shopify to take payments on your behalf
-   - Confirm the connected account appears in Shopify settings
-
-### Step 2: Configure PayPal Settings
-
-1. **Transaction Currency:**
-   - Go to Settings → Payments → PayPal
-   - Ensure store currency is set to SAR (Saudi Riyal)
-   - PayPal will automatically handle currency conversion if needed
-
-2. **Payment Flow:**
-   - Recommended: "Website Payments Standard" for simplicity
-   - Or: "Checkout with PayPal" for faster checkouts
-   - Test mode available for sandbox testing
-
-### Step 3: Test PayPal Payments
-
-**Sandbox Testing (Before Production):**
-
-1. Get PayPal Sandbox credentials:
-   - Visit https://developer.paypal.com
-   - Sign in → Sandbox accounts
-   - Create test buyer and seller accounts
-
-2. Enable Sandbox in Shopify:
-   - Settings → Payments → PayPal
-   - Toggle "Test mode" ON
-   - Enter sandbox API credentials
-
-3. Test each tier:
-   - Place test orders for each eligibility tier
-   - Verify correct prices in PayPal checkout
-   - Confirm orders appear in Shopify admin
-
-**Production Deployment:**
-
-1. Disable test mode in Shopify PayPal settings
-2. Verify live account credentials
-3. Process first real payment carefully
-4. Monitor transactions in PayPal dashboard
-
-## Cart Properties for Eligibility Tracking
-
-The form passes these properties to Shopify:
-
-```
-/cart/add?id=VARIANT_ID&quantity=1&properties[eligibility_tier]=healthcare_50&properties[discount_percent]=50&properties[final_price]=4815
-```
-
-### Shopify Will Receive:
-- `properties[eligibility_tier]` - Tier ID (e.g., "healthcare_50")
-- `properties[discount_percent]` - Discount % (0-100)
-- `properties[final_price]` - Final SAR amount
-
-### Store These for Post-Purchase:
-Add a custom order attribute to capture these:
-
-**Liquid Template (checkout.liquid or custom app):**
-```liquid
-{% if cart.line_items.first.properties.eligibility_tier %}
-  <input type="hidden" name="attributes[Eligibility Tier]" value="{{ cart.line_items.first.properties.eligibility_tier }}" />
-  <input type="hidden" name="attributes[Applied Discount]" value="{{ cart.line_items.first.properties.discount_percent }}%" />
-{% endif %}
-```
-
-This ensures order notes include tier information for Airtable export.
-
-## Handling Free Orders (SAR 0)
-
-**Challenge:** PayPal doesn't process zero-value transactions.
-
-**Solution Options:**
-
-### Option A: Discount Code Automation
-1. Create a Shopify discount code: `SAUDI_SUDANESE_BUILD_FREE`
-2. Set discount to: "Fixed amount off entire order" → SAR 9,630
-3. Limit to 1 use per customer (by email)
-4. Automatically apply code for SA/SD tier via Discount API
-
-**Implementation:**
-```javascript
-// After user selects Saudi/Sudanese tier:
-const discountCode = 'SAUDI_SUDANESE_BUILD_FREE';
-const cartUrl = `https://store.brainsait.org/discount/${discountCode}?redirect=/cart`;
-```
-
-### Option B: Shopify Plus Flow (Custom)
-Use Shopify Flow or a custom app to:
-1. Detect zero-price orders from SA/SD applications
-2. Auto-confirm without payment processing
-3. Create order in system
-4. Send confirmation email with access credentials
-
-### Option C: Zero-Price Item → Admin Fulfillment
-1. Keep SAR 9,630 in Shopify
-2. Apply 100% discount via custom app
-3. Require manual verification in Shopify admin
-4. Admin approves → order fulfills → access granted
-
-**Recommended:** Use Option A (Discount Code) for simplicity.
-
-## Order Confirmation & CRM Integration
-
-### Step 1: Capture Order Data
-
-When order is placed, Shopify should include:
-- Order ID
-- Customer email
-- Eligibility tier (from cart properties)
-- Applied discount %
-- Final price paid (or SAR 0 for free tier)
-
-### Step 2: Webhook to Airtable
-
-Set up a Shopify webhook:
-- Event: `orders/create`
-- Destination: `https://hook.integromat.com/...` (or your Airtable automation)
-
-**Webhook Payload Should Include:**
-```json
-{
-  "order_id": "...",
-  "customer_email": "...",
-  "total": 4815,
-  "tier": "healthcare_50",
-  "discount_percent": 50,
-  "original_price": 9630,
-  "cart_properties": {
-    "eligibility_tier": "healthcare_50",
-    "discount_percent": "50",
-    "final_price": "4815"
-  }
-}
-```
-
-### Step 3: Create Airtable Record
-
-Airtable automation receives webhook → creates record in `BUILD_APPLICATIONS` table:
-- Application ID (auto-generated)
-- Email
-- Tier
-- Price
-- Payment Status: "Paid" (or "Verified" for free tier)
-- Created At: timestamp
-
-## Testing Checklist
-
-- [ ] All 5 product variants created in Shopify
-- [ ] Variant IDs updated in form code
-- [ ] PayPal account connected to Shopify
-- [ ] Store currency set to SAR
-- [ ] Test mode enabled in PayPal
-- [ ] Free tier discount code created
-- [ ] Order webhooks configured
-- [ ] Airtable automation set up
-
-## Test Workflow
-
-### Test 1: Standard User (Full Price - SAR 9,630)
-1. Go to https://fadil369.github.io/build
-2. Identity: International
-3. Profession: Other
-4. Proceed to payment
-5. Verify Shopify cart shows SAR 9,630
-6. Complete with test PayPal (sandbox)
-7. Verify order in Shopify admin
-
-### Test 2: Healthcare Professional (50% Off - SAR 4,815)
-1. Go to https://fadil369.github.io/build
-2. Identity: International
-3. Profession: Doctor
-4. Verify: Upload test PDF
-5. Proceed to payment
-6. Verify Shopify cart shows SAR 4,815
-7. Verify cart properties include `eligibility_tier=healthcare_50`
-8. Complete with test PayPal
-9. Check order notes for tier information
-
-### Test 3: Saudi National (Free - SAR 0)
-1. Go to https://fadil369.github.io/build
-2. Identity: Saudi
-3. Verification: Upload test ID
-4. Proceed to payment
-5. Verify page shows SAR 0 / FREE
-6. Check that discount code is applied
-7. Verify order in Shopify shows zero amount
-8. Confirm free order processing works
-
-### Test 4: Warrior Entrepreneur (35% Off - SAR 6,259.50)
-1. Go to https://fadil369.github.io/build
-2. Identity: International
-3. Profession: Other → Entrepreneur
-4. Verification: Enter project details
-5. Proceed to payment
-6. Verify Shopify cart shows SAR 6,259.50
-7. Complete payment
-8. Check order includes eligibility data
-
-### Test 5: Academic Student (30% Off - SAR 6,741)
-1. Go to https://fadil369.github.io/build
-2. Identity: International
-3. Profession: Other → Student
-4. Verification: Enter university name
-5. Proceed to payment
-6. Verify Shopify cart shows SAR 6,741
-7. Complete payment
-8. Verify order tracking
-
-## Troubleshooting
-
-### "Cart shows wrong price"
-- Check variant IDs in form code match Shopify
-- Verify cart properties are being passed
-- Check Shopify product variant prices are correct
-
-### "PayPal checkout blank/error"
-- Enable test mode in Shopify PayPal settings
-- Verify PayPal sandbox credentials
-- Check browser console for errors
-
-### "Free tier not processing"
-- Verify discount code is created and active
-- Check discount limit settings
-- Test with manual Shopify admin order
-
-### "Order webhook not firing"
-- Check webhook endpoint URL in Shopify admin
-- Verify endpoint is publicly accessible
-- Test webhook manually in Shopify admin
-
-## Performance Monitoring
-
-Track these metrics post-launch:
-
-1. **Conversion by Tier:**
-   - % of users reaching each tier
-   - Completion rate per tier
-   - Drop-off points
-
-2. **Payment Success:**
-   - PayPal success rate
-   - Error rate by tier
-   - Average transaction time
-
-3. **Application Data:**
-   - Eligibility tier distribution
-   - Geographic distribution (SA/SD vs International)
-   - Profession breakdown
-
-Use Shopify analytics + Airtable queries to measure.
-
-## Support
-
-For issues with this integration:
-1. Check Shopify admin → Orders → Details for tier info
-2. Check PayPal transaction log
-3. Verify Airtable webhook logs
-4. Review browser console for client-side errors
-
----
-
-**Last Updated:** 2026-08-11
-**Shopify Store:** store.brainsait.org
 **Form:** https://fadil369.github.io/build
+**Track:** https://fadil369.github.io/track?ref=<applicationRef>

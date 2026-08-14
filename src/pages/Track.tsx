@@ -23,6 +23,7 @@ interface ProgressData {
   paymentStatus?: string;
   applicationStatus?: string;
   notionUrl?: string;
+  repoUrl?: string;
   totalTasks: number;
   doneTasks: number;
   percent: number;
@@ -240,9 +241,11 @@ export default function Track() {
             {ar ? 'افتح مسارك' : 'Open your track'}
           </a>
         )}
-        <a className="button secondary" href="https://t.me/BrainSAITForgeBot" target="_blank" rel="noopener noreferrer">
-          {ar ? 'بوت Forge' : 'Forge Bot'}
-        </a>
+        {data.repoUrl && (
+          <a className="button secondary" href={data.repoUrl} target="_blank" rel="noopener noreferrer">
+            {ar ? 'مستودعك على GitHub' : 'Your GitHub repo'}
+          </a>
+        )}
       </div>
     </main>
   );

@@ -75,11 +75,11 @@ export default function Home() {
             </p>
           </div>
           <div className="entity-card">
-            <h3>{ar ? 'بوت مرافق' : 'A companion bot'}</h3>
+            <h3>{ar ? 'مستودع GitHub' : 'Your GitHub repo'}</h3>
             <p>
               {ar
-                ? '@BrainSAITForgeBot يرافقك من التسجيل حتى الشهادة — يتابع، يذكّر، ويقيس تقدمك.'
-                : '@BrainSAITForgeBot walks with you from registration to certificate — tracking, reminding, and scoring your progress.'}
+                ? 'بعد الدفع يولَّد مستودعك الخاص من قالب BUILD — تبدأ من مرجع تملكه وتعمل عليه كمساهم.'
+                : 'After payment your own repo is generated from the BUILD starter — you start from a reference you own and work on it as a collaborator.'}
             </p>
           </div>
           <div className="entity-card">
