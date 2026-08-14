@@ -135,24 +135,25 @@ export const testScenarios: TestScenario[] = [
   },
 ];
 
-// Promo code scenarios (launch offer + discount)
+// Promo code scenarios — promo codes are removed (they never existed in the
+// store). calculatePrice ignores them: every seat stays at the flat 9,630 SAR.
 export const promoTests: { name: string; input: EligibilityData; promo: string; expectedPrice: number; expectedDiscount: number }[] = [
   {
-    name: 'LAUNCH10 promo - 10% off launch price',
+    name: 'LAUNCH10 promo ignored - flat price',
     input: { identity: 'OTHER', profession: 'other' },
     promo: 'LAUNCH10',
-    expectedPrice: 8667,
-    expectedDiscount: 10,
+    expectedPrice: 9630,
+    expectedDiscount: 0,
   },
   {
-    name: 'FOUNDER15 promo - 15% off launch price',
+    name: 'FOUNDER15 promo ignored - flat price',
     input: { identity: 'OTHER', profession: 'other' },
     promo: 'FOUNDER15',
-    expectedPrice: 8185.5,
-    expectedDiscount: 15,
+    expectedPrice: 9630,
+    expectedDiscount: 0,
   },
   {
-    name: 'Invalid promo code falls back to launch price',
+    name: 'Unknown promo code - flat price',
     input: { identity: 'OTHER', profession: 'other' },
     promo: 'NOTACODE',
     expectedPrice: 9630,

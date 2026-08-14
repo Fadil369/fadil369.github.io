@@ -11,35 +11,6 @@ export interface PricingTier {
   icon: string;
 }
 
-export interface PromoCode {
-  code: string;
-  // Discount applied as a percentage of the launch offer price.
-  discountPercent: number;
-  titleEn: string;
-  titleAr: string;
-  active: boolean;
-}
-
-// Launch promo codes — personal, tied to a buyer email, single use.
-// Codes are validated server-side on build-apply; this list mirrors the
-// active codes so the storefront can preview the discounted price instantly.
-export const PROMO_CODES: Record<string, PromoCode> = {
-  LAUNCH10: {
-    code: 'LAUNCH10',
-    discountPercent: 10,
-    titleEn: 'Early Bird — 10% off launch price',
-    titleAr: 'خصم الطيور المبكرة — 10%',
-    active: true,
-  },
-  FOUNDER15: {
-    code: 'FOUNDER15',
-    discountPercent: 15,
-    titleEn: 'Founder Circle — 15% off launch price',
-    titleAr: 'دائرة المؤسسين — 15%',
-    active: true,
-  },
-};
-
 export interface EligibilityData {
   identity?: string; // SA, SD, OTHER
   profession?: string; // doctor, nurse, healthcare
@@ -61,7 +32,6 @@ export interface PricingResult {
   finalPrice: number;
   savings: number;
   launchOffer: boolean;
-  promo?: PromoCode;
 }
 
 const tiers: Record<string, PricingTier> = {
@@ -75,37 +45,27 @@ const tiers: Record<string, PricingTier> = {
   },
 };
 
-export function lookupPromo(code?: string): PromoCode | undefined {
-  if (!code) return undefined;
-  const normalized = code.trim().toUpperCase();
-  const promo = PROMO_CODES[normalized];
-  return promo && promo.active ? promo : undefined;
-}
-
 export function calculatePrice(
   data: EligibilityData,
-  promoCode?: string
+  _promoCode?: string
 ): PricingResult {
   // Launch pricing is FLAT: every BUILD seat is SAR 9,630 (was SAR 14,960).
-  // Identity and profession are still collected (stored with the application)
-  // for cohort routing and CRM, but no longer change the base price.
-  // A valid promo code adds a discount on top of the launch price.
+  // Promo codes are removed — they never existed in the Shopify store and a
+  // broken /discount/CODE redirect would drop the application_ref and break
+  // the post-payment automation.
   const tier = tiers.standard;
-  const promo = lookupPromo(promoCode);
-  const promoDiscount = promo ? promo.discountPercent : 0;
-  const finalPrice = promo ? BASE_PRICE * (1 - promoDiscount / 100) : BASE_PRICE;
+  const finalPrice = BASE_PRICE;
   const savings = ORIGINAL_PRICE - finalPrice;
 
   return {
     tier,
     eligibilityId: tier.id,
-    discount: promoDiscount,
+    discount: 0,
     originalPrice: ORIGINAL_PRICE,
     launchPrice: BASE_PRICE,
     finalPrice,
     savings,
     launchOffer: true,
-    promo,
   };
 }
 

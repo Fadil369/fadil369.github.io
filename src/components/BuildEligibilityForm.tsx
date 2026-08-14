@@ -1,6 +1,6 @@
-import { useState, useMemo, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Check, Loader2 } from 'lucide-react';
-import { formatPrice, ORIGINAL_PRICE, BASE_PRICE, lookupPromo } from '../utils/pricingEngine';
+import { formatPrice, ORIGINAL_PRICE, BASE_PRICE } from '../utils/pricingEngine';
 import { useI18n } from '../i18n';
 import { track } from '../analytics';
 import { BUILD_APPLY_API, TURNSTILE_SITE_KEY } from '../config/build';
@@ -26,17 +26,13 @@ interface SubmitResult {
 export default function BuildEligibilityForm() {
   const { ar } = useI18n();
   const [form, setForm] = useState({ fullName: '', email: '', phone: '', country: '', githubUsername: '' });
-  const [promoInput, setPromoInput] = useState('');
-  const [promoApplied, setPromoApplied] = useState('');
-  const [promoError, setPromoError] = useState('');
   const [turnstileToken, setTurnstileToken] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [submitResult, setSubmitResult] = useState<SubmitResult | null>(null);
   const turnstileRef = useRef<HTMLDivElement>(null);
 
-  const promo = useMemo(() => lookupPromo(promoApplied || undefined), [promoApplied]);
-  const finalPrice = promo ? BASE_PRICE * (1 - promo.discountPercent / 100) : BASE_PRICE;
+  const finalPrice = BASE_PRICE;
 
   useEffect(() => {
     (window as any).onTurnstileSuccess = (token: string) => setTurnstileToken(token);
@@ -45,20 +41,6 @@ export default function BuildEligibilityForm() {
 
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
-
-  const applyPromoCode = () => {
-    const code = promoInput.trim();
-    if (!code) return;
-    const found = lookupPromo(code);
-    if (!found) {
-      setPromoApplied('');
-      setPromoError(ar ? 'رمز الخصم غير صالح' : 'Invalid promo code');
-      return;
-    }
-    setPromoApplied(found.code);
-    setPromoError('');
-    track('build_promo_applied', { promo: found.code, discount: found.discountPercent });
-  };
 
   const contactValid = form.fullName.trim() && form.email.trim().includes('@') && form.country.trim();
 
@@ -77,7 +59,6 @@ export default function BuildEligibilityForm() {
       phone: form.phone.trim(),
       country: form.country.trim(),
       githubUsername: form.githubUsername.trim() || undefined,
-      promoCode: promoApplied || undefined,
       turnstileToken: turnstileToken || undefined,
     };
 
@@ -94,7 +75,7 @@ export default function BuildEligibilityForm() {
 
       track('build_application_submitted', {
         tier: 'standard',
-        discount: promo?.discountPercent || 0,
+        discount: 0,
         final_price: result.finalPrice,
       });
 
@@ -165,34 +146,9 @@ export default function BuildEligibilityForm() {
           <div className="bt-price-row">
             <span className="bt-original">{formatPrice(ORIGINAL_PRICE, ar)}</span>
             <span className="bt-price">{formatPrice(finalPrice, ar)}</span>
-            {promo && (
-              <span className="bt-savings">
-                {ar ? 'وفّرت' : 'You save'} {formatPrice(ORIGINAL_PRICE - finalPrice, ar)}
-              </span>
-            )}
-          </div>
-          {promo && <p className="promo-ok">✅ {ar ? promo.titleAr : promo.titleEn}</p>}
-
-          {/* Promo code — before the price */}
-          <div className="promo-box">
-            <div className="promo-row">
-              <input
-                type="text"
-                className="promo-input"
-                value={promoInput}
-                onChange={(e) => setPromoInput(e.target.value)}
-                placeholder={ar ? 'أدخل رمز الخصم' : 'Enter promo code'}
-              />
-              <button className="btn-promo" onClick={applyPromoCode}>{ar ? 'تطبيق' : 'Apply'}</button>
-            </div>
-            {promoError && <p className="promo-err">{promoError}</p>}
-            {promoApplied && (
-              <p className="promo-clear">
-                <button className="promo-clear-btn" onClick={() => { setPromoApplied(''); setPromoError(''); }}>
-                  {ar ? 'إزالة الرمز' : 'Remove code'}
-                </button>
-              </p>
-            )}
+            <span className="bt-savings">
+              {ar ? 'وفّرت' : 'You save'} {formatPrice(ORIGINAL_PRICE - finalPrice, ar)}
+            </span>
           </div>
 
           <p className="bt-note">
