@@ -122,6 +122,40 @@ When a paid BUILD order is provisioned, `build-apply` fans a rich
 Every step is best-effort + idempotent; no single failure blocks the paid
 confirmation or the rest of the pipeline.
 
+## BUILD Ticket installment system
+
+The BUILD Ticket (flat SAR 9,630) can be paid on a plan chosen at intake:
+
+| Plan | Payments | Amounts |
+|---|---|---|
+| `full` | 1 | 9,630 once |
+| `flex` | 2 | 4,815 + 4,815 (30 days apart) |
+| `split` | 3 | 3,210 × 3 (monthly) |
+
+**How it works**
+1. Intake form sends `plan`. `build-apply` creates an installment schedule in KV
+   (`installment:<appRef>`), and the checkout carries `properties[installment_no]`
+   + `properties[installment_ref]` so each payment is tracked per-installment.
+2. The `orders/paid` webhook detects `installment_ref` → marks that single
+   installment paid. The application is **only fully Paid + Approved when all
+   installments are settled** (partial payments never unlock full provisioning).
+3. The first payment URL returns installments 2/3 pay links in the apply response.
+
+**Strict tracking + follow-up (cron daily)**
+- Reminder escalation: T-3d friendly → T-1d nudge → T+1d urgent → T+3d final →
+  T+7d warning → **≥14d overdue → SUSPENDED**.
+- Reminders go by **email (Resend) + SMS (Twilio/KonsoleH via hub)** with a
+  per-installment pay link.
+- On suspension: portal profile 403 `account_suspended` (no access), Notion
+  `Suspended` badge, hub events, Airtable/KB flagged. A late payment resumes
+  the account automatically.
+
+**Endpoints**
+- `GET  /installment/<ref>` — plan status (used by the Track page).
+- `POST /installment/<ref>` `{action: suspend|resume, reason}` — manual control.
+- `POST portal.brainsait.de/api/integration/partner-status` — suspend/resume the
+  partner's portal profile (enforced in `_require_context`).
+
 ## Environment (build-apply worker secrets)
 
 - `SHOPIFY_STORE_DOMAIN` — default `store.brainsait.org`
