@@ -16,7 +16,7 @@ export interface TestScenario {
 }
 
 export const testScenarios: TestScenario[] = [
-  // FLAT launch pricing (2026-08-14): every BUILD seat is SAR 9,630 (launch offer, was 14,630).
+  // FLAT launch pricing (2026-08-14): every BUILD seat is SAR 9,630 (launch offer, was 14,960).
   // Identity/profession are still collected for cohort routing & CRM.
   {
     name: 'Saudi National - Flat Price',

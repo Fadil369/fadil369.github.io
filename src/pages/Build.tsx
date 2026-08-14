@@ -89,7 +89,7 @@ export default function Build() {
         <p className="lede">{ar ? program.taglineAr : program.tagline}</p>
         <div className="build-launch-strip">
           <span className="launch-tag">{ar ? 'عرض الإطلاق' : 'Launch offer'}</span>
-          <span className="launch-was">{ar ? 'كان' : 'Was'} 14,630 SAR</span>
+          <span className="launch-was">{ar ? 'كان' : 'Was'} 14,960 SAR</span>
           <span className="launch-now">{ar ? 'الآن' : 'Now'} 9,630 SAR</span>
           <span className="launch-timer">{ar ? 'لفترة محدودة' : 'Limited time'}</span>
         </div>
