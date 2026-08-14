@@ -34,6 +34,29 @@ interface ProgressData {
   error?: string;
 }
 
+interface InstallmentItem {
+  no: number;
+  label: string;
+  amount: number;
+  dueAt: string;
+  status: string;
+  paidAt?: string;
+  payUrl?: string;
+}
+interface InstallmentData {
+  ok: boolean;
+  plan?: {
+    ref: string;
+    plan: string;
+    total: number;
+    status: string;
+    createdAt: string;
+    suspendedAt?: string;
+    installments: InstallmentItem[];
+  };
+  error?: string;
+}
+
 const BADGE_ICONS: Record<string, string> = {
   Onboarded: '🌱',
   Activated: '⚡',
@@ -49,6 +72,7 @@ export default function Track() {
   const [params] = useSearchParams();
   const ref = params.get('ref') || '';
   const [data, setData] = useState<ProgressData | null>(null);
+  const [installment, setInstallment] = useState<InstallmentData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -68,6 +92,11 @@ export default function Track() {
       })
       .catch(() => setError(ar ? 'تعذر الاتصال' : 'Could not reach server'))
       .finally(() => setLoading(false));
+    // Installment plan status (separate, best-effort).
+    fetch(`${BUILD_APPLY_BASE}/installment/${encodeURIComponent(ref)}`)
+      .then((r) => r.json())
+      .then((d) => { if (d.ok) setInstallment(d); })
+      .catch(() => { /* not on a plan — ignore */ });
   }, [ref, ar]);
 
   useEffect(() => {
@@ -182,6 +211,63 @@ export default function Track() {
           <p style={{ fontWeight: 700, marginTop: '0.3rem' }}>{data.track}</p>
         </div>
       </div>
+
+      {/* Installment plan */}
+      {installment?.ok && installment.plan && (
+        <div style={{
+          background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 20,
+          padding: '1.5rem', marginBottom: '1.5rem',
+        }}>
+          <h3 style={{ marginBottom: '0.4rem' }}>
+            {ar ? 'خطة الدفع' : 'Payment plan'}
+            {installment.plan.status === 'SUSPENDED' && (
+              <span style={{ marginLeft: '0.6rem', color: '#e5484d', fontWeight: 700, fontSize: '0.85rem' }}>
+                ⛔ {ar ? 'معلَّقة' : 'SUSPENDED'}
+              </span>
+            )}
+          </h3>
+          <p style={{ color: 'var(--muted)', fontSize: '0.85rem', marginBottom: '1rem' }}>
+            {ar
+              ? `الإجمالي ${installment.plan.total.toLocaleString('ar-SA')} ريال`
+              : `Total ${installment.plan.total.toLocaleString('en-SA')} SAR`}
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            {installment.plan.installments.map((it) => {
+              const paid = it.status === 'PAID';
+              const overdue = it.status === 'OVERDUE' || (it.status === 'PENDING' && new Date(it.dueAt) < new Date());
+              return (
+                <div key={it.no} style={{
+                  display: 'flex', alignItems: 'center', gap: '0.75rem',
+                  padding: '0.7rem 0.9rem', borderRadius: 12,
+                  background: 'var(--surface-2)', border: '1px solid var(--line)',
+                }}>
+                  {paid
+                    ? <CheckCircle2 size={20} color="var(--ok)" />
+                    : overdue
+                      ? <span style={{ color: '#e5484d', fontSize: '1.1rem' }}>⚠️</span>
+                      : <Circle size={20} color="var(--muted)" />}
+                  <div style={{ flex: 1 }}>
+                    <p style={{ fontWeight: 600, fontSize: '0.9rem' }}>{it.label}</p>
+                    <p style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>
+                      {it.status === 'PAID'
+                        ? (ar ? 'مدفوع' : 'Paid') + (it.paidAt ? ` · ${it.paidAt.slice(0, 10)}` : '')
+                        : `${ar ? 'يستحق' : 'due'} ${it.dueAt.slice(0, 10)}`}
+                    </p>
+                  </div>
+                  <div style={{ fontWeight: 700, color: paid ? 'var(--ok)' : 'var(--ink)' }}>
+                    {it.amount.toLocaleString(ar ? 'ar-SA' : 'en-SA')} SAR
+                  </div>
+                  {!paid && it.payUrl && (
+                    <a className="button secondary" href={it.payUrl} target="_blank" rel="noopener noreferrer" style={{ padding: '0.4rem 0.9rem', fontSize: '0.8rem' }}>
+                      {ar ? 'ادفع' : 'Pay'}
+                    </a>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Tasks */}
       <div style={{ background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 20, padding: '1.5rem', marginBottom: '1.5rem' }}>

@@ -333,6 +333,55 @@
   line-height: 1.6;
 }
 
+/* Payment plan selector */
+.plan-box {
+  margin: 1rem 0;
+  padding: 0.9rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+}
+.plan-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+}
+.plan-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+.plan-option {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0.65rem 0.4rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--muted);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s ease;
+}
+.plan-option:hover { border-color: rgba(233, 196, 106, 0.5); }
+.plan-option.active {
+  border-color: var(--gold);
+  background: rgba(233, 196, 106, 0.12);
+  color: var(--ink);
+}
+.plan-name { font-size: 0.78rem; font-weight: 600; }
+.plan-price { font-size: 0.74rem; color: var(--gold); }
+.plan-hint {
+  margin: 0.6rem 0 0;
+  font-size: 0.76rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
 /* Result Step */
 .result-step { text-align: center; }
 .tier-icon { font-size: 4rem; margin-bottom: 1rem; display: block; filter: drop-shadow(0 8px 26px rgba(233, 196, 106, 0.35)); }

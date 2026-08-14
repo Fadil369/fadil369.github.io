@@ -34,6 +34,7 @@ export default function BuildEligibilityForm() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [submitResult, setSubmitResult] = useState<SubmitResult | null>(null);
+  const [plan, setPlan] = useState<'full' | 'flex' | 'split'>('full');
   const turnstileRef = useRef<HTMLDivElement>(null);
 
   const promo = useMemo(() => lookupPromo(promoApplied || undefined), [promoApplied]);
@@ -79,6 +80,7 @@ export default function BuildEligibilityForm() {
       country: form.country.trim(),
       githubUsername: form.githubUsername.trim() || undefined,
       promoCode: promoApplied || undefined,
+      plan,
       turnstileToken: turnstileToken || undefined,
     };
 
@@ -194,6 +196,34 @@ export default function BuildEligibilityForm() {
                 </button>
               </p>
             )}
+          </div>
+
+          {/* Payment plan */}
+          <div className="plan-box">
+            <label className="plan-label">{ar ? 'خطة الدفع' : 'Payment plan'}</label>
+            <div className="plan-options">
+              <button type="button" className={`plan-option ${plan === 'full' ? 'active' : ''}`} onClick={() => setPlan('full')}>
+                <span className="plan-name">{ar ? 'دفعة كاملة' : 'Full payment'}</span>
+                <span className="plan-price">{formatPrice(finalPrice, ar)}</span>
+              </button>
+              <button type="button" className={`plan-option ${plan === 'flex' ? 'active' : ''}`} onClick={() => setPlan('flex')}>
+                <span className="plan-name">{ar ? '2 دفعات' : '2 installments'}</span>
+                <span className="plan-price">{formatPrice(finalPrice / 2, ar)} ×2</span>
+              </button>
+              <button type="button" className={`plan-option ${plan === 'split' ? 'active' : ''}`} onClick={() => setPlan('split')}>
+                <span className="plan-name">{ar ? '3 دفعات' : '3 installments'}</span>
+                <span className="plan-price">{formatPrice(Math.round(finalPrice / 3), ar)} ×3</span>
+              </button>
+            </div>
+            <p className="plan-hint">
+              {ar
+                ? plan === 'full'
+                  ? 'ادفع السعر كاملاً الآن — وصول فوري.'
+                  : 'أقساط شهرية. تبقى الأقساط المسددة فقط مفعلة — إذا تأخرت ١٤ يوماً تُعلَّق صلاحية الوصول حتى التسوية.'
+                : plan === 'full'
+                  ? 'Pay the full amount now — instant access.'
+                  : 'Monthly installments. Access stays active while current — after 14 days overdue your account is suspended until settled.'}
+            </p>
           </div>
 
           <p className="bt-note">
