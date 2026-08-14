@@ -87,6 +87,12 @@ export default function Build() {
         <span className="hero-eyebrow"><span className="dot" /> {ar ? 'برنامج الاحتضان' : 'The Incubation Program'}</span>
         <h1>{ar ? program.nameAr : program.name}</h1>
         <p className="lede">{ar ? program.taglineAr : program.tagline}</p>
+        <div className="build-launch-strip">
+          <span className="launch-tag">{ar ? 'عرض الإطلاق' : 'Launch offer'}</span>
+          <span className="launch-was">{ar ? 'كان' : 'Was'} 14,960 SAR</span>
+          <span className="launch-now">{ar ? 'الآن' : 'Now'} 9,630 SAR</span>
+          <span className="launch-timer">{ar ? 'لفترة محدودة' : 'Limited time'}</span>
+        </div>
         <div className="build-hero-cta">
           <a className="button primary lg" href="#apply" onClick={() => track('build_cta', { location: 'hero' })}>
             {ar ? 'ابدأ طلبك' : 'Start your application'} <Rocket size={18} />
@@ -95,7 +101,7 @@ export default function Build() {
             <Calendar size={18} /> {ar ? 'احجز جلسة تقييم' : 'Book an evaluation'}
           </a>
         </div>
-        <p className="fineprint">{ar ? 'دفع آمن عبر PayPal على store.brainsait.org' : 'Secure PayPal checkout on store.brainsait.org'}</p>
+        <p className="fineprint">{ar ? 'دفع آمن عبر PayPal على store.brainsait.org — أدخل رمز الخصم قبل الدفع، أو احجز جلسة تقييم أولاً.' : 'Secure PayPal checkout on store.brainsait.org — apply your promo code before checkout, or book an evaluation first.'}</p>
       </section>
 
       {/* ── ELIGIBILITY & APPLICATION FORM ── */}

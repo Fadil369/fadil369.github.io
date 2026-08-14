@@ -3,10 +3,13 @@ import { Check, Loader2 } from 'lucide-react';
 import {
   calculatePrice,
   formatPrice,
+  lookupPromo,
   type EligibilityData,
   type PricingResult,
-  BASE_PRICE,
+  ORIGINAL_PRICE,
 } from '../utils/pricingEngine';
+
+export const BUILD_CALENDAR_URL = 'https://calendar.app.google/rAqiE6pNumtECdnd7';
 import { useI18n } from '../i18n';
 import { track } from '../analytics';
 import { BUILD_APPLY_API, TURNSTILE_SITE_KEY } from '../config/build';
@@ -68,6 +71,9 @@ export default function BuildEligibilityForm() {
   const [turnstileToken, setTurnstileToken] = useState<string>('');
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string>('');
+  const [promoInput, setPromoInput] = useState<string>('');
+  const [promoApplied, setPromoApplied] = useState<string>('');
+  const [promoError, setPromoError] = useState<string>('');
   const [submitResult, setSubmitResult] = useState<{
     applicationId: string;
     notionUrl: string;
@@ -77,7 +83,7 @@ export default function BuildEligibilityForm() {
   } | null>(null);
   const turnstileRef = useRef<HTMLDivElement>(null);
 
-  const pricing = useMemo(() => calculatePrice(data), [data]);
+  const pricing = useMemo(() => calculatePrice(data, promoApplied || undefined), [data, promoApplied]);
 
   useEffect(() => {
     (window as any).onTurnstileSuccess = (token: string) => setTurnstileToken(token);
@@ -119,6 +125,20 @@ export default function BuildEligibilityForm() {
 
   const contactValid = contact.fullName.trim() && contact.email.trim().includes('@') && contact.country.trim();
 
+  const applyPromoCode = () => {
+    const code = promoInput.trim();
+    if (!code) return;
+    const promo = lookupPromo(code);
+    if (!promo) {
+      setPromoApplied('');
+      setPromoError(ar ? 'رمز الخصم غير صالح' : 'Invalid promo code');
+      return;
+    }
+    setPromoApplied(promo.code);
+    setPromoError('');
+    track('build_promo_applied', { promo: promo.code, discount: promo.discountPercent });
+  };
+
   const submitApplication = async () => {
     if (TURNSTILE_SITE_KEY && !turnstileToken) {
       setSubmitError(ar ? 'يرجى إكمال التحقق الأمني' : 'Please complete the security check');
@@ -141,6 +161,7 @@ export default function BuildEligibilityForm() {
       website: data.website,
       linkedinUrl: data.linkedinUrl,
       buildingDescription: data.buildingDescription,
+      promoCode: promoApplied || undefined,
       turnstileToken: turnstileToken || undefined,
       evidenceFile: evidenceFile || undefined,
     };
@@ -206,16 +227,73 @@ export default function BuildEligibilityForm() {
         <div className="form-step welcome-step">
           <StepHeader
             title={ar ? 'ابنِ شيئاً مهماً' : 'Build something that matters'}
-            subtitle={ar ? `تذكرة البناء — ${formatPrice(BASE_PRICE, true)}` : `Build Ticket — ${formatPrice(BASE_PRICE)}`}
+            subtitle={ar ? 'تذكرة البناء' : 'Build Ticket'}
           />
-          <p className="step-description">
-            {ar
-              ? 'جميع مقاعد البناء بسعر موحد ٩٬٦٣٠ ر.س — أخبرنا عنك لنختار لك المسار المناسب.'
-              : 'Every Build seat is a flat SAR 9,630 — tell us about yourself so we can route you to the right cohort.'}
-          </p>
-          <button className="btn-primary" onClick={() => setStep('contact')}>
-            {ar ? 'ابدأ الطلب →' : 'Start your application →'}
-          </button>
+
+          {/* Launch offer pricing card */}
+          <div className="build-ticket-card">
+            <span className="launch-badge">{ar ? 'عرض الإطلاق — لفترة محدودة' : 'Launch offer — limited time'}</span>
+            <div className="bt-price-row">
+              <span className="bt-original">{formatPrice(ORIGINAL_PRICE, ar)}</span>
+              <span className="bt-price">{formatPrice(pricing.finalPrice, ar)}</span>
+              {pricing.promo && (
+                <span className="bt-savings">
+                  {ar ? 'وفّرت' : 'You save'} {formatPrice(pricing.savings, ar)}
+                </span>
+              )}
+            </div>
+            {pricing.promo && (
+              <p className="promo-ok">
+                ✅ {ar ? pricing.promo.titleAr : pricing.promo.titleEn}
+              </p>
+            )}
+
+            {/* Promo code — before the price */}
+            <div className="promo-box">
+              <div className="promo-row">
+                <input
+                  type="text"
+                  className="promo-input"
+                  value={promoInput}
+                  onChange={(e) => setPromoInput(e.target.value)}
+                  placeholder={ar ? 'أدخل رمز الخصم' : 'Enter promo code'}
+                />
+                <button className="btn-promo" onClick={applyPromoCode}>
+                  {ar ? 'تطبيق' : 'Apply'}
+                </button>
+              </div>
+              {promoError && <p className="promo-err">{promoError}</p>}
+              {promoApplied && (
+                <p className="promo-clear">
+                  <button className="promo-clear-btn" onClick={() => { setPromoApplied(''); setPromoError(''); }}>
+                    {ar ? 'إزالة الرمز' : 'Remove code'}
+                  </button>
+                </p>
+              )}
+            </div>
+
+            <p className="bt-note">
+              {ar
+                ? 'جميع مقاعد البناء بسعر موحد — أخبرنا عنك لنختار لك المسار المناسب.'
+                : 'Every Build seat is the same flat price — tell us about yourself so we can route you to the right cohort.'}
+            </p>
+
+            <button className="btn-primary" onClick={() => setStep('contact')}>
+              {ar ? 'ابدأ الطلب →' : 'Start your application →'}
+            </button>
+
+            {/* Small booking link below the ticket */}
+            <p className="bt-booking">
+              <a
+                href={BUILD_CALENDAR_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => track('build_booking_link', { location: 'ticket' })}
+              >
+                {ar ? 'قبل أن تبدأ؟ احجز جلسة مع المؤسس ↗' : 'Not sure yet? Book a session with the founder ↗'}
+              </a>
+            </p>
+          </div>
         </div>
       )}
 
@@ -460,10 +538,31 @@ export default function BuildEligibilityForm() {
           </p>
 
           <div className="price-display">
+            <span className="launch-badge">{ar ? 'عرض الإطلاق — لفترة محدودة' : 'Launch offer — limited time'}</span>
+            <div className="price-row original">
+              <span className="label-original">{ar ? 'السعر الأصلي' : 'Original price'}</span>
+              <span className="price-original">{formatPrice(pricing.originalPrice, ar)}</span>
+            </div>
             <div className="price-row final">
-              <span className="label-final">{ar ? 'تذكرة البناء الخاصة بك' : 'Your Build Ticket'}</span>
+              <span className="label-final">{ar ? 'سعر الإطلاق' : 'Launch price'}</span>
               <span className="price-final">{formatPrice(pricing.finalPrice, ar)}</span>
             </div>
+            {pricing.promo && (
+              <p className="promo-ok">
+                ✅ {ar ? pricing.promo.titleAr : pricing.promo.titleEn}
+                {' — '}{ar ? 'وفّرت' : 'You save'} {formatPrice(pricing.savings, ar)}
+              </p>
+            )}
+            <p className="bt-booking">
+              <a
+                href={BUILD_CALENDAR_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => track('build_booking_link', { location: 'result' })}
+              >
+                {ar ? 'قبل الدفع؟ احجز جلسة مع المؤسس ↗' : 'Before you pay? Book a session with the founder ↗'}
+              </a>
+            </p>
           </div>
 
           {TURNSTILE_SITE_KEY && (

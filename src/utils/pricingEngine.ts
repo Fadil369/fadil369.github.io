@@ -1,4 +1,6 @@
-export const BASE_PRICE = 9630; // SAR
+export const BASE_PRICE = 9630; // SAR — launch offer (limited time)
+export const ORIGINAL_PRICE = 14960; // SAR — standard price before launch offer
+export const LAUNCH_SAVINGS = ORIGINAL_PRICE - BASE_PRICE; // 5,330 SAR
 
 export interface PricingTier {
   id: string;
@@ -8,6 +10,35 @@ export interface PricingTier {
   price: number;
   icon: string;
 }
+
+export interface PromoCode {
+  code: string;
+  // Discount applied as a percentage of the launch offer price.
+  discountPercent: number;
+  titleEn: string;
+  titleAr: string;
+  active: boolean;
+}
+
+// Launch promo codes — personal, tied to a buyer email, single use.
+// Codes are validated server-side on build-apply; this list mirrors the
+// active codes so the storefront can preview the discounted price instantly.
+export const PROMO_CODES: Record<string, PromoCode> = {
+  LAUNCH10: {
+    code: 'LAUNCH10',
+    discountPercent: 10,
+    titleEn: 'Early Bird — 10% off launch price',
+    titleAr: 'خصم الطيور المبكرة — 10%',
+    active: true,
+  },
+  FOUNDER15: {
+    code: 'FOUNDER15',
+    discountPercent: 15,
+    titleEn: 'Founder Circle — 15% off launch price',
+    titleAr: 'دائرة المؤسسين — 15%',
+    active: true,
+  },
+};
 
 export interface EligibilityData {
   identity?: string; // SA, SD, OTHER
@@ -25,43 +56,14 @@ export interface PricingResult {
   eligibilityId: string;
   discount: number;
   originalPrice: number;
+  launchPrice: number;
   finalPrice: number;
   savings: number;
+  launchOffer: boolean;
+  promo?: PromoCode;
 }
 
 const tiers: Record<string, PricingTier> = {
-  sa_sd_free: {
-    id: 'sa_sd_free',
-    titleEn: 'Founding Identity Benefit',
-    titleAr: 'استحقاق الهوية التأسيسية',
-    discount: 100,
-    price: 0,
-    icon: '🇸🇦🇸🇩',
-  },
-  healthcare_50: {
-    id: 'healthcare_50',
-    titleEn: 'Healthcare Builder Benefit',
-    titleAr: 'استحقاق بناة الرعاية الصحية',
-    discount: 50,
-    price: 4815,
-    icon: '🩺',
-  },
-  warrior_35: {
-    id: 'warrior_35',
-    titleEn: 'Warrior Entrepreneur Benefit',
-    titleAr: 'استحقاق رائد الأعمال المحارب',
-    discount: 35,
-    price: 6259.50,
-    icon: '⚔️',
-  },
-  academic_30: {
-    id: 'academic_30',
-    titleEn: 'Knowledge Builder Benefit',
-    titleAr: 'استحقاق بناة المعرفة',
-    discount: 30,
-    price: 6741,
-    icon: '🎓',
-  },
   standard: {
     id: 'standard',
     titleEn: 'Standard Build Ticket',
@@ -72,22 +74,37 @@ const tiers: Record<string, PricingTier> = {
   },
 };
 
-export function calculatePrice(data: EligibilityData): PricingResult {
-  // Launch pricing is FLAT: every BUILD seat is SAR 9,630. Identity and
-  // profession are still collected (stored with the application) for cohort
-  // routing and CRM, but no longer change the price.
+export function lookupPromo(code?: string): PromoCode | undefined {
+  if (!code) return undefined;
+  const normalized = code.trim().toUpperCase();
+  const promo = PROMO_CODES[normalized];
+  return promo && promo.active ? promo : undefined;
+}
+
+export function calculatePrice(
+  data: EligibilityData,
+  promoCode?: string
+): PricingResult {
+  // Launch pricing is FLAT: every BUILD seat is SAR 9,630 (was SAR 14,960).
+  // Identity and profession are still collected (stored with the application)
+  // for cohort routing and CRM, but no longer change the base price.
+  // A valid promo code adds a discount on top of the launch price.
   const tier = tiers.standard;
-  const discount = tier.discount;
-  const finalPrice = tier.price;
-  const savings = BASE_PRICE - finalPrice;
+  const promo = lookupPromo(promoCode);
+  const promoDiscount = promo ? promo.discountPercent : 0;
+  const finalPrice = promo ? BASE_PRICE * (1 - promoDiscount / 100) : BASE_PRICE;
+  const savings = ORIGINAL_PRICE - finalPrice;
 
   return {
     tier,
     eligibilityId: tier.id,
-    discount,
-    originalPrice: BASE_PRICE,
+    discount: promoDiscount,
+    originalPrice: ORIGINAL_PRICE,
+    launchPrice: BASE_PRICE,
     finalPrice,
     savings,
+    launchOffer: true,
+    promo,
   };
 }
 

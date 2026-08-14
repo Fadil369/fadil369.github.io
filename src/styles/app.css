@@ -683,6 +683,22 @@ img { max-width: 100%; }
 }
 .build-hero-cta { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; margin-top: 1.8rem; }
 
+/* Launch offer strip in hero */
+.build-launch-strip {
+  display: inline-flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; justify-content: center;
+  margin-top: 1.4rem; padding: 0.6rem 1.2rem;
+  background: linear-gradient(135deg, rgba(233, 196, 106, 0.14), rgba(41, 216, 255, 0.1));
+  border: 1px solid rgba(233, 196, 106, 0.35);
+  border-radius: 999px;
+}
+.launch-tag {
+  background: var(--gold-grad); color: #131320; font-weight: 800; font-size: 0.8rem;
+  padding: 0.22rem 0.7rem; border-radius: 999px; letter-spacing: 0.02em;
+}
+.launch-was { color: var(--muted); text-decoration: line-through; font-size: 0.95rem; }
+.launch-now { color: var(--ink); font-weight: 800; font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.launch-timer { color: var(--gold); font-size: 0.82rem; font-weight: 600; }
+
 .build-price { display: flex; justify-content: center; margin: 2.6rem 0; }
 .price-card {
   position: relative; width: 100%; max-width: 520px; text-align: center;
