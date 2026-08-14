@@ -74,6 +74,28 @@ The Telegram bot (`@BrainSAITForgeBot`) is **no longer the registration/entry ga
 - Orders without an `application_ref` property are acknowledged and ignored (regular store purchases).
 - Deduplicated per order via KV (`webhook-processed:<orderId>`) to survive duplicate deliveries.
 
+## Super partner suite (BrainSAIT OS expanded Admin API scope)
+
+Since the app's scopes were upgraded (`write_discounts`, `write_orders`,
+`write_fulfillments`, `write_gift_cards`, `write_companies`, `read_all_orders`,
+etc.), the paid BUILD webhook now provisions a full partner profile:
+
+- **Fulfillment** — a fulfillment record is created on the paid order (BUILD
+  onboarding kit), idempotent via KV.
+- **Welcome gift card** — SAR 500 store credit issued to the partner, idempotent.
+- **B2B Company** — a Shopify Company record is created for the partner with
+  their application ref as external id.
+- **Order annotation** — the paid order is tagged `build-partner` +
+  `super-provisioned` with a note recording the provisioning.
+
+`store-commerce-automation` additionally:
+- **Revenue analytics** — the daily report now includes 7d/30d revenue, AOV,
+  order count and top products (real order data).
+- **BUILD draft-order recovery** — abandoned BUILD checkout carts (variant
+  45947217870931) are converted into draft orders (idempotent, `task=draft`).
+
+All of the above is best-effort and never blocks the paid-confirmation flow.
+
 ## Environment (build-apply worker secrets)
 
 - `SHOPIFY_STORE_DOMAIN` — default `store.brainsait.org`
