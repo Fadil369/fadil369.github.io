@@ -131,6 +131,7 @@ The BUILD Ticket (flat SAR 9,630) can be paid on a plan chosen at intake:
 | `full` | 1 | 9,630 once |
 | `flex` | 2 | 4,815 + 4,815 (30 days apart) |
 | `split` | 3 | 3,210 × 3 (monthly) |
+| `quarter` | 4 | 2,408 + 2,408 + 2,408 + 2,406 (weekly-style, 30 days apart) |
 
 **How it works**
 1. Intake form sends `plan`. `build-apply` creates an installment schedule in KV
