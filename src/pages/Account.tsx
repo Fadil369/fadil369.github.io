@@ -38,6 +38,47 @@ const FORGE_TOKEN_KEY = 'bs_forge_token';
 const FORGE_PROFILE_KEY = 'bs_forge_profile';
 const FORGE_ME = 'https://forge.brainsait.org/profile/me';
 const CUSTOMER_SYNC_API = 'https://build-apply.brainsait.org/customer/sync';
+const PORTAL_PARTNER_STATUS = 'https://portal.brainsait.de/api/integration/partner-status';
+const INSTALLMENT_API = `${BUILD_APPLY_BASE}/installment`;
+
+interface PartnerStatus {
+  ok: boolean;
+  profile_id?: string;
+  name?: string;
+  status?: string;
+  tier?: string;
+  application_id?: string;
+  order_id?: string;
+  fulfillment_id?: string;
+  gift_card_id?: string;
+  company_id?: string;
+  github_username?: string;
+  track_url?: string;
+  notion_url?: string;
+  suspended_reason?: string;
+  suspended_at?: string;
+}
+interface InstallmentItem {
+  no: number;
+  label: string;
+  amount: number;
+  dueAt: string;
+  status: string;
+  paidAt?: string;
+  payUrl?: string;
+}
+interface InstallmentView {
+  ok: boolean;
+  plan?: {
+    ref: string;
+    plan: string;
+    total: number;
+    status: string;
+    createdAt: string;
+    suspendedAt?: string;
+    installments: InstallmentItem[];
+  };
+}
 
 function readForgeToken(): string {
   try { return localStorage.getItem(FORGE_TOKEN_KEY) || ''; } catch { return ''; }
@@ -152,6 +193,8 @@ export default function Account() {
   const [saving, setSaving] = useState(false);
   const [langMsg, setLangMsg] = useState('');
   const [progress, setProgress] = useState<{ pct: number; done: number; total: number; next: string; badges: string[] } | null>(null);
+  const [partner, setPartner] = useState<PartnerStatus | null>(null);
+  const [installment, setInstallment] = useState<InstallmentView | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -214,6 +257,22 @@ export default function Account() {
       .then((r) => r.json())
       .then((d) => { if (d.ok) setProgress({ pct: Math.round(d.percent * 100), done: d.doneTasks, total: d.totalTasks, next: d.nextTask, badges: d.badges }); })
       .catch(() => { /* ignore */ });
+  }, [profile]);
+
+  // Load the partner customer account status + installment plan.
+  useEffect(() => {
+    if (!profile?.email) return;
+    fetch(`${PORTAL_PARTNER_STATUS}?email=${encodeURIComponent(profile.email)}`)
+      .then((r) => r.json())
+      .then((d) => { if (d.ok) setPartner(d); })
+      .catch(() => { /* not a partner yet — ignore */ });
+    const ref = profile.buildRef || readBuildRef();
+    if (ref) {
+      fetch(`${INSTALLMENT_API}/${encodeURIComponent(ref)}`)
+        .then((r) => r.json())
+        .then((d) => { if (d.ok) setInstallment(d); })
+        .catch(() => { /* not on a plan — ignore */ });
+    }
   }, [profile]);
 
   const signIn = async () => {
@@ -444,6 +503,80 @@ export default function Account() {
               ) : (
                 <p className="muted">{ar ? 'جاري تحميل تقدمك…' : 'Loading your progress…'}</p>
               )}
+            </div>
+          </div>
+        )}
+
+        {/* Partner customer account */}
+        {partner && (
+          <div className="account-row">
+            <span className="account-label"><Building2 size={16} /> {ar ? 'حساب الشريك' : 'Partner account'}</span>
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
+                <span className={`badge ${partner.status === 'suspended' ? 'badge-danger' : ''}`}>
+                  {partner.status === 'suspended'
+                    ? (ar ? '⛔ معلَّق' : '⛔ Suspended')
+                    : (ar ? '✅ شريك فعّال' : '✅ Active partner')}
+                </span>
+                {partner.tier && <span className="badge">{partner.tier}</span>}
+              </div>
+              {partner.status === 'suspended' && partner.suspended_reason && (
+                <p style={{ color: '#e5484d', fontSize: '0.82rem', margin: '0 0 0.4rem' }}>
+                  {ar ? `السبب: ${partner.suspended_reason}` : `Reason: ${partner.suspended_reason}`}
+                </p>
+              )}
+              <div style={{ fontSize: '0.8rem', color: 'var(--muted)', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                {partner.application_id && <span>🪪 {ar ? 'طلب' : 'App'}: <code>{partner.application_id}</code></span>}
+                {partner.fulfillment_id && <span>📦 {ar ? 'تنفيذ' : 'Fulfillment'}: ✅</span>}
+                {partner.gift_card_id && <span>🎁 {ar ? 'بطاقة هدية' : 'Gift card'}: ✅</span>}
+                {partner.company_id && <span>🏢 {ar ? 'شركة' : 'Company'}: ✅</span>}
+                {partner.github_username && <span>🐙 GitHub: <code>{partner.github_username}</code></span>}
+              </div>
+              {partner.track_url && (
+                <Link to={`/track?ref=${readBuildRef()}`} className="button secondary sm" style={{ marginTop: '0.5rem' }}>
+                  <TrendingUp size={14} /> {ar ? 'لوحة التقدم' : 'Progress dashboard'}
+                </Link>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Installment plan */}
+        {installment?.ok && installment.plan && (
+          <div className="account-row">
+            <span className="account-label"><TrendingUp size={16} /> {ar ? 'خطة الدفع' : 'Payment plan'}</span>
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                <span className={`badge ${installment.plan.status === 'SUSPENDED' ? 'badge-danger' : ''}`}>
+                  {installment.plan.status === 'SUSPENDED'
+                    ? (ar ? '⛔ معلَّقة' : '⛔ Suspended')
+                    : installment.plan.status === 'COMPLETED'
+                      ? (ar ? '✅ مكتملة' : '✅ Completed')
+                      : (ar ? 'نشطة' : 'Active')}
+                </span>
+                <span className="muted" style={{ fontSize: '0.8rem' }}>
+                  {installment.plan.installments.length} {ar ? 'دفعات' : 'installments'}
+                </span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                {installment.plan.installments.map((it) => {
+                  const paid = it.status === 'PAID';
+                  return (
+                    <div key={it.no} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem' }}>
+                      {paid ? <CheckCircle2 size={15} color="var(--ok)" /> : <span style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>○</span>}
+                      <span style={{ flex: 1 }}>{it.label}</span>
+                      <span style={{ fontWeight: paid ? 600 : 500, color: paid ? 'var(--ok)' : 'var(--ink)' }}>
+                        {it.amount.toLocaleString(ar ? 'ar-SA' : 'en-SA')} SAR
+                      </span>
+                      {!paid && it.payUrl && (
+                        <a className="button secondary sm" href={it.payUrl} target="_blank" rel="noopener noreferrer">
+                          {ar ? 'ادفع' : 'Pay'}
+                        </a>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         )}

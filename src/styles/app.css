@@ -656,6 +656,11 @@ img { max-width: 100%; }
   color: var(--gold); padding: 0.4rem 1rem; border-radius: 999px;
   font-size: 0.84rem; font-weight: 700;
 }
+.badge-danger {
+  background: color-mix(in srgb, #e5484d 14%, var(--surface));
+  border-color: color-mix(in srgb, #e5484d 40%, var(--line));
+  color: #e5484d;
+}
 .program {
   background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 1.9rem;
   box-shadow: var(--shadow-soft); max-width: 740px; margin: 0 auto;

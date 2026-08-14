@@ -34,7 +34,7 @@ export default function BuildEligibilityForm() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [submitResult, setSubmitResult] = useState<SubmitResult | null>(null);
-  const [plan, setPlan] = useState<'full' | 'flex' | 'split'>('full');
+  const [plan, setPlan] = useState<'full' | 'flex' | 'split' | 'quarter'>('full');
   const turnstileRef = useRef<HTMLDivElement>(null);
 
   const promo = useMemo(() => lookupPromo(promoApplied || undefined), [promoApplied]);
@@ -213,6 +213,10 @@ export default function BuildEligibilityForm() {
               <button type="button" className={`plan-option ${plan === 'split' ? 'active' : ''}`} onClick={() => setPlan('split')}>
                 <span className="plan-name">{ar ? '3 دفعات' : '3 installments'}</span>
                 <span className="plan-price">{formatPrice(Math.round(finalPrice / 3), ar)} ×3</span>
+              </button>
+              <button type="button" className={`plan-option ${plan === 'quarter' ? 'active' : ''}`} onClick={() => setPlan('quarter')}>
+                <span className="plan-name">{ar ? '4 دفعات' : '4 installments'}</span>
+                <span className="plan-price">{formatPrice(Math.round(finalPrice / 4), ar)} ×4</span>
               </button>
             </div>
             <p className="plan-hint">

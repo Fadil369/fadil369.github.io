@@ -351,8 +351,11 @@
 }
 .plan-options {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
+}
+@media (max-width: 480px) {
+  .plan-options { grid-template-columns: repeat(2, 1fr); }
 }
 .plan-option {
   display: flex;
