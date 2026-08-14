@@ -213,13 +213,13 @@ export default function Build() {
         </div>
       </section>
 
-      {/* ── 14-DAY ACCOUNT LIFECYCLE ── */}
+      {/* ── 14-DAY BUILD SPRINT ── */}
       <section className="build-lifecycle reveal">
-        <h2>{ar ? 'دورة حسابك — 14 يوماً' : 'Your account cycle — 14 days'}</h2>
+        <h2>{ar ? 'سباق البناء — 14 يوماً' : 'Your build sprint — 14 days'}</h2>
         <p className="benefits-intro">
           {ar
-            ? 'حساب البرنامج صالح لـ 14 يوماً فقط: أسبوع للبناء والإطلاق، وأسبوع للتسويق والتسليم، ثم التخرج والشهادة — وينتهي الوصول.'
-            : 'Your program account is valid for just 14 days: one week to build & launch, one week for marketing & delivery, then graduation & certificate — then access expires.'}
+            ? 'منهج البرنامج مصمم على 14 يوماً: أسبوع للبناء والإطلاق، وأسبوع للتسويق والتسليم، ثم التخرج والشهادة. حساب account.brainsait.org وعقلك الثاني ووصولك لـ LEARN يبقون معك — بلا انتهاء صلاحية.'
+            : 'The curriculum is a focused 14-day sprint: one week to build & launch, one week for marketing & delivery, then graduation & certificate. Your account.brainsait.org access, Second Brain, and LEARN catalog stay with you — no expiry.'}
         </p>
         <div className="lifecycle-track">
           <div className="lifecycle-phase wk1">
@@ -235,19 +235,19 @@ export default function Build() {
           <div className="lifecycle-phase grad">
             <span className="lc-flag">{ar ? 'التخرج' : 'Graduation'}</span>
             <h3>{ar ? 'شهادة الإتمام' : 'Completion certificate'}</h3>
-            <p>{ar ? 'شهادة رسمية عند الإتمام — ثم يُغلق الوصول.' : 'Official certificate on completion — then access is closed.'}</p>
+            <p>{ar ? 'شهادة رسمية دائمة عند إتمام الـ16 مرحلة.' : 'A permanent official certificate once all 16 milestones are complete.'}</p>
           </div>
           <div className="lifecycle-phase exp">
-            <span className="lc-flag">{ar ? 'الانتهاء' : 'Expiry'}</span>
-            <h3>{ar ? 'انتهاء صلاحية الحساب' : 'Account expires'}</h3>
-            <p>{ar ? 'بعد 14 يوماً ينتهي وصول حسابك تلقائياً.' : 'After 14 days your account access automatically expires.'}</p>
+            <span className="lc-flag">{ar ? 'بعد التخرج' : 'After graduation'}</span>
+            <h3>{ar ? 'حسابك يبقى نشطاً' : 'Your account stays active'}</h3>
+            <p>{ar ? 'account.brainsait.org وعقلك الثاني وبوت تيليغرام ووصول LEARN — كلها تبقى معك.' : 'account.brainsait.org, your Second Brain, the Telegram bot, and LEARN access all stay with you.'}</p>
           </div>
         </div>
         <p className="lifecycle-timer">
           <span className="timer-icon">⏳</span>
           {ar
-            ? '14 يوماً فقط — البناء، الإطلاق، التسويق، التسليم، والتخرج.'
-            : 'Just 14 days — build, launch, market, deliver, graduate.'}
+            ? '14 يوماً للسباق — لكن ما تبنيه وتملكه يبقى بعده.'
+            : 'A 14-day sprint — but what you build and own outlasts it.'}
         </p>
       </section>
 
@@ -286,6 +286,20 @@ export default function Build() {
             <div>
               <h3>{ar ? 'بوت مرافق من التسجيل حتى الشهادة' : 'companion bot — registration to certificate'}</h3>
               <p>{ar ? '@BrainSAITForgeBot يتابعك، يذكّرك بوقفة اليوم، يقيّم تقدمك، ويصدر شهادتك عند الإتمام.' : '@BrainSAITForgeBot tracks you, reminds you of your daily standup, scores your progress, and issues your certificate on completion.'}</p>
+            </div>
+          </div>
+          <div className="sb-row">
+            <span className="sb-num">∞</span>
+            <div>
+              <h3>{ar ? 'وصول كامل لمكتبة LEARN' : 'full LEARN catalog access'}</h3>
+              <p>{ar ? 'كل مصدر تعليمي مفتوح في LEARN يُفتح لك مجاناً — بلا حدود، بلا انتهاء.' : 'Every open learning resource on LEARN unlocked for you — free, unlimited, no expiry.'}</p>
+            </div>
+          </div>
+          <div className="sb-row">
+            <span className="sb-num">1</span>
+            <div>
+              <h3>{ar ? 'حساب عميل دائم' : 'a permanent customer account'}</h3>
+              <p>{ar ? 'account.brainsait.org — تتبّع تقدمك، شهاداتك، وتنزيلاتك في مكان واحد، طوال الوقت.' : 'account.brainsait.org — track your progress, certificates, and downloads in one place, for good.'}</p>
             </div>
           </div>
         </div>
