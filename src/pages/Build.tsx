@@ -46,7 +46,7 @@ export default function Build() {
             <Calendar size={18} /> {ar ? 'احجز جلسة تقييم' : 'Book an evaluation'}
           </a>
         </div>
-        <p className="fineprint">{ar ? 'دفع آمن على store.brainsait.org — سعر موحد ٩٬٦٣٠ ريال للجميع، أو احجز جلسة تقييم أولاً.' : 'Secure checkout on store.brainsait.org — a flat 9,630 SAR for everyone, or book an evaluation first.'}</p>
+        <p className="fineprint">{ar ? 'دفع آمن على store.brainsait.org — أدخل رمز الخصم قبل إتمام الشراء، أو احجز جلسة تقييم أولاً.' : 'Secure checkout on store.brainsait.org — apply your promo code before checkout, or book an evaluation first.'}</p>
       </section>
 
       {/* ── FLAT BUILD TICKET — single standard seat ── */}
