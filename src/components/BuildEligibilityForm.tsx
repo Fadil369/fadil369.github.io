@@ -160,6 +160,7 @@ export default function BuildEligibilityForm() {
       universityName: data.universityName,
       website: data.website,
       linkedinUrl: data.linkedinUrl,
+      githubUsername: data.githubUsername,
       buildingDescription: data.buildingDescription,
       promoCode: promoApplied || undefined,
       turnstileToken: turnstileToken || undefined,
@@ -340,6 +341,20 @@ export default function BuildEligibilityForm() {
                 onChange={(e) => setContact((c) => ({ ...c, country: e.target.value }))}
                 placeholder={ar ? 'الدولة' : 'Your country'}
               />
+            </div>
+            <div className="form-field">
+              <label>{ar ? 'اسم مستخدم GitHub' : 'GitHub username'}</label>
+              <input
+                type="text"
+                value={data.githubUsername || ''}
+                onChange={(e) => updateData({ githubUsername: e.target.value.trim() })}
+                placeholder={ar ? 'اختياري — لإنشاء مستودعك الخاص بعد الدفع' : 'Optional — we create your own repo after payment'}
+              />
+              <p className="field-hint">
+                {ar
+                  ? 'ليس لديك حساب؟ أنشئ واحداً مجاناً على github.com — يمكنك إضافته لاحقاً من حسابك'
+                  : "Don't have one? Create a free account at github.com — you can add this later from your account"}
+              </p>
             </div>
           </div>
           <div className="form-actions">

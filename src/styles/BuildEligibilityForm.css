@@ -158,6 +158,13 @@
   color: var(--ok);
 }
 
+.field-hint {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
 /* Price Display */
 .price-display {
   background: var(--panel-grad);

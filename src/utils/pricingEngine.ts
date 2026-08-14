@@ -48,6 +48,7 @@ export interface EligibilityData {
   universityName?: string;
   website?: string;
   linkedinUrl?: string;
+  githubUsername?: string;
   buildingDescription?: string;
 }
 
