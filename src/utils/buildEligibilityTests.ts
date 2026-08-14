@@ -16,7 +16,7 @@ export interface TestScenario {
 }
 
 export const testScenarios: TestScenario[] = [
-  // FLAT launch pricing (2026-08-13): every BUILD seat is SAR 9,630.
+  // FLAT launch pricing (2026-08-14): every BUILD seat is SAR 9,630 (launch offer, was 14,960).
   // Identity/profession are still collected for cohort routing & CRM.
   {
     name: 'Saudi National - Flat Price',
@@ -25,7 +25,7 @@ export const testScenarios: TestScenario[] = [
     expectedTier: 'standard',
     expectedDiscount: 0,
     expectedPrice: 9630,
-    expectedSavings: 0,
+    expectedSavings: 5330,
   },
   {
     name: 'Sudanese National - Flat Price',
@@ -34,7 +34,7 @@ export const testScenarios: TestScenario[] = [
     expectedTier: 'standard',
     expectedDiscount: 0,
     expectedPrice: 9630,
-    expectedSavings: 0,
+    expectedSavings: 5330,
   },
   {
     name: 'Saudi Doctor - Flat Price',
@@ -43,7 +43,7 @@ export const testScenarios: TestScenario[] = [
     expectedTier: 'standard',
     expectedDiscount: 0,
     expectedPrice: 9630,
-    expectedSavings: 0,
+    expectedSavings: 5330,
   },
   {
     name: 'International Doctor - Flat Price',
@@ -52,7 +52,7 @@ export const testScenarios: TestScenario[] = [
     expectedTier: 'standard',
     expectedDiscount: 0,
     expectedPrice: 9630,
-    expectedSavings: 0,
+    expectedSavings: 5330,
   },
   {
     name: 'International Nurse - Flat Price',
@@ -61,7 +61,7 @@ export const testScenarios: TestScenario[] = [
     expectedTier: 'standard',
     expectedDiscount: 0,
     expectedPrice: 9630,
-    expectedSavings: 0,
+    expectedSavings: 5330,
   },
   {
     name: 'International Entrepreneur - Flat Price',
@@ -77,7 +77,7 @@ export const testScenarios: TestScenario[] = [
     expectedTier: 'standard',
     expectedDiscount: 0,
     expectedPrice: 9630,
-    expectedSavings: 0,
+    expectedSavings: 5330,
   },
   {
     name: 'University Student - Flat Price',
@@ -86,7 +86,7 @@ export const testScenarios: TestScenario[] = [
     expectedTier: 'standard',
     expectedDiscount: 0,
     expectedPrice: 9630,
-    expectedSavings: 0,
+    expectedSavings: 5330,
   },
   {
     name: 'Research Scholar - Flat Price',
@@ -95,7 +95,7 @@ export const testScenarios: TestScenario[] = [
     expectedTier: 'standard',
     expectedDiscount: 0,
     expectedPrice: 9630,
-    expectedSavings: 0,
+    expectedSavings: 5330,
   },
   {
     name: 'Standard User - Flat Price',
@@ -104,7 +104,7 @@ export const testScenarios: TestScenario[] = [
     expectedTier: 'standard',
     expectedDiscount: 0,
     expectedPrice: 9630,
-    expectedSavings: 0,
+    expectedSavings: 5330,
   },
   {
     name: 'No Data Provided - Flat Price',
@@ -113,7 +113,7 @@ export const testScenarios: TestScenario[] = [
     expectedTier: 'standard',
     expectedDiscount: 0,
     expectedPrice: 9630,
-    expectedSavings: 0,
+    expectedSavings: 5330,
   },
   {
     name: 'Doctor + Entrepreneur - Flat Price',
@@ -122,7 +122,7 @@ export const testScenarios: TestScenario[] = [
     expectedTier: 'standard',
     expectedDiscount: 0,
     expectedPrice: 9630,
-    expectedSavings: 0,
+    expectedSavings: 5330,
   },
   {
     name: 'Student + Entrepreneur - Flat Price',
@@ -131,9 +131,35 @@ export const testScenarios: TestScenario[] = [
     expectedTier: 'standard',
     expectedDiscount: 0,
     expectedPrice: 9630,
-    expectedSavings: 0,
+    expectedSavings: 5330,
   },
 ];
+
+// Promo code scenarios (launch offer + discount)
+export const promoTests: { name: string; input: EligibilityData; promo: string; expectedPrice: number; expectedDiscount: number }[] = [
+  {
+    name: 'LAUNCH10 promo - 10% off launch price',
+    input: { identity: 'OTHER', profession: 'other' },
+    promo: 'LAUNCH10',
+    expectedPrice: 8667,
+    expectedDiscount: 10,
+  },
+  {
+    name: 'FOUNDER15 promo - 15% off launch price',
+    input: { identity: 'OTHER', profession: 'other' },
+    promo: 'FOUNDER15',
+    expectedPrice: 8185.5,
+    expectedDiscount: 15,
+  },
+  {
+    name: 'Invalid promo code falls back to launch price',
+    input: { identity: 'OTHER', profession: 'other' },
+    promo: 'NOTACODE',
+    expectedPrice: 9630,
+    expectedDiscount: 0,
+  },
+];
+
 
 export function runAllTests(): { passed: number; failed: number; failures: string[] } {
   let passed = 0;
@@ -167,6 +193,27 @@ export function runAllTests(): { passed: number; failed: number; failures: strin
             .filter(Boolean)
             .join(', ')
         }`,
+      ].join('\n');
+      failures.push(failureMsg);
+      console.error(failureMsg);
+    }
+  });
+
+  promoTests.forEach((scenario) => {
+    const result = calculatePrice(scenario.input, scenario.promo);
+
+    const discountMatch = result.discount === scenario.expectedDiscount;
+    const priceMatch = Math.abs(result.finalPrice - scenario.expectedPrice) < 0.01;
+
+    if (discountMatch && priceMatch) {
+      passed++;
+      console.log(`✅ ${scenario.name}`);
+    } else {
+      failed++;
+      const failureMsg = [
+        `❌ ${scenario.name}`,
+        `   Expected: discount=${scenario.expectedDiscount}%, price=SAR${scenario.expectedPrice}`,
+        `   Got: discount=${result.discount}%, price=SAR${result.finalPrice}`,
       ].join('\n');
       failures.push(failureMsg);
       console.error(failureMsg);

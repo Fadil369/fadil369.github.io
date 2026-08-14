@@ -270,7 +270,7 @@
       "flag": null,
       "demoUrl": null,
       "shopifyUrl": "https://store.brainsait.org/products/digital-organization-handbook-drive-edition",
-      "shopifyHandle": "digital-organization-handbook-mini-book",
+      "shopifyHandle": "digital-organization-handbook-drive-edition",
       "sku": "BSP-NB-DIGITAL-ORG",
       "available": true
     },
@@ -1740,7 +1740,7 @@
       "flag": null,
       "demoUrl": null,
       "shopifyUrl": "https://store.brainsait.org/products/dom-study-notes-drive-edition",
-      "shopifyHandle": "dom-study-notes-notebook",
+      "shopifyHandle": "dom-study-notes-drive-edition",
       "sku": "BSP-NB-DOM-STUDY-NOTES",
       "available": true
     },
@@ -2916,7 +2916,7 @@
       "flag": null,
       "demoUrl": null,
       "shopifyUrl": "https://store.brainsait.org/products/saudi-health-transformation-drive-edition",
-      "shopifyHandle": "saudi-health-transformation-mini-book",
+      "shopifyHandle": "saudi-health-transformation-drive-edition",
       "sku": "BSP-NB-SAUDI-HEALTH-TRANSFORM",
       "available": true
     },
