@@ -99,11 +99,6 @@ export default function Build() {
           <code>Notion</code>
           <code>account.brainsait.org</code>
         </div>
-        <p className="fineprint">
-          {ar
-            ? 'لا تسجيل عبر تيليغرام بعد الآن — البوت لم يعد بوابة الدخول. متابعة تقدمك ومعالمك تتم في Notion وحسابك ومستودعك على GitHub.'
-            : 'No Telegram registration anymore — the bot is no longer the entry gate. Progress and milestones live in Notion; your account and repo live on GitHub.'}
-        </p>
       </section>
 
       {/* ── 14-DAY BUILD SPRINT ── */}
