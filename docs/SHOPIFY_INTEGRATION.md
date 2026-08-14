@@ -96,6 +96,32 @@ etc.), the paid BUILD webhook now provisions a full partner profile:
 
 All of the above is best-effort and never blocks the paid-confirmation flow.
 
+## Ecosystem integration (Super partner event → whole stack)
+
+When a paid BUILD order is provisioned, `build-apply` fans a rich
+`super.partner.provisioned` event through the whole ecosystem:
+
+1. **Event bus** — posted to `hub.brainsait.de/api/event` (X-Hub-Key auth) →
+   appended to the bus, SSE subscribers notified, and forwarded to the n8n
+   orchestrator (`/webhook/forge/event`).
+2. **Telegram + SMS** — the hub's `notifyAll` pings the care-team channel
+   (Telegram chat 7095694988) and SMS (Twilio → KonsoleH → email fallback).
+3. **Portal profile** — `portal.brainsait.de/api/integration/super-partner`
+   promotes the partner's profile (partner role + subsystems + entitlements:
+   fulfillment/gift card/company/GitHub/Notion/track).
+4. **Notion + Second Brain** — the candidate's Notion page (which lives inside
+   the Arabic BUILD Ultimate Brain hub) gets a `Super Partner` badge, the
+   provisioning summary in Notes, and Last Activity bumped.
+5. **AI knowledge base** — `hub.brainsait.org/mcp/v1/kb/embed` indexes the
+   partner into D1 `knowledge_base` so kb_search / RAG / AI gateway can find them.
+6. **Airtable** — the hub mirrors the partner into the Build Candidates table
+   (base appE7sxyyLHrCQBSe / tblGLOozm8LcUeXCD).
+7. **Shopify** — fulfillment record, welcome gift card, B2B company, order
+   tags + note (the Super partner suite).
+
+Every step is best-effort + idempotent; no single failure blocks the paid
+confirmation or the rest of the pipeline.
+
 ## Environment (build-apply worker secrets)
 
 - `SHOPIFY_STORE_DOMAIN` — default `store.brainsait.org`
