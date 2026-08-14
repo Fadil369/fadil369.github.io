@@ -1,5 +1,5 @@
 export const BASE_PRICE = 9630; // SAR — launch offer (limited time)
-export const ORIGINAL_PRICE = 14960; // SAR — standard price before launch offer
+export const ORIGINAL_PRICE = 14630; // SAR — standard price before launch offer
 export const LAUNCH_SAVINGS = ORIGINAL_PRICE - BASE_PRICE; // 5,330 SAR
 
 export interface PricingTier {
@@ -85,7 +85,7 @@ export function calculatePrice(
   data: EligibilityData,
   promoCode?: string
 ): PricingResult {
-  // Launch pricing is FLAT: every BUILD seat is SAR 9,630 (was SAR 14,960).
+  // Launch pricing is FLAT: every BUILD seat is SAR 9,630 (was SAR 14,630).
   // Identity and profession are still collected (stored with the application)
   // for cohort routing and CRM, but no longer change the base price.
   // A valid promo code adds a discount on top of the launch price.

@@ -302,8 +302,22 @@ img { max-width: 100%; }
   color: var(--ink-soft);
   margin-top: 1.2rem;
 }
+.hero-teaser {
+  margin: 1.4rem auto 0;
+  max-width: 58ch;
+  font-size: clamp(1rem, 2vw, 1.12rem);
+  font-weight: 600;
+  color: var(--gold-l);
+  background: linear-gradient(135deg, rgba(201,162,39,0.14), rgba(201,162,39,0.05));
+  border: 1px solid rgba(201,162,39,0.35);
+  border-radius: 999px;
+  padding: 0.7rem 1.6rem;
+  display: inline-block;
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
 
-/* ── Entity profile — Saudi government identity ─────────────── */
+/* ── Entity profile — The Second Brain ──────────────────────── */
 .entity {
   position: relative; text-align: center;
   margin: 1.6rem 0 1.2rem; padding: 2.6rem 1.8rem;
@@ -800,6 +814,38 @@ img { max-width: 100%; }
   border-radius: 14px; color: var(--ink-soft); font-size: 0.86rem; line-height: 1.7;
 }
 .policy-note svg { flex: 0 0 auto; margin-top: 0.2rem; color: var(--gold); }
+
+/* ── Build page — The Second Brain gift ────────────────────── */
+.second-brain-program { max-width: 1020px; margin: 3rem auto; text-align: center; }
+.second-brain-program h2 { font-size: 1.9rem; margin-bottom: 0.5rem; }
+.second-brain-summary {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem; margin: 1.8rem 0; text-align: start;
+}
+.sb-row {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1.3rem 1.2rem;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  transition: transform 0.24s ease, border-color 0.24s ease;
+}
+.sb-row:hover { transform: translateY(-3px); border-color: rgba(201,162,39,0.5); }
+.sb-num {
+  flex: 0 0 auto; min-width: 2.6rem; height: 2.6rem; display: flex; align-items: center; justify-content: center;
+  font-size: 1.35rem; font-weight: 800; border-radius: 14px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-l));
+  color: #131320;
+}
+.sb-row h3 { font-size: 1rem; margin-bottom: 0.35rem; }
+.sb-row p { font-size: 0.84rem; color: var(--muted); line-height: 1.65; margin: 0; }
+.sb-cert {
+  display: flex; gap: 0.7rem; align-items: flex-start; text-align: start;
+  max-width: 760px; margin: 0 auto; padding: 1rem 1.2rem;
+  background: color-mix(in srgb, var(--gold) 8%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--gold) 22%, var(--line));
+  border-radius: 14px; color: var(--ink-soft); font-size: 0.86rem; line-height: 1.7;
+}
+.sb-cert svg { flex: 0 0 auto; margin-top: 0.2rem; color: var(--gold); }
 
 /* ── Build page — 14-day account lifecycle ─────────────────── */
 .build-lifecycle { max-width: 1020px; margin: 3rem auto; text-align: center; }

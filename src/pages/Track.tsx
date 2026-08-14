@@ -227,6 +227,9 @@ export default function Track() {
 
       {/* Links */}
       <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <a className="button primary" href={`https://build-apply.brainsait.org/certificate/${encodeURIComponent(ref)}`} target="_blank" rel="noopener noreferrer">
+          <Award size={16} /> {ar ? 'شهادتك' : 'Your certificate'}
+        </a>
         {data.notionUrl && (
           <a className="button secondary" href={data.notionUrl} target="_blank" rel="noopener noreferrer">
             <ExternalLink size={16} /> {ar ? 'عرض في Notion' : 'View in Notion'}

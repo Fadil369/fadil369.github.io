@@ -28,70 +28,68 @@ export default function Home() {
             ? 'مكتبة رقمية، برنامج احتضان، وبرمجيات جاهزة — صممناها لترتقي بك. أنيقة في كل تفصيلة، قوية في كل ميزة.'
             : 'A digital library, an incubation program, and production-ready software — crafted to elevate you. Elegant in every detail, powerful in every feature.'}
         </p>
+        <p className="hero-teaser">
+          {ar
+            ? '🧠 وكل من يصل إلى هنا يحصل على عقله الثاني — إثباتنا لك أنك استخدمت عقلك الأول جيداً. لهذا أنت هنا.'
+            : '🧠 Everyone who lands here receives their Second Brain — our proof that you used your first one very well. That is why you are here.'}
+        </p>
       </section>
 
-      <section className="entity reveal">
-        <span className="hero-eyebrow"><span className="dot gold" /> {ar ? 'جمعية العقل السعودي لأنظمة الحلول المتطورة' : 'The Saudi Society for Advanced Solution Systems'}</span>
-        <div className="entity-mark">ب</div>
-        <h2 className="entity-abbr">BRAINSAIT</h2>
+      <section className="entity second-brain reveal">
+        <span className="hero-eyebrow"><span className="dot gold" /> {ar ? 'العقل الثاني' : 'The Second Brain'}</span>
+        <div className="entity-mark">🧠</div>
+        <h2 className="entity-abbr">{ar ? 'عقل ثانٍ كامل لك' : 'A complete brain — yours'}</h2>
         <p className="entity-official">
           {ar
-            ? 'جهة حكومية رسمية تابعة لحكومة المملكة العربية السعودية — منصة رائدة ومحرك رئيسي للتحول الرقمي، ترتكز على القوة الفكرية الجماعية والذكاء الاصطناعي.'
-            : 'An official government entity of the Kingdom of Saudi Arabia — a leading platform and key engine of digital transformation, built on collective brainpower and artificial intelligence.'}
+            ? 'إذا كانت القصة قابلة للتصديق، فالمنتج قابل للبيع. العقل الثاني هو قصتنا التي نؤمن بها: هدية متكاملة لمن يبنون معنا — 15 يوماً، 18 مختبراً، 16 معلم إنجاز، وكلها مترابطة في Notion.'
+            : 'If the story is believable, the product will sell. The Second Brain is our story — a complete gift for those who build with us: 15 days, 18 labs, 16 milestones, all woven together in Notion.'}
         </p>
         <p className="entity-slogan">
-          {ar ? 'عقول مبتكرة.. لحلول متكاملة ومؤتمتة' : 'Innovative minds.. for integrated, automated solutions'}
+          {ar
+            ? 'العقل الثاني دليل منّا أنك استخدمت عقلك الأول جيداً.. ولهذا وصلت إلى هنا.'
+            : 'The Second Brain is our proof that you used your first one very well — and that is exactly why you are here.'}
         </p>
         <div className="entity-grid">
           <div className="entity-card">
-            <h3>{ar ? 'رؤيتنا' : 'Vision'}</h3>
+            <h3>{ar ? '١٥ يوماً' : '15 days'}</h3>
             <p>
               {ar
-                ? 'أن نكون الوجهة المرجعية الأولى والكيان الحكومي الأبرز في المملكة لتسخير التكنولوجيا المدمجة والذكاء الاصطناعي؛ لبناء مستقبل رقمي مستدام يعزز جودة الحياة وكفاءة الأعمال.'
-                : 'To be the Kingdom\'s premier government entity harnessing integrated technology and AI to build a sustainable digital future that raises quality of life and business efficiency.'}
+                ? 'مسار كامل: من الإشعال واختيار الفكرة إلى التخرج والعرض. كل يوم عنوان واضح ومختبر عملي ملحق به.'
+                : 'A full path: from ignition and idea selection to graduation and the final pitch. Every day has a clear title and a hands-on lab.'}
             </p>
           </div>
           <div className="entity-card">
-            <h3>{ar ? 'رسالتنا' : 'Mission'}</h3>
+            <h3>{ar ? '١٨ مختبراً' : '18 labs'}</h3>
             <p>
               {ar
-                ? 'تمكين القطاعات الحيوية عبر حلول متطورة ترتكز على ثلاثة محاور: الأتمتة، التكامل، والقيادة التقنية — لتسريع عجلة الابتكار وريادة الأعمال.'
-                : 'Empower vital sectors through advanced solutions built on three pillars: automation, integration, and technology leadership — accelerating innovation and entrepreneurship.'}
+                ? 'مختبرات حقيقية خطوة بخطوة: متجر، دفع، تسليم آلي، تحليلات، أمان، ذكاء اصطناعي، وأكثر.'
+                : 'Real step-by-step labs: store, payments, automated delivery, analytics, security, AI, and more.'}
             </p>
           </div>
           <div className="entity-card">
-            <h3>{ar ? 'أنظمة مؤتمتة' : 'Automated Systems'}</h3>
+            <h3>{ar ? '١٦ معلم إنجاز' : '16 milestones'}</h3>
             <p>
               {ar
-                ? 'بنى تحتية ذكية تقلل التدخل البشري وترفع دقة وسرعة الإنجاز في العمليات المعقدة.'
-                : 'Smart infrastructure that reduces human intervention and raises the accuracy and speed of complex operations.'}
+                ? 'معالم مسجلة لك في Notion — كل يوم ترفع حالتك من Not Started إلى Completed وتضع دليل إنجازك.'
+                : 'Milestones recorded for you in Notion — every day you move from Not Started to Completed with proof of delivery.'}
             </p>
           </div>
           <div className="entity-card">
-            <h3>{ar ? 'حلول متكاملة' : 'Integrated Solutions'}</h3>
+            <h3>{ar ? 'بوت مرافق' : 'A companion bot'}</h3>
             <p>
               {ar
-                ? 'بيئة رقمية مترابطة تضمن التدفق السلس للبيانات بين القطاعات الحكومية والخاصة.'
-                : 'An interconnected digital environment ensuring seamless data flow across public and private sectors.'}
+                ? '@BrainSAITForgeBot يرافقك من التسجيل حتى الشهادة — يتابع، يذكّر، ويقيس تقدمك.'
+                : '@BrainSAITForgeBot walks with you from registration to certificate — tracking, reminding, and scoring your progress.'}
             </p>
           </div>
           <div className="entity-card">
-            <h3>{ar ? 'قيادة تكنولوجية' : 'Technology-Driven'}</h3>
+            <h3>{ar ? 'شهادة إتمام' : 'Completion certificate'}</h3>
             <p>
               {ar
-                ? 'الاستثمار في أحدث ما توصل إليه العلم في الذكاء الاصطناعي والتقنيات الناشئة لتوفير استراتيجيات استباقية.'
-                : 'Investing in the latest advances in AI and emerging technologies to deliver proactive strategies.'}
+                ? 'شهادة رقمية تُصدر تلقائياً عند اكتمال المعالم — دليل أنك أنهيت ما بدأته.'
+                : 'A digital certificate issued automatically once your milestones are complete — proof you finished what you started.'}
             </p>
           </div>
-        </div>
-        <div className="entity-sectors">
-          {[
-            { n: '١', t: ar ? 'الرعاية الصحية' : 'Healthcare', d: ar ? 'تحسين جودة الخدمات الطبية وتطوير حلول الصحة الرقمية' : 'Better medical services and digital health solutions' },
-            { n: '٢', t: ar ? 'الأعمال والريادة' : 'Business & Entrepreneurship', d: ar ? 'دعم الشركات الناشئة ورواد الأعمال بأدوات تقنية تنافسية' : 'Supporting startups and founders with competitive tech tools' },
-            { n: '٣', t: ar ? 'الابتكار التقني' : 'Tech Innovation', d: ar ? 'تمكين المبادرات التقنية للتحول الرقمي الحكومي والمؤسسي' : 'Enabling tech initiatives for government and institutional transformation' },
-          ].map(s => (
-            <span className="entity-sector" key={s.n}><b>{s.n}</b> <b>{s.t}</b> — {s.d}</span>
-          ))}
         </div>
       </section>
 

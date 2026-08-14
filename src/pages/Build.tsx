@@ -89,7 +89,7 @@ export default function Build() {
         <p className="lede">{ar ? program.taglineAr : program.tagline}</p>
         <div className="build-launch-strip">
           <span className="launch-tag">{ar ? 'عرض الإطلاق' : 'Launch offer'}</span>
-          <span className="launch-was">{ar ? 'كان' : 'Was'} 14,960 SAR</span>
+          <span className="launch-was">{ar ? 'كان' : 'Was'} 14,630 SAR</span>
           <span className="launch-now">{ar ? 'الآن' : 'Now'} 9,630 SAR</span>
           <span className="launch-timer">{ar ? 'لفترة محدودة' : 'Limited time'}</span>
         </div>
@@ -249,6 +249,54 @@ export default function Build() {
             ? '14 يوماً فقط — البناء، الإطلاق، التسويق، التسليم، والتخرج.'
             : 'Just 14 days — build, launch, market, deliver, graduate.'}
         </p>
+      </section>
+
+      {/* ── THE SECOND BRAIN — GIFT & OPERATING SYSTEM ── */}
+      <section className="second-brain-program reveal">
+        <h2>{ar ? '🧠 عقلك الثاني — هدية كل بنّاء' : '🧠 Your Second Brain — every builder\'s gift'}</h2>
+        <p className="benefits-intro">
+          {ar
+            ? 'إذا كانت القصة قابلة للتصديق، فالمنتج قابل للبيع. اشترِ المقعد وتملك عقلك الثاني — إثباتنا أنك استخدمت عقلك الأول جيداً، ولهذا أنت هنا.'
+            : 'If the story is believable, the product will sell. Buy your seat and own your Second Brain — our proof that you used your first one very well, and that is why you are here.'}
+        </p>
+        <div className="second-brain-summary">
+          <div className="sb-row">
+            <span className="sb-num">15</span>
+            <div>
+              <h3>{ar ? 'يوماً مكثفاً' : 'intense days'}</h3>
+              <p>{ar ? 'من الإشعال واختيار الفكرة حتى التخرج والعرض — منهج كامل منظم في Notion.' : 'From ignition and idea selection to graduation and the final pitch — a complete curriculum, organized in Notion.'}</p>
+            </div>
+          </div>
+          <div className="sb-row">
+            <span className="sb-num">18</span>
+            <div>
+              <h3>{ar ? 'مختبراً عملياً' : 'hands-on labs'}</h3>
+              <p>{ar ? 'مختبرات حقيقية خطوة بخطوة: متجر، دفع، تسليم آلي، تحليلات، أمن، ذكاء اصطناعي.' : 'Real step-by-step labs: store, payments, automated delivery, analytics, security, AI.'}</p>
+            </div>
+          </div>
+          <div className="sb-row">
+            <span className="sb-num">16</span>
+            <div>
+              <h3>{ar ? 'معلم إنجاز' : 'milestones'}</h3>
+              <p>{ar ? 'معالم مسجلة لك في قاعدة Build Milestones — كل يوم ترفع الحالة وتضع دليل إنجازك (Proof URL).' : 'Milestones recorded in the Build Milestones database — every day you advance the status and attach your proof URL.'}</p>
+            </div>
+          </div>
+          <div className="sb-row">
+            <span className="sb-num">1</span>
+            <div>
+              <h3>{ar ? 'بوت مرافق من التسجيل حتى الشهادة' : 'companion bot — registration to certificate'}</h3>
+              <p>{ar ? '@BrainSAITForgeBot يتابعك، يذكّرك بوقفة اليوم، يقيّم تقدمك، ويصدر شهادتك عند الإتمام.' : '@BrainSAITForgeBot tracks you, reminds you of your daily standup, scores your progress, and issues your certificate on completion.'}</p>
+            </div>
+          </div>
+        </div>
+        <div className="sb-cert">
+          <BadgeCheck size={20} />
+          <p>
+            {ar
+              ? 'عند اكتمال المعالم الـ16 يُصدر لك نظام الشهادات الآلي شهادة رقمية فاخرة باسمك — ويُرسلها لبريدك مع رابط عقلك الثاني الكامل.'
+              : 'When all 16 milestones are complete, the automated certificate system issues a premium digital certificate in your name — and emails it with the full Second Brain link.'}
+          </p>
+        </div>
       </section>
 
       {/* ── SECURITY & POLICY ── */}
