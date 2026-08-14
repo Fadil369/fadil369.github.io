@@ -50,7 +50,8 @@ Tiers are cancelled. There is one product, one variant, one price.
 3. All 16 milestones seeded in the Build Milestones database.
 4. Shopify customer record upserted with `build-partner`, `paid`, `partner-profile` tags (Partner API).
 5. GitHub repo generated from `Fadil369/brainsait-build-starter` and applicant invited (when GitHub username present) — repo URL appears on the Track page.
-6. Paid welcome email sent via Resend (Second Brain gift + links).
+6. **Airtable mirror** — Build Candidates record flipped to Paid + Approved (base `appE7sxyyLHrCQBSe`, table `tblGLOozm8LcUeXCD`).
+7. Paid welcome email sent via Resend (verified `orders@brainsait.org` → real inbox).
 
 ### Test 4: Certificate
 
@@ -78,6 +79,8 @@ Tiers are cancelled. There is one product, one variant, one price.
 - [x] Notion onboarding + milestone seeding after payment
 - [x] Shopify customer upsert (Partner API) with partner tags
 - [x] GitHub repo provisioning after payment (needs `GITHUB_TOKEN` + username)
+- [x] Airtable Build Candidates mirror (apply create + webhook paid update)
+- [x] Resend mailing verified (`orders@brainsait.org` → Gmail delivered)
 - [ ] Sandbox payment test performed end-to-end
 
 ## 🐛 Troubleshooting

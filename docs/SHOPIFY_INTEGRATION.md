@@ -37,8 +37,24 @@ The obsolete tiered product `brainsait-incubation-program` (product id `80476120
 - **Notion onboarding** — the candidate's Notion page is updated to Paid/Approved, the onboarding plan is created (cohort & sprint plan, GitHub repo invite, onboarding call), and all 16 milestones are seeded. Progress is tracked per candidate.
 - **Shopify customer account (Partner API)** — the customer record is promoted with `build-partner`, `paid`, `partner-profile` tags via the Admin API so they appear in the store's customer/partner directory. Customer accounts are managed through the Shopify Partner org using the Partner API (store-level custom app `brainsait-fulfillment` token in `SHOPIFY_ADMIN_TOKEN`).
 - **GitHub repo** — when a GitHub username is on the application, a private-ish repo is generated from `Fadil369/brainsait-build-starter` and the candidate is invited as a repo-scoped collaborator (idempotent via KV). The repo URL is surfaced on the Track page.
-- **Paid welcome email** — via Resend with the Second Brain gift, companion links, and the application ref.
+- **Airtable mirror** — every applicant gets an always-current record in the **Build Candidates** table (base `appE7sxyyLHrCQBSe`, table `tblGLOozm8LcUeXCD`): created at apply time, flipped to Paid + Approved by the webhook. Gated on the `AIRTABLE_API_KEY` / `AIRTABLE_BASE_ID` / `AIRTABLE_CANDIDATES_TABLE` secrets.
+- **Paid welcome email** — via Resend with the Second Brain gift, dashboard link, and the application ref.
 - **Certificate** — issued automatically (once, idempotent) when all 16 milestones are Completed; served at `build-apply.brainsait.org/certificate/<ref>`.
+
+## Automated mailing system
+
+Transactional mail is sent via **Resend from the verified domain `brainsait.org`** (`BrainSAIT <orders@brainsait.org>`), confirmed delivered to normal inboxes. Email types:
+- Apply confirmation (EN/AR) with checkout link
+- Paid welcome (GitHub flow copy — repo + Notion + dashboard)
+- Daily standup (cron `0 9 * * *`)
+- Completion certificate email
+- Store Ops daily report (`store-commerce-automation`, sent to `REPORT_EMAIL`)
+
+**Known constraint:** sending *to* `fadil@brainsait.org` is rejected by Apple iCloud's forwarding policy (554 HM08). brainsait.org mail routes to an iCloud mailbox via Cloudflare Email Routing, and Apple rejects externally-sent messages forwarded into that mailbox. Use a real inbox (e.g. Gmail) for ops recipients.
+
+**Domain notes:**
+- `resend.brainsait.org` is **NOT verified** in Resend (only its click-tracking CNAME exists; the DKIM TXT `resend._domainkey.resend.brainsait.org` has not been added, and the available Resend keys are send-only so the DKIM value cannot be read via API). It is not used as a sender.
+- Hetzner `mail.your-server.de` SMTP is available for `brainsait.de` but **no mailbox is created yet** (KonsoleH panel needed) — a viable fallback once a mailbox exists.
 
 ## Telegram bot status
 
@@ -65,6 +81,8 @@ The Telegram bot (`@BrainSAITForgeBot`) is **no longer the registration/entry ga
 - `SHOPIFY_WEBHOOK_SECRET` — signs/verifies webhook HMAC
 - `GITHUB_TOKEN` — enables GitHub repo provisioning after payment (scope: `repo`)
 - `NOTION_TOKEN`, `NOTION_BUILD_DB_ID`, `NOTION_TASKS_DB_ID`, `NOTION_MILESTONES_DB_ID` — Notion onboarding
+- `RESEND_API_KEY`, `RESEND_FROM_EMAIL` — transactional mail (default `orders@brainsait.org`, verified domain)
+- `AIRTABLE_API_KEY`, `AIRTABLE_BASE_ID`, `AIRTABLE_CANDIDATES_TABLE` — Airtable Build Candidates mirror
 
 ## Testing checklist (flat flow)
 
