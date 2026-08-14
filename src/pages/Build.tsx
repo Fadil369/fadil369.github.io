@@ -360,6 +360,44 @@ export default function Build() {
         </div>
       </section>
 
+      {/* ── REAL TOOLS STACK ── */}
+      <section className="build-security reveal">
+        <h2>{ar ? '🧰 الأدوات الحقيقية — لا قائمة تسويقية' : '🧰 The real tools — not a marketing list'}</h2>
+        <p className="benefits-intro">
+          {ar
+            ? 'لا تتعلم عن هذه الأدوات — تتعلم عليها، داخل نظام BrainSAIT الحي نفسه الذي يخدم عملاء حقيقيين الآن.'
+            : "You don't learn about these tools — you learn on them, inside the live BrainSAIT system that serves real customers right now."}
+        </p>
+        <div className="lifecycle-track">
+          <div className="lifecycle-phase wk1">
+            <span className="lc-flag">{ar ? 'التطوير والبنية' : 'Dev & Infra'}</span>
+            <p>GitHub · Cloudflare Workers/KV/R2/DNS · Linux Ubuntu Server · Bash · Docker</p>
+          </div>
+          <div className="lifecycle-phase wk2">
+            <span className="lc-flag">{ar ? 'الذكاء والأتمتة' : 'AI & Automation'}</span>
+            <p>Claude Code · MCP · AI Agents · n8n · Hermes · Cron</p>
+          </div>
+          <div className="lifecycle-phase grad">
+            <span className="lc-flag">{ar ? 'البيانات والمحتوى' : 'Data & Content'}</span>
+            <p>Airtable · Canva · Notion</p>
+          </div>
+          <div className="lifecycle-phase exp">
+            <span className="lc-flag">{ar ? 'التجارة والتواصل' : 'Commerce & Comms'}</span>
+            <p>Shopify · Resend · Twilio · Telegram Bot · WhatsApp Business</p>
+          </div>
+        </div>
+        <p className="fineprint" style={{ marginTop: 16 }}>
+          {ar
+            ? '📱 على جهازك: Apple Shortcuts وAutomator تُدرّسان عملياً على جهاز Mac/iPhone حقيقي أثناء المختبر — لا يمكن محاكاتهما من خادم، ولن ندّعي إثباتاً لا نملكه.'
+            : "📱 On your device: Apple Shortcuts and Automator are taught hands-on on a real Mac/iPhone during the lab — they can't run on a server, and we won't fake a screenshot we don't have."}
+        </p>
+        <p className="fineprint">
+          {ar
+            ? 'كل أداة مرتبطة مباشرة بكتالوج LEARN (37 مصدراً) وSOLUTIONS (37 عرضاً حياً) — تبدأ من مرجع تملكه، لا من الصفر.'
+            : 'Every tool cross-references the LEARN catalog (37 resources) and SOLUTIONS (37 live demos) — you start from a reference you own, not from zero.'}
+        </p>
+      </section>
+
       <section className="program-info reveal">
         <p>{ar ? program.descriptionAr : program.description}</p>
         <Link className="button secondary" to="/solutions">{t('program.pick')}</Link>
