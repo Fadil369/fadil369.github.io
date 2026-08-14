@@ -24,6 +24,15 @@ interface ProgressData {
   applicationStatus?: string;
   notionUrl?: string;
   repoUrl?: string;
+  capabilities?: {
+    level: 'full' | 'building' | 'suspended';
+    deploy: boolean;
+    launch: boolean;
+    marketing: boolean;
+    buildResources: boolean;
+    secondBrainPublic: boolean;
+    secondBrainUrl: string;
+  };
   totalTasks: number;
   doneTasks: number;
   percent: number;
@@ -211,6 +220,56 @@ export default function Track() {
           <p style={{ fontWeight: 700, marginTop: '0.3rem' }}>{data.track}</p>
         </div>
       </div>
+
+      {/* Access capabilities — BUILD Ticket limited-access model */}
+      {data.capabilities && (() => { const cap = data.capabilities; return (
+        <div style={{
+          background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 20,
+          padding: '1.5rem', marginBottom: '1.5rem',
+        }}>
+          <h3 style={{ marginBottom: '0.6rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Sparkles size={18} /> {ar ? 'صلاحيات الوصول' : 'Access'}
+            <span style={{
+              fontSize: '0.75rem', padding: '0.25rem 0.7rem', borderRadius: 999, fontWeight: 700,
+              background: cap.level === 'full' ? 'color-mix(in srgb, var(--ok) 15%, var(--surface-2))' : 'color-mix(in srgb, #e5484d 14%, var(--surface-2))',
+              border: `1px solid ${cap.level === 'full' ? 'var(--ok)' : '#e5484d'}`,
+              color: cap.level === 'full' ? 'var(--ok)' : '#e5484d',
+            }}>
+              {cap.level === 'full'
+                ? (ar ? 'وصول كامل' : 'Full access')
+                : cap.level === 'suspended'
+                  ? (ar ? 'معلّق' : 'Suspended')
+                  : (ar ? 'وصول محدود · ١٤ يوم' : 'Limited · 14 days')}
+            </span>
+          </h3>
+          <p style={{ color: 'var(--muted)', fontSize: '0.82rem', marginBottom: '0.8rem' }}>
+            {ar
+              ? 'تذكرة BUILD تمنح وصولاً محدوداً لموارد البناء لمدة ١٤ يوماً. يفتح النشر والإطلاق والتسويق بعد اكتمال الدفع.'
+              : 'The BUILD Ticket grants limited building resources for 14 days. Deploy, launch and marketing unlock after full payment.'}
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+            {[
+              { key: 'buildResources', label: ar ? '🛠️ موارد البناء (١٤ يوم)' : '🛠️ Building resources (14-day)', on: cap.buildResources },
+              { key: 'deploy', label: ar ? '🚀 النشر' : '🚀 Deploy', on: cap.deploy },
+              { key: 'launch', label: ar ? '🛫 الإطلاق' : '🛫 Launch', on: cap.launch },
+              { key: 'marketing', label: ar ? '📣 التسويق' : '📣 Marketing', on: cap.marketing },
+              { key: 'secondBrain', label: ar ? '🧠 العقل الثاني (رابط عام)' : '🧠 Second Brain (public link)', on: cap.secondBrainPublic },
+            ].map((row) => (
+              <div key={row.key} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.88rem' }}>
+                {row.on
+                  ? <CheckCircle2 size={17} color="var(--ok)" />
+                  : <span style={{ color: '#e5484d', fontSize: '0.95rem' }}>🔒</span>}
+                <span style={{ flex: 1, color: row.on ? 'var(--ink)' : 'var(--muted)' }}>{row.label}</span>
+                {row.key === 'secondBrain' && row.on && (
+                  <a href={cap.secondBrainUrl} target="_blank" rel="noopener noreferrer" className="button secondary sm">
+                    {ar ? 'افتح' : 'Open'}
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      ); })()}
 
       {/* Installment plan */}
       {installment?.ok && installment.plan && (
