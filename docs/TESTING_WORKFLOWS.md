@@ -37,13 +37,7 @@ Tiers are cancelled. There is one product, one variant, one price.
 6. Complete checkout (sandbox payment first).
 7. Order appears in Shopify admin with the `application_ref` property.
 
-### Test 2: Promo code
-
-1. On the intake, apply `LAUNCH10` (10%) → preview shows 8,667 SAR.
-2. Submit → redirected via `https://store.brainsait.org/discount/LAUNCH10?redirect=<cart+add URL>`.
-3. Cart total = SAR 8,667 with the code applied.
-
-### Test 3: Post-payment automation (after `orders/paid` fires)
+### Test 2: Post-payment automation (after `orders/paid` fires)
 
 1. Notion candidate page flips to `Payment Status: Paid`, `Application Status: Approved`.
 2. Onboarding plan created: `Create cohort & sprint plan`, `Invite to GitHub repository`, `Schedule onboarding call`.
@@ -53,7 +47,7 @@ Tiers are cancelled. There is one product, one variant, one price.
 6. **Airtable mirror** — Build Candidates record flipped to Paid + Approved (base `appE7sxyyLHrCQBSe`, table `tblGLOozm8LcUeXCD`).
 7. Paid welcome email sent via Resend (verified `orders@brainsait.org` → real inbox).
 
-### Test 4: Certificate
+### Test 3: Certificate
 
 1. Mark all milestones `Completed` in Notion (or complete all tasks via the Track/cron).
 2. `GET https://build-apply.brainsait.org/certificate/<ref>` returns the premium certificate; issuance happens once (idempotent) and the certificate email goes out.

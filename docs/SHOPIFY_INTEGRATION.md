@@ -6,7 +6,7 @@ This guide explains how the Shopify store (`store.brainsait.org`) handles the Bu
 
 ## Current state: one flat ticket, no tiers
 
-Tiers and eligibility pricing are **cancelled**. There is exactly **one standard Build Ticket** at a flat **9,630 SAR** (was 14,960 SAR) for every applicant. The eligibility form on the Build page was replaced with a slim intake (contact + GitHub username + promo code) — there is no identity/profession/verification flow anymore.
+Tiers and eligibility pricing are **cancelled**. There is exactly **one standard Build Ticket** at a flat **9,630 SAR** (was 14,960 SAR) for every applicant. The eligibility form on the Build page was replaced with a slim intake (contact + GitHub username) — there is no identity/profession/verification flow anymore, and no promo codes.
 
 ### Canonical Shopify product
 
@@ -24,12 +24,12 @@ The obsolete tiered product `brainsait-incubation-program` (product id `80476120
 
 ### Storefront → checkout chain
 
-1. Applicant fills the flat intake on `https://fadil369.github.io/build` (name, email, phone, country, GitHub username, promo code).
+1. Applicant fills the flat intake on `https://fadil369.github.io/build` (name, email, phone, country, GitHub username).
 2. `build-apply.brainsait.org/apply` creates the application (Notion page when configured, KV fallback), registers the applicant as a Shopify customer, and returns a checkout URL:
    ```
-   https://store.brainsait.org/cart/add?id=45947217870931&quantity=1&properties[eligibility_tier]=standard&properties[discount_percent]=<promo%>&properties[final_price]=9630&properties[application_ref]=<ref>&properties[applicant_email]=<email>
+   https://store.brainsait.org/cart/add?id=45947217870931&quantity=1&properties[eligibility_tier]=standard&properties[final_price]=9630&properties[application_ref]=<ref>&properties[applicant_email]=<email>
    ```
-   With a promo code the URL goes through the Shopify `/discount/CODE` flow first.
+   Promo codes are removed — the URL is always a direct cart-add (a `/discount/CODE` redirect would drop `application_ref`).
 3. `orders/paid` webhook → `build-apply.brainsait.org/webhook/shopify` (HMAC-verified with `SHOPIFY_WEBHOOK_SECRET`) → application marked **Paid + Approved**.
 
 ## Flow after payment (automated)
@@ -59,13 +59,6 @@ Transactional mail is sent via **Resend from the verified domain `brainsait.org`
 ## Telegram bot status
 
 The Telegram bot (`@BrainSAITForgeBot`) is **no longer the registration/entry gate** — the flow now runs on GitHub. The Build page no longer shows Telegram login or bot commands. Backend `/bot/*` endpoints on `build-apply` may remain for legacy progress tracking, but the onboarding task is now `Invite to GitHub repository` (channel `GitHub`).
-
-## Promo codes
-
-| Code | Discount | Note |
-|---|---|---|
-| LAUNCH10 | 10% off 9,630 | Validated server-side on build-apply; applied via Shopify `/discount/CODE` flow |
-| FOUNDER15 | 15% off 9,630 | Same |
 
 ## Shopify webhook
 
