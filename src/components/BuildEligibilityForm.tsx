@@ -41,8 +41,45 @@ export default function BuildEligibilityForm() {
   const finalPrice = promo ? BASE_PRICE * (1 - promo.discountPercent / 100) : BASE_PRICE;
 
   useEffect(() => {
-    (window as any).onTurnstileSuccess = (token: string) => setTurnstileToken(token);
-    return () => { delete (window as any).onTurnstileSuccess; };
+    if (!TURNSTILE_SITE_KEY) return;
+    const container = turnstileRef.current;
+    if (!container) return;
+
+    let widgetId: string | undefined;
+    let disposed = false;
+    let interval: ReturnType<typeof setInterval> | undefined;
+
+    const render = () => {
+      const ts = (window as any).turnstile;
+      if (!ts || disposed || !container) return;
+      try {
+        widgetId = ts.render(container, {
+          sitekey: TURNSTILE_SITE_KEY,
+          callback: (token: string) => setTurnstileToken(token),
+          'expired-callback': () => setTurnstileToken(''),
+          'error-callback': () => setTurnstileToken(''),
+          theme: document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark',
+        });
+      } catch { /* ignore */ }
+    };
+
+    if ((window as any).turnstile) {
+      render();
+    } else {
+      interval = setInterval(() => {
+        if ((window as any).turnstile) {
+          if (interval) clearInterval(interval);
+          render();
+        }
+      }, 250);
+    }
+
+    return () => {
+      disposed = true;
+      if (interval) clearInterval(interval);
+      const ts = (window as any).turnstile;
+      if (ts && widgetId) { try { ts.remove(widgetId); } catch { /* ignore */ } }
+    };
   }, []);
 
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -272,7 +309,7 @@ export default function BuildEligibilityForm() {
 
           {TURNSTILE_SITE_KEY && (
             <div className="turnstile-box" style={{ margin: '1rem 0', minHeight: '65px' }}>
-              <div ref={turnstileRef} className="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-callback="onTurnstileSuccess" />
+              <div ref={turnstileRef} />
             </div>
           )}
 
