@@ -13,10 +13,10 @@
     "sync:shopify:dry": "python3 scripts/sync-catalog-from-shopify.py"
   },
   "dependencies": {
+    "lucide-react": "^1.31.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.2",
-    "lucide-react": "^1.31.0"
+    "react-router-dom": "^7.18.2"
   },
   "devDependencies": {
     "@types/react": "^18.3.11",
