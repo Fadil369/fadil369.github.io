@@ -144,8 +144,8 @@ export default function Build() {
         <h2>{ar ? '🧠 عقلك الثاني — هدية كل بنّاء' : '🧠 Your Second Brain — every builder\'s gift'}</h2>
         <p className="benefits-intro">
           {ar
-            ? 'إذا كانت القصة قابلة للتصديق، فالمنتج قابل للبيع. اشترِ المقعد وتملك عقلك الثاني — إثباتنا أنك استخدمت عقلك الأول جيداً، ولهذا أنت هنا.'
-            : 'If the story is believable, the product will sell. Buy your seat and own your Second Brain — our proof that you used your first one very well, and that is why you are here.'}
+            ? 'إذا كانت القصة قابلة للتصديق، فالمنتج قابل للبيع. اشترِ المقعد وتملك عقلك الثاني — منصة متكاملة للتنظيم، التعلم، والإنطلاق.'
+            : 'If the story is believable, the product will sell. Buy your seat and own your Second Brain — a complete platform for organization, learning, and launch.'}
         </p>
         <div className="second-brain-summary">
           <div className="sb-row">

@@ -28,11 +28,7 @@ export default function Home() {
             ? 'مكتبة رقمية، برنامج احتضان، وبرمجيات جاهزة — صممناها لترتقي بك. أنيقة في كل تفصيلة، قوية في كل ميزة.'
             : 'A digital library, an incubation program, and production-ready software — crafted to elevate you. Elegant in every detail, powerful in every feature.'}
         </p>
-        <p className="hero-teaser">
-          {ar
-            ? '🧠 وكل من يصل إلى هنا يحصل على عقله الثاني — إثباتنا لك أنك استخدمت عقلك الأول جيداً. لهذا أنت هنا.'
-            : '🧠 Everyone who lands here receives their Second Brain — our proof that you used your first one very well. That is why you are here.'}
-        </p>
+        
       </section>
 
       <section className="entity second-brain reveal">
