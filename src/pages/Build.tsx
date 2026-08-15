@@ -103,11 +103,11 @@ export default function Build() {
 
       {/* ── 14-DAY BUILD SPRINT ── */}
       <section className="build-lifecycle reveal">
-        <h2>{ar ? 'سباق البناء — 14 يوماً' : 'Your build sprint — 14 days'}</h2>
+        <h2>{ar ? 'سباق البناء — 16 يوماً' : 'Your build sprint — 16 days'}</h2>
         <p className="benefits-intro">
           {ar
-            ? 'منهج البرنامج مصمم على 14 يوماً: أسبوع للبناء والإطلاق، وأسبوع للتسويق والتسليم، ثم التخرج والشهادة. حساب account.brainsait.org وعقلك الثاني ووصولك لـ LEARN يبقون معك — بلا انتهاء صلاحية.'
-            : 'The curriculum is a focused 14-day sprint: one week to build & launch, one week for marketing & delivery, then graduation & certificate. Your account.brainsait.org access, Second Brain, and LEARN catalog stay with you — no expiry.'}
+            ? 'منهج البرنامج مصمم على 16 يوماً: أسبوع للبناء والإطلاق، وأسبوع للتسويق والتسليم، ثم التخرج والشهادة. حساب account.brainsait.org وعقلك الثاني ووصولك لـ LEARN يبقون معك — بلا انتهاء صلاحية.'
+            : 'The curriculum is a focused 16-day sprint: one week to build & launch, one week for marketing & delivery, then graduation & certificate. Your account.brainsait.org access, Second Brain, and LEARN catalog stay with you — no expiry.'}
         </p>
         <div className="lifecycle-track">
           <div className="lifecycle-phase wk1">
@@ -134,8 +134,8 @@ export default function Build() {
         <p className="lifecycle-timer">
           <span className="timer-icon">⏳</span>
           {ar
-            ? '14 يوماً للسباق — لكن ما تبنيه وتملكه يبقى بعده.'
-            : 'A 14-day sprint — but what you build and own outlasts it.'}
+            ? '16 يوماً للسباق — لكن ما تبنيه وتملكه يبقى بعده.'
+            : 'A 16-day sprint — but what you build and own outlasts it.'}
         </p>
       </section>
 
@@ -149,14 +149,14 @@ export default function Build() {
         </p>
         <div className="second-brain-summary">
           <div className="sb-row">
-            <span className="sb-num">15</span>
+            <span className="sb-num">16</span>
             <div>
               <h3>{ar ? 'يوماً مكثفاً' : 'intense days'}</h3>
               <p>{ar ? 'من الإشعال واختيار الفكرة حتى التخرج والعرض — منهج كامل منظم في Notion.' : 'From ignition and idea selection to graduation and the final pitch — a complete curriculum, organized in Notion.'}</p>
             </div>
           </div>
           <div className="sb-row">
-            <span className="sb-num">18</span>
+            <span className="sb-num">16</span>
             <div>
               <h3>{ar ? 'مختبراً عملياً' : 'hands-on labs'}</h3>
               <p>{ar ? 'مختبرات حقيقية خطوة بخطوة: متجر، دفع، تسليم آلي، تحليلات، أمن، ذكاء اصطناعي.' : 'Real step-by-step labs: store, payments, automated delivery, analytics, security, AI.'}</p>

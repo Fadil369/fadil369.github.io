@@ -37,8 +37,8 @@ export default function Home() {
         <h2 className="entity-abbr">{ar ? 'عقل ثانٍ كامل لك' : 'A complete brain — yours'}</h2>
         <p className="entity-official">
           {ar
-            ? 'إذا كانت القصة قابلة للتصديق، فالمنتج قابل للبيع. العقل الثاني هو قصتنا التي نؤمن بها: هدية متكاملة لمن يبنون معنا — 15 يوماً، 18 مختبراً، 16 معلم إنجاز، وكلها مترابطة في Notion.'
-            : 'If the story is believable, the product will sell. The Second Brain is our story — a complete gift for those who build with us: 15 days, 18 labs, 16 milestones, all woven together in Notion.'}
+            ? 'إذا كانت القصة قابلة للتصديق، فالمنتج قابل للبيع. العقل الثاني هو قصتنا التي نؤمن بها: هدية متكاملة لمن يبنون معنا — 16 يوماً، 16 مختبراً، 16 معلم إنجاز، وكلها مترابطة في Notion.'
+            : 'If the story is believable, the product will sell. The Second Brain is our story — a complete gift for those who build with us: 16 days, 16 labs, 16 milestones, all woven together in Notion.'}
         </p>
         <p className="entity-slogan">
           {ar
@@ -47,7 +47,7 @@ export default function Home() {
         </p>
         <div className="entity-grid">
           <div className="entity-card">
-            <h3>{ar ? '١٥ يوماً' : '15 days'}</h3>
+            <h3>{ar ? '١٦ يوماً' : '16 days'}</h3>
             <p>
               {ar
                 ? 'مسار كامل: من الإشعال واختيار الفكرة إلى التخرج والعرض. كل يوم عنوان واضح ومختبر عملي ملحق به.'
@@ -55,7 +55,7 @@ export default function Home() {
             </p>
           </div>
           <div className="entity-card">
-            <h3>{ar ? '١٨ مختبراً' : '18 labs'}</h3>
+            <h3>{ar ? '١٦ مختبراً' : '16 labs'}</h3>
             <p>
               {ar
                 ? 'مختبرات حقيقية خطوة بخطوة: متجر، دفع، تسليم آلي، تحليلات، أمان، ذكاء اصطناعي، وأكثر.'
