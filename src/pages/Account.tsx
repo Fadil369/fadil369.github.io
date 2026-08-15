@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, BadgeCheck, Globe, KeyRound, Lock, CheckCircle2, LogOut, UserPlus, Building2, TrendingUp, Mail, Phone, MapPin } from 'lucide-react';
+import { ShieldCheck, BadgeCheck, Globe, KeyRound, Lock, CheckCircle2, LogOut, UserPlus, Building2, TrendingUp, Mail, Phone, MapPin, BookOpen, Brain, Code2, Send, CalendarDays } from 'lucide-react';
 import { useI18n } from '../i18n';
-import { BUILD_APPLY_BASE } from '../config/build';
+import { BUILD_APPLY_BASE, FOUNDER_OS_URL, ULTIMATE_BRAIN_BUILD_URL, FORGE_BOT_URL, CALENDAR_URL } from '../config/build';
 
 interface ProfileView {
   id: string;
@@ -192,7 +192,7 @@ export default function Account() {
   const [authError, setAuthError] = useState('');
   const [saving, setSaving] = useState(false);
   const [langMsg, setLangMsg] = useState('');
-  const [progress, setProgress] = useState<{ pct: number; done: number; total: number; next: string; badges: string[] } | null>(null);
+  const [progress, setProgress] = useState<{ pct: number; done: number; total: number; next: string; badges: string[]; repoUrl?: string; notionUrl?: string } | null>(null);
   const [partner, setPartner] = useState<PartnerStatus | null>(null);
   const [installment, setInstallment] = useState<InstallmentView | null>(null);
 
@@ -255,7 +255,7 @@ export default function Account() {
     if (!ref || !profile) return;
     fetch(`${BUILD_APPLY_BASE}/progress/${encodeURIComponent(ref)}`)
       .then((r) => r.json())
-      .then((d) => { if (d.ok) setProgress({ pct: Math.round(d.percent * 100), done: d.doneTasks, total: d.totalTasks, next: d.nextTask, badges: d.badges }); })
+      .then((d) => { if (d.ok) setProgress({ pct: Math.round(d.percent * 100), done: d.doneTasks, total: d.totalTasks, next: d.nextTask, badges: d.badges, repoUrl: d.repoUrl, notionUrl: d.notionUrl }); })
       .catch(() => { /* ignore */ });
   }, [profile]);
 
@@ -537,6 +537,38 @@ export default function Account() {
                   <TrendingUp size={14} /> {ar ? 'لوحة التقدم' : 'Progress dashboard'}
                 </Link>
               )}
+            </div>
+          </div>
+        )}
+
+        {/* Onboarding resources: Notion course + 2nd Brain + GitHub repo +
+            Telegram bot + scheduling — the partner's mission-control links. */}
+        {(progress?.repoUrl || progress?.notionUrl || readBuildRef()) && (
+          <div className="account-row">
+            <span className="account-label"><BookOpen size={16} /> {ar ? 'مواردك' : 'Your resources'}</span>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              {progress?.notionUrl && (
+                <a className="button secondary sm" href={progress.notionUrl} target="_blank" rel="noopener noreferrer">
+                  <BookOpen size={14} /> {ar ? 'صفحتك في Notion (التقدم)' : 'Your Notion page (progress)'}
+                </a>
+              )}
+              <a className="button secondary sm" href={FOUNDER_OS_URL} target="_blank" rel="noopener noreferrer">
+                <Brain size={14} /> {ar ? 'دورة Founder OS — من الفكرة إلى الشركة' : 'Founder OS course — from idea to company'}
+              </a>
+              <a className="button secondary sm" href={ULTIMATE_BRAIN_BUILD_URL} target="_blank" rel="noopener noreferrer">
+                <Brain size={14} /> {ar ? 'العقل الثاني (برنامج BUILD)' : 'Your 2nd Brain (BUILD)'}
+              </a>
+              {progress?.repoUrl && (
+                <a className="button secondary sm" href={progress.repoUrl} target="_blank" rel="noopener noreferrer">
+                  <Code2 size={14} /> {ar ? 'مستودع GitHub الخاص بك' : 'Your GitHub repository'}
+                </a>
+              )}
+              <a className="button secondary sm" href={FORGE_BOT_URL} target="_blank" rel="noopener noreferrer">
+                <Send size={14} /> {ar ? 'بوت تيليغرام — الدعم والتنبيهات' : 'Telegram bot — support & alerts'}
+              </a>
+              <a className="button secondary sm" href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
+                <CalendarDays size={14} /> {ar ? 'حجز جلسة المتابعة' : 'Schedule your follow-up call'}
+              </a>
             </div>
           </div>
         )}
