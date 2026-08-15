@@ -31,64 +31,6 @@ export default function Home() {
         
       </section>
 
-      <section className="entity second-brain reveal">
-        <span className="hero-eyebrow"><span className="dot gold" /> {ar ? 'العقل الثاني' : 'The Second Brain'}</span>
-        <div className="entity-mark">🧠</div>
-        <h2 className="entity-abbr">{ar ? 'عقل ثانٍ كامل لك' : 'A complete brain — yours'}</h2>
-        <p className="entity-official">
-          {ar
-            ? 'إذا كانت القصة قابلة للتصديق، فالمنتج قابل للبيع. العقل الثاني هو قصتنا التي نؤمن بها: هدية متكاملة لمن يبنون معنا — 16 يوماً، 16 مختبراً، 16 معلم إنجاز، وكلها مترابطة في Notion.'
-            : 'If the story is believable, the product will sell. The Second Brain is our story — a complete gift for those who build with us: 16 days, 16 labs, 16 milestones, all woven together in Notion.'}
-        </p>
-        <p className="entity-slogan">
-          {ar
-            ? 'العقل الثاني دليل منّا أنك استخدمت عقلك الأول جيداً.. ولهذا وصلت إلى هنا.'
-            : 'The Second Brain is our proof that you used your first one very well — and that is exactly why you are here.'}
-        </p>
-        <div className="entity-grid">
-          <div className="entity-card">
-            <h3>{ar ? '١٦ يوماً' : '16 days'}</h3>
-            <p>
-              {ar
-                ? 'مسار كامل: من الإشعال واختيار الفكرة إلى التخرج والعرض. كل يوم عنوان واضح ومختبر عملي ملحق به.'
-                : 'A full path: from ignition and idea selection to graduation and the final pitch. Every day has a clear title and a hands-on lab.'}
-            </p>
-          </div>
-          <div className="entity-card">
-            <h3>{ar ? '١٦ مختبراً' : '16 labs'}</h3>
-            <p>
-              {ar
-                ? 'مختبرات حقيقية خطوة بخطوة: متجر، دفع، تسليم آلي، تحليلات، أمان، ذكاء اصطناعي، وأكثر.'
-                : 'Real step-by-step labs: store, payments, automated delivery, analytics, security, AI, and more.'}
-            </p>
-          </div>
-          <div className="entity-card">
-            <h3>{ar ? '١٦ معلم إنجاز' : '16 milestones'}</h3>
-            <p>
-              {ar
-                ? 'معالم مسجلة لك في Notion — كل يوم ترفع حالتك من Not Started إلى Completed وتضع دليل إنجازك.'
-                : 'Milestones recorded for you in Notion — every day you move from Not Started to Completed with proof of delivery.'}
-            </p>
-          </div>
-          <div className="entity-card">
-            <h3>{ar ? 'مستودع GitHub' : 'Your GitHub repo'}</h3>
-            <p>
-              {ar
-                ? 'بعد الدفع يولَّد مستودعك الخاص من قالب BUILD — تبدأ من مرجع تملكه وتعمل عليه كمساهم.'
-                : 'After payment your own repo is generated from the BUILD starter — you start from a reference you own and work on it as a collaborator.'}
-            </p>
-          </div>
-          <div className="entity-card">
-            <h3>{ar ? 'شهادة إتمام' : 'Completion certificate'}</h3>
-            <p>
-              {ar
-                ? 'شهادة رقمية تُصدر تلقائياً عند اكتمال المعالم — دليل أنك أنهيت ما بدأته.'
-                : 'A digital certificate issued automatically once your milestones are complete — proof you finished what you started.'}
-            </p>
-          </div>
-        </div>
-      </section>
-
       <section className="stages">
         {cat.stages.map((s, i) => {
           const Icon = ICONS[i] || BookOpen;
