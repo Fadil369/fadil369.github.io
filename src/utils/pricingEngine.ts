@@ -122,9 +122,31 @@ export function getTierDescription(result: PricingResult): {
 }
 
 export function formatPrice(price: number, ar: boolean = false): string {
+  const hasFraction = Math.round(price * 100) % 100 !== 0;
   const formatted = price.toLocaleString(ar ? 'ar-SA' : 'en-SA', {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+    minimumFractionDigits: hasFraction ? 2 : 0,
+    maximumFractionDigits: hasFraction ? 2 : 0,
   });
   return `${formatted} SAR`;
+}
+
+export type InstallmentPlan = 'full' | 'flex' | 'split' | 'quarter';
+
+export const INSTALLMENT_COUNTS: Record<InstallmentPlan, number> = {
+  full: 1,
+  flex: 2,
+  split: 3,
+  quarter: 4,
+};
+
+/**
+ * Exact per-installment amount for a plan, matching the build-apply worker's
+ * schedule (halala-rounded, last installment absorbs any remainder).
+ *   full → 9,630 · flex → 4,815 · split → 3,210 · quarter → 2,407.50
+ */
+export function planInstallmentAmount(finalPrice: number, plan: InstallmentPlan, no: number): number {
+  const count = INSTALLMENT_COUNTS[plan];
+  const round2 = (n: number) => Math.round(n * 100) / 100;
+  const share = round2(finalPrice / count);
+  return no < count ? share : round2(finalPrice - share * (count - 1));
 }

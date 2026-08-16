@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { Check, Loader2 } from 'lucide-react';
-import { formatPrice, ORIGINAL_PRICE, BASE_PRICE, lookupPromo } from '../utils/pricingEngine';
+import { formatPrice, ORIGINAL_PRICE, BASE_PRICE, lookupPromo, planInstallmentAmount, INSTALLMENT_COUNTS } from '../utils/pricingEngine';
 import { useI18n } from '../i18n';
 import { track } from '../analytics';
 import { BUILD_APPLY_API, TURNSTILE_SITE_KEY } from '../config/build';
@@ -241,29 +241,29 @@ export default function BuildEligibilityForm() {
             <div className="plan-options">
               <button type="button" className={`plan-option ${plan === 'full' ? 'active' : ''}`} onClick={() => setPlan('full')}>
                 <span className="plan-name">{ar ? 'دفعة كاملة' : 'Full payment'}</span>
-                <span className="plan-price">{formatPrice(finalPrice, ar)}</span>
+                <span className="plan-price">{formatPrice(planInstallmentAmount(finalPrice, 'full', 1), ar)}</span>
               </button>
               <button type="button" className={`plan-option ${plan === 'flex' ? 'active' : ''}`} onClick={() => setPlan('flex')}>
                 <span className="plan-name">{ar ? '2 دفعات' : '2 installments'}</span>
-                <span className="plan-price">{formatPrice(finalPrice / 2, ar)} ×2</span>
+                <span className="plan-price">{formatPrice(planInstallmentAmount(finalPrice, 'flex', 1), ar)} ×2</span>
               </button>
               <button type="button" className={`plan-option ${plan === 'split' ? 'active' : ''}`} onClick={() => setPlan('split')}>
                 <span className="plan-name">{ar ? '3 دفعات' : '3 installments'}</span>
-                <span className="plan-price">{formatPrice(Math.round(finalPrice / 3), ar)} ×3</span>
+                <span className="plan-price">{formatPrice(planInstallmentAmount(finalPrice, 'split', 1), ar)} ×3</span>
               </button>
               <button type="button" className={`plan-option ${plan === 'quarter' ? 'active' : ''}`} onClick={() => setPlan('quarter')}>
                 <span className="plan-name">{ar ? '4 دفعات' : '4 installments'}</span>
-                <span className="plan-price">{formatPrice(Math.round(finalPrice / 4), ar)} ×4</span>
+                <span className="plan-price">{formatPrice(planInstallmentAmount(finalPrice, 'quarter', 1), ar)} ×4</span>
               </button>
             </div>
             <p className="plan-hint">
               {ar
                 ? plan === 'full'
                   ? 'ادفع السعر كاملاً الآن — وصول فوري.'
-                  : 'أقساط شهرية. تبقى الأقساط المسددة فقط مفعلة — إذا تأخرت ١٤ يوماً تُعلَّق صلاحية الوصول حتى التسوية.'
+                  : `ستدفع ${planInstallmentAmount(finalPrice, plan, 1).toLocaleString('ar-SA')} ريال الآن، ثم ${INSTALLMENT_COUNTS[plan] - 1} دفعات شهرية متبقية. تبقى الأقساط المسددة فقط مفعلة — إذا تأخرت ١٤ يوماً تُعلَّق صلاحية الوصول حتى التسوية.`
                 : plan === 'full'
                   ? 'Pay the full amount now — instant access.'
-                  : 'Monthly installments. Access stays active while current — after 14 days overdue your account is suspended until settled.'}
+                  : `You'll pay ${planInstallmentAmount(finalPrice, plan, 1).toLocaleString('en-SA')} SAR now, then ${INSTALLMENT_COUNTS[plan] - 1} monthly payment(s). Access stays active while current — after 14 days overdue your account is suspended until settled.`}
             </p>
           </div>
 
