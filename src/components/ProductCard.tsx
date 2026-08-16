@@ -43,6 +43,9 @@ export default function ProductCard({ p }: { p: Product }) {
     : commercial === 'service' ? (ar ? 'خدمة' : 'Service') : (ar ? 'عرض' : 'Demo');
   const fmt = formatLabel(p.name, ar);
   const benefit = p.benefits?.[0];
+  const isMonthly = (p.billingEn || '').toLowerCase() === 'monthly';
+  const periodLabel = isMonthly ? (ar ? '/شهر' : '/mo') : '';
+  const ctaLabel = isMonthly ? (ar ? 'اشترك' : 'Subscribe') : (freeForYou ? t('cta.getFree') : t('cta.buy'));
 
   const onBuy = () =>
     track('add_to_cart', {
@@ -88,7 +91,7 @@ export default function ProductCard({ p }: { p: Product }) {
         {benefit && <p className="pcard-benefit">{benefit}</p>}
 
         <div className="pcard-foot">
-          <span className="pcard-price">{money(freeForYou ? 0 : p.price, ar)}</span>
+          <span className="pcard-price">{money(freeForYou ? 0 : p.price, ar)}{periodLabel}</span>
           <div className="pcard-cta">
             {buyable ? (
               freeForYou ? (
@@ -98,7 +101,7 @@ export default function ProductCard({ p }: { p: Product }) {
               ) : (
                 <a className="button primary sm" href={p.shopifyUrl!}
                    target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                  {t('cta.buy')} <ExternalLink size={14} aria-hidden="true" />
+                  {ctaLabel} <ExternalLink size={14} aria-hidden="true" />
                 </a>
               )
             ) : p.demoUrl ? (

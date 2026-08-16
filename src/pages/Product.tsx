@@ -35,6 +35,9 @@ export default function Product() {
   const desc = ar ? p.descriptionAr || p.description : p.description;
   const freeForYou = accountHolder === true;
   const shownPrice = freeForYou ? 0 : p.price;
+  const isMonthly = (p.billingEn || '').toLowerCase() === 'monthly';
+  const periodLabel = isMonthly ? (ar ? ' / شهر' : ' / month') : '';
+  const ctaLabel = isMonthly ? (ar ? 'اشترك الآن' : 'Subscribe now') : t('cta.buy');
 
   const onBuy = () =>
     track('begin_checkout', {
@@ -58,7 +61,7 @@ export default function Product() {
           <h1>{name}</h1>
           {desc && <p className="lede">{desc}</p>}
 
-          <p className="product-price">{money(shownPrice, ar)}</p>
+          <p className="product-price">{money(shownPrice, ar)}{periodLabel}</p>
 
           {p.shopifyUrl ? (
             freeForYou ? (
@@ -77,7 +80,7 @@ export default function Product() {
               <>
                 <a className="button primary lg" href={p.shopifyUrl}
                    target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                  {t('cta.buy')} <ExternalLink size={16} />
+                  {ctaLabel} <ExternalLink size={16} />
                 </a>
                 <p className="fineprint">
                   <ShieldCheck size={14} /> {t('checkout.note')}
