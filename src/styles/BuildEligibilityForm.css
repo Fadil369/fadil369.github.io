@@ -264,7 +264,7 @@
   margin: 1rem 0 0.75rem;
   padding-top: 0.9rem;
   border-top: 1px dashed var(--line);
-  text-align: left;
+  text-align: start;
 }
 
 .promo-row {
@@ -303,7 +303,7 @@
 .promo-err { color: var(--err); font-size: 0.85rem; margin-top: 0.5rem; }
 .promo-ok { color: var(--ok); font-size: 0.9rem; margin-top: 0.6rem; font-weight: 600; }
 
-.promo-clear { margin-top: 0.5rem; text-align: right; }
+.promo-clear { margin-top: 0.5rem; text-align: end; }
 .promo-clear-btn {
   background: none;
   border: none;
