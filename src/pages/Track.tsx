@@ -376,6 +376,9 @@ export default function Track() {
         <a className="button primary" href={`https://build-apply.brainsait.org/certificate/${encodeURIComponent(ref)}`} target="_blank" rel="noopener noreferrer">
           <Award size={16} /> {ar ? 'شهادتك' : 'Your certificate'}
         </a>
+        <a className="button secondary" href={`https://build-apply.brainsait.org/badge/${encodeURIComponent(ref)}`} target="_blank" rel="noopener noreferrer">
+          <Trophy size={16} /> {ar ? 'شارتك الرقمية' : 'Your badge'}
+        </a>
         {data.notionUrl && (
           <a className="button secondary" href={data.notionUrl} target="_blank" rel="noopener noreferrer">
             <ExternalLink size={16} /> {ar ? 'عرض في Notion' : 'View in Notion'}
