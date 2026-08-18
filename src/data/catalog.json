@@ -4081,8 +4081,8 @@
    "flag": null,
    "demoUrl": "https://givc.de",
    "limitedDemo": false,
-   "shopifyUrl": "https://store.brainsait.org/products/givc-global-integrated-virtual-care",
-   "shopifyHandle": "givc-global-integrated-virtual-care",
+   "shopifyUrl": "https://store.brainsait.org/products/givc",
+   "shopifyHandle": "givc",
    "sku": null,
    "available": true,
    "commercial": "product"
@@ -4123,8 +4123,8 @@
    "flag": null,
    "demoUrl": "https://nphies.de",
    "limitedDemo": false,
-   "shopifyUrl": "https://store.brainsait.org/products/nphies-health-insurance-exchange-gateway",
-   "shopifyHandle": "nphies-health-insurance-exchange-gateway",
+   "shopifyUrl": "https://store.brainsait.org/products/nphies-gateway",
+   "shopifyHandle": "nphies-gateway",
    "sku": null,
    "available": true,
    "commercial": "product"
@@ -4165,8 +4165,8 @@
    "flag": null,
    "demoUrl": "https://masterlinc.de",
    "limitedDemo": false,
-   "shopifyUrl": "https://store.brainsait.org/products/masterlinc-clinical-intelligence-orchestrator",
-   "shopifyHandle": "masterlinc-clinical-intelligence-orchestrator",
+   "shopifyUrl": "https://store.brainsait.org/products/masterlinc-orchestrator",
+   "shopifyHandle": "masterlinc-orchestrator",
    "sku": null,
    "available": true,
    "commercial": "product"
