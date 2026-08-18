@@ -1006,6 +1006,17 @@ img { max-width: 100%; }
 .benefits li { margin: 0.35rem 0; }
 .benefits li::marker { color: var(--gold); }
 
+/* ── Booking (solutions CTA) ──────────────────────────────── */
+.book-section { margin-top: 3.2rem; }
+.book-section .section-head { margin: 0 0 1rem; flex-wrap: wrap; gap: 0.6rem; }
+.book-section .book-note { color: var(--muted); font-size: 0.95rem; max-width: 46ch; }
+.book-frame {
+  border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--line); background: var(--surface);
+  box-shadow: var(--shadow); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+}
+.book-frame iframe { display: block; }
+
 /* ── Footer ───────────────────────────────────────────────── */
 .site-foot {
   border-top: 1px solid var(--line);

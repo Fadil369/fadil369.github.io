@@ -110,6 +110,20 @@ export default function Product() {
           )}
         </div>
       </div>
+
+      {p.stage === 'solutions' && (
+        <section className="book-section reveal">
+          <div className="section-head">
+            <h2>{ar ? 'احجز جلسة تعريفية' : 'Book a session'}</h2>
+            <span className="book-note">{ar ? 'اختر موعداً يناسبك — سنتحدث عن النطاق والتسعير والتنفيذ.' : 'Pick a time that suits you — we will cover scope, pricing and rollout.'}</span>
+          </div>
+          <div className="book-frame">
+            <iframe
+              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0edxToXuq6bDCBKRZ8_EOcx-Qp6M_bgUVjGQKEeNE2sxMLRxCNlsjk2flHMwMU2hvJyhFy_8Og?gv=true"
+              style={{ border: 0 }} width="100%" height="600" frameBorder={0} loading="lazy" title="Book a session" />
+          </div>
+        </section>
+      )}
     </main>
   );
 }
