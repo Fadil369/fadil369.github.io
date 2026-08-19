@@ -3,8 +3,10 @@
 Mirror the front-store catalog (fadil369.github.io — SOURCE OF TRUTH) into
 Shopify (store.brainsait.org).
 
-For every LEARN module and SOLUTIONS listing in src/data/catalog.json the
-script upserts a Shopify product keyed by handle == catalog slug:
+For every LEARN module, SOLUTIONS listing, and BUILD course in
+src/data/catalog.json the script upserts a Shopify product keyed by
+handle == catalog slug (build.program is intentionally excluded — see the
+comment in main() for why):
 
   * title    — catalog name (EN) + AR name when present
   * body     — tagline + description (EN) + descriptionAr (AR) so both the
@@ -73,6 +75,20 @@ def ar_title(name_ar, name_en):
     return f"{name_en} | {name_ar}" if name_ar and name_ar != name_en else name_en
 
 
+FRONTSTORE_ORIGIN = "https://fadil369.github.io"
+
+
+def absolute_image_url(image: str | None) -> str | None:
+    """Catalog images are either a Shopify CDN URL already, or a path relative
+    to the frontstore (e.g. /assets/images/books/x.webp) — Shopify's Image API
+    rejects a bare relative path outright, so anchor it to the frontstore."""
+    if not image:
+        return None
+    if image.startswith("http://") or image.startswith("https://"):
+        return image
+    return f"{FRONTSTORE_ORIGIN}/{image.lstrip('/')}"
+
+
 def body_html(item, stage):
     parts = []
     if item.get("tagline"):
@@ -94,6 +110,11 @@ def upsert_product(handle, title, body, price, ptype, tags, image, existing):
         # carries the source:<slug> tag other tooling matches on) — only align
         # the fields the catalog actually owns.
         payload = {"product": {"title": title, "body_html": body, "product_type": ptype}}
+        # Only backfill an image when the live product has NONE at all — several
+        # products carry curated multi-image sets (2+ shots); never collapse
+        # those down to the catalog's single image.
+        if image and not existing.get("images"):
+            payload["product"]["images"] = [{"src": image}]
         r = shopify_request(f"/products/{existing['id']}.json", method="PUT", body=payload)
         return {"action": "updated", "id": existing["id"], "handle": handle}
 
@@ -123,7 +144,7 @@ def upsert_product(handle, title, body, price, ptype, tags, image, existing):
 def main():
     ap = argparse.ArgumentParser(description="Mirror github.io catalog → Shopify (catalog wins)")
     ap.add_argument("--write", action="store_true", help="apply changes (default: dry run)")
-    ap.add_argument("--stage", choices=["learn", "solutions", "all"], default="all")
+    ap.add_argument("--stage", choices=["learn", "solutions", "build", "all"], default="all")
     args = ap.parse_args()
 
     if not os.environ.get("SHOPIFY_ADMIN_TOKEN"):
@@ -142,14 +163,25 @@ def main():
         items += [("LEARN", m) for m in cat["learn"]]
     if args.stage in ("solutions", "all"):
         items += [("SOLUTIONS", s) for s in cat["solutions"]]
+    if args.stage in ("build", "all"):
+        # cat["build"]["program"] is deliberately NOT synced here: it isn't one
+        # catalog item -> one product like everything else. It's 4 real Shopify
+        # products (build-ticket / -half-payment / -third-payment /
+        # -quarter-payment), one per installment plan, whose variant IDs are
+        # hardcoded in workers/build-apply (INSTALLMENT_VARIANTS) and driven by
+        # that worker's own checkout/tracking flow. A generic upsert here could
+        # never express that 1-to-4 relationship and risks fighting the worker's
+        # own product management. Only the flat $0 "on request" courses are
+        # simple 1:1 catalog->product listings, so only those are synced.
+        items += [("BUILD", c) for c in cat["build"]["courses"]]
 
-    created = updated = unchanged = 0
+    created = updated = unchanged = failed = 0
     for stage, item in items:
         handle = item["slug"]
         title = ar_title(item.get("nameAr"), item.get("name") or item.get("slug"))
         body = body_html(item, stage)
         price = item.get("price") or 0.0
-        image = item.get("image")
+        image = absolute_image_url(item.get("image"))
         tags = f"{stage}, {item.get('category') or item.get('tier') or 'catalog'}, github-io"
 
         # Prefer a match on the source:<slug> tag or the catalog's own recorded
@@ -161,26 +193,38 @@ def main():
 
         if cur:
             cur_price = float(cur.get("variants")[0].get("price", 0) or 0)
-            needs = (cur.get("title") != title or cur.get("body_html") != body)
+            image_fillable = bool(image) and not cur.get("images")
+            needs = (cur.get("title") != title or cur.get("body_html") != body or image_fillable)
             if not needs:
                 unchanged += 1
                 continue
             note = "" if cur["status"] == "active" else f" [{cur['status']}, left as-is]"
+            note += " [+img]" if image_fillable else ""
             if args.write:
-                upsert_product(handle, title, body, price, stage, tags, image, cur)
-                print(f"  UPD {handle}{note}")
+                try:
+                    upsert_product(handle, title, body, price, stage, tags, image, cur)
+                    print(f"  UPD {handle}{note}")
+                except RuntimeError as e:
+                    print(f"  ERR {handle}: {e}")
+                    failed += 1
+                    continue
             else:
                 print(f"  ~UPD {handle} (live handle: {cur['handle']}, price {cur_price} vs catalog {price}){note}")
             updated += 1
         else:
             if args.write:
-                upsert_product(handle, title, body, price, stage, tags, image, None)
-                print(f"  NEW {handle} @ {price} SAR")
+                try:
+                    upsert_product(handle, title, body, price, stage, tags, image, None)
+                    print(f"  NEW {handle} @ {price} SAR")
+                except RuntimeError as e:
+                    print(f"  ERR {handle}: {e}")
+                    failed += 1
+                    continue
             else:
                 print(f"  +NEW {handle} @ {price} SAR")
             created += 1
 
-    print(f"\nsummary: {created} new, {updated} update, {unchanged} unchanged "
+    print(f"\nsummary: {created} new, {updated} update, {unchanged} unchanged, {failed} failed "
           f"({'WRITTEN' if args.write else 'dry-run'})")
 
 
