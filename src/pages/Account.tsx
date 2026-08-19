@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ShieldCheck, BadgeCheck, Globe, KeyRound, Lock, CheckCircle2, LogOut, UserPlus, Building2, TrendingUp, Mail, Phone, MapPin, BookOpen, Brain, Code2, Send, CalendarDays } from 'lucide-react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { ShieldCheck, BadgeCheck, Globe, KeyRound, Lock, CheckCircle2, LogOut, UserPlus, Building2, TrendingUp, Mail, Phone, MapPin, BookOpen, Brain, Code2, Send, CalendarDays, Sparkles, ShoppingBag } from 'lucide-react';
 import { useI18n } from '../i18n';
-import { BUILD_APPLY_BASE, FOUNDER_OS_URL, ULTIMATE_BRAIN_BUILD_URL, FORGE_BOT_URL, CALENDAR_URL } from '../config/build';
+import { BUILD_APPLY_BASE, FOUNDER_OS_URL, ULTIMATE_BRAIN_BUILD_URL, FORGE_BOT_URL, CALENDAR_URL, CUSTOMER_CLAIM_URL, CUSTOMER_ME_URL, CUSTOMER_OTP_REQUEST_URL, CUSTOMER_OTP_VERIFY_URL } from '../config/build';
 
 interface ProfileView {
   id: string;
@@ -17,6 +17,7 @@ interface ProfileView {
   capabilities?: string[];
   local?: boolean;
   buildRef?: string;
+  products?: { slug: string; name: string; url: string }[];
 }
 
 const ROLE_LABELS: Record<string, { ar: string; en: string }> = {
@@ -141,6 +142,52 @@ function readBuildRef(): string {
   try { return localStorage.getItem(BUILD_REF_KEY) || ''; } catch { return ''; }
 }
 
+const CUSTOMER_TOKEN_KEY = 'bs_customer_token';
+
+function readCustomerToken(): string {
+  try { return localStorage.getItem(CUSTOMER_TOKEN_KEY) || ''; } catch { return ''; }
+}
+
+function saveCustomerToken(token: string) {
+  try { localStorage.setItem(CUSTOMER_TOKEN_KEY, token); } catch { /* ignore */ }
+}
+
+/** Primary identity source for anyone who arrived via a post-payment claim
+ * link or a manual OTP re-login (see workers/build-apply's /customer/*
+ * endpoints). Checked before the legacy portal-SSO/Forge/local-profile
+ * chain, which stays intact for pre-existing users on those paths.
+ *   1. `?claim=<token>` in the URL (from the Order Status Page redirect or
+ *      the welcome email) — single-use, exchanged for a session token.
+ *   2. A previously-saved session token in localStorage.
+ */
+async function resolveCustomerIdentity(claimParam: string | null): Promise<ProfileView | null> {
+  if (claimParam) {
+    try {
+      const r = await fetch(CUSTOMER_CLAIM_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: claimParam }),
+      });
+      const d = await r.json();
+      if (d.ok && d.token) {
+        saveCustomerToken(d.token);
+        const p = d.profile || {};
+        return { id: p.email || 'customer', oid: p.oid, name: p.name || '', email: p.email || '', roles: p.buildRef ? ['partner'] : ['customer'], local: false, buildRef: p.buildRef, products: p.products };
+      }
+    } catch { /* fall through to a saved session token */ }
+  }
+  const token = readCustomerToken();
+  if (!token) return null;
+  try {
+    const r = await fetch(CUSTOMER_ME_URL, { headers: { 'X-Token': token } });
+    if (!r.ok) return null;
+    const d = await r.json();
+    if (!d.ok) return null;
+    const p = d.profile || {};
+    return { id: p.email || 'customer', oid: p.oid, name: p.name || '', email: p.email || '', roles: p.buildRef ? ['partner'] : ['customer'], local: false, buildRef: p.buildRef, products: p.products };
+  } catch { return null; }
+}
+
 /** Register the account holder in the Shopify store's customer/marketing
  *  record so their email lands in the messaging centre (storefront-registered,
  *  build-applicant, forge-member tags). Best-effort and non-blocking. */
@@ -181,9 +228,10 @@ function resolveSession(): Promise<{ profile_id: string; name?: string; roles?: 
 
 export default function Account() {
   const { ar, toggle } = useI18n();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [profile, setProfile] = useState<ProfileView | null>(null);
   const [loading, setLoading] = useState(true);
-  const [mode, setMode] = useState<'view' | 'signin' | 'create'>('view');
+  const [mode, setMode] = useState<'view' | 'signin' | 'create' | 'otp'>('view');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -191,6 +239,9 @@ export default function Account() {
   const [country, setCountry] = useState('');
   const [authError, setAuthError] = useState('');
   const [saving, setSaving] = useState(false);
+  const [otpEmail, setOtpEmail] = useState('');
+  const [otpCode, setOtpCode] = useState('');
+  const [otpSent, setOtpSent] = useState(false);
   const [langMsg, setLangMsg] = useState('');
   const [progress, setProgress] = useState<{ pct: number; done: number; total: number; next: string; badges: string[]; repoUrl?: string; notionUrl?: string } | null>(null);
   const [partner, setPartner] = useState<PartnerStatus | null>(null);
@@ -199,6 +250,18 @@ export default function Account() {
   useEffect(() => {
     let cancelled = false;
     (async () => {
+      // Post-payment claim link or a previously-saved customer session takes
+      // priority over the legacy portal/Forge/local chain below.
+      const claimParam = searchParams.get('claim');
+      const customer = await resolveCustomerIdentity(claimParam);
+      if (cancelled) return;
+      if (customer) {
+        if (claimParam) { searchParams.delete('claim'); setSearchParams(searchParams, { replace: true }); }
+        if (customer.buildRef) { try { localStorage.setItem(BUILD_REF_KEY, customer.buildRef); } catch { /* ignore */ } }
+        setProfile(customer);
+        setLoading(false);
+        return;
+      }
       const id = await resolveSession();
       if (cancelled) return;
       if (id) {
@@ -305,6 +368,50 @@ export default function Account() {
     } finally { setSaving(false); }
   };
 
+  const requestOtp = async () => {
+    if (!otpEmail.trim()) { setAuthError(ar ? 'البريد الإلكتروني مطلوب' : 'Email is required'); return; }
+    setSaving(true);
+    setAuthError('');
+    try {
+      const r = await fetch(CUSTOMER_OTP_REQUEST_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: otpEmail.trim() }),
+      });
+      const d = await r.json();
+      if (d.ok) setOtpSent(true);
+      else setAuthError(d.error || (ar ? 'تعذر إرسال رمز التحقق' : 'Could not send the code'));
+    } catch {
+      setAuthError(ar ? 'تعذر الاتصال بالخدمة' : 'Could not reach the service');
+    } finally { setSaving(false); }
+  };
+
+  const verifyOtp = async () => {
+    if (!otpCode.trim()) { setAuthError(ar ? 'أدخل الرمز المرسل إليك' : 'Enter the code we sent you'); return; }
+    setSaving(true);
+    setAuthError('');
+    try {
+      const r = await fetch(CUSTOMER_OTP_VERIFY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: otpEmail.trim(), code: otpCode.trim() }),
+      });
+      const d = await r.json();
+      if (d.ok && d.token) {
+        saveCustomerToken(d.token);
+        const p = d.profile || {};
+        setProfile({ id: p.email || 'customer', oid: p.oid, name: p.name || '', email: p.email || '', roles: ['customer'], local: false });
+        setMode('view');
+        setOtpSent(false);
+        setOtpCode('');
+      } else {
+        setAuthError(d.error || (ar ? 'رمز غير صحيح أو منتهي' : 'Invalid or expired code'));
+      }
+    } catch {
+      setAuthError(ar ? 'تعذر الاتصال بالخدمة' : 'Could not reach the service');
+    } finally { setSaving(false); }
+  };
+
   const createLocal = () => {
     if (!name.trim()) { setAuthError(ar ? 'الاسم مطلوب' : 'Name is required'); return; }
     const p: ProfileView = { id: 'local-' + Date.now(), name: name.trim(), email: email.trim(), phone, country, roles: ['customer'], local: true, buildRef: readBuildRef() };
@@ -356,6 +463,7 @@ export default function Account() {
     try { localStorage.removeItem(PROFILE_KEY); } catch { /* ignore */ }
     try { localStorage.removeItem(FORGE_TOKEN_KEY); } catch { /* ignore */ }
     try { localStorage.removeItem(FORGE_PROFILE_KEY); } catch { /* ignore */ }
+    try { localStorage.removeItem(CUSTOMER_TOKEN_KEY); } catch { /* ignore */ }
     setProfile(null);
     setMode('signin');
   };
@@ -388,10 +496,51 @@ export default function Account() {
                 {saving ? '…' : (ar ? 'تسجيل الدخول' : 'Sign in')}
               </button>
               <p className="fineprint" style={{ textAlign: 'center', margin: '1rem 0 0.25rem' }}>
+                {ar ? 'اشتريت من قبل؟' : 'Purchased before?'}
+              </p>
+              <button className="button secondary" style={{ width: '100%' }} onClick={() => { setAuthError(''); setOtpSent(false); setOtpEmail(''); setOtpCode(''); setMode('otp'); }}>
+                <KeyRound size={15} /> {ar ? 'الدخول برمز لمرة واحدة' : 'Sign in with a one-time code'}
+              </button>
+              <p className="fineprint" style={{ textAlign: 'center', margin: '1rem 0 0.25rem' }}>
                 {ar ? 'لا تملك حسابًا؟' : "Don't have an account?"}
               </p>
               <button className="button secondary" style={{ width: '100%' }} onClick={() => { setAuthError(''); setMode('create'); }}>
                 <UserPlus size={15} /> {ar ? 'إنشاء ملف بسيط' : 'Create a simple profile'}
+              </button>
+            </>
+          ) : mode === 'otp' ? (
+            <>
+              <h3>{ar ? 'الدخول برمز لمرة واحدة' : 'Sign in with a one-time code'}</h3>
+              <p className="muted" style={{ marginBottom: '1rem' }}>
+                {ar ? 'استخدم البريد الإلكتروني الذي اشتريت به — سنرسل رمزًا مكوّنًا من 6 أرقام صالحًا لمدة 10 دقائق.' : 'Use the email you purchased with — we’ll send a 6-digit code valid for 10 minutes.'}
+              </p>
+              <div className="form-field">
+                <label>{ar ? 'البريد الإلكتروني' : 'Email'}</label>
+                <input type="email" value={otpEmail} onChange={(e) => setOtpEmail(e.target.value)} placeholder="you@email.com" disabled={otpSent} />
+              </div>
+              {otpSent && (
+                <div className="form-field">
+                  <label>{ar ? 'الرمز' : 'Code'}</label>
+                  <input type="text" inputMode="numeric" maxLength={6} value={otpCode} onChange={(e) => setOtpCode(e.target.value)} placeholder="000000" />
+                </div>
+              )}
+              {authError && <p className="promo-err" style={{ marginBottom: '0.75rem' }}>{authError}</p>}
+              {!otpSent ? (
+                <button className="button primary" style={{ width: '100%' }} onClick={requestOtp} disabled={saving}>
+                  {saving ? '…' : (ar ? 'إرسال الرمز' : 'Send code')}
+                </button>
+              ) : (
+                <>
+                  <button className="button primary" style={{ width: '100%' }} onClick={verifyOtp} disabled={saving}>
+                    {saving ? '…' : (ar ? 'تأكيد الدخول' : 'Verify & sign in')}
+                  </button>
+                  <button className="button secondary" style={{ width: '100%', marginTop: '0.5rem' }} onClick={requestOtp} disabled={saving}>
+                    {ar ? 'إعادة إرسال الرمز' : 'Resend code'}
+                  </button>
+                </>
+              )}
+              <button className="button secondary" style={{ width: '100%', marginTop: '0.5rem' }} onClick={() => { setAuthError(''); setOtpSent(false); setMode('signin'); }}>
+                ← {ar ? 'رجوع لتسجيل الدخول' : 'Back to sign in'}
               </button>
             </>
           ) : (
@@ -541,34 +690,53 @@ export default function Account() {
           </div>
         )}
 
-        {/* Onboarding resources: Notion course + 2nd Brain + GitHub repo +
-            Telegram bot + scheduling — the partner's mission-control links. */}
+        {/* The 4 programs every BUILD ticket includes: Incubation (this
+            account's own task/progress system), Forge (Telegram bot),
+            Founder OS, and 2nd Brain — grouped so it reads as one bundle
+            instead of scattered links. */}
         {(progress?.repoUrl || progress?.notionUrl || readBuildRef()) && (
           <div className="account-row">
-            <span className="account-label"><BookOpen size={16} /> {ar ? 'مواردك' : 'Your resources'}</span>
+            <span className="account-label"><Sparkles size={16} /> {ar ? 'برامجك الأربعة' : 'Your 4 included programs'}</span>
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-              {progress?.notionUrl && (
-                <a className="button secondary sm" href={progress.notionUrl} target="_blank" rel="noopener noreferrer">
-                  <BookOpen size={14} /> {ar ? 'صفحتك في Notion (التقدم)' : 'Your Notion page (progress)'}
-                </a>
-              )}
+              <Link className="button secondary sm" to={`/track?ref=${readBuildRef()}`}>
+                <TrendingUp size={14} /> {ar ? 'الاحتضان — لوحة التقدم والمهام' : 'Incubation — progress & tasks dashboard'}
+              </Link>
+              <a className="button secondary sm" href={FORGE_BOT_URL} target="_blank" rel="noopener noreferrer">
+                <Send size={14} /> {ar ? 'Forge — بوت تيليغرام للدعم والتنبيهات' : 'Forge — Telegram bot for support & alerts'}
+              </a>
               <a className="button secondary sm" href={FOUNDER_OS_URL} target="_blank" rel="noopener noreferrer">
-                <Brain size={14} /> {ar ? 'دورة Founder OS — من الفكرة إلى الشركة' : 'Founder OS course — from idea to company'}
+                <Brain size={14} /> {ar ? 'Founder OS — من الفكرة إلى الشركة' : 'Founder OS — from idea to company'}
               </a>
               <a className="button secondary sm" href={ULTIMATE_BRAIN_BUILD_URL} target="_blank" rel="noopener noreferrer">
-                <Brain size={14} /> {ar ? 'العقل الثاني (برنامج BUILD)' : 'Your 2nd Brain (BUILD)'}
+                <Brain size={14} /> {ar ? 'العقل الثاني — نسخة BUILD' : '2nd Brain — BUILD edition'}
               </a>
+              {progress?.notionUrl && (
+                <a className="button secondary sm" href={progress.notionUrl} target="_blank" rel="noopener noreferrer">
+                  <BookOpen size={14} /> {ar ? 'صفحتك في Notion' : 'Your Notion page'}
+                </a>
+              )}
               {progress?.repoUrl && (
                 <a className="button secondary sm" href={progress.repoUrl} target="_blank" rel="noopener noreferrer">
                   <Code2 size={14} /> {ar ? 'مستودع GitHub الخاص بك' : 'Your GitHub repository'}
                 </a>
               )}
-              <a className="button secondary sm" href={FORGE_BOT_URL} target="_blank" rel="noopener noreferrer">
-                <Send size={14} /> {ar ? 'بوت تيليغرام — الدعم والتنبيهات' : 'Telegram bot — support & alerts'}
-              </a>
               <a className="button secondary sm" href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
                 <CalendarDays size={14} /> {ar ? 'حجز جلسة المتابعة' : 'Schedule your follow-up call'}
               </a>
+            </div>
+          </div>
+        )}
+
+        {/* LEARN customers: what they bought, plus their OID identity above. */}
+        {profile.products && profile.products.length > 0 && !readBuildRef() && (
+          <div className="account-row">
+            <span className="account-label"><ShoppingBag size={16} /> {ar ? 'مشترياتك' : 'Your purchases'}</span>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              {profile.products.map((p) => (
+                <Link key={p.slug} className="button secondary sm" to={`/products/${p.slug}`}>
+                  <BookOpen size={14} /> {p.name}
+                </Link>
+              ))}
             </div>
           </div>
         )}
