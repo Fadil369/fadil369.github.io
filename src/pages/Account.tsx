@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { ShieldCheck, BadgeCheck, Globe, KeyRound, Lock, CheckCircle2, LogOut, UserPlus, Building2, TrendingUp, Mail, Phone, MapPin, BookOpen, Brain, Code2, Send, CalendarDays, Sparkles, ShoppingBag } from 'lucide-react';
 import { useI18n } from '../i18n';
-import { BUILD_APPLY_BASE, FOUNDER_OS_URL, ULTIMATE_BRAIN_BUILD_URL, FORGE_BOT_URL, CALENDAR_URL, CUSTOMER_CLAIM_URL, CUSTOMER_ME_URL, CUSTOMER_OTP_REQUEST_URL, CUSTOMER_OTP_VERIFY_URL } from '../config/build';
+import { BUILD_APPLY_BASE, FOUNDER_OS_URL, ULTIMATE_BRAIN_BUILD_URL, FORGE_BOT_URL, CALENDAR_URL, CUSTOMER_CLAIM_URL, CUSTOMER_ME_URL, CUSTOMER_OTP_REQUEST_URL, CUSTOMER_OTP_VERIFY_URL, BUILD_INSTALLMENT_PLANS } from '../config/build';
 
 interface ProfileView {
   id: string;
@@ -780,6 +780,75 @@ export default function Account() {
             </div>
           </div>
         )}
+
+        {/* 4 BUILD installment categories — follow & track */}
+        <div className="account-row">
+          <span className="account-label"><TrendingUp size={16} /> {ar ? 'فئات خطط البناء الأربع' : '4 BUILD installment categories'}</span>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            {BUILD_INSTALLMENT_PLANS.map((plan) => {
+              const active = installment?.plan?.plan === plan.key;
+              const paidCount = active
+                ? installment!.plan!.installments.filter((i) => i.status === 'PAID').length
+                : 0;
+              const overdue = active
+                ? installment!.plan!.installments.some((i) => i.status === 'OVERDUE' || i.status === 'PENDING' && new Date(i.dueAt).getTime() < Date.now())
+                : false;
+              const next = active
+                ? installment!.plan!.installments.find((i) => i.status !== 'PAID')
+                : undefined;
+              return (
+                <div
+                  key={plan.key}
+                  style={{
+                    border: active ? '1px solid var(--gold)' : '1px solid var(--line)',
+                    borderRadius: 12,
+                    padding: '0.6rem 0.7rem',
+                    background: active ? 'linear-gradient(135deg, rgba(212,175,55,0.10), rgba(34,211,238,0.06))' : 'transparent',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                    <strong style={{ fontSize: '0.95rem' }}>{ar ? plan.name_ar : plan.name_en}</strong>
+                    <span className="muted" style={{ fontSize: '0.78rem' }}>{ar ? plan.cadence_ar : plan.cadence_en}</span>
+                    <span style={{ marginInlineStart: 'auto', fontWeight: 700 }}>
+                      {plan.total.toLocaleString(ar ? 'ar-SA' : 'en-SA')} SAR
+                    </span>
+                    {active && (
+                      <span className={`badge ${installment!.plan!.status === 'SUSPENDED' ? 'badge-danger' : overdue ? 'badge-warn' : ''}`}>
+                        {installment!.plan!.status === 'SUSPENDED'
+                          ? (ar ? '⛔ معلَّقة' : '⛔ Suspended')
+                          : installment!.plan!.status === 'COMPLETED'
+                            ? (ar ? '✅ مكتملة' : '✅ Completed')
+                            : overdue ? (ar ? '⏰ مستحقة' : '⏰ Overdue') : (ar ? 'نشطة' : 'Active')}
+                      </span>
+                    )}
+                  </div>
+                  <p className="muted" style={{ margin: '0.25rem 0 0', fontSize: '0.8rem' }}>{ar ? plan.desc_ar : plan.desc_en}</p>
+
+                  {active && (
+                    <div style={{ marginTop: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem' }}>
+                        <CheckCircle2 size={15} color="var(--ok)" />
+                        <span>{ar ? `تم الدفع ${paidCount} من ${plan.count}` : `Paid ${paidCount} of ${plan.count}`}</span>
+                        {progress && <span className="muted">· {ar ? `التقدّم ${progress.pct}%` : `progress ${progress.pct}%`}</span>}
+                      </div>
+                      {next?.payUrl && next.status !== 'PAID' && (
+                        <a className="button secondary sm" href={next.payUrl} target="_blank" rel="noopener noreferrer" style={{ alignSelf: 'flex-start' }}>
+                          {ar ? `ادفع ${next.amount.toLocaleString('ar-SA')} SAR` : `Pay ${next.amount.toLocaleString('en-SA')} SAR`}
+                        </a>
+                      )}
+                      <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginTop: '0.2rem' }}>
+                        <a className="button secondary sm" href={FORGE_BOT_URL} target="_blank" rel="noopener noreferrer"><Send size={14} /> {ar ? 'بوت Forge' : 'Forge bot'}</a>
+                        <a className="button secondary sm" href={ULTIMATE_BRAIN_BUILD_URL} target="_blank" rel="noopener noreferrer"><Brain size={14} /> {ar ? 'الدماغ الثاني' : '2nd Brain'}</a>
+                        <a className="button secondary sm" href={FOUNDER_OS_URL} target="_blank" rel="noopener noreferrer"><Sparkles size={14} /> {ar ? 'مؤسس OS' : 'Founder OS'}</a>
+                        {progress?.notionUrl && <a className="button secondary sm" href={progress.notionUrl} target="_blank" rel="noopener noreferrer"><BookOpen size={14} /> {ar ? 'متابعة' : 'Track'}</a>}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
 
         {/* Language */}
         <div className="account-row">
