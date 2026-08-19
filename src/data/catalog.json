@@ -3624,7 +3624,10 @@
    "shopifyUrl": "https://store.brainsait.org/products/oid-arduino-iot-scanner-hardware-blueprint",
    "shopifyHandle": "oid-arduino-iot-scanner-hardware-blueprint",
    "available": true,
-   "commercial": "product"
+   "commercial": "product",
+   "description": "Physical OID Scanning with ESP32 Complete firmware and wiring guide to build a hardware QR code scanner that reads BrainSAIT OID tags and integrates with the OID Registry Platform. Ideal for asset management, equipment tracking, and healthcare device identification. Supported Hardware \nESP32-CAM (AI-Thinker) — Built-in camera module, no additional scanner required\nESP32 + GM65 Module — Dedicated barcode/QR scanner module for higher reliability\n Optional OLED/LCD display for immediate scan feedback\n What's Included \n Complete .ino firmware (Arduino IDE / PlatformIO)\n Wiring diagrams for both hardware configurations\n OID validation and HTTP API integration code\n WiFi provisioning and BrainSAIT API endpoint configuration\n Display output code for OLED/LCD modules\n Step-by-step flashing and calibration guide\n Use Cases Hospital equipment tagging · Lab sample tracking · Server rack asset management · Document provenance scanning Instant digital delivery. Firmware source + documentation. Hardware components purchased separately.",
+   "image": "https://cdn.shopify.com/s/files/1/0730/5288/0979/files/oid-arduino_7737f084-a810-4fab-aa66-c3ea89865a67.webp?v=1786120376",
+   "sku": "BSP-OID-ARDUINO-SCANNER"
   },
   {
    "slug": "oid-integration-blueprint-developer-guide",
@@ -3643,7 +3646,10 @@
    "shopifyUrl": "https://store.brainsait.org/products/oid-integration-blueprint-developer-guide",
    "shopifyHandle": "oid-integration-blueprint-developer-guide",
    "available": true,
-   "commercial": "product"
+   "commercial": "product",
+   "description": "Integrate Globally-Unique Identifiers Into Your Systems A comprehensive technical guide for developers and architects who need to embed OIDs (Object Identifiers) into production systems. Built on BrainSAIT's IANA-registered PEN 61026 namespace, this guide delivers six complete integration patterns with copy-paste-ready code. What's Included \nFHIR Extension Pattern — StructureDefinition templates for NPHIES-compliant resource tagging\nMCP URN Pattern — Tool metadata for AI agent systems and multi-agent architectures\nX.509 Certificate OID — Certificate signing configuration with OID policy extensions\nAPI Header Standard — HTTP header conventions for service identity across microservices\nDatabase Schema Pattern — PostgreSQL and SQL Server OID column definitions with indexes\nQR / RFID Encoding — Physical asset tag data structures and scanner format specs\n Code Examples Every pattern includes working code in JavaScript, Python, CURL, and SQL. Bilingual (AR/EN) documentation throughout. Instant digital delivery. A BrainSAIT technical guide from the OID Registry Platform.",
+   "image": "https://cdn.shopify.com/s/files/1/0730/5288/0979/files/oid-blueprint_3e7f4c0e-8625-4af1-ac1a-07ec7e227c72.webp?v=1786120368",
+   "sku": "BSP-OID-INTEGRATION-BLUEPRINT"
   }
  ],
  "build": {
@@ -5637,7 +5643,10 @@
    "shopifyUrl": "https://store.brainsait.org/products/brainsait-oid-registry-explorer-platform-license",
    "shopifyHandle": "brainsait-oid-registry-explorer-platform-license",
    "available": true,
-   "commercial": "product"
+   "commercial": "product",
+   "description": "The Complete OID Registry Platform for BrainSAIT Enterprise Full access to the BrainSAIT OID Registry Explorer — a production-grade web application for visualizing, managing, and generating code from the 1.3.6.1.4.1.61026 namespace (BrainSAIT IANA PEN 61026). Platform Features \nInteractive OID Tree — Browse the full BrainSAIT namespace hierarchy with expandable, collapsible branches\nVisual Path Builder — Select any node and instantly generate production-ready code for 6 integration contexts\nCode Generator — One-click copy for FHIR extensions, MCP URNs, X.509 policies, API headers, DB schemas, and QR data\nQR Code Preview — Render and download scannable QR codes for physical asset tagging, with adjustable size and error-correction\nAI Naming Suggestions — Describe a use case; get 3 enterprise-grade node name suggestions aligned to BrainSAIT's architecture\nNode Registration — Add custom leaf nodes to extend the namespace with AI-assisted naming\nFull-text Search — Instant filter across paths, descriptions, and use cases\n Tech Stack React 19 · TypeScript · Vite 7 · Tailwind CSS 4 · Radix UI Components · TanStack Query Instant digital delivery. Platform source code and deployment guide included.",
+   "image": "https://cdn.shopify.com/s/files/1/0730/5288/0979/files/oid-registry_ef0cc75c-7202-459c-b07d-8c9dc36814e7.webp?v=1786120384",
+   "sku": "BSP-OID-REGISTRY-PLATFORM"
   },
   {
    "slug": "brainsait-oid-whitelabel-enterprise-license",
@@ -5656,7 +5665,11 @@
    "shopifyUrl": "https://store.brainsait.org/products/brainsait-oid-white-label-enterprise-license-رخصة-المؤسسة-بالعلامة-التجارية-الخاصة",
    "shopifyHandle": "brainsait-oid-white-label-enterprise-license-رخصة-المؤسسة-بالعلامة-التجارية-الخاصة",
    "available": true,
-   "commercial": "product"
+   "commercial": "product",
+   "description": "BrainSAIT OID White-Label Enterprise License\n The ultimate OID identity platform — reseller rights included. Deploy the full BrainSAIT OID system under your own brand, sub-allocate namespaces to your clients, and operate a fully-managed identity infrastructure business built on IANA PEN 1.3.6.1.4.1.61026.\n What's Included\n Everything in Healthcare AI Identity Infrastructure Suite\n Unlimited OID sub-namespace nodes under BrainSAIT's IANA root\n Sub-allocation reseller rights (provision your own clients)\n White-label branding in the OID portal (your logo, domain, colors)\n Custom domain for OID registry (e.g. oid.yourcompany.com)\n Multi-tenant architecture support documentation\n SLA: 99.9% uptime guarantee with dedicated infrastructure\n Dedicated account manager (named contact)\n Quarterly strategic review sessions\n Annual namespace audit + compliance certification\n Priority CI/CD integration support for custom deployments\n Source code license for OID portal React frontend\n Custom FHIR Implementation Guide co-authoring (1 IG)\n 24/7 emergency support hotline",
+   "descriptionAr": "رخصة المؤسسة بالعلامة التجارية الخاصة من BrainSAIT\n النظام الأمثل لمنصة هوية OID — مع حقوق إعادة البيع. انشر نظام BrainSAIT OID الكامل تحت علامتك التجارية الخاصة، وخصّص نطاقات لعملائك، وأدر أعمال بنية تحتية للهوية الرقمية مُدارة بالكامل مبنية على IANA PEN 1.3.6.1.4.1.61026.\n ما يتضمنه المنتج\n كل ما في حزمة البنية التحتية لهوية الذكاء الاصطناعي الصحي\n عقد OID فرعية غير محدودة تحت جذر IANA الخاص بـ BrainSAIT\n حقوق إعادة البيع لتخصيص النطاق (توفير نطاقات لعملائك)\n علامة تجارية خاصة في بوابة OID (شعارك، نطاقك، ألوانك)\n نطاق مخصص لسجل OID (مثل oid.yourcompany.com)\n وثائق دعم البنية متعددة المستأجرين\n SLA: ضمان وقت تشغيل 99.9% مع بنية تحتية مخصصة\n مدير حساب مخصص (جهة اتصال مسماة)\n جلسات مراجعة استراتيجية ربع سنوية\n تدقيق سنوي للنطاق + شهادة الامتثال\n دعم أولوية CI/CD لعمليات النشر المخصصة\n رخصة كود مصدر لواجهة React الأمامية لبوابة OID\n تأليف مشترك لدليل تطبيق FHIR مخصص (دليل واحد)\n خط دعم طوارئ 24/7",
+   "image": "https://cdn.shopify.com/s/files/1/0730/5288/0979/files/oid-white-label_6fbeccd9-105e-464e-a460-33685d685f39.webp?v=1786120429",
+   "sku": "OID-WL-ENT-001"
   },
   {
    "slug": "brainsait-operating-system-course",
@@ -5713,7 +5726,10 @@
    "shopifyUrl": "https://store.brainsait.org/products/enterprise-oid-badge-management-system-self-hosted-license",
    "shopifyHandle": "enterprise-oid-badge-management-system-self-hosted-license",
    "available": true,
-   "commercial": "product"
+   "commercial": "product",
+   "description": "Full OID Badge Infrastructure for Enterprise Deployment The complete BrainSAIT OID Badge Management System — a production-ready, self-hosted platform for managing OID allocations, access control, and badge issuance at enterprise scale. Backed by the same system running BrainSAIT's internal operations. System Architecture \nReact.js Frontend — Dark-themed, responsive admin portal with interactive OID tree visualization\nFastAPI Backend — High-performance Python REST API with automatic OpenAPI/Swagger documentation\nPostgreSQL Database — Relational schema with full audit trail and badge lifecycle management\nDocker Compose — One-command deployment to any cloud or on-premises infrastructure\nLLM-Powered Assistant — Integrated AI assistant for contextual help and OID allocation recommendations\n Capabilities \n Create, edit, and revoke OID badges with granular access control\n Full OID tree visualization for the organizational namespace\n REST API for integration with identity management systems (LDAP, Azure AD)\n Audit logging and compliance reporting\n Multi-user support with role-based permissions\n License Single-organization license. Includes source code, Docker configuration, database initialization scripts, and deployment guide. Instant digital delivery. Enterprise support available separately. Deploy on your infrastructure — data never leaves your environment.",
+   "image": "https://cdn.shopify.com/s/files/1/0730/5288/0979/files/oid-enterprise-badge_eb318bd2-a358-4a7e-bfb7-d29401fd973d.webp?v=1786120399",
+   "sku": "BSP-OID-ENTERPRISE-BADGE"
   },
   {
    "slug": "momfood-cloud-kitchen",
@@ -5751,7 +5767,10 @@
    "shopifyUrl": "https://store.brainsait.org/products/nphies-oid-healthcare-identity-bundle",
    "shopifyHandle": "nphies-oid-healthcare-identity-bundle",
    "available": true,
-   "commercial": "product"
+   "commercial": "product",
+   "description": "Saudi Healthcare System Identity — End-to-End The complete OID solution for healthcare organizations operating within the Saudi National Platform for Health Information Exchange (NPHIES). Combines the OID Registry Platform with FHIR-specific templates, compliance documentation, and X.509 certificate OID configuration for Saudi health IT environments. Bundle Contents \nOID Registry Explorer Platform — Full platform license (see separate listing)\nNPHIES FHIR Templates Pack — 12 StructureDefinitions pre-configured with BrainSAIT OID extensions for claims, eligibility, prior authorization, and clinical documents\nX.509 Certificate OID Policy — Complete configuration for embedding OID policy extensions in signing certificates used with NPHIES\nSaudi Healthcare Compliance Guide — Mapping of BrainSAIT OID branches to NPHIES system codes, SNOMED CT references, and ICD-10-AM coding\nIntegration Checklist — Step-by-step verification for NPHIES sandbox and production environments\n Who This Is For Healthcare IT teams, system integrators, and clinical informatics specialists deploying AI-driven healthcare systems in Saudi Arabia who need globally-unique, standards-compliant resource identification. Instant digital delivery. Bilingual Arabic/English documentation throughout.",
+   "image": "https://cdn.shopify.com/s/files/1/0730/5288/0979/files/oid-nphies-bundle_ab29992f-e636-4896-8796-2c9916ebd347.webp?v=1786120391",
+   "sku": "BSP-OID-NPHIES-BUNDLE"
   },
   {
    "slug": "oid-enterprise-namespace-architect",
@@ -5770,7 +5789,11 @@
    "shopifyUrl": "https://store.brainsait.org/products/oid-enterprise-namespace-architect-مهندس-نطاق-الهوية-المؤسسي",
    "shopifyHandle": "oid-enterprise-namespace-architect-مهندس-نطاق-الهوية-المؤسسي",
    "available": true,
-   "commercial": "product"
+   "commercial": "product",
+   "description": "OID Enterprise Namespace Architect\n Full enterprise Object Identifier namespace allocation under IANA PEN 1.3.6.1.4.1.61026 — BrainSAIT's globally-registered root. Architect your organization's entire digital identity tree across FHIR, MCP agents, X.509 certificates, REST APIs, database schemas, and physical QR/RFID systems.\n What's Included\n Dedicated OID sub-tree (up to 25 nodes) under BrainSAIT's IANA-registered enterprise number\n FHIR StructureDefinition namespace bundles (R4 + R5 ready)\n MCP Agent URN schema configurations for AI identity chains\n X.509 certificate policy OID assignments\n REST API header namespace templates\n Database schema OID integration package\n QR/RFID physical tag generator templates\n 6-context code generator access (12 months)\n BrainSAIT OID Registry portal access (Airtable-backed)\n Priority onboarding call (60 min) with namespace architect\n Lifetime namespace reservation documentation",
+   "descriptionAr": "مهندس نطاق الهوية المؤسسي OID\n تخصيص نطاق هوية مؤسسي كامل تحت رقم المؤسسة الخاص بـ BrainSAIT المسجل دولياً لدى IANA (1.3.6.1.4.1.61026). صمّم شجرة الهوية الرقمية الكاملة لمؤسستك عبر FHIR وعملاء MCP وشهادات X.509 وواجهات REST APIs وقواعد البيانات وأنظمة QR/RFID الفيزيائية.\n ما يتضمنه المنتج\n شجرة OID فرعية مخصصة (حتى 25 عقدة) تحت رقم المؤسسة المسجل دولياً\n حزم نطاق FHIR StructureDefinition (جاهز لـ R4 و R5)\n إعدادات مخطط URN لسلاسل هوية عملاء الذكاء الاصطناعي MCP\n تعيينات OID لسياسات شهادات X.509\n قوالب نطاق رؤوس REST API\n حزمة تكامل OID مع مخطط قاعدة البيانات\n قوالب مولد العلامات الفيزيائية QR/RFID\n وصول لمولد الكود بـ 6 سياقات (12 شهراً)\n وصول لبوابة سجل OID من BrainSAIT (مدعومة بـ Airtable)\n جلسة تأهيل أولوية (60 دقيقة) مع مهندس النطاق\n وثائق حجز النطاق مدى الحياة",
+   "image": "https://cdn.shopify.com/s/files/1/0730/5288/0979/files/oid-namespace_56824524-111a-428c-8b4d-de165c7c2469.webp?v=1786120406",
+   "sku": "OID-ENT-ARCH-001"
   },
   {
    "slug": "oid-fhir-integration-platform",
@@ -5789,7 +5812,11 @@
    "shopifyUrl": "https://store.brainsait.org/products/oid-fhir-integration-platform-منصة-تكامل-oid-مع-fhir",
    "shopifyHandle": "oid-fhir-integration-platform-منصة-تكامل-oid-مع-fhir",
    "available": true,
-   "commercial": "product"
+   "commercial": "product",
+   "description": "OID FHIR Integration Platform\n The definitive OID namespace solution purpose-built for HL7 FHIR implementors. Automate StructureDefinition authoring, ValueSet registration, CodeSystem publishing, and terminology binding — all anchored to your own globally-unique OID namespace under BrainSAIT's IANA PEN.\n What's Included\n Dedicated FHIR-optimized OID sub-tree (up to 30 nodes)\n StructureDefinition generator with OID-anchored canonical URLs\n Automated ValueSet registration workflow\n CodeSystem publishing with official OID assignment\n Terminology binding automation scripts (SNOMED CT, LOINC, ICD-10)\n FHIR Implementation Guide (IG) template with your OID namespace\n Bulk StructureDefinition OID migration tool\n FHIR Validator integration for namespace consistency checks\n HL7 FHIR Shorthand (FSH) template library\n 2 onboarding sessions (90 min each) with FHIR specialist\n 12 months updates + support",
+   "descriptionAr": "منصة تكامل OID مع FHIR\n الحل الأمثل لنطاق OID المصمم خصيصاً لمنفذي HL7 FHIR. أتمتة تأليف StructureDefinition وتسجيل ValueSet ونشر CodeSystem وربط المصطلحات — كلها مرتبطة بنطاق OID الفريد الخاص بك عالمياً تحت رقم BrainSAIT IANA PEN.\n ما يتضمنه المنتج\n شجرة OID فرعية محسّنة لـ FHIR (حتى 30 عقدة)\n مولد StructureDefinition بعناوين URL عشوائية مرسّخة في OID\n سير عمل تسجيل ValueSet آلي\n نشر CodeSystem مع تعيين OID رسمي\n نصوص أتمتة ربط المصطلحات (SNOMED CT، LOINC، ICD-10)\n قالب دليل تطبيق FHIR (IG) بنطاق OID الخاص بك\n أداة ترحيل StructureDefinition OID بالجملة\n تكامل FHIR Validator لفحوصات اتساق النطاق\n مكتبة قوالب HL7 FHIR Shorthand (FSH)\n جلستا تأهيل (90 دقيقة لكل منهما) مع متخصص FHIR\n تحديثات ودعم لمدة 12 شهراً",
+   "image": "https://cdn.shopify.com/s/files/1/0730/5288/0979/files/oid-fhir-platform_3d3fa32f-7a2a-4ded-9dc7-0b815ff34b70.webp?v=1786120414",
+   "sku": "OID-FHIR-PLAT-001"
   },
   {
    "slug": "spark",

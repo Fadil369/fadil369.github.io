@@ -44,10 +44,13 @@ def shopify_request(path: str, method="GET", body=None):
         raise RuntimeError(f"Shopify {method} {path} → HTTP {e.code}: {e.read().decode()[:300]}")
 
 
-def fetch_all_active_products():
+def fetch_all_products():
+    """Fetch products of every status (active/draft/archived) — a catalog item can
+    legitimately point at a draft product (e.g. deliberately paused SKUs), and those
+    must still be recognized as existing so we update instead of duplicating them."""
     products, since_id = [], 0
     while True:
-        data = shopify_request(f"/products.json?limit=250&since_id={since_id}&status=active")
+        data = shopify_request(f"/products.json?limit=250&since_id={since_id}")
         batch = data.get("products", [])
         if not batch:
             break
@@ -56,6 +59,14 @@ def fetch_all_active_products():
             break
         since_id = batch[-1]["id"]
     return products
+
+
+def source_tag(tags: str) -> str | None:
+    for t in (tags or "").split(","):
+        t = t.strip()
+        if t.startswith("source:"):
+            return t[len("source:"):]
+    return None
 
 
 def ar_title(name_ar, name_en):
@@ -76,27 +87,35 @@ def body_html(item, stage):
     return "".join(parts) or "<p>BrainSAIT — Learn · Build · Solutions.</p>"
 
 
-def upsert_product(handle, title, body, price, ptype, tags, existing):
+def upsert_product(handle, title, body, price, ptype, tags, image, existing):
+    if existing:
+        # Preserve status/published (never silently reactivate a deliberately
+        # draft/archived product) and preserve the existing tag taxonomy (which
+        # carries the source:<slug> tag other tooling matches on) — only align
+        # the fields the catalog actually owns.
+        payload = {"product": {"title": title, "body_html": body, "product_type": ptype}}
+        r = shopify_request(f"/products/{existing['id']}.json", method="PUT", body=payload)
+        return {"action": "updated", "id": existing["id"], "handle": handle}
+
     payload = {
         "product": {
             "title": title,
             "body_html": body,
             "vendor": "BrainSAIT",
             "product_type": ptype,
-            "tags": tags,
+            "tags": f"{tags}, source:{handle}",
             "status": "active",
             "published": True,
+            "handle": handle,
+            "variants": [{
+                "title": "Default",
+                "price": f"{price:.2f}" if price else "0.00",
+                "requires_shipping": False,
+            }],
         }
     }
-    if existing:
-        r = shopify_request(f"/products/{existing['id']}.json", method="PUT", body=payload)
-        return {"action": "updated", "id": existing["id"], "handle": handle}
-    payload["product"]["handle"] = handle
-    payload["product"]["variants"] = [{
-        "title": "Default",
-        "price": f"{price:.2f}" if price else "0.00",
-        "requires_shipping": False,
-    }]
+    if image:
+        payload["product"]["images"] = [{"src": image}]
     r = shopify_request("/products.json", method="POST", body=payload)
     return {"action": "created", "id": r["product"]["id"], "handle": handle}
 
@@ -111,8 +130,12 @@ def main():
         print("SHOPIFY_ADMIN_TOKEN not set"); sys.exit(1)
 
     cat = json.loads(CATALOG_PATH.read_text())
-    existing = {p["handle"]: p for p in fetch_all_active_products()}
-    print(f"existing active products in Shopify: {len(existing)}")
+    all_products = fetch_all_products()
+    by_handle = {p["handle"]: p for p in all_products}
+    by_source = {source_tag(p.get("tags", "")): p for p in all_products if source_tag(p.get("tags", ""))}
+    print(f"products in Shopify (any status): {len(all_products)}  "
+          f"({sum(1 for p in all_products if p['status'] == 'active')} active, "
+          f"{len(by_source)} with a source: tag)")
 
     items = []
     if args.stage in ("learn", "all"):
@@ -126,24 +149,32 @@ def main():
         title = ar_title(item.get("nameAr"), item.get("name") or item.get("slug"))
         body = body_html(item, stage)
         price = item.get("price") or 0.0
+        image = item.get("image")
         tags = f"{stage}, {item.get('category') or item.get('tier') or 'catalog'}, github-io"
-        cur = existing.get(handle)
+
+        # Prefer a match on the source:<slug> tag or the catalog's own recorded
+        # shopifyHandle — the live Shopify handle can diverge from the catalog
+        # slug (bilingual titles get auto-slugified with the Arabic name, or
+        # hyphenation differs) without the product actually being a duplicate.
+        cur = (by_source.get(handle) or by_handle.get(item.get("shopifyHandle") or "")
+               or by_handle.get(handle))
+
         if cur:
             cur_price = float(cur.get("variants")[0].get("price", 0) or 0)
-            needs = (cur.get("title") != title or cur.get("body_html") != body
-                     or cur_price != float(price or 0))
+            needs = (cur.get("title") != title or cur.get("body_html") != body)
             if not needs:
                 unchanged += 1
                 continue
+            note = "" if cur["status"] == "active" else f" [{cur['status']}, left as-is]"
             if args.write:
-                upsert_product(handle, title, body, price, stage, tags, cur)
-                print(f"  UPD {handle} (price {cur_price} → {price})")
+                upsert_product(handle, title, body, price, stage, tags, image, cur)
+                print(f"  UPD {handle}{note}")
             else:
-                print(f"  ~UPD {handle} (price {cur_price} → {price}, title/body differ)")
+                print(f"  ~UPD {handle} (live handle: {cur['handle']}, price {cur_price} vs catalog {price}){note}")
             updated += 1
         else:
             if args.write:
-                upsert_product(handle, title, body, price, stage, tags, None)
+                upsert_product(handle, title, body, price, stage, tags, image, None)
                 print(f"  NEW {handle} @ {price} SAR")
             else:
                 print(f"  +NEW {handle} @ {price} SAR")
