@@ -47,7 +47,19 @@ function decodeIdTokenPayload(idToken: string): Record<string, unknown> {
   return JSON.parse(json);
 }
 
+export class CustomerAccountConfigError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'CustomerAccountConfigError';
+  }
+}
+
 export async function beginLogin(returnTo?: string): Promise<void> {
+  if (!CUSTOMER_ACCOUNT_CLIENT_ID) {
+    throw new CustomerAccountConfigError(
+      'VITE_CUSTOMER_ACCOUNT_CLIENT_ID is not set. Rebuild with the Shopify Customer Account API client ID.',
+    );
+  }
   const verifier = randomString(32);
   const state = randomString(16);
   const nonce = randomString(16);
@@ -110,7 +122,10 @@ export async function handleAuthorizeCallback(
 ): Promise<{ ok: boolean; error?: string; returnTo: string }> {
   const fallbackReturnTo = '/account';
   const oauthError = searchParams.get('error');
-  if (oauthError) return { ok: false, error: oauthError, returnTo: fallbackReturnTo };
+  if (oauthError) {
+    const description = searchParams.get('error_description') || undefined;
+    return { ok: false, error: description || oauthError, returnTo: fallbackReturnTo };
+  }
 
   const code = searchParams.get('code');
   const state = searchParams.get('state');

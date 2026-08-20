@@ -68,7 +68,13 @@ export function useCustomerAccount(): UseCustomerAccountResult {
   }, [load]);
 
   const login = useCallback(async () => {
-    await beginLogin();
+    try {
+      await beginLogin();
+    } catch (err) {
+      console.error('useCustomerAccount: failed to start login', err);
+      setError(err instanceof Error ? err.message : String(err));
+      setStatus('error');
+    }
   }, []);
 
   const logout = useCallback(async () => {
