@@ -7,7 +7,9 @@ import Shelf from './pages/Shelf';
 import Build from './pages/Build';
 import Product from './pages/Product';
 import Account from './pages/Account';
+import AccountAuthorize from './pages/AccountAuthorize';
 import Track from './pages/Track';
+import { isSignedIn as shopifySignedIn } from './lib/customerAccountAuth';
 import './styles/app.css';
 
 type Theme = 'dark' | 'light';
@@ -43,7 +45,10 @@ function Header() {
           <NavLink to="/learn">{t('nav.learn')}</NavLink>
           <NavLink to="/build">{t('nav.build')}</NavLink>
           <NavLink to="/solutions">{t('nav.solutions')}</NavLink>
-          <NavLink to="/account">{ar ? 'حسابي' : 'Account'}</NavLink>
+          <NavLink to="/account">
+            {ar ? 'حسابي' : 'Account'}
+            {shopifySignedIn() && <span className="acct-dot" aria-hidden="true" />}
+          </NavLink>
         </nav>
         <div className="head-actions">
           <a className="button secondary sm" href="https://brainsait.org"
@@ -93,6 +98,7 @@ export default function App() {
           <Route path="/build" element={<Build />} />
           <Route path="/products/:slug" element={<Product />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/account/authorize" element={<AccountAuthorize />} />
           <Route path="/track" element={<Track />} />
           <Route path="*" element={<Home />} />
         </Routes>

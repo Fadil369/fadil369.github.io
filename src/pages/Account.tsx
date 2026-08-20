@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { ShieldCheck, BadgeCheck, Globe, KeyRound, Lock, CheckCircle2, LogOut, UserPlus, Building2, TrendingUp, Mail, Phone, MapPin, BookOpen, Brain, Code2, Send, CalendarDays, Sparkles, ShoppingBag } from 'lucide-react';
 import { useI18n } from '../i18n';
 import { BUILD_APPLY_BASE, FOUNDER_OS_URL, ULTIMATE_BRAIN_BUILD_URL, FORGE_BOT_URL, CALENDAR_URL, CUSTOMER_CLAIM_URL, CUSTOMER_ME_URL, CUSTOMER_OTP_REQUEST_URL, CUSTOMER_OTP_VERIFY_URL, BUILD_INSTALLMENT_PLANS } from '../config/build';
+import ShopifyAccountPanel from '../components/ShopifyAccountPanel';
 
 interface ProfileView {
   id: string;
@@ -479,6 +480,8 @@ export default function Account() {
         <h1 style={{ textAlign: 'center', marginBottom: '0.5rem' }}>{ar ? 'حسابي' : 'My Account'}</h1>
         <p className="lede" style={{ textAlign: 'center' }}>{ar ? 'سجّل دخولك أو أنشئ ملفًا بسيطًا للاستفادة من المتجر والبناء والتقدّم.' : 'Sign in or create a simple profile to use the store, build and track your progress.'}</p>
 
+        <ShopifyAccountPanel />
+
         <div className="account-card" style={{ marginTop: '1.5rem' }}>
           {mode === 'signin' ? (
             <>
@@ -580,6 +583,7 @@ export default function Account() {
   return (
     <main className="page">
       <h1 style={{ textAlign: 'center' }}>{ar ? 'حسابي' : 'My Account'}</h1>
+      <ShopifyAccountPanel />
       <div className="account-card">
         <div className="account-head">
           <div className="account-avatar">{(profile.name || '?').charAt(0)}</div>
