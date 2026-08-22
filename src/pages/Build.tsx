@@ -8,6 +8,7 @@ import type { Catalog } from '../types';
 import { useI18n } from '../i18n';
 import { track } from '../analytics';
 import BuildEligibilityForm from '../components/BuildEligibilityForm';
+import BuildCareForm from '../components/BuildCareForm';
 
 const cat = data as unknown as Catalog;
 const CALENDAR_URL = 'https://calendar.app.google/rAqiE6pNumtECdnd7';
@@ -49,9 +50,12 @@ export default function Build() {
         <p className="fineprint">{ar ? 'دفع آمن على store.brainsait.org — أدخل رمز الخصم قبل إتمام الشراء، أو احجز جلسة تقييم أولاً.' : 'Secure checkout on store.brainsait.org — apply your promo code before checkout, or book an evaluation first.'}</p>
       </section>
 
-      {/* ── FLAT BUILD TICKET — single standard seat ── */}
+      {/* ── BUILD TICKETS — standard (paid) + BUILD-CARE (free, healthcare workers) ── */}
       <section id="apply" className="build-price reveal">
-        <BuildEligibilityForm />
+        <div className="build-tickets-row">
+          <BuildEligibilityForm />
+          <BuildCareForm />
+        </div>
       </section>
 
       {/* ── HOW TO JOIN — the GitHub flow ── */}

@@ -1,0 +1,73 @@
+/* BUILD-CARE ticket card — free healthcare-worker variant of the Build ticket */
+
+.build-care-form-container {
+  min-height: 0;
+  padding: 0;
+}
+
+.build-care-card {
+  border-color: rgba(42, 157, 143, 0.35);
+}
+
+.care-badge {
+  background: linear-gradient(135deg, rgba(42, 157, 143, 0.18), rgba(41, 216, 255, 0.14));
+  color: var(--ok);
+  border-color: rgba(42, 157, 143, 0.4);
+}
+
+.care-price {
+  font-size: 2.2rem;
+  background: linear-gradient(135deg, var(--ok), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.care-note { margin-top: 0.4rem; }
+
+.care-exclusions {
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0.9rem 1rem;
+  background: rgba(231, 111, 81, 0.06);
+  border: 1px solid rgba(231, 111, 81, 0.2);
+  border-radius: 14px;
+  text-align: start;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+.care-exclusions li { padding: 0.2rem 0; }
+
+.care-includes-note {
+  text-align: start;
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 1.2rem;
+}
+
+.care-submit {
+  background: linear-gradient(135deg, var(--ok), var(--cyan));
+  box-shadow: 0 10px 30px rgba(42, 157, 143, 0.3);
+}
+.care-submit:hover:not(:disabled) {
+  box-shadow: 0 16px 40px rgba(42, 157, 143, 0.45);
+}
+
+.build-tickets-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+}
+
+.build-tickets-row > * {
+  flex: 1 1 380px;
+  max-width: 460px;
+}
+
+@media (max-width: 860px) {
+  .build-tickets-row { flex-direction: column; align-items: center; }
+}
