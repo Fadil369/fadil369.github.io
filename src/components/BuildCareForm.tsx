@@ -85,7 +85,7 @@ export default function BuildCareForm() {
     return (
       <div className="build-form-container build-care-form-container">
         <div className="form-step result-step">
-          <div className="tier-icon" style={{ fontSize: '3rem' }}><Check size={48} color="#2a9d8f" /></div>
+          <div className="tier-icon" style={{ fontSize: '3rem' }}><Check size={48} color="#e9c46a" /></div>
           <h2>{ar ? 'تم استلام طلبك!' : 'Application received!'}</h2>
           <p className="tier-subtitle">
             {ar ? `رقم الطلب: ${submitResult.applicationId}` : `Application ref: ${submitResult.applicationId}`}
@@ -107,7 +107,7 @@ export default function BuildCareForm() {
     <div className="build-form-container build-care-form-container">
       <div className="form-step welcome-step">
         <div className="build-ticket-card build-care-card">
-          <span className="launch-badge care-badge">🩺 {ar ? 'لبناة الرعاية الصحية' : 'For healthcare workers'}</span>
+          <span className="launch-badge care-badge">{ar ? 'تذكرة تكريمية — لبناة الرعاية الصحية' : 'Complimentary — for healthcare builders'}</span>
           <div className="bt-price-row">
             <span className="bt-price care-price">{ar ? 'مجاناً' : 'Free'}</span>
           </div>
@@ -119,14 +119,14 @@ export default function BuildCareForm() {
           </p>
 
           <ul className="care-exclusions">
-            <li>❌ {ar ? 'بدون دعم النشر (Deployment)' : 'No deployment support'}</li>
-            <li>❌ {ar ? 'بدون مرحلة التسويق والتسليم' : 'No marketing & delivery phase'}</li>
-            <li>❌ {ar ? 'بدون جلسات فردية (1:1)' : 'No 1:1 mentorship'}</li>
+            <li>— {ar ? 'بدون دعم النشر (Deployment)' : 'No deployment support'}</li>
+            <li>— {ar ? 'بدون مرحلة التسويق والتسليم' : 'No marketing & delivery phase'}</li>
+            <li>— {ar ? 'بدون جلسات فردية (1:1)' : 'No 1:1 mentorship'}</li>
           </ul>
           <p className="care-includes-note">
             {ar
-              ? '✅ يشمل: منهج بناء موجّه، حسابك في account.brainsait.org، عقلك الثاني، مكتبة LEARN، ومستودع GitHub خاص بك.'
-              : '✅ Includes: a guided build curriculum, your account.brainsait.org access, Second Brain, the LEARN catalog, and your own GitHub repo.'}
+              ? 'يشمل: منهج بناء موجّه، حسابك في account.brainsait.org، عقلك الثاني، مكتبة LEARN، ومستودع GitHub خاص بك.'
+              : 'Includes: a guided build curriculum, your account.brainsait.org access, Second Brain, the LEARN catalog, and your own GitHub repo.'}
           </p>
 
           <div className="verification-form">
