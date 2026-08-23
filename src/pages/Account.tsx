@@ -41,7 +41,25 @@ const FORGE_PROFILE_KEY = 'bs_forge_profile';
 const FORGE_ME = 'https://forge.brainsait.org/profile/me';
 const CUSTOMER_SYNC_API = 'https://build-apply.brainsait.org/customer/sync';
 const PORTAL_PARTNER_STATUS = 'https://portal.brainsait.de/api/integration/partner-status';
+const AI_PROFILE_API = 'https://portal.brainsait.de/api/integration/ai-profile';
 const INSTALLMENT_API = `${BUILD_APPLY_BASE}/installment`;
+
+interface AIProfile {
+  ok: boolean;
+  profile_id?: string;
+  name?: string;
+  segment?: string;
+  industry?: string;
+  size?: string;
+  needs?: string[];
+  recommended_tier?: string;
+  summary_en?: string;
+  summary_ar?: string;
+  next_actions?: string[];
+  updated_at?: string;
+  partner_candidate?: string;
+  partner_tier?: string;
+}
 
 interface PartnerStatus {
   ok: boolean;
@@ -246,6 +264,7 @@ export default function Account() {
   const [langMsg, setLangMsg] = useState('');
   const [progress, setProgress] = useState<{ pct: number; done: number; total: number; next: string; badges: string[]; repoUrl?: string; notionUrl?: string } | null>(null);
   const [partner, setPartner] = useState<PartnerStatus | null>(null);
+  const [aiProfile, setAiProfile] = useState<AIProfile | null>(null);
   const [installment, setInstallment] = useState<InstallmentView | null>(null);
 
   useEffect(() => {
@@ -330,6 +349,11 @@ export default function Account() {
       .then((r) => r.json())
       .then((d) => { if (d.ok) setPartner(d); })
       .catch(() => { /* not a partner yet — ignore */ });
+    // AI-generated customer account profile (segment, industry, tier, actions).
+    fetch(`${AI_PROFILE_API}?email=${encodeURIComponent(profile.email)}`)
+      .then((r) => r.json())
+      .then((d) => { if (d.ok) setAiProfile(d); })
+      .catch(() => { /* no AI profile yet — ignore */ });
     const ref = profile.buildRef || readBuildRef();
     if (ref) {
       fetch(`${INSTALLMENT_API}/${encodeURIComponent(ref)}`)
@@ -689,6 +713,45 @@ export default function Account() {
                 <Link to={`/track?ref=${readBuildRef()}`} className="button secondary sm" style={{ marginTop: '0.5rem' }}>
                   <TrendingUp size={14} /> {ar ? 'لوحة التقدم' : 'Progress dashboard'}
                 </Link>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* AI customer account profile (SME/Enterprise intelligence) */}
+        {aiProfile && (
+          <div className="account-row">
+            <span className="account-label"><Sparkles size={16} /> {ar ? 'الملف الذكي' : 'AI Profile'}</span>
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '0.4rem' }}>
+                <span className="badge">
+                  {aiProfile.segment === 'enterprise'
+                    ? (ar ? 'مؤسسة' : 'Enterprise')
+                    : aiProfile.segment === 'sme'
+                      ? (ar ? 'شركة صغيرة/متوسطة' : 'SME')
+                      : (ar ? 'عميل فردي' : 'Consumer')}
+                </span>
+                {aiProfile.industry && <span className="muted" style={{ fontSize: '0.82rem' }}>{ar ? 'القطاع:' : 'Industry:'} {aiProfile.industry}</span>}
+                {aiProfile.recommended_tier && aiProfile.recommended_tier !== 'none' && (
+                  <span className="badge" style={{ border: '1px solid var(--gold)' }}>
+                    {aiProfile.recommended_tier === 'super-partner'
+                      ? (ar ? 'مُوصى به: شريك سوبر' : 'Recommended: Super Partner')
+                      : aiProfile.recommended_tier === 'build-standard'
+                        ? (ar ? 'مُوصى به: BUILD' : 'Recommended: BUILD')
+                        : (ar ? 'مُوصى به: BUILD-CARE' : 'Recommended: BUILD-CARE')}
+                  </span>
+                )}
+                {aiProfile.partner_candidate === 'review' && (
+                  <span className="badge">{ar ? '🔍 مرشح شريك — قيد المراجعة' : '🔍 Partner candidate — under review'}</span>
+                )}
+              </div>
+              <p style={{ margin: '0 0 0.4rem', fontSize: '0.85rem' }}>
+                {ar ? aiProfile.summary_ar : aiProfile.summary_en}
+              </p>
+              {aiProfile.next_actions && aiProfile.next_actions.length > 0 && (
+                <div style={{ fontSize: '0.8rem', color: 'var(--muted)', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  {aiProfile.next_actions.map((a, i) => <span key={i}>↳ {a}</span>)}
+                </div>
               )}
             </div>
           </div>
