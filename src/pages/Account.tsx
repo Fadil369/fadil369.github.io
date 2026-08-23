@@ -73,8 +73,11 @@ interface PartnerStatus {
   gift_card_id?: string;
   company_id?: string;
   github_username?: string;
+  github_repo?: string;
   track_url?: string;
   notion_url?: string;
+  second_brain_url?: string;
+  welcome_discount_code?: string;
   suspended_reason?: string;
   suspended_at?: string;
 }
@@ -264,6 +267,9 @@ export default function Account() {
   const [langMsg, setLangMsg] = useState('');
   const [progress, setProgress] = useState<{ pct: number; done: number; total: number; next: string; badges: string[]; repoUrl?: string; notionUrl?: string } | null>(null);
   const [partner, setPartner] = useState<PartnerStatus | null>(null);
+  const [ghClaim, setGhClaim] = useState('');
+  const [ghClaimState, setGhClaimState] = useState<'idle' | 'working' | 'done' | 'error'>('idle');
+  const [ghClaimMsg, setGhClaimMsg] = useState('');
   const [aiProfile, setAiProfile] = useState<AIProfile | null>(null);
   const [installment, setInstallment] = useState<InstallmentView | null>(null);
 
@@ -362,6 +368,34 @@ export default function Account() {
         .catch(() => { /* not on a plan — ignore */ });
     }
   }, [profile]);
+
+  // Self-service claim of the GitHub repo provisioned for a store Super
+  // Partner: the worker verifies orderId + order-email match, then sends the
+  // push invite. Idempotent on the worker side.
+  const claimGitHub = async () => {
+    const u = ghClaim.trim().replace(/^@/, '');
+    if (!u || !partner?.order_id || !profile?.email) return;
+    setGhClaimState('working');
+    setGhClaimMsg('');
+    try {
+      const r = await fetch(`${BUILD_APPLY_BASE}/customer/github-claim`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orderId: partner.order_id, email: profile.email, githubUsername: u }),
+      });
+      const d = await r.json();
+      if (d.ok) {
+        setGhClaimState('done');
+        setPartner({ ...partner, github_username: u });
+      } else {
+        setGhClaimState('error');
+        setGhClaimMsg(d.error || '');
+      }
+    } catch {
+      setGhClaimState('error');
+      setGhClaimMsg('network');
+    }
+  };
 
   const signIn = async () => {
     setSaving(true);
@@ -707,12 +741,46 @@ export default function Account() {
                 {partner.fulfillment_id && <span>📦 {ar ? 'تنفيذ' : 'Fulfillment'}: ✅</span>}
                 {partner.gift_card_id && <span>🎁 {ar ? 'بطاقة هدية' : 'Gift card'}: ✅</span>}
                 {partner.company_id && <span>🏢 {ar ? 'شركة' : 'Company'}: ✅</span>}
+                {partner.welcome_discount_code && <span>🎟️ {ar ? 'كوبون الترحيب' : 'Welcome code'}: <code>{partner.welcome_discount_code}</code></span>}
+                {partner.github_repo && <span>🐙 {ar ? 'مستودعك:' : 'Your repo:'} <a href={partner.github_repo} target="_blank" rel="noopener noreferrer">{partner.github_repo.replace('https://github.com/', '')}</a></span>}
                 {partner.github_username && <span>🐙 GitHub: <code>{partner.github_username}</code></span>}
               </div>
-              {partner.track_url && (
-                <Link to={`/track?ref=${readBuildRef()}`} className="button secondary sm" style={{ marginTop: '0.5rem' }}>
-                  <TrendingUp size={14} /> {ar ? 'لوحة التقدم' : 'Progress dashboard'}
-                </Link>
+              <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
+                {partner.second_brain_url && (
+                  <a className="button secondary sm" href={partner.second_brain_url} target="_blank" rel="noopener noreferrer">
+                    <Brain size={14} /> {ar ? 'دماغك الثاني (Notion)' : '2nd Brain (Notion)'}
+                  </a>
+                )}
+                {partner.track_url && (
+                  <Link to={`/track?ref=${readBuildRef()}`} className="button secondary sm">
+                    <TrendingUp size={14} /> {ar ? 'لوحة التقدم' : 'Progress dashboard'}
+                  </Link>
+                )}
+              </div>
+              {partner.github_repo && !partner.github_username && (
+                <div style={{ marginTop: '0.5rem' }}>
+                  <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', alignItems: 'center' }}>
+                    <input
+                      value={ghClaim}
+                      onChange={(e) => setGhClaim(e.target.value)}
+                      placeholder={ar ? 'اسم مستخدم GitHub' : 'Your GitHub username'}
+                      style={{ flex: 1, minWidth: '160px', padding: '0.35rem 0.5rem', borderRadius: '0.4rem', border: '1px solid var(--border)', background: 'var(--card)', color: 'inherit', fontSize: '0.85rem' }}
+                    />
+                    <button className="button secondary sm" onClick={claimGitHub} disabled={ghClaimState === 'working' || !ghClaim.trim()}>
+                      {ghClaimState === 'working' ? (ar ? 'جارٍ الربط…' : 'Linking…') : (ar ? 'اربط حساب GitHub' : 'Link GitHub account')}
+                    </button>
+                  </div>
+                  {ghClaimState === 'done' && (
+                    <p style={{ color: '#30a46c', fontSize: '0.8rem', margin: '0.3rem 0 0' }}>
+                      {ar ? '✅ تم! تفقد GitHub لاستدعاء العضوية (صلاحيات دفع).' : '✅ Done! Check GitHub for the push invite.'}
+                    </p>
+                  )}
+                  {ghClaimState === 'error' && (
+                    <p style={{ color: '#e5484d', fontSize: '0.8rem', margin: '0.3rem 0 0' }}>
+                      {ar ? `⚠️ تعذر الربط: ${ghClaimMsg}` : `⚠️ Could not link: ${ghClaimMsg}`}
+                    </p>
+                  )}
+                </div>
               )}
             </div>
           </div>
