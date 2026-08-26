@@ -3602,7 +3602,6 @@
       "price": 5.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
-      "shopifyUrl": "https://store.brainsait.org/products/digital-healthcare-masterclass",
       "shopifyHandle": "digital-healthcare-masterclass",
       "available": true,
       "commercial": "product"
@@ -3621,7 +3620,6 @@
       "price": 249.0,
       "billingEn": "one-time",
       "billingAr": "دفعة واحدة",
-      "shopifyUrl": "https://store.brainsait.org/products/oid-arduino-iot-scanner-hardware-blueprint",
       "shopifyHandle": "oid-arduino-iot-scanner-hardware-blueprint",
       "available": true,
       "commercial": "product",
