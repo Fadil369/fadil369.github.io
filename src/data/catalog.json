@@ -4003,10 +4003,10 @@
     "taglineAr": null,
     "description": "A guided Build-stage course for systems builders: Python networking fundamentals and production patterns, built hands-on.",
     "descriptionAr": null,
-    "price": 0,
-    "billingEn": "on request",
-    "billingAr": "عند الطلب",
-    "free": true,
+    "price": 99,
+    "billingEn": "one-time",
+    "billingAr": "دفعة واحدة",
+    "free": false,
     "image": "/assets/images/books/stealth-python-networking-build.svg",
     "badges": [],
     "benefits": [
@@ -4043,9 +4043,9 @@
     "users": "Guided labs",
     "flag": null,
     "demoUrl": null,
-    "shopifyUrl": null,
-    "shopifyHandle": null,
-    "sku": "BSP-COURSE-PY-006",
+    "shopifyUrl": "https://store.brainsait.org/products/stealth-python-networking-build",
+    "shopifyHandle": "stealth-python-networking-build",
+    "sku": "BSP-STEALTH-PYTHON-NETWORKING-BUILD",
     "available": true
    }
   ]
