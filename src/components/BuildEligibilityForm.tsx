@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect, useRef } from 'react';
 import { Check, Loader2 } from 'lucide-react';
 import { formatPrice, ORIGINAL_PRICE, BASE_PRICE, lookupPromo, planInstallmentAmount, INSTALLMENT_COUNTS } from '../utils/pricingEngine';
 import { useI18n } from '../i18n';
-import { track } from '../analytics';
+import { track, journeyEvent } from '../analytics';
 import { BUILD_APPLY_API, TURNSTILE_SITE_KEY } from '../config/build';
 import '../styles/BuildEligibilityForm.css';
 
@@ -138,6 +138,16 @@ export default function BuildEligibilityForm() {
         final_price: result.finalPrice,
       });
 
+      // Journey ledger: the applicant has locked in the plan + flat ticket.
+      journeyEvent('journey.plan_selected', {
+        student_email: form.email.trim(),
+        name: form.fullName.trim(),
+        plan: 'Founder Accelerator',
+        amount: result.finalPrice,
+        ticket: result.applicationId,
+        discount: promo?.discountPercent || 0,
+      });
+
       try {
         localStorage.setItem('bs_build_ref', result.applicationId);
         const existing = (() => { try { return JSON.parse(localStorage.getItem('bs_profile') || 'null'); } catch { return null; } })();
@@ -155,6 +165,12 @@ export default function BuildEligibilityForm() {
       } catch { /* ignore */ }
 
       if (result.checkoutUrl) {
+        journeyEvent('journey.checkout_opened', {
+          student_email: form.email.trim(),
+          ticket: result.applicationId,
+          provider: 'shopify',
+          amount: result.finalPrice,
+        });
         window.location.href = result.checkoutUrl;
         return;
       }

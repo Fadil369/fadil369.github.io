@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Rocket, Shield, Lock, Workflow, BookOpen, Calendar, BadgeCheck,
@@ -6,7 +7,7 @@ import {
 import data from '../data/catalog.json';
 import type { Catalog } from '../types';
 import { useI18n } from '../i18n';
-import { track } from '../analytics';
+import { track, journeyEvent } from '../analytics';
 import BuildEligibilityForm from '../components/BuildEligibilityForm';
 import BuildCareForm from '../components/BuildCareForm';
 import { usePageMeta } from '../hooks/usePageMeta';
@@ -24,6 +25,9 @@ export default function Build() {
     url: '/build',
     type: 'website',
   });
+
+  // Funnel instrumentation: the BUILD offer is now visible (once per mount).
+  useEffect(() => { journeyEvent('journey.offer_clicked', { location: 'page_view' }); }, []);
 
   const securityPoints = [
     { icon: Shield, t: ar ? 'بوابات موافقة' : 'Approval gates', d: ar ? 'لا شيء يُطلق تلقائياً — الأوامر الحساسة تحتاج تأكيد المؤسس/الإدارة' : 'Nothing launches autonomously — sensitive actions need founder/admin confirmation' },
@@ -48,7 +52,7 @@ export default function Build() {
           <span className="launch-timer">{ar ? 'لفترة محدودة' : 'Limited time'}</span>
         </div>
         <div className="build-hero-cta">
-          <a className="button primary lg" href="#apply" onClick={() => track('build_cta', { location: 'hero' })}>
+          <a className="button primary lg" href="#apply" onClick={() => { track('build_cta', { location: 'hero' }); journeyEvent('journey.offer_clicked', { location: 'hero' }); }}>
             {ar ? 'ابدأ طلبك' : 'Start your application'} <Rocket size={18} />
           </a>
           <a className="button secondary lg" href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">

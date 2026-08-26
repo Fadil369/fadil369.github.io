@@ -46,3 +46,24 @@ export function trackViewItem(item: {
 export function trackBeginCheckout(value: number, items: unknown[] = []): void {
   track('begin_checkout', { currency: 'SAR', value, items });
 }
+
+/**
+ * Journey event sink — posts funnel/identity stages to the build-apply
+ * worker, which logs them to D1 and re-broadcasts them on the hub event bus
+ * (Lark ops cards + per-person journey ledger when an email is attached).
+ * Fire-and-forget: keepalive so it survives the checkout navigation.
+ */
+const JOURNEY_EVENTS_URL = 'https://build-apply.brainsait.org/events/';
+
+export function journeyEvent(stage: string, params: Record<string, unknown> = {}): void {
+  try {
+    void fetch(JOURNEY_EVENTS_URL + stage, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...params, _ts: new Date().toISOString() }),
+      keepalive: true,
+    }).catch(() => { /* journey events must never break the storefront */ });
+  } catch {
+    /* journey events must never break the storefront */
+  }
+}
