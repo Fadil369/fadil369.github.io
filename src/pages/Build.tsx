@@ -9,6 +9,7 @@ import { useI18n } from '../i18n';
 import { track } from '../analytics';
 import BuildEligibilityForm from '../components/BuildEligibilityForm';
 import BuildCareForm from '../components/BuildCareForm';
+import { usePageMeta } from '../hooks/usePageMeta';
 
 const cat = data as unknown as Catalog;
 const CALENDAR_URL = 'https://calendar.app.google/rAqiE6pNumtECdnd7';
@@ -16,6 +17,13 @@ const CALENDAR_URL = 'https://calendar.app.google/rAqiE6pNumtECdnd7';
 export default function Build() {
   const { ar, t } = useI18n();
   const { program } = cat.build;
+
+  usePageMeta({
+    title: `${ar ? 'ابنِ' : 'Build'} — ${ar ? program.nameAr : program.name}`,
+    description: (ar ? program.taglineAr : program.tagline) || program.name || 'BrainSAIT Build program',
+    url: '/build',
+    type: 'website',
+  });
 
   const securityPoints = [
     { icon: Shield, t: ar ? 'بوابات موافقة' : 'Approval gates', d: ar ? 'لا شيء يُطلق تلقائياً — الأوامر الحساسة تحتاج تأكيد المؤسس/الإدارة' : 'Nothing launches autonomously — sensitive actions need founder/admin confirmation' },

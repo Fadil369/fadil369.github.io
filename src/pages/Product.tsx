@@ -6,6 +6,7 @@ import type { Catalog, Product as P } from '../types';
 import { useI18n, money } from '../i18n';
 import { track, trackViewItem } from '../analytics';
 import { useAccountHolder } from '../hooks/useAccountHolder';
+import { usePageMeta } from '../hooks/usePageMeta';
 
 const cat = data as unknown as Catalog;
 const ALL: P[] = [...cat.learn, ...cat.solutions, ...cat.build.courses];
@@ -15,6 +16,14 @@ export default function Product() {
   const { ar, t } = useI18n();
   const accountHolder = useAccountHolder();
   const p = ALL.find(x => x.slug === slug);
+
+  usePageMeta(p ? {
+    title: ar ? p.nameAr || p.name : p.name,
+    description: (ar ? p.descriptionAr || p.description : p.description) || p.tagline || p.name,
+    image: p.image,
+    url: p.slug ? `/products/${p.slug}` : '/',
+    type: 'product',
+  } : null);
 
   useEffect(() => {
     if (p) {

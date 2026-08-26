@@ -3,15 +3,24 @@ import data from '../data/catalog.json';
 import type { Catalog, Product, Stage } from '../types';
 import { useI18n } from '../i18n';
 import ProductCard from '../components/ProductCard';
+import { usePageMeta } from '../hooks/usePageMeta';
 
 const cat = data as unknown as Catalog;
 
 /** Learn and Solutions shelves, filtered by sub-category. */
 export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
   const { ar, t } = useI18n();
+  const def = cat.stages.find(s => s.id === stage)!;
   const [sub, setSub] = useState('all');
   const [comm, setComm] = useState('all');
   const items: Product[] = stage === 'learn' ? cat.learn : cat.solutions;
+
+  usePageMeta({
+    title: ar ? `${def.ar} — BrainSAIT Store` : `${def.en} — BrainSAIT Store`,
+    description: ar ? def.blurbAr : def.blurbEn,
+    url: `/${def.id}`,
+    type: 'website',
+  });
 
   const subs = useMemo(() => {
     const present = new Set(items.map(i => i.sub));
@@ -19,7 +28,6 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
   }, [items]);
 
   const shown = items.filter(i => (sub === 'all' || i.sub === sub) && (comm === 'all' || (i.commercial || 'demo') === comm));
-  const def = cat.stages.find(s => s.id === stage)!;
 
   return (
     <main className="page">

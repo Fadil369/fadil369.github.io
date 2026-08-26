@@ -4,6 +4,7 @@ import data from '../data/catalog.json';
 import type { Catalog } from '../types';
 import { useI18n, money } from '../i18n';
 import ProductCard from '../components/ProductCard';
+import { usePageMeta } from '../hooks/usePageMeta';
 
 const cat = data as unknown as Catalog;
 const ICONS = [BookOpen, Hammer, Boxes];
@@ -17,6 +18,13 @@ export default function Home() {
     build: cat.build.courses.length + 1,
     solutions: cat.solutions.length,
   };
+
+  usePageMeta({
+    title: ar ? 'متجر BrainSAIT — تعلّم · ابنِ · حلول' : 'BrainSAIT Store — Learn · Build · Solutions',
+    description: 'BrainSAIT Store — Learn, Build, Solutions. Books, courses, incubation program and live software for healthcare, business and development.',
+    url: '/',
+    type: 'website',
+  });
 
   return (
     <main className="page">
