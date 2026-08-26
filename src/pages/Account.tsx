@@ -4,6 +4,7 @@ import { ShieldCheck, BadgeCheck, Globe, KeyRound, Lock, CheckCircle2, LogOut, U
 import { useI18n } from '../i18n';
 import { BUILD_APPLY_BASE, FOUNDER_OS_URL, ULTIMATE_BRAIN_BUILD_URL, FORGE_BOT_URL, CALENDAR_URL, CUSTOMER_CLAIM_URL, CUSTOMER_ME_URL, CUSTOMER_OTP_REQUEST_URL, CUSTOMER_OTP_VERIFY_URL, BUILD_INSTALLMENT_PLANS } from '../config/build';
 import ShopifyAccountPanel from '../components/ShopifyAccountPanel';
+import { journeyEvent } from '../analytics';
 
 interface ProfileView {
   id: string;
@@ -282,7 +283,10 @@ export default function Account() {
       const customer = await resolveCustomerIdentity(claimParam);
       if (cancelled) return;
       if (customer) {
-        if (claimParam) { searchParams.delete('claim'); setSearchParams(searchParams, { replace: true }); }
+        if (claimParam) {
+          searchParams.delete('claim'); setSearchParams(searchParams, { replace: true });
+          journeyEvent('journey.mailotp_verified', { email: (customer.email || ''), name: (customer.name || ''), via: 'claim' });
+        }
         if (customer.buildRef) { try { localStorage.setItem(BUILD_REF_KEY, customer.buildRef); } catch { /* ignore */ } }
         setProfile(customer);
         setLoading(false);
@@ -460,6 +464,7 @@ export default function Account() {
         saveCustomerToken(d.token);
         const p = d.profile || {};
         setProfile({ id: p.email || 'customer', oid: p.oid, name: p.name || '', email: p.email || '', roles: ['customer'], local: false });
+        journeyEvent('journey.mailotp_verified', { email: p.email || otpEmail.trim(), name: p.name || '' });
         setMode('view');
         setOtpSent(false);
         setOtpCode('');
@@ -478,6 +483,7 @@ export default function Account() {
     setProfile(p);
     setMode('view');
     syncShopifyCustomer(p);
+    journeyEvent('journey.account_created', { email: p.email, name: p.name });
   };
 
   const updateLocalField = (patch: Partial<ProfileView>) => {

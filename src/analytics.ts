@@ -57,10 +57,14 @@ const JOURNEY_EVENTS_URL = 'https://build-apply.brainsait.org/events/';
 
 export function journeyEvent(stage: string, params: Record<string, unknown> = {}): void {
   try {
+    const body: Record<string, unknown> = { ...params, _ts: new Date().toISOString() };
+    // Worker expects student_email; hub/journey_engine expects email — send both
+    if (body.email && !body.student_email) body.student_email = body.email;
+    if (body.student_email && !body.email) body.email = body.student_email;
     void fetch(JOURNEY_EVENTS_URL + stage, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...params, _ts: new Date().toISOString() }),
+      body: JSON.stringify(body),
       keepalive: true,
     }).catch(() => { /* journey events must never break the storefront */ });
   } catch {
