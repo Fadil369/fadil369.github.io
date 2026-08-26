@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import { ExternalLink, ShieldCheck, Lock } from 'lucide-react';
+import { ExternalLink, ShieldCheck, Lock, MessageCircle } from 'lucide-react';
 import data from '../data/catalog.json';
 import type { Catalog, Product as P } from '../types';
 import { useI18n, money } from '../i18n';
@@ -91,6 +91,13 @@ export default function Product() {
                    target="_blank" rel="noopener noreferrer" onClick={onBuy}>
                   {ctaLabel} <ExternalLink size={16} />
                 </a>
+                {p.demoUrl && (
+                  <a className="button secondary lg demo-alt" href={p.demoUrl}
+                     target="_blank" rel="noopener noreferrer" onClick={onDemo}>
+                    <MessageCircle size={16} />
+                    {ar ? 'اطلب عرضاً تجريبياً / احجز جلسة' : 'Request a demo / Book a session'}
+                  </a>
+                )}
                 <p className="fineprint">
                   <ShieldCheck size={14} /> {t('checkout.note')}
                 </p>
