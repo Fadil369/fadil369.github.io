@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">BrainSAIT Learn — Knowledge Constellation</title>
+  <desc id="desc">A premium dark futuristic illustration of books, learning paths and an AI knowledge constellation.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#050714"/><stop offset="0.55" stop-color="#10142a"/><stop offset="1" stop-color="#1d1021"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7d98b"/><stop offset="0.5" stop-color="#e9a84d"/><stop offset="1" stop-color="#ff7a3d"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7df3ff"/><stop offset="1" stop-color="#36a8ff"/>
+    </linearGradient>
+    <radialGradient id="glow"><stop offset="0" stop-color="#f4b65b" stop-opacity=".34"/><stop offset="1" stop-color="#f4b65b" stop-opacity="0"/></radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="28"/></filter>
+    <filter id="shadow"><feDropShadow dx="0" dy="22" stdDeviation="22" flood-color="#000" flood-opacity=".55"/></filter>
+  </defs>
+  <rect width="1200" height="800" rx="44" fill="url(#bg)"/>
+  <circle cx="900" cy="210" r="260" fill="url(#glow)" filter="url(#blur)"/>
+  <g opacity=".22" stroke="#7df3ff" stroke-width="1">
+    <path d="M0 650 Q300 510 520 650 T1200 540" fill="none"/>
+    <path d="M0 700 Q300 560 520 700 T1200 590" fill="none"/>
+  </g>
+  <g stroke="url(#cyan)" stroke-width="2" opacity=".55" fill="none">
+    <path d="M710 190 L890 120 L1030 220 L960 390 L790 350 Z"/>
+    <path d="M890 120 L960 390 M710 190 L790 350 M1030 220 L790 350"/>
+  </g>
+  <g fill="url(#cyan)">
+    <circle cx="710" cy="190" r="7"/><circle cx="890" cy="120" r="8"/><circle cx="1030" cy="220" r="7"/><circle cx="960" cy="390" r="8"/><circle cx="790" cy="350" r="7"/>
+  </g>
+  <g filter="url(#shadow)">
+    <g transform="translate(145 285) rotate(-8)">
+      <rect width="285" height="360" rx="18" fill="#10182b" stroke="#e9c46a" stroke-width="2"/>
+      <rect x="18" y="18" width="249" height="324" rx="12" fill="#0a0e1d" stroke="#ffffff" stroke-opacity=".1"/>
+      <path d="M50 90 H235 M50 125 H210 M50 160 H225" stroke="#e9c46a" stroke-width="8" stroke-linecap="round" opacity=".8"/>
+      <circle cx="142" cy="245" r="54" fill="none" stroke="url(#cyan)" stroke-width="6"/>
+      <path d="M142 212v66M109 245h66" stroke="url(#cyan)" stroke-width="6" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(420 320) rotate(7)">
+      <rect width="300" height="370" rx="18" fill="#151226" stroke="#ff8a54" stroke-width="2"/>
+      <rect x="18" y="18" width="264" height="334" rx="12" fill="#0a0e1d" stroke="#ffffff" stroke-opacity=".1"/>
+      <text x="150" y="105" fill="url(#gold)" font-size="42" font-family="Georgia,serif" text-anchor="middle">LEARN</text>
+      <text x="150" y="155" fill="#ffffff" opacity=".72" font-size="28" font-family="Arial" text-anchor="middle">تعلّم</text>
+      <path d="M65 220 Q150 160 235 220" fill="none" stroke="url(#cyan)" stroke-width="6"/>
+      <circle cx="150" cy="230" r="14" fill="#fff"/>
+      <circle cx="80" cy="260" r="10" fill="#7df3ff"/><circle cx="220" cy="260" r="10" fill="#ff9a64"/>
+    </g>
+  </g>
+  <g fill="url(#gold)">
+    <circle cx="620" cy="170" r="4"/><circle cx="1080" cy="500" r="4"/><circle cx="640" cy="610" r="5"/><circle cx="260" cy="150" r="4"/>
+  </g>
+  <text x="760" y="535" fill="#ffffff" font-family="Arial, sans-serif" font-size="48" font-weight="700">KNOWLEDGE,</text>
+  <text x="760" y="590" fill="url(#gold)" font-family="Georgia, serif" font-size="52" font-weight="700">REIMAGINED.</text>
+  <text x="760" y="635" fill="#b9c2d8" font-family="Arial, sans-serif" font-size="22">Books · Courses · Guides · AI</text>
+  <rect x="760" y="675" width="230" height="3" rx="2" fill="url(#cyan)"/>
+  <text x="1080" y="720" fill="#7df3ff" font-family="Arial, sans-serif" font-size="16" text-anchor="end" letter-spacing="3">BRAINSAIT STORE</text>
+</svg>
