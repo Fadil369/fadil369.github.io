@@ -92,8 +92,8 @@
       "description": "Digital Income Strategy Your Three Pathways — a BrainSAIT blueprint from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 89.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Digital_Income_Strategy_Your_Three_Pathways.webp",
       "badges": [],
       "benefits": [
@@ -171,7 +171,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/digital-income-strategy-your-three-pathways",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "digital-income-strategy-your-three-pathways",
       "sku": "BSP-DIGITAL-INCOME-STRATEGY",
       "available": true
@@ -190,8 +190,8 @@
       "description": "Digital Organization Handbook — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 69.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Digital_Organization_Handbook.webp",
       "badges": [],
       "benefits": [
@@ -269,7 +269,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/digital-organization-handbook",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "digital-organization-handbook",
       "sku": "BSP-NB-DIGITAL-ORG",
       "available": true
@@ -288,8 +288,8 @@
       "description": "Etimad Digital Governance Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 69.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Etimad_Digital_Governance_Blueprint.webp",
       "badges": [],
       "benefits": [
@@ -367,7 +367,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/etimad-digital-governance-blueprint",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "etimad-digital-governance-blueprint",
       "sku": "BSP-ETIMAD-GOVERNANCE-BP",
       "available": true
@@ -386,8 +386,8 @@
       "description": "From Mind to Market — a BrainSAIT mini-book from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 49.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/From_Mind_to_Market.webp",
       "badges": [],
       "benefits": [
@@ -465,7 +465,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/from-mind-to-market",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "from-mind-to-market",
       "sku": "BSP-MIND-TO-MARKET",
       "available": true
@@ -484,8 +484,8 @@
       "description": "Hyper-Scalable Agency System — a BrainSAIT software from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 99.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Hyper-Scalable_Agency_System.webp",
       "badges": [],
       "benefits": [
@@ -563,7 +563,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/hyper-scalable-agency-system",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "hyper-scalable-agency-system",
       "sku": "BSP-HYPER-SCALABLE-AGENCY",
       "available": true
@@ -582,8 +582,8 @@
       "description": "One Ecosystem Limitless Intelligence — a BrainSAIT mini-book from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 49.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/One_Ecosystem_Limitless_Intelligence.webp",
       "badges": [],
       "benefits": [
@@ -661,7 +661,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/one-ecosystem-limitless-intelligence",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "one-ecosystem-limitless-intelligence",
       "sku": "BSP-ONE-ECOSYSTEM",
       "available": true
@@ -680,8 +680,8 @@
       "description": "Private AI Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 69.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Private_AI_Blueprint.webp",
       "badges": [],
       "benefits": [
@@ -759,7 +759,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/private-ai-blueprint",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "private-ai-blueprint",
       "sku": "BSP-PRIVATE-AI-BLUEPRINT",
       "available": true
@@ -778,8 +778,8 @@
       "description": "Professional Writing Mastery — a BrainSAIT skill from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 89.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Professional_Writing_Mastery.webp",
       "badges": [],
       "benefits": [
@@ -857,7 +857,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/professional-writing-mastery",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "professional-writing-mastery",
       "sku": "BSP-PROF-WRITING-MASTERY",
       "available": true
@@ -876,8 +876,8 @@
       "description": "Solo AI Business Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 69.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Solo_AI_Business_Blueprint.webp",
       "badges": [],
       "benefits": [
@@ -955,7 +955,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/solo-ai-business-blueprint",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "solo-ai-business-blueprint",
       "sku": "BSP-SOLO-AI-BUSINESS",
       "available": true
@@ -974,8 +974,8 @@
       "description": "The AI Skill Economy — a BrainSAIT skill from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 89.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/The_AI_Skill_Economy.webp",
       "badges": [],
       "benefits": [
@@ -1053,7 +1053,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/the-ai-skill-economy",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "the-ai-skill-economy",
       "sku": "BSP-AI-SKILL-ECONOMY",
       "available": true
@@ -1072,8 +1072,8 @@
       "description": "The Outlier Equation — a BrainSAIT novel from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 79.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/The_Outlier_Equation.webp",
       "badges": [],
       "benefits": [
@@ -1151,7 +1151,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/the-outlier-equation",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "the-outlier-equation",
       "sku": "BSP-OUTLIER-EQUATION",
       "available": true
@@ -1170,8 +1170,8 @@
       "description": "The Ultimate Persistent AI Agent — a BrainSAIT skill from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 89.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/The_Ultimate_Persistent_AI_Agent.webp",
       "badges": [],
       "benefits": [
@@ -1249,7 +1249,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/the-ultimate-persistent-ai-agent",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "the-ultimate-persistent-ai-agent",
       "sku": "BSP-PERSISTENT-AI-AGENT-D",
       "available": true
@@ -1268,8 +1268,8 @@
       "description": "Voice Agent Production Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 69.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Voice_Agent_Production_Blueprint.webp",
       "badges": [],
       "benefits": [
@@ -1347,7 +1347,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/voice-agent-production-blueprint",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "voice-agent-production-blueprint",
       "sku": "BSP-VOICE-AGENT-PRODUCTION",
       "available": true
@@ -1366,8 +1366,8 @@
       "description": "API Revision Notebook — a BrainSAIT software from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 99.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/API_Revision_Notebook.webp",
       "badges": [],
       "benefits": [
@@ -1445,7 +1445,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/api-revision-notebook",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "api-revision-notebook",
       "sku": "BSP-DRIVE-API-REVISION-NB",
       "available": true
@@ -1464,8 +1464,8 @@
       "description": "Apple AI Anatomy — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 119.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Apple_AI_Anatomy.webp",
       "badges": [],
       "benefits": [
@@ -1543,7 +1543,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/apple-ai-anatomy",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "apple-ai-anatomy",
       "sku": "BSP-APPLE-AI-ANATOMY",
       "available": true
@@ -1562,8 +1562,8 @@
       "description": "Digital Autonomy Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 69.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Digital_Autonomy_Blueprint.webp",
       "badges": [],
       "benefits": [
@@ -1641,7 +1641,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/digital-autonomy-blueprint",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "digital-autonomy-blueprint",
       "sku": "BSP-DIGITAL-AUTONOMY-BP",
       "available": true
@@ -1660,8 +1660,8 @@
       "description": "DOM Study Notes — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 69.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/DOM_Study_Notes.webp",
       "badges": [],
       "benefits": [
@@ -1739,7 +1739,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/dom-study-notes",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "dom-study-notes",
       "sku": "BSP-NB-DOM-STUDY-NOTES",
       "available": true
@@ -1758,8 +1758,8 @@
       "description": "One Million RPS Achieved — a BrainSAIT mini-book from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 49.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/One_Million_RPS_Achieved.webp",
       "badges": [],
       "benefits": [
@@ -1837,7 +1837,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/one-million-rps-achieved",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "one-million-rps-achieved",
       "sku": "BSP-ONE-MILLION-RPS",
       "available": true
@@ -1856,8 +1856,8 @@
       "description": "Stealth Python Networking — a BrainSAIT software from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 99.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Stealth_Python_Networking.webp",
       "badges": [],
       "benefits": [
@@ -1935,7 +1935,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/stealth-python-networking",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "stealth-python-networking",
       "sku": "BSP-STEALTH-PYTHON-NET",
       "available": true
@@ -1954,8 +1954,8 @@
       "description": "The API Blueprint — a BrainSAIT software from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 99.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/The_API_Blueprint.webp",
       "badges": [],
       "benefits": [
@@ -2033,7 +2033,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/the-api-blueprint",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "the-api-blueprint",
       "sku": "BSP-THE-API-BLUEPRINT",
       "available": true
@@ -2052,8 +2052,8 @@
       "description": "BrainSAIT AI Masterclass — a BrainSAIT skill from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 89.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/BrainSAIT_AI_Masterclass.webp",
       "badges": [],
       "benefits": [
@@ -2131,7 +2131,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/brainsait-ai-masterclass",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "brainsait-ai-masterclass",
       "sku": "BSP-AI-MASTERCLASS",
       "available": true
@@ -2150,8 +2150,8 @@
       "description": "BrainSAIT Health OS — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 69.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/BrainSAIT_Health_OS.webp",
       "badges": [],
       "benefits": [
@@ -2229,7 +2229,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/brainsait-health-os",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "brainsait-health-os",
       "sku": "BSP-HEALTH-OS",
       "available": true
@@ -2248,8 +2248,8 @@
       "description": "Clinical Code — a BrainSAIT software from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 99.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Clinical_Code.webp",
       "badges": [],
       "benefits": [
@@ -2327,7 +2327,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/clinical-code",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "clinical-code",
       "sku": "BSP-CLINICAL-CODE",
       "available": true
@@ -2346,8 +2346,8 @@
       "description": "Digital Health Bridge — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 119.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Digital_Health_Bridge.webp",
       "badges": [],
       "benefits": [
@@ -2425,7 +2425,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/digital-health-bridge",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "digital-health-bridge",
       "sku": "BSP-DIGITAL-HEALTH-BRIDGE",
       "available": true
@@ -2444,8 +2444,8 @@
       "description": "Etimad and NPHIES Integration — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 119.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Etimad_and_NPHIES_Integration.webp",
       "badges": [],
       "benefits": [
@@ -2523,7 +2523,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/etimad-and-nphies-integration",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "etimad-and-nphies-integration",
       "sku": "BSP-ETIMAD-NPHIES",
       "available": true
@@ -2542,8 +2542,8 @@
       "description": "Healthcare AI 2025 — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 119.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Healthcare_AI_2025.webp",
       "badges": [],
       "benefits": [
@@ -2621,7 +2621,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/healthcare-ai-2025",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "healthcare-ai-2025",
       "sku": "BSP-HEALTHCARE-AI-2025",
       "available": true
@@ -2640,8 +2640,8 @@
       "description": "Leading Joy in Healthcare — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 119.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Leading_Joy_in_Healthcare.webp",
       "badges": [],
       "benefits": [
@@ -2719,7 +2719,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/leading-joy-in-healthcare",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "leading-joy-in-healthcare",
       "sku": "BSP-LEADING-JOY-HEALTHCARE",
       "available": true
@@ -2738,8 +2738,8 @@
       "description": "Saudi Health Innovation Guide — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 119.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Saudi_Health_Innovation_Guide.webp",
       "badges": [],
       "benefits": [
@@ -2817,7 +2817,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/saudi-health-innovation-guide",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "saudi-health-innovation-guide",
       "sku": "BSP-SAUDI-HEALTH-INNOVATION",
       "available": true
@@ -2836,8 +2836,8 @@
       "description": "Saudi Health Transformation — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 119.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Saudi_Health_Transformation.webp",
       "badges": [],
       "benefits": [
@@ -2915,7 +2915,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/saudi-health-transformation",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "saudi-health-transformation",
       "sku": "BSP-NB-SAUDI-HEALTH-TRANSFORM",
       "available": true
@@ -2934,8 +2934,8 @@
       "description": "SBS NPHIES Integration Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 69.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/SBS_NPHIES_Integration_Blueprint.webp",
       "badges": [],
       "benefits": [
@@ -3013,7 +3013,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/sbs-nphies-integration-blueprint",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "sbs-nphies-integration-blueprint",
       "sku": "BSP-SBS-NPHIES-BP",
       "available": true
@@ -3032,8 +3032,8 @@
       "description": "SDC FHIR STU 4 Notes — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 69.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/SDC_FHIR_STU_4_Notes.webp",
       "badges": [],
       "benefits": [
@@ -3111,7 +3111,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/sdc-fhir-stu-4-notes",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "sdc-fhir-stu-4-notes",
       "sku": "BSP-SDC-FHIR-STU4",
       "available": true
@@ -3130,8 +3130,8 @@
       "description": "The Decentralized Hospital (1) — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 119.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/The_Decentralized_Hospital.webp",
       "badges": [],
       "benefits": [
@@ -3209,7 +3209,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/the-decentralized-hospital",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "the-decentralized-hospital",
       "sku": "BSP-DECENTRALIZED-HOSPITAL",
       "available": true
@@ -3228,8 +3228,8 @@
       "description": "The Hospital at Home — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": null,
       "price": 119.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/The_Hospital_at_Home.webp",
       "badges": [],
       "benefits": [
@@ -3307,7 +3307,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/the-hospital-at-home",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "the-hospital-at-home",
       "sku": "BSP-HOSPITAL-AT-HOME",
       "available": true
@@ -3326,8 +3326,8 @@
       "description": "A 1,352-page literary-scientific novel in 30 chapters across nine movements, telling the story of the human body as a republic of cells: immunity as army, DNA as constitution, inflammation as civil war. Written for physicians and health professionals — immunological precision married to Arabic literary craft.",
       "descriptionAr": null,
       "price": 369.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/republic-of-cells.webp",
       "badges": [],
       "benefits": [
@@ -3376,7 +3376,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/republic-of-cells",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "republic-of-cells",
       "sku": "BSP-REPUBLIC-OF-CELLS",
       "available": true
@@ -3395,8 +3395,8 @@
       "description": "A short novel — 76 pages.",
       "descriptionAr": null,
       "price": 79.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/all-men.webp",
       "badges": [],
       "benefits": [
@@ -3445,7 +3445,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/all-men",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "all-men",
       "sku": "BSP-NOVEL-ALL_MEN",
       "available": true
@@ -3464,8 +3464,8 @@
       "description": "A novel about the space between two heartbeats.",
       "descriptionAr": null,
       "price": 79.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Between_One_Beat_and_Another_Arabic.webp",
       "badges": [],
       "benefits": [
@@ -3514,7 +3514,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/between-one-beat-and-another-arabic",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "between-one-beat-and-another-arabic",
       "sku": "BSP-NOVEL-BETWEEN_ONE_BEAT_AND_ANOTHER_ARABIC",
       "available": true
@@ -3533,8 +3533,8 @@
       "description": "A novel about the space between two heartbeats.",
       "descriptionAr": null,
       "price": 79.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "image": "/assets/images/books/Between_One_Beat_and_Another_English.webp",
       "badges": [],
       "benefits": [
@@ -3583,7 +3583,7 @@
       "users": "Instant Drive delivery",
       "flag": null,
       "demoUrl": null,
-      "shopifyUrl": "https://store.brainsait.org/products/between-one-beat-and-another-english",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "between-one-beat-and-another-english",
       "sku": "BSP-NOVEL-BETWEEN_ONE_BEAT_AND_ANOTHER_ENGLISH",
       "available": true
@@ -3600,8 +3600,8 @@
       "tagline": "A masterclass on digital healthcare transformation — Saudi Vision 2030 context.",
       "taglineAr": "ماستركلاس عن التحول الصحي الرقمي — في سياق رؤية 2030.",
       "price": 5.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "shopifyHandle": "digital-healthcare-masterclass",
       "available": true,
       "commercial": "product"
@@ -3618,8 +3618,8 @@
       "tagline": "Hardware blueprint to build an Arduino/ESP32 OID scanner for asset management.",
       "taglineAr": "مخطط عتاد لبناء ماسح OID بأردوينو/ESP32 لإدارة الأصول.",
       "price": 249.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
       "shopifyHandle": "oid-arduino-iot-scanner-hardware-blueprint",
       "available": true,
       "commercial": "product",
@@ -3639,9 +3639,9 @@
       "tagline": "Developer guide for integrating OID identifiers with FHIR/NPHIES (x509, MCP).",
       "taglineAr": "دليل المطور لتكامل معرّفات OID مع FHIR/NPHIES (x509، MCP).",
       "price": 399.0,
-      "billingEn": "one-time",
-      "billingAr": "دفعة واحدة",
-      "shopifyUrl": "https://store.brainsait.org/products/oid-integration-blueprint-developer-guide",
+      "billingEn": "monthly",
+      "billingAr": "شهري",
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "oid-integration-blueprint-developer-guide",
       "available": true,
       "commercial": "product",
@@ -5837,8 +5837,9 @@
     }
   ],
   "meta": {
-    "storeBase": "https://store.brainsait.org",
+    "storeBase": "https://store.brainsait.de",
     "currency": "SAR",
-    "checkout": "shopify-paypal"
+    "checkout": "shopify-paypal",
+    "learnProductUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access"
   }
 }

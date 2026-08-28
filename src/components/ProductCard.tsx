@@ -44,7 +44,8 @@ export default function ProductCard({ p }: { p: Product }) {
   const fmt = formatLabel(p.name, ar);
   const benefit = p.benefits?.[0];
   const isMonthly = (p.billingEn || '').toLowerCase() === 'monthly';
-  const periodLabel = isMonthly ? (ar ? '/شهر' : '/mo') : '';
+  const isLearn = p.stage === 'learn';
+  const periodLabel = isMonthly && !isLearn ? (ar ? '/شهر' : '/mo') : '';
   const ctaLabel = isMonthly ? (ar ? 'اشترك' : 'Subscribe') : (freeForYou ? t('cta.getFree') : t('cta.buy'));
 
   const onBuy = () =>
@@ -91,7 +92,7 @@ export default function ProductCard({ p }: { p: Product }) {
         {benefit && <p className="pcard-benefit">{benefit}</p>}
 
         <div className="pcard-foot">
-          <span className="pcard-price">{money(freeForYou ? 0 : p.price, ar)}{periodLabel}</span>
+          <span className="pcard-price">{isLearn ? (ar ? "خطة شهرية" : "Monthly plan") : money(freeForYou ? 0 : p.price, ar) + periodLabel}</span>
           <div className="pcard-cta">
             {buyable ? (
               freeForYou ? (

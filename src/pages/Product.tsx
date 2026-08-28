@@ -45,7 +45,8 @@ export default function Product() {
   const freeForYou = accountHolder === true;
   const shownPrice = freeForYou ? 0 : p.price;
   const isMonthly = (p.billingEn || '').toLowerCase() === 'monthly';
-  const periodLabel = isMonthly ? (ar ? ' / شهر' : ' / month') : '';
+  const isLearn = p.stage === 'learn';
+  const periodLabel = isMonthly && !isLearn ? (ar ? ' / شهر' : ' / month') : '';
   const ctaLabel = isMonthly ? (ar ? 'اشترك الآن' : 'Subscribe now') : t('cta.buy');
 
   const onBuy = () =>
@@ -70,7 +71,7 @@ export default function Product() {
           <h1>{name}</h1>
           {desc && <p className="lede">{desc}</p>}
 
-          <p className="product-price">{money(shownPrice, ar)}{periodLabel}</p>
+          <p className="product-price">{isLearn ? (ar ? "اشتراك شهري واحد — وصول كامل للمكتبة" : "One monthly subscription — full library access") : money(shownPrice, ar) + periodLabel}</p>
 
           {p.shopifyUrl ? (
             freeForYou ? (
