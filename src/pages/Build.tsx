@@ -70,6 +70,38 @@ export default function Build() {
         </div>
       </section>
 
+      {/* ── BUILD MONTHLY — recurring alternative to the flat ticket ── */}
+      <section className="build-price reveal">
+        <h2>{ar ? 'أو اشترك شهرياً في فورج' : 'Or subscribe to Forge monthly'}</h2>
+        <p className="benefits-intro">
+          {ar
+            ? 'لا تريد دفع التذكرة الموحدة دفعة واحدة؟ اشترك في برنامج فورج شهرياً — دخول لمدة 30 يوماً يتجدد تلقائياً في كل دورة دفع، بدل الدفعة الواحدة.'
+            : "Don't want to pay the flat ticket up front? Subscribe to the Forge incubator program monthly instead — 30-day access that renews automatically every billing cycle."}
+        </p>
+        <div className="build-tickets-row">
+          <div className="build-ticket-card">
+            <span className="launch-badge">{ar ? 'اشتراك متجدد' : 'Recurring subscription'}</span>
+            <div className="bt-price-row">
+              <span className="bt-price">499 {ar ? 'ريال' : 'SAR'} {ar ? '/شهر' : '/mo'}</span>
+            </div>
+            <ul>
+              <li>{ar ? 'دخول فورج لمدة 30 يوماً، يتجدد كل دورة دفع' : '30-day Forge access, renews every billing cycle'}</li>
+              <li>{ar ? 'إعداد Notion ومتابعة Forge Bot' : 'Notion onboarding and Forge Bot follow-up'}</li>
+              <li>{ar ? 'إلغِ في أي وقت — لا التزام طويل الأمد' : 'Cancel anytime — no long-term commitment'}</li>
+            </ul>
+            <a
+              className="button primary lg"
+              href="https://store.brainsait.de/products/build-forge-incubator-founders-program"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => { track('build_cta', { location: 'monthly' }); journeyEvent('journey.offer_clicked', { location: 'monthly' }); }}
+            >
+              {ar ? 'اشترك شهرياً' : 'Subscribe monthly'} <Rocket size={18} />
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ── HOW TO JOIN — the GitHub flow ── */}
       <section className="build-register reveal">
         <h2>{ar ? 'كيف تنضم — عبر GitHub' : 'How to join — via GitHub'}</h2>
