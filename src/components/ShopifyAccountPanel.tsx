@@ -23,8 +23,8 @@ export default function ShopifyAccountPanel() {
         <>
           <p className="muted" style={{ marginBottom: '1rem' }}>
             {ar
-              ? 'سجّل الدخول بحساب Shopify الخاص بك (عبر البريد الإلكتروني أو حساب Google) لعرض طلباتك مباشرة من store.brainsait.org.'
-              : 'Sign in with your Shopify account — by email or with Google — to see your orders directly from store.brainsait.org.'}
+              ? 'سجّل الدخول بحساب Shopify الخاص بك (عبر البريد الإلكتروني أو حساب Google) لعرض طلباتك مباشرة من store.brainsait.de.'
+              : 'Sign in with your Shopify account — by email or with Google — to see your orders directly from store.brainsait.de.'}
           </p>
           <button className="button primary" style={{ width: '100%' }} onClick={login}>
             {ar ? 'الدخول عبر Shopify' : 'Sign in with Shopify'}
