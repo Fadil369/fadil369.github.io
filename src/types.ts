@@ -31,8 +31,10 @@ export interface Product {
   limitedDemo?: boolean;
   /** Commercial classification: 'product' (Store buy) | 'demo' (Solutions Lab) | 'service' (consulting) */
   commercial?: 'product' | 'demo' | 'service';
-  /** Live Shopify product page — payment completes there via PayPal. */
+  /** Live Shopify product page — payment completes there via PayPal. For solutions: the one-time "pre-built / ready" purchase. */
   shopifyUrl?: string | null;
+  /** Solutions monthly plan (Super Partner program) — recurring subscription purchase. */
+  shopifyUrlMonthly?: string | null;
   shopifyHandle?: string | null;
   sku?: string | null;
   available?: boolean;

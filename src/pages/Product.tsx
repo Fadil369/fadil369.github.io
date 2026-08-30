@@ -71,9 +71,39 @@ export default function Product() {
           <h1>{name}</h1>
           {desc && <p className="lede">{desc}</p>}
 
-          <p className="product-price">{isLearn ? (ar ? "اشتراك شهري واحد — وصول كامل للمكتبة" : "One monthly subscription — full library access") : money(shownPrice, ar) + periodLabel}</p>
+          <p className="product-price">{isLearn ? (ar ? "اشتراك شهري واحد — 182 ريال — وصول كامل للمكتبة" : "One monthly subscription — 182 SAR — full library access") : money(shownPrice, ar) + periodLabel}</p>
 
-          {p.shopifyUrl ? (
+          {p.stage === 'solutions' && (p.shopifyUrlMonthly || p.shopifyUrl) ? (
+            <>
+              {p.shopifyUrlMonthly && (
+                <a className="button primary lg" href={p.shopifyUrlMonthly}
+                   target="_blank" rel="noopener noreferrer" onClick={onBuy}>
+                  {ar ? '🚀 اشترك في خطة الحلول الشهرية — 1,999 ريال/شهر' : '🚀 Subscribe to Solutions monthly — 1,999 SAR/mo'} <ExternalLink size={16} />
+                </a>
+              )}
+              {p.shopifyUrl && (
+                <a className="button primary lg" href={p.shopifyUrl}
+                   target="_blank" rel="noopener noreferrer" onClick={onBuy}>
+                  {p.price != null && p.price >= 20000
+                    ? (ar ? '⚡ حل جاهز — دفعة واحدة 24,000 ريال' : '⚡ Pre-built solution — one-time 24,000 SAR')
+                    : (ar ? `⚡ حل جاهز — دفع كامل ${money(p.price ?? 0, ar)}` : `⚡ Pre-built — one-time ${money(p.price ?? 0, ar)}`)}
+                  <ExternalLink size={16} />
+                </a>
+              )}
+              {p.demoUrl && (
+                <a className="button secondary lg demo-alt" href={p.demoUrl}
+                   target="_blank" rel="noopener noreferrer" onClick={onDemo}>
+                  <MessageCircle size={16} />
+                  {ar ? '▶ عرض مباشر حي' : '▶ Live demo'}
+                </a>
+              )}
+              <p className="fineprint">
+                {ar
+                  ? 'الخطة الشهرية: استضافة خطوة بخطوة حتى الإطلاق مع فريق BrainSAIT · الحل الجاهز: تسليم فوري مع جلسة إعداد + استبيان بنية تحتية'
+                  : 'Monthly plan: incubated step-by-step to launch with the BrainSAIT team · Pre-built: instant delivery with a setup session + infrastructure form'}
+              </p>
+            </>
+          ) : p.shopifyUrl ? (
             freeForYou ? (
               <>
                 <a className="button primary lg" href={p.shopifyUrl}

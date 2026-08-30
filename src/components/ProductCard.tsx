@@ -45,6 +45,9 @@ export default function ProductCard({ p }: { p: Product }) {
   const benefit = p.benefits?.[0];
   const isMonthly = (p.billingEn || '').toLowerCase() === 'monthly';
   const isLearn = p.stage === 'learn';
+  const isSolutions = p.stage === 'solutions';
+  const hasMonthlyUrl = Boolean(p.shopifyUrlMonthly);
+  const hasReadyUrl = Boolean(p.shopifyUrl);
   const periodLabel = isMonthly && !isLearn ? (ar ? '/شهر' : '/mo') : '';
   const ctaLabel = isMonthly ? (ar ? 'اشترك' : 'Subscribe') : (freeForYou ? t('cta.getFree') : t('cta.buy'));
 
@@ -92,9 +95,41 @@ export default function ProductCard({ p }: { p: Product }) {
         {benefit && <p className="pcard-benefit">{benefit}</p>}
 
         <div className="pcard-foot">
-          <span className="pcard-price">{isLearn ? (ar ? "خطة شهرية" : "Monthly plan") : money(freeForYou ? 0 : p.price, ar) + periodLabel}</span>
+          <span className="pcard-price">
+            {isLearn
+              ? (ar ? 'خطة شهرية — 182 ريال' : 'Monthly plan — 182 SAR')
+              : isSolutions && hasReadyUrl
+                ? (p.price != null && p.price >= 20000
+                    ? (ar ? 'جاهز — دفع كامل' : 'Pre-built — one-time')
+                    : (ar ? 'شهري + جاهز' : 'Monthly + Ready'))
+                : money(freeForYou ? 0 : (p.price ?? 0), ar) + periodLabel}
+          </span>
           <div className="pcard-cta">
-            {buyable ? (
+            {isSolutions ? (
+              <>
+                {hasMonthlyUrl && (
+                  <a className="button primary sm" href={p.shopifyUrlMonthly!}
+                     target="_blank" rel="noopener noreferrer" onClick={onBuy}
+                     aria-label={ar ? 'اشترك شهرياً' : 'Subscribe monthly'}>
+                    {ar ? 'اشترك شهرياً' : 'Subscribe'} <ExternalLink size={14} aria-hidden="true" />
+                  </a>
+                )}
+                {hasReadyUrl && (
+                  <a className="button primary sm" href={p.shopifyUrl!}
+                     target="_blank" rel="noopener noreferrer" onClick={onBuy}
+                     aria-label={ar ? 'احصل على نسخة جاهزة' : 'Get pre-built'}>
+                    {ar ? 'جاهز الآن' : 'Pre-built'} <ExternalLink size={14} aria-hidden="true" />
+                  </a>
+                )}
+                {p.demoUrl && (
+                  <a className="button ghost sm" href={p.demoUrl}
+                     target="_blank" rel="noopener noreferrer" onClick={onDemo}
+                     aria-label={ar ? 'عرض مباشر' : 'Live demo'}>
+                    {ar ? 'عرض مباشر' : 'Demo'} <ExternalLink size={14} aria-hidden="true" />
+                  </a>
+                )}
+              </>
+            ) : buyable ? (
               freeForYou ? (
                 <Link className="button primary sm" to={`/products/${p.slug}`} onClick={onFree}>
                   {t('cta.getFree')} <ArrowLeft size={14} aria-hidden="true" />
@@ -102,7 +137,7 @@ export default function ProductCard({ p }: { p: Product }) {
               ) : (
                 <a className="button primary sm" href={p.shopifyUrl!}
                    target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                  {ctaLabel} <ExternalLink size={14} aria-hidden="true" />
+                  {isLearn ? (ar ? 'ادفع الآن واشترك' : 'Pay now & subscribe') : ctaLabel} <ExternalLink size={14} aria-hidden="true" />
                 </a>
               )
             ) : p.demoUrl ? (
@@ -117,7 +152,7 @@ export default function ProductCard({ p }: { p: Product }) {
               </Link>
             )}
             <Link className="button secondary sm" to={`/products/${p.slug}`}>
-              {t('cta.details')} <ArrowLeft size={14} aria-hidden="true" />
+              {isLearn ? (ar ? 'اعرف المزيد' : 'Learn more') : t('cta.details')} <ArrowLeft size={14} aria-hidden="true" />
             </Link>
           </div>
         </div>
