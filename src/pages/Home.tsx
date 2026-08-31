@@ -4,6 +4,7 @@ import data from '../data/catalog.json';
 import type { Catalog } from '../types';
 import { useI18n, money } from '../i18n';
 import ProductCard from '../components/ProductCard';
+import BenefitsMatrix from '../components/BenefitsMatrix';
 import { usePageMeta } from '../hooks/usePageMeta';
 
 const cat = data as unknown as Catalog;
@@ -56,6 +57,8 @@ export default function Home() {
           );
         })}
       </section>
+
+      <BenefitsMatrix />
 
       <section>
         <div className="section-head reveal">

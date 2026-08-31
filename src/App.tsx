@@ -5,6 +5,7 @@ import { I18nProvider, useI18n } from './i18n';
 import Home from './pages/Home';
 import Shelf from './pages/Shelf';
 import Build from './pages/Build';
+import Benefits from './pages/Benefits';
 import Product from './pages/Product';
 import Account from './pages/Account';
 import AccountAuthorize from './pages/AccountAuthorize';
@@ -96,6 +97,7 @@ export default function App() {
           <Route path="/learn" element={<Shelf stage="learn" />} />
           <Route path="/solutions" element={<Shelf stage="solutions" />} />
           <Route path="/build" element={<Build />} />
+          <Route path="/benefits" element={<Benefits />} />
           <Route path="/products/:slug" element={<Product />} />
           <Route path="/account" element={<Account />} />
           <Route path="/account/authorize" element={<AccountAuthorize />} />
