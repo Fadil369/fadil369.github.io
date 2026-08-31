@@ -72,11 +72,11 @@ export default function Build() {
 
       {/* ── BUILD MONTHLY — recurring alternative to the flat ticket ── */}
       <section className="build-price reveal">
-        <h2>{ar ? 'أو اشترك شهرياً في فورج' : 'Or subscribe to Forge monthly'}</h2>
+        <h2>{ar ? 'اشترك شهرياً في فورج' : 'Subscribe to Forge monthly'}</h2>
         <p className="benefits-intro">
           {ar
-            ? 'لا تريد دفع التذكرة الموحدة دفعة واحدة؟ اشترك في برنامج فورج شهرياً — دخول لمدة 30 يوماً يتجدد تلقائياً في كل دورة دفع، بدل الدفعة الواحدة.'
-            : "Don't want to pay the flat ticket up front? Subscribe to the Forge incubator program monthly instead — 30-day access that renews automatically every billing cycle."}
+            ? 'اشترك شهرياً في برنامج فورج — دخول لمدة 30 يوماً يتجدد تلقائياً في كل دورة دفع، مع كل مزايا LEARN والعقل الثاني وتتبع فورج بوت.'
+            : "Subscribe to the Forge incubator monthly — 30-day access that renews automatically every billing cycle, with full LEARN, 2nd Brain and Forge Bot tracking."}
         </p>
         <div className="build-tickets-row">
           <div className="build-ticket-card">
