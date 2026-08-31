@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Shelf from './pages/Shelf';
 import Build from './pages/Build';
 import Benefits from './pages/Benefits';
+import InfoPage from './pages/InfoPage';
 import Product from './pages/Product';
 import Account from './pages/Account';
 import AccountAuthorize from './pages/AccountAuthorize';
@@ -74,6 +75,12 @@ function Footer() {
   const { ar, t } = useI18n();
   return (
     <footer className="site-foot">
+      <nav className="foot-nav" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '0.6rem' }}>
+        <Link to="/faq">{ar ? 'الأسئلة الشائعة' : 'FAQ'}</Link>
+        <Link to="/support">{ar ? 'الدعم' : 'Support'}</Link>
+        <Link to="/contact">{ar ? 'تواصل معنا' : 'Contact'}</Link>
+        <Link to="/terms">{ar ? 'شروط الخدمة' : 'Terms'}</Link>
+      </nav>
       <p>{t('checkout.note')}</p>
       <p className="muted">
         © {new Date().getFullYear()} BrainSAIT LTD ·{' '}
@@ -99,6 +106,10 @@ export default function App() {
           <Route path="/solutions" element={<Shelf stage="solutions" />} />
           <Route path="/build" element={<Build />} />
           <Route path="/benefits" element={<Benefits />} />
+          <Route path="/faq" element={<InfoPage page="faq" />} />
+          <Route path="/terms" element={<InfoPage page="terms" />} />
+          <Route path="/support" element={<InfoPage page="support" />} />
+          <Route path="/contact" element={<InfoPage page="contact" />} />
           <Route path="/products/:slug" element={<Product />} />
           <Route path="/account" element={<Account />} />
           <Route path="/account/authorize" element={<AccountAuthorize />} />
