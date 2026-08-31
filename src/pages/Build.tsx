@@ -46,10 +46,10 @@ export default function Build() {
         <h1>{ar ? program.nameAr : program.name}</h1>
         <p className="lede">{ar ? program.taglineAr : program.tagline}</p>
         <div className="build-launch-strip">
-          <span className="launch-tag">{ar ? 'عرض الإطلاق' : 'Launch offer'}</span>
-          <span className="launch-was">{ar ? 'كان' : 'Was'} 14,960 SAR</span>
-          <span className="launch-now">{ar ? 'الآن' : 'Now'} 9,630 SAR</span>
-          <span className="launch-timer">{ar ? 'لفترة محدودة' : 'Limited time'}</span>
+          <span className="launch-tag">{ar ? 'اختر خطتك' : 'Choose your plan'}</span>
+          <span className="launch-now">{ar ? 'شهري 499 ر.س' : 'Monthly 499 SAR'}</span>
+          <span className="launch-timer">·</span>
+          <span className="launch-now">{ar ? 'تذكرة 9,630 ر.س' : 'Ticket 9,630 SAR'}</span>
         </div>
         <div className="build-hero-cta">
           <a className="button primary lg" href="#apply" onClick={() => { track('build_cta', { location: 'hero' }); journeyEvent('journey.offer_clicked', { location: 'hero' }); }}>
@@ -123,11 +123,11 @@ export default function Build() {
           </div>
           <div className="register-step">
             <span className="rs-num">2</span>
-            <h3>{ar ? 'ادفع التذكرة الموحدة' : 'Pay the flat ticket'}</h3>
+            <h3>{ar ? 'اختر خطتك وادفع' : 'Pick your plan & pay'}</h3>
             <p>
               {ar
-                ? 'تأخذك المنظومة إلى checkout في متجرنا — سعر موحد <b>٩٬٦٣٠ ريال</b> للجميع، بدون فئات أو تأهل.'
-                : 'The system takes you to our store checkout — a flat <b>9,630 SAR</b> for everyone, no tiers, no eligibility.'}
+                ? 'تأخذك المنظومة إلى checkout في متجرنا — اشتراك شهري <b>499 ر.س</b> يتجدد تلقائياً، أو تذكرة واحدة <b>9,630 ر.س</b>.'
+                : 'The system takes you to our store checkout — a monthly <b>499 SAR</b> subscription that renews, or a one-time <b>9,630 SAR</b> ticket.'}
             </p>
           </div>
           <div className="register-step">
