@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useI18n, money } from '../i18n';
 import { useCustomerAccount } from '../hooks/useCustomerAccount';
 
@@ -10,6 +11,22 @@ import { useCustomerAccount } from '../hooks/useCustomerAccount';
 export default function ShopifyAccountPanel() {
   const { ar } = useI18n();
   const { status, profile, error, login, logout } = useCustomerAccount();
+  const email = profile?.email || '';
+  const [entitlements, setEntitlements] = useState<any[] | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    if (status === 'signed-in' && email) {
+      setEntitlements(null);
+      fetch(`https://hub.brainsait.de/api/entitlement?email=${encodeURIComponent(email)}`)
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => { if (active) setEntitlements(d?.entitlements || []); })
+        .catch(() => { if (active) setEntitlements([]); });
+    } else {
+      setEntitlements(null);
+    }
+    return () => { active = false; };
+  }, [status, email]);
 
   return (
     <div className="account-card" style={{ marginTop: '1.5rem' }}>
@@ -85,6 +102,40 @@ export default function ShopifyAccountPanel() {
                       {new Date(order.processedAt).toLocaleDateString(ar ? 'ar' : 'en-US')}
                     </span>
                     <span>{money(Number(order.totalPrice.amount), ar)}</span>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+
+          <div className="account-row">
+            <div style={{ flex: 1 }}>
+              <p style={{ margin: '0 0 0.6rem', fontWeight: 600 }}>
+                {ar ? 'اشتراكاتك ووصولك' : 'Your access & subscriptions'}
+              </p>
+              {entitlements === null ? (
+                <p className="muted">{ar ? 'جارِ تحميل…' : 'Loading…'}</p>
+              ) : entitlements.length === 0 ? (
+                <p className="muted">{ar ? 'لا توجد اشتراكات نشطة بعد.' : 'No active subscriptions yet.'}</p>
+              ) : (
+                entitlements.map((en) => (
+                  <div key={en.handle} style={{ padding: '0.5rem 0', borderTop: '1px solid #eee' }}>
+                    <p style={{ margin: 0, fontWeight: 600 }}>{en.program || en.ticket_type}</p>
+                    <p className="muted" style={{ margin: '0.2rem 0 0' }}>
+                      {en.status} · {ar ? 'يبدأ' : 'start'} {en.start_date || '—'}
+                      {en.expiry_date ? ` · ${ar ? 'ينتهي' : 'exp'} ${en.expiry_date}` : ''}
+                    </p>
+                    {en.access_links && (
+                      <a
+                        href={en.access_links}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="button secondary sm"
+                        style={{ marginTop: '0.4rem' }}
+                      >
+                        {ar ? 'افتح الوصول' : 'Open access'}
+                      </a>
+                    )}
                   </div>
                 ))
               )}
