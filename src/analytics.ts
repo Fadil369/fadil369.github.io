@@ -1,6 +1,6 @@
 /**
  * Analytics — Google Tag Manager + GA4 (via GTM) + Meta (Facebook) Pixel.
- * Shared with store.brainsait.org (GTM-TP24GSTF · GA4 G-75ZCDM8R74 ·
+ * Shared with store.brainsait.de (GTM-TP24GSTF · GA4 G-75ZCDM8R74 ·
  * Meta pixel 850048551165707).
  *
  * Every call is safe: it no-ops if the tag libraries are not loaded yet
