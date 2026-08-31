@@ -35,6 +35,8 @@ export interface Product {
   shopifyUrl?: string | null;
   /** Solutions monthly plan (Super Partner program) — recurring subscription purchase. */
   shopifyUrlMonthly?: string | null;
+  /** LEARN book one-time purchase (individual ebook/novel, instant R2 download). */
+  shopifyUrlOneTime?: string | null;
   shopifyHandle?: string | null;
   sku?: string | null;
   available?: boolean;

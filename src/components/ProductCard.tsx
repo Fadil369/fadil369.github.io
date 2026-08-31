@@ -48,6 +48,7 @@ export default function ProductCard({ p }: { p: Product }) {
   const isSolutions = p.stage === 'solutions';
   const hasMonthlyUrl = Boolean(p.shopifyUrlMonthly);
   const hasReadyUrl = Boolean(p.shopifyUrl);
+  const hasOneTimeUrl = Boolean(p.shopifyUrlOneTime);
   const periodLabel = isMonthly && !isLearn ? (ar ? '/شهر' : '/mo') : '';
   const ctaLabel = isMonthly ? (ar ? 'اشترك' : 'Subscribe') : (freeForYou ? t('cta.getFree') : t('cta.buy'));
 
@@ -135,10 +136,19 @@ export default function ProductCard({ p }: { p: Product }) {
                   {t('cta.getFree')} <ArrowLeft size={14} aria-hidden="true" />
                 </Link>
               ) : (
+                <>
                 <a className="button primary sm" href={p.shopifyUrl!}
                    target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                  {isLearn ? (ar ? 'ادفع الآن واشترك' : 'Pay now & subscribe') : ctaLabel} <ExternalLink size={14} aria-hidden="true" />
+                  {isLearn ? (ar ? 'اشترك شهرياً' : 'Subscribe monthly') : ctaLabel} <ExternalLink size={14} aria-hidden="true" />
                 </a>
+                {isLearn && hasOneTimeUrl && (
+                  <a className="button secondary sm" href={p.shopifyUrlOneTime!}
+                     target="_blank" rel="noopener noreferrer" onClick={onBuy}
+                     aria-label={ar ? 'اشترِ الكتاب (مرة واحدة)' : 'Buy this book (one-time)'}>
+                    {ar ? 'اشترِ الكتاب' : 'Buy book'} <ExternalLink size={14} aria-hidden="true" />
+                  </a>
+                )}
+                </>
               )
             ) : p.demoUrl ? (
               <a className="button primary sm" href={p.demoUrl}

@@ -174,7 +174,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-DIGITAL-INCOME-STRATEGY",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/digital-income-strategy-your-three-pathways-1"
     },
     {
       "slug": "digital-organization-handbook",
@@ -272,7 +273,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-NB-DIGITAL-ORG",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/digital-organization-handbook-1"
     },
     {
       "slug": "etimad-digital-governance-blueprint",
@@ -370,7 +372,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-ETIMAD-GOVERNANCE-BP",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/etimad-digital-governance-blueprint-1"
     },
     {
       "slug": "from-mind-to-market",
@@ -468,7 +471,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-MIND-TO-MARKET",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/from-mind-to-market-1"
     },
     {
       "slug": "hyper-scalable-agency-system",
@@ -566,7 +570,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-HYPER-SCALABLE-AGENCY",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/hyper-scalable-agency-system-1"
     },
     {
       "slug": "one-ecosystem-limitless-intelligence",
@@ -664,7 +669,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-ONE-ECOSYSTEM",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/one-ecosystem-limitless-intelligence-1"
     },
     {
       "slug": "private-ai-blueprint",
@@ -762,7 +768,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-PRIVATE-AI-BLUEPRINT",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/private-ai-blueprint-1"
     },
     {
       "slug": "professional-writing-mastery",
@@ -860,7 +867,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-PROF-WRITING-MASTERY",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/professional-writing-mastery-1"
     },
     {
       "slug": "solo-ai-business-blueprint",
@@ -958,7 +966,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-SOLO-AI-BUSINESS",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/solo-ai-business-blueprint-1"
     },
     {
       "slug": "the-ai-skill-economy",
@@ -1056,7 +1065,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-AI-SKILL-ECONOMY",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-ai-skill-economy-1"
     },
     {
       "slug": "the-outlier-equation",
@@ -1154,7 +1164,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-OUTLIER-EQUATION",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-outlier-equation-1"
     },
     {
       "slug": "the-ultimate-persistent-ai-agent",
@@ -1252,7 +1263,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-PERSISTENT-AI-AGENT-D",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-ultimate-persistent-ai-agent-1"
     },
     {
       "slug": "voice-agent-production-blueprint",
@@ -1350,7 +1362,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-VOICE-AGENT-PRODUCTION",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/voice-agent-production-blueprint-1"
     },
     {
       "slug": "api-revision-notebook",
@@ -1448,7 +1461,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-DRIVE-API-REVISION-NB",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/api-revision-notebook-1"
     },
     {
       "slug": "apple-ai-anatomy",
@@ -1546,7 +1560,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-APPLE-AI-ANATOMY",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/apple-ai-anatomy-1"
     },
     {
       "slug": "digital-autonomy-blueprint",
@@ -1644,7 +1659,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-DIGITAL-AUTONOMY-BP",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/digital-autonomy-blueprint-1"
     },
     {
       "slug": "dom-study-notes",
@@ -1742,7 +1758,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-NB-DOM-STUDY-NOTES",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/dom-study-notes-1"
     },
     {
       "slug": "one-million-rps-achieved",
@@ -1840,7 +1857,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-ONE-MILLION-RPS",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/one-million-rps-achieved-1"
     },
     {
       "slug": "stealth-python-networking",
@@ -1938,7 +1956,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-STEALTH-PYTHON-NET",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/stealth-python-networking-1"
     },
     {
       "slug": "the-api-blueprint",
@@ -2036,7 +2055,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-THE-API-BLUEPRINT",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-api-blueprint-1"
     },
     {
       "slug": "brainsait-ai-masterclass",
@@ -2134,7 +2154,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-AI-MASTERCLASS",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/brainsait-ai-masterclass-1"
     },
     {
       "slug": "brainsait-health-os",
@@ -2232,7 +2253,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-HEALTH-OS",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/brainsait-health-os-1"
     },
     {
       "slug": "clinical-code",
@@ -2330,7 +2352,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-CLINICAL-CODE",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/clinical-code-1"
     },
     {
       "slug": "digital-health-bridge",
@@ -2428,7 +2451,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-DIGITAL-HEALTH-BRIDGE",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/digital-health-bridge-1"
     },
     {
       "slug": "etimad-and-nphies-integration",
@@ -2526,7 +2550,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-ETIMAD-NPHIES",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/etimad-and-nphies-integration-1"
     },
     {
       "slug": "healthcare-ai-2025",
@@ -2624,7 +2649,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-HEALTHCARE-AI-2025",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/healthcare-ai-2026"
     },
     {
       "slug": "leading-joy-in-healthcare",
@@ -2722,7 +2748,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-LEADING-JOY-HEALTHCARE",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/leading-joy-in-healthcare-1"
     },
     {
       "slug": "saudi-health-innovation-guide",
@@ -2820,7 +2847,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-SAUDI-HEALTH-INNOVATION",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/saudi-health-innovation-guide-1"
     },
     {
       "slug": "saudi-health-transformation",
@@ -2918,7 +2946,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-NB-SAUDI-HEALTH-TRANSFORM",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/saudi-health-transformation-1"
     },
     {
       "slug": "sbs-nphies-integration-blueprint",
@@ -3016,7 +3045,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-SBS-NPHIES-BP",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/sbs-nphies-integration-blueprint-1"
     },
     {
       "slug": "sdc-fhir-stu-4-notes",
@@ -3114,7 +3144,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-SDC-FHIR-STU4",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/sdc-fhir-stu-4-notes-1"
     },
     {
       "slug": "the-decentralized-hospital",
@@ -3212,7 +3243,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-DECENTRALIZED-HOSPITAL",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-decentralized-hospital-1"
     },
     {
       "slug": "the-hospital-at-home",
@@ -3310,7 +3342,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-HOSPITAL-AT-HOME",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-hospital-at-home-1"
     },
     {
       "slug": "republic-of-cells",
@@ -3448,7 +3481,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-NOVEL-ALL_MEN",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/all-men-1"
     },
     {
       "slug": "between-one-beat-and-another-arabic",
@@ -3517,7 +3551,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-NOVEL-BETWEEN_ONE_BEAT_AND_ANOTHER_ARABIC",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/between-one-beat-and-another-arabic-1"
     },
     {
       "slug": "between-one-beat-and-another-english",
@@ -3586,7 +3621,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-NOVEL-BETWEEN_ONE_BEAT_AND_ANOTHER_ENGLISH",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/between-one-beat-and-another-english-1"
     },
     {
       "slug": "digital-healthcare-masterclass",
