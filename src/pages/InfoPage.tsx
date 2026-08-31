@@ -1,7 +1,7 @@
 import { useI18n } from '../i18n';
 import { usePageMeta } from '../hooks/usePageMeta';
 
-type Info = { en: string[]; ar: string[]; titleEn: string; titleAr: string; metaEn: string; metaAr: string };
+type Info = { en: [string, string][]; ar: [string, string][]; titleEn: string; titleAr: string; metaEn: string; metaAr: string };
 
 const PAGES: Record<string, Info> = {
   faq: {
