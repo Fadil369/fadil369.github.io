@@ -53,18 +53,13 @@ export default function ProductCard({ p }: { p: Product }) {
   const periodLabel = isMonthly && !isLearn ? (ar ? '/شهر' : '/mo') : '';
   const ctaLabel = isMonthly ? (ar ? 'اشترك' : 'Subscribe') : (freeForYou ? t('cta.getFree') : t('cta.buy'));
 
-  const onBuy = (url?: string) => {
+  const onBuy = () =>
     track('add_to_cart', {
       currency: 'SAR',
       value: p.price,
       items: [{ item_id: p.slug, item_name: p.name, price: p.price }],
     });
-    if (url) window.open(withUtm(url), '_blank', 'noopener,noreferrer');
-  };
-  const onDemoCb = (url?: string) => {
-    track('view_demo', { item_id: p.slug, item_name: p.name });
-    if (url) window.open(withUtm(url), '_blank', 'noopener,noreferrer');
-  };
+  const onDemoCb = () => track('view_demo', { item_id: p.slug, item_name: p.name });
   const onFree = () => track('add_to_cart', { currency: 'SAR', value: 0, items: [{ item_id: p.slug, item_name: p.name, price: 0 }] });
   const Arrow = ar ? ArrowRight : ArrowLeft;
 
@@ -123,21 +118,21 @@ export default function ProductCard({ p }: { p: Product }) {
               <>
                 {hasMonthlyUrl && (
                   <a className="button primary sm" href={withUtm(p.shopifyUrlMonthly!)}
-                     target="_blank" rel="noopener noreferrer" onClick={() => onBuy(p.shopifyUrlMonthly!)}
+                     target="_blank" rel="noopener noreferrer" onClick={onBuy}
                      aria-label={ar ? 'اشترك شهرياً' : 'Subscribe monthly'}>
                     {ar ? 'اشترك شهرياً' : 'Subscribe'} <ExternalLink size={14} aria-hidden="true" />
                   </a>
                 )}
                 {hasReadyUrl && (
                   <a className="button primary sm" href={withUtm(p.shopifyUrl!)}
-                     target="_blank" rel="noopener noreferrer" onClick={() => onBuy(p.shopifyUrl!)}
+                     target="_blank" rel="noopener noreferrer" onClick={onBuy}
                      aria-label={ar ? 'احصل على نسخة جاهزة' : 'Get pre-built'}>
                     {ar ? 'جاهز الآن' : 'Pre-built'} <ExternalLink size={14} aria-hidden="true" />
                   </a>
                 )}
                 {p.demoUrl && (
                   <a className="button ghost sm" href={withUtm(p.demoUrl)}
-                     target="_blank" rel="noopener noreferrer" onClick={() => onDemoCb(p.demoUrl!)}
+                     target="_blank" rel="noopener noreferrer" onClick={onDemoCb}
                      aria-label={ar ? 'عرض مباشر' : 'Live demo'}>
                     {ar ? 'عرض مباشر' : 'Demo'} <ExternalLink size={14} aria-hidden="true" />
                   </a>
@@ -151,12 +146,12 @@ export default function ProductCard({ p }: { p: Product }) {
               ) : (
                 <>
                 <a className="button primary sm" href={withUtm(p.shopifyUrl!)}
-                   target="_blank" rel="noopener noreferrer" onClick={() => onBuy(p.shopifyUrl!)}>
+                   target="_blank" rel="noopener noreferrer" onClick={onBuy}>
                   {isLearn ? (ar ? 'اشترك شهرياً' : 'Subscribe monthly') : ctaLabel} <ExternalLink size={14} aria-hidden="true" />
                 </a>
                 {isLearn && hasOneTimeUrl && (
                   <a className="button secondary sm" href={withUtm(p.shopifyUrlOneTime!)}
-                     target="_blank" rel="noopener noreferrer" onClick={() => onBuy(p.shopifyUrlOneTime!)}
+                     target="_blank" rel="noopener noreferrer" onClick={onBuy}
                      aria-label={ar ? 'اشترِ الكتاب (مرة واحدة)' : 'Buy this book (one-time)'}>
                     {ar ? 'اشترِ الكتاب' : 'Buy book'} <ExternalLink size={14} aria-hidden="true" />
                   </a>
@@ -165,7 +160,7 @@ export default function ProductCard({ p }: { p: Product }) {
               )
             ) : p.demoUrl ? (
               <a className="button primary sm" href={withUtm(p.demoUrl)}
-                 target="_blank" rel="noopener noreferrer" onClick={() => onDemoCb(p.demoUrl!)}>
+                 target="_blank" rel="noopener noreferrer" onClick={onDemoCb}>
                 {commercial === 'service' ? (ar ? 'احجز الجلسة' : 'Book session') : t('cta.demo')}
                 <ExternalLink size={14} aria-hidden="true" />
               </a>
