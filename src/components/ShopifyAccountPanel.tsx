@@ -119,7 +119,7 @@ export default function ShopifyAccountPanel() {
                 <p className="muted">{ar ? 'لا توجد اشتراكات نشطة بعد.' : 'No active subscriptions yet.'}</p>
               ) : (
                 entitlements.map((en) => (
-                  <div key={en.handle} style={{ padding: '0.5rem 0', borderTop: '1px solid #eee' }}>
+                  <div key={en.handle} style={{ padding: '0.5rem 0', borderTop: '1px solid var(--line, #e5e7eb)' }}>
                     <p style={{ margin: 0, fontWeight: 600 }}>{en.program || en.ticket_type}</p>
                     <p className="muted" style={{ margin: '0.2rem 0 0' }}>
                       {en.status} · {ar ? 'يبدأ' : 'start'} {en.start_date || '—'}

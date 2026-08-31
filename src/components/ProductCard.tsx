@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
-import { ExternalLink, ArrowLeft, Star } from 'lucide-react';
+import { ExternalLink, ArrowLeft, ArrowRight, Star } from 'lucide-react';
 import type { Product } from '../types';
 import { useI18n, money } from '../i18n';
 import { track } from '../analytics';
 import { useAccountHolder } from '../hooks/useAccountHolder';
+import { withUtm } from '../lib/shopifyRouting';
 
 /** Derive a small format/type chip from the product name (bilingual). */
 function formatLabel(name: string, ar: boolean): string | null {
@@ -52,14 +53,20 @@ export default function ProductCard({ p }: { p: Product }) {
   const periodLabel = isMonthly && !isLearn ? (ar ? '/شهر' : '/mo') : '';
   const ctaLabel = isMonthly ? (ar ? 'اشترك' : 'Subscribe') : (freeForYou ? t('cta.getFree') : t('cta.buy'));
 
-  const onBuy = () =>
+  const onBuy = (url?: string) => {
     track('add_to_cart', {
       currency: 'SAR',
       value: p.price,
       items: [{ item_id: p.slug, item_name: p.name, price: p.price }],
     });
-  const onDemo = () => track('view_demo', { item_id: p.slug, item_name: p.name });
+    if (url) window.open(withUtm(url), '_blank', 'noopener,noreferrer');
+  };
+  const onDemoCb = (url?: string) => {
+    track('view_demo', { item_id: p.slug, item_name: p.name });
+    if (url) window.open(withUtm(url), '_blank', 'noopener,noreferrer');
+  };
   const onFree = () => track('add_to_cart', { currency: 'SAR', value: 0, items: [{ item_id: p.slug, item_name: p.name, price: 0 }] });
+  const Arrow = ar ? ArrowRight : ArrowLeft;
 
   return (
     <article className="pcard">
@@ -69,10 +76,16 @@ export default function ProductCard({ p }: { p: Product }) {
             ? <img src={p.image} alt={name} loading="lazy" width={320} height={480} />
             : <div className="pcard-cover-fallback" aria-hidden="true">{name.slice(0, 1)}</div>}
         </Link>
-        {p.flag === 'demo' && <span className="pcard-badge">{t('demo')}</span>}
-        {fmt && <span className="pcard-badge pcard-format">{fmt}</span>}
-        <span className={`pcard-badge comm comm-${commercial}`}>{commBadge} {commLabel}</span>
-        {freeForYou && <span className="pcard-badge pcard-badge-free">{t('free')}</span>}
+        <div className="pcard-badges" aria-hidden="true" style={{ position: 'absolute', inset: 8, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', pointerEvents: 'none' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 6, flexWrap: 'wrap' }}>
+            <span style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+              <span className={`pcard-badge comm comm-${commercial}`}>{commBadge} {commLabel}</span>
+              {freeForYou && <span className="pcard-badge pcard-badge-free">{t('free')}</span>}
+            </span>
+            {p.flag === 'demo' && <span className="pcard-badge">{t('demo')}</span>}
+          </div>
+          {fmt && <div style={{ alignSelf: 'flex-end' }}><span className="pcard-badge pcard-format">{fmt}</span></div>}
+        </div>
       </div>
 
       <div className="pcard-body">
@@ -98,7 +111,7 @@ export default function ProductCard({ p }: { p: Product }) {
         <div className="pcard-foot">
           <span className="pcard-price">
             {isLearn
-              ? (ar ? 'خطة شهرية — 182 ريال' : 'Monthly plan — 182 SAR')
+              ? `${money(freeForYou ? 0 : (p.price ?? 182), ar)} · ${ar ? 'شهري' : 'Monthly'}`
               : isSolutions && hasReadyUrl
                 ? (p.price != null && p.price >= 20000
                     ? (ar ? 'جاهز — دفع كامل' : 'Pre-built — one-time')
@@ -109,22 +122,22 @@ export default function ProductCard({ p }: { p: Product }) {
             {isSolutions ? (
               <>
                 {hasMonthlyUrl && (
-                  <a className="button primary sm" href={p.shopifyUrlMonthly!}
-                     target="_blank" rel="noopener noreferrer" onClick={onBuy}
+                  <a className="button primary sm" href={withUtm(p.shopifyUrlMonthly!)}
+                     target="_blank" rel="noopener noreferrer" onClick={() => onBuy(p.shopifyUrlMonthly!)}
                      aria-label={ar ? 'اشترك شهرياً' : 'Subscribe monthly'}>
                     {ar ? 'اشترك شهرياً' : 'Subscribe'} <ExternalLink size={14} aria-hidden="true" />
                   </a>
                 )}
                 {hasReadyUrl && (
-                  <a className="button primary sm" href={p.shopifyUrl!}
-                     target="_blank" rel="noopener noreferrer" onClick={onBuy}
+                  <a className="button primary sm" href={withUtm(p.shopifyUrl!)}
+                     target="_blank" rel="noopener noreferrer" onClick={() => onBuy(p.shopifyUrl!)}
                      aria-label={ar ? 'احصل على نسخة جاهزة' : 'Get pre-built'}>
                     {ar ? 'جاهز الآن' : 'Pre-built'} <ExternalLink size={14} aria-hidden="true" />
                   </a>
                 )}
                 {p.demoUrl && (
-                  <a className="button ghost sm" href={p.demoUrl}
-                     target="_blank" rel="noopener noreferrer" onClick={onDemo}
+                  <a className="button ghost sm" href={withUtm(p.demoUrl)}
+                     target="_blank" rel="noopener noreferrer" onClick={() => onDemoCb(p.demoUrl!)}
                      aria-label={ar ? 'عرض مباشر' : 'Live demo'}>
                     {ar ? 'عرض مباشر' : 'Demo'} <ExternalLink size={14} aria-hidden="true" />
                   </a>
@@ -133,17 +146,17 @@ export default function ProductCard({ p }: { p: Product }) {
             ) : buyable ? (
               freeForYou ? (
                 <Link className="button primary sm" to={`/products/${p.slug}`} onClick={onFree}>
-                  {t('cta.getFree')} <ArrowLeft size={14} aria-hidden="true" />
+                  {t('cta.getFree')} <Arrow size={14} aria-hidden="true" />
                 </Link>
               ) : (
                 <>
-                <a className="button primary sm" href={p.shopifyUrl!}
-                   target="_blank" rel="noopener noreferrer" onClick={onBuy}>
+                <a className="button primary sm" href={withUtm(p.shopifyUrl!)}
+                   target="_blank" rel="noopener noreferrer" onClick={() => onBuy(p.shopifyUrl!)}>
                   {isLearn ? (ar ? 'اشترك شهرياً' : 'Subscribe monthly') : ctaLabel} <ExternalLink size={14} aria-hidden="true" />
                 </a>
                 {isLearn && hasOneTimeUrl && (
-                  <a className="button secondary sm" href={p.shopifyUrlOneTime!}
-                     target="_blank" rel="noopener noreferrer" onClick={onBuy}
+                  <a className="button secondary sm" href={withUtm(p.shopifyUrlOneTime!)}
+                     target="_blank" rel="noopener noreferrer" onClick={() => onBuy(p.shopifyUrlOneTime!)}
                      aria-label={ar ? 'اشترِ الكتاب (مرة واحدة)' : 'Buy this book (one-time)'}>
                     {ar ? 'اشترِ الكتاب' : 'Buy book'} <ExternalLink size={14} aria-hidden="true" />
                   </a>
@@ -151,18 +164,18 @@ export default function ProductCard({ p }: { p: Product }) {
                 </>
               )
             ) : p.demoUrl ? (
-              <a className="button primary sm" href={p.demoUrl}
-                 target="_blank" rel="noopener noreferrer" onClick={onDemo}>
+              <a className="button primary sm" href={withUtm(p.demoUrl)}
+                 target="_blank" rel="noopener noreferrer" onClick={() => onDemoCb(p.demoUrl!)}>
                 {commercial === 'service' ? (ar ? 'احجز الجلسة' : 'Book session') : t('cta.demo')}
                 <ExternalLink size={14} aria-hidden="true" />
               </a>
             ) : (
               <Link className="button primary sm" to={`/products/${p.slug}`} onClick={onBuy}>
-                {ar ? 'اطلب' : 'Request'} <ArrowLeft size={14} aria-hidden="true" />
+                {ar ? 'اطلب' : 'Request'} <Arrow size={14} aria-hidden="true" />
               </Link>
             )}
             <Link className="button secondary sm" to={`/products/${p.slug}`}>
-              {isLearn ? (ar ? 'اعرف المزيد' : 'Learn more') : t('cta.details')} <ArrowLeft size={14} aria-hidden="true" />
+              {isLearn ? (ar ? 'اعرف المزيد' : 'Learn more') : t('cta.details')} <Arrow size={14} aria-hidden="true" />
             </Link>
           </div>
         </div>
