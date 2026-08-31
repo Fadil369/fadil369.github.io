@@ -46,6 +46,7 @@ function Header() {
           <NavLink to="/learn">{t('nav.learn')}</NavLink>
           <NavLink to="/build">{t('nav.build')}</NavLink>
           <NavLink to="/solutions">{t('nav.solutions')}</NavLink>
+          <NavLink to="/benefits">{ar ? 'المزايا' : 'Benefits'}</NavLink>
           <NavLink to="/account">
             {ar ? 'حسابي' : 'Account'}
             {shopifySignedIn() && <span className="acct-dot" aria-hidden="true" />}

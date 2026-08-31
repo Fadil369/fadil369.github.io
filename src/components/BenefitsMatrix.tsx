@@ -9,7 +9,7 @@ export default function BenefitsMatrix() {
   const { ar } = useI18n();
   const [mode, setMode] = useState<Mode>('all');
 
-  const tiers = TIERS.filter(t => mode === 'all' ? true : t.period === mode);
+  const tiers = TIERS.filter(t => mode === 'all' ? true : t.period === (mode === 'monthly' ? 'mo' : mode));
   const cats: Array<'learn' | 'build' | 'solution'> = ['learn', 'build', 'solution'];
   const catLabel = (c: string) => c === 'learn' ? (ar ? 'تعلّم' : 'LEARN') : c === 'build' ? (ar ? 'ابنِ' : 'BUILD') : (ar ? 'حلول' : 'SOLUTION');
   const catColor: Record<string, string> = { learn: '#0ea5e9', build: '#f59e0b', solution: '#10b981' };
