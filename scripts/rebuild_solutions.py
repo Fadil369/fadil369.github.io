@@ -86,7 +86,7 @@ INVENTORY = [
  ("wathq-linc","Wathq Linc","وثق لينك","Business Data API","بيانات أعمال","business","product",
   "Saudi business-data API platform: commercial registrations, contracts, agencies, property, employees.","منصة API للبيانات التجارية السعودية: سجلات وعقود ووكالات وعقارات وموظفون.","https://wathq.brainsait.de","product",None),
  ("tawnia","Tawnia — Awareness Portal","بوابة توعية","Healthcare","رعاية صحية","healthcare","demo",
-  "Healthcare awareness portal.","بوابة توعية صحية.","https://tawnia.elfadil.com","demo",None),
+  "Healthcare awareness portal.","بوابة توعية صحية.","https://tawnia.brainsait.org","demo",None),
 ]
 
 
