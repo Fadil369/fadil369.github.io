@@ -4,7 +4,7 @@ import type { Product } from '../types';
 import { useI18n, money } from '../i18n';
 import { track } from '../analytics';
 import { useAccountHolder } from '../hooks/useAccountHolder';
-import { withUtm } from '../lib/shopifyRouting';
+import { GHIO_LINKS, withUtm } from '../lib/shopifyRouting';
 
 /** Derive a small format/type chip from the product name (bilingual). */
 function formatLabel(name: string, ar: boolean): string | null {
@@ -48,8 +48,7 @@ export default function ProductCard({ p }: { p: Product }) {
   const isLearn = p.stage === 'learn';
   const isSolutions = p.stage === 'solutions';
   const hasMonthlyUrl = Boolean(p.shopifyUrlMonthly);
-  const hasReadyUrl = Boolean(p.shopifyUrl);
-  const hasOneTimeUrl = Boolean(p.shopifyUrlOneTime);
+  const readyUrl = p.shopifyUrl || GHIO_LINKS.solutionReady;
   const periodLabel = isMonthly && !isLearn ? (ar ? '/شهر' : '/mo') : '';
   const ctaLabel = isMonthly ? (ar ? 'اشترك' : 'Subscribe') : (freeForYou ? t('cta.getFree') : t('cta.buy'));
 
@@ -106,57 +105,42 @@ export default function ProductCard({ p }: { p: Product }) {
         <div className="pcard-foot">
           <span className="pcard-price">
             {isLearn
-              ? `${money(freeForYou ? 0 : (p.price ?? 182), ar)} · ${ar ? 'شهري' : 'Monthly'}`
-              : isSolutions && hasReadyUrl
-                ? (p.price != null && p.price >= 20000
-                    ? (ar ? 'جاهز — دفع كامل' : 'Pre-built — one-time')
-                    : (ar ? 'شهري + جاهز' : 'Monthly + Ready'))
+              ? (ar ? 'شراء فردي · أو 182 ريال/شهر' : 'Buy individually · or 182 SAR/mo')
+              : isSolutions
+                ? (ar ? '1,999 شهرياً · 24,000 جاهز' : '1,999/mo · 24,000 ready')
                 : money(freeForYou ? 0 : (p.price ?? 0), ar) + periodLabel}
           </span>
           <div className="pcard-cta">
             {isSolutions ? (
               <>
                 {hasMonthlyUrl && (
-                  <a className="button primary sm" href={withUtm(p.shopifyUrlMonthly!)}
+                  <a className="button primary sm" href={withUtm(p.shopifyUrlMonthly!, { utm_content: p.slug, plan: 'solution-monthly' })}
                      target="_blank" rel="noopener noreferrer" onClick={onBuy}
                      aria-label={ar ? 'اشترك شهرياً' : 'Subscribe monthly'}>
                     {ar ? 'اشترك شهرياً' : 'Subscribe'} <ExternalLink size={14} aria-hidden="true" />
                   </a>
                 )}
-                {hasReadyUrl && (
-                  <a className="button primary sm" href={withUtm(p.shopifyUrl!)}
+                <a className="button secondary sm" href={withUtm(readyUrl, { utm_content: p.slug, plan: 'solution-ready' })}
                      target="_blank" rel="noopener noreferrer" onClick={onBuy}
                      aria-label={ar ? 'احصل على نسخة جاهزة' : 'Get pre-built'}>
-                    {ar ? 'جاهز الآن' : 'Pre-built'} <ExternalLink size={14} aria-hidden="true" />
-                  </a>
-                )}
-                {p.demoUrl && (
-                  <a className="button ghost sm" href={withUtm(p.demoUrl)}
-                     target="_blank" rel="noopener noreferrer" onClick={onDemoCb}
-                     aria-label={ar ? 'عرض مباشر' : 'Live demo'}>
-                    {ar ? 'عرض مباشر' : 'Demo'} <ExternalLink size={14} aria-hidden="true" />
-                  </a>
-                )}
+                    {ar ? 'جاهز · 24 ألف' : 'Ready · 24k'} <ExternalLink size={14} aria-hidden="true" />
+                </a>
               </>
             ) : buyable ? (
-              freeForYou ? (
+              isLearn ? (
+                <a className="button primary sm" href={withUtm(GHIO_LINKS.learnMonthly, { utm_content: p.slug, plan: 'learn-monthly' })}
+                   target="_blank" rel="noopener noreferrer" onClick={onBuy}>
+                  {ar ? 'اشترك · 182 ريال' : 'Subscribe · 182 SAR'} <ExternalLink size={14} aria-hidden="true" />
+                </a>
+              ) : freeForYou ? (
                 <Link className="button primary sm" to={`/products/${p.slug}`} onClick={onFree}>
                   {t('cta.getFree')} <Arrow size={14} aria-hidden="true" />
                 </Link>
               ) : (
-                <>
-                <a className="button primary sm" href={withUtm(p.shopifyUrl!)}
+                <a className="button primary sm" href={withUtm(p.shopifyUrl!, { utm_content: p.slug })}
                    target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                  {isLearn ? (ar ? 'اشترك شهرياً' : 'Subscribe monthly') : ctaLabel} <ExternalLink size={14} aria-hidden="true" />
+                  {ctaLabel} <ExternalLink size={14} aria-hidden="true" />
                 </a>
-                {isLearn && hasOneTimeUrl && (
-                  <a className="button secondary sm" href={withUtm(p.shopifyUrlOneTime!)}
-                     target="_blank" rel="noopener noreferrer" onClick={onBuy}
-                     aria-label={ar ? 'اشترِ الكتاب (مرة واحدة)' : 'Buy this book (one-time)'}>
-                    {ar ? 'اشترِ الكتاب' : 'Buy book'} <ExternalLink size={14} aria-hidden="true" />
-                  </a>
-                )}
-                </>
               )
             ) : p.demoUrl ? (
               <a className="button primary sm" href={withUtm(p.demoUrl)}
@@ -169,10 +153,18 @@ export default function ProductCard({ p }: { p: Product }) {
                 {ar ? 'اطلب' : 'Request'} <Arrow size={14} aria-hidden="true" />
               </Link>
             )}
-            <Link className="button secondary sm" to={`/products/${p.slug}`}>
-              {isLearn ? (ar ? 'اعرف المزيد' : 'Learn more') : t('cta.details')} <Arrow size={14} aria-hidden="true" />
-            </Link>
+            {!isSolutions && (
+              <Link className="button secondary sm" to={`/products/${p.slug}`}>
+                {isLearn ? (ar ? 'اعرف المزيد' : 'Learn more') : t('cta.details')} <Arrow size={14} aria-hidden="true" />
+              </Link>
+            )}
           </div>
+          {isSolutions && p.demoUrl && (
+            <a className="pcard-demo-link" href={withUtm(p.demoUrl, { utm_content: p.slug })}
+               target="_blank" rel="noopener noreferrer" onClick={onDemoCb}>
+              {ar ? 'شاهد العرض المباشر' : 'View live demo'} <ExternalLink size={13} aria-hidden="true" />
+            </a>
+          )}
         </div>
       </div>
     </article>

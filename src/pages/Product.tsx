@@ -7,6 +7,7 @@ import { useI18n, money } from '../i18n';
 import { track, trackViewItem } from '../analytics';
 import { useAccountHolder } from '../hooks/useAccountHolder';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { GHIO_LINKS, withUtm } from '../lib/shopifyRouting';
 
 const cat = data as unknown as Catalog;
 const ALL: P[] = [...cat.learn, ...cat.solutions, ...cat.build.courses];
@@ -71,25 +72,23 @@ export default function Product() {
           <h1>{name}</h1>
           {desc && <p className="lede">{desc}</p>}
 
-          <p className="product-price">{isLearn ? (ar ? "اشتراك شهري واحد — 182 ريال — وصول كامل للمكتبة" : "One monthly subscription — 182 SAR — full library access") : money(shownPrice, ar) + periodLabel}</p>
+          <p className="product-price">{isLearn
+            ? (p.shopifyUrlOneTime
+                ? (ar ? `PDF فردي ${money(p.oneTimePrice ?? 99, true)} · أو 182 ريال/شهر لكل الكتب الـ40` : `Individual PDF ${money(p.oneTimePrice ?? 99, false)} · or 182 SAR/month for all 40 books`)
+                : (ar ? 'متوفر ضمن اشتراك LEARN — 182 ريال/شهر لكل الكتب الـ40' : 'Available in LEARN — 182 SAR/month for all 40 books'))
+            : money(shownPrice, ar) + periodLabel}</p>
 
           {p.stage === 'solutions' && (p.shopifyUrlMonthly || p.shopifyUrl) ? (
             <>
-              {p.shopifyUrlMonthly && (
-                <a className="button primary lg" href={p.shopifyUrlMonthly}
+              <a className="button primary lg" href={withUtm(p.shopifyUrlMonthly || GHIO_LINKS.solutionMonthly, { utm_content: p.slug, plan: 'solution-monthly' })}
                    target="_blank" rel="noopener noreferrer" onClick={onBuy}>
                   {ar ? '🚀 اشترك في خطة الحلول الشهرية — 1,999 ريال/شهر' : '🚀 Subscribe to Solutions monthly — 1,999 SAR/mo'} <ExternalLink size={16} />
-                </a>
-              )}
-              {p.shopifyUrl && (
-                <a className="button primary lg" href={p.shopifyUrl}
+              </a>
+              <a className="button secondary lg" href={withUtm(p.shopifyUrl || GHIO_LINKS.solutionReady, { utm_content: p.slug, plan: 'solution-ready' })}
                    target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                  {p.price != null && p.price >= 20000
-                    ? (ar ? '⚡ حل جاهز — دفعة واحدة 24,000 ريال' : '⚡ Pre-built solution — one-time 24,000 SAR')
-                    : (ar ? `⚡ حل جاهز — دفع كامل ${money(p.price ?? 0, ar)}` : `⚡ Pre-built — one-time ${money(p.price ?? 0, ar)}`)}
+                  {ar ? '⚡ حل جاهز — دفعة واحدة 24,000 ريال' : '⚡ Pre-built solution — one-time 24,000 SAR'}
                   <ExternalLink size={16} />
-                </a>
-              )}
+              </a>
               {p.demoUrl && (
                 <a className="button secondary lg demo-alt" href={p.demoUrl}
                    target="_blank" rel="noopener noreferrer" onClick={onDemo}>
@@ -102,6 +101,20 @@ export default function Product() {
                   ? 'الخطة الشهرية: استضافة خطوة بخطوة حتى الإطلاق مع فريق BrainSAIT · الحل الجاهز: تسليم فوري مع جلسة إعداد + استبيان بنية تحتية'
                   : 'Monthly plan: incubated step-by-step to launch with the BrainSAIT team · Pre-built: instant delivery with a setup session + infrastructure form'}
               </p>
+            </>
+          ) : isLearn ? (
+            <>
+              {p.shopifyUrlOneTime && (
+                <a className="button primary lg" href={withUtm(p.shopifyUrlOneTime, { utm_content: p.slug, plan: 'learn-one-time' })}
+                   target="_blank" rel="noopener noreferrer" onClick={onBuy}>
+                  {ar ? `اشترِ PDF الآن · ${money(p.oneTimePrice ?? 99, true)}` : `Buy PDF now · ${money(p.oneTimePrice ?? 99, false)}`} <ExternalLink size={16} />
+                </a>
+              )}
+              <a className="button secondary lg demo-alt" href={withUtm(GHIO_LINKS.learnMonthly, { utm_content: p.slug, plan: 'learn-monthly' })}
+                 target="_blank" rel="noopener noreferrer" onClick={onBuy}>
+                {ar ? 'افتح كل الكتب · 182 ريال/شهر' : 'Unlock all books · 182 SAR/month'} <ExternalLink size={16} />
+              </a>
+              <p className="fineprint"><ShieldCheck size={14} /> {ar ? 'تحميل PDF فوري للشراء الفردي، أو رابط واحد للوصول إلى المكتبة كاملة.' : 'Instant PDF delivery for one-time purchases, or one link for the complete library.'}</p>
             </>
           ) : p.shopifyUrl ? (
             freeForYou ? (

@@ -4,6 +4,7 @@ import type { Catalog, Product, Stage } from '../types';
 import { useI18n } from '../i18n';
 import ProductCard from '../components/ProductCard';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { GHIO_LINKS, withUtm } from '../lib/shopifyRouting';
 
 const cat = data as unknown as Catalog;
 
@@ -35,6 +36,29 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
         <h1>{ar ? def.ar : def.en}</h1>
         <p className="lede">{ar ? def.blurbAr : def.blurbEn}</p>
       </header>
+
+      {stage === 'learn' && (
+        <section className="shelf-plan-banner reveal" aria-label={ar ? 'خطة تعلم الشهرية' : 'LEARN monthly plan'}>
+          <div>
+            <span className="hero-eyebrow"><span className="dot" /> {ar ? 'وصول كامل' : 'Complete access'}</span>
+            <h2>{ar ? 'كل كتب LEARN الأربعين — رابط واحد' : 'All 40 LEARN books — one link'}</h2>
+            <p>{ar ? 'اقرأ المجموعة كاملة أونلاين مع تجديد شهري وتذكيرات قبل الاستحقاق.' : 'Read the complete collection online, with monthly renewal tracking and payment reminders.'}</p>
+          </div>
+          <a className="button primary lg" href={withUtm(GHIO_LINKS.learnMonthly, { plan: 'learn-monthly', utm_content: 'learn-banner' })} target="_blank" rel="noopener noreferrer">
+            {ar ? 'اشترك بـ 182 ريال/شهر' : 'Subscribe · 182 SAR/month'}
+          </a>
+        </section>
+      )}
+
+      {stage === 'solutions' && (
+        <section className="shelf-plan-banner solutions-banner reveal" aria-label={ar ? 'خيارات الحلول' : 'Solution plans'}>
+          <div>
+            <span className="hero-eyebrow"><span className="dot" /> {ar ? 'مساران للتنفيذ' : 'Two delivery paths'}</span>
+            <h2>{ar ? 'احتضان شهري أو حل جاهز للنشر' : 'Monthly incubation or deployment-ready'}</h2>
+            <p>{ar ? 'اختر 1,999 ريال شهرياً للشراكة الكاملة، أو 24,000 ريال لحل جاهز مع جلسة إعداد.' : 'Choose 1,999 SAR/month for the full partner journey, or 24,000 SAR for a ready solution with an infrastructure kickoff.'}</p>
+          </div>
+        </section>
+      )}
 
       <div className="filters reveal" role="tablist">
         <button role="tab" aria-selected={sub === 'all'}

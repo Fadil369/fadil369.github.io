@@ -8,9 +8,8 @@ import data from '../data/catalog.json';
 import type { Catalog } from '../types';
 import { useI18n } from '../i18n';
 import { track, journeyEvent } from '../analytics';
-import BuildEligibilityForm from '../components/BuildEligibilityForm';
-import BuildCareForm from '../components/BuildCareForm';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { GHIO_LINKS, withUtm } from '../lib/shopifyRouting';
 
 const cat = data as unknown as Catalog;
 const CALENDAR_URL = 'https://calendar.app.google/rAqiE6pNumtECdnd7';
@@ -62,43 +61,47 @@ export default function Build() {
         <p className="fineprint">{ar ? 'دفع آمن على store.brainsait.de — أدخل رمز الخصم قبل إتمام الشراء، أو احجز جلسة تقييم أولاً.' : 'Secure checkout on store.brainsait.de — apply your promo code before checkout, or book an evaluation first.'}</p>
       </section>
 
-      {/* ── BUILD TICKETS — standard (paid) + BUILD-CARE (free, healthcare workers) ── */}
+      {/* ── BUILD PLANS — both routes checkout directly on Shopify ── */}
       <section id="apply" className="build-price reveal">
-        <div className="build-tickets-row">
-          <BuildEligibilityForm />
-          <BuildCareForm />
-        </div>
-      </section>
-
-      {/* ── BUILD MONTHLY — recurring alternative to the flat ticket ── */}
-      <section className="build-price reveal">
-        <h2>{ar ? 'اشترك شهرياً في فورج' : 'Subscribe to Forge monthly'}</h2>
+        <h2>{ar ? 'اختر طريقة البناء' : 'Choose how you build'}</h2>
         <p className="benefits-intro">
           {ar
-            ? 'اشترك شهرياً في برنامج فورج — دخول لمدة 30 يوماً يتجدد تلقائياً في كل دورة دفع، مع كل مزايا LEARN والعقل الثاني وتتبع فورج بوت.'
-            : "Subscribe to the Forge incubator monthly — 30-day access that renews automatically every billing cycle, with full LEARN, 2nd Brain and Forge Bot tracking."}
+            ? 'كلا المسارين يفتحان مكتبة LEARN، وNotion Forge، والعقل الثاني، وبوت Telegram، والمحاكيات العملية وخطة المتابعة.'
+            : 'Both paths unlock LEARN, Notion Forge, your Second Brain, Telegram tracking, hands-on simulators, and a guided action plan.'}
         </p>
-        <div className="build-tickets-row">
-          <div className="build-ticket-card">
-            <span className="launch-badge">{ar ? 'اشتراك متجدد' : 'Recurring subscription'}</span>
-            <div className="bt-price-row">
-              <span className="bt-price">499 {ar ? 'ريال' : 'SAR'} {ar ? '/شهر' : '/mo'}</span>
-            </div>
+        <div className="build-tickets-row plan-choice-grid">
+          <article className="build-ticket-card plan-choice-card">
+            <span className="launch-badge">{ar ? 'مرن · يتجدد شهرياً' : 'Flexible · monthly'}</span>
+            <div className="bt-price-row"><span className="bt-price">499 {ar ? 'ريال/شهر' : 'SAR/month'}</span></div>
+            <h3>{ar ? 'BUILD شهري' : 'BUILD Monthly'}</h3>
             <ul>
-              <li>{ar ? 'دخول فورج لمدة 30 يوماً، يتجدد كل دورة دفع' : '30-day Forge access, renews every billing cycle'}</li>
-              <li>{ar ? 'إعداد Notion ومتابعة Forge Bot' : 'Notion onboarding and Forge Bot follow-up'}</li>
-              <li>{ar ? 'إلغِ في أي وقت — لا التزام طويل الأمد' : 'Cancel anytime — no long-term commitment'}</li>
+              <li>{ar ? 'كل كتب LEARN الأربعين' : 'All 40 LEARN books'}</li>
+              <li>{ar ? 'Notion Forge + العقل الثاني' : 'Notion Forge + Second Brain'}</li>
+              <li>{ar ? 'Brainsait_forge_bot للمتابعة والتغذية الراجعة' : 'Brainsait_forge_bot tracking and feedback'}</li>
+              <li>{ar ? 'مختبرات ومحاكيات: نظرية، تطبيق، ثم إجراء' : 'Labs and simulators: theory, practice, action'}</li>
             </ul>
-            <a
-              className="button primary lg"
-              href="https://store.brainsait.de/products/build-forge-incubator-founders-program"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => { track('build_cta', { location: 'monthly' }); journeyEvent('journey.offer_clicked', { location: 'monthly' }); }}
-            >
+            <a className="button primary lg" href={withUtm(GHIO_LINKS.buildMonthly, { plan: 'build-monthly', utm_content: 'build-page' })}
+               target="_blank" rel="noopener noreferrer"
+               onClick={() => { track('build_cta', { location: 'monthly' }); journeyEvent('journey.offer_clicked', { location: 'monthly' }); }}>
               {ar ? 'اشترك شهرياً' : 'Subscribe monthly'} <Rocket size={18} />
             </a>
-          </div>
+          </article>
+          <article className="build-ticket-card plan-choice-card featured-plan">
+            <span className="launch-badge">{ar ? 'تذكرة المؤسس الكاملة' : 'Complete founder ticket'}</span>
+            <div className="bt-price-row"><span className="bt-price">9,630 {ar ? 'ريال' : 'SAR'}</span></div>
+            <h3>{ar ? 'تذكرة BUILD' : 'BUILD Ticket'}</h3>
+            <ul>
+              <li>{ar ? 'رحلة مؤسس متكاملة من الفكرة إلى الإطلاق' : 'Complete founder journey from idea to launch'}</li>
+              <li>{ar ? 'كل مزايا الخطة الشهرية' : 'Everything in the monthly plan'}</li>
+              <li>{ar ? 'معالم إنجاز، توجيه، وشهادة رقمية' : 'Milestones, guidance, and digital certification'}</li>
+              <li>{ar ? 'مسار واضح للتسويق والتخرج' : 'Structured marketing and graduation path'}</li>
+            </ul>
+            <a className="button secondary lg" href={withUtm(GHIO_LINKS.buildTicket, { plan: 'build-ticket', utm_content: 'build-page' })}
+               target="_blank" rel="noopener noreferrer"
+               onClick={() => { track('build_cta', { location: 'ticket' }); journeyEvent('journey.offer_clicked', { location: 'ticket' }); }}>
+              {ar ? 'اشترِ التذكرة' : 'Buy the ticket'} <Rocket size={18} />
+            </a>
+          </article>
         </div>
       </section>
 

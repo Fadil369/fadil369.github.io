@@ -14,6 +14,8 @@ export interface Product {
   description?: string;
   descriptionAr?: string;
   price?: number | null;
+  /** One-time price for an individual LEARN PDF. */
+  oneTimePrice?: number | null;
   billingEn?: string;
   billingAr?: string;
   free?: boolean;

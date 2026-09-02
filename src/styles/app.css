@@ -452,6 +452,15 @@ img { max-width: 100%; }
 
 /* ── Filters / chips ──────────────────────────────────────── */
 .filters { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-bottom: 1.8rem; }
+.shelf-plan-banner {
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+  padding: 1.5rem 1.7rem; margin: 0 0 1.6rem; border: 1px solid rgba(233,196,106,.3);
+  border-radius: 24px; background: linear-gradient(135deg, rgba(233,196,106,.12), var(--surface));
+}
+.shelf-plan-banner h2 { margin: .25rem 0 .35rem; font-size: clamp(1.35rem, 2vw, 2rem); }
+.shelf-plan-banner p { margin: 0; color: var(--muted); max-width: 720px; }
+.solutions-banner { border-color: rgba(52,211,153,.34); background: linear-gradient(135deg, rgba(52,211,153,.1), var(--surface)); }
+@media (max-width: 760px) { .shelf-plan-banner { align-items: stretch; flex-direction: column; } .shelf-plan-banner .button { width: 100%; } }
 .chip {
   border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft);
   border-radius: 999px; padding: 0.5rem 1.05rem; font-weight: 700; cursor: pointer; font-size: 0.88rem;
@@ -548,6 +557,17 @@ img { max-width: 100%; }
   font-variant-numeric: tabular-nums;
 }
 .pcard-cta { display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: flex-end; }
+.pcard-demo-link {
+  width: 100%; display: inline-flex; align-items: center; justify-content: flex-end; gap: 0.3rem;
+  color: var(--cyan); font-size: 0.78rem; font-weight: 750; text-decoration: none;
+}
+.pcard-demo-link:hover { color: var(--gold-l); text-decoration: underline; }
+.plan-choice-grid { align-items: stretch; }
+.plan-choice-card { display: flex; flex-direction: column; gap: .8rem; min-height: 100%; }
+.plan-choice-card h3 { margin: 0; font-size: 1.35rem; }
+.plan-choice-card ul { flex: 1; }
+.plan-choice-card .button { width: 100%; }
+.featured-plan { border-color: rgba(233,196,106,.55); box-shadow: 0 18px 52px rgba(233,196,106,.12); }
 
 /* Enhanced card meta: category + rating row */
 .pcard-meta {
