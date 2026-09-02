@@ -3412,7 +3412,8 @@
       "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-REPUBLIC-OF-CELLS",
-      "available": true
+      "available": true,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/republic-of-cells"
     },
     {
       "slug": "all-men",
@@ -3688,7 +3689,8 @@
       "commercial": "product",
       "description": "Integrate Globally-Unique Identifiers Into Your Systems A comprehensive technical guide for developers and architects who need to embed OIDs (Object Identifiers) into production systems. Built on BrainSAIT's IANA-registered PEN 61026 namespace, this guide delivers six complete integration patterns with copy-paste-ready code. What's Included \nFHIR Extension Pattern — StructureDefinition templates for NPHIES-compliant resource tagging\nMCP URN Pattern — Tool metadata for AI agent systems and multi-agent architectures\nX.509 Certificate OID — Certificate signing configuration with OID policy extensions\nAPI Header Standard — HTTP header conventions for service identity across microservices\nDatabase Schema Pattern — PostgreSQL and SQL Server OID column definitions with indexes\nQR / RFID Encoding — Physical asset tag data structures and scanner format specs\n Code Examples Every pattern includes working code in JavaScript, Python, CURL, and SQL. Bilingual (AR/EN) documentation throughout. Instant digital delivery. A BrainSAIT technical guide from the OID Registry Platform.",
       "image": "https://cdn.shopify.com/s/files/1/0730/5288/0979/files/oid-blueprint_3e7f4c0e-8625-4af1-ac1a-07ec7e227c72.webp?v=1786120368",
-      "sku": "BSP-OID-INTEGRATION-BLUEPRINT"
+      "sku": "BSP-OID-INTEGRATION-BLUEPRINT",
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/oid-integration-blueprint-developer-guide"
     }
   ],
   "build": {
@@ -4331,7 +4333,7 @@
       "flag": null,
       "demoUrl": "https://build-apply.brainsait.org/demo/brainsait-neural-cloud",
       "limitedDemo": false,
-      "shopifyUrl": null,
+      "shopifyUrl": "https://store.brainsait.de/products/neural-cloud-portal",
       "shopifyHandle": null,
       "sku": null,
       "available": true,
@@ -5471,7 +5473,7 @@
       "flag": null,
       "demoUrl": "https://masterlinc.brainsait.org",
       "limitedDemo": false,
-      "shopifyUrl": null,
+      "shopifyUrl": "https://store.brainsait.de/products/masterlinc-orchestrator",
       "shopifyHandle": null,
       "sku": null,
       "available": true,
