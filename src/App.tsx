@@ -12,6 +12,7 @@ import Account from './pages/Account';
 import AccountAuthorize from './pages/AccountAuthorize';
 import Track from './pages/Track';
 import { isSignedIn as shopifySignedIn } from './lib/customerAccountAuth';
+import { withUtm } from './lib/shopifyRouting';
 import './styles/app.css';
 
 type Theme = 'dark' | 'light';
@@ -47,6 +48,22 @@ function Header() {
           <NavLink to="/learn">{t('nav.learn')}</NavLink>
           <NavLink to="/build">{t('nav.build')}</NavLink>
           <NavLink to="/solutions">{t('nav.solutions')}</NavLink>
+          {/* Store-side collections that have no gh.io equivalent — route straight to
+              Shopify with UTM attribution so both surfaces expose the same catalog. */}
+          <a
+            href={withUtm('https://store.brainsait.de/collections/solutions-ready', { utm_content: 'nav-solutions-ready' })}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {ar ? 'حلول جاهزة' : 'Solutions Ready'}
+          </a>
+          <a
+            href={withUtm('https://store.brainsait.de/collections/all', { utm_content: 'nav-catalog' })}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {ar ? 'الكتالوج' : 'Catalog'}
+          </a>
           <NavLink to="/benefits">{ar ? 'المزايا' : 'Benefits'}</NavLink>
           <NavLink to="/account">
             {ar ? 'حسابي' : 'Account'}
@@ -54,6 +71,16 @@ function Header() {
           </NavLink>
         </nav>
         <div className="head-actions">
+          {/* Bidirectional surface switch: Shopify's footer links back to gh.io, so the
+              storefront links to the store (checkout) the same way. */}
+          <a
+            className="button secondary sm"
+            href={withUtm('https://store.brainsait.de', { utm_content: 'header-store' })}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {ar ? 'المتجر' : 'Store'}
+          </a>
           <a className="button secondary sm" href="https://brainsait.org"
              target="_blank" rel="noopener noreferrer">brainsait.org</a>
           <button className="icon-btn round" onClick={toggleTheme}

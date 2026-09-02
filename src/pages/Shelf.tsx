@@ -56,6 +56,16 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
             <span className="hero-eyebrow"><span className="dot" /> {ar ? 'مساران للتنفيذ' : 'Two delivery paths'}</span>
             <h2>{ar ? 'احتضان شهري أو حل جاهز للنشر' : 'Monthly incubation or deployment-ready'}</h2>
             <p>{ar ? 'اختر 1,999 ريال شهرياً للشراكة الكاملة، أو 24,000 ريال لحل جاهز مع جلسة إعداد.' : 'Choose 1,999 SAR/month for the full partner journey, or 24,000 SAR for a ready solution with an infrastructure kickoff.'}</p>
+            {/* Both Solutions plans include the code platform — say so up front, matching
+                what the backend actually provisions (reserved *.code.brainsait.org workspace). */}
+            <p className="shelf-code-access">
+              <span aria-hidden="true">💻</span>{' '}
+              {ar ? 'كلا الخطتين تشملان ' : 'Both plans include '}
+              <a href="https://code.brainsait.org" target="_blank" rel="noopener noreferrer">
+                {ar ? 'منصة BrainSAIT Code' : 'BrainSAIT Code platform access'}
+              </a>{' '}
+              {ar ? '— مساحة عمل محجوزة على code.brainsait.org مع بيئة البناء بالذكاء الاصطناعي.' : '— a reserved workspace on code.brainsait.org with the AI build environment.'}
+            </p>
           </div>
         </section>
       )}

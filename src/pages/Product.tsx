@@ -107,6 +107,11 @@ export default function Product() {
                   <li>{ar ? 'إيميل شكراً + ترحيبي مخصص بالخطة (شهري أو جاهز) + تتبع عبر Hub' : 'Thank-you + tailored welcome email (monthly or pre-built) + Hub tracking'}</li>
                   <li>{ar ? 'شهري 1,999 ر.س: رابط Learn (Frame.io) + كل صفحات Build (Notion + العقل الثاني) + بوت تليجرام + وصول Super-Partner إلى Lark — حضانة شركة خطوة بخطوة حتى التسويق والتخرج والشهادة' : 'Monthly 1,999 SAR: Learn link (Frame.io) + all Build pages (Notion + 2nd Brain) + Telegram bot + Super-Partner Lark — incubated step-by-step to launch, marketing & badge'}</li>
                   <li>{ar ? 'جاهز 24,000 ر.س لمرة واحدة: رابط Google Calendar فوري لحجز جلسة + نموذج Google Form للبنية والمجال والاستضافة وتسليم الكود المصدري كحزمة' : 'Pre-built 24k one-time: instant Google Calendar link to book a session + Google Form for infra/domain/hosting & source code as packaged solution'}</li>
+                  <li>
+                    {ar ? 'وصول منصة الكود مضمون في الخطتين: ' : 'Code platform access is included in both plans: '}
+                    <a href="https://code.brainsait.org" target="_blank" rel="noopener noreferrer">code.brainsait.org</a>
+                    {ar ? ' — مساحة عمل محجوزة باسمك لتجهيز ومراجعة وتسليم حلك.' : ' — a workspace reserved for packaging, reviewing and handing over your solution.'}
+                  </li>
                   <li>{ar ? 'تكامل عالٍ: GitHub · Notion · Airtable · Canvas · Hermes · Lark — توفر وأتمتة عاليان' : 'High integration via: GitHub · Notion · Airtable · Canvas · Hermes · Lark — high availability & automation'}</li>
                 </ul>
               </div>
