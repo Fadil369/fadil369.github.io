@@ -12,7 +12,6 @@ export const CUSTOMER_ME_URL = `${BUILD_APPLY_BASE}/customer/me`;
 export const CUSTOMER_OTP_REQUEST_URL = `${BUILD_APPLY_BASE}/customer/otp/request`;
 export const CUSTOMER_OTP_VERIFY_URL = `${BUILD_APPLY_BASE}/customer/otp/verify`;
 /** BUILD-CARE — free ticket for healthcare workers (no deployment, marketing, or 1:1). */
-export const BUILD_CARE_SHOPIFY_URL = 'https://store.brainsait.de/products/build-care';
 
 export interface BuildInstallmentPlan {
   key: string;

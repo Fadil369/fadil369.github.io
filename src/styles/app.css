@@ -1090,3 +1090,42 @@ img { max-width: 100%; }
   .product-price { font-size: 1.6rem; }
   .button.lg { width: 100%; justify-content: center; }
 }
+
+/* ── Solutions: code-platform access note (both plans include code.brainsait.org) ── */
+.shelf-code-access {
+  margin: 0.75rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.shelf-code-access a {
+  color: var(--gold);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ── BUILD: "what every plan includes" strip ── */
+.build-includes-strip {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.6rem 1rem;
+}
+.build-includes-strip li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.build-includes-strip svg {
+  flex-shrink: 0;
+  color: var(--gold);
+}

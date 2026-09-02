@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Rocket, Shield, Lock, Workflow, BookOpen, Calendar, BadgeCheck,
-  BrainCircuit, Users,
+  BrainCircuit, Users, Layers, Send, CheckCircle2,
 } from 'lucide-react';
 import data from '../data/catalog.json';
 import type { Catalog } from '../types';
@@ -103,6 +103,23 @@ export default function Build() {
             </a>
           </article>
         </div>
+        {/* What every BUILD plan includes — mirrors what the backend actually
+            provisions (LEARN link, Notion Forge, Second Brain, Forge bot,
+            simulators, guided plan + payment tracking/reminders). */}
+        <ul className="build-includes-strip">
+          {[
+            { icon: BookOpen, label: ar ? 'مكتبة LEARN (40 كتاباً)' : 'LEARN library (40 books)' },
+            { icon: Layers, label: ar ? 'صفحات Notion Forge' : 'Notion Forge pages' },
+            { icon: BrainCircuit, label: ar ? 'العقل الثاني' : 'Second Brain' },
+            { icon: Send, label: ar ? 'بوت Forge على Telegram' : 'Forge bot on Telegram' },
+            { icon: Workflow, label: ar ? 'محاكيات عملية' : 'Hands-on simulators' },
+            { icon: CheckCircle2, label: ar ? 'خطة توجيه + متابعة الدفع والتذكير' : 'Guided plan + payment tracking & reminders' },
+          ].map((item, i) => (
+            <li key={i}>
+              <item.icon size={16} aria-hidden="true" /> <span>{item.label}</span>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* ── HOW TO JOIN — the GitHub flow ── */}
