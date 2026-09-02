@@ -101,6 +101,15 @@ export default function Product() {
                   ? 'الخطة الشهرية: استضافة خطوة بخطوة حتى الإطلاق مع فريق BrainSAIT · الحل الجاهز: تسليم فوري مع جلسة إعداد + استبيان بنية تحتية'
                   : 'Monthly plan: incubated step-by-step to launch with the BrainSAIT team · Pre-built: instant delivery with a setup session + infrastructure form'}
               </p>
+              <div className="glass" style={{ padding: '12px 16px', borderRadius: 12, marginTop: 12, fontSize: '0.9rem', lineHeight: 1.6 }}>
+                <strong>{ar ? 'ماذا بعد الدفع؟ — Solutions' : 'What happens after payment? — Solutions'}</strong>
+                <ul style={{ margin: '6px 0 0', paddingInlineStart: '1.2rem' }}>
+                  <li>{ar ? 'إيميل شكراً + ترحيبي مخصص بالخطة (شهري أو جاهز) + تتبع عبر Hub' : 'Thank-you + tailored welcome email (monthly or pre-built) + Hub tracking'}</li>
+                  <li>{ar ? 'شهري 1,999 ر.س: رابط Learn (Frame.io) + كل صفحات Build (Notion + العقل الثاني) + بوت تليجرام + وصول Super-Partner إلى Lark — حضانة شركة خطوة بخطوة حتى التسويق والتخرج والشهادة' : 'Monthly 1,999 SAR: Learn link (Frame.io) + all Build pages (Notion + 2nd Brain) + Telegram bot + Super-Partner Lark — incubated step-by-step to launch, marketing & badge'}</li>
+                  <li>{ar ? 'جاهز 24,000 ر.س لمرة واحدة: رابط Google Calendar فوري لحجز جلسة + نموذج Google Form للبنية والمجال والاستضافة وتسليم الكود المصدري كحزمة' : 'Pre-built 24k one-time: instant Google Calendar link to book a session + Google Form for infra/domain/hosting & source code as packaged solution'}</li>
+                  <li>{ar ? 'تكامل عالٍ: GitHub · Notion · Airtable · Canvas · Hermes · Lark — توفر وأتمتة عاليان' : 'High integration via: GitHub · Notion · Airtable · Canvas · Hermes · Lark — high availability & automation'}</li>
+                </ul>
+              </div>
             </>
           ) : isLearn ? (
             <>
@@ -115,6 +124,15 @@ export default function Product() {
                 {ar ? 'افتح كل الكتب · 182 ريال/شهر' : 'Unlock all books · 182 SAR/month'} <ExternalLink size={16} />
               </a>
               <p className="fineprint"><ShieldCheck size={14} /> {ar ? 'تحميل PDF فوري للشراء الفردي، أو رابط واحد للوصول إلى المكتبة كاملة.' : 'Instant PDF delivery for one-time purchases, or one link for the complete library.'}</p>
+              <div className="glass" style={{ padding: '12px 16px', borderRadius: 12, marginTop: 12, fontSize: '0.9rem', lineHeight: 1.6 }}>
+                <strong>{ar ? 'ماذا بعد الدفع؟ — Learn' : 'What happens after payment? — Learn'}</strong>
+                <ul style={{ margin: '6px 0 0', paddingInlineStart: '1.2rem' }}>
+                  <li>{ar ? 'إيميل شكراً على الشراء فوراً + إيميل ترحيبي حسب الخطة' : 'Instant thank-you email + welcome email tailored to your plan'}</li>
+                  <li>{ar ? 'الاشتراك الشهري: رابط Frame.io واحد https://f.io/dcOtN3Lf لكل الـ 40 كتاباً (يبقى فعالاً حتى دورة الفوترة التالية، مع تذكيرات دفع)' : 'Monthly: single Frame.io link https://f.io/dcOtN3Lf for all 40 books (active until next billing cycle, with payment reminders)'}</li>
+                  <li>{ar ? 'الشراء الفردي: رابط تحميل R2 فوري لهذا الكتاب فقط — تسليم رقمي آمن' : 'One-time: instant R2 download link for this book only — secure digital delivery'}</li>
+                  <li>{ar ? 'دعم عالي التوفر عبر: GitHub · Notion · Airtable · Canvas · Hermes · Lark — أتمتة كاملة وعالية التكامل' : 'High-availability support via: GitHub · Notion · Airtable · Canvas · Hermes · Lark — fully automated, highly integrated'}</li>
+                </ul>
+              </div>
             </>
           ) : p.shopifyUrl ? (
             freeForYou ? (
@@ -172,15 +190,69 @@ export default function Product() {
       </div>
 
       {p.stage === 'solutions' && (
-        <section className="book-section reveal">
+        <>
+          <section className="book-section reveal">
+            <div className="section-head">
+              <h2>{ar ? 'احجز جلسة تعريفية' : 'Book a session'}</h2>
+              <span className="book-note">{ar ? 'اختر موعداً يناسبك — سنتحدث عن النطاق والتسعير والتنفيذ.' : 'Pick a time that suits you — we will cover scope, pricing and rollout.'}</span>
+            </div>
+            <div className="book-frame">
+              <iframe
+                src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0edxToXuq6bDCBKRZ8_EOcx-Qp6M_bgUVjGQKEeNE2sxMLRxCNlsjk2flHMwMU2hvJyhFy_8Og?gv=true"
+                style={{ border: 0 }} width="100%" height="600" frameBorder={0} loading="lazy" title="Book a session" />
+            </div>
+          </section>
+          <section className="book-section reveal" style={{ marginTop: 18 }}>
+            <div className="section-head">
+              <h2>{ar ? 'استبيان الحل الجاهز — سلم متطلباتك' : 'Pre-built Solution Form — Submit your requirements'}</h2>
+              <span className="book-note">{ar ? 'بعد دفع 24,000 ر.س، عبّئ هذا النموذج بكل تفاصيل البنية، المجال، الاستضافة والحزمة المطلوبة — نسلّم الكود المصدري كحل مغلف.' : 'After 24k payment, fill this form with all infra, domain, hosting & package details — we deliver source code as a packaged solution.'}</span>
+            </div>
+            <div className="glass" style={{ padding: 18, borderRadius: 14 }}>
+              <p style={{ margin: '0 0 12px', color: 'var(--ink-soft)' }}>
+                {ar ? 'نموذج Google Form يغطي: اسم الحل، مجال العمل، البنية الحالية، الاستضافة المفضلة (Hetzner/Cloudflare)، المجال، متطلبات الدفع، اللغة، والوقت المطلوب للتسليم.' : 'Google Form covers: solution name, domain, current infra, preferred hosting (Hetzner/Cloudflare), domain, payment needs, language, and desired delivery timeline.'}
+              </p>
+              <a className="button primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdummy-prebuilt-form/viewform" target="_blank" rel="noopener noreferrer">
+                {ar ? 'افتح نموذج Google Form' : 'Open Google Form'} <ExternalLink size={14} />
+              </a>
+              <p className="fineprint" style={{ marginTop: 10 }}>{ar ? 'الرابط يُرسل تلقائياً بإيميل الترحيب بعد الدفع الجاهز، مع رابط Calendar الفوري.' : 'Link is also sent automatically in the welcome email after pre-built payment, with the instant Calendar link.'}</p>
+            </div>
+          </section>
+        </>
+      )}
+      {isLearn && (
+        <section className="book-section reveal" style={{ marginTop: 18 }}>
           <div className="section-head">
-            <h2>{ar ? 'احجز جلسة تعريفية' : 'Book a session'}</h2>
-            <span className="book-note">{ar ? 'اختر موعداً يناسبك — سنتحدث عن النطاق والتسعير والتنفيذ.' : 'Pick a time that suits you — we will cover scope, pricing and rollout.'}</span>
+            <h2>{ar ? 'المزيد عن هذا الكتاب' : 'More about this book'}</h2>
+            <span className="book-note">{ar ? 'تفاصيل شاملة، أسئلة شائعة، وصيغ متاحة — كل شيء في نافذة واحدة.' : 'Full details, FAQs, and available formats — everything in one place.'}</span>
           </div>
-          <div className="book-frame">
-            <iframe
-              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0edxToXuq6bDCBKRZ8_EOcx-Qp6M_bgUVjGQKEeNE2sxMLRxCNlsjk2flHMwMU2hvJyhFy_8Og?gv=true"
-              style={{ border: 0 }} width="100%" height="600" frameBorder={0} loading="lazy" title="Book a session" />
+          <div className="glass" style={{ padding: 18, borderRadius: 14 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 14 }}>
+              <div>
+                <strong>{ar ? 'الصيغ' : 'Formats'}</strong>
+                <p style={{ margin: '6px 0 0', color: 'var(--ink-soft)' }}>{p.formats || 'PDF'}</p>
+              </div>
+              <div>
+                <strong>{ar ? 'ما يتضمنه' : "What's included"}</strong>
+                <ul style={{ margin: '6px 0 0', paddingInlineStart: '1.2rem', color: 'var(--ink-soft)' }}>{(p.whatsIncluded || []).map((x, i) => <li key={i}>{x}</li>)}</ul>
+              </div>
+              <div>
+                <strong>{ar ? 'تقييم' : 'Rating'}</strong>
+                <p style={{ margin: '6px 0 0', color: 'var(--ink-soft)' }}>{p.rating ? `${p.rating}/5` : ar ? '—' : '—'} · {p.users || ''}</p>
+              </div>
+            </div>
+            {!!p.faqs?.length && (
+              <div style={{ marginTop: 16 }}>
+                <strong>{ar ? 'أسئلة شائعة' : 'FAQs'}</strong>
+                <div style={{ display: 'grid', gap: 8, marginTop: 8 }}>
+                  {(p.faqs as [string, string][]).slice(0, 6).map(([q, a], i) => (
+                    <details key={i} style={{ background: 'var(--surface)', padding: '10px 14px', borderRadius: 10 }}>
+                      <summary style={{ cursor: 'pointer', fontWeight: 600 }}>{q}</summary>
+                      <p style={{ margin: '8px 0 0', color: 'var(--ink-soft)' }}>{a}</p>
+                    </details>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </section>
       )}
