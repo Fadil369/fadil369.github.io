@@ -175,7 +175,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-DIGITAL-INCOME-STRATEGY",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/digital-income-strategy-your-three-pathways"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/digital-income-strategy-your-three-pathways",
+      "oneTimePrice": 99
     },
     {
       "slug": "digital-organization-handbook",
@@ -274,7 +275,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-NB-DIGITAL-ORG",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/digital-organization-handbook"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/digital-organization-handbook",
+      "oneTimePrice": 99
     },
     {
       "slug": "etimad-digital-governance-blueprint",
@@ -373,7 +375,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-ETIMAD-GOVERNANCE-BP",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/etimad-digital-governance-blueprint"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/etimad-digital-governance-blueprint",
+      "oneTimePrice": 99
     },
     {
       "slug": "from-mind-to-market",
@@ -472,7 +475,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-MIND-TO-MARKET",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/from-mind-to-market"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/from-mind-to-market",
+      "oneTimePrice": 99
     },
     {
       "slug": "hyper-scalable-agency-system",
@@ -571,7 +575,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-HYPER-SCALABLE-AGENCY",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/hyper-scalable-agency-system"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/hyper-scalable-agency-system",
+      "oneTimePrice": 99
     },
     {
       "slug": "one-ecosystem-limitless-intelligence",
@@ -670,7 +675,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-ONE-ECOSYSTEM",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/one-ecosystem-limitless-intelligence"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/one-ecosystem-limitless-intelligence",
+      "oneTimePrice": 99
     },
     {
       "slug": "private-ai-blueprint",
@@ -769,7 +775,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-PRIVATE-AI-BLUEPRINT",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/private-ai-blueprint"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/private-ai-blueprint",
+      "oneTimePrice": 99
     },
     {
       "slug": "professional-writing-mastery",
@@ -868,7 +875,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-PROF-WRITING-MASTERY",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/professional-writing-mastery"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/professional-writing-mastery",
+      "oneTimePrice": 99
     },
     {
       "slug": "solo-ai-business-blueprint",
@@ -967,7 +975,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-SOLO-AI-BUSINESS",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/solo-ai-business-blueprint"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/solo-ai-business-blueprint",
+      "oneTimePrice": 99
     },
     {
       "slug": "the-ai-skill-economy",
@@ -1066,7 +1075,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-AI-SKILL-ECONOMY",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-ai-skill-economy"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-ai-skill-economy",
+      "oneTimePrice": 99
     },
     {
       "slug": "the-outlier-equation",
@@ -1165,7 +1175,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-OUTLIER-EQUATION",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-outlier-equation"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-outlier-equation",
+      "oneTimePrice": 99
     },
     {
       "slug": "the-ultimate-persistent-ai-agent",
@@ -1264,7 +1275,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-PERSISTENT-AI-AGENT-D",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-ultimate-persistent-ai-agent"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-ultimate-persistent-ai-agent",
+      "oneTimePrice": 99
     },
     {
       "slug": "voice-agent-production-blueprint",
@@ -1363,7 +1375,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-VOICE-AGENT-PRODUCTION",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/voice-agent-production-blueprint"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/voice-agent-production-blueprint",
+      "oneTimePrice": 99
     },
     {
       "slug": "api-revision-notebook",
@@ -1462,7 +1475,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-DRIVE-API-REVISION-NB",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/api-revision-notebook-1"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/api-revision-notebook-1",
+      "oneTimePrice": 99
     },
     {
       "slug": "apple-ai-anatomy",
@@ -1561,7 +1575,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-APPLE-AI-ANATOMY",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/apple-ai-anatomy"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/apple-ai-anatomy",
+      "oneTimePrice": 99
     },
     {
       "slug": "digital-autonomy-blueprint",
@@ -1660,7 +1675,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-DIGITAL-AUTONOMY-BP",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/digital-autonomy-blueprint"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/digital-autonomy-blueprint",
+      "oneTimePrice": 99
     },
     {
       "slug": "dom-study-notes",
@@ -1759,7 +1775,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-NB-DOM-STUDY-NOTES",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/dom-study-notes"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/dom-study-notes",
+      "oneTimePrice": 99
     },
     {
       "slug": "one-million-rps-achieved",
@@ -1858,7 +1875,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-ONE-MILLION-RPS",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/one-million-rps-achieved"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/one-million-rps-achieved",
+      "oneTimePrice": 99
     },
     {
       "slug": "stealth-python-networking",
@@ -1957,7 +1975,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-STEALTH-PYTHON-NET",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/stealth-python-networking"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/stealth-python-networking",
+      "oneTimePrice": 99
     },
     {
       "slug": "the-api-blueprint",
@@ -2056,7 +2075,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-THE-API-BLUEPRINT",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-api-blueprint"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-api-blueprint",
+      "oneTimePrice": 99
     },
     {
       "slug": "brainsait-ai-masterclass",
@@ -2155,7 +2175,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-AI-MASTERCLASS",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/brainsait-ai-masterclass"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/brainsait-ai-masterclass",
+      "oneTimePrice": 99
     },
     {
       "slug": "brainsait-health-os",
@@ -2254,7 +2275,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-HEALTH-OS",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/brainsait-health-os"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/brainsait-health-os",
+      "oneTimePrice": 99
     },
     {
       "slug": "clinical-code",
@@ -2353,7 +2375,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-CLINICAL-CODE",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/clinical-code"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/clinical-code",
+      "oneTimePrice": 99
     },
     {
       "slug": "digital-health-bridge",
@@ -2452,7 +2475,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-DIGITAL-HEALTH-BRIDGE",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/digital-health-bridge"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/digital-health-bridge",
+      "oneTimePrice": 99
     },
     {
       "slug": "etimad-and-nphies-integration",
@@ -2551,7 +2575,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-ETIMAD-NPHIES",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/etimad-and-nphies-integration"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/etimad-and-nphies-integration",
+      "oneTimePrice": 99
     },
     {
       "slug": "healthcare-ai-2025",
@@ -2650,7 +2675,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-HEALTHCARE-AI-2025",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/healthcare-ai"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/healthcare-ai",
+      "oneTimePrice": 99
     },
     {
       "slug": "leading-joy-in-healthcare",
@@ -2749,7 +2775,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-LEADING-JOY-HEALTHCARE",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/leading-joy-in-healthcare"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/leading-joy-in-healthcare",
+      "oneTimePrice": 99
     },
     {
       "slug": "saudi-health-innovation-guide",
@@ -2848,7 +2875,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-SAUDI-HEALTH-INNOVATION",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/saudi-health-innovation-guide"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/saudi-health-innovation-guide",
+      "oneTimePrice": 99
     },
     {
       "slug": "saudi-health-transformation",
@@ -2947,7 +2975,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-NB-SAUDI-HEALTH-TRANSFORM",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/saudi-health-transformation"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/saudi-health-transformation",
+      "oneTimePrice": 99
     },
     {
       "slug": "sbs-nphies-integration-blueprint",
@@ -3046,7 +3075,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-SBS-NPHIES-BP",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/sbs-nphies-integration-blueprint"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/sbs-nphies-integration-blueprint",
+      "oneTimePrice": 99
     },
     {
       "slug": "sdc-fhir-stu-4-notes",
@@ -3145,7 +3175,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-SDC-FHIR-STU4",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/sdc-fhir-stu-4-notes"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/sdc-fhir-stu-4-notes",
+      "oneTimePrice": 99
     },
     {
       "slug": "the-decentralized-hospital",
@@ -3244,7 +3275,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-DECENTRALIZED-HOSPITAL",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-decentralized-hospital"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-decentralized-hospital",
+      "oneTimePrice": 99
     },
     {
       "slug": "the-hospital-at-home",
@@ -3343,7 +3375,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-HOSPITAL-AT-HOME",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-hospital-at-home"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/the-hospital-at-home",
+      "oneTimePrice": 99
     },
     {
       "slug": "republic-of-cells",
@@ -3413,7 +3446,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-REPUBLIC-OF-CELLS",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/republic-of-cells"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/republic-of-cells",
+      "oneTimePrice": 99
     },
     {
       "slug": "all-men",
@@ -3483,7 +3517,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-NOVEL-ALL_MEN",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/all-men-1"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/all-men-1",
+      "oneTimePrice": 99
     },
     {
       "slug": "between-one-beat-and-another-arabic",
@@ -3553,7 +3588,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-NOVEL-BETWEEN_ONE_BEAT_AND_ANOTHER_ARABIC",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/between-one-beat-and-another-arabic-1"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/between-one-beat-and-another-arabic-1",
+      "oneTimePrice": 99
     },
     {
       "slug": "between-one-beat-and-another-english",
@@ -3623,7 +3659,8 @@
       "shopifyHandle": "learn-brainsait-digital-access",
       "sku": "BSP-NOVEL-BETWEEN_ONE_BEAT_AND_ANOTHER_ENGLISH",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/between-one-beat-and-another-english-1"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/between-one-beat-and-another-english-1",
+      "oneTimePrice": 99
     },
     {
       "slug": "digital-healthcare-masterclass",
@@ -3667,7 +3704,8 @@
       "description": "Physical OID Scanning with ESP32 Complete firmware and wiring guide to build a hardware QR code scanner that reads BrainSAIT OID tags and integrates with the OID Registry Platform. Ideal for asset management, equipment tracking, and healthcare device identification. Supported Hardware \nESP32-CAM (AI-Thinker) — Built-in camera module, no additional scanner required\nESP32 + GM65 Module — Dedicated barcode/QR scanner module for higher reliability\n Optional OLED/LCD display for immediate scan feedback\n What's Included \n Complete .ino firmware (Arduino IDE / PlatformIO)\n Wiring diagrams for both hardware configurations\n OID validation and HTTP API integration code\n WiFi provisioning and BrainSAIT API endpoint configuration\n Display output code for OLED/LCD modules\n Step-by-step flashing and calibration guide\n Use Cases Hospital equipment tagging · Lab sample tracking · Server rack asset management · Document provenance scanning Instant digital delivery. Firmware source + documentation. Hardware components purchased separately.",
       "image": "https://cdn.shopify.com/s/files/1/0730/5288/0979/files/oid-arduino_7737f084-a810-4fab-aa66-c3ea89865a67.webp?v=1786120376",
       "sku": "BSP-OID-ARDUINO-SCANNER",
-      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access"
+      "shopifyUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
+      "oneTimePrice": 99
     },
     {
       "slug": "oid-integration-blueprint-developer-guide",
@@ -3690,7 +3728,8 @@
       "description": "Integrate Globally-Unique Identifiers Into Your Systems A comprehensive technical guide for developers and architects who need to embed OIDs (Object Identifiers) into production systems. Built on BrainSAIT's IANA-registered PEN 61026 namespace, this guide delivers six complete integration patterns with copy-paste-ready code. What's Included \nFHIR Extension Pattern — StructureDefinition templates for NPHIES-compliant resource tagging\nMCP URN Pattern — Tool metadata for AI agent systems and multi-agent architectures\nX.509 Certificate OID — Certificate signing configuration with OID policy extensions\nAPI Header Standard — HTTP header conventions for service identity across microservices\nDatabase Schema Pattern — PostgreSQL and SQL Server OID column definitions with indexes\nQR / RFID Encoding — Physical asset tag data structures and scanner format specs\n Code Examples Every pattern includes working code in JavaScript, Python, CURL, and SQL. Bilingual (AR/EN) documentation throughout. Instant digital delivery. A BrainSAIT technical guide from the OID Registry Platform.",
       "image": "https://cdn.shopify.com/s/files/1/0730/5288/0979/files/oid-blueprint_3e7f4c0e-8625-4af1-ac1a-07ec7e227c72.webp?v=1786120368",
       "sku": "BSP-OID-INTEGRATION-BLUEPRINT",
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/oid-integration-blueprint-developer-guide"
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/oid-integration-blueprint-developer-guide",
+      "oneTimePrice": 99
     }
   ],
   "build": {
