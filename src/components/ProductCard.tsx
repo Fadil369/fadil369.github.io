@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ExternalLink, ArrowLeft, ArrowRight, Star } from 'lucide-react';
+import { BadgeCheck, CreditCard, ExternalLink, Info, MonitorPlay, Star } from 'lucide-react';
 import type { Product } from '../types';
 import { useI18n, money } from '../i18n';
 import { track } from '../analytics';
@@ -39,7 +39,6 @@ export default function ProductCard({ p }: { p: Product }) {
   const buyable = Boolean(p.shopifyUrl);
   const freeForYou = accountHolder === true;
   const commercial = p.commercial || (p.demoUrl ? 'demo' : 'product');
-  const commBadge = commercial === 'product' ? '🛒' : commercial === 'service' ? '💰' : commercial === 'saas' ? '◎' : '🧩';
   const commLabel = commercial === 'product' ? (ar ? 'منتج' : 'Product')
     : commercial === 'service' ? (ar ? 'خدمة' : 'Service')
       : commercial === 'saas' ? (ar ? 'عضوية' : 'Membership') : (ar ? 'عرض' : 'Demo');
@@ -54,6 +53,7 @@ export default function ProductCard({ p }: { p: Product }) {
   const isBpr = p.slug === 'bpr';
   const ctaLabel = isMonthly || isBpr ? (ar ? 'اشترك' : 'Subscribe') : (freeForYou ? t('cta.getFree') : t('cta.buy'));
   const learnMoreLabel = isLearn ? (ar ? 'اعرف المزيد' : 'Learn more') : t('cta.details');
+  const CommIcon = commercial === 'demo' ? MonitorPlay : commercial === 'saas' ? BadgeCheck : CreditCard;
 
   const onBuy = () =>
     track('add_to_cart', {
@@ -63,8 +63,6 @@ export default function ProductCard({ p }: { p: Product }) {
     });
   const onDemoCb = () => track('view_demo', { item_id: p.slug, item_name: p.name });
   const onFree = () => track('add_to_cart', { currency: 'SAR', value: 0, items: [{ item_id: p.slug, item_name: p.name, price: 0 }] });
-  const Arrow = ar ? ArrowRight : ArrowLeft;
-
   return (
     <article className="pcard">
       <div className="pcard-cover">
@@ -73,15 +71,15 @@ export default function ProductCard({ p }: { p: Product }) {
             ? <img src={p.image} alt={name} loading="lazy" width={320} height={480} />
             : <div className="pcard-cover-fallback" aria-hidden="true">{name.slice(0, 1)}</div>}
         </Link>
-        <div className="pcard-badges" aria-hidden="true" style={{ position: 'absolute', inset: 8, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', pointerEvents: 'none' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 6, flexWrap: 'wrap' }}>
-            <span style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-              <span className={`pcard-badge comm comm-${commercial}`}>{commBadge} {commLabel}</span>
+        <div className="pcard-badges" aria-hidden="true">
+          <div className="pcard-badge-row">
+            <span className="pcard-badge-set">
+              <span className={`pcard-badge comm comm-${commercial}`}><CommIcon size={11} /> {commLabel}</span>
               {freeForYou && <span className="pcard-badge pcard-badge-free">{t('free')}</span>}
             </span>
             {p.flag === 'demo' && <span className="pcard-badge">{t('demo')}</span>}
           </div>
-          {fmt && <div style={{ alignSelf: 'flex-end' }}><span className="pcard-badge pcard-format">{fmt}</span></div>}
+          {fmt && <div className="pcard-format-row"><span className="pcard-badge pcard-format">{fmt}</span></div>}
         </div>
       </div>
 
@@ -123,7 +121,7 @@ export default function ProductCard({ p }: { p: Product }) {
                   {ar ? 'سنوي' : 'Annual'} <ExternalLink size={14} aria-hidden="true" />
                 </a>
                 <Link className="button secondary sm" to={`/products/${p.slug}`}>
-                  {learnMoreLabel} <Arrow size={14} aria-hidden="true" />
+                  {learnMoreLabel} <Info size={14} aria-hidden="true" />
                 </Link>
               </>
             ) : isSolutions ? (
@@ -149,7 +147,7 @@ export default function ProductCard({ p }: { p: Product }) {
                 </a>
               ) : freeForYou ? (
                 <Link className="button primary sm" to={`/products/${p.slug}`} onClick={onFree}>
-                  {t('cta.getFree')} <Arrow size={14} aria-hidden="true" />
+                  {t('cta.getFree')} <Info size={14} aria-hidden="true" />
                 </Link>
               ) : (
                 <a className="button primary sm" href={withUtm(p.shopifyUrl!, { utm_content: p.slug })}
@@ -165,12 +163,12 @@ export default function ProductCard({ p }: { p: Product }) {
               </a>
             ) : (
               <Link className="button primary sm" to={`/products/${p.slug}`} onClick={onBuy}>
-                {ar ? 'اطلب' : 'Request'} <Arrow size={14} aria-hidden="true" />
+                {ar ? 'اطلب' : 'Request'} <Info size={14} aria-hidden="true" />
               </Link>
             )}
             {!isSolutions && (
               <Link className="button secondary sm" to={`/products/${p.slug}`}>
-                {learnMoreLabel} <Arrow size={14} aria-hidden="true" />
+                {learnMoreLabel} <Info size={14} aria-hidden="true" />
               </Link>
             )}
           </div>

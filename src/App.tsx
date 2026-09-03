@@ -121,11 +121,7 @@ export default function App() {
   return (
     <I18nProvider>
       <BrowserRouter>
-        <div className="bg-aurora" aria-hidden="true">
-          <span className="orb orb-1" />
-          <span className="orb orb-2" />
-          <span className="orb orb-3" />
-        </div>
+        <div className="bg-aurora" aria-hidden="true" />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />

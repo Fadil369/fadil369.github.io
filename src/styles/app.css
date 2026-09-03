@@ -5,40 +5,41 @@
 
 /* ── Design tokens · Dark (default luxury mode) ───────────── */
 :root[data-theme='dark'] {
-  --bg: #060814;
-  --bg-2: #0a0e21;
-  --surface: rgba(255, 255, 255, 0.055);
-  --surface-2: rgba(255, 255, 255, 0.095);
-  --glass: rgba(13, 17, 36, 0.62);
-  --line: rgba(255, 255, 255, 0.11);
-  --line-strong: rgba(255, 255, 255, 0.22);
+  --bg: #080b12;
+  --bg-2: #0e1320;
+  --surface: rgba(255, 255, 255, 0.045);
+  --surface-2: rgba(255, 255, 255, 0.078);
+  --glass: rgba(10, 14, 24, 0.88);
+  --line: rgba(255, 255, 255, 0.12);
+  --line-strong: rgba(255, 255, 255, 0.24);
   --ink: #eef1fb;
   --ink-soft: #c6cce6;
   --muted: #8b93b5;
   --gold: #e9c46a;
   --gold-2: #f5dd9d;
+  --gold-l: #f5dd9d;
   --cyan: #29d8ff;
   --magenta: #f06cff;
   --lime: #b8f14e;
   --ok: #4ef0b0;
   --bad: #ff5d8f;
-  --shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
-  --shadow-soft: 0 14px 44px rgba(0, 0, 0, 0.35);
+  --shadow: 0 18px 44px rgba(0, 0, 0, 0.36);
+  --shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.24);
   --hero-grad: linear-gradient(115deg, #f5dd9d 0%, #e9c46a 18%, #29d8ff 52%, #f06cff 82%, #f5dd9d 100%);
   --gold-grad: linear-gradient(120deg, #f5dd9d, #e9c46a);
   --panel-grad: radial-gradient(120% 140% at 20% 0%, rgba(41, 216, 255, 0.09) 0%, transparent 45%),
     radial-gradient(120% 140% at 90% 100%, rgba(240, 108, 255, 0.08) 0%, transparent 45%),
     linear-gradient(160deg, #0b1026 0%, #070a18 100%);
-  --glass-blur: saturate(170%) blur(20px);
+  --glass-blur: saturate(135%) blur(10px);
 }
 
 /* ── Design tokens · Light ────────────────────────────────── */
 :root[data-theme='light'] {
-  --bg: #f4f1ea;
+  --bg: #f7f8fb;
   --bg-2: #ffffff;
-  --surface: rgba(255, 255, 255, 0.66);
-  --surface-2: rgba(255, 255, 255, 0.92);
-  --glass: rgba(250, 248, 242, 0.72);
+  --surface: rgba(255, 255, 255, 0.78);
+  --surface-2: rgba(255, 255, 255, 0.96);
+  --glass: rgba(255, 255, 255, 0.9);
   --line: rgba(18, 24, 52, 0.12);
   --line-strong: rgba(18, 24, 52, 0.24);
   --ink: #151a30;
@@ -46,6 +47,7 @@
   --muted: #5c6480;
   --gold: #b8860b;
   --gold-2: #d4a437;
+  --gold-l: #b8860b;
   --cyan: #0284c7;
   --magenta: #c026d3;
   --lime: #5e8d00;
@@ -57,14 +59,14 @@
   --gold-grad: linear-gradient(120deg, #d4a437, #b8860b);
   --panel-grad: radial-gradient(120% 140% at 20% 0%, rgba(2, 132, 199, 0.08) 0%, transparent 45%),
     radial-gradient(120% 140% at 90% 100%, rgba(192, 38, 211, 0.07) 0%, transparent 45%),
-    linear-gradient(160deg, #ffffff 0%, #f4f1ea 100%);
-  --glass-blur: saturate(150%) blur(20px);
+    linear-gradient(160deg, #ffffff 0%, #f7f8fb 100%);
+  --glass-blur: saturate(130%) blur(8px);
 }
 
 /* ── Shared tokens & fonts (dir-driven AR/EN) ─────────────── */
 :root {
-  --radius: 22px;
-  --radius-sm: 14px;
+  --radius: 10px;
+  --radius-sm: 8px;
   --cover-ratio: 0.667; /* 2:3 book cover */
   --maxw: 1240px;
   --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
@@ -88,7 +90,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: clamp(15px, 0.35rem + 1vw, 17px);
+  font-size: 16px;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -102,7 +104,7 @@ h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.22;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
 }
 h1 { font-weight: 800; }
 img { max-width: 100%; }
@@ -1145,4 +1147,339 @@ img { max-width: 100%; }
 .build-includes-strip svg {
   flex-shrink: 0;
   color: var(--gold);
+}
+
+/* ── Professional storefront pass: compact, durable, payment-first UI ── */
+.orb { display: none; }
+.bg-aurora::before { opacity: 0.035; }
+
+.button,
+.chip,
+.icon-btn,
+.main-nav a,
+.hero-eyebrow,
+.hero-teaser,
+.build-launch-strip,
+.launch-tag,
+.launch-badge,
+.pcard-badge,
+.pcard-rating,
+.badge,
+.cap,
+.entity-sector,
+.forge-points li,
+.lifecycle-timer,
+.register-commands code,
+.build-includes-strip li {
+  border-radius: var(--radius-sm);
+}
+
+.button {
+  min-height: 40px;
+  padding: 0.68rem 1.05rem;
+  box-shadow: none;
+}
+.button.sm {
+  min-height: 38px;
+  padding: 0.54rem 0.78rem;
+  font-size: 0.82rem;
+}
+.button.lg {
+  min-height: 46px;
+  padding: 0.78rem 1.15rem;
+  font-size: 0.96rem;
+}
+.button:hover { transform: translateY(-1px); }
+.button.primary {
+  background: linear-gradient(135deg, #f2d17b, #d6a833);
+  color: #151515;
+  box-shadow: 0 8px 18px rgba(214, 168, 51, 0.22);
+}
+.button.primary:hover { box-shadow: 0 10px 22px rgba(214, 168, 51, 0.3); }
+.button.primary::after { display: none; }
+.button.secondary {
+  background: var(--surface-2);
+  border-color: var(--line);
+}
+
+.site-head { box-shadow: 0 1px 0 rgba(255,255,255,0.03); }
+.head-inner {
+  min-height: 68px;
+  flex-wrap: wrap;
+  row-gap: 0.65rem;
+}
+.brand-mark {
+  border-radius: var(--radius-sm);
+  box-shadow: none;
+}
+.brand:hover .brand-mark { transform: none; box-shadow: none; }
+.brand-name {
+  background: none;
+  color: var(--ink);
+  animation: none;
+  letter-spacing: 0;
+}
+.main-nav {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.main-nav::-webkit-scrollbar { display: none; }
+.main-nav a {
+  white-space: nowrap;
+  padding: 0.42rem 0.72rem;
+  font-size: 0.88rem;
+}
+.head-actions { flex: 0 0 auto; }
+.icon-btn.round { border-radius: var(--radius-sm); }
+
+.page { padding-top: 2.15rem; }
+.page-head h1,
+.hero h1,
+.build-hero h1,
+.product-info h1,
+.program-teaser strong {
+  background: none;
+  color: var(--ink);
+  animation: none;
+}
+.page-head h1 { font-size: 2.6rem; }
+.hero h1 { font-size: 3.4rem; max-width: 920px; margin-inline: auto; }
+.build-hero h1 { font-size: 3rem; }
+.product-info h1 { font-size: 2.3rem; }
+.hero .lede,
+.hero-teaser { font-size: 1.05rem; }
+.hero-eyebrow {
+  letter-spacing: 0.08em;
+  background: var(--surface-2);
+}
+.hero-eyebrow .dot {
+  animation: none;
+  box-shadow: none;
+}
+.hero-teaser {
+  display: block;
+  border-radius: var(--radius);
+  max-width: 760px;
+  color: var(--ink-soft);
+}
+
+.entity,
+.stage-card,
+.shelf-plan-banner,
+.program-benefits,
+.forge-teaser,
+.program,
+.program-teaser,
+.price-card,
+.benefit-card,
+.journey-card,
+.security-card,
+.sb-row,
+.lifecycle-phase,
+.register-step,
+.account-card,
+.tg-login-box,
+.product-media,
+.book-frame {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+.stage-card:hover,
+.benefit-card:hover,
+.journey-card:hover,
+.sb-row:hover,
+.lifecycle-phase:hover {
+  transform: translateY(-2px);
+}
+
+.shelf-plan-banner {
+  padding: 1.25rem;
+  background: var(--surface-2);
+}
+.shelf-plan-banner h2 { font-size: 1.55rem; }
+
+.grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 1rem;
+}
+.pcard {
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  min-height: 0;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+}
+.pcard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-soft);
+}
+.pcard-cover { aspect-ratio: 16 / 10; }
+.pcard-cover img { object-fit: cover; }
+.pcard-cover::after {
+  background: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.34));
+}
+.pcard-badges {
+  position: absolute;
+  inset: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 3;
+}
+.pcard-badge-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.45rem;
+}
+.pcard-badge-set {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.pcard-format-row { align-self: flex-end; }
+.pcard-badge,
+.pcard-badge.comm,
+.pcard-badge.pcard-format {
+  position: static;
+  inset: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  max-width: 100%;
+  padding: 0.28rem 0.55rem;
+  font-size: 0.64rem;
+  letter-spacing: 0;
+  line-height: 1.1;
+  background: rgba(8, 11, 18, 0.74);
+  color: #f4f6fb;
+}
+.pcard-badge.comm-product { color: #f7d88a; }
+.pcard-badge.comm-demo { color: #7dd3fc; }
+.pcard-badge.comm-service { color: #86efac; }
+.pcard-badge.comm-saas { color: #c7f66f; }
+.pcard-body {
+  padding: 0.95rem;
+  gap: 0.42rem;
+}
+.pcard-meta { min-height: 24px; }
+.pcard-eyebrow {
+  letter-spacing: 0.06em;
+  font-size: 0.66rem;
+}
+.pcard-title {
+  min-height: 2.55em;
+  font-size: 0.98rem;
+}
+.pcard-prop {
+  min-height: 3.75em;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  -webkit-line-clamp: 3;
+}
+.pcard-benefit {
+  min-height: 2.7em;
+  font-size: 0.77rem;
+  line-height: 1.45;
+  -webkit-line-clamp: 2;
+}
+.pcard-price {
+  min-height: 1.35em;
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  font-weight: 800;
+  background: none;
+  color: var(--gold);
+}
+.pcard-cta {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.42rem;
+}
+.pcard-cta .button {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.pcard-demo-link {
+  justify-content: flex-start;
+  color: var(--ink-soft);
+}
+
+.build-price {
+  display: block;
+  max-width: 1120px;
+  margin: 2.25rem auto;
+  text-align: center;
+}
+.plan-choice-grid,
+.build-tickets-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 285px), 1fr));
+  gap: 1rem;
+}
+.build-ticket-card,
+.plan-choice-card {
+  min-height: 0;
+  padding: 1.2rem;
+  text-align: start;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+.plan-choice-card h3 {
+  font-family: var(--font-body);
+  font-size: 1.08rem;
+}
+.plan-choice-card ul {
+  margin: 0;
+  padding-inline-start: 1.1rem;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+.bt-price-row { margin: 0.2rem 0; }
+.bt-price {
+  display: block;
+  color: var(--gold);
+  font-size: 1.25rem;
+  font-weight: 850;
+  font-variant-numeric: tabular-nums;
+}
+.featured-plan {
+  border-color: color-mix(in srgb, var(--gold) 48%, var(--line));
+}
+
+.benefits-matrix .benefits-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 285px), 1fr)) !important;
+}
+.benefits-matrix .pcard { min-height: 0; }
+.benefits-matrix .pcard-body { min-height: 100%; }
+.benefits-matrix .pcard-prop { min-height: 0; }
+.benefits-matrix ul li { color: var(--ink-soft); }
+
+@media (max-width: 760px) {
+  .page-head h1 { font-size: 2.05rem; }
+  .hero h1 { font-size: 2.35rem; }
+  .build-hero h1 { font-size: 2.2rem; }
+  .product-info h1 { font-size: 1.9rem; }
+  .main-nav {
+    width: 100%;
+    order: 3;
+    margin-inline-start: 0;
+  }
+  .main-nav a { flex: 0 0 auto; }
+  .head-actions {
+    margin-inline-start: auto;
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .pcard-cta { grid-template-columns: 1fr; }
+  .build-launch-strip {
+    display: grid;
+    justify-items: center;
+  }
 }
