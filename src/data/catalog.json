@@ -6427,7 +6427,7 @@
       "billingEn": "annually",
       "billingAr": "/سنة",
       "free": false,
-      "image": "/assets/images/products/bpr.webp",
+      "image": "/assets/images/products/bpr.svg",
       "badges": [
         "SaaS",
         "Featured",

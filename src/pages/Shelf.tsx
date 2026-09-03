@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { BadgeCheck, CreditCard, MonitorPlay } from 'lucide-react';
 import data from '../data/catalog.json';
 import type { Catalog, Product, Stage } from '../types';
 import { useI18n } from '../i18n';
@@ -91,13 +92,18 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
 
       {stage === 'solutions' && (
         <div className="filters reveal comm-filters" role="tablist" aria-label="Commercial type">
-          {[['all', ar ? 'الكل' : 'All'], ['product', '🛒 ' + (ar ? 'منتجات' : 'Products')],
-            ['demo', '🧩 ' + (ar ? 'عروض' : 'Demos')], ['service', '💰 ' + (ar ? 'خدمات' : 'Services')]]
-            .map(([v, label]) => (
+          {([
+            ['all', ar ? 'الكل' : 'All', null],
+            ['product', ar ? 'منتجات' : 'Products', CreditCard],
+            ['demo', ar ? 'عروض' : 'Demos', MonitorPlay],
+            ['service', ar ? 'خدمات' : 'Services', CreditCard],
+            ['saas', ar ? 'عضويات' : 'Memberships', BadgeCheck],
+          ] as const)
+            .map(([v, label, Icon]) => (
               <button role="tab" key={v} aria-selected={comm === v}
                       className={'chip' + (comm === v ? ' active' : '')}
                       onClick={() => setComm(v)}>
-                {label}
+                {Icon ? <Icon size={13} style={{ verticalAlign: 'middle', marginInlineEnd: 4 }} /> : null}{label}
               </button>
             ))}
         </div>

@@ -1,19 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, NavLink, Link } from 'react-router-dom';
 import { Languages, Sun, Moon } from 'lucide-react';
 import { I18nProvider, useI18n } from './i18n';
 import Home from './pages/Home';
-import Shelf from './pages/Shelf';
-import Build from './pages/Build';
-import Benefits from './pages/Benefits';
-import InfoPage from './pages/InfoPage';
-import Product from './pages/Product';
-import Account from './pages/Account';
-import AccountAuthorize from './pages/AccountAuthorize';
-import Track from './pages/Track';
 import { isSignedIn as shopifySignedIn } from './lib/customerAccountAuth';
 import { withUtm } from './lib/shopifyRouting';
 import './styles/app.css';
+
+const Shelf = lazy(() => import('./pages/Shelf'));
+const Build = lazy(() => import('./pages/Build'));
+const Benefits = lazy(() => import('./pages/Benefits'));
+const InfoPage = lazy(() => import('./pages/InfoPage'));
+const Product = lazy(() => import('./pages/Product'));
+const Account = lazy(() => import('./pages/Account'));
+const AccountAuthorize = lazy(() => import('./pages/AccountAuthorize'));
+const Track = lazy(() => import('./pages/Track'));
 
 type Theme = 'dark' | 'light';
 
@@ -31,6 +32,15 @@ function useTheme(): { theme: Theme; toggle: () => void } {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
   return { theme, toggle: () => setTheme(t => (t === 'dark' ? 'light' : 'dark')) };
+}
+
+function SkipLink() {
+  const { ar } = useI18n();
+  return (
+    <a href="#main-content" className="skip-to-content-link">
+      {ar ? 'تخطي إلى المحتوى' : 'Skip to content'}
+    </a>
+  );
 }
 
 function Header() {
@@ -101,7 +111,7 @@ function Header() {
 function Footer() {
   const { ar, t } = useI18n();
   return (
-    <footer className="site-foot">
+    <footer className="site-foot" role="contentinfo">
       <nav className="foot-nav" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '0.6rem' }}>
         <Link to="/faq">{ar ? 'الأسئلة الشائعة' : 'FAQ'}</Link>
         <Link to="/support">{ar ? 'الدعم' : 'Support'}</Link>
@@ -122,7 +132,10 @@ export default function App() {
     <I18nProvider>
       <BrowserRouter>
         <div className="bg-aurora" aria-hidden="true" />
+        <SkipLink />
         <Header />
+        <main id="main-content">
+        <Suspense fallback={<div className="page" style={{ padding: '3rem', textAlign: 'center', color: 'var(--muted)' }}>Loading…</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/learn" element={<Shelf stage="learn" />} />
@@ -139,6 +152,8 @@ export default function App() {
           <Route path="/track" element={<Track />} />
           <Route path="*" element={<Home />} />
         </Routes>
+        </Suspense>
+        </main>
         <Footer />
       </BrowserRouter>
     </I18nProvider>

@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite';
-import { resolve } from 'node:path';
 import react from '@vitejs/plugin-react';
 
 // Deployed at the domain root (fadil369.github.io), so base = '/'.
@@ -13,7 +12,8 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: false,
     rollupOptions: {
-      input: resolve(__dirname, 'src/index.html'),
+      input: `${import.meta.dirname}/src/index.html`,
     },
+    chunkSizeWarningLimit: 600,
   },
 });

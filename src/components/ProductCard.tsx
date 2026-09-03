@@ -10,7 +10,7 @@ import { GHIO_LINKS, withUtm } from '../lib/shopifyRouting';
 function formatLabel(name: string, ar: boolean): string | null {
   const n = name.toLowerCase();
   if (n.includes('mini-book')) return ar ? 'كتاب مصغر' : 'Mini-Book';
-  if (n.includes('notebook') || n.includes('notebook')) return ar ? 'دفتر' : 'Notebook';
+  if (n.includes('notebook')) return ar ? 'دفتر' : 'Notebook';
   if (n.includes('(drive edition)')) return ar ? 'نسخة PDF' : 'PDF Edition';
   if (n.includes('course')) return ar ? 'دورة' : 'Course';
   if (n.includes('license')) return ar ? 'رخصة' : 'License';
@@ -68,7 +68,7 @@ export default function ProductCard({ p }: { p: Product }) {
       <div className="pcard-cover">
         <Link to={`/products/${p.slug}`} className="pcard-cover-link" aria-label={name}>
           {p.image
-            ? <img src={p.image} alt={name} loading="lazy" width={320} height={480} />
+            ? <img src={p.image} alt={name} loading="lazy" decoding="async" width={320} height={200} style={{ aspectRatio: '16/10' }} />
             : <div className="pcard-cover-fallback" aria-hidden="true">{name.slice(0, 1)}</div>}
         </Link>
         <div className="pcard-badges" aria-hidden="true">
@@ -106,9 +106,9 @@ export default function ProductCard({ p }: { p: Product }) {
         <div className="pcard-foot">
           <span className="pcard-price">
             {isBpr
-              ? (ar ? 'سنوي 3,960 · شهري 163' : 'Annual 3,960 · Monthly 163')
+              ? (p.formats && Array.isArray(p.formats) ? (ar ? `${money((p.formats[0] as any)?.price ?? 3960, true)} سنوي · ${money((p.formats[1] as any)?.price ?? 163, true)} شهري` : `Annual ${money((p.formats[0] as any)?.price ?? 3960, false)} · Monthly ${money((p.formats[1] as any)?.price ?? 163, false)}`) : (ar ? 'سنوي 3,960 · شهري 163' : 'Annual 3,960 · Monthly 163'))
               : isLearn
-                ? (ar ? 'شراء فردي · أو 182 ريال/شهر' : 'Buy individually · or 182 SAR/mo')
+                ? (p.shopifyUrlOneTime ? (ar ? `${money(p.oneTimePrice ?? 99, true)} فردي · أو 182 ريال/شهر` : `${money(p.oneTimePrice ?? 99, false)} one-time · or 182 SAR/mo`) : (ar ? '182 ريال/شهر لكل المكتبة' : '182 SAR/mo for library'))
               : isSolutions
                 ? (ar ? '1,999 شهرياً · 24,000 جاهز' : '1,999/mo · 24,000 ready')
                 : money(freeForYou ? 0 : (p.price ?? 0), ar) + periodLabel}

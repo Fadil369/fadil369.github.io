@@ -39,14 +39,13 @@ export default function Home() {
             ? '40 بطاقة تعلّم، 16 مسار بناء، وأكثر من 37 عرضاً حياً للحلول — كلها متصلة بمتجر Shopify نفسه، مع دفع واضح وتسليم وأتمتة بعد الشراء.'
             : '40 learning cards, 16 build paths, and 37+ live solution demos — all connected to the same Shopify store, with clear checkout, delivery, and post-purchase automation.'}
         </p>
-        <div className="build-launch-strip" style={{ justifyContent: 'center' }}>
+        <div className="build-launch-strip home-pricing-strip">
           <span className="launch-tag">{ar ? 'مسارات المتجر' : 'Store paths'}</span>
           <span className="launch-now">{ar ? 'LEARN 182 ر.س/شهر' : 'LEARN 182 SAR/mo'}</span>
           <span className="launch-now">{ar ? 'BUILD شهري أو 9,630 ر.س' : 'BUILD monthly or 9,630 SAR'}</span>
           <span className="launch-now">{ar ? 'SOLUTION 24,000 ر.س' : 'SOLUTION 24,000 SAR'}</span>
           <span className="launch-now">{ar ? 'BPR 163/3,960 ر.س' : 'BPR 163/3,960 SAR'}</span>
         </div>
-        
       </section>
 
       <section className="stages">
