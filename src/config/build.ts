@@ -28,7 +28,7 @@ export const BPR_MONTHLY = 'https://store.brainsait.de/products/provider-registr
 
 /** Google Forms — infrastructure requirements intake (Solutions Ready 24k) */
 /** The secure form is delivered via the welcome email after pre-built payment. */
-export const INFRA_FORM_URL = 'https://forms.gle/placeholder_solutions_ready_intake';
+export const INFRA_FORM_URL = 'https://hub.brainsait.de/form/solutions-ready-intake';
 
 /** BUILD-CARE — free ticket for healthcare workers (no deployment, marketing, or 1:1). */
 
