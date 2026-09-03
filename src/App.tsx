@@ -1,6 +1,6 @@
 import { useEffect, useState, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, NavLink, Link } from 'react-router-dom';
-import { Languages, Sun, Moon } from 'lucide-react';
+import { Languages, Sun, Moon, ShoppingBag } from 'lucide-react';
 import { I18nProvider, useI18n } from './i18n';
 import Home from './pages/Home';
 import { isSignedIn as shopifySignedIn } from './lib/customerAccountAuth';
@@ -17,6 +17,96 @@ const AccountAuthorize = lazy(() => import('./pages/AccountAuthorize'));
 const Track = lazy(() => import('./pages/Track'));
 
 type Theme = 'dark' | 'light';
+
+/* ═══════════════════════════════════════════════════════════
+   Skeleton Loading States
+   ═══════════════════════════════════════════════════════════ */
+
+function SkeletonCard() {
+  return (
+    <div className="skeleton-card">
+      <div className="skeleton-card__cover skeleton" />
+      <div className="skeleton-card__body">
+        <div className="skeleton skeleton-card__eyebrow" />
+        <div className="skeleton skeleton-card__title" />
+        <div className="skeleton skeleton-card__prop" />
+        <div className="skeleton skeleton-card__price" />
+        <div className="skeleton-card__cta">
+          <div className="skeleton skeleton-card__btn" />
+          <div className="skeleton skeleton-card__btn" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PageLoader() {
+  return (
+    <div className="page" style={{ padding: '4rem 2rem', textAlign: 'center' }}>
+      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <div className="skeleton" style={{ height: '200px', borderRadius: 'var(--radius)', marginBottom: '1.5rem' }} />
+        <div className="skeleton" style={{ height: '28px', width: '60%', margin: '0 auto 1rem', borderRadius: 'var(--radius-sm)' }} />
+        <div className="skeleton" style={{ height: '16px', width: '80%', margin: '0 auto 2rem', borderRadius: 'var(--radius-sm)' }} />
+        <div className="grid is-loading" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1.5rem' }}>
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   404 Page
+   ═══════════════════════════════════════════════════════════ */
+
+function NotFound() {
+  const { ar, t } = useI18n();
+  return (
+    <div className="page" style={{ padding: '4rem 2rem', textAlign: 'center', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ maxWidth: '500px' }}>
+        <div className="skeleton" style={{ height: '120px', width: '120px', borderRadius: '24px', margin: '0 auto 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '48px', fontWeight: '800', color: 'var(--gold)' }}>
+          404
+        </div>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: '28px', marginBottom: '0.5rem' }}>
+          {ar ? 'الصفحة غير موجودة' : 'Page Not Found'}
+        </h2>
+        <p style={{ color: 'var(--ink-soft)', marginBottom: '2rem', lineHeight: 1.6 }}>
+          {ar
+            ? 'العذر، الصفحة التي تبحث عنها لم تعد متاحة أو لم تكن موجودة أبداً.'
+            : "The page you're looking for doesn't exist or has been moved."}
+        </p>
+        <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Link to="/" className="button primary">
+            {ar ? '↩ العودة للمتجر' : '↩ Back to Store'}
+          </Link>
+          <Link to="/learn" className="button secondary">
+            📚 {ar ? 'تعلّم' : 'Learn'}
+          </Link>
+          <Link to="/solutions" className="button secondary">
+            🚀 {ar ? 'حلول' : 'Solutions'}
+          </Link>
+        </div>
+        <nav style={{ marginTop: '2.5rem', paddingTop: '1.5rem', borderTop: '1px solid var(--line)', display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Link to="/learn" style={{ color: 'var(--ink-soft)', fontSize: '13px', padding: '6px 12px', borderRadius: '8px', textDecoration: 'none', border: '1px solid var(--line)', background: 'var(--surface)' }}>
+            {ar ? 'تعلّم' : 'Learn'}
+          </Link>
+          <Link to="/build" style={{ color: 'var(--ink-soft)', fontSize: '13px', padding: '6px 12px', borderRadius: '8px', textDecoration: 'none', border: '1px solid var(--line)', background: 'var(--surface)' }}>
+            {ar ? 'ابنِ' : 'Build'}
+          </Link>
+          <Link to="/solutions" style={{ color: 'var(--ink-soft)', fontSize: '13px', padding: '6px 12px', borderRadius: '8px', textDecoration: 'none', border: '1px solid var(--line)', background: 'var(--surface)' }}>
+            {ar ? 'حلول' : 'Solutions'}
+          </Link>
+          <Link to="/benefits" style={{ color: 'var(--ink-soft)', fontSize: '13px', padding: '6px 12px', borderRadius: '8px', textDecoration: 'none', border: '1px solid var(--line)', background: 'var(--surface)' }}>
+            {ar ? 'المزايا' : 'Benefits'}
+          </Link>
+        </nav>
+      </div>
+    </div>
+  );
+}
 
 function useTheme(): { theme: Theme; toggle: () => void } {
   const [theme, setTheme] = useState<Theme>(() => {
@@ -58,8 +148,6 @@ function Header() {
           <NavLink to="/learn">{t('nav.learn')}</NavLink>
           <NavLink to="/build">{t('nav.build')}</NavLink>
           <NavLink to="/solutions">{t('nav.solutions')}</NavLink>
-          {/* Store-side collections that have no gh.io equivalent — route straight to
-              Shopify with UTM attribution so both surfaces expose the same catalog. */}
           <a
             href={withUtm('https://store.brainsait.de/collections/solutions-ready', { utm_content: 'nav-solutions-ready' })}
             target="_blank"
@@ -81,8 +169,6 @@ function Header() {
           </NavLink>
         </nav>
         <div className="head-actions">
-          {/* Bidirectional surface switch: Shopify's footer links back to gh.io, so the
-              storefront links to the store (checkout) the same way. */}
           <a
             className="button secondary sm"
             href={withUtm('https://store.brainsait.de', { utm_content: 'header-store' })}
@@ -135,24 +221,24 @@ export default function App() {
         <SkipLink />
         <Header />
         <main id="main-content">
-        <Suspense fallback={<div className="page" style={{ padding: '3rem', textAlign: 'center', color: 'var(--muted)' }}>Loading…</div>}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/learn" element={<Shelf stage="learn" />} />
-          <Route path="/solutions" element={<Shelf stage="solutions" />} />
-          <Route path="/build" element={<Build />} />
-          <Route path="/benefits" element={<Benefits />} />
-          <Route path="/faq" element={<InfoPage page="faq" />} />
-          <Route path="/terms" element={<InfoPage page="terms" />} />
-          <Route path="/support" element={<InfoPage page="support" />} />
-          <Route path="/contact" element={<InfoPage page="contact" />} />
-          <Route path="/products/:slug" element={<Product />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="/account/authorize" element={<AccountAuthorize />} />
-          <Route path="/track" element={<Track />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
-        </Suspense>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/learn" element={<Shelf stage="learn" />} />
+              <Route path="/solutions" element={<Shelf stage="solutions" />} />
+              <Route path="/build" element={<Build />} />
+              <Route path="/benefits" element={<Benefits />} />
+              <Route path="/faq" element={<InfoPage page="faq" />} />
+              <Route path="/terms" element={<InfoPage page="terms" />} />
+              <Route path="/support" element={<InfoPage page="support" />} />
+              <Route path="/contact" element={<InfoPage page="contact" />} />
+              <Route path="/products/:slug" element={<Product />} />
+              <Route path="/account" element={<Account />} />
+              <Route path="/account/authorize" element={<AccountAuthorize />} />
+              <Route path="/track" element={<Track />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </main>
         <Footer />
       </BrowserRouter>

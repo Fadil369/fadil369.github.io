@@ -1507,6 +1507,196 @@ img { max-width: 100%; }
   .pcard-cta { grid-template-columns: 1fr; }
   .build-launch-strip {
     display: grid;
-    justify-items: center;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Skeleton Loading States
+   ═══════════════════════════════════════════════════════════ */
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+  animation: skeleton-shimmer 1.8s ease-in-out infinite;
+}
+
+:root[data-theme='light'] .skeleton::after {
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.04), transparent);
+}
+
+@keyframes skeleton-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.skeleton-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  min-height: 560px;
+}
+
+.skeleton-card__cover {
+  aspect-ratio: 16 / 10;
+  background: var(--bg-2);
+}
+
+.skeleton-card__body {
+  padding: 1.05rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.skeleton-card__eyebrow { width: 40%; height: 10px; }
+.skeleton-card__title { width: 85%; height: 16px; }
+.skeleton-card__prop { width: 100%; height: 12px; }
+.skeleton-card__price { width: 50%; height: 18px; margin-top: auto; }
+
+.skeleton-card__cta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+  margin-top: 0.6rem;
+}
+
+.skeleton-card__btn { height: 36px; border-radius: var(--radius-sm); }
+
+.grid.is-loading .pcard { display: none; }
+.grid.is-loading .skeleton-card { display: flex; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  animation: fadeInUp 0.5s var(--ease-out) both;
+}
+
+.reveal-delay-1 { animation-delay: 0.1s; }
+.reveal-delay-2 { animation-delay: 0.2s; }
+.reveal-delay-3 { animation-delay: 0.3s; }
+
+/* ═══════════════════════════════════════════════════════════
+   Micro-Interactions & Hover Effects
+   ═══════════════════════════════════════════════════════════ */
+
+/* Button ripple effect */
+.button {
+  position: relative;
+  overflow: hidden;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+  pointer-events: none;
+}
+
+.button:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Card entrance animation */
+@keyframes cardEntrance {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.pcard {
+  animation: cardEntrance 0.4s var(--ease-out) both;
+}
+
+.pcard:nth-child(1) { animation-delay: 0.05s; }
+.pcard:nth-child(2) { animation-delay: 0.1s; }
+.pcard:nth-child(3) { animation-delay: 0.15s; }
+.pcard:nth-child(4) { animation-delay: 0.2s; }
+.pcard:nth-child(5) { animation-delay: 0.25s; }
+.pcard:nth-child(6) { animation-delay: 0.3s; }
+
+/* Gold shimmer on price hover */
+@keyframes goldShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.pcard:hover .pcard-price {
+  background-size: 200% auto;
+  animation: goldShimmer 2s linear infinite;
+}
+
+/* Floating badge animation */
+@keyframes floatPulse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.pcard-badge { animation: floatPulse 3s ease-in-out infinite; }
+
+/* Stage card glow */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px color-mix(in srgb, var(--acc) 15%, transparent); }
+  50% { box-shadow: 0 0 40px color-mix(in srgb, var(--acc) 30%, transparent); }
+}
+
+.stage-card:hover { animation: glowPulse 2s ease-in-out infinite; }
+
+/* Footer link underline animation */
+.site-foot a {
+  position: relative;
+  display: inline-block;
+}
+
+.site-foot a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s var(--ease-out);
+}
+
+.site-foot a:hover::after { width: 100%; }
+
+/* Smooth scroll-reveal helper */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-wrapper {
+    transition: opacity 0.2s var(--ease-out);
   }
 }
