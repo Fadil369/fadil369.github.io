@@ -35,13 +35,31 @@ export function openShopify(url: string, extra?: Record<string, string>) {
 }
 
 export const GHIO_LINKS = {
-  learnMonthly: `${STORE_BASE}/products/learn-brainsait-digital-access`,
-  learnBooks: `${STORE_BASE}/collections/learn-books`,
-  buildMonthly: `${STORE_BASE}/products/build-forge-incubator-founders-program`,
-  buildTicket: `${STORE_BASE}/products/build-ticket`,
-  bpr: `${STORE_BASE}/products/provider-registry`,
+  // Monthly subscriptions (auto-renewing)
+  learnMonthly: `${STORE_BASE}/products/brainsait-learn-digital-access-library-membership`,
+  buildMonthly: `${STORE_BASE}/products/build-forge-incubator-founders-program-1`,
+  solutionMonthly: `${STORE_BASE}/products/solutions-brainsait-super-partner-program-1`,
+  
+  // One-time purchase / milestone products
+  buildTicket: `${STORE_BASE}/products/build-full-program-ticket`,
   solutionReady: `${STORE_BASE}/collections/solutions-ready`,
-  solutionReadyProduct: `${STORE_BASE}/products/solutions-ready-enterprise-deployment`,
-  solutionMonthly: `${STORE_BASE}/products/solutions-brainsait-super-partner-program`,
+  solutionReadyProduct: `${STORE_BASE}/products/solutions-ready-enterprise-deployment-1`,
+  
+  // Collections
+  learnBooks: `${STORE_BASE}/collections/learn-books`,
+  solutionsReady: `${STORE_BASE}/collections/solutions-ready`,
+  
+  // BPR — BrainSAIT Provider Registry
+  bpr: `${STORE_BASE}/products/provider-registry`,
+  bprAnnual: `${STORE_BASE}/products/provider-registry`,
+  bprMonthly: `${STORE_BASE}/products/provider-registry`,
+  
+  // External ecosystem links
+  registry: 'https://registry.brainsait.org',
+  calendar: 'https://calendar.app.google/Ve9KSKmaVA6ehDP48',
+  calendarBuild: 'https://calendar.app.google/rAqiE6pNumtECdnd7',
+  notioFounders: 'https://fadil369.notion.site/Founder-OS-3ba3479c6f628117966fd1be6c120ac2',
+  notioBrain: 'https://fadil369.notion.site/Ultimate-Brain-3bc3479c6f628177afd7fb7e9224c19c',
+  telegramBot: 'https://t.me/brainsait_forge_bot',
   benefits: `${STORE_BASE}/pages/benefits`,
 };
