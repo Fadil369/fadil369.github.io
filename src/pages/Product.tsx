@@ -8,6 +8,7 @@ import { track, trackViewItem } from '../analytics';
 import { useAccountHolder } from '../hooks/useAccountHolder';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { GHIO_LINKS, withUtm } from '../lib/shopifyRouting';
+import { CALENDAR_URL } from '../config/build';
 
 const cat = data as unknown as Catalog;
 const ALL: P[] = [...cat.learn, ...cat.solutions, ...cat.build.courses];
@@ -133,7 +134,7 @@ export default function Product() {
                 <strong>{ar ? 'ماذا بعد الدفع؟ — Learn' : 'What happens after payment? — Learn'}</strong>
                 <ul style={{ margin: '6px 0 0', paddingInlineStart: '1.2rem' }}>
                   <li>{ar ? 'إيميل شكراً على الشراء فوراً + إيميل ترحيبي حسب الخطة' : 'Instant thank-you email + welcome email tailored to your plan'}</li>
-                  <li>{ar ? 'الاشتراك الشهري: رابط Frame.io واحد https://f.io/dcOtN3Lf لكل الـ 40 كتاباً (يبقى فعالاً حتى دورة الفوترة التالية، مع تذكيرات دفع)' : 'Monthly: single Frame.io link https://f.io/dcOtN3Lf for all 40 books (active until next billing cycle, with payment reminders)'}</li>
+                  <li>{ar ? 'الاشتراك الشهري: رابط Frame.io خاص يُرسل بعد الدفع لكل الـ 40 كتاباً (يبقى فعالاً حتى دورة الفوترة التالية، مع تذكيرات دفع)' : 'Monthly: a private Frame.io access link is sent after payment for all 40 books (active until the next billing cycle, with payment reminders)'}</li>
                   <li>{ar ? 'الشراء الفردي: رابط تحميل R2 فوري لهذا الكتاب فقط — تسليم رقمي آمن' : 'One-time: instant R2 download link for this book only — secure digital delivery'}</li>
                   <li>{ar ? 'دعم عالي التوفر عبر: GitHub · Notion · Airtable · Canvas · Hermes · Lark — أتمتة كاملة وعالية التكامل' : 'High-availability support via: GitHub · Notion · Airtable · Canvas · Hermes · Lark — fully automated, highly integrated'}</li>
                 </ul>
@@ -210,14 +211,14 @@ export default function Product() {
           <section className="book-section reveal" style={{ marginTop: 18 }}>
             <div className="section-head">
               <h2>{ar ? 'استبيان الحل الجاهز — سلم متطلباتك' : 'Pre-built Solution Form — Submit your requirements'}</h2>
-              <span className="book-note">{ar ? 'بعد دفع 24,000 ر.س، عبّئ هذا النموذج بكل تفاصيل البنية، المجال، الاستضافة والحزمة المطلوبة — نسلّم الكود المصدري كحل مغلف.' : 'After 24k payment, fill this form with all infra, domain, hosting & package details — we deliver source code as a packaged solution.'}</span>
+              <span className="book-note">{ar ? 'بعد دفع 24,000 ر.س، يصلك رابط الاستبيان الآمن مع حجز الجلسة لتسليم تفاصيل البنية، المجال، الاستضافة والحزمة المطلوبة.' : 'After 24k payment, you receive the secure intake form with the booking flow for infra, domain, hosting, and package details.'}</span>
             </div>
             <div className="glass" style={{ padding: 18, borderRadius: 14 }}>
               <p style={{ margin: '0 0 12px', color: 'var(--ink-soft)' }}>
-                {ar ? 'نموذج Google Form يغطي: اسم الحل، مجال العمل، البنية الحالية، الاستضافة المفضلة (Hetzner/Cloudflare)، المجال، متطلبات الدفع، اللغة، والوقت المطلوب للتسليم.' : 'Google Form covers: solution name, domain, current infra, preferred hosting (Hetzner/Cloudflare), domain, payment needs, language, and desired delivery timeline.'}
+                {ar ? 'الاستبيان الآمن يغطي: اسم الحل، مجال العمل، البنية الحالية، الاستضافة المفضلة (Hetzner/Cloudflare)، المجال، متطلبات الدفع، اللغة، والوقت المطلوب للتسليم. لا نعرض رابط الاستبيان العام قبل الدفع.' : 'The secure intake covers: solution name, domain, current infra, preferred hosting (Hetzner/Cloudflare), domain, payment needs, language, and desired delivery timeline. The intake link is not exposed publicly before payment.'}
               </p>
-              <a className="button primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdummy-prebuilt-form/viewform" target="_blank" rel="noopener noreferrer">
-                {ar ? 'افتح نموذج Google Form' : 'Open Google Form'} <ExternalLink size={14} />
+              <a className="button primary" href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
+                {ar ? 'احجز جلسة الاستلام' : 'Book the handoff session'} <ExternalLink size={14} />
               </a>
               <p className="fineprint" style={{ marginTop: 10 }}>{ar ? 'الرابط يُرسل تلقائياً بإيميل الترحيب بعد الدفع الجاهز، مع رابط Calendar الفوري.' : 'Link is also sent automatically in the welcome email after pre-built payment, with the instant Calendar link.'}</p>
             </div>
