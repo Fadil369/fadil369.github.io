@@ -6409,6 +6409,102 @@
       "available": true,
       "commercial": "product",
       "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program"
+    },
+    {
+      "slug": "bpr",
+      "stage": "solutions",
+      "name": "BrainSAIT Provider Registry (BPR)",
+      "nameAr": "سجل برينسايت لمقدمي الرعاية الصحية",
+      "category": "Healthcare Identity",
+      "categoryAr": "الهوية الصحية",
+      "sub": "registry",
+      "tier": "saas",
+      "tagline": "Saudi healthcare provider identity, credential and discovery layer — SPID + OID under IANA PEN 61026.",
+      "taglineAr": "طبقة موحدة للهوية المهنية، والتحقق، والتشغيل البيني، واكتشاف مقدمي الرعاية الصحية — SPID وOID تحت رقم IANA 61026.",
+      "description": "BrainSAIT Provider Registry (BPR) is Saudi Arabia's interoperable healthcare provider identity, credential and discovery layer. Each provider record carries a durable SPID (human-friendly) and BrainSAIT OID (machine identifier) under IANA PEN 61026. FHIR R4-first, SCFHS-anchored verification, Gravatar profile enrichment, DID/VC claims, NPHIES-aligned.",
+      "descriptionAr": "سجل برينسايت لمقدمي الرعاية الصحية (BPR) هو طبقة موحدة للهوية المهنية والتحقق والتشغيل البيني واكتشاف مقدمي الرعاية الصحية في المملكة العربية السعودية. يحمل كل ملف مهني هوية SPID (سهلة الاستخدام البشري) وOID (معرف آلة) تحت رقم IANA 61026. نموذج FHIR R4 أولا، التحقق المربوط بالهيئة السعودية للتخصصات الصحية، إثراء الملف الشخصي عبر Gravatar، مطالبات DID/VC، متوافق مع NPHIES.",
+      "price": 2280,
+      "billingEn": "monthly",
+      "billingAr": "/شهر",
+      "free": false,
+      "image": "/assets/images/products/bpr.webp",
+      "badges": [
+        "SaaS"
+      ],
+      "benefits": [
+        "One durable SPID + OID per provider under IANA PEN 61026",
+        "SCFHS-anchored verification with provenanced claims",
+        "FHIR R4-first: Practitioner, PractitionerRole, Organization, Location, HealthcareService, Endpoint, Qualification",
+        "DID/VC signed claims: identity, specialty, affiliation, good standing"
+      ],
+      "formats": [
+        {
+          "name": "Basic",
+          "price": 0,
+          "free": true,
+          "desc": "Individual listing + QR code"
+        },
+        {
+          "name": "Professional",
+          "price": 2280,
+          "free": false,
+          "desc": "Full profile + OID + SCFHS anchor"
+        },
+        {
+          "name": "Enterprise",
+          "price": null,
+          "free": false,
+          "desc": "HC systems, insurers, NPHIES pilot"
+        }
+      ],
+      "whatsIncluded": [
+        "Provider listing with SPID",
+        "OID allocation under 1.3.6.1.4.1.61026",
+        "QR verification card",
+        "FHIR R4 API endpoint",
+        "SCFHS verification integration",
+        "Gravatar profile layer (optional)",
+        "DID/VC claim issuance"
+      ],
+      "faqs": [
+        {
+          "q": "Does BPR replace SCFHS registration?",
+          "a": "No. BPR issues the registry identity and OID; SCFHS remains the licensing authority. We integrate against SCFHS but do not certify on its behalf."
+        },
+        {
+          "q": "What is the SPID format?",
+          "a": "SA-[PREFIX]-[NUMBER], e.g. SA-PHY-000001. Prefix maps to practitioner type (PHY, DEN, PHA, NUR, ALH, TEC, OTH)."
+        },
+        {
+          "q": "Is Gravatar used to verify identity?",
+          "a": "No. Gravatar is enrichment only — photo, bio, links. Never identity or credential evidence."
+        }
+      ],
+      "faqAr": [
+        {
+          "q": "هل يستبدل BPR تسجيل الهيئة؟",
+          "a": "لا. برينسايت تمنح الهوية والOID؛ الهيئة السعودية تبقى الجهة المرخصة. نربط بالهيئة لكن لا نصدر عليها شهادات."
+        },
+        {
+          "q": "ما هو تنسيق SPID؟",
+          "a": "SA-[PREFIX]-[NUMBER]، مثال: SA-PHY-000001. اللاحقة تحدد نوع الممارس."
+        },
+        {
+          "q": "هل يستخدم Gravatar للتحقق من الهوية؟",
+          "a": "لا. Gravatar للإثراء فقط - الصورة، السيرة، الروابط. ليس دليلا على الهوية أو الشهادات."
+        }
+      ],
+      "rating": 4.8,
+      "users": 1247,
+      "flag": null,
+      "demoUrl": "https://registry.brainsait.org",
+      "limitedDemo": false,
+      "shopifyUrl": "https://store.brainsait.de",
+      "shopifyHandle": "provider-registry",
+      "sku": "BPR-SaaS-M",
+      "available": true,
+      "commercial": "saas",
+      "shopifyUrlMonthly": "https://store.brainsait.de"
     }
   ],
   "meta": {
