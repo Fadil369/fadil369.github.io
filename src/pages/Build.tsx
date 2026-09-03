@@ -58,7 +58,7 @@ export default function Build() {
             <Calendar size={18} /> {ar ? 'احجز جلسة تقييم' : 'Book an evaluation'}
           </a>
         </div>
-        <p className="fineprint">{ar ? 'دفع آمن على store.brainsait.de — أدخل رمز الخصم قبل إتمام الشراء، أو احجز جلسة تقييم أولاً.' : 'Secure checkout on store.brainsait.de — apply your promo code before checkout, or book an evaluation first.'}</p>
+        <p className="fineprint">{ar ? 'كل عملية دفع تُستكمل على store.brainsait.de مع ربط الاستحقاق والتسليم هناك — أو احجز جلسة تقييم أولاً.' : 'Every payment completes on store.brainsait.de with entitlement routing and fulfillment there — or book an evaluation first.'}</p>
       </section>
 
       {/* ── BUILD PLANS — both routes checkout directly on Shopify ── */}
@@ -83,7 +83,7 @@ export default function Build() {
             <a className="button primary lg" href={withUtm(GHIO_LINKS.buildMonthly, { plan: 'build-monthly', utm_content: 'build-page' })}
                target="_blank" rel="noopener noreferrer"
                onClick={() => { track('build_cta', { location: 'monthly' }); journeyEvent('journey.offer_clicked', { location: 'monthly' }); }}>
-              {ar ? 'اشترك شهرياً' : 'Subscribe monthly'} <Rocket size={18} />
+              {ar ? 'اذهب إلى دفع Shopify الشهري' : 'Go to Shopify monthly checkout'} <Rocket size={18} />
             </a>
           </article>
           <article className="build-ticket-card plan-choice-card featured-plan">
@@ -99,7 +99,7 @@ export default function Build() {
             <a className="button secondary lg" href={withUtm(GHIO_LINKS.buildTicket, { plan: 'build-ticket', utm_content: 'build-page' })}
                target="_blank" rel="noopener noreferrer"
                onClick={() => { track('build_cta', { location: 'ticket' }); journeyEvent('journey.offer_clicked', { location: 'ticket' }); }}>
-              {ar ? 'اشترِ التذكرة' : 'Buy the ticket'} <Rocket size={18} />
+              {ar ? 'افتح دفع Shopify للتذكرة' : 'Open Shopify ticket checkout'} <Rocket size={18} />
             </a>
           </article>
         </div>

@@ -35,9 +35,15 @@ export default function Home() {
         <h1>{ar ? 'تعلّم · ابنِ · حلول' : 'Learn · Build · Solutions'}</h1>
         <p className="lede">
           {ar
-            ? 'مكتبة رقمية، برنامج احتضان، وبرمجيات جاهزة — صممناها لترتقي بك. أنيقة في كل تفصيلة، قوية في كل ميزة.'
-            : 'A digital library, an incubation program, and production-ready software — crafted to elevate you. Elegant in every detail, powerful in every feature.'}
+            ? '40 بطاقة تعلّم، 16 مسار بناء، وأكثر من 37 عرضاً حياً للحلول — كلها متصلة بمتجر Shopify نفسه، مع دفع واضح وتسليم وأتمتة بعد الشراء.'
+            : '40 learning cards, 16 build paths, and 37+ live solution demos — all connected to the same Shopify store, with clear checkout, delivery, and post-purchase automation.'}
         </p>
+        <div className="build-launch-strip" style={{ justifyContent: 'center' }}>
+          <span className="launch-tag">{ar ? 'مسارات المتجر' : 'Store paths'}</span>
+          <span className="launch-now">{ar ? 'LEARN 182 ر.س/شهر' : 'LEARN 182 SAR/mo'}</span>
+          <span className="launch-now">{ar ? 'BUILD 499 ر.س/شهر' : 'BUILD 499 SAR/mo'}</span>
+          <span className="launch-now">{ar ? 'SOLUTION 24,000 ر.س' : 'SOLUTION 24,000 SAR'}</span>
+        </div>
         
       </section>
 

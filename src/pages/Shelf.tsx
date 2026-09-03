@@ -41,8 +41,8 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
         <section className="shelf-plan-banner reveal" aria-label={ar ? 'خطة تعلم الشهرية' : 'LEARN monthly plan'}>
           <div>
             <span className="hero-eyebrow"><span className="dot" /> {ar ? 'وصول كامل' : 'Complete access'}</span>
-            <h2>{ar ? 'كل كتب LEARN الأربعين — رابط واحد' : 'All 40 LEARN books — one link'}</h2>
-            <p>{ar ? 'اقرأ المجموعة كاملة أونلاين مع تجديد شهري وتذكيرات قبل الاستحقاق.' : 'Read the complete collection online, with monthly renewal tracking and payment reminders.'}</p>
+            <h2>{ar ? 'كل كتب LEARN الأربعين — رابط واحد على Shopify' : 'All 40 LEARN books — one Shopify link'}</h2>
+            <p>{ar ? 'كل بطاقة تقود إلى الدفع الشهري 182 ر.س، والاطلاع على التفاصيل يفتح صفحة المنتج كاملة قبل الشراء.' : 'Every card routes to the 182 SAR monthly Shopify checkout, and the learn-more action opens the full product page before purchase.'}</p>
           </div>
           <a className="button primary lg" href={withUtm(GHIO_LINKS.learnMonthly, { plan: 'learn-monthly', utm_content: 'learn-banner' })} target="_blank" rel="noopener noreferrer">
             {ar ? 'اشترك بـ 182 ريال/شهر' : 'Subscribe · 182 SAR/month'}
@@ -55,7 +55,7 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
           <div>
             <span className="hero-eyebrow"><span className="dot" /> {ar ? 'مساران للتنفيذ' : 'Two delivery paths'}</span>
             <h2>{ar ? 'احتضان شهري أو حل جاهز للنشر' : 'Monthly incubation or deployment-ready'}</h2>
-            <p>{ar ? 'اختر 1,999 ريال شهرياً للشراكة الكاملة، أو 24,000 ريال لحل جاهز مع جلسة إعداد.' : 'Choose 1,999 SAR/month for the full partner journey, or 24,000 SAR for a ready solution with an infrastructure kickoff.'}</p>
+            <p>{ar ? 'أكثر من 37 بطاقة حل حية، مع روابط ديمو مباشرة، ومساران للدفع: 1,999 ر.س شهرياً أو 24,000 ر.س للحل الجاهز.' : 'More than 37 live solution cards, with direct demo links, and two payment paths: 1,999 SAR/month or 24,000 SAR for the ready-built solution.'}</p>
             {/* Both Solutions plans include the code platform — say so up front, matching
                 what the backend actually provisions (reserved *.code.brainsait.org workspace). */}
             <p className="shelf-code-access">

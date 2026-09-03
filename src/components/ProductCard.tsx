@@ -51,6 +51,7 @@ export default function ProductCard({ p }: { p: Product }) {
   const readyUrl = p.shopifyUrl || GHIO_LINKS.solutionReady;
   const periodLabel = isMonthly && !isLearn ? (ar ? '/شهر' : '/mo') : '';
   const ctaLabel = isMonthly ? (ar ? 'اشترك' : 'Subscribe') : (freeForYou ? t('cta.getFree') : t('cta.buy'));
+  const learnMoreLabel = isLearn ? (ar ? 'اعرف المزيد' : 'Learn more') : t('cta.details');
 
   const onBuy = () =>
     track('add_to_cart', {
@@ -155,7 +156,7 @@ export default function ProductCard({ p }: { p: Product }) {
             )}
             {!isSolutions && (
               <Link className="button secondary sm" to={`/products/${p.slug}`}>
-                {isLearn ? (ar ? 'اعرف المزيد' : 'Learn more') : t('cta.details')} <Arrow size={14} aria-hidden="true" />
+                {learnMoreLabel} <Arrow size={14} aria-hidden="true" />
               </Link>
             )}
           </div>
