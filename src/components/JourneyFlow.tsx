@@ -14,13 +14,13 @@ export default function JourneyFlow() {
     {
       icon: BookOpen,
       title: ar ? 'تعلّم — 182 ر.س/شهر' : 'Learn — 182 SAR/mo',
-      desc: ar ? '40 كتاباً عبر رابط Frame.io واحد — أو كتاب فردي PDF' : '40 books via single Frame.io link — or single-book PDF',
-      chain: 'Shopify → Resend thank-you → Frame.io / R2',
+      desc: ar ? '40 كتاباً عبر رابط خاص بعد الدفع — أو كتاب فردي PDF' : '40 books via a private post-payment link — or single-book PDF',
+      chain: 'Shopify → thank-you → private library / R2',
       color: '#29d8ff',
     },
     {
       icon: Hammer,
-      title: ar ? 'ابنِ — 499 شهرياً أو 9,630' : 'Build — 499/mo or 9,630',
+      title: ar ? 'ابنِ — شهري أو 9,630' : 'Build — monthly or 9,630',
       desc: ar ? 'Notion + العقل الثاني + Forge Bot + محاكيات' : 'Notion + 2nd Brain + Forge Bot + simulators',
       chain: 'GitHub → Notion → 2nd Brain → Telegram',
       color: '#e9c46a',
@@ -70,7 +70,7 @@ export default function JourneyFlow() {
       </div>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 12 }}>
         <a className="button secondary sm" href="https://store.brainsait.de/products/learn-brainsait-digital-access" target="_blank" rel="noopener noreferrer">182 SAR</a>
-        <a className="button secondary sm" href="https://store.brainsait.de/products/build-forge-incubator-founders-program" target="_blank" rel="noopener noreferrer">499 SAR</a>
+        <a className="button secondary sm" href="https://store.brainsait.de/products/build-forge-incubator-founders-program" target="_blank" rel="noopener noreferrer">{ar ? 'BUILD شهري' : 'BUILD monthly'}</a>
         <a className="button secondary sm" href="https://store.brainsait.de/products/solutions-brainsait-super-partner-program" target="_blank" rel="noopener noreferrer">1,999 SAR</a>
         <a className="button primary sm" href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noopener noreferrer"><Calendar size={14} /> {ar ? 'احجز جلسة' : 'Book session'}</a>
       </div>

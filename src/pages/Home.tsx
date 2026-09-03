@@ -14,7 +14,8 @@ const ACCENTS = ['learn', 'build', 'solutions'];
 
 export default function Home() {
   const { ar, t } = useI18n();
-  const featured = cat.learn.slice(0, 8);
+  const bpr = cat.solutions.find(p => p.slug === 'bpr');
+  const featured = bpr ? [bpr, ...cat.learn.slice(0, 7)] : cat.learn.slice(0, 8);
   const counts: Record<string, number> = {
     learn: cat.learn.length,
     build: cat.build.courses.length + 1,
@@ -41,8 +42,9 @@ export default function Home() {
         <div className="build-launch-strip" style={{ justifyContent: 'center' }}>
           <span className="launch-tag">{ar ? 'مسارات المتجر' : 'Store paths'}</span>
           <span className="launch-now">{ar ? 'LEARN 182 ر.س/شهر' : 'LEARN 182 SAR/mo'}</span>
-          <span className="launch-now">{ar ? 'BUILD 499 ر.س/شهر' : 'BUILD 499 SAR/mo'}</span>
+          <span className="launch-now">{ar ? 'BUILD شهري أو 9,630 ر.س' : 'BUILD monthly or 9,630 SAR'}</span>
           <span className="launch-now">{ar ? 'SOLUTION 24,000 ر.س' : 'SOLUTION 24,000 SAR'}</span>
+          <span className="launch-now">{ar ? 'BPR 163/3,960 ر.س' : 'BPR 163/3,960 SAR'}</span>
         </div>
         
       </section>

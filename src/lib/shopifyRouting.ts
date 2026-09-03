@@ -39,7 +39,9 @@ export const GHIO_LINKS = {
   learnBooks: `${STORE_BASE}/collections/learn-books`,
   buildMonthly: `${STORE_BASE}/products/build-forge-incubator-founders-program`,
   buildTicket: `${STORE_BASE}/products/build-ticket`,
+  bpr: `${STORE_BASE}/products/provider-registry`,
   solutionReady: `${STORE_BASE}/collections/solutions-ready`,
+  solutionReadyProduct: `${STORE_BASE}/products/solutions-ready-enterprise-deployment`,
   solutionMonthly: `${STORE_BASE}/products/solutions-brainsait-super-partner-program`,
   benefits: `${STORE_BASE}/pages/benefits`,
 };

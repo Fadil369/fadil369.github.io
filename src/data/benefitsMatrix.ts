@@ -1,8 +1,8 @@
 export type BenefitKey =
-  | 'learnAll' | 'learnOne' | 'notion' | 'secondBrain' | 'telegram' | 'lark' | 'calendar' | 'deployment';
+  | 'learnAll' | 'learnOne' | 'notion' | 'secondBrain' | 'telegram' | 'lark' | 'calendar' | 'deployment' | 'providerRegistry';
 
 export const BENEFITS: Record<BenefitKey, { en: string; ar: string; icon: string }> = {
-  learnAll: { en: 'All 40 LEARN books (Frame.io online)', ar: 'كل كتب LEARN الـ40 (أونلاين Frame.io)', icon: '📚' },
+  learnAll: { en: 'All 40 LEARN books (private online library link)', ar: 'كل كتب LEARN الـ40 (رابط مكتبة خاص)', icon: '📚' },
   learnOne: { en: 'Single book PDF (R2 instant download)', ar: 'كتاب واحد PDF (تحميل فوري R2)', icon: '📖' },
   notion: { en: 'Notion Forge — 16-day courses + labs', ar: 'Notion Forge — دورات 16 يوماً + مختبرات', icon: '🧠' },
   secondBrain: { en: '2nd Brain notebooks (persistent)', ar: 'دفاتر العقل الثاني (دائمة)', icon: '🗂️' },
@@ -10,6 +10,7 @@ export const BENEFITS: Record<BenefitKey, { en: string; ar: string; icon: string
   lark: { en: 'Lark super-partner org setup', ar: 'إعداد مؤسسة Lark شريك مميز', icon: '💬' },
   calendar: { en: 'Google Meet kickoff (calendar booking)', ar: 'اجتماع انطلاق Meet (حجز تقويم)', icon: '📅' },
   deployment: { en: 'Pre-built deployment to your infra', ar: 'نشر جاهز على بنيتك', icon: '🚀' },
+  providerRegistry: { en: 'BPR provider identity: SPID + OID + QR', ar: 'هوية BPR: SPID + OID + QR', icon: '◎' },
 };
 
 export type Tier = {
@@ -35,8 +36,8 @@ export const TIERS: Tier[] = [
   {
     id: 'learn-monthly', cat: 'learn', en: 'LEARN Monthly', ar: 'LEARN شهري',
     price: 182, period: 'mo', handle: 'learn-brainsait-digital-access',
-    taglineEn: 'All 40 books, online + monthly renewal',
-    taglineAr: 'كل الكتب الـ40، أونلاين + تجديد شهري',
+    taglineEn: 'All 40 books, private link + monthly renewal',
+    taglineAr: 'كل الكتب الـ40، رابط خاص + تجديد شهري',
     benefits: ['learnAll'], popular: false, accent: '#0ea5e9',
   },
   {
@@ -66,6 +67,13 @@ export const TIERS: Tier[] = [
     taglineEn: 'Super-partner, monthly',
     taglineAr: 'شريك مميز، شهري',
     benefits: ['learnAll', 'notion', 'secondBrain', 'telegram', 'lark'], accent: '#10b981',
+  },
+  {
+    id: 'bpr-membership', cat: 'solution', en: 'BPR Membership', ar: 'عضوية BPR',
+    price: 3960, period: 'once', handle: 'provider-registry',
+    taglineEn: 'Annual by default, 163 SAR junior monthly option',
+    taglineAr: 'سنوي افتراضياً، وخيار شهري للمبتدئين 163 ر.س',
+    benefits: ['providerRegistry', 'learnAll', 'notion', 'lark'], popular: true, accent: '#b8f14e',
   },
 ];
 

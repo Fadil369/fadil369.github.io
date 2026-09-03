@@ -89,7 +89,7 @@ export default function BenefitsMatrix() {
       </div>
 
       <p className="fineprint" style={{ textAlign: 'center', marginTop: '1rem' }}>
-        {ar ? 'الأسعار بالريال السعودي · الدفع على store.brainsait.de · LEARN كتاب واحد 99 ر.س (R2) أو كل الكتب 182 ر.س/شهر (Frame.io)' : 'Prices in SAR · Checkout on store.brainsait.de · LEARN single book 99 SAR (R2) or all books 182 SAR/mo (Frame.io)'}
+        {ar ? 'الأسعار بالريال السعودي · الدفع على store.brainsait.de · LEARN كتاب واحد 99 ر.س (R2) أو كل الكتب 182 ر.س/شهر عبر رابط مكتبة خاص' : 'Prices in SAR · Checkout on store.brainsait.de · LEARN single book 99 SAR (R2) or all books 182 SAR/mo through a private library link'}
       </p>
     </section>
   );

@@ -8,16 +8,18 @@ const PAGES: Record<string, Info> = {
     titleEn: 'FAQ — Q&A', titleAr: 'الأسئلة الشائعة',
     metaEn: 'Frequently asked questions about BrainSAIT LEARN, BUILD and SOLUTION.', metaAr: 'أسئلة شائعة حول LEARN و BUILD و SOLUTION.',
     en: [
-      ['LEARN Monthly', '182 SAR/mo — all 40 digital books online via Frame.io, renewed monthly.'],
+      ['LEARN Monthly', '182 SAR/mo — all 40 digital books through a private online library link after checkout, renewed monthly.'],
       ['Single book?', 'Yes, 99 SAR one-time per book, instant PDF download from R2.'],
-      ['BUILD', 'Forge incubator: 16-day program, Notion courses, 2nd Brain, Telegram bot tracking. Monthly 499 SAR or one-time 9,630 SAR ticket.'],
+      ['BUILD', 'Forge incubator: 16-day program, Notion courses, 2nd Brain, Telegram bot tracking. Monthly subscription or one-time 9,630 SAR ticket.'],
+      ['BPR', 'BrainSAIT Provider Registry has annual membership by default at 3,960 SAR and junior monthly access at 163 SAR.'],
       ['SOLUTION', 'Pre-built software deployed to your infra (24,000 SAR one-time) or Super-Partner monthly (1,999 SAR) with Lark org setup.'],
       ['Payments', 'Secure checkout on store.brainsait.de (MyFatoorah / PayPal). Prices in SAR.'],
     ],
     ar: [
-      ['LEARN الشهري', '182 ر.س/شهر — جميع الكتب الـ40 أونلاين عبر Frame.io، يتجدد شهرياً.'],
+      ['LEARN الشهري', '182 ر.س/شهر — جميع الكتب الـ40 عبر رابط مكتبة خاص بعد الدفع، يتجدد شهرياً.'],
       ['كتاب واحد؟', 'نعم، 99 ر.س لمرة واحدة، تحميل فوري PDF من R2.'],
-      ['BUILD', 'حاضنة Forge: برنامج 16 يوماً، دورات Notion، العقل الثاني، تتبع بوت تليجرام. شهري 499 ر.س أو تذكرة 9,630 ر.س.'],
+      ['BUILD', 'حاضنة Forge: برنامج 16 يوماً، دورات Notion، العقل الثاني، تتبع بوت تليجرام. اشتراك شهري أو تذكرة 9,630 ر.س.'],
+      ['BPR', 'سجل مقدمي الرعاية الصحية من BrainSAIT بخطة سنوية افتراضية 3,960 ر.س وخطة شهرية للمبتدئين 163 ر.س.'],
       ['SOLUTION', 'برمجيات جاهزة تُنشر على بنيتك (24,000 ر.س) أو شريك مميز شهري (1,999 ر.س) مع إعداد Lark.'],
       ['الدفع', 'دفع آمن على store.brainsait.de (MyFatoorah / PayPal)، الأسعار بالريال.'],
     ],
@@ -43,7 +45,7 @@ const PAGES: Record<string, Info> = {
     metaEn: 'BrainSAIT support — order & access help, contact details.', metaAr: 'دعم برينسايت — مساعدة الطلبات والوصول، تفاصيل التواصل.',
     en: [
       ['Contact', 'Email us: hello@brainsait.de'],
-      ['Order & Access', "Didn't get your download link or Frame.io access? Check spam or email us with your order number."],
+      ['Order & Access', "Didn't get your download or private library link? Check spam or email us with your order number."],
       ['Account', 'Track orders and subscriptions in your account.'],
     ],
     ar: [

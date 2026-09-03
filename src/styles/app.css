@@ -478,7 +478,8 @@ img { max-width: 100%; }
 /* ── Product grid + card ──────────────────────────────────── */
 .grid {
   display: grid; gap: 1.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 225px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+  align-items: stretch;
 }
 .pcard {
   position: relative; border-radius: var(--radius); overflow: hidden;
@@ -487,6 +488,7 @@ img { max-width: 100%; }
   -webkit-backdrop-filter: var(--glass-blur);
   backdrop-filter: var(--glass-blur);
   display: flex; flex-direction: column;
+  min-height: 560px;
   transition: transform 0.26s var(--ease-out), box-shadow 0.26s var(--ease-out), border-color 0.26s ease;
 }
 .pcard:hover {
@@ -494,7 +496,7 @@ img { max-width: 100%; }
   border-color: var(--line-strong);
   box-shadow: var(--shadow), 0 0 44px rgba(233, 196, 106, 0.14);
 }
-.pcard-cover { position: relative; aspect-ratio: var(--cover-ratio); background: var(--bg-2); overflow: hidden; }
+.pcard-cover { position: relative; aspect-ratio: 4 / 3; background: var(--bg-2); overflow: hidden; flex: 0 0 auto; }
 .pcard-cover-link { display: block; height: 100%; }
 .pcard-cover img {
   width: 100%; height: 100%; object-fit: cover; display: block;
@@ -531,12 +533,13 @@ img { max-width: 100%; }
 .pcard-badge.comm-product { background: linear-gradient(135deg, rgba(233,196,106,.2), rgba(233,196,106,.1)); color: var(--gold-l); border-color: rgba(233,196,106,.45); }
 .pcard-badge.comm-demo { background: rgba(41,216,255,.12); color: #38bdf8; border-color: rgba(41,216,255,.4); }
 .pcard-badge.comm-service { background: rgba(52,211,153,.12); color: #34d399; border-color: rgba(52,211,153,.4); }
-.pcard-body { padding: 1.05rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: 0.45rem; flex: 1; }
+.pcard-badge.comm-saas { background: rgba(184,241,78,.13); color: #b8f14e; border-color: rgba(184,241,78,.42); }
+.pcard-body { padding: 1.05rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: 0.45rem; flex: 1; min-height: 0; }
 .pcard-eyebrow {
   font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--gold); font-weight: 800;
 }
-.pcard-title { font-size: 1.06rem; margin: 0; line-height: 1.3; font-weight: 700; }
+.pcard-title { font-size: 1.02rem; margin: 0; line-height: 1.3; font-weight: 700; min-height: 2.65em; }
 .pcard-title a {
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
   transition: color 0.18s ease;
@@ -545,18 +548,31 @@ img { max-width: 100%; }
 .pcard-prop {
   color: var(--muted); font-size: 0.82rem; margin: 0;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  min-height: 4.4em;
 }
 .pcard-foot {
   margin-top: auto; padding-top: 0.7rem; border-top: 1px solid var(--line);
-  display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;
+  display: grid; gap: 0.6rem;
 }
 .pcard-price {
   font-family: var(--font-display); font-weight: 700; font-size: 1.18rem;
   background: var(--gold-grad);
   -webkit-background-clip: text; background-clip: text; color: transparent;
   font-variant-numeric: tabular-nums;
+  min-height: 1.6em;
 }
-.pcard-cta { display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: flex-end; }
+.pcard-cta {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem; align-items: stretch;
+}
+.pcard-cta .button {
+  width: 100%;
+  min-height: 38px;
+  justify-content: center;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.15;
+}
 .pcard-demo-link {
   width: 100%; display: inline-flex; align-items: center; justify-content: flex-end; gap: 0.3rem;
   color: var(--cyan); font-size: 0.78rem; font-weight: 750; text-decoration: none;
@@ -1075,6 +1091,7 @@ img { max-width: 100%; }
   .grid { gap: 1.1rem; }
   .chip { min-height: 42px; }
   .button, .icon-btn { min-height: 44px; }
+  .pcard { min-height: auto; }
   .pcard-cta { min-height: 40px; }
   .section-head { flex-wrap: wrap; }
   .product-grid { gap: 1.8rem; }

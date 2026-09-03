@@ -22,7 +22,7 @@ export interface Product {
   image?: string;
   badges?: string[];
   benefits?: string[];
-  formats?: string[];
+  formats?: string | Array<{ name?: string; nameAr?: string; price?: number; billing?: string; desc?: string }>;
   whatsIncluded?: string[];
   faqs?: unknown[];
   rating?: number;
@@ -32,7 +32,7 @@ export interface Product {
   /** Demo is gated behind Cloudflare Access / API token — visitors must request an account. */
   limitedDemo?: boolean;
   /** Commercial classification: 'product' (Store buy) | 'demo' (Solutions Lab) | 'service' (consulting) */
-  commercial?: 'product' | 'demo' | 'service';
+  commercial?: 'product' | 'demo' | 'service' | 'saas';
   /** Live Shopify product page — payment completes there via PayPal. For solutions: the one-time "pre-built / ready" purchase. */
   shopifyUrl?: string | null;
   /** Solutions monthly plan (Super Partner program) — recurring subscription purchase. */

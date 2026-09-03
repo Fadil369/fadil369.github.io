@@ -39,18 +39,20 @@ export default function ProductCard({ p }: { p: Product }) {
   const buyable = Boolean(p.shopifyUrl);
   const freeForYou = accountHolder === true;
   const commercial = p.commercial || (p.demoUrl ? 'demo' : 'product');
-  const commBadge = commercial === 'product' ? '🛒' : commercial === 'service' ? '💰' : '🧩';
+  const commBadge = commercial === 'product' ? '🛒' : commercial === 'service' ? '💰' : commercial === 'saas' ? '◎' : '🧩';
   const commLabel = commercial === 'product' ? (ar ? 'منتج' : 'Product')
-    : commercial === 'service' ? (ar ? 'خدمة' : 'Service') : (ar ? 'عرض' : 'Demo');
+    : commercial === 'service' ? (ar ? 'خدمة' : 'Service')
+      : commercial === 'saas' ? (ar ? 'عضوية' : 'Membership') : (ar ? 'عرض' : 'Demo');
   const fmt = formatLabel(p.name, ar);
   const benefit = p.benefits?.[0];
   const isMonthly = (p.billingEn || '').toLowerCase() === 'monthly';
   const isLearn = p.stage === 'learn';
   const isSolutions = p.stage === 'solutions';
   const hasMonthlyUrl = Boolean(p.shopifyUrlMonthly);
-  const readyUrl = p.shopifyUrl || GHIO_LINKS.solutionReady;
+  const readyUrl = GHIO_LINKS.solutionReadyProduct;
   const periodLabel = isMonthly && !isLearn ? (ar ? '/شهر' : '/mo') : '';
-  const ctaLabel = isMonthly ? (ar ? 'اشترك' : 'Subscribe') : (freeForYou ? t('cta.getFree') : t('cta.buy'));
+  const isBpr = p.slug === 'bpr';
+  const ctaLabel = isMonthly || isBpr ? (ar ? 'اشترك' : 'Subscribe') : (freeForYou ? t('cta.getFree') : t('cta.buy'));
   const learnMoreLabel = isLearn ? (ar ? 'اعرف المزيد' : 'Learn more') : t('cta.details');
 
   const onBuy = () =>
@@ -105,14 +107,26 @@ export default function ProductCard({ p }: { p: Product }) {
 
         <div className="pcard-foot">
           <span className="pcard-price">
-            {isLearn
-              ? (ar ? 'شراء فردي · أو 182 ريال/شهر' : 'Buy individually · or 182 SAR/mo')
+            {isBpr
+              ? (ar ? 'سنوي 3,960 · شهري 163' : 'Annual 3,960 · Monthly 163')
+              : isLearn
+                ? (ar ? 'شراء فردي · أو 182 ريال/شهر' : 'Buy individually · or 182 SAR/mo')
               : isSolutions
                 ? (ar ? '1,999 شهرياً · 24,000 جاهز' : '1,999/mo · 24,000 ready')
                 : money(freeForYou ? 0 : (p.price ?? 0), ar) + periodLabel}
           </span>
           <div className="pcard-cta">
-            {isSolutions ? (
+            {isBpr ? (
+              <>
+                <a className="button primary sm" href={withUtm(GHIO_LINKS.bpr, { utm_content: p.slug, plan: 'bpr-annual' })}
+                   target="_blank" rel="noopener noreferrer" onClick={onBuy}>
+                  {ar ? 'سنوي' : 'Annual'} <ExternalLink size={14} aria-hidden="true" />
+                </a>
+                <Link className="button secondary sm" to={`/products/${p.slug}`}>
+                  {learnMoreLabel} <Arrow size={14} aria-hidden="true" />
+                </Link>
+              </>
+            ) : isSolutions ? (
               <>
                 {hasMonthlyUrl && (
                   <a className="button primary sm" href={withUtm(p.shopifyUrlMonthly!, { utm_content: p.slug, plan: 'solution-monthly' })}
@@ -160,7 +174,7 @@ export default function ProductCard({ p }: { p: Product }) {
               </Link>
             )}
           </div>
-          {isSolutions && p.demoUrl && (
+          {isSolutions && p.demoUrl && !isBpr && (
             <a className="pcard-demo-link" href={withUtm(p.demoUrl, { utm_content: p.slug })}
                target="_blank" rel="noopener noreferrer" onClick={onDemoCb}>
               {ar ? 'شاهد العرض المباشر' : 'View live demo'} <ExternalLink size={13} aria-hidden="true" />

@@ -46,7 +46,7 @@ export default function Build() {
         <p className="lede">{ar ? program.taglineAr : program.tagline}</p>
         <div className="build-launch-strip">
           <span className="launch-tag">{ar ? 'اختر خطتك' : 'Choose your plan'}</span>
-          <span className="launch-now">{ar ? 'شهري 499 ر.س' : 'Monthly 499 SAR'}</span>
+          <span className="launch-now">{ar ? 'اشتراك شهري عبر Shopify' : 'Monthly Shopify subscription'}</span>
           <span className="launch-timer">·</span>
           <span className="launch-now">{ar ? 'تذكرة 9,630 ر.س' : 'Ticket 9,630 SAR'}</span>
         </div>
@@ -72,7 +72,7 @@ export default function Build() {
         <div className="build-tickets-row plan-choice-grid">
           <article className="build-ticket-card plan-choice-card">
             <span className="launch-badge">{ar ? 'مرن · يتجدد شهرياً' : 'Flexible · monthly'}</span>
-            <div className="bt-price-row"><span className="bt-price">499 {ar ? 'ريال/شهر' : 'SAR/month'}</span></div>
+            <div className="bt-price-row"><span className="bt-price">{ar ? 'اشتراك شهري' : 'Monthly subscription'}</span></div>
             <h3>{ar ? 'BUILD شهري' : 'BUILD Monthly'}</h3>
             <ul>
               <li>{ar ? 'كل كتب LEARN الأربعين' : 'All 40 LEARN books'}</li>
@@ -100,6 +100,22 @@ export default function Build() {
                target="_blank" rel="noopener noreferrer"
                onClick={() => { track('build_cta', { location: 'ticket' }); journeyEvent('journey.offer_clicked', { location: 'ticket' }); }}>
               {ar ? 'افتح دفع Shopify للتذكرة' : 'Open Shopify ticket checkout'} <Rocket size={18} />
+            </a>
+          </article>
+          <article className="build-ticket-card plan-choice-card">
+            <span className="launch-badge">{ar ? 'هوية مهنية · BPR' : 'Provider identity · BPR'}</span>
+            <div className="bt-price-row"><span className="bt-price">3,960 {ar ? 'سنوي' : 'SAR/year'}</span></div>
+            <h3>{ar ? 'BrainSAIT Provider Registry' : 'BrainSAIT Provider Registry'}</h3>
+            <ul>
+              <li>{ar ? 'الخطة السنوية افتراضية وموصى بها' : 'Annual plan is the default recommended option'}</li>
+              <li>{ar ? 'شهري 163 ر.س للعامل الصحي المبتدئ' : 'Junior monthly access at 163 SAR'}</li>
+              <li>{ar ? 'SPID + OID + QR + صفحة موثقة' : 'SPID + OID + QR + verified profile'}</li>
+              <li>{ar ? 'مساعد سريري متعدد اللغات ووصول منظومة BrainSAIT' : 'Multilingual clinical copilot and BrainSAIT ecosystem access'}</li>
+            </ul>
+            <a className="button primary lg" href={withUtm(GHIO_LINKS.bpr, { plan: 'bpr', utm_content: 'build-page' })}
+               target="_blank" rel="noopener noreferrer"
+               onClick={() => { track('build_cta', { location: 'bpr' }); journeyEvent('journey.offer_clicked', { location: 'bpr' }); }}>
+              {ar ? 'افتح عضوية BPR' : 'Open BPR membership'} <Rocket size={18} />
             </a>
           </article>
         </div>
@@ -146,8 +162,8 @@ export default function Build() {
             <h3>{ar ? 'اختر خطتك وادفع' : 'Pick your plan & pay'}</h3>
             <p>
               {ar
-                ? 'تأخذك المنظومة إلى checkout في متجرنا — اشتراك شهري <b>499 ر.س</b> يتجدد تلقائياً، أو تذكرة واحدة <b>9,630 ر.س</b>.'
-                : 'The system takes you to our store checkout — a monthly <b>499 SAR</b> subscription that renews, or a one-time <b>9,630 SAR</b> ticket.'}
+                ? 'تأخذك المنظومة إلى checkout في متجرنا — اشتراك شهري يتجدد تلقائياً، أو تذكرة واحدة <b>9,630 ر.س</b>.'
+                : 'The system takes you to our store checkout — a renewing monthly subscription, or a one-time <b>9,630 SAR</b> ticket.'}
             </p>
           </div>
           <div className="register-step">
