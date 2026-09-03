@@ -2,7 +2,7 @@
 // fadil369.github.io via GitHub Pages (matches the original deploy layout).
 // The build entry lives at src/index.html, so the built HTML is at
 // dist/src/index.html; it is flattened to the repo root here.
-import { cpSync, rmSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { cpSync, rmSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -21,6 +21,12 @@ if (!existsSync(indexFile)) {
 const index = readFileSync(indexFile, 'utf8');
 writeFileSync(join(root, '404.html'), index); // SPA fallback for hard refresh
 writeFileSync(join(root, 'index.html'), index);
+
+for (const route of ['learn', 'build', 'solutions', 'benefits', 'account']) {
+  const routeDir = join(root, route);
+  mkdirSync(routeDir, { recursive: true });
+  writeFileSync(join(routeDir, 'index.html'), index);
+}
 
 for (const f of ['assets']) {
   const src = join(dist, f), dst = join(root, f);
