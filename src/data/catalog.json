@@ -6419,79 +6419,91 @@
       "categoryAr": "الهوية الصحية",
       "sub": "registry",
       "tier": "saas",
-      "tagline": "Saudi healthcare provider identity, credential and discovery layer — SPID + OID under IANA PEN 61026.",
-      "taglineAr": "طبقة موحدة للهوية المهنية، والتحقق، والتشغيل البيني، واكتشاف مقدمي الرعاية الصحية — SPID وOID تحت رقم IANA 61026.",
+      "tagline": "Bilingual professional identity, verification & discovery for Saudi healthcare workers — SPID + OID under IANA PEN 61026, with a lifetime benefits bundle (LEARN·BUILD·SOLUTION) and an always-on multilingual clinical copilot.",
+      "taglineAr": "هوية مهنية ثنائية اللغة، تحقق واكتشاف للعاملين الصحيين في السعودية — SPID وOID تحت رقم IANA 61026، مع حزمة مزايا دائمة (LEARN·BUILD·SOLUTION) ومساعد سريري متعدد اللغات يعمل دائماً.",
       "description": "BrainSAIT Provider Registry (BPR) is Saudi Arabia's interoperable healthcare provider identity, credential and discovery layer. Each provider record carries a durable SPID (human-friendly) and BrainSAIT OID (machine identifier) under IANA PEN 61026. FHIR R4-first, SCFHS-anchored verification, Gravatar profile enrichment, DID/VC claims, NPHIES-aligned.",
       "descriptionAr": "سجل برينسايت لمقدمي الرعاية الصحية (BPR) هو طبقة موحدة للهوية المهنية والتحقق والتشغيل البيني واكتشاف مقدمي الرعاية الصحية في المملكة العربية السعودية. يحمل كل ملف مهني هوية SPID (سهلة الاستخدام البشري) وOID (معرف آلة) تحت رقم IANA 61026. نموذج FHIR R4 أولا، التحقق المربوط بالهيئة السعودية للتخصصات الصحية، إثراء الملف الشخصي عبر Gravatar، مطالبات DID/VC، متوافق مع NPHIES.",
-      "price": 2280,
-      "billingEn": "monthly",
-      "billingAr": "/شهر",
+      "price": 3960,
+      "billingEn": "annually",
+      "billingAr": "/سنة",
       "free": false,
       "image": "/assets/images/products/bpr.webp",
       "badges": [
-        "SaaS"
+        "SaaS",
+        "Featured",
+        "SCFHS-anchored"
       ],
       "benefits": [
-        "One durable SPID + OID per provider under IANA PEN 61026",
-        "SCFHS-anchored verification with provenanced claims",
-        "FHIR R4-first: Practitioner, PractitionerRole, Organization, Location, HealthcareService, Endpoint, Qualification",
-        "DID/VC signed claims: identity, specialty, affiliation, good standing"
+        "One permanent SPID + OID identity per worker",
+        "Publicly verifiable, luxury bilingual profile + scannable QR",
+        "Free always-on clinical copilot in every language",
+        "LEARN, BUILD & SOLUTION ecosystem access as long as account is valid",
+        "Incubation path: subdomains + tools dispatched from the platforms worker"
       ],
       "formats": [
         {
-          "name": "Basic",
-          "price": 0,
-          "free": true,
-          "desc": "Individual listing + QR code"
+          "name": "Annual — Recommended",
+          "nameAr": "سنوي — موصى به",
+          "price": 3960,
+          "billing": "annually",
+          "free": false,
+          "desc": "Full unified provider identity + all super-benefits for 12 months."
         },
         {
-          "name": "Professional",
-          "price": 2280,
+          "name": "Monthly — Junior",
+          "nameAr": "شهري — للمبتدئين",
+          "price": 163,
+          "billing": "monthly",
           "free": false,
-          "desc": "Full profile + OID + SCFHS anchor"
-        },
-        {
-          "name": "Enterprise",
-          "price": null,
-          "free": false,
-          "desc": "HC systems, insurers, NPHIES pilot"
+          "desc": "For junior/early-career workers: identity, QR, public page, copilot access."
         }
       ],
       "whatsIncluded": [
-        "Provider listing with SPID",
-        "OID allocation under 1.3.6.1.4.1.61026",
-        "QR verification card",
-        "FHIR R4 API endpoint",
-        "SCFHS verification integration",
-        "Gravatar profile layer (optional)",
-        "DID/VC claim issuance"
+        "Durable SPID (human) + BrainSAIT OID (machine) — IANA PEN 61026",
+        "SCFHS-anchored verification claims with provenance",
+        "QR verification card + shareable badges",
+        "Luxury public verified profile page (bilingual AR/EN)",
+        "Always-on multilingual clinical copilot (free, any time, all languages)",
+        "Physician / pharmacist / nurse / allied-health professional profiling",
+        "FHIR R4 + NPHIES interoperable identity",
+        "LEARN · BUILD · SOLUTION super-tickets (BrainSAIT ecosystem access)",
+        "Cloud identity + mailOTP + notify + n8n + Airtable orchestration",
+        "Optional incubation: subdomain dispatch via platforms worker, Lark super-partner"
       ],
       "faqs": [
         {
-          "q": "Does BPR replace SCFHS registration?",
-          "a": "No. BPR issues the registry identity and OID; SCFHS remains the licensing authority. We integrate against SCFHS but do not certify on its behalf."
+          "q": "Which plan should I choose?",
+          "a": "Annual (3,960 SAR) is the default and recommended — best value and it keeps every benefit active for 12 months. Monthly (163 SAR) is for junior/early-career workers who want to start immediately."
         },
         {
-          "q": "What is the SPID format?",
-          "a": "SA-[PREFIX]-[NUMBER], e.g. SA-PHY-000001. Prefix maps to practitioner type (PHY, DEN, PHA, NUR, ALH, TEC, OTH)."
+          "q": "What do I get after registering?",
+          "a": "A permanent SPID + OID identity, SCFHS-anchored verification, QR + shareable badges, a luxury public verified page, free always-on multilingual clinical copilot, and LEARN·BUILD·SOLUTION ecosystem access."
         },
         {
-          "q": "Is Gravatar used to verify identity?",
-          "a": "No. Gravatar is enrichment only — photo, bio, links. Never identity or credential evidence."
+          "q": "Is the clinical copilot included?",
+          "a": "Yes — free and always-on, in all languages, clinically specialised, alongside your identity."
+        },
+        {
+          "q": "What is the incubation option?",
+          "a": "If you have an idea to build, we can incubate it and add subdomains dispatched from the platforms worker (plus Lark super-partner tooling) for as long as your account is valid."
         }
       ],
       "faqAr": [
         {
-          "q": "هل يستبدل BPR تسجيل الهيئة؟",
-          "a": "لا. برينسايت تمنح الهوية والOID؛ الهيئة السعودية تبقى الجهة المرخصة. نربط بالهيئة لكن لا نصدر عليها شهادات."
+          "q": "أي خطة أختار؟",
+          "a": "السنوية (3960 ر.س) هي الافتراضية والموصى بها — أفضل قيمة وتبقي كل المزايا نشطة 12 شهراً. الشهرية (163 ر.س) للعاملين المبتدئين الذين يريدون البدء فوراً."
         },
         {
-          "q": "ما هو تنسيق SPID؟",
-          "a": "SA-[PREFIX]-[NUMBER]، مثال: SA-PHY-000001. اللاحقة تحدد نوع الممارس."
+          "q": "ماذا أحصل بعد التسجيل؟",
+          "a": "هوية SPID وOID دائمة، تحقق مرتبط بالهيئة، رمز QR وشارات قابلة للمشاركة، صفحة عامة موثقة فاخرة، مساعد سريري مجاني دائم ومتعدد اللغات، ووصول LEARN·BUILD·SOLUTION."
         },
         {
-          "q": "هل يستخدم Gravatar للتحقق من الهوية؟",
-          "a": "لا. Gravatar للإثراء فقط - الصورة، السيرة، الروابط. ليس دليلا على الهوية أو الشهادات."
+          "q": "هل المساعد السريري مشمول؟",
+          "a": "نعم — مجاني ويعمل دائماً، بكل اللغات، ومتخصص سريرياً، إلى جانب هويتك."
+        },
+        {
+          "q": "ما خيار الاحتضان؟",
+          "a": "إذا كانت لديك فكرة للبناء، نحتضنها ونضيف نطاقات فرعية تُرسل من عامل المنصات (مع أدوات Lark super-partner) طالما حسابك ساري."
         }
       ],
       "rating": 4.8,
@@ -6499,12 +6511,12 @@
       "flag": null,
       "demoUrl": "https://registry.brainsait.org",
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de",
+      "shopifyUrl": "https://store.brainsait.de/products/provider-registry",
       "shopifyHandle": "provider-registry",
-      "sku": "BPR-SaaS-M",
+      "sku": "BPR-ANNUAL",
       "available": true,
       "commercial": "saas",
-      "shopifyUrlMonthly": "https://store.brainsait.de"
+      "shopifyUrlMonthly": "https://store.brainsait.de/products/provider-registry"
     }
   ],
   "meta": {
