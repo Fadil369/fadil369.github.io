@@ -26,7 +26,7 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-SHOPIFY_STORE_URL = "https://store.brainsait.org"
+SHOPIFY_STORE_URL = "https://store.brainsait.de"
 CATALOG_PATH = Path(__file__).parent.parent / "src" / "data" / "catalog.json"
 
 

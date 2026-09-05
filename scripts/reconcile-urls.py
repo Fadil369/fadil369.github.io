@@ -53,7 +53,7 @@ def main():
     for p in d.get('solutions', []):
         slug = p.get('slug')
         if slug in PRICE:
-            url = f'https://store.brainsait.org/products/{slug}'
+            url = f'https://store.brainsait.de/products/{slug}'
             if p.get('shopifyUrl') != url:
                 p['shopifyUrl'] = url
             if p.get('price') != PRICE[slug]:

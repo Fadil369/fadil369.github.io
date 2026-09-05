@@ -3,7 +3,7 @@
 **Status:** Ready for QA (flat single-ticket flow)
 **Date:** 2026-08-14
 **Product:** BUILD Ticket — Incubation Pass
-**Store:** https://store.brainsait.org
+**Store:** https://store.brainsait.de
 **Form:** https://fadil369.github.io/build
 
 ## ✅ Current Setup (single flat ticket)
@@ -32,7 +32,7 @@ Tiers are cancelled. There is one product, one variant, one price.
 2. The intake shows the flat ticket card: Original 14,960 SAR → Launch 9,630 SAR.
 3. Enter full name, email, country, and a GitHub username.
 4. Submit → redirected to the Shopify cart with the single standard variant:
-   `https://store.brainsait.org/cart/add?id=45947217870931&quantity=1&properties[eligibility_tier]=standard&properties[final_price]=9630&properties[application_ref]=<ref>&properties[applicant_email]=<email>`
+   `https://store.brainsait.de/cart/add?id=45947217870931&quantity=1&properties[eligibility_tier]=standard&properties[final_price]=9630&properties[application_ref]=<ref>&properties[applicant_email]=<email>`
 5. Cart shows **BUILD Ticket — Incubation Pass / Standard — SAR 9,630**.
 6. Complete checkout (sandbox payment first).
 7. Order appears in Shopify admin with the `application_ref` property.

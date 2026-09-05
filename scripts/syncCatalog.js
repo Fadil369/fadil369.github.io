@@ -18,7 +18,7 @@ if (!SHOPIFY_ADMIN_TOKEN) {
   process.exit(1);
 }
 
-const SHOPIFY_STORE = 'store.brainsait.org';
+const SHOPIFY_STORE = 'store.brainsait.de';
 const CATALOG_PATH = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'data', 'catalog.json');
 
 async function fetchProducts(page = 1) {

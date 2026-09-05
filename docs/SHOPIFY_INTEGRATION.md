@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-08-14
 
-This guide explains how the Shopify store (`store.brainsait.org`) handles the Build Program today.
+This guide explains how the Shopify store (`store.brainsait.de`) handles the Build Program today.
 
 ## Current state: one flat ticket, no tiers
 
@@ -27,7 +27,7 @@ The obsolete tiered product `brainsait-incubation-program` (product id `80476120
 1. Applicant fills the flat intake on `https://fadil369.github.io/build` (name, email, phone, country, GitHub username, optional promo code).
 2. `build-apply.brainsait.org/apply` creates the application (Notion page when configured, KV fallback), registers the applicant as a Shopify customer, and returns a checkout URL:
    ```
-   https://store.brainsait.org/cart/add?id=45947217870931&quantity=1&properties[eligibility_tier]=standard&properties[final_price]=9630&properties[application_ref]=<ref>&properties[applicant_email]=<email>
+   https://store.brainsait.de/cart/add?id=45947217870931&quantity=1&properties[eligibility_tier]=standard&properties[final_price]=9630&properties[application_ref]=<ref>&properties[applicant_email]=<email>
    ```
    With a promo code the URL goes through the Shopify `/discount/CODE` flow first (verified: LAUNCH10 → 8,667 SAR, FOUNDER15 → 8,185.50 SAR on the session cart).
 3. `orders/paid` webhook → `build-apply.brainsait.org/webhook/shopify` (HMAC-verified with `SHOPIFY_WEBHOOK_SECRET`) → application marked **Paid + Approved**.
@@ -159,7 +159,7 @@ The BUILD Ticket (flat SAR 9,630) can be paid on a plan chosen at intake:
 
 ## Environment (build-apply worker secrets)
 
-- `SHOPIFY_STORE_DOMAIN` — default `store.brainsait.org`
+- `SHOPIFY_STORE_DOMAIN` — default `store.brainsait.de`
 - `SHOPIFY_ADMIN_TOKEN` — `shpat_...` from the store-level custom app (Partner org)
 - `SHOPIFY_WEBHOOK_SECRET` — signs/verifies webhook HMAC
 - `GITHUB_TOKEN` — enables GitHub repo provisioning after payment (scope: `repo`)

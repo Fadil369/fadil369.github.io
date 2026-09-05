@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Mirror the front-store catalog (fadil369.github.io — SOURCE OF TRUTH) into
-Shopify (store.brainsait.org).
+Shopify (store.brainsait.de).
 
 For every LEARN module, SOLUTIONS listing, and BUILD course in
 src/data/catalog.json the script upserts a Shopify product keyed by
