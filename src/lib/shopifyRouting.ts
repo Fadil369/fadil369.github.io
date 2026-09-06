@@ -54,8 +54,18 @@ export const GHIO_LINKS = {
   bprAnnual: `${STORE_BASE}/products/provider-registry`,
   bprMonthly: `${STORE_BASE}/products/provider-registry`,
   
+  // OID Products
+  oidBadge: `${STORE_BASE}/products/oid-verification-badge-1`,
+  oidExplorer: `${STORE_BASE}/products/oid-explorer-seat`,
+  oidFhir: `${STORE_BASE}/products/oid-fhir-integration-platform-1`,
+  oidNphies: `${STORE_BASE}/products/oid-nphies-oid-healthcare-identity-bundle`,
+  oidNamespace: `${STORE_BASE}/products/oid-enterprise-namespace-license-1`,
+  oidWhitelabel: `${STORE_BASE}/products/oid-white-label-enterprise-1`,
+  oidBlueprint: `${STORE_BASE}/products/oid-integration-blueprint-developer-guide`,
+  
   // External ecosystem links
   registry: 'https://registry.brainsait.org',
+  verify: 'https://verify.brainsait.org',
   calendar: 'https://calendar.app.google/Ve9KSKmaVA6ehDP48',
   calendarBuild: 'https://calendar.app.google/rAqiE6pNumtECdnd7',
   notioFounders: 'https://fadil369.notion.site/Founder-OS-3ba3479c6f628117966fd1be6c120ac2',
