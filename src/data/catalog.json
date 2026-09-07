@@ -5177,7 +5177,8 @@
       "available": true,
       "commercial": "demo",
       "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
-      "oneTimePrice": 24000
+      "oneTimePrice": 24000,
+      "shopifyUrlOneTime": "https://store.brainsait.de/cart/46139265155155:1?attributes[Solution]=ecareplus&attributes[SolutionName]=BrainSAIT%20eCarePlus%20Portal&attributes[Price_SAR]=24000"
     },
     {
       "slug": "nphies-linc",
@@ -5216,7 +5217,8 @@
       "available": true,
       "commercial": "demo",
       "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
-      "oneTimePrice": 24000
+      "oneTimePrice": 24000,
+      "shopifyUrlOneTime": "https://store.brainsait.de/cart/46139265155155:1?attributes[Solution]=nphies-linc&attributes[SolutionName]=NPHIES-Linc&attributes[Price_SAR]=24000"
     },
     {
       "slug": "museum-hilton",
@@ -5773,7 +5775,8 @@
       "description": "The Complete OID Registry Platform for BrainSAIT Enterprise Full access to the BrainSAIT OID Registry Explorer — a production-grade web application for visualizing, managing, and generating code from the 1.3.6.1.4.1.61026 namespace (BrainSAIT IANA PEN 61026). Platform Features \nInteractive OID Tree — Browse the full BrainSAIT namespace hierarchy with expandable, collapsible branches\nVisual Path Builder — Select any node and instantly generate production-ready code for 6 integration contexts\nCode Generator — One-click copy for FHIR extensions, MCP URNs, X.509 policies, API headers, DB schemas, and QR data\nQR Code Preview — Render and download scannable QR codes for physical asset tagging, with adjustable size and error-correction\nAI Naming Suggestions — Describe a use case; get 3 enterprise-grade node name suggestions aligned to BrainSAIT's architecture\nNode Registration — Add custom leaf nodes to extend the namespace with AI-assisted naming\nFull-text Search — Instant filter across paths, descriptions, and use cases\n Tech Stack React 19 · TypeScript · Vite 7 · Tailwind CSS 4 · Radix UI Components · TanStack Query Instant digital delivery. Platform source code and deployment guide included.",
       "image": "https://cdn.shopify.com/s/files/1/0730/5288/0979/files/oid-registry_ef0cc75c-7202-459c-b07d-8c9dc36814e7.webp?v=1786120384",
       "sku": "BSP-OID-REGISTRY-PLATFORM",
-      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1"
+      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1",
+      "shopifyUrlOneTime": "https://store.brainsait.de/cart/46139265155155:1?attributes[Solution]=brainsait-oid-registry-explorer-platform-license&attributes[SolutionName]=BrainSAIT%20OID%20Registry%20Explorer%20%E2%80%94%20Platform%20License&attributes[Price_SAR]=24000"
     },
     {
       "slug": "brainsait-oid-whitelabel-enterprise-license",
@@ -6013,7 +6016,8 @@
       "available": true,
       "commercial": "product",
       "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
-      "oneTimePrice": 24000
+      "oneTimePrice": 24000,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/solutions-ready-hospital-os"
     },
     {
       "slug": "solutions-ready-nphies-platform",
@@ -6055,7 +6059,8 @@
       "available": true,
       "commercial": "product",
       "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
-      "oneTimePrice": 24000
+      "oneTimePrice": 24000,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/solutions-ready-nphies-platform"
     },
     {
       "slug": "solutions-ready-cloud-kitchen",
@@ -6097,7 +6102,8 @@
       "available": true,
       "commercial": "product",
       "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
-      "oneTimePrice": 24000
+      "oneTimePrice": 24000,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/solutions-ready-cloud-kitchen"
     },
     {
       "slug": "solutions-ready-oid",
@@ -6139,7 +6145,8 @@
       "available": true,
       "commercial": "product",
       "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
-      "oneTimePrice": 24000
+      "oneTimePrice": 24000,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/solutions-ready-oid"
     },
     {
       "slug": "solutions-ready-clinic-os",
@@ -6181,7 +6188,8 @@
       "available": true,
       "commercial": "product",
       "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
-      "oneTimePrice": 24000
+      "oneTimePrice": 24000,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/solutions-ready-clinic-os"
     },
     {
       "slug": "solutions-ready-basma-voice",
@@ -6223,7 +6231,8 @@
       "available": true,
       "commercial": "product",
       "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
-      "oneTimePrice": 24000
+      "oneTimePrice": 24000,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/solutions-ready-basma-voice"
     },
     {
       "slug": "solutions-brainsait-super-partner-program",
@@ -6305,7 +6314,8 @@
       "available": true,
       "commercial": "product",
       "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
-      "oneTimePrice": 24000
+      "oneTimePrice": 24000,
+      "shopifyUrlOneTime": "https://store.brainsait.de/products/solutions-ready-hospital-os"
     },
     {
       "slug": "sibaiti-clinic-directory",
@@ -6382,7 +6392,8 @@
       "available": true,
       "commercial": "product",
       "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
-      "oneTimePrice": 24000
+      "oneTimePrice": 24000,
+      "shopifyUrlOneTime": "https://store.brainsait.de/cart/46139265155155:1?attributes[Solution]=beos-executive-rcm&attributes[SolutionName]=BEOS%20%E2%80%94%20Executive%20RCM&attributes[Price_SAR]=24000"
     },
     {
       "slug": "brainsait-academy",
