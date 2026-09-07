@@ -82,17 +82,17 @@ export default function ProductCard({ p }: { p: Product }) {
   // Learn more / detail page URL
   const detailUrl = `/products/${p.slug}`;
 
-  // Format price display
+// Format price display
   const priceDisplay = isBpr
     ? (ar ? 'سنوي 3,960 · شهري 163' : 'Annual 3,960 · Monthly 163')
     : isLearn
       ? (p.shopifyUrlOneTime
-          ? (ar ? `${money(p.oneTimePrice ?? 99, true)} فردي · أو 182 ريال/شهر` : `${money(p.oneTimePrice ?? 99, false)} one-time · or 182 SAR/mo`)
-          : (ar ? '182 ريال/شهر لكل المكتبة' : '182 SAR/mo for library'))
+          ? (ar ? `فردي ${money(p.oneTimePrice ?? 99, false)} ريال · أو 182 ريال/شهر للمكتبة` : `One-time ${p.oneTimePrice ?? 99} SAR · or 182 SAR/mo for full library`)
+          : (ar ? '182 ريال/شهر — كامل المكتبة' : '182 SAR/mo — Full library'))
       : isBuild
-        ? (ar ? '499 ريال/شهر · أو 9,630 كامل' : '499 SAR/mo · or 9,630 full')
+        ? (ar ? 'شهري 499 ريال · أو 9,630 كامل' : 'Monthly 499 SAR · or 9,630 full')
         : isSolutions
-          ? (ar ? '1,999 شهرياُ · 24,000 جاهز' : '1,999/mo · 24,000 ready')
+          ? (ar ? 'شهري 1,999 · جاهز 24,000' : 'Monthly 1,999 · Ready 24k')
           : money(freeForYou ? 0 : (p.price ?? 0), ar) + (isMonthly && !isLearn ? (ar ? '/شهر' : '/mo') : '');
 
   return (
@@ -139,30 +139,30 @@ export default function ProductCard({ p }: { p: Product }) {
           {/* Price */}
           <span className="pcard-price">{priceDisplay}</span>
 
-          {/* Two-button CTA */}
-          <div className="pcard-cta">
-            {/* Primary: Payment */}
-            {isBpr ? (
-              <a className="button primary sm" href={withUtm(ar ? GHIO_LINKS.bprAnnual : GHIO_LINKS.bprMonthly, { utm_content: p.slug, plan: 'bpr' })}
-                 target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                {ar ? 'اشترك' : 'Pay'} <ExternalLink size={14} aria-hidden="true" />
-              </a>
-            ) : isPayable ? (
-              <a className="button primary sm" href={withUtm(paymentUrl, { utm_content: p.slug, plan: isLearn ? (p.shopifyUrlOneTime ? 'learn-one-time' : 'learn-monthly') : isBuild ? (p.shopifyUrl ? 'build-ticket' : 'build-monthly') : isSolutions ? 'solution-monthly' : '' })}
-                 target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                {ar ? (isLearn && !p.shopifyUrlOneTime ? 'ادفع · 182' : isBuild ? 'ادفع · 499' : isSolutions ? 'ادفع · 1,999' : isLearn ? 'ادفع · 99' : 'ادفع') : (isLearn && !p.shopifyUrlOneTime ? 'Pay · 182' : isBuild ? 'Pay · 499' : isSolutions ? 'Pay · 1,999' : isLearn ? 'Pay · 99' : 'Pay')} <ExternalLink size={14} aria-hidden="true" />
-              </a>
-            ) : p.demoUrl ? (
-              <a className="button primary sm" href={withUtm(p.demoUrl)}
-                 target="_blank" rel="noopener noreferrer" onClick={onDemoCb}>
-                {commercial === 'service' ? (ar ? 'احجز الجلسة' : 'Book session') : t('cta.demo')}
-                <ExternalLink size={14} aria-hidden="true" />
-              </a>
-            ) : (
-              <Link className="button primary sm" to={`/products/${p.slug}`} onClick={onBuy}>
-                {ar ? 'اطلب' : 'Request'} <Info size={14} aria-hidden="true" />
-              </Link>
-            )}
+{/* Two-button CTA */}
+           <div className="pcard-cta">
+             {/* Primary: Payment */}
+             {isBpr ? (
+               <a className="button primary sm" href={withUtm(ar ? GHIO_LINKS.bprAnnual : GHIO_LINKS.bprMonthly, { utm_content: p.slug, plan: 'bpr' })}
+                  target="_blank" rel="noopener noreferrer" onClick={onBuy}>
+                 {ar ? 'اشترك' : 'Pay'} <ExternalLink size={14} aria-hidden="true" />
+               </a>
+             ) : isPayable ? (
+               <a className="button primary sm" href={withUtm(paymentUrl, { utm_content: p.slug, plan: isLearn ? (p.shopifyUrlOneTime ? 'learn-one-time' : 'learn-monthly') : isBuild ? (p.shopifyUrl ? 'build-monthly' : 'build-ticket') : isSolutions ? 'solution-monthly' : '' })}
+                  target="_blank" rel="noopener noreferrer" onClick={onBuy}>
+                 {ar ? (isLearn && p.shopifyUrlOneTime ? `ادفع · ${(p.oneTimePrice ?? 99)} ريال` : isLearn ? 'ادفع · 182' : isBuild ? (p.shopifyUrl ? 'ادفع · 499' : 'ادفع · 9,630') : isSolutions ? 'ادفع · 1,999' : 'ادفع') : (isLearn && p.shopifyUrlOneTime ? `Pay · ${(p.oneTimePrice ?? 99)}` : isLearn ? 'Pay · 182' : isBuild ? (p.shopifyUrl ? 'Pay · 499' : 'Pay · 9,630') : isSolutions ? 'Pay · 1,999' : 'Pay')} <ExternalLink size={14} aria-hidden="true" />
+               </a>
+             ) : p.demoUrl ? (
+               <a className="button primary sm" href={withUtm(p.demoUrl)}
+                  target="_blank" rel="noopener noreferrer" onClick={onDemoCb}>
+                 {commercial === 'service' ? (ar ? 'احجز الجلسة' : 'Book session') : t('cta.demo')}
+                 <ExternalLink size={14} aria-hidden="true" />
+               </a>
+             ) : (
+               <Link className="button primary sm" to={`/products/${p.slug}`} onClick={onBuy}>
+                 {ar ? 'اطلب' : 'Request'} <Info size={14} aria-hidden="true" />
+               </Link>
+             )}
 
             {/* Secondary: Learn More */}
             <Link className="button secondary sm" to={detailUrl}>
