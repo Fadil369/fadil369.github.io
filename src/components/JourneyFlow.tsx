@@ -69,9 +69,9 @@ export default function JourneyFlow() {
         <span style={{ marginInlineStart: 'auto', color: 'var(--muted)' }}>{ar ? 'توفر عالٍ · تكامل عالٍ · أتمتة عالية' : 'High availability · High integration · High automation'}</span>
       </div>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 12 }}>
-        <a className="button secondary sm" href="https://store.brainsait.de/products/learn-brainsait-digital-access" target="_blank" rel="noopener noreferrer">182 SAR</a>
-        <a className="button secondary sm" href="https://store.brainsait.de/products/build-forge-incubator-founders-program" target="_blank" rel="noopener noreferrer">{ar ? 'BUILD شهري' : 'BUILD monthly'}</a>
-        <a className="button secondary sm" href="https://store.brainsait.de/products/solutions-brainsait-super-partner-program" target="_blank" rel="noopener noreferrer">1,999 SAR</a>
+        <a className="button secondary sm" href="https://store.brainsait.de/products/brainsait-learn-digital-access-library-membership" target="_blank" rel="noopener noreferrer">182 SAR</a>
+        <a className="button secondary sm" href="https://store.brainsait.de/products/build-forge-incubator-founders-program-1" target="_blank" rel="noopener noreferrer">{ar ? 'BUILD شهري' : 'BUILD monthly'}</a>
+        <a className="button secondary sm" href="https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1" target="_blank" rel="noopener noreferrer">1,999 SAR</a>
         <a className="button primary sm" href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noopener noreferrer"><Calendar size={14} /> {ar ? 'احجز جلسة' : 'Book session'}</a>
       </div>
     </section>

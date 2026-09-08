@@ -5,7 +5,7 @@ interface Ctx { lang: Lang; ar: boolean; toggle: () => void; t: (k: string) => s
 
 const STRINGS: Record<Lang, Record<string, string>> = {
   en: {
-    'nav.learn': 'Learn', 'nav.build': 'Build', 'nav.solutions': 'Solutions',
+    'nav.learn': 'Learn', 'nav.build': 'Build', 'nav.solutions': 'Solutions', 'nav.templates': 'Templates',
     'nav.all': 'All titles', 'brand': 'BrainSAIT Store',
     'cta.buy': 'Buy now', 'cta.details': 'Details', 'cta.demo': 'View demo', 'cta.getFree': 'Get free',
     'cta.apply': 'Apply now', 'cta.soon': 'Coming soon',
@@ -21,7 +21,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     'theme.dark': 'Switch to dark mode', 'theme.light': 'Switch to light mode',
   },
   ar: {
-    'nav.learn': 'تعلّم', 'nav.build': 'ابنِ', 'nav.solutions': 'حلول',
+    'nav.learn': 'تعلّم', 'nav.build': 'ابنِ', 'nav.solutions': 'حلول', 'nav.templates': 'القوالب',
     'nav.all': 'كل العناوين', 'brand': 'متجر برينسايت',
     'cta.buy': 'اشترِ الآن', 'cta.details': 'التفاصيل', 'cta.demo': 'عرض تجريبي', 'cta.getFree': 'احصل مجاناً',
     'cta.apply': 'قدّم الآن', 'cta.soon': 'قريباً',

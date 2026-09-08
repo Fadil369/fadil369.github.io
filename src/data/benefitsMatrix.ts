@@ -35,14 +35,14 @@ export const TIERS: Tier[] = [
   },
   {
     id: 'learn-monthly', cat: 'learn', en: 'LEARN Monthly', ar: 'LEARN شهري',
-    price: 182, period: 'mo', handle: 'learn-brainsait-digital-access',
+    price: 182, period: 'mo', handle: 'brainsait-learn-digital-access-library-membership',
     taglineEn: 'All 40 books, private link + monthly renewal',
     taglineAr: 'كل الكتب الـ40، رابط خاص + تجديد شهري',
     benefits: ['learnAll'], popular: false, accent: '#0ea5e9',
   },
   {
     id: 'build-monthly', cat: 'build', en: 'BUILD Monthly', ar: 'BUILD شهري',
-    price: 499, period: 'mo', handle: 'build-forge-incubator-founders-program',
+    price: 499, period: 'mo', handle: 'build-forge-incubator-founders-program-1',
     taglineEn: 'Forge incubator — 30-day cycles',
     taglineAr: 'حاضنة Forge — دورات 30 يوماً',
     benefits: ['learnAll', 'notion', 'secondBrain', 'telegram'], popular: true, accent: '#f59e0b',
@@ -63,7 +63,7 @@ export const TIERS: Tier[] = [
   },
   {
     id: 'solution-monthly', cat: 'solution', en: 'SOLUTION Monthly', ar: 'SOLUTION شهري',
-    price: 1999, period: 'mo', handle: 'solutions-brainsait-super-partner-program',
+    price: 1999, period: 'mo', handle: 'solutions-brainsait-super-partner-program-1',
     taglineEn: 'Super-partner, monthly',
     taglineAr: 'شريك مميز، شهري',
     benefits: ['learnAll', 'notion', 'secondBrain', 'telegram', 'lark'], accent: '#10b981',

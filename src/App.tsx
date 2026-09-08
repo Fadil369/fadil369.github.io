@@ -15,6 +15,7 @@ const Product = lazy(() => import('./pages/Product'));
 const Account = lazy(() => import('./pages/Account'));
 const AccountAuthorize = lazy(() => import('./pages/AccountAuthorize'));
 const Track = lazy(() => import('./pages/Track'));
+const Sprint = lazy(() => import('./pages/Sprint'));
 
 type Theme = 'dark' | 'light';
 
@@ -148,6 +149,10 @@ function Header() {
           <NavLink to="/learn">{t('nav.learn')}</NavLink>
           <NavLink to="/build">{t('nav.build')}</NavLink>
           <NavLink to="/solutions">{t('nav.solutions')}</NavLink>
+          <NavLink to="/templates">{t('nav.templates')}</NavLink>
+          <NavLink to="/sprint" style={{ color: '#f59e0b', fontWeight: 700 }}>
+            {ar ? 'سباق 48 ساعة' : '48h Sprint'}
+          </NavLink>
           <a
             href={withUtm('https://store.brainsait.de/collections/solutions-ready', { utm_content: 'nav-solutions-ready' })}
             target="_blank"
@@ -226,6 +231,7 @@ export default function App() {
               <Route path="/" element={<Home />} />
               <Route path="/learn" element={<Shelf stage="learn" />} />
               <Route path="/solutions" element={<Shelf stage="solutions" />} />
+              <Route path="/templates" element={<Shelf stage="templates" />} />
               <Route path="/build" element={<Build />} />
               <Route path="/benefits" element={<Benefits />} />
               <Route path="/faq" element={<InfoPage page="faq" />} />
@@ -236,6 +242,7 @@ export default function App() {
               <Route path="/account" element={<Account />} />
               <Route path="/account/authorize" element={<AccountAuthorize />} />
               <Route path="/track" element={<Track />} />
+              <Route path="/sprint" element={<Sprint />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

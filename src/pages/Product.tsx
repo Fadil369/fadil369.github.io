@@ -11,7 +11,7 @@ import { GHIO_LINKS, withUtm } from '../lib/shopifyRouting';
 import { CALENDAR_URL } from '../config/build';
 
 const cat = data as unknown as Catalog;
-const ALL: P[] = [...cat.learn, ...cat.solutions, ...cat.build.courses];
+const ALL: P[] = [...cat.learn, ...cat.solutions, ...cat.build.courses, ...cat.templates];
 
 function formatFormats(product: P, ar: boolean) {
   if (Array.isArray(product.formats)) {

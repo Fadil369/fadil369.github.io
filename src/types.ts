@@ -1,4 +1,4 @@
-export type Stage = 'learn' | 'build' | 'solutions';
+export type Stage = 'learn' | 'build' | 'solutions' | 'templates';
 
 export interface Product {
   slug: string;
@@ -97,5 +97,6 @@ export interface Catalog {
   learn: Product[];
   build: { program: Program; courses: Product[] };
   solutions: Product[];
+  templates: Product[];
   meta: { storeBase: string; currency: string; checkout: string };
 }

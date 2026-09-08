@@ -16,7 +16,7 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
   const [sub, setSub] = useState('all');
   const [comm, setComm] = useState('all');
   const bpr = cat.solutions.find(item => item.slug === 'bpr');
-  const items: Product[] = stage === 'learn' && bpr ? [bpr, ...cat.learn] : cat.solutions;
+  const items: Product[] = stage === 'learn' && bpr ? [bpr, ...cat.learn] : stage === 'templates' ? cat.templates : cat.solutions;
 
   usePageMeta({
     title: ar ? `${def.ar} — BrainSAIT Store` : `${def.en} — BrainSAIT Store`,
@@ -69,6 +69,19 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
               {ar ? '— مساحة عمل محجوزة على code.brainsait.org مع بيئة البناء بالذكاء الاصطناعي.' : '— a reserved workspace on code.brainsait.org with the AI build environment.'}
             </p>
           </div>
+        </section>
+      )}
+
+      {stage === 'templates' && (
+        <section className="shelf-plan-banner reveal" aria-label={ar ? 'دليل القوالب' : 'Templates guide'}>
+          <div>
+            <span className="hero-eyebrow"><span className="dot" /> {ar ? 'كيف يعمل' : 'How it works'}</span>
+            <h2>{ar ? 'قالب الوكيل: تشترى مرة، يعمل دائمًا' : 'Agent template: buy once, runs forever'}</h2>
+            <p>{ar ? 'وكيل ذكاء اصطناعي جاهز (التقاط ← بحث ← توليد ← توجيه ← تقارير) يعمل في حساباتك أنت. نركّبه خلال 5 أيام ونسلّمه مع الوثائق عبر Lark/Telegram، بضمان إصلاح 30 يومًا ومعاملة بيانات وفق PDPL.' : 'A pre-built AI agent (capture → research → generate → route → report) that runs in your own accounts. We configure it within 5 days and hand it over with docs via Lark/Telegram — 30-day fix-it guarantee, PDPL-aware.'}</p>
+          </div>
+          <a className="button primary lg" href="https://store.brainsait.de/pages/agent-templates-guide" target="_blank" rel="noopener noreferrer">
+            {ar ? 'اقرأ الدليل الكامل' : 'Read the full guide'}
+          </a>
         </section>
       )}
 

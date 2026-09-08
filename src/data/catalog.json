@@ -23,6 +23,14 @@
       "route": "/solutions",
       "blurbEn": "Production-grade software and live demos you can build on, ship, and scale.",
       "blurbAr": "برمجيات جاهزة للإنتاج وعروض حيّة يمكنك البناء عليها وتوسيعها."
+    },
+    {
+      "id": "templates",
+      "en": "Templates & Guide",
+      "ar": "القوالب والدليل",
+      "route": "/templates",
+      "blurbEn": "23 ready, bilingual (EN/AR) AI agent templates — lead capture, support chat, content engines and ops agents. One-time SAR pricing, configured in your own accounts in 5 days, 30-day guarantee.",
+      "blurbAr": "23 قالب وكيل ذكاء اصطناعي جاهز ثنائي اللغة (عربي/إنجليزي) — التقاط عملاء، محادثة دعم، مولّدات محتوى ووكلاء عمليات. سعر موحد بالريال، يُركّب في حساباتك خلال 5 أيام مع ضمان 30 يومًا."
     }
   ],
   "subcategories": [
@@ -75,6 +83,26 @@
       "id": "food",
       "en": "Food",
       "ar": "طعام"
+    },
+    {
+      "id": "leadgen",
+      "en": "Lead Gen",
+      "ar": "توليد العملاء"
+    },
+    {
+      "id": "chat",
+      "en": "Support & Chat",
+      "ar": "دعم ومحادثة"
+    },
+    {
+      "id": "content",
+      "en": "Content",
+      "ar": "محتوى"
+    },
+    {
+      "id": "ops",
+      "en": "Ops & Marketing",
+      "ar": "عمليات وتسويق"
     }
   ],
   "learn": [
@@ -4297,7 +4325,7 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/brainsait-identity-cloud-mailotp",
+      "shopifyUrl": "https://store.brainsait.de/products/brainsait-mail-otp-api",
       "shopifyHandle": "brainsait-mail-otp-api",
       "sku": null,
       "available": true,
@@ -4336,44 +4364,6 @@
       "demoUrl": "https://build-apply.brainsait.org/demo/neural-cloud-portal",
       "limitedDemo": false,
       "shopifyUrl": "https://store.brainsait.de/products/neural-cloud-portal",
-      "shopifyHandle": null,
-      "sku": null,
-      "available": true,
-      "commercial": "demo",
-      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1"
-    },
-    {
-      "slug": "brainsait-neural-cloud",
-      "stage": "solutions",
-      "name": "BrainSAIT Neural Cloud",
-      "nameAr": "BrainSAIT Neural Cloud",
-      "category": "AI / Cloud",
-      "categoryAr": "ذكاء اصطناعي / سحابة",
-      "sub": "ai",
-      "tier": "platform",
-      "tagline": "Alternate deployment of the Neural Cloud portal — bilingual and voice-ready.",
-      "taglineAr": "نسخة بديلة من بوابة Neural Cloud — ثنائية اللغة وجاهزة للصوت.",
-      "description": "Alternate deployment of the Neural Cloud portal — the same bilingual, voice-ready interface to your Gemini-powered cortex.",
-      "descriptionAr": "نسخة بديلة من بوابة Neural Cloud — نفس الواجهة ثنائية اللغة الجاهزة للصوت لمحركك العصبي المدعوم بـ Gemini.",
-      "price": 1999,
-      "billingEn": "monthly",
-      "billingAr": "شهري",
-      "free": false,
-      "image": null,
-      "badges": [
-        "🧩 Demo"
-      ],
-      "benefits": [],
-      "formats": null,
-      "whatsIncluded": [],
-      "faqs": [],
-      "faqAr": [],
-      "rating": null,
-      "users": null,
-      "flag": null,
-      "demoUrl": "https://build-apply.brainsait.org/demo/brainsait-neural-cloud",
-      "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/brainsait-neural-cloud",
       "shopifyHandle": null,
       "sku": null,
       "available": true,
@@ -5176,7 +5166,7 @@
       "sku": null,
       "available": true,
       "commercial": "demo",
-      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
+      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1",
       "oneTimePrice": 24000,
       "shopifyUrlOneTime": "https://store.brainsait.de/cart/46139265155155:1?attributes[Solution]=ecareplus&attributes[SolutionName]=BrainSAIT%20eCarePlus%20Portal&attributes[Price_SAR]=24000"
     },
@@ -5216,7 +5206,7 @@
       "sku": null,
       "available": true,
       "commercial": "demo",
-      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
+      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1",
       "oneTimePrice": 24000,
       "shopifyUrlOneTime": "https://store.brainsait.de/cart/46139265155155:1?attributes[Solution]=nphies-linc&attributes[SolutionName]=NPHIES-Linc&attributes[Price_SAR]=24000"
     },
@@ -5487,44 +5477,6 @@
       "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1"
     },
     {
-      "slug": "masterlinc",
-      "stage": "solutions",
-      "name": "MASTERLINC",
-      "nameAr": "MASTERLINC",
-      "category": "Clinical AI",
-      "categoryAr": "ذكاء سريري",
-      "sub": "healthcare",
-      "tier": "demo",
-      "tagline": "Clinical intelligence for visits, coding, claims and AI documentation.",
-      "taglineAr": "ذكاء سريري للزيارات والترميز والمطالبات والتوثيق الذكي.",
-      "description": "MASTERLINC — a clinical intelligence platform covering visits, coding, claims and AI-assisted documentation.",
-      "descriptionAr": "MASTERLINC — منصة ذكاء سريري تغطي الزيارات والترميز والمطالبات والتوثيق الذكي.",
-      "price": 1999,
-      "billingEn": "monthly",
-      "billingAr": "شهري",
-      "free": false,
-      "image": null,
-      "badges": [
-        "🧩 Demo"
-      ],
-      "benefits": [],
-      "formats": null,
-      "whatsIncluded": [],
-      "faqs": [],
-      "faqAr": [],
-      "rating": null,
-      "users": null,
-      "flag": null,
-      "demoUrl": "https://masterlinc.brainsait.org",
-      "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/masterlinc",
-      "shopifyHandle": null,
-      "sku": null,
-      "available": true,
-      "commercial": "demo",
-      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1"
-    },
-    {
       "slug": "oid-identity",
       "stage": "solutions",
       "name": "BrainSAIT OID",
@@ -5555,7 +5507,7 @@
       "flag": null,
       "demoUrl": "https://portals.brainsait.org",
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/oid-identity",
+      "shopifyUrl": "https://store.brainsait.de/products/oid-verification-badge-1",
       "shopifyHandle": "oid-verification-badge-1",
       "sku": null,
       "available": true,
@@ -5728,7 +5680,7 @@
       "price": 1999,
       "billingEn": "monthly",
       "billingAr": "شهري",
-      "shopifyUrl": "https://store.brainsait.de/products/abeer-medical-platform",
+      "shopifyUrl": "https://store.brainsait.de/products/abeer-connected-healthcare-platform",
       "shopifyHandle": "abeer-connected-healthcare-platform",
       "available": true,
       "commercial": "product",
@@ -5748,7 +5700,7 @@
       "price": 1999,
       "billingEn": "monthly",
       "billingAr": "شهري",
-      "shopifyUrl": "https://store.brainsait.de/products/book-writer",
+      "shopifyUrl": "https://store.brainsait.de/products/book-writer-agent",
       "shopifyHandle": "book-writer-agent",
       "available": true,
       "commercial": "product",
@@ -5768,7 +5720,7 @@
       "price": 24000,
       "billingEn": "monthly",
       "billingAr": "شهري",
-      "shopifyUrl": "https://store.brainsait.de/products/brainsait-oid-registry-explorer-platform-license",
+      "shopifyUrl": "https://store.brainsait.de/products/oid-explorer-seat",
       "shopifyHandle": "oid-explorer-seat",
       "available": true,
       "commercial": "product",
@@ -5792,7 +5744,7 @@
       "price": 480000,
       "billingEn": "monthly",
       "billingAr": "شهري",
-      "shopifyUrl": "https://store.brainsait.de/products/brainsait-oid-whitelabel-enterprise-license",
+      "shopifyUrl": "https://store.brainsait.de/products/oid-white-label-enterprise-1",
       "shopifyHandle": "oid-white-label-enterprise-1",
       "available": true,
       "commercial": "product",
@@ -5816,7 +5768,7 @@
       "price": 1999,
       "billingEn": "monthly",
       "billingAr": "شهري",
-      "shopifyUrl": "https://store.brainsait.de/products/brainsait-operating-system-course",
+      "shopifyUrl": "https://store.brainsait.de/products/brainsait-operating-system-bos-complete-course",
       "shopifyHandle": "brainsait-operating-system-bos-complete-course",
       "available": true,
       "commercial": "product",
@@ -5836,7 +5788,7 @@
       "price": 1999,
       "billingEn": "monthly",
       "billingAr": "شهري",
-      "shopifyUrl": "https://store.brainsait.de/products/abeer-group-transformation",
+      "shopifyUrl": "https://store.brainsait.de/products/brainsait-abeer-group-saudi-healthcare-transformation-blueprint",
       "shopifyHandle": "brainsait-abeer-group-saudi-healthcare-transformation-blueprint",
       "available": true,
       "commercial": "product",
@@ -5856,7 +5808,7 @@
       "price": 990,
       "billingEn": "monthly",
       "billingAr": "شهري",
-      "shopifyUrl": "https://store.brainsait.de/products/enterprise-oid-badge-management-system-selfhosted-license",
+      "shopifyUrl": "https://store.brainsait.de/products/oid-verification-badge-1",
       "shopifyHandle": "oid-verification-badge-1",
       "available": true,
       "commercial": "product",
@@ -5879,7 +5831,7 @@
       "price": 1999,
       "billingEn": "monthly",
       "billingAr": "شهري",
-      "shopifyUrl": "https://store.brainsait.de/products/momfood-cloud-kitchen",
+      "shopifyUrl": "https://store.brainsait.de/products/momfood-cloud-kitchen-incubator",
       "shopifyHandle": "momfood-cloud-kitchen-incubator",
       "available": true,
       "commercial": "product",
@@ -5899,7 +5851,7 @@
       "price": 180000,
       "billingEn": "monthly",
       "billingAr": "شهري",
-      "shopifyUrl": "https://store.brainsait.de/products/nphiesoid-healthcare-identity-bundle",
+      "shopifyUrl": "https://store.brainsait.de/products/oid-nphies-oid-healthcare-identity-bundle",
       "shopifyHandle": "oid-nphies-oid-healthcare-identity-bundle",
       "available": true,
       "commercial": "product",
@@ -5922,7 +5874,7 @@
       "price": 48000,
       "billingEn": "monthly",
       "billingAr": "شهري",
-      "shopifyUrl": "https://store.brainsait.de/products/oid-enterprise-namespace-architect",
+      "shopifyUrl": "https://store.brainsait.de/products/oid-enterprise-namespace-license-1",
       "shopifyHandle": "oid-enterprise-namespace-license-1",
       "available": true,
       "commercial": "product",
@@ -5970,7 +5922,7 @@
       "price": 1999,
       "billingEn": "monthly",
       "billingAr": "شهري",
-      "shopifyUrl": "https://store.brainsait.de/products/spark",
+      "shopifyUrl": "https://store.brainsait.de/products/spark-ai-startup-builder",
       "shopifyHandle": "spark-ai-startup-builder-سبارك-باني-الشركات-الناشئة",
       "available": true,
       "commercial": "product",
@@ -6015,7 +5967,7 @@
       "sku": null,
       "available": true,
       "commercial": "product",
-      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
+      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1",
       "oneTimePrice": 24000,
       "shopifyUrlOneTime": "https://store.brainsait.de/products/solutions-ready-hospital-os"
     },
@@ -6058,7 +6010,7 @@
       "sku": null,
       "available": true,
       "commercial": "product",
-      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
+      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1",
       "oneTimePrice": 24000,
       "shopifyUrlOneTime": "https://store.brainsait.de/products/solutions-ready-nphies-platform"
     },
@@ -6101,7 +6053,7 @@
       "sku": null,
       "available": true,
       "commercial": "product",
-      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
+      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1",
       "oneTimePrice": 24000,
       "shopifyUrlOneTime": "https://store.brainsait.de/products/solutions-ready-cloud-kitchen"
     },
@@ -6118,7 +6070,7 @@
       "taglineAr": "نظام إدارة الهوية ومعرفات OID — جاهز للتطبيق.",
       "description": "A complete, ready-built OID identity management system, provisioned and deployed directly into your environment.",
       "descriptionAr": "نظام إدارة هوية ومعرفات OID كامل وجاهز، يتم تجهيزه ونشره مباشرة في بيئتك.",
-      "price": 480000,
+      "price": 24000,
       "billingEn": "",
       "billingAr": "دفعة واحدة",
       "free": false,
@@ -6144,7 +6096,7 @@
       "sku": null,
       "available": true,
       "commercial": "product",
-      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
+      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1",
       "oneTimePrice": 24000,
       "shopifyUrlOneTime": "https://store.brainsait.de/products/solutions-ready-oid"
     },
@@ -6187,7 +6139,7 @@
       "sku": null,
       "available": true,
       "commercial": "product",
-      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
+      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1",
       "oneTimePrice": 24000,
       "shopifyUrlOneTime": "https://store.brainsait.de/products/solutions-ready-clinic-os"
     },
@@ -6230,7 +6182,7 @@
       "sku": null,
       "available": true,
       "commercial": "product",
-      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
+      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1",
       "oneTimePrice": 24000,
       "shopifyUrlOneTime": "https://store.brainsait.de/products/solutions-ready-basma-voice"
     },
@@ -6270,7 +6222,7 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
+      "shopifyUrl": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1",
       "shopifyHandle": "solutions-brainsait-super-partner-program",
       "sku": null,
       "available": true,
@@ -6313,47 +6265,9 @@
       "sku": null,
       "available": true,
       "commercial": "product",
-      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
+      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1",
       "oneTimePrice": 24000,
       "shopifyUrlOneTime": "https://store.brainsait.de/products/solutions-ready-hospital-os"
-    },
-    {
-      "slug": "sibaiti-clinic-directory",
-      "stage": "solutions",
-      "name": "Sibaiti Clinic Directory",
-      "nameAr": "دليل عيادات سيبايتي",
-      "category": "Healthcare",
-      "categoryAr": "رعاية صحية",
-      "sub": "healthcare",
-      "tier": "platform",
-      "tagline": "Sibaiti (sibaiti.app) — a smart clinics & providers directory with online booking and discovery.",
-      "taglineAr": "سيبايتي (sibaiti.app) — دليل ذكي للعيادات ومقدمي الخدمات مع حجز أونلاين واكتشاف.",
-      "description": "Sibaiti Clinic Directory — running live at sibaiti.app: discover clinics, doctors and book online.",
-      "descriptionAr": "دليل عيادات سيبايتي — يعمل مباشرة على sibaiti.app: اكتشف العيادات والأطباء واحجز أونلاين.",
-      "price": 1999,
-      "billingEn": "monthly",
-      "billingAr": "شهري",
-      "free": false,
-      "image": null,
-      "badges": [
-        "🛒 Enterprise"
-      ],
-      "benefits": [],
-      "formats": null,
-      "whatsIncluded": [],
-      "faqs": [],
-      "faqAr": [],
-      "rating": null,
-      "users": null,
-      "flag": null,
-      "demoUrl": "https://sibaiti.app",
-      "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/sibaiti-clinic-directory",
-      "shopifyHandle": null,
-      "sku": null,
-      "available": true,
-      "commercial": "product",
-      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1"
     },
     {
       "slug": "beos-executive-rcm",
@@ -6391,85 +6305,9 @@
       "sku": null,
       "available": true,
       "commercial": "product",
-      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program",
+      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1",
       "oneTimePrice": 24000,
       "shopifyUrlOneTime": "https://store.brainsait.de/cart/46139265155155:1?attributes[Solution]=beos-executive-rcm&attributes[SolutionName]=BEOS%20%E2%80%94%20Executive%20RCM&attributes[Price_SAR]=24000"
-    },
-    {
-      "slug": "brainsait-academy",
-      "stage": "solutions",
-      "name": "BrainSAIT Academy",
-      "nameAr": "أكاديمية برينسايت",
-      "category": "Education",
-      "categoryAr": "تعليم",
-      "sub": "education",
-      "tier": "platform",
-      "tagline": "BrainSAIT Academy (academy.brainsait.de) — live courses, cohort programs and hands-on labs.",
-      "taglineAr": "أكاديمية برينسايت (academy.brainsait.de) — دورات مباشرة وبرامج دفع ومختبرات عملية.",
-      "description": "BrainSAIT Academy — running live at academy.brainsait.de: the learning arm of the ecosystem (learn.brainsait.de / edu.brainsait.de).",
-      "descriptionAr": "أكاديمية برينسايت — تعمل على academy.brainsait.de: الذراع التعليمية للمنظومة.",
-      "price": 1999,
-      "billingEn": "monthly",
-      "billingAr": "شهري",
-      "free": false,
-      "image": null,
-      "badges": [
-        "🛒 Enterprise"
-      ],
-      "benefits": [],
-      "formats": null,
-      "whatsIncluded": [],
-      "faqs": [],
-      "faqAr": [],
-      "rating": null,
-      "users": null,
-      "flag": null,
-      "demoUrl": "https://academy.brainsait.de",
-      "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/brainsait-academy",
-      "shopifyHandle": null,
-      "sku": null,
-      "available": true,
-      "commercial": "product",
-      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1"
-    },
-    {
-      "slug": "brainsait-notebooks",
-      "stage": "solutions",
-      "name": "BrainSAIT Notebooks",
-      "nameAr": "دفاتر برينسايت",
-      "category": "Productivity",
-      "categoryAr": "إنتاجية",
-      "sub": "productivity",
-      "tier": "platform",
-      "tagline": "BrainSAIT Notebooks (notebooks.brainsait.de) — persistent, AI-wired knowledge notebooks.",
-      "taglineAr": "دفاتر برينسايت (notebooks.brainsait.de) — دفاتر معرفة دائمة متصلة بالذكاء الاصطناعي.",
-      "description": "BrainSAIT Notebooks — running live at notebooks.brainsait.de: your second-brain notebooks wired into the ecosystem.",
-      "descriptionAr": "دفاتر برينسايت — تعمل على notebooks.brainsait.de: دفاتر العقل الثاني المتصلة بالمنظومة.",
-      "price": 1999,
-      "billingEn": "monthly",
-      "billingAr": "شهري",
-      "free": false,
-      "image": null,
-      "badges": [
-        "🛒 Enterprise"
-      ],
-      "benefits": [],
-      "formats": null,
-      "whatsIncluded": [],
-      "faqs": [],
-      "faqAr": [],
-      "rating": null,
-      "users": null,
-      "flag": null,
-      "demoUrl": "https://notebooks.brainsait.de",
-      "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/brainsait-notebooks",
-      "shopifyHandle": null,
-      "sku": null,
-      "available": true,
-      "commercial": "product",
-      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1"
     },
     {
       "slug": "bpr",
@@ -6485,8 +6323,8 @@
       "description": "BrainSAIT Provider Registry (BPR) is Saudi Arabia's interoperable healthcare provider identity, credential and discovery layer. Each provider record carries a durable SPID (human-friendly) and BrainSAIT OID (machine identifier) under IANA PEN 61026. FHIR R4-first, SCFHS-anchored verification, Gravatar profile enrichment, DID/VC claims, NPHIES-aligned.",
       "descriptionAr": "سجل برينسايت لمقدمي الرعاية الصحية (BPR) هو طبقة موحدة للهوية المهنية والتحقق والتشغيل البيني واكتشاف مقدمي الرعاية الصحية في المملكة العربية السعودية. يحمل كل ملف مهني هوية SPID (سهلة الاستخدام البشري) وOID (معرف آلة) تحت رقم IANA 61026. نموذج FHIR R4 أولا، التحقق المربوط بالهيئة السعودية للتخصصات الصحية، إثراء الملف الشخصي عبر Gravatar، مطالبات DID/VC، متوافق مع NPHIES.",
       "price": 3960,
-      "billingEn": "monthly",
-      "billingAr": "شهري",
+      "billingEn": "annual",
+      "billingAr": "سنوي",
       "free": false,
       "image": "/assets/images/products/bpr.svg",
       "badges": [
@@ -6570,20 +6408,1045 @@
       "rating": 4.8,
       "users": 1247,
       "flag": null,
-      "demoUrl": "https://registry.brainsait.org",
+      "demoUrl": "https://verify.brainsait.org",
       "limitedDemo": false,
       "shopifyUrl": "https://store.brainsait.de/products/provider-registry",
       "shopifyHandle": "provider-registry",
       "sku": "BPR-ANNUAL",
       "available": true,
       "commercial": "saas",
-      "shopifyUrlMonthly": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1"
+      "shopifyUrlMonthly": "https://store.brainsait.de/cart/46135696785491:1"
     }
   ],
   "meta": {
     "storeBase": "https://store.brainsait.de",
     "currency": "SAR",
     "checkout": "shopify-paypal",
-    "learnProductUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access"
-  }
+    "learnProductUrl": "https://store.brainsait.de/products/learn-brainsait-digital-access",
+    "products_json": "/src/data/products.json",
+    "unified_registry": true,
+    "product_count": {
+      "learn": 40,
+      "build": 2,
+      "solutions": 66,
+      "bpr": 2,
+      "forge": 3,
+      "templates": 23
+    },
+    "updated": "2026-09-08"
+  },
+  "templates": [
+    {
+      "slug": "tpl-unified-lead-capture",
+      "stage": "templates",
+      "name": "Unified Lead Capture Agent — Multi-Source CRM Funnel",
+      "nameAr": "وكيل التقاط العملاء الموحّد — قمع CRM متعدد المصادر",
+      "category": "Lead Gen",
+      "categoryAr": "توليد العملاء",
+      "sub": "leadgen",
+      "tier": "template",
+      "tagline": "Every lead, every channel, one clean pipeline into your CRM.",
+      "taglineAr": "كل عميل محتمل، من كل قناة، في خط أنابيب واحد نظيف إلى نظام CRM الخاص بك.",
+      "description": "Every lead, every channel, one clean pipeline into your CRM. Capture leads from web forms, WhatsApp, Telegram and email in one place AI cleanup: dedupe, format and score before CRM entry Weekly pipeline digest posted to your team channel",
+      "descriptionAr": "كل عميل محتمل، من كل قناة، في خط أنابيب واحد نظيف إلى نظام CRM الخاص بك. التقاط العملاء من نماذج الويب وواتساب وتليغرام والبريد في مكان واحد تنظيف بالذكاء الاصطناعي: إزالة التكرار والتنسيق والتصنيف قبل الإضافة ملخص أسبوعي يظهر في قناة فريقك",
+      "price": 1999,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-unified-lead-capture",
+      "shopifyHandle": "tpl-unified-lead-capture",
+      "sku": "BSAGT-001",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-ai-chat-business",
+      "stage": "templates",
+      "name": "AI Business Chat Agent — Bilingual EN/AR Support",
+      "nameAr": "وكيل محادثة الأعمال — دعم ثنائي اللغة",
+      "category": "Support & Chat",
+      "categoryAr": "دعم ومحادثة",
+      "sub": "chat",
+      "tier": "template",
+      "tagline": "A bilingual AI chat agent that answers customers instantly — day and night.",
+      "taglineAr": "وكيل محادثة ثنائي اللغة يجيب عملاءك فورًا — ليل نهار.",
+      "description": "A bilingual AI chat agent that answers customers instantly — day and night. Trains on your FAQ, policies and product catalog (RAG) EN + AR with proper RTL; hands off to a human when unsure Cuts first-response time from hours to seconds",
+      "descriptionAr": "وكيل محادثة ثنائي اللغة يجيب عملاءك فورًا — ليل نهار. تدرّب على أسئلتك الشائعة وسياساتك وفهرس منتجاتك عربي وإنجليزي مع RTL صحيح، وينقل المحادثة لإنسان عند الحاجة يخفض زمن الاستجابة الأولى من ساعات إلى ثوانٍ",
+      "price": 2999,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-ai-chat-business",
+      "shopifyHandle": "tpl-ai-chat-business",
+      "sku": "BSAGT-002",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-lead-enrichment",
+      "stage": "templates",
+      "name": "AI Lead Enrichment Agent — Research & Score New Leads",
+      "nameAr": "وكيل إثراء العملاء — بحث وتصنيف العملاء الجدد",
+      "category": "Lead Gen",
+      "categoryAr": "توليد العملاء",
+      "sub": "leadgen",
+      "tier": "template",
+      "tagline": "New lead in? The agent researches who they are before your sales team calls.",
+      "taglineAr": "عميل جديد؟ الوكيل يبحث عمن هو قبل أن يتصل فريق المبيعات.",
+      "description": "New lead in? The agent researches who they are before your sales team calls. Auto-research: company, role, tech stack, decision path Flags hot leads for immediate outreach Plays well with any CRM you already use",
+      "descriptionAr": "عميل جديد؟ الوكيل يبحث عمن هو قبل أن يتصل فريق المبيعات. بحث تلقائي: الشركة والمنصب والتقنيات ومسار القرار يشير إلى العملاء الساخنين للتواصل الفوري يعمل مع أي نظام CRM تستخدمه",
+      "price": 1499,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-lead-enrichment",
+      "shopifyHandle": "tpl-lead-enrichment",
+      "sku": "BSAGT-003",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-ecommerce-chatbot",
+      "stage": "templates",
+      "name": "Ecommerce AI Chatbot — Product Q&A & Lead Capture",
+      "nameAr": "روبوت محادثة التجارة الإلكترونية — أسئلة المنتجات وتقاط العملاء",
+      "category": "Support & Chat",
+      "categoryAr": "دعم ومحادثة",
+      "sub": "chat",
+      "tier": "template",
+      "tagline": "Product questions, orders, sizes, shipping — answered by AI on your store.",
+      "taglineAr": "أسئلة المنتجات والطلبات والمقاسات والشحن — يجيب عنها الذكاء الاصطناعي في متجرك.",
+      "description": "Product questions, orders, sizes, shipping — answered by AI on your store. Knows every product in your catalog: prices, stock, variants EN/AR with RTL; captures lead emails from chat Our own store runs one — see it live on store.brainsait.de",
+      "descriptionAr": "أسئلة المنتجات والطلبات والمقاسات والشحن — يجيب عنها الذكاء الاصطناعي في متجرك. يعرف كل منتجاتك: الأسعار والمخزون والنسخ عربي وإنجليزي مع RTL؛ يلتقط بريد الزوار من المحادثة متجرنا يركّب واحدًا — رآه حيًا على store.brainsait.de",
+      "price": 2499,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-ecommerce-chatbot",
+      "shopifyHandle": "tpl-ecommerce-chatbot",
+      "sku": "BSAGT-004",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-lead-capture-followup",
+      "stage": "templates",
+      "name": "Lead Capture + Follow-Up Agent — Forms to CRM",
+      "nameAr": "وكيل التقاط العملاء والمتابعة — من النموذج إلى CRM",
+      "category": "Lead Gen",
+      "categoryAr": "توليد العملاء",
+      "sub": "leadgen",
+      "tier": "template",
+      "tagline": "From form fill to first follow-up — without anyone touching it.",
+      "taglineAr": "من تعبئة النموذج إلى أول متابعة — دون أن يلمسها أحد.",
+      "description": "From form fill to first follow-up — without anyone touching it. Captures form data and confirms instantly (email/WhatsApp) AI writes the personal first follow-up 3-touch nurture sequence until reply or conversion",
+      "descriptionAr": "من تعبئة النموذج إلى أول متابعة — دون أن يلمسها أحد. التقاط بيانات النموذج وتأكيد فوري (بريد/واتساب) الوكيل يكتب أول متابعة شخصية تسلسل تربية من 3 لمسات حتى الرد أو التحويل",
+      "price": 1499,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-lead-capture-followup",
+      "shopifyHandle": "tpl-lead-capture-followup",
+      "sku": "BSAGT-005",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-ai-form",
+      "stage": "templates",
+      "name": "AI Intake Form — Fewer Fields, Cleaner Data",
+      "nameAr": "نموذج الاستقبال الذكي — حقول أقل وبيانات أنظف",
+      "category": "Lead Gen",
+      "categoryAr": "توليد العملاء",
+      "sub": "leadgen",
+      "tier": "template",
+      "tagline": "A form that asks nothing extra — AI pulls the data from what they type.",
+      "taglineAr": "نموذج لا يسأل شيئًا زائدًا — الذكاء الاصطناعي يستخرج البيانات مما يكتبونه.",
+      "description": "A form that asks nothing extra — AI pulls the data from what they type. Fewer fields: AI extracts name, role, company, need from free text Works as web widget, WhatsApp or embedded form EN/AR with RTL — feels native to Saudi customers",
+      "descriptionAr": "نموذج لا يسأل شيئًا زائدًا — الذكاء الاصطناعي يستخرج البيانات مما يكتبونه. حقول أقل: يستخرج الاسم والمنصب والشركة والحاجة من النص الحر يعمل كمكوّن ويب أو واتساب أو نموذج مضمّن عربي وإنجليزي مع RTL — إحساس محلي للزائر السعودي",
+      "price": 999,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-ai-form",
+      "shopifyHandle": "tpl-ai-form",
+      "sku": "BSAGT-006",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-employee-onboarding",
+      "stage": "templates",
+      "name": "Employee Onboarding Manager Agent",
+      "nameAr": "وكيل مدير استقطاب الموظفين",
+      "category": "Ops & Marketing",
+      "categoryAr": "عمليات وتسويق",
+      "sub": "ops",
+      "tier": "template",
+      "tagline": "New hire day one to full onboarding — run by an agent, not spreadsheets.",
+      "taglineAr": "من يوم أول موظف جديد إلى استقطاب كامل — يديره وكيل لا جداول.",
+      "description": "New hire day one to full onboarding — run by an agent, not spreadsheets. Centralized team hub: info, docs, checklists in one place One-button onboarding: emails, tasks and reminders auto-fire PDPL-aware handling of employee personal data",
+      "descriptionAr": "من يوم أول موظف جديد إلى استقطاب كامل — يديره وكيل لا جداول. مركز فريق موحّد: معلومات ووثائق وقوائم في مكان استقطاب بزر: بريد ومهام وتذكيرات تطلق تلقائيًا معالجة لبيانات الموظفين الشخصية وفق PDPL",
+      "price": 1999,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-employee-onboarding",
+      "shopifyHandle": "tpl-employee-onboarding",
+      "sku": "BSAGT-007",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-campaign-tracker",
+      "stage": "templates",
+      "name": "Marketing Campaign Tracker Agent — Weekly AI Reports",
+      "nameAr": "وكيل متتبّع حملات التسويق — تقارير أسبوعية بالذكاء",
+      "category": "Ops & Marketing",
+      "categoryAr": "عمليات وتسويق",
+      "sub": "ops",
+      "tier": "template",
+      "tagline": "Facebook + LinkedIn ads into one table, with a weekly AI report in your channel.",
+      "taglineAr": "إعلانات فيسبوك ولينكد إن في جدول واحد، مع تقرير أسبوعي بالذكاء في قناتك.",
+      "description": "Facebook + LinkedIn ads into one table, with a weekly AI report in your channel. Pulls ad performance from Meta and LinkedIn daily Custom SAR metrics: CAC, ROAS, cost per lead AI agent writes the weekly report + what to change",
+      "descriptionAr": "إعلانات فيسبوك ولينكد إن في جدول واحد، مع تقرير أسبوعي بالذكاء في قناتك. يسحب أداء الإعلانات من ميتا ولينكد إن يوميًا مقاييس مخصصة بالريال: تكلفة الاكتساب وROAS وتكلفة العميل وكيل الذكاء يكتب التقرير الأسبوعي وما يجب تعديله",
+      "price": 1299,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-campaign-tracker",
+      "shopifyHandle": "tpl-campaign-tracker",
+      "sku": "BSAGT-008",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-custom-agent-scaffold",
+      "stage": "templates",
+      "name": "Custom Agent Builder — Starter Scaffold",
+      "nameAr": "باني وكيل مخصص — هيكل البداية",
+      "category": "Ops & Marketing",
+      "categoryAr": "عمليات وتسويق",
+      "sub": "ops",
+      "tier": "template",
+      "tagline": "The blank canvas: your own agent, live business data, 7,000+ apps.",
+      "taglineAr": "اللوحة الفارغة: وكيلك الخاص، ببيانات أعمالك الحية، و7000+ تطبيق.",
+      "description": "The blank canvas: your own agent, live business data, 7,000+ apps. Pre-wired scaffold you own: instructions, data tools, triggers Live business data connections (CRM, sheets, chat) Documented so any dev or AI can extend it",
+      "descriptionAr": "اللوحة الفارغة: وكيلك الخاص، ببيانات أعمالك الحية، و7000+ تطبيق. هيكل جاهز تملكه: تعليمات وأدوات بيانات ومحفزات روابط ببيانات أعمالك الحية (CRM وجداول ودردشات) موثّق بحيث يستطيع أي مطوّر أو ذكاء توسيعه",
+      "price": 499,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-custom-agent-scaffold",
+      "shopifyHandle": "tpl-custom-agent-scaffold",
+      "sku": "BSAGT-009",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-helpdesk-faq",
+      "stage": "templates",
+      "name": "Helpdesk FAQ & Request Agent — Team Autopilot",
+      "nameAr": "وكيل خدمة العملاء والأسئلة الشائعة — طيار فريقك الآلي",
+      "category": "Support & Chat",
+      "categoryAr": "دعم ومحادثة",
+      "sub": "chat",
+      "tier": "template",
+      "tagline": "Repetitive questions stop reaching your team. The agent answers first.",
+      "taglineAr": "الأسئلة المتكررة تتوقف عن بلوغ فريقك. الوكيل يجيب أولًا.",
+      "description": "Repetitive questions stop reaching your team. The agent answers first. Learns your team's answers from history + docs Routes real requests to the right ticket/board Weekly report: what the agent answered vs escalated",
+      "descriptionAr": "الأسئلة المتكررة تتوقف عن بلوغ فريقك. الوكيل يجيب أولًا. يتعلم إجابات فريقك من السجل والوثائق يوجّه الطلبات الحقيقية إلى التذكرة أو اللوحة الصحيحة تقرير أسبوعي: ما أجاب عنه الوكيل وما صُعد للفريق",
+      "price": 2499,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-helpdesk-faq",
+      "shopifyHandle": "tpl-helpdesk-faq",
+      "sku": "BSAGT-010",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-sales-opps-support",
+      "stage": "templates",
+      "name": "Sales-Opportunity Radar in Support Tickets",
+      "nameAr": "رادار فرص البيع في تذاكر الدعم",
+      "category": "Lead Gen",
+      "categoryAr": "توليد العملاء",
+      "sub": "leadgen",
+      "tier": "template",
+      "tagline": "Your support inbox is a sales funnel. The agent finds it while you sleep.",
+      "taglineAr": "صندوق الدعم الخاص بك قمع مبيعات. الوكيل يجد الفرص وأنت نائم.",
+      "description": "Your support inbox is a sales funnel. The agent finds it while you sleep. AI scans every ticket for upsell/cross-sell signals Scores opportunity size and posts to your sales channel Drafts the personal upsell message for one-click send",
+      "descriptionAr": "صندوق الدعم الخاص بك قمع مبيعات. الوكيل يجد الفرص وأنت نائم. يفحص الذكاء كل تذكرة لإشارات البيع الإضافي يصنّف حجم الفرصة وينشرها في قناة المبيعات يكتب رسالة البيع الشخصية جاهزة للإرسال بنقرة",
+      "price": 1799,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-sales-opps-support",
+      "shopifyHandle": "tpl-sales-opps-support",
+      "sku": "BSAGT-011",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-changelog-agent",
+      "stage": "templates",
+      "name": "Changelog Automation Agent — Slack to Release Notes",
+      "nameAr": "وكيل أتمتة سجل التغييرات — من سلاك إلى ملاحظات الإصدار",
+      "category": "Ops & Marketing",
+      "categoryAr": "عمليات وتسويق",
+      "sub": "ops",
+      "tier": "template",
+      "tagline": "Ship the update in chat; the changelog writes itself.",
+      "taglineAr": "انشر التحديث في الدردشة؛ سجل التغييرات يكتب نفسه.",
+      "description": "Ship the update in chat; the changelog writes itself. Captures update announcements from your team channel Emoji reaction triggers AI summary + categorization Publishes a clean, dated changelog you can share",
+      "descriptionAr": "انشر التحديث في الدردشة؛ سجل التغييرات يكتب نفسه. يلقط إعلانات التحديث من قناة فريقك رد الفعل بالرمز التعبيري يشغّل ملخصًا ذكيًا ينشر سجل تغييرات نظيفًا مؤرخًا يمكنك مشاركته",
+      "price": 799,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-changelog-agent",
+      "shopifyHandle": "tpl-changelog-agent",
+      "sku": "BSAGT-012",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-content-ideas",
+      "stage": "templates",
+      "name": "Content Idea Generator Agent — Endless EN/AR Ideas",
+      "nameAr": "وكيل مولّد أفكار المحتوى — أفكار لا تنتهي",
+      "category": "Content",
+      "categoryAr": "محتوى",
+      "sub": "content",
+      "tier": "template",
+      "tagline": "One seed idea in, a month of content plans out.",
+      "taglineAr": "فكرة واحدة تدخل، وخطة محتوى شهر تخرج.",
+      "description": "One seed idea in, a month of content plans out. Submit an idea; AI returns related angles for blog, social, email, video Bilingual output: every idea in EN + AR Feeds straight into your content calendar sheet",
+      "descriptionAr": "فكرة واحدة تدخل، وخطة محتوى شهر تخرج. أدخل فكرة؛ يعيد لك الزوايا المرتبطة للمدونة والمنصات والبريد والفيديو مخرجات ثنائية اللغة: كل فكرة بالعربية والإنجليزية يوحى مباشرة إلى جدول تقويم المحتوى",
+      "price": 799,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-content-ideas",
+      "shopifyHandle": "tpl-content-ideas",
+      "sku": "BSAGT-013",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-logo-generator",
+      "stage": "templates",
+      "name": "AI Logo Generator — Shareable Brand Builder",
+      "nameAr": "مولّد الشعارات بالذكاء — بناء علامة قابلة للمشاركة",
+      "category": "Content",
+      "categoryAr": "محتوى",
+      "sub": "content",
+      "tier": "template",
+      "tagline": "Customers type their brand; a shareable logo page comes back.",
+      "taglineAr": "الزوار يكتبون علامتهم؛ ويحصلون على صفحة شعار قابلة للمشاركة.",
+      "description": "Customers type their brand; a shareable logo page comes back. Form in, logo out: AI image models generate on demand Shareable page with download + edit options Branded with your agency identity — resell-ready",
+      "descriptionAr": "الزوار يكتبون علامتهم؛ ويحصلون على صفحة شعار قابلة للمشاركة. نموذج إدخال، شعار خروج: نماذج توليد الصور تنتج عند الطلب صفحة مشاركة مع خيار التحديد والتعديل بحوية وكالتك — جاهز لإعادة البيع",
+      "price": 999,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-logo-generator",
+      "shopifyHandle": "tpl-logo-generator",
+      "sku": "BSAGT-014",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-message-routing",
+      "stage": "templates",
+      "name": "Multi-Channel Message Routing Agent — Smart Triage",
+      "nameAr": "وكيل توجيه الرسائل متعدد القنوات — فرز ذكي",
+      "category": "Ops & Marketing",
+      "categoryAr": "عمليات وتسويق",
+      "sub": "ops",
+      "tier": "template",
+      "tagline": "Email, WhatsApp, Telegram, forms — one brain routes every message to the right team.",
+      "taglineAr": "بريد وواتساب وتليغرام ونماذج — عقل واحد يوجّه كل رسالة إلى الفريق الصحيح.",
+      "description": "Email, WhatsApp, Telegram, forms — one brain routes every message to the right team. AI categorizes and prioritizes every inbound message Routes to the right team channel, ticket or person SLA timer: unhandled messages escalate automatically",
+      "descriptionAr": "بريد وواتساب وتليغرام ونماذج — عقل واحد يوجّه كل رسالة إلى الفريق الصحيح. يصنف الذكاء ويولّي كل رسالة واردة الأولوية يوجّهها إلى قناة الفريق أو التذكرة أو الشخص الصحيح مؤقت SLA: الرسائل غير المعالجة تُصعّد تلقائيًا",
+      "price": 2499,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-message-routing",
+      "shopifyHandle": "tpl-message-routing",
+      "sku": "BSAGT-015",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-company-sourcing",
+      "stage": "templates",
+      "name": "Company Sourcing Intelligence Agent — 60s Reports",
+      "nameAr": "وكيل استهداف الشركات — تقارير في 60 ثانية",
+      "category": "Ops & Marketing",
+      "categoryAr": "عمليات وتسويق",
+      "sub": "ops",
+      "tier": "template",
+      "tagline": "Type a company name; get who to contact and how — in 60 seconds.",
+      "taglineAr": "اكتب اسم شركة؛ واحصل على من تتواصل وكيف — في 60 ثانية.",
+      "description": "Type a company name; get who to contact and how — in 60 seconds. Named people to source: titles, roles, decision paths Tech stack + outreach angles + LinkedIn Boolean strings Report lands in your channel or sheet, ready to act",
+      "descriptionAr": "اكتب اسم شركة؛ واحصل على من تتواصل وكيف — في 60 ثانية. أشخاص مسماون للاستهداف: مسميات أدوار ومسارات قرار التقنيات وزوايا التواصل وخطوات بحث لينكد إن التقرير يصل إلى قناتك أو جدولك جاهزًا للتنفيذ",
+      "price": 1499,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-company-sourcing",
+      "shopifyHandle": "tpl-company-sourcing",
+      "sku": "BSAGT-016",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-knowledge-base",
+      "stage": "templates",
+      "name": "Knowledge-Base Research Assistant Agent — Enterprise",
+      "nameAr": "وكيل مساعد البحث بقاعدة المعرفة — مؤسساتي",
+      "category": "Ops & Marketing",
+      "categoryAr": "عمليات وتسويق",
+      "sub": "ops",
+      "tier": "template",
+      "tagline": "An AI that actually knows your work — docs, threads and wikis included.",
+      "taglineAr": "ذكاء اصطناعي يعرف عملك حقًا — مستندات وخيوط ويكيات.",
+      "description": "An AI that actually knows your work — docs, threads and wikis included. Ingests your docs, chat threads and wiki pages into one KB Answers with real context, not surface-level guesses Role-aware access; PDPL/NDAs respected by design",
+      "descriptionAr": "ذكاء اصطناعي يعرف عملك حقًا — مستندات وخيوط ويكيات. يجمع مستنداتك وخيوط الدردشة وصفحات الويكي في قاعدة واحدة يجيب بسياق حقيقي لا تخمينات سطحية وصول حسب الأدوار؛ يحترم PDPL والاتفاقيات",
+      "price": 4999,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-knowledge-base",
+      "shopifyHandle": "tpl-knowledge-base",
+      "sku": "BSAGT-017",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-launch-readiness",
+      "stage": "templates",
+      "name": "Launch Readiness Report Agent",
+      "nameAr": "وكيل تقرير جاهزية الإطلاق",
+      "category": "Ops & Marketing",
+      "categoryAr": "عمليات وتسويق",
+      "sub": "ops",
+      "tier": "template",
+      "tagline": "Green or red before launch day — not after.",
+      "taglineAr": "أخضر أو أحمر قبل يوم الإطلاق — لا بعده.",
+      "description": "Green or red before launch day — not after. Pulls task status + project docs into one assessment Flags risks, blockers and missing owners Readiness report posted to your channel with a score",
+      "descriptionAr": "أخضر أو أحمر قبل يوم الإطلاق — لا بعده. يجمع حالة المهام ومستندات المشروع في تقييم واحد يشير إلى المخاطر والعوائق وأصحابها المفقودين تقرير الجاهزية يُنشر في قناتك مع درجة",
+      "price": 999,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-launch-readiness",
+      "shopifyHandle": "tpl-launch-readiness",
+      "sku": "BSAGT-018",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-briefs-drafts",
+      "stage": "templates",
+      "name": "Briefs to First Drafts Agent — Notion to Blog",
+      "nameAr": "وكيل من الموجزات إلى المسودات — نوتيون إلى المدونة",
+      "category": "Content",
+      "categoryAr": "محتوى",
+      "sub": "content",
+      "tier": "template",
+      "tagline": "Brief in the morning, first draft before lunch.",
+      "taglineAr": "الموجز صباحًا، والمسودة الأولى قبل الغداء.",
+      "description": "Brief in the morning, first draft before lunch. Reads the content brief from your Notion board Writes the first draft in your brand voice Saves it where you publish: Drive, blog CMS or R2",
+      "descriptionAr": "الموجز صباحًا، والمسودة الأولى قبل الغداء. يقرا موجز المحتوى من لوح نوتيون يكتب المسودة الأولى بصوت علامتك يحفظها حيث تنشر: درايف أو نظام المدونة",
+      "price": 899,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-briefs-drafts",
+      "shopifyHandle": "tpl-briefs-drafts",
+      "sku": "BSAGT-019",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-content-repurposing",
+      "stage": "templates",
+      "name": "Content Repurposing Agent — One Idea, Many Channels",
+      "nameAr": "وكيل إعادة توظيف المحتوى — فكرة واحدة قنوات كثيرة",
+      "category": "Content",
+      "categoryAr": "محتوى",
+      "sub": "content",
+      "tier": "template",
+      "tagline": "Your best piece of content, everywhere at once.",
+      "taglineAr": "أفضل قطعة محتوى لديك، في كل مكان مرة واحدة.",
+      "description": "Your best piece of content, everywhere at once. Point it at a post, video or article Generates channel-by-channel repurposing plan + drafts EN/AR versions included for bilingual reach",
+      "descriptionAr": "أفضل قطعة محتوى لديك، في كل مكان مرة واحدة. وجّهه إلى منشور أو فيديو أو مقال يولّد خطة إعادة توظيف لكل قناة + مسودات يشمل نسختي العربية والإنجليزية لتوسيع الوصول",
+      "price": 899,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-content-repurposing",
+      "shopifyHandle": "tpl-content-repurposing",
+      "sku": "BSAGT-020",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-youtube-shorts",
+      "stage": "templates",
+      "name": "YouTube Shorts Creator Agent",
+      "nameAr": "وكيل صانع مقاطع يوتيوب القصيرة",
+      "category": "Content",
+      "categoryAr": "محتوى",
+      "sub": "content",
+      "tier": "template",
+      "tagline": "Long video in, a week of shorts out — scripted and uploaded.",
+      "taglineAr": "فيديو طويل يدخل، وأسبوع من المقاطع القصيرة يخرج — نصوصًا ورفعًا.",
+      "description": "Long video in, a week of shorts out — scripted and uploaded. Finds the hook moments in your long-form video Scripts + captions each short (EN/AR subtitles) Uploads to YouTube with title, tags and description",
+      "descriptionAr": "فيديو طويل يدخل، وأسبوع من المقاطع القصيرة يخرج — نصوصًا ورفعًا. يجد لحظات الخطف في فيديوك الطويل يكتب النص والترجمة لكل مقطع (عربي/إنجليزي) يرفع إلى يوتيوب مع العنوان والوسوم والوصف",
+      "price": 1299,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-youtube-shorts",
+      "shopifyHandle": "tpl-youtube-shorts",
+      "sku": "BSAGT-021",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-viral-content",
+      "stage": "templates",
+      "name": "Viral Content Creation Agent — Trends to Publish",
+      "nameAr": "وكيل المحتوى الفيروسي — من الاتجاهات إلى النشر",
+      "category": "Content",
+      "categoryAr": "محتوى",
+      "sub": "content",
+      "tier": "template",
+      "tagline": "Trend spotted, video scripted, engagement set — before the wave peaks.",
+      "taglineAr": "الاتجاه مرصود، والنص مكتوب، والتفاعل مضبوط — قبل أن يبلغ الموجة ذروتها.",
+      "description": "Trend spotted, video scripted, engagement set — before the wave peaks. Monitors trends in your niche and picks what fits Scripts the video + sets engagement automation Compiles the campaign into a shareable doc",
+      "descriptionAr": "الاتجاه مرصود، والنص مكتوب، والتفاعل مضبوط — قبل أن يبلغ الموجة ذروتها. يرصد الاتجاهات في مجالك ويختار ما يناسب يكتب نص الفيديو ويضبط أتمتة التفاعل يفصّل الحملة في وثيقة قابلة للمشاركة",
+      "price": 1499,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-viral-content",
+      "shopifyHandle": "tpl-viral-content",
+      "sku": "BSAGT-022",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    },
+    {
+      "slug": "tpl-linkedin-scheduler",
+      "stage": "templates",
+      "name": "LinkedIn Post Scheduler Agent",
+      "nameAr": "وكيل مجدول منشورات لينكد إن",
+      "category": "Content",
+      "categoryAr": "محتوى",
+      "sub": "content",
+      "tier": "template",
+      "tagline": "React in Slack; the post is scheduled and on your timeline.",
+      "taglineAr": "استجب برمز في سلاك؛ والمنشور مجدول في خطك الزمني.",
+      "description": "React in Slack; the post is scheduled and on your timeline. Emoji reaction in chat triggers the workflow AI polishes the draft into LinkedIn-native copy Schedules at your best-performing times",
+      "descriptionAr": "استجب برمز في سلاك؛ والمنشور مجدول في خطك الزمني. رد فعل بالرمز التعبيري في الدردشة يشغّل التدفق يصفو الذكاء المسودة إلى صياغة لينكد إن يجدولها في أوقات أدائك الأعلى",
+      "price": 699,
+      "commercial": "product",
+      "shopifyUrl": "https://store.brainsait.de/products/tpl-linkedin-scheduler",
+      "shopifyHandle": "tpl-linkedin-scheduler",
+      "sku": "BSAGT-023",
+      "badges": [
+        "EN/AR",
+        "5-day setup",
+        "30-day guarantee"
+      ],
+      "whatsIncluded": [
+        "Configured agent, fully wired to your accounts",
+        "Bilingual EN/AR setup with documentation",
+        "5-day setup + live handover (Lark / Telegram)",
+        "30-day post-launch support"
+      ],
+      "faqs": [
+        [
+          "How fast is setup?",
+          "Within 5 business days of purchase, in your own accounts."
+        ],
+        [
+          "Is it one-time or monthly?",
+          "One-time SAR price. Optional managed monthly support available later."
+        ],
+        [
+          "Arabic supported?",
+          "Yes — the agent and all docs work in EN + AR with proper RTL."
+        ]
+      ]
+    }
+  ]
 }
