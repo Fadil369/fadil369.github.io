@@ -1,224 +1,217 @@
 {
-  "meta": {
-    "source": "Storefront data from fadil369.github.io + store.brainsait.de",
-    "generated_at": "2026-09-08",
-    "version": "2.0.0"
+  "_meta": {
+    "name": "BrainSAIT Unified Products",
+    "version": "2.0.0",
+    "updated": "2026-09-08",
+    "source": "Shopify Admin API — exact variants from f3rbxp-n1.myshopify.com",
+    "store": "f3rbxp-n1.myshopify.com",
+    "storefront": "https://store.brainsait.de"
   },
+
   "learn": {
-    "subscription_plan": {
-      "name": "BrainSAIT Learn Digital Access — Library Membership",
-      "description": "Monthly access to the full BrainSAIT digital library — 40+ books, courses, and blueprints across healthcare, business, AI, and more. Instant delivery via secure links.",
-      "description_ar": "وصول شهري لمكتبة برينسايت الرقمية الكاملة — أكثر من 40 كتاب ودورة ومخطط في الرعاية الصحية والأعمال والذكاء الاصطناعي والمزيد. تسليم فوري عبر روابط آمنة.",
-      "handle": "brainsait-learn-digital-access-library-membership",
-      "url": "https://store.brainsait.de/products/brainsait-learn-digital-access-library-membership",
+    "subscription": {
+      "name": "Learn – Monthly Subscription",
+      "name_ar": "عضوية التعلّم الشهرية",
+      "description": "Monthly access to the full BrainSAIT digital library — 40+ books, courses, and blueprints across healthcare, business, AI, and more.",
+      "description_ar": "وصول شهري لمكتبة برينسايت الرقمية الكاملة — أكثر من 40 كتاب ودورة ومخطط في الرعاية الصحية والأعمال والذكاء الاصطناعي والمزيد.",
+      "id": 8122327859283,
+      "variant_id": 46172006154323,
+      "handle": "learn-monthly-subscription",
+      "url": "https://store.brainsait.de/products/learn-monthly-subscription",
+      "image_url": "",
       "price": 182,
       "currency": "SAR",
-      "billing_period": "monthly",
-      "billing_en": "شهري",
-      "billing_ar": "monthly",
-      "image_url": "https://f.io/dcOtN3Lf",
-      "category": "learn",
-      "available": true,
-      "tags": [
-        "learn",
-        "library",
-        "subscription",
-        "monthly",
-        "brain-sait"
-      ]
+      "billing": "monthly",
+      "status": "active",
+      "product_type": "",
+      "tags": []
     },
-    "one_time_products": [
-      {
-        "name": "Digital Income Strategy — Your Three Pathways",
-        "description": "A BrainSAIT blueprint. Instant delivery via secure Google Drive link after payment.",
-        "handle": "digital-income-strategy-your-three-pathways",
-        "url": "https://store.brainsait.de/products/digital-income-strategy-your-three-pathways",
-        "price": 182,
-        "currency": "SAR",
-        "sku": "BSP-DIGITAL-INCOME-STRATEGY",
-        "category": "learn",
-        "image_url": "/assets/images/books/Digital_Income_Strategy_Your_Three_Pathways.webp",
-        "available": true
-      },
-      {
-        "name": "Digital Organization Handbook",
-        "description": "A BrainSAIT blueprint. Instant delivery via secure Google Drive link after payment.",
-        "handle": "digital-organization-handbook",
-        "url": "https://store.brainsait.de/products/digital-organization-handbook",
-        "price": 182,
-        "currency": "SAR",
-        "sku": "BSP-NB-DIGITAL-ORG",
-        "category": "learn",
-        "available": true
-      },
-      {
-        "name": "Etimad Digital Governance Blueprint",
-        "description": "A BrainSAIT blueprint. Instant delivery via secure Google Drive link after payment.",
-        "handle": "etimad-digital-governance-blueprint",
-        "url": "https://store.brainsait.de/products/etimad-digital-governance-blueprint",
-        "price": 182,
-        "currency": "SAR",
-        "sku": "BSP-ETIMAD-GOVERNANCE-BP",
-        "category": "learn",
-        "available": true
-      }
-    ],
+    "legacy_handle": "brainsait-learn-digital-access-library-membership",
     "total_products": 40,
-    "pdf_url": "https://f.io/dcOtN3Lf"
+    "pdf_url": "https://f.io/dcOtN3Lf",
+    "one_time_products": [
+      {"handle": "digital-income-strategy-your-three-pathways", "url": "https://store.brainsait.de/products/digital-income-strategy-your-three-pathways", "sku": "BSP-DIGITAL-INCOME-STRATEGY", "price": 182},
+      {"handle": "digital-organization-handbook", "url": "https://store.brainsait.de/products/digital-organization-handbook", "sku": "BSP-NB-DIGITAL-ORG", "price": 182},
+      {"handle": "etimad-digital-governance-blueprint", "url": "https://store.brainsait.de/products/etimad-digital-governance-blueprint", "sku": "BSP-ETIMAD-GOVERNANCE-BP", "price": 182}
+    ]
   },
+
   "build": {
-    "subscription_plan": {
-      "name": "Build Forge Incubator — Founders Program",
-      "description": "Monthly access to the BrainSAIT founder program — Notion Founder OS, Second Brain, Telegram Forge Bot, 16-Day Build Sprint, and full Learn library access. Cancel anytime.",
-      "description_ar": "وصول شهري لبرنامج المؤسس في برينسايت — نظام المؤسس في نوتيون، العقل الثاني، بوت تيليجرام فورج، سباق البناء 16 يوم، ووصول كامل لمكتبة التعلم. إلغاء في أي وقت.",
+    "subscription": {
+      "name": "Build – Monthly Subscription",
+      "name_ar": "عضوية البناء الشهرية",
+      "description": "Monthly access to the BrainSAIT founder program — Notion Founder OS, Second Brain, Telegram Forge Bot, 16-Day Build Sprint, and full Learn library access.",
+      "description_ar": "وصول شهري لبرنامج المؤسس في برينسايت — نظام المؤسس في نوتيون، العقل الثاني، بوت تيليجرام فورج، سباق البناء 16 يوم، ووصول كامل لمكتبة التعلم.",
+      "id": 8122332512339,
+      "variant_id": 46172010971219,
+      "handle": "build-monthly-subscription",
+      "url": "https://store.brainsait.de/products/build-monthly-subscription",
+      "image_url": "",
+      "price": 399,
+      "currency": "SAR",
+      "billing": "monthly",
+      "status": "active",
+      "product_type": "",
+      "tags": []
+    },
+    "forge_program": {
+      "name": "BUILD — Forge Incubator Founders Program",
+      "name_ar": "برنامج فورج للحاضنة — برنامج المؤسسين",
+      "id": 8104895348819,
+      "variant_id": 46139191328851,
       "handle": "build-forge-incubator-founders-program-1",
       "url": "https://store.brainsait.de/products/build-forge-incubator-founders-program-1",
       "price": 499,
       "currency": "SAR",
-      "billing_period": "monthly",
-      "billing_en": "شهري",
-      "billing_ar": "monthly",
-      "image_url": "https://simulator.brainsait.org/play",
-      "category": "build",
-      "available": true,
-      "tags": [
-        "build",
-        "forge",
-        "incubator",
-        "subscription",
-        "monthly",
-        "founder"
-      ]
+      "billing": "monthly",
+      "status": "active",
+      "product_type": "BUILD Membership",
+      "tags": ["brainsait", "build", "monthly", "relaunch-2026"]
     },
-    "one_time_ticket": {
-      "name": "Build Full Program Ticket",
-      "description": "One-time access to the full BrainSAIT Build Incubation Program — from idea to shipped product with mentorship, infrastructure, and cohort support.",
-      "description_ar": "وصول لمرة واحدة لبرنامج احتضان البناء الكامل في برينسايت — من الفكرة إلى المنتج المبح مع الإرشاد والبنية التحتية ودعم الفوج.",
-      "handle": "build-full-program-ticket",
-      "url": "https://store.brainsait.de/products/build-full-program-ticket",
+    "ticket": {
+      "name": "BUILD Ticket — Incubation Pass",
+      "name_ar": "تذكرة البناء — تمرير الحاضنة",
+      "description": "One-time access to the full BrainSAIT Build Incubation Program — from idea to shipped product with mentorship and cohort support.",
+      "description_ar": "وصول لمرة واحدة لبرنامج احتضان البناء الكامل في برينسايت — من الفكرة إلى المنتج المبح مع الإرشاد ودعم الفوج.",
+      "id": 8046917353555,
+      "variant_id": 45947217870931,
+      "handle": "build-ticket",
+      "url": "https://store.brainsait.de/products/build-ticket",
+      "image_url": "https://cdn.shopify.com/s/files/1/0730/5288/0979/files/build-collection-banner_a7eb09b9-25f4-4088-be46-9f81798a9c66.png?v=1788838458",
       "price": 9630,
-      "standard_price": 14960,
       "currency": "SAR",
-      "billing_period": "one-time",
-      "billing_en": "دفعة واحدة",
-      "billing_ar": "one-time",
-      "image_url": "https://simulator.brainsait.org/play",
-      "category": "build",
-      "available": true,
-      "tags": [
-        "build",
-        "ticket",
-        "incubation",
-        "one-time",
-        "founder"
-      ],
-      "offer_end": "2026-12-31",
-      "tracks": [
-        "doctors",
-        "entrepreneurs",
-        "warriors"
-      ]
+      "billing": "one-time",
+      "status": "active",
+      "product_type": "BUILD Membership",
+      "tags": ["brainsait", "build", "one_time", "relaunch-2026"]
     },
-    "program_details": {
-      "benefits": [
-        "📚 Learn Library — Full access to 40+ products",
-        "🧠 Second Brain — Notion workspace",
-        "🤖 Forge Bot — Telegram automation",
-        "📋 Founder OS — Notion founder pages",
-        "🎯 16-Day Build Sprint — Simulators",
-        "📈 Payment Tracking — Automated reminders"
-      ],
-      "links": {
-        "telegram_bot": "https://t.me/brainsait_forge_bot",
-        "notion_founders": "https://fadil369.notion.site/Founder-OS-3ba3479c6f628117966fd1be6c120ac2",
-        "notion_brain": "https://fadil369.notion.site/Ultimate-Brain-3bc3479c6f628177afd7fb7e9224c19c",
-        "simulator": "https://simulator.brainsait.org/play"
-      }
-    }
+    "installment_options": [
+      {"handle": "build-ticket-half-payment", "url": "https://store.brainsait.de/products/build-ticket-half-payment", "price": 4815, "variant_id": 45981983473747},
+      {"handle": "build-ticket-third-payment", "url": "https://store.brainsait.de/products/build-ticket-third-payment", "price": 3210, "variant_id": 45982004576339},
+      {"handle": "build-ticket-quarter-payment", "url": "https://store.brainsait.de/products/build-ticket-quarter-payment", "price": 2407.50, "variant_id": 45982004609107}
+    ]
   },
+
   "solutions": {
-    "subscription_plan": {
-      "name": "BrainSAIT Super Partner Program",
-      "description": "Monthly access to the full BrainSAIT Solutions platform — Code platform workspace, Lark super-partner sub-profile, Learn+Build access, registry profile, and enterprise deployment support.",
-      "description_ar": "وصول شهري لمنصة حلول برينسايت الكاملة — مساحة عمل منصة البرمجة، ملف شريك مميز في Lark، وصول Learn+Build، ملف السجل، ودعم نشر المؤسسات.",
+    "subscription": {
+      "name": "Solution – Monthly Subscription",
+      "name_ar": "عضوية الحل الشهرية",
+      "description": "Monthly access to the full BrainSAIT Solutions platform — Code platform workspace, Lark super-partner sub-profile, Learn+Build access, and enterprise support.",
+      "description_ar": "وصول شهري لمنصة حلول برينسايت الكاملة — مساحة عمل منصة البرمجة، ملف شريك مميز في Lark، وصول Learn+Build، ودعم المؤسسات.",
+      "id": 8122336051283,
+      "variant_id": 46172014542931,
+      "handle": "solution-monthly-subscription",
+      "url": "https://store.brainsait.de/products/solution-monthly-subscription",
+      "image_url": "",
+      "price": 799,
+      "currency": "SAR",
+      "billing": "monthly",
+      "status": "active",
+      "product_type": "",
+      "tags": []
+    },
+    "super_partner": {
+      "name": "SOLUTIONS — BrainSAIT Super Partner Program",
+      "name_ar": "الحلول — برنامج الشراكة المتميزة لبرينسايت",
+      "id": 8104922415187,
+      "variant_id": 46139264991315,
       "handle": "solutions-brainsait-super-partner-program-1",
       "url": "https://store.brainsait.de/products/solutions-brainsait-super-partner-program-1",
       "price": 1999,
       "currency": "SAR",
-      "billing_period": "monthly",
-      "billing_en": "شهري",
-      "billing_ar": "monthly",
-      "image_url": "https://code.brainsait.org",
-      "category": "solutions",
-      "available": true,
-      "tags": [
-        "solutions",
-        "super-partner",
-        "subscription",
-        "monthly",
-        "enterprise"
-      ]
+      "billing": "monthly",
+      "status": "active",
+      "product_type": "SOLUTIONS Membership",
+      "tags": ["brainsait", "monthly", "relaunch-2026", "solutions"]
     },
-    "one_time_ready": {
-      "name": "Solutions Ready — Enterprise Deployment",
+    "ready": {
+      "name": "SOLUTIONS READY — Enterprise Deployment",
+      "name_ar": "الحلول الجاهزة — نشر المؤسسات",
       "description": "One-time purchase for production-ready enterprise deployment — full source code, production deployment, and dedicated engineering support.",
       "description_ar": "شراء لمرة واحدة لنشر المؤسسات الجاهز للإنتاج — الكود المصدري الكامل، نشر الإنتاج، ودعم هندسي مخصص.",
+      "id": 8104922546259,
+      "variant_id": 46139265155155,
       "handle": "solutions-ready-enterprise-deployment-1",
       "url": "https://store.brainsait.de/products/solutions-ready-enterprise-deployment-1",
+      "image_url": "",
       "price": 24000,
       "currency": "SAR",
-      "billing_period": "one-time",
-      "billing_en": "دفعة واحدة",
-      "billing_ar": "one-time",
-      "category": "solutions",
-      "available": true,
-      "tags": [
-        "solutions",
-        "ready",
-        "enterprise",
-        "deployment",
-        "one-time"
-      ],
-      "includes": [
-        "Full source code",
-        "Production deployment",
-        "Google Calendar scheduling link",
-        "Source code intake form"
-      ],
-      "intake_form": "https://store.brainsait.de/pages/solution-ready-intake"
+      "billing": "one-time",
+      "status": "active",
+      "product_type": "SOLUTIONS READY",
+      "tags": ["brainsait", "one_time", "relaunch-2026", "solutions-ready"],
+      "includes": ["Full source code", "Production deployment", "Google Calendar scheduling link", "Source code intake form"]
     },
     "total_solutions": 66,
     "solutions_examples": [
-      {
-        "handle": "givc",
-        "url": "https://store.brainsait.de/products/givc"
-      },
-      {
-        "handle": "nphies-gateway",
-        "url": "https://store.brainsait.de/products/nphies-gateway"
-      },
-      {
-        "handle": "masterlinc-orchestrator",
-        "url": "https://store.brainsait.de/products/masterlinc-orchestrator"
-      }
+      {"handle": "givc", "url": "https://store.brainsait.de/products/givc", "price": 24900, "variant_id": 45997742456915},
+      {"handle": "nphies-gateway", "url": "https://store.brainsait.de/products/nphies-gateway", "price": 24900, "variant_id": 45997742489683},
+      {"handle": "masterlinc-orchestrator", "url": "https://store.brainsait.de/products/masterlinc-orchestrator", "price": 24900, "variant_id": 45997742522451}
     ]
   },
+
   "bpr": {
-    "annual_plan": {
+    "annual": {
       "name": "BPR Annual Membership",
       "handle": "provider-registry",
       "url": "https://store.brainsait.de/products/provider-registry",
       "price": 3960,
       "currency": "SAR",
-      "billing_period": "annual"
+      "billing": "annual",
+      "variant_id": 46135696752723,
+      "id": 8103998390355
     },
-    "monthly_plan": {
+    "monthly": {
       "name": "BPR Monthly Membership",
       "handle": "provider-registry",
       "url": "https://store.brainsait.de/products/provider-registry",
       "price": 163,
       "currency": "SAR",
-      "billing_period": "monthly"
+      "billing": "monthly",
+      "note": "Sold as repeat one-time (not auto-recurring) — needs selling_plan_group added in Shopify admin"
     }
+  },
+
+  "private_sessions": {
+    "strategy_session": {
+      "handle": "private-strategy-session",
+      "url": "https://store.brainsait.de/products/private-strategy-session",
+      "price": 2390,
+      "variant_id": 45967660646483,
+      "id": 8052889190483
+    }
+  },
+
+  "provisioning": {
+    "learn": {
+      "email": "learnThankYou",
+      "deliverables": ["Frame.io PDF link via store delivery", "Monthly access to 40 products"]
+    },
+    "build": {
+      "email_thank_you": "buildThankYou",
+      "email_welcome": "buildWelcome",
+      "deliverables": ["Learn Library access", "Notion Founder OS page", "Notion Second Brain page", "Telegram Forge Bot access", "Simulator access (/play)", "30-day key rotation"]
+    },
+    "solutions_monthly": {
+      "email_thank_you": "solutionsThankYou",
+      "email_welcome": "solutionsWelcome",
+      "deliverables": ["All Build deliverables", "Lark super-partner sub-profile", "Code Platform workspace", "Registry profile"]
+    },
+    "solutions_ready": {
+      "email_thank_you": "solutionsThankYou",
+      "email_welcome": "solutionsWelcome",
+      "deliverables": ["All Build deliverables", "Google Calendar scheduling link", "Source code intake form", "Full production deployment"]
+    },
+    "bpr": {
+      "email_thank_you": "bprThankYou",
+      "email_welcome": "bprWelcome",
+      "deliverables": ["SPID generation (SA-XXX-NNNNNN)", "OID assignment", "Registry profile", "Verification QR"]
+    }
+  },
+
+  "webhooks": {
+    "endpoint": "https://payments.brainsait.org/webhook/order",
+    "topics": ["orders/paid", "orders/create", "orders/fulfilled"],
+    "hmac_verify": true
   }
 }
