@@ -94,14 +94,19 @@ export default function Sprint() {
         </div>
 
         {/* Primary CTA */}
-        <a href={STRATEGY_SESSION} className="button primary sprint-cta" target="_blank" rel="noopener noreferrer">
-          <Zap size={18} />
-          {ar ? 'احجز جلستك الاستراتيجية — 2,390 ريال' : 'Book Private Strategy Session — 2,390 SAR'}
-        </a>
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <a href="/intake" className="button primary sprint-cta">
+            <Zap size={18} />
+            {ar ? 'قدّم الآن — ابدأ سباق 48 ساعة' : 'Apply Now — Start 48h Sprint'}
+          </a>
+          <a href={STRATEGY_SESSION} className="button secondary sprint-cta" target="_blank" rel="noopener noreferrer">
+            {ar ? '📅 احجز الجلسة مباشرة' : '📅 Book Session Directly'}
+          </a>
+        </div>
         <p className="sprint-credit-note">
           {ar
-            ? 'يتم احتساب كامل المبلغ إذا تم الترقية خلال 7 أيام'
-            : 'Full amount credited if you upgrade within 7 days'}
+            ? 'أكمل نموذج التقديم وسنرشدك للباقة المناسبة. الجلسة الاستراتيجية 2,390 ريال — تُحتسب إذا قمت بالترقية خلال 7 أيام.'
+            : 'Complete the intake form and we will guide you to the right package. The 2,390 SAR session fee is credited if you upgrade within 7 days.'}
         </p>
       </section>
 

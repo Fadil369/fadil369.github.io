@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrainSAIT — AI Resolution Platform for the Middle East</title>
+<meta name="description" content="BrainSAIT connects people, knowledge, and AI across channels. The AI resolution platform powering healthcare, commerce, and enterprise automation in KSA.">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060a14;--bg2:#0c1224;--bg3:#111b33;--surface:#162040;--surface2:#1c2a4a;
+  --cyan:#00d4ff;--blue:#1e90ff;--purple:#7c3aed;--pink:#ec4899;--green:#26de81;--orange:#ff9f43;--red:#ff3b5c;
+  --text:#e0e8ff;--muted:#6b7db3;--white:#fff;
+  --font:'Segoe UI',system-ui,-apple-system,sans-serif;
+  --mono:'SF Mono','Fira Code','Cascadia Code',monospace;
+  --radius:12px;--radius-lg:20px;
+  --shadow:0 4px 40px rgba(0,0,0,.4);
+  --glow-cyan:0 0 30px rgba(0,212,255,.3),0 0 60px rgba(0,212,255,.1);
+  --glow-purple:0 0 30px rgba(124,58,237,.3),0 0 60px rgba(124,58,237,.1);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;overflow-x:hidden}
+a{color:var(--cyan);text-decoration:none;transition:color .2s}
+a:hover{color:var(--white)}
+img{max-width:100%;height:auto}
+
+/* ─── Animations ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes gridMove{0%{transform:translateY(0)}100%{transform:translateY(50px)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+
+.animate{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.animate.visible{opacity:1;transform:translateY(0)}
+
+/* ─── Utility ─── */
+.container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.75rem;border-radius:999px;font-weight:600;font-size:.95rem;border:none;cursor:pointer;transition:all .25s;font-family:inherit}
+.btn-primary{background:linear-gradient(135deg,var(--cyan),var(--blue));color:#000;box-shadow:var(--glow-cyan)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(0,212,255,.5)}
+.btn-secondary{background:transparent;color:var(--cyan);border:1.5px solid var(--cyan)}
+.btn-secondary:hover{background:rgba(0,212,255,.1);transform:translateY(-2px)}
+.btn-sm{padding:.5rem 1.2rem;font-size:.85rem}
+.section{padding:6rem 0}
+.section-label{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--cyan);margin-bottom:1rem}
+.section-label::before{content:'';width:20px;height:1px;background:var(--cyan)}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;line-height:1.2;margin-bottom:1rem}
+.section-desc{font-size:1.1rem;color:var(--muted);max-width:600px;line-height:1.7}
+.gradient-text{background:linear-gradient(135deg,var(--cyan),var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ─── Navbar ─── */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 0;transition:all .3s}
+.navbar.scrolled{background:rgba(6,10,20,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,212,255,.1)}
+.navbar-inner{display:flex;align-items:center;justify-content:space-between}
+.navbar-logo{font-size:1.2rem;font-weight:700;letter-spacing:1px;color:var(--cyan)}
+.navbar-logo span{color:var(--text)}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);font-size:.9rem;font-weight:500}
+.nav-links a:hover{color:var(--cyan)}
+.nav-cta .btn{padding:.5rem 1.2rem;font-size:.85rem}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:5px}
+.hamburger span{width:24px;height:2px;background:var(--text);transition:all .3s}
+
+/* ─── Hero ─── */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:80px}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-grid{position:absolute;inset:0;background-image:
+  linear-gradient(rgba(0,212,255,.03) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(0,212,255,.03) 1px,transparent 1px);
+  background-size:60px 60px;animation:gridMove 4s linear infinite}
+.hero-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;
+  background:radial-gradient(circle,rgba(0,212,255,.08) 0%,rgba(124,58,237,.04) 40%,transparent 70%);
+  border-radius:50%;filter:blur(40px)}
+.hero-content{position:relative;z-index:1;text-align:center;max-width:800px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;border-radius:999px;font-size:.8rem;font-weight:600;
+  background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--cyan);margin-bottom:2rem}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;line-height:1.1;margin-bottom:1.5rem}
+.hero-desc{font-size:1.2rem;color:var(--muted);max-width:600px;margin:0 auto 2.5rem;line-height:1.7}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hero-stats{display:flex;gap:3rem;justify-content:center;margin-top:4rem;padding-top:3rem;border-top:1px solid rgba(255,255,255,.06)}
+.hero-stat{text-align:center}
+.hero-stat .num{font-size:2rem;font-weight:700;color:var(--cyan)}
+.hero-stat .label{font-size:.8rem;color:var(--muted);margin-top:.2rem}
+.hero-visual{position:relative;z-index:1;margin-top:4rem}
+.hero-terminal{background:var(--bg2);border:1px solid rgba(0,212,255,.15);border-radius:var(--radius-lg);padding:1.5rem;
+  box-shadow:var(--shadow);text-align:left;max-width:600px;margin:0 auto}
+.terminal-bar{display:flex;gap:6px;margin-bottom:1rem}
+.terminal-bar span{width:10px;height:10px;border-radius:50%}
+.terminal-bar span:nth-child(1){background:#ff5f57}.terminal-bar span:nth-child(2){background:#febc2e}.terminal-bar span:nth-child(3){background:#28c840}
+.terminal-code{font-family:var(--mono);font-size:.8rem;color:var(--cyan);line-height:1.8}
+.terminal-code .comment{color:var(--muted)}.terminal-code .string{color:var(--green)}.terminal-code .keyword{color:var(--purple)}
+
+/* ─── Logos ─── */
+.logos-section{padding:3rem 0;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
+.logos-label{text-align:center;font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:2rem}
+.logos-row{display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap;opacity:.4}
+.logo-item{font-size:.9rem;font-weight:600;white-space:nowrap}
+
+/* ─── Features ─── */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.feature-card{background:var(--surface);border:1px solid rgba(0,212,255,.08);border-radius:var(--radius-lg);padding:2rem;
+  transition:all .3s;position:relative;overflow:hidden}
+.feature-card:hover{border-color:rgba(0,212,255,.25);transform:translateY(-4px);box-shadow:0 8px 40px rgba(0,0,0,.3)}
+.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--blue));opacity:0;transition:opacity .3s}
+.feature-card:hover::before{opacity:1}
+.feature-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;font-size:1.4rem}
+.feature-icon.cyan{background:rgba(0,212,255,.1);color:var(--cyan)}
+.feature-icon.purple{background:rgba(124,58,237,.1);color:var(--purple)}
+.feature-icon.green{background:rgba(38,222,129,.1);color:var(--green)}
+.feature-icon.orange{background:rgba(255,159,67,.1);color:var(--orange)}
+.feature-icon.pink{background:rgba(236,72,153,.1);color:var(--pink)}
+.feature-icon.blue{background:rgba(30,144,255,.1);color:var(--blue)}
+.feature-card h3{font-size:1.1rem;font-weight:600;margin-bottom:.5rem}
+.feature-card p{color:var(--muted);font-size:.9rem;line-height:1.6}
+
+/* ─── Platforms ─── */
+.platforms-section{position:relative;overflow:hidden}
+.platforms-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(124,58,237,.06) 0%,transparent 70%)}
+.platforms-content{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+.platform-features{display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem}
+.platform-feature{display:flex;gap:1rem;align-items:flex-start}
+.platform-feature .icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.9rem}
+.platform-feature h4{font-size:.95rem;font-weight:600;margin-bottom:.2rem}
+.platform-feature p{color:var(--muted);font-size:.85rem;line-height:1.5}
+.platform-visual{position:relative}
+.platform-card{background:var(--surface);border:1px solid rgba(0,212,255,.12);border-radius:var(--radius-lg);padding:1.5rem;
+  box-shadow:var(--shadow)}
+.platform-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.platform-card-header .title{font-weight:600;font-size:.9rem}
+.platform-card-header .badge{font-size:.7rem;padding:.2rem .6rem;border-radius:999px;font-weight:600}
+.platform-metrics{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.metric{padding:.8rem;background:var(--bg);border-radius:8px}
+.metric .label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.metric .value{font-size:1.3rem;font-weight:700;margin-top:.2rem}
+.metric .value.cyan{color:var(--cyan)}.metric .value.green{color:var(--green)}.metric .value.orange{color:var(--orange)}
+
+/* ─── Pricing ─── */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.pricing-card{background:var(--surface);border:1px solid rgba(0,212,255,.08);border-radius:var(--radius-lg);padding:2.5rem 2rem;
+  transition:all .3s;position:relative}
+.pricing-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.pricing-card.featured{border-color:var(--cyan);box-shadow:var(--glow-cyan)}
+.pricing-card.featured::before{content:'MOST POPULAR';position:absolute;top:1rem;right:-2rem;background:var(--cyan);color:#000;
+  font-size:.65rem;font-weight:700;padding:.3rem 3rem;transform:rotate(45deg);letter-spacing:1px}
+.pricing-tier{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--cyan);margin-bottom:.5rem}
+.pricing-price{font-size:2.8rem;font-weight:800;margin-bottom:.3rem}
+.pricing-price .currency{font-size:1.2rem;font-weight:400;color:var(--muted)}
+.pricing-price .period{font-size:.9rem;font-weight:400;color:var(--muted)}
+.pricing-desc{color:var(--muted);font-size:.85rem;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.pricing-features{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem}
+.pricing-features li{display:flex;align-items:center;gap:.6rem;font-size:.85rem;color:var(--text)}
+.pricing-features li::before{content:'✓';color:var(--green);font-weight:700}
+.pricing-card .btn{width:100%;justify-content:center}
+
+/* ─── Testimonials ─── */
+.testimonials-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:3rem}
+.testimonial{background:var(--surface);border:1px solid rgba(0,212,255,.08);border-radius:var(--radius-lg);padding:2rem;transition:all .3s}
+.testimonial:hover{border-color:rgba(0,212,255,.2)}
+.testimonial-text{font-size:.95rem;line-height:1.7;margin-bottom:1.5rem;color:var(--text)}
+.testimonial-author{display:flex;align-items:center;gap:1rem}
+.testimonial-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--blue));
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem}
+.testimonial-info .name{font-weight:600;font-size:.85rem}
+.testimonial-info .role{font-size:.75rem;color:var(--muted)}
+
+/* ─── CTA ─── */
+.cta-section{text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(0,212,255,.06) 0%,transparent 70%)}
+.cta-content{position:relative;z-index:1}
+.cta-title{font-size:clamp(2rem,4vw,3rem);font-weight:700;margin-bottom:1rem}
+.cta-desc{font-size:1.1rem;color:var(--muted);max-width:500px;margin:0 auto 2rem}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* ─── Footer ─── */
+.footer{border-top:1px solid rgba(255,255,255,.06);padding:4rem 0 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-brand .logo{font-size:1.1rem;font-weight:700;color:var(--cyan);margin-bottom:1rem;display:block}
+.footer-brand p{color:var(--muted);font-size:.85rem;line-height:1.6;max-width:280px}
+.footer-col h4{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:1rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.footer-col ul a{color:var(--muted);font-size:.85rem}
+.footer-col ul a:hover{color:var(--cyan)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06);font-size:.8rem;color:var(--muted)}
+
+/* ─── Responsive ─── */
+@media(max-width:1024px){
+  .features-grid{grid-template-columns:repeat(2,1fr)}
+  .pricing-grid{grid-template-columns:repeat(2,1fr)}
+  .platforms-content{grid-template-columns:1fr}
+  .testimonials-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .features-grid,.pricing-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero h1{font-size:2.2rem}
+  .hero-stats{flex-direction:column;gap:1.5rem}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── Navbar ─── -->
+<nav class="navbar" id="navbar">
+  <div class="container navbar-inner">
+    <a href="#" class="navbar-logo">Brain<span>SAIT</span></a>
+    <ul class="nav-links">
+      <li><a href="#features">Platform</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="https://fadil369.github.io">Store</a></li>
+      <li><a href="https://platform.brainsait.org">Dashboard</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="https://store.brainsait.de" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+    <button class="hamburger" onclick="this.classList.toggle('active')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ─── Hero ─── -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+  </div>
+  <div class="container hero-content">
+    <div class="hero-badge"><span class="dot"></span> Platform v2.1 — Now Live</div>
+    <h1>The AI Resolution<br><span class="gradient-text">Platform</span></h1>
+    <p class="hero-desc">Connect people, knowledge, and AI across every channel. Automate slow processes, unify data, and deliver intelligent experiences — built for Vision 2030.</p>
+    <div class="hero-actions">
+      <a href="https://store.brainsait.de" class="btn btn-primary">Explore Products</a>
+      <a href="https://platform.brainsait.org" class="btn btn-secondary">Open Dashboard</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">24</div><div class="label">Services Online</div></div>
+      <div class="hero-stat"><div class="num">100+</div><div class="label">Products</div></div>
+      <div class="hero-stat"><div class="num">99.7%</div><div class="label">Success Rate</div></div>
+      <div class="hero-stat"><div class="num">142ms</div><div class="label">Avg Latency</div></div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-terminal">
+        <div class="terminal-bar"><span></span><span></span><span></span></div>
+        <div class="terminal-code">
+          <span class="comment">// BrainSAIT Resolution Platform</span><br>
+          <span class="keyword">POST</span> /api/resolve {<br>
+          &nbsp;&nbsp;query: <span class="string">"How do I provision access?"</span>,<br>
+          &nbsp;&nbsp;context: <span class="string">"order #1042"</span>,<br>
+          &nbsp;&nbsp;channel: <span class="string">"telegram"</span><br>
+          } → <span class="string">200 OK</span> (42ms)<br>
+          <span class="comment">// AI Search + KV fallback → instant answer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Logos ─── -->
+<div class="logos-section">
+  <div class="container">
+    <div class="logos-label">Integrated with your favorite tools</div>
+    <div class="logos-row">
+      <span class="logo-item">Shopify</span>
+      <span class="logo-item">Cloudflare</span>
+      <span class="logo-item">n8n</span>
+      <span class="logo-item">Notion</span>
+      <span class="logo-item">Telegram</span>
+      <span class="logo-item">Lark</span>
+      <span class="logo-item">Airtable</span>
+      <span class="logo-item">Daftra ERP</span>
+      <span class="logo-item">Canva</span>
+      <span class="logo-item">Resend</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Features ─── -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="animate">
+      <div class="section-label">Platform</div>
+      <h2 class="section-title">Everything you need.<br><span class="gradient-text">Nothing you don't.</span></h2>
+      <p class="section-desc">Seven core services, unified under one platform. Each service is a Cloudflare Worker, independently deployed, collectively intelligent.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card animate">
+        <div class="feature-icon cyan">🤖</div>
+        <h3>AI Resolution</h3>
+        <p>AI-powered resolution platform connecting search, knowledge base, and gateway cache for instant answers. Self-improving via interaction feedback.</p>
+      </div>
+      <div class="feature-card animate">
+        <div class="feature-icon purple">📦</div>
+        <h3>Commerce Engine</h3>
+        <p>Shopify-powered storefront with 100+ products. Multi-currency SAR pricing. MyFatoorah checkout for Saudi payment methods (MADA, Apple Pay).</p>
+      </div>
+      <div class="feature-card animate">
+        <div class="feature-icon green">🔗</div>
+        <h3>Workflow Automation</h3>
+        <p>n8n orchestrates 20+ workflows: order fulfillment, provisioning, notifications, cross-platform sync. Zero manual touchpoints.</p>
+      </div>
+      <div class="feature-card animate">
+        <div class="feature-icon orange">📋</div>
+        <h3>Provider Registry</h3>
+        <p>BPR registry with OID identity, SPID assignment, and verification. Healthcare providers get signed digital identity cards.</p>
+      </div>
+      <div class="feature-card animate">
+        <div class="feature-icon pink">🏥</div>
+        <h3>Healthcare OS</h3>
+        <p>Hospital OS, NPHIES gateway, clinic management, Basma voice agent. Built for Saudi Vision 2030 healthcare transformation.</p>
+      </div>
+      <div class="feature-card animate">
+        <div class="feature-icon blue">📊</div>
+        <h3>Operations Dashboard</h3>
+        <p>Real-time monitoring: services, latency, success rates, anomaly detection. Dark tech UI with live data streams and alerting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Platform Deep Dive ─── -->
+<section class="section platforms-section">
+  <div class="container platforms-content">
+    <div class="animate">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Resolution is <span class="gradient-text">the product</span></h2>
+      <p style="color:var(--muted);line-height:1.7;margin-bottom:1rem">Every interaction — whether a customer question, an order webhook, or a provider verification request — is a resolution request. The platform resolves it through the best available path.</p>
+      <div class="platform-features">
+        <div class="platform-feature">
+          <div class="icon" style="background:rgba(0,212,255,.1);color:var(--cyan)">1</div>
+          <div><h4>AI Search</h4><p>Vectorize indexes + bilingual corpus for semantic search across 150+ docs</p></div>
+        </div>
+        <div class="platform-feature">
+          <div class="icon" style="background:rgba(124,58,237,.1);color:var(--purple)">2</div>
+          <div><h4>Context Retrieval</h4><p>KV cache (300s TTL), D1 relational data, R2 file storage — all bound to Workers</p></div>
+        </div>
+        <div class="platform-feature">
+          <div class="icon" style="background:rgba(38,222,129,.1);color:var(--green)">3</div>
+          <div><h4>Resolution Action</h4><p>Auto-provision access, send emails, create tickets, post to Lark/Telegram</p></div>
+        </div>
+        <div class="platform-feature">
+          <div class="icon" style="background:rgba(255,159,67,.1);color:var(--orange)">4</div>
+          <div><h4>Continuous Learning</h4><p>Every interaction improves next answers. Cache warms, corpus grows, intelligence compounds.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="platform-visual animate">
+      <div class="platform-card">
+        <div class="platform-card-header">
+          <span class="title">Live Operations</span>
+          <span class="badge" style="background:rgba(38,222,129,.1);color:var(--green)">LIVE</span>
+        </div>
+        <div class="platform-metrics">
+          <div class="metric"><div class="label">Online</div><div class="value cyan">24</div></div>
+          <div class="metric"><div class="label">Calls/min</div><div class="value green">48.2</div></div>
+          <div class="metric"><div class="label">Success</div><div class="value cyan">99.7%</div></div>
+          <div class="metric"><div class="label">Latency</div><div class="value orange">142ms</div></div>
+        </div>
+        <div style="margin-top:1rem;padding:1rem;background:var(--bg);border-radius:8px;font-size:.75rem;font-family:var(--mono)">
+          <div style="display:flex;justify-content:space-between;margin-bottom:.3rem"><span style="color:var(--muted)">ask.brainsait.org</span><span style="color:var(--green)">200 OK</span></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:.3rem"><span style="color:var(--muted)">hub.brainsait.org</span><span style="color:var(--green)">200 OK</span></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:.3rem"><span style="color:var(--muted)">registry.brainsait.org</span><span style="color:var(--green)">200 OK</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">daftra.brainsait.org</span><span style="color:var(--green)">200 OK</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Solutions ─── -->
+<section class="section" id="solutions">
+  <div class="container">
+    <div class="animate" style="text-align:center">
+      <div class="section-label" style="justify-content:center">Solutions</div>
+      <h2 class="section-title">Built for <span class="gradient-text">every journey</span></h2>
+      <p class="section-desc" style="margin:0 auto">Four paths to value. Learn knowledge products, build with incubation, deploy enterprise solutions, or verify as a certified provider.</p>
+    </div>
+    <div class="features-grid" style="margin-top:2rem">
+      <div class="feature-card animate" style="text-align:center">
+        <div class="feature-icon cyan" style="margin:0 auto 1.2rem">📚</div>
+        <h3>Learn</h3>
+        <p style="margin-bottom:1rem">40 books, blueprints, and masterclasses. Subscribe for 182 SAR/month or buy individual PDFs at 99 SAR.</p>
+        <a href="https://fadil369.github.io/learn" class="btn btn-secondary btn-sm">40 Products</a>
+      </div>
+      <div class="feature-card animate" style="text-align:center">
+        <div class="feature-icon purple" style="margin:0 auto 1.2rem">🔨</div>
+        <h3>Build</h3>
+        <p style="margin-bottom:1rem">Forge Incubation Program. Monthly tracking or 9,630 SAR founder ticket with full mentorship.</p>
+        <a href="https://fadil369.github.io/build" class="btn btn-secondary btn-sm">Incubator</a>
+      </div>
+      <div class="feature-card animate" style="text-align:center">
+        <div class="feature-icon green" style="margin:0 auto 1.2rem">🚀</div>
+        <h3>Solutions</h3>
+        <p style="margin-bottom:1rem">61 solutions from Hospital OS to NPHIES gateway. Monthly incubation or 24,000 SAR ready-built.</p>
+        <a href="https://fadil369.github.io/solutions" class="btn btn-secondary btn-sm">61 Solutions</a>
+      </div>
+      <div class="feature-card animate" style="text-align:center">
+        <div class="feature-icon orange" style="margin:0 auto 1.2rem">🏥</div>
+        <h3>BPR Registry</h3>
+        <p style="margin-bottom:1rem">Certified healthcare provider registration. Annual or monthly plans with OID identity and verification.</p>
+        <a href="https://registry.brainsait.org" class="btn btn-secondary btn-sm">Register</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Pricing ─── -->
+<section class="section" id="pricing" style="background:var(--bg2)">
+  <div class="container">
+    <div class="animate" style="text-align:center">
+      <div class="section-label" style="justify-content:center">Pricing</div>
+      <h2 class="section-title">Simple, transparent <span class="gradient-text">SAR pricing</span></h2>
+      <p class="section-desc" style="margin:0 auto">No hidden fees. No USD conversion. Pay in Saudi Riyals via MyFatoorah (MADA, Apple Pay, Visa).</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card animate">
+        <div class="pricing-tier">Learn</div>
+        <div class="pricing-price">182 <span class="currency">SAR</span><span class="period">/mo</span></div>
+        <div class="pricing-desc">Full library access. All 40 products. Cancel anytime.</div>
+        <ul class="pricing-features">
+          <li>All 40 books & blueprints</li>
+          <li>Bilingual EN/AR content</li>
+          <li>Monthly PDF updates</li>
+          <li>Frame.io library access</li>
+        </ul>
+        <a href="https://store.brainsait.de" class="btn btn-secondary">Subscribe</a>
+      </div>
+      <div class="pricing-card featured animate">
+        <div class="pricing-tier">Build</div>
+        <div class="pricing-price">9,630 <span class="currency">SAR</span></div>
+        <div class="pricing-desc">Full founder ticket. Complete incubation journey from idea to launch.</div>
+        <ul class="pricing-features">
+          <li>Learn library included</li>
+          <li>Notion Founder OS</li>
+          <li>Second Brain workspace</li>
+          <li>Telegram Forge Bot</li>
+          <li>16-day build sprint</li>
+          <li>Digital certification</li>
+        </ul>
+        <a href="https://store.brainsait.de" class="btn btn-primary">Get Started</a>
+      </div>
+      <div class="pricing-card animate">
+        <div class="pricing-tier">Solutions Ready</div>
+        <div class="pricing-price">24,000 <span class="currency">SAR</span></div>
+        <div class="pricing-desc">Deployment-ready solution. Hospital OS, NPHIES, OID, Basma, and more.</div>
+        <ul class="pricing-features">
+          <li>Full source code delivery</li>
+          <li>Deployment support</li>
+          <li>Marketing & launch help</li>
+          <li>Certifications & badges</li>
+          <li>Google Calendar setup call</li>
+        </ul>
+        <a href="https://store.brainsait.de" class="btn btn-secondary">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Testimonials ─── -->
+<section class="section">
+  <div class="container">
+    <div class="animate" style="text-align:center">
+      <div class="section-label" style="justify-content:center">Trusted By</div>
+      <h2 class="section-title">What our partners <span class="gradient-text">say</span></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial animate">
+        <p class="testimonial-text">"The BPR registry gave our healthcare providers verifiable digital identities. The OID system is years ahead of what's available locally."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">H</div>
+          <div class="testimonial-info"><div class="name">Healthcare Partner</div><div class="role">NPHIES Integration Team</div></div>
+        </div>
+      </div>
+      <div class="testimonial animate">
+        <p class="testimonial-text">"Forge Incubation turned our idea into a deployed Hospital OS in 6 weeks. The Telegram bot kept us on track every single day."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">F</div>
+          <div class="testimonial-info"><div class="name">Forge Cohort Graduate</div><div class="role">HealthTech Founder, Riyadh</div></div>
+        </div>
+      </div>
+      <div class="testimonial animate">
+        <p class="testimonial-text">"23 agent templates deployed across our operations. Lead capture, support chat, content creation — all running on our own accounts."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">S</div>
+          <div class="testimonial-info"><div class="name">Solutions Partner</div><div class="role">Digital Agency, Jeddah</div></div>
+        </div>
+      </div>
+      <div class="testimonial animate">
+        <p class="testimonial-text">"The resolution platform reduces our support tickets by 60%. AI Search + KV cache means near-instant answers for everything."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">A</div>
+          <div class="testimonial-info"><div class="name">AI Operations Lead</div><div class="role">Enterprise Customer, KSA</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="section cta-section">
+  <div class="container cta-content animate">
+    <h2 class="cta-title">Ready to <span class="gradient-text">resolve</span>?</h2>
+    <p class="cta-desc">Join the AI resolution platform. Build, deploy, and scale intelligent solutions across the Middle East and beyond.</p>
+    <div class="cta-actions">
+      <a href="https://store.brainsait.de" class="btn btn-primary">Explore Products</a>
+      <a href="https://platform.brainsait.org" class="btn btn-secondary">Open Dashboard</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Footer ─── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo">BrainSAIT</span>
+        <p>AI Resolution Platform. Connecting people, knowledge, and intelligence across every channel. Built in Riyadh, powered by Cloudflare.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="https://fadil369.github.io/learn">Learn</a></li>
+          <li><a href="https://fadil369.github.io/build">Build</a></li>
+          <li><a href="https://fadil369.github.io/solutions">Solutions</a></li>
+          <li><a href="https://registry.brainsait.org">BPR Registry</a></li>
+          <li><a href="https://fadil369.github.io/templates">Templates</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="https://platform.brainsait.org">Dashboard</a></li>
+          <li><a href="https://hub.brainsait.org">Hub (MCP)</a></li>
+          <li><a href="https://rag.brainsait.org">RAG Search</a></li>
+          <li><a href="https://ask.brainsait.org">Ask Dr. Fadil</a></li>
+          <li><a href="https://dashboard.brainsait.org">Operations</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://t.me/brainsait_forge_bot">Telegram Bot</a></li>
+          <li><a href="https://n8n.brainsait.org">n8n Workflows</a></li>
+          <li><a href="https://store.brainsait.de">Shop</a></li>
+          <li><a href="https://brainsait.org">brainsait.org</a></li>
+          <li><a href="https://brainsait.de">brainsait.de</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 BrainSAIT Ltd. All rights reserved.</span>
+      <span>IAN PEN 61026 • Riyadh, Saudi Arabia</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─── Scroll animations ───
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+// ─── Navbar scroll ───
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const navbar = document.getElementById('navbar');
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+}, { passive: true });
+
+// ─── Smooth scroll for anchor links ───
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BookOpen, Hammer, Boxes, ArrowLeft, Sparkles, Fingerprint, LayoutTemplate } from 'lucide-react';
+import { BookOpen, Hammer, Boxes, ArrowLeft, Sparkles, Fingerprint, LayoutTemplate, Clock } from 'lucide-react';
 import data from '../data/catalog.json';
 import type { Catalog } from '../types';
 import { useI18n, money } from '../i18n';
@@ -87,6 +87,26 @@ export default function Home() {
         <p>{ar ? cat.build.program.taglineAr : cat.build.program.tagline}</p>
         <strong>{money(cat.build.program.price, ar)}</strong>
         <Link className="button primary" to="/build">{t('cta.apply')}</Link>
+      </section>
+
+      {/* Intake CTA */}
+      <section className="program-teaser reveal" style={{ background: 'linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%)', borderRadius: 'var(--radius)', padding: '3rem 2rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+          <Clock size={28} style={{ color: '#f59e0b' }} />
+          <h2 style={{ marginBottom: 0 }}>{ar ? 'سباق 48 ساعة — هوية صحية جاهزة' : '48-Hour Sprint — AI-Native Healthcare Identity'}</h2>
+        </div>
+        <p style={{ color: '#94a3b8', maxWidth: 600, lineHeight: 1.6, marginBottom: 24 }}>
+          {ar
+            ? 'أطباء، عيادات، مؤسسين، ومؤسسات صحية — قدّم الآن وسنرشدك إلى أسرع مسار: جلسة استراتيجية، BUILD، BPR، أو حلول جاهزة.'
+            : 'For doctors, clinics, founders, and healthcare organizations — apply now and we will guide you to the fastest path: strategy session, BUILD, BPR, or Solutions Ready.'}
+        </p>
+        <Link to="/intake" className="button primary">
+          {ar ? 'قدّم الآن — ابدأ' : 'Apply Now — Get Started'}
+          {' '}→
+        </Link>
+        <Link to="/sprint" className="button secondary" style={{ marginLeft: 12 }}>
+          {ar ? 'مزيد من المعلومات' : 'Learn More'}
+        </Link>
       </section>
     </main>
   );

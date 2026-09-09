@@ -16,6 +16,7 @@ const Account = lazy(() => import('./pages/Account'));
 const AccountAuthorize = lazy(() => import('./pages/AccountAuthorize'));
 const Track = lazy(() => import('./pages/Track'));
 const Sprint = lazy(() => import('./pages/Sprint'));
+const IntakeForm = lazy(() => import('./pages/IntakeForm'));
 
 type Theme = 'dark' | 'light';
 
@@ -154,6 +155,9 @@ function Header() {
           <NavLink to="/sprint" style={{ color: '#f59e0b', fontWeight: 700 }}>
             {ar ? 'سباق 48 ساعة' : '48h Sprint'}
           </NavLink>
+          <NavLink to="/intake" style={{ color: '#0ea5e9', fontWeight: 600 }}>
+            {ar ? 'تقديم الطلب' : 'Apply Now'}
+          </NavLink>
           <a
             href={withUtm('https://store.brainsait.de/collections/solutions-ready', { utm_content: 'nav-solutions-ready' })}
             target="_blank"
@@ -245,6 +249,7 @@ export default function App() {
               <Route path="/account/authorize" element={<AccountAuthorize />} />
               <Route path="/track" element={<Track />} />
               <Route path="/sprint" element={<Sprint />} />
+              <Route path="/intake" element={<IntakeForm />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

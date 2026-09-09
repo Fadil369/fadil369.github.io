@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrainSAIT — AI Service Operations Dashboard</title>
+<style>
+  :root {
+    --bg: #0a0e1a; --surface: #111827; --border: #1e293b;
+    --cyan: #06b6d4; --blue: #3b82f6; --red: #ef4444; --green: #22c55e;
+    --amber: #f59e0b; --text: #f1f5f9; --muted: #64748b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'JetBrains Mono', 'Fira Code', monospace; background: var(--bg); color: var(--text); min-height: 100vh; }
+  
+  /* Header */
+  .dash-header { padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); background: var(--surface); }
+  .dash-logo { font-size: 1.2rem; font-weight: 700; color: var(--cyan); display: flex; align-items: center; gap: 8px; }
+  .dash-logo .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34,197,94,0.7); } 50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(34,197,94,0); } }
+  .dash-time { color: var(--muted); font-size: 0.85rem; }
+
+  /* KPI Cards */
+  .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; padding: 1.5rem 2rem; }
+  .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; position: relative; overflow: hidden; }
+  .kpi-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .kpi-value { font-size: 2.2rem; font-weight: 800; }
+  .kpi-value.cyan { color: var(--cyan); text-shadow: 0 0 20px rgba(6,182,212,0.4); }
+  .kpi-value.green { color: var(--green); }
+  .kpi-value.amber { color: var(--amber); }
+  .kpi-value.red { color: var(--red); text-shadow: 0 0 20px rgba(239,68,68,0.4); }
+  .kpi-sub { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+  .kpi::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+  .kpi.cyan::before { background: var(--cyan); }
+  .kpi.green::before { background: var(--green); }
+  .kpi.amber::before { background: var(--amber); }
+  .kpi.red::before { background: var(--red); }
+
+  /* Charts area */
+  .charts-row { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; padding: 0 2rem 1rem; }
+  .chart-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+  .chart-title { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; align-items: center; gap: 6px; }
+  canvas { width: 100%; border-radius: 8px; }
+
+  /* Anomaly alerts */
+  .alerts-row { padding: 0 2rem 2rem; }
+  .alert-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
+  .alert-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--red); flex-shrink: 0; animation: pulse 1.5s infinite; }
+  .alert-dot.warn { background: var(--amber); }
+  .alert-text { flex: 1; font-size: 0.85rem; }
+  .alert-time { color: var(--muted); font-size: 0.75rem; }
+
+  /* Donut chart */
+  .donut-wrap { display: flex; align-items: center; justify-content: center; gap: 1.5rem; padding: 1rem 0; }
+  .donut-legend { font-size: 0.8rem; }
+  .legend-item { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* Resource bars */
+  .resource-bars { padding: 1rem 0; }
+  .res-bar { margin-bottom: 12px; }
+  .res-label { font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between; margin-bottom: 4px; }
+  .res-track { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .res-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
+  .res-fill.green { background: var(--green); }
+  .res-fill.amber { background: var(--amber); }
+  .res-fill.red { background: var(--red); }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .charts-row { grid-template-columns: 1fr; }
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="dash-header">
+  <div class="dash-logo"><span class="pulse"></span> BRAINSAIT — AI Operations</div>
+  <div class="dash-time" id="clock"></div>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi cyan"><div class="kpi-label">Online Services</div><div class="kpi-value cyan" id="kpi-services">18</div><div class="kpi-sub">of 23 active</div></div>
+  <div class="kpi green"><div class="kpi-label">Daily AI Calls</div><div class="kpi-value green" id="kpi-calls">1,247</div><div class="kpi-sub">↑ 12% from yesterday</div></div>
+  <div class="kpi amber"><div class="kpi-label">Success Rate</div><div class="kpi-value amber" id="kpi-success">98.2%</div><div class="kpi-sub">Last 24h</div></div>
+  <div class="kpi cyan"><div class="kpi-label">Avg Latency</div><div class="kpi-value cyan" id="kpi-latency">142ms</div><div class="kpi-sub">Response time</div></div>
+  <div class="kpi red"><div class="kpi-label">Anomalies</div><div class="kpi-value red" id="kpi-anomalies">3</div><div class="kpi-sub">Need attention</div></div>
+</div>
+
+<div class="charts-row">
+  <div class="chart-panel">
+    <div class="chart-title">📈 Real-Time Call Trend <span style="margin-left:auto;font-size:0.7rem;color:var(--cyan)">1-min granularity</span></div>
+    <canvas id="trendChart" height="180"></canvas>
+  </div>
+  <div class="chart-panel">
+    <div class="chart-title">🍩 Model Distribution</div>
+    <div class="donut-wrap">
+      <canvas id="donutChart" width="140" height="140"></canvas>
+      <div class="donut-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--cyan)"></div>Llama 3.3 70B</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>DeepSeek V3</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Qwen 2.5</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div>GPT-4o</div>
+      </div>
+    </div>
+    <div class="chart-title" style="margin-top:1rem">📊 Interface Success TOP5</div>
+    <div class="resource-bars" id="successBars"></div>
+  </div>
+</div>
+
+<div class="alerts-row">
+  <div class="chart-title">🔴 Anomaly Alerts</div>
+  <div class="alert-item"><div class="alert-dot"></div><div class="alert-text">High latency spike on <strong>ask.brainsait.org</strong> — 890ms avg (threshold: 500ms)</div><div class="alert-time">2m ago</div></div>
+  <div class="alert-item"><div class="alert-dot warn"></div><div class="alert-text">Airtable write rate exceeded — <strong>47/min</strong> (limit: 50/min)</div><div class="alert-time">8m ago</div></div>
+  <div class="alert-item"><div class="alert-dot"></div><div class="alert-text">SSH brute force: <strong>14 failed attempts</strong> from 3 IPs in last hour</div><div class="alert-time">12m ago</div></div>
+  <div class="alert-item"><div class="alert-dot warn"></div><div class="alert-text">Disk usage at <strong>87%</strong> — internal storage</div><div class="alert-time">24m ago</div></div>
+  <div class="alert-item"><div class="alert-dot warn"></div><div class="alert-text">2 systemd services in failed state: <strong>brainmaster-brief</strong>, <strong>forge-digest</strong></div><div class="alert-time">45m ago</div></div>
+</div>
+
+<script>
+// Clock
+function updateClock() {
+  document.getElementById('clock').textContent = new Date().toISOString().replace('T',' ').slice(0,19) + ' UTC';
+}
+updateClock(); setInterval(updateClock, 1000);
+
+// Trend chart (real-time line)
+const trendCanvas = document.getElementById('trendChart');
+const trendCtx = trendCanvas.getContext('2d');
+let trendData = Array.from({length: 60}, () => Math.random() * 40 + 30);
+
+function drawTrend() {
+  const w = trendCanvas.width = trendCanvas.offsetWidth * 2;
+  const h = trendCanvas.height = 360;
+  trendCtx.clearRect(0, 0, w, h);
+  
+  // Grid
+  trendCtx.strokeStyle = '#1e293b';
+  trendCtx.lineWidth = 1;
+  for (let i = 0; i < 5; i++) {
+    const y = (h / 5) * i;
+    trendCtx.beginPath(); trendCtx.moveTo(0, y); trendCtx.lineTo(w, y); trendCtx.stroke();
+  }
+  
+  // Line
+  trendCtx.beginPath();
+  trendCtx.strokeStyle = '#06b6d4';
+  trendCtx.lineWidth = 3;
+  trendCtx.lineJoin = 'round';
+  trendData.forEach((v, i) => {
+    const x = (i / (trendData.length - 1)) * w;
+    const y = h - (v / 100) * h;
+    i === 0 ? trendCtx.moveTo(x, y) : trendCtx.lineTo(x, y);
+  });
+  trendCtx.stroke();
+  
+  // Gradient fill
+  const grad = trendCtx.createLinearGradient(0, 0, 0, h);
+  grad.addColorStop(0, 'rgba(6,182,212,0.3)');
+  grad.addColorStop(1, 'rgba(6,182,212,0)');
+  trendCtx.lineTo(w, h); trendCtx.lineTo(0, h); trendCtx.closePath();
+  trendCtx.fillStyle = grad; trendCtx.fill();
+  
+  // Update data
+  trendData.shift();
+  trendData.push(Math.random() * 40 + 30 + Math.sin(Date.now()/10000) * 15);
+}
+
+// Donut chart
+function drawDonut() {
+  const c = document.getElementById('donutChart');
+  const ctx = c.getContext('2d');
+  const cx = 70, cy = 70, r = 55, ir = 35;
+  const segments = [
+    { value: 45, color: '#06b6d4' },
+    { value: 25, color: '#3b82f6' },
+    { value: 20, color: '#22c55e' },
+    { value: 10, color: '#f59e0b' }
+  ];
+  
+  ctx.clearRect(0, 0, 140, 140);
+  let startAngle = -Math.PI / 2;
+  segments.forEach(seg => {
+    const sweep = (seg.value / 100) * Math.PI * 2;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, startAngle, startAngle + sweep);
+    ctx.arc(cx, cy, ir, startAngle + sweep, startAngle, true);
+    ctx.closePath();
+    ctx.fillStyle = seg.color;
+    ctx.fill();
+    startAngle += sweep;
+  });
+  // Center text
+  ctx.fillStyle = '#f1f5f9';
+  ctx.font = 'bold 20px monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText('747', cx, cy + 2);
+  ctx.font = '10px monospace';
+  ctx.fillStyle = '#64748b';
+  ctx.fillText('calls/min', cx, cy + 16);
+}
+
+// Success bars
+function drawSuccessBars() {
+  const container = document.getElementById('successBars');
+  const services = [
+    { name: 'lead-capture', pct: 99.8 },
+    { name: 'registry', pct: 99.5 },
+    { name: 'platform', pct: 98.2 },
+    { name: 'passport', pct: 97.9 },
+    { name: 'compliance', pct: 96.1 }
+  ];
+  container.innerHTML = services.map(s => `
+    <div class="res-bar">
+      <div class="res-label"><span>${s.name}</span><span>${s.pct}%</span></div>
+      <div class="res-track"><div class="res-fill ${s.pct >= 99 ? 'green' : s.pct >= 97 ? 'amber' : 'red'}" style="width:${s.pct}%"></div></div>
+    </div>
+  `).join('');
+}
+
+// Resource bars (simulated)
+function drawResources() {
+  // Would dynamically update CPU/GPU/Memory bars
+}
+
+// Init
+drawTrend();
+drawDonut();
+drawSuccessBars();
+
+// Auto-refresh trend every 3s
+setInterval(drawTrend, 3000);
+setInterval(drawDonut, 5000);
+
+// Click to expand trend chart
+trendCanvas.addEventListener('click', () => {
+  alert('Expanded view: 60-minute detail overlay\n\nIn production, this would expand to a full-screen chart with 60-minute granularity showing:\n• Hourly call volume\n• Model distribution over time\n• Error rate timeline\n• Cost per hour');
+});
+</script>
+</body>
+</html>

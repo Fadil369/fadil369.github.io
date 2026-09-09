@@ -132,16 +132,19 @@ img { max-width: 100%; }
 }
 /* Orbs removed — professional pass keeps a flat, calm canvas for Shopify clarity */
 
-/* RTL-safe skip-link — visible on focus, honey-gold pill */
+/* RTL-safe skip-link — visually hidden (clip), visible on focus, honey-gold pill */
 .skip-to-content-link {
-  position: absolute; left: -99999px; top: 0; z-index: 100;
+  position: absolute; top: 0; inset-inline-start: 0; z-index: 100;
+  width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
   background: var(--gold-grad); color: #131320; font-weight: 800;
-  padding: 0.7rem 1.1rem; border-radius: var(--radius-sm);
+  border-radius: var(--radius-sm);
   box-shadow: var(--shadow);
 }
 .skip-to-content-link:focus {
-  left: 1rem; top: 1rem;
-  clip-path: none; overflow: visible;
+  width: auto; height: auto;
+  margin: 1rem; padding: 0.7rem 1.1rem; overflow: visible;
+  clip-path: none;
 }
 
 /* ── Glass primitives ─────────────────────────────────────── */
