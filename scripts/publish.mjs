@@ -22,7 +22,7 @@ const index = readFileSync(indexFile, 'utf8');
 writeFileSync(join(root, '404.html'), index); // SPA fallback for hard refresh
 writeFileSync(join(root, 'index.html'), index);
 
-for (const route of ['learn', 'build', 'solutions', 'templates', 'oid', 'sprint', 'benefits', 'account']) {
+for (const route of ['learn', 'build', 'solutions', 'templates', 'oid', 'sprint', 'benefits', 'account', 'track', 'faq', 'terms', 'support', 'contact']) {
   const routeDir = join(root, route);
   mkdirSync(routeDir, { recursive: true });
   writeFileSync(join(routeDir, 'index.html'), index);
