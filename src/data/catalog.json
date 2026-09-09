@@ -1511,7 +1511,7 @@
       "shopifyHandle": "api-revision-notebook",
       "sku": "BSP-DRIVE-API-REVISION-NB",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/api-revision-notebook",
+      "shopifyUrlOneTime": null,
       "oneTimePrice": 99
     },
     {
@@ -2711,7 +2711,7 @@
       "shopifyHandle": "healthcare-ai-2025",
       "sku": "BSP-HEALTHCARE-AI-2025",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/healthcare-ai-2025",
+      "shopifyUrlOneTime": null,
       "oneTimePrice": 99
     },
     {
@@ -3553,7 +3553,7 @@
       "shopifyHandle": "all-men",
       "sku": "BSP-NOVEL-ALL_MEN",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/all-men",
+      "shopifyUrlOneTime": null,
       "oneTimePrice": 99
     },
     {
@@ -3624,7 +3624,7 @@
       "shopifyHandle": "between-one-beat-and-another-arabic",
       "sku": "BSP-NOVEL-BETWEEN_ONE_BEAT_AND_ANOTHER_ARABIC",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/between-one-beat-and-another-arabic",
+      "shopifyUrlOneTime": null,
       "oneTimePrice": 99
     },
     {
@@ -3695,7 +3695,7 @@
       "shopifyHandle": "between-one-beat-and-another-english",
       "sku": "BSP-NOVEL-BETWEEN_ONE_BEAT_AND_ANOTHER_ENGLISH",
       "available": true,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/between-one-beat-and-another-english",
+      "shopifyUrlOneTime": null,
       "oneTimePrice": 99
     },
     {
@@ -3742,7 +3742,7 @@
       "sku": "BSP-OID-ARDUINO-SCANNER",
       "shopifyUrl": "https://store.brainsait.de/products/brainsait-learn-digital-access-library-membership",
       "oneTimePrice": 99,
-      "shopifyUrlOneTime": "https://store.brainsait.de/products/oid-arduino-iot-scanner-hardware-blueprint"
+      "shopifyUrlOneTime": null
     },
     {
       "slug": "oid-integration-blueprint-developer-guide",
@@ -6428,8 +6428,8 @@
       "category": "oid-registry",
       "sub": "bpr",
       "price": 163,
-      "shopifyUrl": "https://store.brainsait.de/products/provider-registry-junior",
-      "shopifyHandle": "provider-registry-junior",
+      "shopifyUrl": "https://store.brainsait.de/products/provider-registry",
+      "shopifyHandle": "provider-registry",
       "description": "Monthly BPR plan for junior doctors. Entry-level provider registry access.",
       "descriptionAr": "خطة BPR الشهرية للأطباء المقيمين. الوصول إلى سجل المزوي من المستوى الأول.",
       "commercial": "product",
@@ -7605,8 +7605,8 @@
       "category": "oid-registry",
       "sub": "bpr",
       "price": 163,
-      "shopifyUrl": "https://store.brainsait.de/products/provider-registry-junior",
-      "shopifyHandle": "provider-registry-junior",
+      "shopifyUrl": "https://store.brainsait.de/products/provider-registry",
+      "shopifyHandle": "provider-registry",
       "description": "Monthly BPR plan for junior doctors. Entry-level provider registry access.",
       "descriptionAr": "خطة BPR الشهرية للأطباء المقيمين. الوصول إلى سجل المزوي من المستوى الأول.",
       "commercial": "product",
