@@ -55,13 +55,15 @@ export const GHIO_LINKS = {
   bprMonthly: `${STORE_BASE}/products/provider-registry`,
   
   // OID Products
-  oidBadge: `${STORE_BASE}/products/oid-verification-badge-1`,
+  oidBadge: `${STORE_BASE}/products/oid-verification-badge`,
+  oidIdentity: `${STORE_BASE}/products/oid-identity`,
   oidExplorer: `${STORE_BASE}/products/oid-explorer-seat`,
-  oidFhir: `${STORE_BASE}/products/oid-fhir-integration-platform-1`,
-  oidNphies: `${STORE_BASE}/products/oid-nphies-oid-healthcare-identity-bundle`,
-  oidNamespace: `${STORE_BASE}/products/oid-enterprise-namespace-license-1`,
-  oidWhitelabel: `${STORE_BASE}/products/oid-white-label-enterprise-1`,
+  oidFhir: `${STORE_BASE}/products/oid-fhir-integration-platform`,
+  oidNphies: `${STORE_BASE}/products/nphies-oid-healthcare-identity-bundle`,
+  oidNamespace: `${STORE_BASE}/products/oid-enterprise-namespace-license`,
+  oidWhitelabel: `${STORE_BASE}/products/oid-white-label-enterprise`,
   oidBlueprint: `${STORE_BASE}/products/oid-integration-blueprint-developer-guide`,
+  bprJunior: `${STORE_BASE}/products/provider-registry-junior`,
   
   // External ecosystem links
   registry: 'https://registry.brainsait.org',

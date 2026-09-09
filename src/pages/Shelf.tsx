@@ -16,7 +16,7 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
   const [sub, setSub] = useState('all');
   const [comm, setComm] = useState('all');
   const bpr = cat.solutions.find(item => item.slug === 'bpr');
-  const items: Product[] = stage === 'learn' && bpr ? [bpr, ...cat.learn] : stage === 'templates' ? cat.templates : cat.solutions;
+  const items: Product[] = stage === 'learn' && bpr ? [bpr, ...cat.learn] : stage === 'templates' ? cat.templates : stage === 'oid-registry' ? (cat.oid ?? []) : cat.solutions;
 
   usePageMeta({
     title: ar ? `${def.ar} — BrainSAIT Store` : `${def.en} — BrainSAIT Store`,
@@ -81,6 +81,19 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
           </div>
           <a className="button primary lg" href="https://store.brainsait.de/pages/agent-templates-guide" target="_blank" rel="noopener noreferrer">
             {ar ? 'اقرأ الدليل الكامل' : 'Read the full guide'}
+           </a>
+         </section>
+       )}
+
+      {stage === 'oid-registry' && (
+        <section className="shelf-plan-banner reveal" aria-label={ar ? 'الهوية والسجل' : 'OID & Registry'}>
+          <div>
+            <span className="hero-eyebrow"><span className="dot" /> {ar ? 'نظام الهوية والسجل' : 'Identity & Registry'}</span>
+            <h2>{ar ? 'OID: هويتك الرقمية على IASPA' : 'OID: Your Digital Identity on IASPA'}</h2>
+            <p>{ar ? 'نظام الهوية عبر الإنترنت (OID) وسجل مزودي الخدمات — شارات التحقق، تراخيص المؤسسات، تكامل FHIR، وحلول NPHIES.' : 'Online Identity (OID) system and provider registry — verification badges, enterprise licenses, FHIR integration, and NPHIES solutions.'}</p>
+          </div>
+          <a className="button primary lg" href="https://register.brainsait.org" target="_blank" rel="noopener noreferrer">
+            {ar ? 'سجّل هويتك الآن' : 'Register Your OID'}
           </a>
         </section>
       )}

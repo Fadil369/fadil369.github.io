@@ -5,12 +5,14 @@ import { usePageMeta } from '../hooks/usePageMeta';
 import { useI18n } from '../i18n';
 
 const STORE = 'https://store.brainsait.de';
-const STRATEGY_SESSION = `${STORE}/products/private-strategy-session`;
+const CALENDAR_BOOK = 'https://calendar.app.google/BrainSAIT48hSprint';
+// The 2,390 SAR strategy session is booked via calendar and invoiced through
+// Daftra (POST daftra.brainsait.org/api/sprint/invoice) — no Shopify product.
+const STRATEGY_SESSION = CALENDAR_BOOK;
 const BUILD_TICKET = `${STORE}/products/build-full-program-ticket`;
 const BPR_PRO = `${STORE}/products/provider-registry`;
 const BPR_ELITE = `${STORE}/products/provider-registry`;
 const SOLUTIONS_READY = `${STORE}/products/solutions-ready-enterprise-deployment-1`;
-const CALENDAR_BOOK = 'https://calendar.app.google/BrainSAIT48hSprint';
 
 const UPGRADES = [
   { name: 'BUILD Ticket — Incubation Pass', nameAr: 'تذكرة BUILD — برنامج الاحتضان', price: '9,630 SAR', buyer: 'Founder, doctor, clinic operator', buyerAr: 'مؤسس، طبيب، مدير عيادة', url: BUILD_TICKET, icon: Building2 },

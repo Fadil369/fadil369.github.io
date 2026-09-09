@@ -49,7 +49,7 @@ export const TIERS: Tier[] = [
   },
   {
     id: 'build-ticket', cat: 'build', en: 'BUILD Ticket', ar: 'تذكرة BUILD',
-    price: 9630, period: 'once', handle: 'build-ticket',
+    price: 9630, period: 'once', handle: 'build-full-program-ticket',
     taglineEn: 'One-time ticket, same forge access',
     taglineAr: 'تذكرة لمرة واحدة، نفس وصول Forge',
     benefits: ['learnAll', 'notion', 'secondBrain', 'telegram'], accent: '#f59e0b',

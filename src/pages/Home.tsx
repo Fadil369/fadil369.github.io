@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BookOpen, Hammer, Boxes, ArrowLeft, Sparkles } from 'lucide-react';
+import { BookOpen, Hammer, Boxes, ArrowLeft, Sparkles, Fingerprint, LayoutTemplate } from 'lucide-react';
 import data from '../data/catalog.json';
 import type { Catalog } from '../types';
 import { useI18n, money } from '../i18n';
@@ -9,8 +9,8 @@ import JourneyFlow from '../components/JourneyFlow';
 import { usePageMeta } from '../hooks/usePageMeta';
 
 const cat = data as unknown as Catalog;
-const ICONS = [BookOpen, Hammer, Boxes];
-const ACCENTS = ['learn', 'build', 'solutions'];
+const ICONS = [BookOpen, Hammer, Boxes, LayoutTemplate, Fingerprint];
+const ACCENTS = ['learn', 'build', 'solutions', 'templates', 'oid'];
 
 export default function Home() {
   const { ar, t } = useI18n();
@@ -20,6 +20,8 @@ export default function Home() {
     learn: cat.learn.length,
     build: cat.build.courses.length + 1,
     solutions: cat.solutions.length,
+    templates: cat.templates.length,
+    'oid-registry': (cat.oid ?? []).length,
   };
 
   usePageMeta({

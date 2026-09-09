@@ -150,6 +150,7 @@ function Header() {
           <NavLink to="/build">{t('nav.build')}</NavLink>
           <NavLink to="/solutions">{t('nav.solutions')}</NavLink>
           <NavLink to="/templates">{t('nav.templates')}</NavLink>
+          <NavLink to="/oid">{ar ? 'الهوية والسجل' : 'OID & Registry'}</NavLink>
           <NavLink to="/sprint" style={{ color: '#f59e0b', fontWeight: 700 }}>
             {ar ? 'سباق 48 ساعة' : '48h Sprint'}
           </NavLink>
@@ -232,6 +233,7 @@ export default function App() {
               <Route path="/learn" element={<Shelf stage="learn" />} />
               <Route path="/solutions" element={<Shelf stage="solutions" />} />
               <Route path="/templates" element={<Shelf stage="templates" />} />
+              <Route path="/oid" element={<Shelf stage="oid-registry" />} />
               <Route path="/build" element={<Build />} />
               <Route path="/benefits" element={<Benefits />} />
               <Route path="/faq" element={<InfoPage page="faq" />} />
