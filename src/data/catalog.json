@@ -6420,22 +6420,6 @@
       "stage": "oid-registry",
       "billingEn": "annual",
       "billingAr": "سنوي"
-    },
-    {
-      "slug": "bpr-junior",
-      "name": "BrainSAIT Provider Registry (BPR) — Junior",
-      "nameAr": "سجل مزودي BrainSAIT — طبيب مقيم",
-      "category": "oid-registry",
-      "sub": "bpr",
-      "price": 163,
-      "shopifyUrl": "https://store.brainsait.de/products/provider-registry",
-      "shopifyHandle": "provider-registry",
-      "description": "Monthly BPR plan for junior doctors. Entry-level provider registry access.",
-      "descriptionAr": "خطة BPR الشهرية للأطباء المقيمين. الوصول إلى سجل المزوي من المستوى الأول.",
-      "commercial": "product",
-      "stage": "oid-registry",
-      "billingEn": "monthly",
-      "billingAr": "شهري"
     }
   ],
   "meta": {
@@ -6451,7 +6435,7 @@
       "solutions": 65,
       "bpr": 2,
       "templates": 23,
-      "oid": 9
+      "oid": 8
     },
     "updated": "2026-09-09"
   },
@@ -7597,22 +7581,6 @@
       "stage": "oid-registry",
       "billingEn": "annual",
       "billingAr": "سنوي"
-    },
-    {
-      "slug": "bpr-junior",
-      "name": "BrainSAIT Provider Registry (BPR) — Junior",
-      "nameAr": "سجل مزودي BrainSAIT — طبيب مقيم",
-      "category": "oid-registry",
-      "sub": "bpr",
-      "price": 163,
-      "shopifyUrl": "https://store.brainsait.de/products/provider-registry",
-      "shopifyHandle": "provider-registry",
-      "description": "Monthly BPR plan for junior doctors. Entry-level provider registry access.",
-      "descriptionAr": "خطة BPR الشهرية للأطباء المقيمين. الوصول إلى سجل المزوي من المستوى الأول.",
-      "commercial": "product",
-      "stage": "oid-registry",
-      "billingEn": "monthly",
-      "billingAr": "شهري"
     }
   ]
 }

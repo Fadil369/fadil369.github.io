@@ -46,8 +46,10 @@ export const GHIO_LINKS = {
   solutionReadyProduct: `${STORE_BASE}/products/solutions-ready-enterprise-deployment-1`,
   
   // Collections
-  learnBooks: `${STORE_BASE}/collections/learn-books`,
+  learnBooks: `${STORE_BASE}/pages/learn`,
   solutionsReady: `${STORE_BASE}/collections/solutions-ready`,
+  buildCollection: `${STORE_BASE}/collections/build`,
+  oidRegistryCollection: `${STORE_BASE}/collections/oid-registry`,
   
   // BPR — BrainSAIT Provider Registry
   bpr: `${STORE_BASE}/products/provider-registry`,
@@ -63,7 +65,11 @@ export const GHIO_LINKS = {
   oidNamespace: `${STORE_BASE}/products/oid-enterprise-namespace-license`,
   oidWhitelabel: `${STORE_BASE}/products/oid-white-label-enterprise`,
   oidBlueprint: `${STORE_BASE}/products/oid-integration-blueprint-developer-guide`,
-  bprJunior: `${STORE_BASE}/products/provider-registry-junior`,
+  bprJunior: `${STORE_BASE}/products/provider-registry`,
+  // OID content pages (live on Shopify)
+  oidDirectory: `${STORE_BASE}/pages/directory`,
+  oidCourse: `${STORE_BASE}/pages/oid-course`,
+  oidDemo: `${STORE_BASE}/pages/oid-interactive-demo`,
   
   // External ecosystem links
   registry: 'https://registry.brainsait.org',

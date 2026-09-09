@@ -119,6 +119,11 @@ export default function Build() {
             </a>
           </article>
         </div>
+        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center', marginTop: '1rem' }}>
+          <a className="button secondary sm" href={withUtm(GHIO_LINKS.buildCollection, { utm_content: 'build-page' })} target="_blank" rel="noopener noreferrer">
+            {ar ? '🧪 مختبرات وورش BUILD — SPARK · FHIR Lab · أكثر' : '🧪 BUILD Labs & Workshops — SPARK · FHIR Lab · more'}
+          </a>
+        </div>
         {/* What every BUILD plan includes — mirrors what the backend actually
             provisions (LEARN link, Notion Forge, Second Brain, Forge bot,
             simulators, guided plan + payment tracking/reminders). */}

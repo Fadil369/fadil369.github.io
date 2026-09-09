@@ -92,9 +92,25 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
             <h2>{ar ? 'OID: هويتك الرقمية على IASPA' : 'OID: Your Digital Identity on IASPA'}</h2>
             <p>{ar ? 'نظام الهوية عبر الإنترنت (OID) وسجل مزودي الخدمات — شارات التحقق، تراخيص المؤسسات، تكامل FHIR، وحلول NPHIES.' : 'Online Identity (OID) system and provider registry — verification badges, enterprise licenses, FHIR integration, and NPHIES solutions.'}</p>
           </div>
-          <a className="button primary lg" href="https://register.brainsait.org" target="_blank" rel="noopener noreferrer">
-            {ar ? 'سجّل هويتك الآن' : 'Register Your OID'}
-          </a>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <a className="button primary lg" href="https://register.brainsait.org" target="_blank" rel="noopener noreferrer">
+              {ar ? 'سجّل هويتك الآن' : 'Register Your OID'}
+            </a>
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <a className="button secondary sm" href={withUtm(GHIO_LINKS.oidDirectory, { utm_content: 'oid-banner' })} target="_blank" rel="noopener noreferrer">
+                {ar ? 'دليل OID الحي' : 'Live OID Directory'}
+              </a>
+              <a className="button secondary sm" href={withUtm(GHIO_LINKS.oidDemo, { utm_content: 'oid-banner' })} target="_blank" rel="noopener noreferrer">
+                {ar ? 'عرض تفاعلي' : 'Interactive Demo'}
+              </a>
+              <a className="button secondary sm" href={withUtm(GHIO_LINKS.oidCourse, { utm_content: 'oid-banner' })} target="_blank" rel="noopener noreferrer">
+                {ar ? 'رحلة الهوية الرقمية' : 'Identity Journey Course'}
+              </a>
+              <a className="button secondary sm" href={withUtm(GHIO_LINKS.oidRegistryCollection, { utm_content: 'oid-banner' })} target="_blank" rel="noopener noreferrer">
+                {ar ? 'عضويات BPR' : 'BPR Memberships'}
+              </a>
+            </div>
+          </div>
         </section>
       )}
 
