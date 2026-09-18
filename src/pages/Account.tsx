@@ -4,6 +4,7 @@ import { ShieldCheck, BadgeCheck, Globe, KeyRound, Lock, CheckCircle2, LogOut, U
 import { useI18n } from '../i18n';
 import { BUILD_APPLY_BASE, FOUNDER_OS_URL, ULTIMATE_BRAIN_BUILD_URL, FORGE_BOT_URL, CALENDAR_URL, CUSTOMER_CLAIM_URL, CUSTOMER_ME_URL, CUSTOMER_OTP_REQUEST_URL, CUSTOMER_OTP_VERIFY_URL, BUILD_INSTALLMENT_PLANS } from '../config/build';
 import ShopifyAccountPanel from '../components/ShopifyAccountPanel';
+import PartnerPanel from '../components/PartnerPanel';
 import { journeyEvent } from '../analytics';
 
 interface ProfileView {
@@ -648,6 +649,7 @@ export default function Account() {
     <main className="page">
       <h1 style={{ textAlign: 'center' }}>{ar ? 'حسابي' : 'My Account'}</h1>
       <ShopifyAccountPanel />
+      <PartnerPanel spid={searchParams.get('partner') || ''} />
       <div className="account-card">
         <div className="account-head">
           <div className="account-avatar">{(profile.name || '?').charAt(0)}</div>
