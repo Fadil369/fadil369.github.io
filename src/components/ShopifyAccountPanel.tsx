@@ -145,6 +145,14 @@ export default function ShopifyAccountPanel() {
           <button className="button secondary" style={{ width: '100%', marginTop: '0.5rem' }} onClick={logout}>
             {ar ? 'الخروج من حساب Shopify' : 'Sign out of Shopify account'}
           </button>
+          <a
+            href="https://daftra.brainsait.org/shop"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: 'block', textAlign: 'center', marginTop: '0.75rem', padding: '8px 12px', borderRadius: '8px', background: 'linear-gradient(135deg, #f59e0b, #d97706)', color: '#000', fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none' }}
+          >
+            🇸🇦 {ar ? 'تسوّق في المتجر العربي' : 'Shop in Arabic Store'}
+          </a>
         </>
       )}
     </div>

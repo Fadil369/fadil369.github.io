@@ -352,6 +352,19 @@ export default function BuildEligibilityForm() {
               {ar ? 'قبل أن تبدأ؟ احجز جلسة مع المؤسس ↗' : 'Not sure yet? Book a session with the founder ↗'}
             </a>
           </p>
+
+          {/* Arabic store link for Daftra */}
+          <p className="bt-booking" style={{ marginTop: '0.5rem' }}>
+            <a
+              href="https://daftra.brainsait.org/shop?tab=build"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ background: 'linear-gradient(135deg, #f59e0b, #d97706)', color: '#000', padding: '6px 14px', borderRadius: '20px', fontWeight: 600, fontSize: '0.9rem' }}
+              onClick={() => track('build_daftra_link', { location: 'ticket' })}
+            >
+              🇸🇦 {ar ? 'تصفح المتجر العربي' : 'Browse Arabic Store'}
+            </a>
+          </p>
         </div>
       </div>
     </div>

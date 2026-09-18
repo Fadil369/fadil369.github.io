@@ -73,6 +73,9 @@ export default function BenefitsMatrix() {
                         <a className="button primary sm" href={url} target="_blank" rel="noopener noreferrer">
                           {isOnce ? (ar ? 'اشترِ الآن' : 'Buy now') : (ar ? 'اشترك الآن' : 'Subscribe now')} <ExternalLink size={14} />
                         </a>
+                        <a className="button secondary sm" href={`https://daftra.brainsait.org/shop?tab=learn`} target="_blank" rel="noopener noreferrer" style={{ background: 'linear-gradient(135deg, #f59e0b, #d97706)', color: '#000', border: 'none' }}>
+                          {ar ? '🇸🇦 المتجر العربي' : '🇸🇦 Arabic Store'} <ExternalLink size={14} />
+                        </a>
                         {oneCollection && (
                           <a className="button secondary sm" href={oneCollection} target="_blank" rel="noopener noreferrer">
                             {ar ? 'تصفح المجموعة' : 'Browse collection'} <ExternalLink size={14} />
