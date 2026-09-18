@@ -17,6 +17,7 @@ const AccountAuthorize = lazy(() => import('./pages/AccountAuthorize'));
 const Track = lazy(() => import('./pages/Track'));
 const Sprint = lazy(() => import('./pages/Sprint'));
 const IntakeForm = lazy(() => import('./pages/IntakeForm'));
+const Slots = lazy(() => import('./pages/Slots'));
 
 type Theme = 'dark' | 'light';
 
@@ -152,6 +153,9 @@ function Header() {
           <NavLink to="/solutions">{t('nav.solutions')}</NavLink>
           <NavLink to="/templates">{t('nav.templates')}</NavLink>
           <NavLink to="/oid">{ar ? 'الهوية والسجل' : 'OID & Registry'}</NavLink>
+          <NavLink to="/slots" style={{ color: '#10b981', fontWeight: 700 }}>
+            {ar ? 'الشواغر' : 'Slots'}
+          </NavLink>
           <NavLink to="/sprint" style={{ color: '#f59e0b', fontWeight: 700 }}>
             {ar ? 'سباق 48 ساعة' : '48h Sprint'}
           </NavLink>
@@ -250,6 +254,7 @@ export default function App() {
               <Route path="/track" element={<Track />} />
               <Route path="/sprint" element={<Sprint />} />
               <Route path="/intake" element={<IntakeForm />} />
+              <Route path="/slots" element={<Slots />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
