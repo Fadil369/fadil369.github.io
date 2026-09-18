@@ -18,6 +18,7 @@ const Track = lazy(() => import('./pages/Track'));
 const Sprint = lazy(() => import('./pages/Sprint'));
 const IntakeForm = lazy(() => import('./pages/IntakeForm'));
 const Slots = lazy(() => import('./pages/Slots'));
+const Doctor = lazy(() => import('./pages/Doctor'));
 
 type Theme = 'dark' | 'light';
 
@@ -255,6 +256,7 @@ export default function App() {
               <Route path="/sprint" element={<Sprint />} />
               <Route path="/intake" element={<IntakeForm />} />
               <Route path="/slots" element={<Slots />} />
+              <Route path="/doctors/:spid" element={<Doctor />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
