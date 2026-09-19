@@ -228,12 +228,77 @@ function Footer() {
   );
 }
 
+function NationalDayRibbon() {
+  const { ar } = useI18n();
+  const day = ar ? 'اليوم الوطني 96' : 'Saudi National Day 96';
+  const title = ar ? 'عروضنا منشورة للجميع — الأسواق، سجل الأطباء، الاستشارات، والشواغر مفتوحة الآن' : 'Our published ecosystem is open to the public — markets, doctor registry, consultations and slots are live now';
+  const links = ar
+    ? [
+        ['سجل الأطباء', 'https://registry.brainsait.org'],
+        ['الشواغر الطبية', '/slots'],
+        ['صفحة الطبيب', '/doctors/SA-PHY-000001'],
+        ['التحقق', 'https://verify.brainsait.org/SA-PHY-000001'],
+      ]
+    : [
+        ['Provider Registry', 'https://registry.brainsait.org'],
+        ['Hospital Slots', '/slots'],
+        ['Doctor Page', '/doctors/SA-PHY-000001'],
+        ['Verify', 'https://verify.brainsait.org/SA-PHY-000001'],
+      ];
+  return (
+    <div
+      style={{
+        background: 'linear-gradient(90deg, #0b3d27, #116b3e 45%, #14a866)',
+        color: '#eafff3',
+        padding: '9px 16px',
+        fontSize: 13,
+        fontWeight: 600,
+        textAlign: 'center',
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '6px 14px',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        zIndex: 120,
+      }}
+    >
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+        <span aria-hidden="true">🇸🇦</span>
+        <b style={{ color: '#fff', whiteSpace: 'nowrap' }}>{day}</b>
+      </span>
+      <span>{title}</span>
+      {links.map(([label, href]) => (
+        <a
+          key={label}
+          href={href}
+          target={href.startsWith('http') ? '_blank' : undefined}
+          rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+          style={{
+            color: '#03170d',
+            background: '#eafff3',
+            padding: '3px 11px',
+            borderRadius: 999,
+            fontWeight: 800,
+            fontSize: 12,
+            textDecoration: 'none',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {label} ↗
+        </a>
+      ))}
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <I18nProvider>
       <BrowserRouter>
         <div className="bg-aurora" aria-hidden="true" />
         <SkipLink />
+        <NationalDayRibbon />
         <Header />
         <main id="main-content">
           <Suspense fallback={<PageLoader />}>
