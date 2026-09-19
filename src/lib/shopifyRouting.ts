@@ -38,7 +38,7 @@ export const GHIO_LINKS = {
   // Monthly subscriptions (auto-renewing)
   learnMonthly: `${STORE_BASE}/products/brainsait-learn-digital-access-library-membership`,
   buildMonthly: `${STORE_BASE}/products/build-forge-incubator-founders-program-1`,
-  solutionMonthly: `${STORE_BASE}/products/solutions-brainsait-super-partner-program-1`,
+  solutionMonthly: `${STORE_BASE}/products/solutions-brainsait-super-partner-program`,
   
   // One-time purchase / milestone products
   buildTicket: `${STORE_BASE}/products/build-full-program-ticket`,

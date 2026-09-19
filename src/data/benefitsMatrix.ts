@@ -63,7 +63,7 @@ export const TIERS: Tier[] = [
   },
   {
     id: 'solution-monthly', cat: 'solution', en: 'SOLUTION Monthly', ar: 'SOLUTION شهري',
-    price: 1999, period: 'mo', handle: 'solutions-brainsait-super-partner-program-1',
+    price: 1999, period: 'mo', handle: 'solutions-brainsait-super-partner-program',
     taglineEn: 'Super-partner, monthly',
     taglineAr: 'شريك مميز، شهري',
     benefits: ['learnAll', 'notion', 'secondBrain', 'telegram', 'lark'], accent: '#10b981',

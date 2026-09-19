@@ -238,7 +238,7 @@ function NationalDayRibbon() {
         ['العرض الوطني', `https://brainsait.org/?${utm}`],
         ['سجل الأطباء', `/oid?${utm}`],
         ['الشواغر الطبية', `https://fadil369.github.io/slots?${utm}`],
-        ['صفحة الطبيب', `https://fadil369.github.io/doctors/SA-PHY-000001?${utm}`],
+        ['صفحة الطبيب', `https://registry.brainsait.org/p/SA-PHY-000001?${utm}`],
         ['التحقق', `https://verify.brainsait.org/SA-PHY-000001?${utm}`],
         ['المساعد السريري', 'https://chatgpt.com/g/g-675e783e5464819187886b7cf9d1b082-saudi-clinical-copilot'],
       ]
@@ -246,7 +246,7 @@ function NationalDayRibbon() {
         ['National Day Offer', `https://brainsait.org/?${utm}`],
         ['Provider Registry', `/oid?${utm}`],
         ['Hospital Slots', `https://fadil369.github.io/slots?${utm}`],
-        ['Doctor Page', `https://fadil369.github.io/doctors/SA-PHY-000001?${utm}`],
+        ['Doctor Page', `https://registry.brainsait.org/p/SA-PHY-000001?${utm}`],
         ['Verify', `https://verify.brainsait.org/SA-PHY-000001?${utm}`],
         ['Clinical Copilot', 'https://chatgpt.com/g/g-675e783e5464819187886b7cf9d1b082-saudi-clinical-copilot'],
       ];
