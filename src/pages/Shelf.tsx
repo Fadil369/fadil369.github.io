@@ -125,8 +125,8 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
         {subs.map(s => {
           const n = items.filter(i => i.sub === s.id).length;
           return (
-            <button role="tab" key={s.id} aria-selected={sub === 'all'}
-                    className={'chip' + (comm === 'all' ? ' active' : '')}
+            <button role="tab" key={s.id} aria-selected={sub === s.id}
+                    className={'chip' + (sub === s.id ? ' active' : '')}
                     onClick={() => setSub(s.id)}>
               {ar ? s.ar : s.en} ({n})
             </button>
