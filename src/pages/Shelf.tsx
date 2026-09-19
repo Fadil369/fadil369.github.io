@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { BadgeCheck, CreditCard, MonitorPlay } from 'lucide-react';
-import data from '../data/catalog.json';
+import data from '../data/catalogLive';
 import type { Catalog, Product, Stage } from '../types';
 import { useI18n } from '../i18n';
 import ProductCard from '../components/ProductCard';
@@ -125,8 +125,8 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
         {subs.map(s => {
           const n = items.filter(i => i.sub === s.id).length;
           return (
-            <button role="tab" key={s.id} aria-selected={sub === s.id}
-                    className={'chip' + (sub === s.id ? ' active' : '')}
+            <button role="tab" key={s.id} aria-selected={sub === 'all'}
+                    className={'chip' + (comm === 'all' ? ' active' : '')}
                     onClick={() => setSub(s.id)}>
               {ar ? s.ar : s.en} ({n})
             </button>

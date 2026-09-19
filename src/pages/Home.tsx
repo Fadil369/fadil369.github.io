@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { BookOpen, Hammer, Boxes, ArrowLeft, Sparkles, Fingerprint, LayoutTemplate, Clock } from 'lucide-react';
-import data from '../data/catalog.json';
+import data from '../data/catalogLive';
 import type { Catalog } from '../types';
 import { useI18n, money } from '../i18n';
 import ProductCard from '../components/ProductCard';
