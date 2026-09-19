@@ -10,6 +10,8 @@ which exposes every product published to the Online Store sales channel —
 no credentials required.
 
 It then:
+  0. Marks catalog items whose shopifyHandle is no longer in the live feed
+     as unavailable (their product pages 404 — never keep a dead buy link).
   1. Attaches missing `shopifyHandle`/`shopifyUrl` to existing build courses
      that match live products by slug (fhir-and-nphies-lab,
      solo-ai-business-workshop).
@@ -137,6 +139,15 @@ def main() -> int:
             existing.add(course["shopifyHandle"])
 
     changes = []
+
+    # 0) Mark items whose Shopify product was unpublished/removed (handle no
+    #    longer in the live feed) as unavailable — never keep a buy link to a 404.
+    for key in ("learn", "solutions", "templates", "oid"):
+        for item in catalog.get(key, []):
+            handle = item.get("shopifyHandle")
+            if handle and handle not in shop and item.get("available", True):
+                item["available"] = False
+                changes.append(f"marked unavailable {item.get('slug')} (handle {handle} not in live feed)")
 
     # 1) Attach handles to existing build courses that match live products.
     for course in catalog.get("build", {}).get("courses", []):
