@@ -99,7 +99,9 @@ export default function Doctor() {
   const name = identity?.name?.en || agg.member?.business_name || spid;
   const nameAr = identity?.name?.ar;
   const verified = identity?.verification === 'verified' || agg.member?.status === 'active';
-  const consultedProduct = `https://store.brainsait.de/products/consult-${spid.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+  // §8.4 catalog hygiene: CONSULT products stay UNPUBLISHED (DRAFT); they are reached
+  // via the Shopify cart permalink, not the public product page (which would 404).
+  const consultedProduct = `https://store.brainsait.de/cart/46366301159507:1?attributes[spid]=${encodeURIComponent(spid)}`;
   const prov = (agg.provisioning || []).filter(p => p.status === 'done').map(p => p.step);
 
   return (
