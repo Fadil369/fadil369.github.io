@@ -235,14 +235,14 @@ function NationalDayRibbon() {
   const utm = 'utm_source=fadil369githubio&utm_medium=ribbon&utm_campaign=nd96';
   const links = ar
     ? [
-        ['العرض الوطني', `https://brainsait.de/96/?${utm}`],
+        ['العرض الوطني', `https://brainsait.org/?${utm}`],
         ['سجل الأطباء', `https://registry.brainsait.org/?${utm}`],
         ['الشواغر الطبية', `https://fadil369.github.io/slots?${utm}`],
         ['صفحة الطبيب', `https://fadil369.github.io/doctors/SA-PHY-000001?${utm}`],
         ['التحقق', `https://verify.brainsait.org/SA-PHY-000001?${utm}`],
       ]
     : [
-        ['National Day Offer', `https://brainsait.de/96/?${utm}`],
+        ['National Day Offer', `https://brainsait.org/?${utm}`],
         ['Provider Registry', `https://registry.brainsait.org/?${utm}`],
         ['Hospital Slots', `https://fadil369.github.io/slots?${utm}`],
         ['Doctor Page', `https://fadil369.github.io/doctors/SA-PHY-000001?${utm}`],
