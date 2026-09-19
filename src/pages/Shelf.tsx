@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { BadgeCheck, CreditCard, MonitorPlay } from 'lucide-react';
-import data from '../data/catalog.json';
+import data from '../data/catalogLive';
 import type { Catalog, Product, Stage } from '../types';
 import { useI18n } from '../i18n';
 import ProductCard from '../components/ProductCard';

@@ -64,7 +64,9 @@ export default function ProductCard({ p }: { p: Product }) {
   const onFree = () => track('add_to_cart', { currency: 'SAR', value: 0, items: [{ item_id: p.slug, item_name: p.name, price: 0 }] });
 
   // Determine payment URL based on product tier
-  const isPayable = Boolean(p.shopifyUrl || isLearn || isBuild || isSolutions || isBpr);
+  // Items unpublished/removed from the store (available === false) never get a buy link.
+  const isUnavailable = p.available === false;
+  const isPayable = !isUnavailable && Boolean(p.shopifyUrl || isLearn || isBuild || isSolutions || isBpr);
   
   const paymentUrl = isBpr
     ? (ar ? GHIO_LINKS.bprAnnual : GHIO_LINKS.bprMonthly)
@@ -147,6 +149,8 @@ export default function ProductCard({ p }: { p: Product }) {
                   target="_blank" rel="noopener noreferrer" onClick={onBuy}>
                  {ar ? 'اشترك' : 'Pay'} <ExternalLink size={14} aria-hidden="true" />
                </a>
+             ) : isUnavailable ? (
+               <span className="button disabled sm">{t('cta.soon')}</span>
              ) : isPayable ? (
                <a className="button primary sm" href={withUtm(paymentUrl, { utm_content: p.slug, plan: isLearn ? (p.shopifyUrlOneTime ? 'learn-one-time' : 'learn-monthly') : isBuild ? (p.shopifyUrl ? 'build-monthly' : 'build-ticket') : isSolutions ? 'solution-monthly' : '' })}
                   target="_blank" rel="noopener noreferrer" onClick={onBuy}>

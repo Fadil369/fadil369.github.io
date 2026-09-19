@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ExternalLink, ShieldCheck, Lock, MessageCircle } from 'lucide-react';
-import data from '../data/catalog.json';
+import data from '../data/catalogLive';
 import type { Catalog, Product as P } from '../types';
 import { useI18n, money } from '../i18n';
 import { track, trackViewItem } from '../analytics';
@@ -78,6 +78,7 @@ export default function Product() {
   const freeForYou = accountHolder === true;
   const shownPrice = freeForYou ? 0 : p.price;
   const isMonthly = (p.billingEn || '').toLowerCase() === 'monthly';
+  const isAvailable = p.available !== false;
   const isLearn = p.stage === 'learn';
   const isBpr = p.slug === 'bpr';
   const periodLabel = isMonthly && !isLearn ? (ar ? ' / شهر' : ' / month') : '';
@@ -113,7 +114,9 @@ export default function Product() {
                 : (ar ? `متوفر ضمن اشتراك LEARN — 182 ريال/شهر لعدد ${stats.learn} بطاقة منشورة حالياً` : `Available in LEARN — 182 SAR/month for ${stats.learn} currently published cards`))
             : money(shownPrice, ar) + periodLabel}</p>
 
-          {isBpr ? (
+          {!isAvailable ? (
+            <span className="button disabled lg">{t('cta.soon')}</span>
+          ) : isBpr ? (
             <>
               <a className="button primary lg" href={withUtm(GHIO_LINKS.bpr, { utm_content: p.slug, plan: 'bpr-annual' })}
                    target="_blank" rel="noopener noreferrer" onClick={onBuy}>

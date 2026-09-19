@@ -4,7 +4,7 @@ import {
   Rocket, Shield, Lock, Workflow, BookOpen, Calendar, BadgeCheck,
   BrainCircuit, Users, Layers, Send, CheckCircle2,
 } from 'lucide-react';
-import data from '../data/catalog.json';
+import data from '../data/catalogLive';
 import type { Catalog } from '../types';
 import { useI18n } from '../i18n';
 import { track, journeyEvent } from '../analytics';
