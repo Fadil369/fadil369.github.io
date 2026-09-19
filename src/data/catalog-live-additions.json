@@ -287,5 +287,8 @@
       "commercial": true,
       "shopifyUrlMonthly": null
     }
+  ],
+  "unavailable": [
+    "oid-arduino-iot-scanner-hardware-blueprint"
   ]
 }
