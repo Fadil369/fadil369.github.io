@@ -7,6 +7,8 @@ import ProductCard from '../components/ProductCard';
 import BenefitsMatrix from '../components/BenefitsMatrix';
 import JourneyFlow from '../components/JourneyFlow';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { catalogSummary, getCatalogStats } from '../lib/catalogStats';
+import { GHIO_LINKS, withUtm } from '../lib/shopifyRouting';
 
 const cat = data as unknown as Catalog;
 const ICONS = [BookOpen, Hammer, Boxes, LayoutTemplate, Fingerprint];
@@ -16,9 +18,10 @@ export default function Home() {
   const { ar, t } = useI18n();
   const bpr = cat.solutions.find(p => p.slug === 'bpr');
   const featured = bpr ? [bpr, ...cat.learn.slice(0, 7)] : cat.learn.slice(0, 8);
+  const stats = getCatalogStats(cat);
   const counts: Record<string, number> = {
     learn: cat.learn.length,
-    build: cat.build.courses.length + 1,
+    build: stats.build,
     solutions: cat.solutions.length,
     templates: cat.templates.length,
     'oid-registry': (cat.oid ?? []).length,
@@ -38,15 +41,46 @@ export default function Home() {
         <h1>{ar ? 'تعلّم · ابنِ · حلول' : 'Learn · Build · Solutions'}</h1>
         <p className="lede">
           {ar
-            ? '40 بطاقة تعلّم، 16 مسار بناء، وأكثر من 37 عرضاً حياً للحلول — كلها متصلة بمتجر Shopify نفسه، مع دفع واضح وتسليم وأتمتة بعد الشراء.'
-            : '40 learning cards, 16 build paths, and 37+ live solution demos — all connected to the same Shopify store, with clear checkout, delivery, and post-purchase automation.'}
+            ? `كتالوج BrainSAIT الحالي يضم ${stats.total} عرضاً قابلاً للتسويق: تعلّم، بناء، حلول جاهزة، قوالب وكلاء، وهوية OID/BPR — متصلة بمدفوعات Shopify ومسارات متابعة بعد الشراء.`
+            : `The current BrainSAIT catalog has ${stats.total} market-ready offers across Learn, Build, Solutions Ready, agent templates, and OID/BPR identity — connected to Shopify checkout and post-purchase follow-up.`}
         </p>
         <div className="build-launch-strip home-pricing-strip">
-          <span className="launch-tag">{ar ? 'مسارات المتجر' : 'Store paths'}</span>
-          <span className="launch-now">{ar ? 'LEARN 182 ر.س/شهر' : 'LEARN 182 SAR/mo'}</span>
-          <span className="launch-now">{ar ? 'BUILD شهري أو 9,630 ر.س' : 'BUILD monthly or 9,630 SAR'}</span>
-          <span className="launch-now">{ar ? 'SOLUTION 24,000 ر.س' : 'SOLUTION 24,000 SAR'}</span>
-          <span className="launch-now">{ar ? 'BPR 163/3,960 ر.س' : 'BPR 163/3,960 SAR'}</span>
+          <span className="launch-tag">{ar ? 'مسارات المتجر الحية' : 'Live store paths'}</span>
+          <span className="launch-now">{ar ? `${stats.learn} تعلّم · 182 ر.س/شهر` : `${stats.learn} Learn · 182 SAR/mo`}</span>
+          <span className="launch-now">{ar ? `${stats.build} بناء · حتى 9,630 ر.س` : `${stats.build} Build · up to 9,630 SAR`}</span>
+          <span className="launch-now">{ar ? `${stats.solutions} حلول جاهزة · 24,000 ر.س` : `${stats.solutions} Ready solutions · 24,000 SAR`}</span>
+          <span className="launch-now">{ar ? `${stats.oid} هوية وسجل` : `${stats.oid} OID & Registry`}</span>
+        </div>
+      </section>
+
+      <section className="ecosystem-command reveal" aria-label={ar ? 'غرفة تشغيل BrainSAIT' : 'BrainSAIT operating room'}>
+        <div className="ecosystem-command__copy">
+          <span className="hero-eyebrow"><span className="dot" /> {ar ? 'تشغيل موحّد' : 'Unified operating layer'}</span>
+          <h2>{ar ? 'متجر واحد في الواجهة، منظومة كاملة خلفه' : 'One storefront on the surface, a complete ecosystem behind it'}</h2>
+          <p>{catalogSummary(cat, ar)}</p>
+          <p>
+            {ar
+              ? 'كل بطاقة يجب أن تقود إلى قرار واضح: ادفع، شاهد ديمو، أو اترك طلباً. لذلك رتبنا المسارات حول الثقة، الدفع، والتسليم بدل كثرة الروابط.'
+              : 'Every card should lead to one clear decision: pay, view a demo, or submit a request. The experience is now framed around trust, checkout, and delivery instead of link sprawl.'}
+          </p>
+        </div>
+        <div className="ecosystem-command__grid">
+          <a href={withUtm(GHIO_LINKS.learnMonthly, { utm_content: 'home-operating-room', plan: 'learn-monthly' })} target="_blank" rel="noopener noreferrer">
+            <strong>{ar ? 'LEARN' : 'LEARN'}</strong>
+            <span>{ar ? 'دفع شهري واضح للمكتبة' : 'Clear monthly library checkout'}</span>
+          </a>
+          <Link to="/build">
+            <strong>{ar ? 'BUILD' : 'BUILD'}</strong>
+            <span>{ar ? 'مسار بناء مؤسس إلى إطلاق' : 'Founder build path to launch'}</span>
+          </Link>
+          <Link to="/solutions">
+            <strong>{ar ? 'SOLUTIONS' : 'SOLUTIONS'}</strong>
+            <span>{ar ? 'حلول جاهزة مع ديمو ودفع' : 'Ready solutions with demos and payment'}</span>
+          </Link>
+          <Link to="/oid">
+            <strong>{ar ? 'OID / BPR' : 'OID / BPR'}</strong>
+            <span>{ar ? 'هوية، تحقق، وسجل مزودين' : 'Identity, verification, provider registry'}</span>
+          </Link>
         </div>
       </section>
 
@@ -82,12 +116,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="program-teaser reveal">
-        <h2>{ar ? cat.build.program.nameAr : cat.build.program.name}</h2>
-        <p>{ar ? cat.build.program.taglineAr : cat.build.program.tagline}</p>
-        <strong>{money(cat.build.program.price, ar)}</strong>
-        <Link className="button primary" to="/build">{t('cta.apply')}</Link>
-      </section>
+      {cat.build.program ? (
+        <section className="program-teaser reveal">
+          <h2>{ar ? cat.build.program.nameAr : cat.build.program.name}</h2>
+          <p>{ar ? cat.build.program.taglineAr : cat.build.program.tagline}</p>
+          <strong>{money(cat.build.program.price, ar)}</strong>
+          <Link className="button primary" to="/build">{t('cta.apply')}</Link>
+        </section>
+      ) : (
+        <section className="program-teaser reveal">
+          <h2>{ar ? 'مسار BUILD مفتوح عبر المختبرات التطبيقية' : 'BUILD is open through hands-on labs'}</h2>
+          <p>{ar ? `ابدأ من أحد مسارات البناء المنشورة حالياً (${stats.build})، ثم انتقل إلى جلسة استراتيجية أو حل جاهز حسب جاهزية مشروعك.` : `Start from one of the currently published build paths (${stats.build}), then move into a strategy session or ready solution based on your project maturity.`}</p>
+          <strong>{ar ? 'حتى 9,630 ر.س' : 'Up to 9,630 SAR'}</strong>
+          <Link className="button primary" to="/build">{t('cta.apply')}</Link>
+        </section>
+      )}
 
       {/* Intake CTA */}
       <section className="program-teaser reveal" style={{ background: 'linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%)', borderRadius: 'var(--radius)', padding: '3rem 2rem' }}>

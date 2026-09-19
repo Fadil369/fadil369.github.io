@@ -9,6 +9,7 @@ import type { Catalog } from '../types';
 import { useI18n } from '../i18n';
 import { track, journeyEvent } from '../analytics';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { getCatalogStats } from '../lib/catalogStats';
 import { GHIO_LINKS, withUtm } from '../lib/shopifyRouting';
 
 const cat = data as unknown as Catalog;
@@ -16,7 +17,21 @@ const CALENDAR_URL = 'https://calendar.app.google/rAqiE6pNumtECdnd7';
 
 export default function Build() {
   const { ar, t } = useI18n();
-  const { program } = cat.build;
+  const stats = getCatalogStats(cat);
+  const program = cat.build.program ?? {
+    slug: 'brainsait-build',
+    stage: 'build' as const,
+    kind: 'program' as const,
+    name: 'BrainSAIT BUILD Program',
+    nameAr: 'برنامج BUILD من BrainSAIT',
+    price: 9630,
+    currency: 'SAR',
+    tagline: 'A guided path from idea to working AI-enabled product.',
+    taglineAr: 'مسار موجّه من الفكرة إلى منتج عملي مدعوم بالذكاء الاصطناعي.',
+    description: 'Use the published BUILD labs, LEARN library, automation stack, and BrainSAIT follow-up flow to package, validate, and launch a real offer.',
+    descriptionAr: 'استخدم مختبرات BUILD المنشورة، ومكتبة LEARN، وطبقة الأتمتة والمتابعة في BrainSAIT لتحويل فكرتك إلى عرض قابل للإطلاق.',
+    tracks: [],
+  };
 
   usePageMeta({
     title: `${ar ? 'ابنِ' : 'Build'} — ${ar ? program.nameAr : program.name}`,
@@ -75,7 +90,7 @@ export default function Build() {
             <div className="bt-price-row"><span className="bt-price">{ar ? 'اشتراك شهري' : 'Monthly subscription'}</span></div>
             <h3>{ar ? 'BUILD شهري' : 'BUILD Monthly'}</h3>
             <ul>
-              <li>{ar ? 'كل كتب LEARN الأربعين' : 'All 40 LEARN books'}</li>
+              <li>{ar ? `مكتبة LEARN المنشورة حالياً (${stats.learn} بطاقة)` : `Currently published LEARN library (${stats.learn} cards)`}</li>
               <li>{ar ? 'Notion Forge + العقل الثاني' : 'Notion Forge + Second Brain'}</li>
               <li>{ar ? 'Brainsait_forge_bot للمتابعة والتغذية الراجعة' : 'Brainsait_forge_bot tracking and feedback'}</li>
               <li>{ar ? 'مختبرات ومحاكيات: نظرية، تطبيق، ثم إجراء' : 'Labs and simulators: theory, practice, action'}</li>
@@ -370,8 +385,8 @@ export default function Build() {
         </p>
         <p className="fineprint">
           {ar
-            ? 'كل أداة مرتبطة مباشرة بكتالوج LEARN (37 مصدراً) وSOLUTIONS (37 عرضاً حياً) — تبدأ من مرجع تملكه، لا من الصفر.'
-            : 'Every tool cross-references the LEARN catalog (37 resources) and SOLUTIONS (37 live demos) — you start from a reference you own, not from zero.'}
+            ? `كل أداة مرتبطة مباشرة بكتالوج LEARN (${stats.learn}) وSOLUTIONS (${stats.solutions}) — تبدأ من مرجع تملكه، لا من الصفر.`
+            : `Every tool cross-references the LEARN catalog (${stats.learn}) and SOLUTIONS (${stats.solutions}) — you start from a reference you own, not from zero.`}
         </p>
       </section>
 

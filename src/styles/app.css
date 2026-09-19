@@ -2055,6 +2055,82 @@ img { max-width: 100%; }
   margin: 0;
 }
 
+/* Ecosystem command section */
+.ecosystem-command {
+  max-width: var(--maxw);
+  margin: 0 auto 3rem;
+  padding: 1.25rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.ecosystem-command__copy,
+.ecosystem-command__grid {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-soft);
+}
+
+.ecosystem-command__copy {
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.ecosystem-command__copy h2 {
+  margin: 0.55rem 0 0.8rem;
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+}
+
+.ecosystem-command__copy p {
+  color: var(--ink-soft);
+  margin: 0.55rem 0 0;
+}
+
+.ecosystem-command__grid {
+  padding: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.ecosystem-command__grid a {
+  min-height: 132px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(233, 196, 106, 0.14), transparent 34%),
+    rgba(255, 255, 255, 0.035);
+  transition: transform 0.18s var(--ease-out), border-color 0.18s ease, background 0.18s ease;
+}
+
+.ecosystem-command__grid a:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(41, 216, 255, 0.16), transparent 34%),
+    rgba(255, 255, 255, 0.065);
+}
+
+.ecosystem-command__grid strong {
+  color: var(--gold);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+}
+
+.ecosystem-command__grid span {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
 @media (max-width: 600px) {
   .sprint-hero { padding: 3rem 1.25rem 2rem; }
   .sprint-hero h1 { font-size: 1.6rem; }
@@ -2062,4 +2138,17 @@ img { max-width: 100%; }
   .sprint-features-grid,
   .sprint-upgrade-grid { grid-template-columns: 1fr; }
   .sprint-positioning blockquote { font-size: 1rem; padding: 1rem 1.25rem; }
+}
+
+@media (max-width: 800px) {
+  .ecosystem-command {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .ecosystem-command__grid {
+    grid-template-columns: 1fr;
+  }
 }

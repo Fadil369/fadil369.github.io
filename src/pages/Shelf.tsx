@@ -5,6 +5,7 @@ import type { Catalog, Product, Stage } from '../types';
 import { useI18n } from '../i18n';
 import ProductCard from '../components/ProductCard';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { getCatalogStats } from '../lib/catalogStats';
 import { GHIO_LINKS, withUtm } from '../lib/shopifyRouting';
 
 const cat = data as unknown as Catalog;
@@ -17,6 +18,7 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
   const [comm, setComm] = useState('all');
   const bpr = cat.solutions.find(item => item.slug === 'bpr');
   const items: Product[] = stage === 'learn' && bpr ? [bpr, ...cat.learn] : stage === 'templates' ? cat.templates : stage === 'oid-registry' ? (cat.oid ?? []) : cat.solutions;
+  const stats = getCatalogStats(cat);
 
   usePageMeta({
     title: ar ? `${def.ar} — BrainSAIT Store` : `${def.en} — BrainSAIT Store`,
@@ -43,8 +45,8 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
         <section className="shelf-plan-banner reveal" aria-label={ar ? 'خطة تعلم الشهرية' : 'LEARN monthly plan'}>
           <div>
             <span className="hero-eyebrow"><span className="dot" /> {ar ? 'وصول كامل' : 'Complete access'}</span>
-            <h2>{ar ? 'كل كتب LEARN الأربعين + BPR — دفع آمن عبر Shopify' : 'All 40 LEARN books + BPR — Shopify-powered access'}</h2>
-            <p>{ar ? 'بطاقات الكتب تتيح شراء PDF فردي بعد الدفع أو الاشتراك الشهري 182 ر.س لكل المكتبة. بطاقة BPR مضافة هنا أيضاً بخطة سنوية افتراضية وشهرية للمبتدئين.' : 'Book cards support individual PDF purchase after payment or the 182 SAR monthly library subscription. BPR is also surfaced here with annual default membership and junior monthly access.'}</p>
+            <h2>{ar ? `${stats.learn} بطاقة LEARN + BPR — دفع آمن عبر Shopify` : `${stats.learn} LEARN cards + BPR — Shopify-powered access`}</h2>
+            <p>{ar ? 'بطاقات الكتب تتيح شراء PDF فردي بعد الدفع أو الاشتراك الشهري 182 ر.س للمكتبة المنشورة حالياً. بطاقة BPR مضافة هنا كجسر بين التعلم والهوية المهنية.' : 'Book cards support individual PDF purchase after payment or the 182 SAR monthly subscription for the currently published library. BPR is surfaced here as the bridge between learning and professional identity.'}</p>
           </div>
           <a className="button primary lg" href={withUtm(GHIO_LINKS.learnMonthly, { plan: 'learn-monthly', utm_content: 'learn-banner' })} target="_blank" rel="noopener noreferrer">
             {ar ? 'اشترك بـ 182 ريال/شهر' : 'Subscribe · 182 SAR/month'}
@@ -56,8 +58,8 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
         <section className="shelf-plan-banner solutions-banner reveal" aria-label={ar ? 'خيارات الحلول' : 'Solution plans'}>
           <div>
             <span className="hero-eyebrow"><span className="dot" /> {ar ? 'مساران للتنفيذ' : 'Two delivery paths'}</span>
-            <h2>{ar ? 'احتضان شهري أو حل جاهز للنشر' : 'Monthly incubation or deployment-ready'}</h2>
-            <p>{ar ? 'أكثر من 37 بطاقة حل حية، مع روابط ديمو مباشرة، ومساران للدفع على Shopify: 1,999 ر.س شهرياً أو 24,000 ر.س للحل الجاهز لكل بطاقة.' : 'More than 37 live solution cards, with direct demo links, and two Shopify payment paths: 1,999 SAR/month or 24,000 SAR for each ready-built solution.'}</p>
+            <h2>{ar ? `${stats.solutions} حلول جاهزة منشورة الآن` : `${stats.solutions} deployment-ready solutions are live now`}</h2>
+            <p>{ar ? 'كل حل يقود إلى ديمو أو مسار دفع واضح: 1,999 ر.س شهرياً للاحتضان والتنفيذ، أو 24,000 ر.س للحل الجاهز حسب البطاقة.' : 'Each solution leads to a clear demo or payment path: 1,999 SAR/month for incubation and rollout, or 24,000 SAR for a ready-built solution depending on the card.'}</p>
             {/* Both Solutions plans include the code platform — say so up front, matching
                 what the backend actually provisions (reserved *.code.brainsait.org workspace). */}
             <p className="shelf-code-access">

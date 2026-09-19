@@ -95,7 +95,7 @@ export interface Catalog {
   stages: StageDef[];
   subcategories: SubDef[];
   learn: Product[];
-  build: { program: Program; courses: Product[] };
+  build: { program: Program | null; courses: Product[] };
   solutions: Product[];
   templates: Product[];
   oid?: Product[];

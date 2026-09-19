@@ -7,11 +7,12 @@ import { useI18n, money } from '../i18n';
 import { track, trackViewItem } from '../analytics';
 import { useAccountHolder } from '../hooks/useAccountHolder';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { getCatalogStats } from '../lib/catalogStats';
 import { GHIO_LINKS, withUtm } from '../lib/shopifyRouting';
 import { CALENDAR_URL } from '../config/build';
 
 const cat = data as unknown as Catalog;
-const ALL: P[] = [...cat.learn, ...cat.solutions, ...cat.build.courses, ...cat.templates];
+const ALL: P[] = [...cat.learn, ...cat.solutions, ...cat.build.courses, ...cat.templates, ...(cat.oid ?? [])];
 
 function formatFormats(product: P, ar: boolean) {
   if (Array.isArray(product.formats)) {
@@ -47,6 +48,7 @@ export default function Product() {
   const { ar, t } = useI18n();
   const accountHolder = useAccountHolder();
   const p = ALL.find(x => x.slug === slug);
+  const stats = getCatalogStats(cat);
 
   usePageMeta(p ? {
     title: ar ? p.nameAr || p.name : p.name,
@@ -107,8 +109,8 @@ export default function Product() {
             ? (ar ? 'سنوي 3,960 ر.س · شهري 163 ر.س للمبتدئين' : 'Annual 3,960 SAR · Junior monthly 163 SAR')
             : isLearn
             ? (p.shopifyUrlOneTime
-                ? (ar ? `PDF فردي ${money(p.oneTimePrice ?? 99, true)} · أو 182 ريال/شهر لكل الكتب الـ40` : `Individual PDF ${money(p.oneTimePrice ?? 99, false)} · or 182 SAR/month for all 40 books`)
-                : (ar ? 'متوفر ضمن اشتراك LEARN — 182 ريال/شهر لكل الكتب الـ40' : 'Available in LEARN — 182 SAR/month for all 40 books'))
+                ? (ar ? `PDF فردي ${money(p.oneTimePrice ?? 99, true)} · أو 182 ريال/شهر لكل مكتبة LEARN المنشورة حالياً` : `Individual PDF ${money(p.oneTimePrice ?? 99, false)} · or 182 SAR/month for the currently published LEARN library`)
+                : (ar ? `متوفر ضمن اشتراك LEARN — 182 ريال/شهر لعدد ${stats.learn} بطاقة منشورة حالياً` : `Available in LEARN — 182 SAR/month for ${stats.learn} currently published cards`))
             : money(shownPrice, ar) + periodLabel}</p>
 
           {isBpr ? (
@@ -193,7 +195,7 @@ export default function Product() {
                 <strong>{ar ? 'ماذا بعد الدفع؟ — Learn' : 'What happens after payment? — Learn'}</strong>
                 <ul style={{ margin: '6px 0 0', paddingInlineStart: '1.2rem' }}>
                   <li>{ar ? 'إيميل شكراً على الشراء فوراً + إيميل ترحيبي حسب الخطة' : 'Instant thank-you email + welcome email tailored to your plan'}</li>
-                  <li>{ar ? 'الاشتراك الشهري: رابط مكتبة خاص يُرسل بعد الدفع لكل الـ 40 كتاباً (يبقى فعالاً حتى دورة الفوترة التالية، مع تذكيرات دفع)' : 'Monthly: a private library access link is sent after payment for all 40 books (active until the next billing cycle, with payment reminders)'}</li>
+                  <li>{ar ? `الاشتراك الشهري: رابط مكتبة خاص يُرسل بعد الدفع لكل بطاقات LEARN المنشورة حالياً (${stats.learn}) ويبقى فعالاً حتى دورة الفوترة التالية، مع تذكيرات دفع.` : `Monthly: a private library access link is sent after payment for the currently published LEARN cards (${stats.learn}) and stays active until the next billing cycle, with payment reminders.`}</li>
                   <li>{ar ? 'الشراء الفردي: رابط تحميل R2 فوري لهذا الكتاب فقط — تسليم رقمي آمن' : 'One-time: instant R2 download link for this book only — secure digital delivery'}</li>
                   <li>{ar ? 'دعم عالي التوفر عبر: GitHub · Notion · Airtable · Canvas · Hermes · Lark — أتمتة كاملة وعالية التكامل' : 'High-availability support via: GitHub · Notion · Airtable · Canvas · Hermes · Lark — fully automated, highly integrated'}</li>
                 </ul>

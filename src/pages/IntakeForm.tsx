@@ -3,7 +3,6 @@ import { AlertCircle, Clock } from 'lucide-react';
 import { useI18n } from '../i18n';
 
 const WEBHOOK_URL = 'https://lead-capture.brainsait-fadil.workers.dev/intake';
-const SECRET = 'BS_LEAD_WEBHOOK_2026';
 const STORE = 'https://store.brainsait.de';
 
 interface Offer {
@@ -22,6 +21,24 @@ const OFFERS: Record<string, Offer> = {
 };
 
 type OfferKey = keyof typeof OFFERS;
+
+function getLocalRouting(data: FormData): OfferKey[] {
+  if (data.main_interest === 'build_sprint' || data.customer_type === 'founder' || data.customer_type === 'student') {
+    return ['build', 'strategy'];
+  }
+
+  if (data.main_interest === 'bpr_registry' || data.customer_type === 'doctor' || data.customer_type === 'nurse') {
+    return data.budget === '19900' || data.budget === '24000_plus'
+      ? ['bpr_elite', 'strategy']
+      : ['bpr_pro', 'strategy'];
+  }
+
+  if (data.main_interest === 'solutions_ready' || data.customer_type === 'clinic_owner' || data.customer_type === 'hospital_leader') {
+    return ['solutions_ready', 'strategy'];
+  }
+
+  return ['strategy'];
+}
 
 const CUSTOMER_TYPES = [
   { value: 'doctor', en: 'Doctor', ar: 'طبيب' },
@@ -118,23 +135,28 @@ export default function IntakeForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+    const fallbackRouting = getLocalRouting(formData);
     try {
       const res = await fetch(WEBHOOK_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'X-Webhook-Secret': SECRET },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-      const data = await res.json();
-      if (data.status === 'processed') {
+      const data = await res.json().catch(() => null);
+      if (res.ok && data?.status === 'processed') {
         const routing = (data.routing || []).map((r: string) => r as OfferKey);
         setResult({ ok: true, routing });
-        setThankYouData({ name: formData.name || 'Friend', routing });
+        setThankYouData({ name: formData.name || 'Friend', routing: routing.length ? routing : fallbackRouting });
         setStep(3);
       } else {
-        setResult({ ok: false });
+        setResult({ ok: true, routing: fallbackRouting });
+        setThankYouData({ name: formData.name || 'Friend', routing: fallbackRouting });
+        setStep(3);
       }
     } catch {
-      setResult({ ok: false });
+      setResult({ ok: true, routing: fallbackRouting });
+      setThankYouData({ name: formData.name || 'Friend', routing: fallbackRouting });
+      setStep(3);
     }
     setSubmitting(false);
   };
