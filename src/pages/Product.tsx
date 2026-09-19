@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ExternalLink, ShieldCheck, Lock, MessageCircle } from 'lucide-react';
-import data from '../data/catalog.json';
+import data from '../data/catalogLive';
 import type { Catalog, Product as P } from '../types';
 import { useI18n, money } from '../i18n';
 import { track, trackViewItem } from '../analytics';
