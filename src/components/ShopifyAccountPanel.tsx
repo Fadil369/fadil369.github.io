@@ -13,19 +13,34 @@ export default function ShopifyAccountPanel() {
   const { status, profile, error, login, logout } = useCustomerAccount();
   const email = profile?.email || '';
   const [entitlements, setEntitlements] = useState<any[] | null>(null);
+  const [entitlementsUnavailable, setEntitlementsUnavailable] = useState(false);
 
   useEffect(() => {
     let active = true;
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 10000);
+    setEntitlementsUnavailable(false);
     if (status === 'signed-in' && email) {
       setEntitlements(null);
-      fetch(`https://hub.brainsait.de/api/entitlement?email=${encodeURIComponent(email)}`)
-        .then((r) => (r.ok ? r.json() : null))
-        .then((d) => { if (active) setEntitlements(d?.entitlements || []); })
-        .catch(() => { if (active) setEntitlements([]); });
+      fetch(`https://hub.brainsait.de/api/entitlement?email=${encodeURIComponent(email)}`, { signal: controller.signal })
+        .then((r) => {
+          if (!r.ok) throw new Error('Entitlement service unavailable');
+          return r.json();
+        })
+        .then((d) => {
+          if (!Array.isArray(d?.entitlements)) throw new Error('Invalid entitlement response');
+          if (active) setEntitlements(d.entitlements);
+        })
+        .catch(() => { if (active) setEntitlementsUnavailable(true); })
+        .finally(() => window.clearTimeout(timeout));
     } else {
       setEntitlements(null);
     }
-    return () => { active = false; };
+    return () => {
+      active = false;
+      controller.abort();
+      window.clearTimeout(timeout);
+    };
   }, [status, email]);
 
   return (
@@ -113,7 +128,14 @@ export default function ShopifyAccountPanel() {
               <p style={{ margin: '0 0 0.6rem', fontWeight: 600 }}>
                 {ar ? 'اشتراكاتك ووصولك' : 'Your access & subscriptions'}
               </p>
-              {entitlements === null ? (
+              {entitlementsUnavailable ? (
+                <p className="muted" role="status">
+                  {ar
+                    ? 'تعذّر التحقق من اشتراكاتك الآن. هذا لا يعني إلغاء اشتراكك. راجع طلباتك أعلاه أو تواصل مع الدعم.'
+                    : 'We cannot verify your subscriptions right now. This does not mean your subscription is cancelled. Check your orders above or contact support.'}
+                  {' '}<a href="mailto:info@brainsait.org">{ar ? 'تواصل مع الدعم' : 'Contact support'}</a>
+                </p>
+              ) : entitlements === null ? (
                 <p className="muted">{ar ? 'جارِ تحميل…' : 'Loading…'}</p>
               ) : entitlements.length === 0 ? (
                 <p className="muted">{ar ? 'لا توجد اشتراكات نشطة بعد.' : 'No active subscriptions yet.'}</p>
