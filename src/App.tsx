@@ -232,18 +232,21 @@ function NationalDayRibbon() {
   const { ar } = useI18n();
   const day = ar ? 'اليوم الوطني 96' : 'Saudi National Day 96';
   const title = ar ? 'عروضنا منشورة للجميع — الأسواق، سجل الأطباء، الاستشارات، والشواغر مفتوحة الآن' : 'Our published ecosystem is open to the public — markets, doctor registry, consultations and slots are live now';
+  const utm = 'utm_source=fadil369githubio&utm_medium=ribbon&utm_campaign=nd96';
   const links = ar
     ? [
-        ['سجل الأطباء', 'https://registry.brainsait.org'],
-        ['الشواغر الطبية', '/slots'],
-        ['صفحة الطبيب', '/doctors/SA-PHY-000001'],
-        ['التحقق', 'https://verify.brainsait.org/SA-PHY-000001'],
+        ['العرض الوطني', `https://brainsait.de/96/?${utm}`],
+        ['سجل الأطباء', `https://registry.brainsait.org/?${utm}`],
+        ['الشواغر الطبية', `https://fadil369.github.io/slots?${utm}`],
+        ['صفحة الطبيب', `https://fadil369.github.io/doctors/SA-PHY-000001?${utm}`],
+        ['التحقق', `https://verify.brainsait.org/SA-PHY-000001?${utm}`],
       ]
     : [
-        ['Provider Registry', 'https://registry.brainsait.org'],
-        ['Hospital Slots', '/slots'],
-        ['Doctor Page', '/doctors/SA-PHY-000001'],
-        ['Verify', 'https://verify.brainsait.org/SA-PHY-000001'],
+        ['National Day Offer', `https://brainsait.de/96/?${utm}`],
+        ['Provider Registry', `https://registry.brainsait.org/?${utm}`],
+        ['Hospital Slots', `https://fadil369.github.io/slots?${utm}`],
+        ['Doctor Page', `https://fadil369.github.io/doctors/SA-PHY-000001?${utm}`],
+        ['Verify', `https://verify.brainsait.org/SA-PHY-000001?${utm}`],
       ];
   return (
     <div
