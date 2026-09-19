@@ -101,7 +101,7 @@ All of the above is best-effort and never blocks the paid-confirmation flow.
 When a paid BUILD order is provisioned, `build-apply` fans a rich
 `super.partner.provisioned` event through the whole ecosystem:
 
-1. **Event bus** — posted to `hub.brainsait.de/api/event` (X-Hub-Key auth) →
+1. **Event bus** — posted to `hub.brainsait.org/api/event` (X-Hub-Key auth) →
    appended to the bus, SSE subscribers notified, and forwarded to the n8n
    orchestrator (`/webhook/forge/event`).
 2. **Telegram + SMS** — the hub's `notifyAll` pings the care-team channel
@@ -175,7 +175,7 @@ The BUILD Ticket (flat SAR 9,630) can be paid on a plan chosen at intake:
 - [x] `orders/paid` webhook live and HMAC-protected
 - [x] Notion onboarding + milestone seeding on payment
 - [x] Shopify customer upsert with partner tags via Partner API
-- [x] GitHub repo generation + collaborator invite when username present
+] GitHub repo generation + collaborator invite when username present
 - [ ] Airtable automation (optional, legacy)
 
 **Form:** https://fadil369.github.io/build
