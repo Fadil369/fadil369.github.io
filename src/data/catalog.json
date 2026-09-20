@@ -1210,42 +1210,6 @@
       "shopifyUrlMonthly": null
     },
     {
-      "slug": "oid-arduino-iot-scanner-hardware-blueprint",
-      "stage": "learn",
-      "name": "OID Arduino IoT Scanner — Hardware Blueprint",
-      "nameAr": "مخطط ماسح OID الأردوينو IoT",
-      "category": "LEARN",
-      "categoryAr": "",
-      "sub": "healthcare_admin",
-      "tier": "standalone",
-      "tagline": "Hardware blueprint to build an Arduino/ESP32 OID scanner for asset management.",
-      "taglineAr": "مخطط عتاد لبناء ماسح OID بأردوينو/ESP32 لإدارة الأصول.",
-      "description": "Physical OID Scanning with ESP32 Complete firmware and wiring guide to build a hardware QR code scanner that reads BrainSAIT OID tags and integrates with the OID Registry Platform. Ideal for asset management, equipment tracking, and healthcare device identification. Supported Hardware \nESP32-CAM (AI-Thinker) — Built-in camera module, no additional scanner required\nESP32 + GM65 Module — Dedicated barcode/QR scanner module for higher reliability\n Optional OLED/LCD display for immediate scan feedback\n What's Included \n Complete .ino firmware (Arduino IDE / PlatformIO)\n Wiring diagrams for both hardware configurations\n OID validation and HTTP API integration code\n WiFi provisioning and BrainSAIT API endpoint configuration\n Display output code for OLED/LCD modules\n Step-by-step flashing and calibration guide\n Use Cases Hospital equipment tagging · Lab sample tracking · Server rack asset management · Document provenance scanning Instant digital delivery. Firmware source + documentation. Hardware components purchased separately.",
-      "descriptionAr": "",
-      "price": 182,
-      "image": "https://cdn.shopify.com/s/files/1/0730/5288/0979/files/oid-arduino_7737f084-a810-4fab-aa66-c3ea89865a67.webp?v=1786120376",
-      "badges": [
-        "Bilingual",
-        "OID Verified"
-      ],
-      "benefits": [],
-      "formats": "",
-      "whatsIncluded": [],
-      "faqs": [],
-      "faqAr": [],
-      "rating": null,
-      "users": "",
-      "flag": null,
-      "demoUrl": null,
-      "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/oid-arduino-iot-scanner-hardware-blueprint",
-      "shopifyHandle": "oid-arduino-iot-scanner-hardware-blueprint",
-      "sku": "BSP-OID-ARDUINO-SCANNER",
-      "available": true,
-      "commercial": true,
-      "shopifyUrlMonthly": null
-    },
-    {
       "slug": "oid-integration-blueprint-developer-guide",
       "stage": "learn",
       "name": "OID Integration Blueprint — Developer Guide",
@@ -1280,6 +1244,12 @@
       "available": true,
       "commercial": true,
       "shopifyUrlMonthly": null
+    },
+    {
+      "slug": "oid-arduino-iot-scanner-hardware-blueprint",
+      "name": "OID Arduino IoT Scanner — Hardware Blueprint",
+      "status": "draft",
+      "available": false
     }
   ],
   "build": {
