@@ -1677,6 +1677,20 @@
       "available": true,
       "commercial": true,
       "shopifyUrlMonthly": null
+    },
+    {
+      "name": "CAP-Net | Claim Acceptance Prediction",
+      "nameAr": "كيب-نت | توقع قبول المطالبات",
+      "blurbEn": "AI-powered NPHIES claim acceptance prediction. Score claims before submission with acceptance probability, risk analysis, fix recommendations, and smart submission routing.",
+      "blurbAr": "ذكاء اصطناعي لتوقع قبول مطالبات NPHIES. قيم مطالباتك قبل التقديم مع احتمال القبول، وتحليل المخاطر، وتوصيات التصحيح، وتوجيه التقديم الذكي.",
+      "price": 499,
+      "shopifyHandle": "cap-net-claim-predictor",
+      "tags": [
+        "NPHIES",
+        "claims",
+        "AI",
+        "prediction"
+      ]
     }
   ],
   "meta": {
