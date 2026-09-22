@@ -127,7 +127,7 @@
       "taglineAr": "Digital Income Strategy Your Three Pathways — a BrainSAIT blueprint from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "Digital Income Strategy Your Three Pathways — a BrainSAIT blueprint from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/Digital_Income_Strategy_Your_Three_Pathways.webp",
       "badges": [],
       "benefits": [],
@@ -145,7 +145,12 @@
       "sku": "BSP-DIGITAL-INCOME-STRATEGY",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "digital-organization-handbook",
@@ -160,7 +165,7 @@
       "taglineAr": "Digital Organization Handbook — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "Digital Organization Handbook — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/Digital_Organization_Handbook.webp",
       "badges": [],
       "benefits": [],
@@ -178,7 +183,12 @@
       "sku": "BSP-NB-DIGITAL-ORG",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "etimad-digital-governance-blueprint",
@@ -193,7 +203,7 @@
       "taglineAr": "Etimad Digital Governance Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "Etimad Digital Governance Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/Etimad_Digital_Governance_Blueprint.webp",
       "badges": [],
       "benefits": [],
@@ -211,7 +221,12 @@
       "sku": "BSP-ETIMAD-GOVERNANCE-BP",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "from-mind-to-market",
@@ -226,7 +241,7 @@
       "taglineAr": "From Mind to Market — a BrainSAIT mini-book from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "From Mind to Market — a BrainSAIT mini-book from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/From_Mind_to_Market.webp",
       "badges": [],
       "benefits": [],
@@ -244,7 +259,12 @@
       "sku": "BSP-MIND-TO-MARKET",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "hyper-scalable-agency-system",
@@ -259,7 +279,7 @@
       "taglineAr": "Hyper-Scalable Agency System — a BrainSAIT software from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "Hyper-Scalable Agency System — a BrainSAIT software from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/Hyper-Scalable_Agency_System.webp",
       "badges": [],
       "benefits": [],
@@ -277,7 +297,12 @@
       "sku": "BSP-HYPER-SCALABLE-AGENCY",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "one-ecosystem-limitless-intelligence",
@@ -292,7 +317,7 @@
       "taglineAr": "One Ecosystem Limitless Intelligence — a BrainSAIT mini-book from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "One Ecosystem Limitless Intelligence — a BrainSAIT mini-book from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/One_Ecosystem_Limitless_Intelligence.webp",
       "badges": [],
       "benefits": [],
@@ -310,7 +335,12 @@
       "sku": "BSP-ONE-ECOSYSTEM",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "private-ai-blueprint",
@@ -325,7 +355,7 @@
       "taglineAr": "Private AI Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "Private AI Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/Private_AI_Blueprint.webp",
       "badges": [],
       "benefits": [],
@@ -343,7 +373,12 @@
       "sku": "BSP-PRIVATE-AI-BLUEPRINT",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "professional-writing-mastery",
@@ -358,7 +393,7 @@
       "taglineAr": "Professional Writing Mastery — a BrainSAIT skill from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "Professional Writing Mastery — a BrainSAIT skill from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/Professional_Writing_Mastery.webp",
       "badges": [],
       "benefits": [],
@@ -376,7 +411,12 @@
       "sku": "BSP-PROF-WRITING-MASTERY",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "solo-ai-business-blueprint",
@@ -391,7 +431,7 @@
       "taglineAr": "Solo AI Business Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "Solo AI Business Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/Solo_AI_Business_Blueprint.webp",
       "badges": [],
       "benefits": [],
@@ -409,7 +449,12 @@
       "sku": "BSP-SOLO-AI-BUSINESS",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "the-ai-skill-economy",
@@ -424,7 +469,7 @@
       "taglineAr": "The AI Skill Economy — a BrainSAIT skill from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "The AI Skill Economy — a BrainSAIT skill from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/The_AI_Skill_Economy.webp",
       "badges": [],
       "benefits": [],
@@ -442,7 +487,12 @@
       "sku": "BSP-AI-SKILL-ECONOMY",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "the-outlier-equation",
@@ -457,7 +507,7 @@
       "taglineAr": "The Outlier Equation — a BrainSAIT novel from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "The Outlier Equation — a BrainSAIT novel from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/The_Outlier_Equation.webp",
       "badges": [],
       "benefits": [],
@@ -475,7 +525,12 @@
       "sku": "BSP-OUTLIER-EQUATION",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "the-ultimate-persistent-ai-agent",
@@ -490,7 +545,7 @@
       "taglineAr": "The Ultimate Persistent AI Agent — a BrainSAIT skill from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "The Ultimate Persistent AI Agent — a BrainSAIT skill from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/The_Ultimate_Persistent_AI_Agent.webp",
       "badges": [
         "AI Agent"
@@ -510,7 +565,12 @@
       "sku": "BSP-PERSISTENT-AI-AGENT-D",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "voice-agent-production-blueprint",
@@ -525,7 +585,7 @@
       "taglineAr": "Voice Agent Production Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "Voice Agent Production Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/Voice_Agent_Production_Blueprint.webp",
       "badges": [
         "AI Agent"
@@ -545,7 +605,12 @@
       "sku": "BSP-VOICE-AGENT-PRODUCTION",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "apple-ai-anatomy",
@@ -560,7 +625,7 @@
       "taglineAr": "Apple AI Anatomy — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "Apple AI Anatomy — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/Apple_AI_Anatomy.webp",
       "badges": [],
       "benefits": [],
@@ -578,7 +643,12 @@
       "sku": "BSP-APPLE-AI-ANATOMY",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "digital-autonomy-blueprint",
@@ -593,7 +663,7 @@
       "taglineAr": "Digital Autonomy Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "Digital Autonomy Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/Digital_Autonomy_Blueprint.webp",
       "badges": [],
       "benefits": [],
@@ -611,7 +681,12 @@
       "sku": "BSP-DIGITAL-AUTONOMY-BP",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "dom-study-notes",
@@ -626,7 +701,7 @@
       "taglineAr": "DOM Study Notes — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "DOM Study Notes — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/DOM_Study_Notes.webp",
       "badges": [],
       "benefits": [],
@@ -644,7 +719,12 @@
       "sku": "BSP-NB-DOM-STUDY-NOTES",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "one-million-rps-achieved",
@@ -659,7 +739,7 @@
       "taglineAr": "One Million RPS Achieved — a BrainSAIT mini-book from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "One Million RPS Achieved — a BrainSAIT mini-book from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/One_Million_RPS_Achieved.webp",
       "badges": [],
       "benefits": [],
@@ -677,7 +757,12 @@
       "sku": "BSP-ONE-MILLION-RPS",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "stealth-python-networking",
@@ -692,7 +777,7 @@
       "taglineAr": "Stealth Python Networking — a BrainSAIT software from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "Stealth Python Networking — a BrainSAIT software from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/Stealth_Python_Networking.webp",
       "badges": [],
       "benefits": [],
@@ -710,7 +795,12 @@
       "sku": "BSP-STEALTH-PYTHON-NET",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "the-api-blueprint",
@@ -725,7 +815,7 @@
       "taglineAr": "The API Blueprint — a BrainSAIT software from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "The API Blueprint — a BrainSAIT software from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/The_API_Blueprint.webp",
       "badges": [],
       "benefits": [],
@@ -743,7 +833,12 @@
       "sku": "BSP-THE-API-BLUEPRINT",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "brainsait-ai-masterclass",
@@ -758,7 +853,7 @@
       "taglineAr": "BrainSAIT AI Masterclass — a BrainSAIT skill from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "BrainSAIT AI Masterclass — a BrainSAIT skill from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/BrainSAIT_AI_Masterclass.webp",
       "badges": [],
       "benefits": [],
@@ -776,7 +871,12 @@
       "sku": "BSP-AI-MASTERCLASS",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "brainsait-health-os",
@@ -791,7 +891,7 @@
       "taglineAr": "BrainSAIT Health OS — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "BrainSAIT Health OS — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/BrainSAIT_Health_OS.webp",
       "badges": [],
       "benefits": [],
@@ -809,7 +909,12 @@
       "sku": "BSP-HEALTH-OS",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "clinical-code",
@@ -824,7 +929,7 @@
       "taglineAr": "Clinical Code — a BrainSAIT software from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "Clinical Code — a BrainSAIT software from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/Clinical_Code.webp",
       "badges": [],
       "benefits": [],
@@ -842,7 +947,12 @@
       "sku": "BSP-CLINICAL-CODE",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "digital-health-bridge",
@@ -857,7 +967,7 @@
       "taglineAr": "Digital Health Bridge — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "Digital Health Bridge — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/Digital_Health_Bridge.webp",
       "badges": [],
       "benefits": [],
@@ -875,7 +985,12 @@
       "sku": "BSP-DIGITAL-HEALTH-BRIDGE",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "etimad-and-nphies-integration",
@@ -890,7 +1005,7 @@
       "taglineAr": "Etimad and NPHIES Integration — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "Etimad and NPHIES Integration — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/Etimad_and_NPHIES_Integration.webp",
       "badges": [],
       "benefits": [],
@@ -908,7 +1023,12 @@
       "sku": "BSP-ETIMAD-NPHIES",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "leading-joy-in-healthcare",
@@ -923,7 +1043,7 @@
       "taglineAr": "Leading Joy in Healthcare — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "Leading Joy in Healthcare — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/Leading_Joy_in_Healthcare.webp",
       "badges": [],
       "benefits": [],
@@ -941,7 +1061,12 @@
       "sku": "BSP-LEADING-JOY-HEALTHCARE",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "saudi-health-innovation-guide",
@@ -956,7 +1081,7 @@
       "taglineAr": "Saudi Health Innovation Guide — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "Saudi Health Innovation Guide — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/Saudi_Health_Innovation_Guide.webp",
       "badges": [],
       "benefits": [],
@@ -974,7 +1099,12 @@
       "sku": "BSP-SAUDI-HEALTH-INNOVATION",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "saudi-health-transformation",
@@ -989,7 +1119,7 @@
       "taglineAr": "Saudi Health Transformation — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "Saudi Health Transformation — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/Saudi_Health_Transformation.webp",
       "badges": [],
       "benefits": [],
@@ -1007,7 +1137,12 @@
       "sku": "BSP-NB-SAUDI-HEALTH-TRANSFORM",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "sbs-nphies-integration-blueprint",
@@ -1022,7 +1157,7 @@
       "taglineAr": "SBS NPHIES Integration Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "SBS NPHIES Integration Blueprint — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/SBS_NPHIES_Integration_Blueprint.webp",
       "badges": [],
       "benefits": [],
@@ -1040,7 +1175,12 @@
       "sku": "BSP-SBS-NPHIES-BP",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "sdc-fhir-stu-4-notes",
@@ -1055,7 +1195,7 @@
       "taglineAr": "SDC FHIR STU 4 Notes — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "SDC FHIR STU 4 Notes — a BrainSAIT template from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/SDC_FHIR_STU_4_Notes.webp",
       "badges": [],
       "benefits": [],
@@ -1073,7 +1213,12 @@
       "sku": "BSP-SDC-FHIR-STU4",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "the-decentralized-hospital-1",
@@ -1088,7 +1233,7 @@
       "taglineAr": "The Decentralized Hospital (1) — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "The Decentralized Hospital (1) — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/The_Decentralized_Hospital.webp",
       "badges": [],
       "benefits": [],
@@ -1106,7 +1251,12 @@
       "sku": "BSP-DECENTRALIZED-HOSPITAL",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "the-hospital-at-home",
@@ -1121,7 +1271,7 @@
       "taglineAr": "The Hospital at Home — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment",
       "description": "The Hospital at Home — a BrainSAIT healthcare from the digital library. Instant delivery via secure Google Drive link after payment.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/The_Hospital_at_Home.webp",
       "badges": [],
       "benefits": [],
@@ -1139,7 +1289,12 @@
       "sku": "BSP-HOSPITAL-AT-HOME",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "republic-of-cells-complete-edition",
@@ -1154,7 +1309,7 @@
       "taglineAr": "A 1,352-page literary-scientific novel in 30 chapters across nine movements, telling the story of the human body as a republic of cells: immunity as army, DNA as constitution, inflammation as civil war.",
       "description": "A 1,352-page literary-scientific novel in 30 chapters across nine movements, telling the story of the human body as a republic of cells: immunity as army, DNA as constitution, inflammation as civil war. Written for physicians and health professionals — immunological precision married to Arabic literary craft.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "/assets/images/books/republic-of-cells.webp",
       "badges": [],
       "benefits": [],
@@ -1172,7 +1327,12 @@
       "sku": "BSP-REPUBLIC-OF-CELLS",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "digital-healthcare-masterclass",
@@ -1187,7 +1347,7 @@
       "taglineAr": "ماستركلاس عن التحول الصحي الرقمي — في سياق رؤية 2030.",
       "description": "",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "https://cdn.shopify.com/s/files/1/0730/5288/0979/files/digital-healthcare-masterclass-cover_5b98376e-c28a-4691-b52d-ee20c05b23b4.png?v=1785844566",
       "badges": [
         "Bilingual"
@@ -1207,7 +1367,12 @@
       "sku": "BS-LEARN-DIGITAL-HEALTHCARE-M",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "oid-integration-blueprint-developer-guide",
@@ -1222,7 +1387,7 @@
       "taglineAr": "دليل المطور لتكامل معرّفات OID مع FHIR/NPHIES (x509، MCP).",
       "description": "Integrate Globally-Unique Identifiers Into Your Systems A comprehensive technical guide for developers and architects who need to embed OIDs (Object Identifiers) into production systems. Built on BrainSAIT's IANA-registered PEN 61026 namespace, this guide delivers six complete integration patterns with copy-paste-ready code. What's Included \nFHIR Extension Pattern — StructureDefinition templates for NPHIES-compliant resource tagging\nMCP URN Pattern — Tool metadata for AI agent systems and multi-agent architectures\nX.509 Certificate OID — Certificate signing configuration with OID policy extensions\nAPI Header Standard — HTTP header conventions for service identity across microservices\nDatabase Schema Pattern — PostgreSQL and SQL Server OID column definitions with indexes\nQR / RFID Encoding — Physical asset tag data structures and scanner format specs\n Code Examples Every pattern includes working code in JavaScript, Python, CURL, and SQL. Bilingual (AR/EN) documentation throughout. Instant digital delivery. A BrainSAIT technical guide from the OID Registry Platform.",
       "descriptionAr": "",
-      "price": 182,
+      "price": 140.14,
       "image": "https://cdn.shopify.com/s/files/1/0730/5288/0979/files/oid-blueprint_3e7f4c0e-8625-4af1-ac1a-07ec7e227c72.webp?v=1786120368",
       "badges": [
         "Bilingual",
@@ -1243,7 +1408,12 @@
       "sku": "BSP-OID-INTEGRATION-BLUEPRINT",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 182.0,
+      "offerPrice": 140.14,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "oid-arduino-iot-scanner-hardware-blueprint",
@@ -1268,7 +1438,7 @@
         "taglineAr": "من الفكرة إلى منتج جاهز — ابنِ حلّك مع محرّك برينسايت.",
         "description": "A guided incubation track: pick a solution from the Solutions shelf, and build it into a production product with BrainSAIT's stack, mentorship, and infrastructure.",
         "descriptionAr": "مسار احتضان موجَّه: اختر حلاً من رفّ الحلول، وابنِه ليصبح منتجاً جاهزاً للإنتاج باستخدام منصة برينسايت والإرشاد والبنية التحتية.",
-        "price": 9630,
+        "price": 7415.1,
         "image": "",
         "badges": [
           "Cohort-based",
@@ -1290,7 +1460,12 @@
         "sku": "BSP-BUILD-FORGE",
         "available": true,
         "commercial": true,
-        "shopifyUrlMonthly": null
+        "shopifyUrlMonthly": null,
+        "originalPrice": 9630.0,
+        "offerPrice": 7415.1,
+        "offerLabelEn": "Saudi National Day 2026 — 23% off",
+        "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+        "offerUntil": "2026-09-30"
       },
       {
         "slug": "solo-ai-business-workshop",
@@ -1473,7 +1648,7 @@
       "taglineAr": "بوابة توجيه رعاية ذكية لـ BOS وBOT وOracle وMCP.",
       "description": "BrainSAIT eCarePlus — a smart healthcare operating portal for BOS, BOT, Oracle and MCP routing in Saudi Arabia.",
       "descriptionAr": "eCarePlus من BrainSAIT — بوابة تشغيل رعاية ذكية لتوجيه BOS وBOT وOracle وMCP في السعودية.",
-      "price": 24000,
+      "price": 18480.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -1494,7 +1669,12 @@
       "sku": "BS-READY-BRAINSAIT-ECAREPLUS-",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 24000.0,
+      "offerPrice": 18480.0,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "nphies-linc",
@@ -1509,7 +1689,7 @@
       "taglineAr": "خدمة تكامل NPHIES — الأهلية والمطالبات والموافقة المسبقة ونقاط COC.",
       "description": "NPHIES-Linc — a BrainSAIT NPHIES integration service exposing eligibility, claims, prior-authorization and COC endpoints.",
       "descriptionAr": "NPHIES-Linc — خدمة تكامل NPHIES من BrainSAIT توفر نقاط الأهلية والمطالبات والموافقة المسبقة وCOC.",
-      "price": 24000,
+      "price": 18480.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -1530,7 +1710,12 @@
       "sku": "BS-READY-NPHIES-LINC",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 24000.0,
+      "offerPrice": 18480.0,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "hospital-os-solutions-ready",
@@ -1545,7 +1730,7 @@
       "taglineAr": "نظام متكامل لعمليات وإدارة المستشفى — جاهز للتطبيق فوراً.",
       "description": "A complete, ready-built Hospital OS covering operations and management, provisioned and deployed directly into your environment.",
       "descriptionAr": "نظام تشغيل مستشفى كامل وجاهز يغطي العمليات والإدارة، يتم تجهيزه ونشره مباشرة في بيئتك.",
-      "price": 24000,
+      "price": 18480.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -1566,7 +1751,12 @@
       "sku": "BS-READY-HOSPITAL-OS---SOLUTI",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 24000.0,
+      "offerPrice": 18480.0,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "cloud-kitchen-solutions-ready",
@@ -1581,7 +1771,7 @@
       "taglineAr": "منصة متكاملة لعمليات الطعام والمطبخ — جاهزة للتطبيق.",
       "description": "A complete, ready-built Cloud Kitchen operations platform, provisioned and deployed directly into your environment.",
       "descriptionAr": "منصة تشغيل مطبخ سحابي كاملة وجاهزة، يتم تجهيزها ونشرها مباشرة في بيئتك.",
-      "price": 24000,
+      "price": 18480.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -1602,7 +1792,12 @@
       "sku": "BS-READY-CLOUD-KITCHEN---SOLU",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 24000.0,
+      "offerPrice": 18480.0,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "oid-system-solutions-ready",
@@ -1617,7 +1812,7 @@
       "taglineAr": "نظام إدارة الهوية ومعرفات OID — جاهز للتطبيق.",
       "description": "A complete, ready-built OID identity management system, provisioned and deployed directly into your environment.",
       "descriptionAr": "نظام إدارة هوية ومعرفات OID كامل وجاهز، يتم تجهيزه ونشره مباشرة في بيئتك.",
-      "price": 24000,
+      "price": 18480.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -1639,7 +1834,12 @@
       "sku": "BS-READY-OID-SYSTEM---SOLUTIO",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 24000.0,
+      "offerPrice": 18480.0,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "basma-voice-agent-solutions-ready",
@@ -1654,7 +1854,7 @@
       "taglineAr": "وكيل صوتي ذكي للتوثيق السريري — جاهز للتطبيق.",
       "description": "A complete, ready-built Basma AI voice and clinical documentation agent, provisioned and deployed directly into your environment.",
       "descriptionAr": "وكيل بسمة الصوتي للتوثيق السريري كامل وجاهز، يتم تجهيزه ونشره مباشرة في بيئتك.",
-      "price": 24000,
+      "price": 18480.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -1676,21 +1876,31 @@
       "sku": "BS-READY-BASMA-VOICE-AGENT---",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 24000.0,
+      "offerPrice": 18480.0,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "name": "CAP-Net | Claim Acceptance Prediction",
       "nameAr": "كيب-نت | توقع قبول المطالبات",
       "blurbEn": "AI-powered NPHIES claim acceptance prediction. Score claims before submission with acceptance probability, risk analysis, fix recommendations, and smart submission routing.",
       "blurbAr": "ذكاء اصطناعي لتوقع قبول مطالبات NPHIES. قيم مطالباتك قبل التقديم مع احتمال القبول، وتحليل المخاطر، وتوصيات التصحيح، وتوجيه التقديم الذكي.",
-      "price": 499,
+      "price": 384.23,
       "shopifyHandle": "cap-net-claim-predictor",
       "tags": [
         "NPHIES",
         "claims",
         "AI",
         "prediction"
-      ]
+      ],
+      "originalPrice": 499.0,
+      "offerPrice": 384.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     }
   ],
   "meta": {
@@ -1712,7 +1922,12 @@
       "oid": 8,
       "bpr": 0
     },
-    "updated": "2026-09-18T00:52:53.834Z"
+    "updated": "2026-09-18T00:52:53.834Z",
+    "saudiNationalDay2026": {
+      "active": true,
+      "discountPercent": 23,
+      "until": "2026-09-30"
+    }
   },
   "templates": [
     {
@@ -1728,7 +1943,7 @@
       "taglineAr": "ذكاء اصطناعي يعرف عملك حقًا — مستندات وخيوط ويكيات.",
       "description": "An AI that actually knows your work — docs, threads and wikis included. Ingests your docs, chat threads and wiki pages into one KB Answers with real context, not surface-level guesses Role-aware access; PDPL/NDAs respected by design",
       "descriptionAr": "ذكاء اصطناعي يعرف عملك حقًا — مستندات وخيوط ويكيات. يجمع مستنداتك وخيوط الدردشة وصفحات الويكي في قاعدة واحدة يجيب بسياق حقيقي لا تخمينات سطحية وصول حسب الأدوار؛ يحترم PDPL والاتفاقيات",
-      "price": 4999,
+      "price": 1154.23,
       "image": "",
       "badges": [
         "Bilingual",
@@ -1749,7 +1964,12 @@
       "sku": "BSAGT-017",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 1499.0,
+      "offerPrice": 1154.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "ai-business-chat-agent-bilingual-en-ar-support",
@@ -1764,7 +1984,7 @@
       "taglineAr": "وكيل محادثة ثنائي اللغة يجيب عملاءك فورًا — ليل نهار.",
       "description": "A bilingual AI chat agent that answers customers instantly — day and night. Trains on your FAQ, policies and product catalog (RAG) EN + AR with proper RTL; hands off to a human when unsure Cuts first-response time from hours to seconds",
       "descriptionAr": "وكيل محادثة ثنائي اللغة يجيب عملاءك فورًا — ليل نهار. تدرّب على أسئلتك الشائعة وسياساتك وفهرس منتجاتك عربي وإنجليزي مع RTL صحيح، وينقل المحادثة لإنسان عند الحاجة يخفض زمن الاستجابة الأولى من ساعات إلى ثوانٍ",
-      "price": 2999,
+      "price": 1539.23,
       "image": "",
       "badges": [
         "Bilingual",
@@ -1785,7 +2005,12 @@
       "sku": "BSAGT-002",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 1999.0,
+      "offerPrice": 1539.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "ecommerce-ai-chatbot-product-q-a-lead-capture",
@@ -1800,7 +2025,7 @@
       "taglineAr": "أسئلة المنتجات والطلبات والمقاسات والشحن — يجيب عنها الذكاء الاصطناعي في متجرك.",
       "description": "Product questions, orders, sizes, shipping — answered by AI on your store. Knows every product in your catalog: prices, stock, variants EN/AR with RTL; captures lead emails from chat Our own store runs one — see it live on store.brainsait.de",
       "descriptionAr": "أسئلة المنتجات والطلبات والمقاسات والشحن — يجيب عنها الذكاء الاصطناعي في متجرك. يعرف كل منتجاتك: الأسعار والمخزون والنسخ عربي وإنجليزي مع RTL؛ يلتقط بريد الزوار من المحادثة متجرنا يركّب واحدًا — رآه حيًا على store.brainsait.de",
-      "price": 2499,
+      "price": 1154.23,
       "image": "",
       "badges": [
         "Bilingual"
@@ -1820,7 +2045,12 @@
       "sku": "BSAGT-004",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 1499.0,
+      "offerPrice": 1154.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "helpdesk-faq-request-agent-team-autopilot",
@@ -1835,7 +2065,7 @@
       "taglineAr": "الأسئلة المتكررة تتوقف عن بلوغ فريقك. الوكيل يجيب أولًا.",
       "description": "Repetitive questions stop reaching your team. The agent answers first. Learns your team's answers from history + docs Routes real requests to the right ticket/board Weekly report: what the agent answered vs escalated",
       "descriptionAr": "الأسئلة المتكررة تتوقف عن بلوغ فريقك. الوكيل يجيب أولًا. يتعلم إجابات فريقك من السجل والوثائق يوجّه الطلبات الحقيقية إلى التذكرة أو اللوحة الصحيحة تقرير أسبوعي: ما أجاب عنه الوكيل وما صُعد للفريق",
-      "price": 2499,
+      "price": 384.23,
       "image": "",
       "badges": [
         "Bilingual",
@@ -1856,7 +2086,12 @@
       "sku": "BSAGT-010",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 499.0,
+      "offerPrice": 384.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "multi-channel-message-routing-agent-smart-triage",
@@ -1871,7 +2106,7 @@
       "taglineAr": "بريد وواتساب وتليغرام ونماذج — عقل واحد يوجّه كل رسالة إلى الفريق الصحيح.",
       "description": "Email, WhatsApp, Telegram, forms — one brain routes every message to the right team. AI categorizes and prioritizes every inbound message Routes to the right team channel, ticket or person SLA timer: unhandled messages escalate automatically",
       "descriptionAr": "بريد وواتساب وتليغرام ونماذج — عقل واحد يوجّه كل رسالة إلى الفريق الصحيح. يصنف الذكاء ويولّي كل رسالة واردة الأولوية يوجّهها إلى قناة الفريق أو التذكرة أو الشخص الصحيح مؤقت SLA: الرسائل غير المعالجة تُصعّد تلقائيًا",
-      "price": 2499,
+      "price": 769.23,
       "image": "",
       "badges": [
         "Bilingual",
@@ -1892,7 +2127,12 @@
       "sku": "BSAGT-015",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 999.0,
+      "offerPrice": 769.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "unified-lead-capture-agent-multi-source-crm-funnel",
@@ -1907,7 +2147,7 @@
       "taglineAr": "كل عميل محتمل، من كل قناة، في خط أنابيب واحد نظيف إلى نظام CRM الخاص بك.",
       "description": "Every lead, every channel, one clean pipeline into your CRM. Capture leads from web forms, WhatsApp, Telegram and email in one place AI cleanup: dedupe, format and score before CRM entry Weekly pipeline digest posted to your team channel",
       "descriptionAr": "كل عميل محتمل، من كل قناة، في خط أنابيب واحد نظيف إلى نظام CRM الخاص بك. التقاط العملاء من نماذج الويب وواتساب وتليغرام والبريد في مكان واحد تنظيف بالذكاء الاصطناعي: إزالة التكرار والتنسيق والتصنيف قبل الإضافة ملخص أسبوعي يظهر في قناة فريقك",
-      "price": 1999,
+      "price": 3049.2,
       "image": "",
       "badges": [
         "Bilingual",
@@ -1928,7 +2168,12 @@
       "sku": "BSAGT-001",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 3960.0,
+      "offerPrice": 3049.2,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "employee-onboarding-manager-agent",
@@ -1943,7 +2188,7 @@
       "taglineAr": "من يوم أول موظف جديد إلى استقطاب كامل — يديره وكيل لا جداول.",
       "description": "New hire day one to full onboarding — run by an agent, not spreadsheets. Centralized team hub: info, docs, checklists in one place One-button onboarding: emails, tasks and reminders auto-fire PDPL-aware handling of employee personal data",
       "descriptionAr": "من يوم أول موظف جديد إلى استقطاب كامل — يديره وكيل لا جداول. مركز فريق موحّد: معلومات ووثائق وقوائم في مكان استقطاب بزر: بريد ومهام وتذكيرات تطلق تلقائيًا معالجة لبيانات الموظفين الشخصية وفق PDPL",
-      "price": 1999,
+      "price": 769.23,
       "image": "",
       "badges": [
         "Bilingual",
@@ -1964,7 +2209,12 @@
       "sku": "BSAGT-007",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 999.0,
+      "offerPrice": 769.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "sales-opportunity-radar-in-support-tickets",
@@ -1979,7 +2229,7 @@
       "taglineAr": "صندوق الدعم الخاص بك قمع مبيعات. الوكيل يجد الفرص وأنت نائم.",
       "description": "Your support inbox is a sales funnel. The agent finds it while you sleep. AI scans every ticket for upsell/cross-sell signals Scores opportunity size and posts to your sales channel Drafts the personal upsell message for one-click send",
       "descriptionAr": "صندوق الدعم الخاص بك قمع مبيعات. الوكيل يجد الفرص وأنت نائم. يفحص الذكاء كل تذكرة لإشارات البيع الإضافي يصنّف حجم الفرصة وينشرها في قناة المبيعات يكتب رسالة البيع الشخصية جاهزة للإرسال بنقرة",
-      "price": 1799,
+      "price": 1924.23,
       "image": "",
       "badges": [
         "Bilingual"
@@ -1999,7 +2249,12 @@
       "sku": "BSAGT-011",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 2499.0,
+      "offerPrice": 1924.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "ai-lead-enrichment-agent-research-score-new-leads",
@@ -2014,7 +2269,7 @@
       "taglineAr": "عميل جديد؟ الوكيل يبحث عمن هو قبل أن يتصل فريق المبيعات.",
       "description": "New lead in? The agent researches who they are before your sales team calls. Auto-research: company, role, tech stack, decision path Flags hot leads for immediate outreach Plays well with any CRM you already use",
       "descriptionAr": "عميل جديد؟ الوكيل يبحث عمن هو قبل أن يتصل فريق المبيعات. بحث تلقائي: الشركة والمنصب والتقنيات ومسار القرار يشير إلى العملاء الساخنين للتواصل الفوري يعمل مع أي نظام CRM تستخدمه",
-      "price": 1499,
+      "price": 2309.23,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2035,7 +2290,12 @@
       "sku": "BSAGT-003",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 2999.0,
+      "offerPrice": 2309.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "lead-capture-follow-up-agent-forms-to-crm",
@@ -2050,7 +2310,7 @@
       "taglineAr": "من تعبئة النموذج إلى أول متابعة — دون أن يلمسها أحد.",
       "description": "From form fill to first follow-up — without anyone touching it. Captures form data and confirms instantly (email/WhatsApp) AI writes the personal first follow-up 3-touch nurture sequence until reply or conversion",
       "descriptionAr": "من تعبئة النموذج إلى أول متابعة — دون أن يلمسها أحد. التقاط بيانات النموذج وتأكيد فوري (بريد/واتساب) الوكيل يكتب أول متابعة شخصية تسلسل تربية من 3 لمسات حتى الرد أو التحويل",
-      "price": 1499,
+      "price": 1924.23,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2071,7 +2331,12 @@
       "sku": "BSAGT-005",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 2499.0,
+      "offerPrice": 1924.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "company-sourcing-intelligence-agent-60s-reports",
@@ -2086,7 +2351,7 @@
       "taglineAr": "اكتب اسم شركة؛ واحصل على من تتواصل وكيف — في 60 ثانية.",
       "description": "Type a company name; get who to contact and how — in 60 seconds. Named people to source: titles, roles, decision paths Tech stack + outreach angles + LinkedIn Boolean strings Report lands in your channel or sheet, ready to act",
       "descriptionAr": "اكتب اسم شركة؛ واحصل على من تتواصل وكيف — في 60 ثانية. أشخاص مسماون للاستهداف: مسميات أدوار ومسارات قرار التقنيات وزوايا التواصل وخطوات بحث لينكد إن التقرير يصل إلى قناتك أو جدولك جاهزًا للتنفيذ",
-      "price": 1499,
+      "price": 1924.23,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2107,7 +2372,12 @@
       "sku": "BSAGT-016",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 2499.0,
+      "offerPrice": 1924.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "viral-content-creation-agent-trends-to-publish",
@@ -2122,7 +2392,7 @@
       "taglineAr": "الاتجاه مرصود، والنص مكتوب، والتفاعل مضبوط — قبل أن يبلغ الموجة ذروتها.",
       "description": "Trend spotted, video scripted, engagement set — before the wave peaks. Monitors trends in your niche and picks what fits Scripts the video + sets engagement automation Compiles the campaign into a shareable doc",
       "descriptionAr": "الاتجاه مرصود، والنص مكتوب، والتفاعل مضبوط — قبل أن يبلغ الموجة ذروتها. يرصد الاتجاهات في مجالك ويختار ما يناسب يكتب نص الفيديو ويضبط أتمتة التفاعل يفصّل الحملة في وثيقة قابلة للمشاركة",
-      "price": 1499,
+      "price": 1000.23,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2143,7 +2413,12 @@
       "sku": "BSAGT-022",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 1299.0,
+      "offerPrice": 1000.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "marketing-campaign-tracker-agent-weekly-ai-reports",
@@ -2158,7 +2433,7 @@
       "taglineAr": "إعلانات فيسبوك ولينكد إن في جدول واحد، مع تقرير أسبوعي بالذكاء في قناتك.",
       "description": "Facebook + LinkedIn ads into one table, with a weekly AI report in your channel. Pulls ad performance from Meta and LinkedIn daily Custom SAR metrics: CAC, ROAS, cost per lead AI agent writes the weekly report + what to change",
       "descriptionAr": "إعلانات فيسبوك ولينكد إن في جدول واحد، مع تقرير أسبوعي بالذكاء في قناتك. يسحب أداء الإعلانات من ميتا ولينكد إن يوميًا مقاييس مخصصة بالريال: تكلفة الاكتساب وROAS وتكلفة العميل وكيل الذكاء يكتب التقرير الأسبوعي وما يجب تعديله",
-      "price": 1299,
+      "price": 1539.23,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2179,7 +2454,12 @@
       "sku": "BSAGT-008",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 1999.0,
+      "offerPrice": 1539.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "youtube-shorts-creator-agent",
@@ -2194,7 +2474,7 @@
       "taglineAr": "فيديو طويل يدخل، وأسبوع من المقاطع القصيرة يخرج — نصوصًا ورفعًا.",
       "description": "Long video in, a week of shorts out — scripted and uploaded. Finds the hook moments in your long-form video Scripts + captions each short (EN/AR subtitles) Uploads to YouTube with title, tags and description",
       "descriptionAr": "فيديو طويل يدخل، وأسبوع من المقاطع القصيرة يخرج — نصوصًا ورفعًا. يجد لحظات الخطف في فيديوك الطويل يكتب النص والترجمة لكل مقطع (عربي/إنجليزي) يرفع إلى يوتيوب مع العنوان والوسوم والوصف",
-      "price": 1299,
+      "price": 1000.23,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2215,7 +2495,12 @@
       "sku": "BSAGT-021",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 1299.0,
+      "offerPrice": 1000.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "ai-intake-form-fewer-fields-cleaner-data",
@@ -2230,7 +2515,7 @@
       "taglineAr": "نموذج لا يسأل شيئًا زائدًا — الذكاء الاصطناعي يستخرج البيانات مما يكتبونه.",
       "description": "A form that asks nothing extra — AI pulls the data from what they type. Fewer fields: AI extracts name, role, company, need from free text Works as web widget, WhatsApp or embedded form EN/AR with RTL — feels native to Saudi customers",
       "descriptionAr": "نموذج لا يسأل شيئًا زائدًا — الذكاء الاصطناعي يستخرج البيانات مما يكتبونه. حقول أقل: يستخرج الاسم والمنصب والشركة والحاجة من النص الحر يعمل كمكوّن ويب أو واتساب أو نموذج مضمّن عربي وإنجليزي مع RTL — إحساس محلي للزائر السعودي",
-      "price": 999,
+      "price": 1154.23,
       "image": "",
       "badges": [
         "Bilingual"
@@ -2250,7 +2535,12 @@
       "sku": "BSAGT-006",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 1499.0,
+      "offerPrice": 1154.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "ai-logo-generator-shareable-brand-builder",
@@ -2265,7 +2555,7 @@
       "taglineAr": "الزوار يكتبون علامتهم؛ ويحصلون على صفحة شعار قابلة للمشاركة.",
       "description": "Customers type their brand; a shareable logo page comes back. Form in, logo out: AI image models generate on demand Shareable page with download + edit options Branded with your agency identity — resell-ready",
       "descriptionAr": "الزوار يكتبون علامتهم؛ ويحصلون على صفحة شعار قابلة للمشاركة. نموذج إدخال، شعار خروج: نماذج توليد الصور تنتج عند الطلب صفحة مشاركة مع خيار التحديد والتعديل بحوية وكالتك — جاهز لإعادة البيع",
-      "price": 999,
+      "price": 615.23,
       "image": "",
       "badges": [
         "Bilingual"
@@ -2285,7 +2575,12 @@
       "sku": "BSAGT-014",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 799.0,
+      "offerPrice": 615.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "launch-readiness-report-agent",
@@ -2300,7 +2595,7 @@
       "taglineAr": "أخضر أو أحمر قبل يوم الإطلاق — لا بعده.",
       "description": "Green or red before launch day — not after. Pulls task status + project docs into one assessment Flags risks, blockers and missing owners Readiness report posted to your channel with a score",
       "descriptionAr": "أخضر أو أحمر قبل يوم الإطلاق — لا بعده. يجمع حالة المهام ومستندات المشروع في تقييم واحد يشير إلى المخاطر والعوائق وأصحابها المفقودين تقرير الجاهزية يُنشر في قناتك مع درجة",
-      "price": 999,
+      "price": 769.23,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2321,7 +2616,12 @@
       "sku": "BSAGT-018",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 999.0,
+      "offerPrice": 769.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "content-repurposing-agent-one-idea-many-channels",
@@ -2336,7 +2636,7 @@
       "taglineAr": "أفضل قطعة محتوى لديك، في كل مكان مرة واحدة.",
       "description": "Your best piece of content, everywhere at once. Point it at a post, video or article Generates channel-by-channel repurposing plan + drafts EN/AR versions included for bilingual reach",
       "descriptionAr": "أفضل قطعة محتوى لديك، في كل مكان مرة واحدة. وجّهه إلى منشور أو فيديو أو مقال يولّد خطة إعادة توظيف لكل قناة + مسودات يشمل نسختي العربية والإنجليزية لتوسيع الوصول",
-      "price": 899,
+      "price": 692.23,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2357,7 +2657,12 @@
       "sku": "BSAGT-020",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 899.0,
+      "offerPrice": 692.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "linkedin-post-scheduler-agent",
@@ -2372,7 +2677,7 @@
       "taglineAr": "استجب برمز في سلاك؛ والمنشور مجدول في خطك الزمني.",
       "description": "React in Slack; the post is scheduled and on your timeline. Emoji reaction in chat triggers the workflow AI polishes the draft into LinkedIn-native copy Schedules at your best-performing times",
       "descriptionAr": "استجب برمز في سلاك؛ والمنشور مجدول في خطك الزمني. رد فعل بالرمز التعبيري في الدردشة يشغّل التدفق يصفو الذكاء المسودة إلى صياغة لينكد إن يجدولها في أوقات أدائك الأعلى",
-      "price": 699,
+      "price": 538.23,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2393,7 +2698,12 @@
       "sku": "BSAGT-023",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 699.0,
+      "offerPrice": 538.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "custom-agent-builder-starter-scaffold",
@@ -2408,7 +2718,7 @@
       "taglineAr": "اللوحة الفارغة: وكيلك الخاص، ببيانات أعمالك الحية، و7000+ تطبيق.",
       "description": "The blank canvas: your own agent, live business data, 7,000+ apps. Pre-wired scaffold you own: instructions, data tools, triggers Live business data connections (CRM, sheets, chat) Documented so any dev or AI can extend it",
       "descriptionAr": "اللوحة الفارغة: وكيلك الخاص، ببيانات أعمالك الحية، و7000+ تطبيق. هيكل جاهز تملكه: تعليمات وأدوات بيانات ومحفزات روابط ببيانات أعمالك الحية (CRM وجداول ودردشات) موثّق بحيث يستطيع أي مطوّر أو ذكاء توسيعه",
-      "price": 499,
+      "price": 1000.23,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2429,7 +2739,12 @@
       "sku": "BSAGT-009",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 1299.0,
+      "offerPrice": 1000.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     }
   ],
   "oid": [
@@ -2446,7 +2761,7 @@
       "taglineAr": "",
       "description": "White-label OID system for enterprises. Custom namespace, custom branding.",
       "descriptionAr": "نظام OIDWhite-Label للمؤسسات. اسم نطاق مخصص، وهوية بصرية مخصصة.",
-      "price": 480000,
+      "price": 369600.0,
       "image": "",
       "badges": [
         "OID Verified"
@@ -2466,7 +2781,12 @@
       "sku": "BS-OID-OID-WHITE-LABEL-ENTE",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 480000.0,
+      "offerPrice": 369600.0,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "oid-enterprise-namespace-license",
@@ -2481,7 +2801,7 @@
       "taglineAr": "",
       "description": "Enterprise OID namespace license. Your own OID namespace for your organization.",
       "descriptionAr": "ترخيص اسم نطاق OID للمؤسسات. اسم نطاق OID الخاص بمؤسستك.",
-      "price": 240000,
+      "price": 184800.0,
       "image": "",
       "badges": [
         "OID Verified"
@@ -2501,7 +2821,12 @@
       "sku": "BS-OID-OID-ENTERPRISE-NAMES",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 240000.0,
+      "offerPrice": 184800.0,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "oid-fhir-integration-platform",
@@ -2516,7 +2841,7 @@
       "taglineAr": "",
       "description": "Full FHIR integration with OID identity. Connect your healthcare system to the OID registry.",
       "descriptionAr": "تكامل كامل مع FHIR وهوية OID. اربط نظام الرعاية الصحية الخاص بك بسجل OID.",
-      "price": 120000,
+      "price": 92400.0,
       "image": "",
       "badges": [
         "OID Verified"
@@ -2536,7 +2861,12 @@
       "sku": "BS-OID-OID-FHIR-INTEGRATION",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 120000.0,
+      "offerPrice": 92400.0,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "nphies-oid-healthcare-identity-bundle",
@@ -2551,7 +2881,7 @@
       "taglineAr": "",
       "description": "Complete NPHIES + OID bundle. Healthcare identity with insurance exchange integration.",
       "descriptionAr": "حزمة NPHIES + OID كاملة. هوية الرعاية الصحية مع تكامل سوق التأمين.",
-      "price": 48000,
+      "price": 36960.0,
       "image": "",
       "badges": [
         "OID Verified"
@@ -2571,7 +2901,12 @@
       "sku": "BS-OID-NPHIES-OID-HEALTHCAR",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 48000.0,
+      "offerPrice": 36960.0,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "oid-explorer-seat",
@@ -2586,7 +2921,7 @@
       "taglineAr": "",
       "description": "Access to the OID Registry Explorer. Query and verify healthcare provider identities.",
       "descriptionAr": "الوصول إلى مستكشف سجل OID. استعلام والتحقق من هويات مزودي الرعاية الصحية.",
-      "price": 24000,
+      "price": 18480.0,
       "image": "",
       "badges": [
         "OID Verified"
@@ -2606,7 +2941,12 @@
       "sku": "BS-OID-OID-EXPLORER-SEAT",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 24000.0,
+      "offerPrice": 18480.0,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "brainsait-provider-registry-bpr-membership",
@@ -2621,7 +2961,7 @@
       "taglineAr": "",
       "description": "Annual BPR membership. Certified healthcare provider identity with registry listing.",
       "descriptionAr": "عضوية BPR السنوية. هوية مزود رعاية صحية معتمدة مع إدراج في السجل.",
-      "price": 3960,
+      "price": 125.51,
       "image": "",
       "badges": [],
       "benefits": [],
@@ -2639,7 +2979,12 @@
       "sku": "BS-OID-BRAINSAIT-PROVIDER-R",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 3960.0,
+      "offerPrice": 125.51,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "oid-verification-badge",
@@ -2654,7 +2999,7 @@
       "taglineAr": "",
       "description": "Verified OID badge for healthcare professionals. Display your verified identity.",
       "descriptionAr": "شارة OID موثقة لمهنيي الرعاية الصحية. اعرض هويتك الموثقة.",
-      "price": 990,
+      "price": 762.3,
       "image": "",
       "badges": [
         "OID Verified"
@@ -2674,7 +3019,12 @@
       "sku": "BS-OID-OID-VERIFICATION-BAD",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 990.0,
+      "offerPrice": 762.3,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     },
     {
       "slug": "brainsait-oid-identity",
@@ -2689,7 +3039,7 @@
       "taglineAr": "",
       "description": "Your unique Online Identity (OID) on the IASPA namespace. Single identifier for healthcare professionals.",
       "descriptionAr": "هويتك الفريدة عبر الإنترنت على اسم نطاق IASPA. معرف واحد لمهنيي الرعاية الصحية.",
-      "price": 499,
+      "price": 384.23,
       "image": "",
       "badges": [
         "OID Verified"
@@ -2709,7 +3059,12 @@
       "sku": "BS-OID-BRAINSAIT-OID-IDENTI",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null
+      "shopifyUrlMonthly": null,
+      "originalPrice": 499.0,
+      "offerPrice": 384.23,
+      "offerLabelEn": "Saudi National Day 2026 — 23% off",
+      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
+      "offerUntil": "2026-09-30"
     }
   ]
 }
