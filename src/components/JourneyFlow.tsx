@@ -7,7 +7,18 @@ export default function JourneyFlow() {
   const [hubOk, setHubOk] = useState<boolean | null>(null);
 
   useEffect(() => {
-    fetch('https://hub.brainsait.de/health').then(r => setHubOk(r.ok)).catch(() => setHubOk(false));
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 10000);
+    let active = true;
+    fetch('https://hub.brainsait.org/health', { signal: controller.signal })
+      .then(async (r) => {
+        if (!r.ok) throw new Error('Hub unavailable');
+        const health = await r.json();
+        if (active) setHubOk(health.ok === true && health.service === 'brainsait-hub');
+      })
+      .catch(() => { if (active) setHubOk(false); })
+      .finally(() => window.clearTimeout(timeout));
+    return () => { active = false; controller.abort(); window.clearTimeout(timeout); };
   }, []);
 
   const steps = [
@@ -39,12 +50,12 @@ export default function JourneyFlow() {
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
         <h2 style={{ margin: 0 }}>{ar ? 'رحلتك — من الفكرة إلى الشركة' : 'Your journey — idea to company'}</h2>
         <span className="badge" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          <Activity size={12} /> {hubOk === null ? '…' : hubOk ? (ar ? 'النظام حي' : 'Live') : (ar ? 'تحقق' : 'Check')}
+          <Activity size={12} /> {hubOk === null ? '…' : hubOk ? (ar ? 'المركز متصل' : 'Hub connected') : (ar ? 'الاتصال غير متاح' : 'Connection unavailable')}
           {hubOk && <CheckCircle2 size={12} color="var(--ok)" />}
         </span>
       </div>
       <p className="benefits-intro" style={{ marginTop: 0 }}>
-        {ar ? 'ثلاث مراحل مترابطة — كل دفعة تُطلق سلسلة أتمتة عالية التكامل.' : 'Three interlocked stages — each payment fires a high-integration automation chain.'}
+        {ar ? 'ثلاث مراحل لتطوير فكرتك. راجع تفاصيل كل منتج لمعرفة نطاق الخدمة وطريقة التسليم.' : 'Three stages to develop your idea. Check each product for its service scope and delivery details.'}
       </p>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 14 }}>
         {steps.map((s, i) => (
