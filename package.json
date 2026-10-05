@@ -3,12 +3,14 @@
   "private": true,
   "version": "2.0.0",
   "type": "module",
-  "description": "BrainSAIT Store — Learn · Build · Solutions (AR/EN)",
+  "description": "BrainSAIT Store \u2014 Learn \u00b7 Build \u00b7 Solutions (AR/EN)",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "test": "node --test --experimental-strip-types src/utils/*.test.ts",
+    "sync:store": "python3 scripts/sync-catalog-from-woocommerce.py && bash scripts/verify-catalog-provenance.sh",
+    "verify:catalog": "bash scripts/verify-catalog-provenance.sh",
     "deploy": "npm run build && node scripts/publish.mjs",
     "sync:shopify": "python3 scripts/sync-catalog-from-shopify.py --write",
     "sync:shopify:dry": "python3 scripts/sync-catalog-from-shopify.py"
