@@ -6,7 +6,7 @@ import { useI18n } from '../i18n';
 /* §9 Partner portal panel — renders registry.partner/:spid aggregate inside /account.
    Renders only when an SPID is provided via ?partner=<spid>. Live data, registry-fed. */
 
-const REGISTRY = 'https://registry.brainsait.org';
+const REGISTRY = 'https://registry.brainsait.de';
 
 interface PartnerAgg {
   spid: string;

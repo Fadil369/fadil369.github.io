@@ -95,7 +95,7 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
             <p>{ar ? 'نظام الهوية عبر الإنترنت (OID) وسجل مزودي الخدمات — شارات التحقق، تراخيص المؤسسات، تكامل FHIR، وحلول NPHIES.' : 'Online Identity (OID) system and provider registry — verification badges, enterprise licenses, FHIR integration, and NPHIES solutions.'}</p>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <a className="button primary lg" href="https://register.brainsait.org" target="_blank" rel="noopener noreferrer">
+            <a className="button primary lg" href="https://registry.brainsait.de/onboard" target="_blank" rel="noopener noreferrer">
               {ar ? 'سجّل هويتك الآن' : 'Register Your OID'}
             </a>
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>

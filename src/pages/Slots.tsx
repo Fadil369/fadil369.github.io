@@ -4,10 +4,10 @@ import { usePageMeta } from '../hooks/usePageMeta';
 import { useI18n } from '../i18n';
 
 /* Hospital Vacancy Slots — live marketplace fed by the BPR registry
-   (registry.brainsait.org). CORS is open on the registry; all data on
+   (registry.brainsait.de). CORS is open on the registry; all data on
    this page is fetched live in the browser, nothing is baked in. */
 
-const REGISTRY = 'https://registry.brainsait.org';
+const REGISTRY = 'https://registry.brainsait.de';
 
 interface Slot {
   id: string;

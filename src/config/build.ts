@@ -22,7 +22,7 @@ export const CUSTOMER_OTP_REQUEST_URL = `${BUILD_APPLY_BASE}/customer/otp/reques
 export const CUSTOMER_OTP_VERIFY_URL = `${BUILD_APPLY_BASE}/customer/otp/verify`;
 
 /** BPR — BrainSAIT Provider Registry */
-export const BPR_REGISTRY_URL = 'https://registry.brainsait.org';
+export const BPR_REGISTRY_URL = 'https://registry.brainsait.de';
 export const BPR_ANNUAL = 'https://store.brainsait.de/products/provider-registry';
 export const BPR_MONTHLY = 'https://store.brainsait.de/products/provider-registry';
 

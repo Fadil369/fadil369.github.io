@@ -8,7 +8,7 @@ import { useI18n } from '../i18n';
    Fed live by the registry partner aggregate + the provider-identity signed bundle.
    Mirrors the /slots page: nothing baked in, CORS open on both sources. */
 
-const REGISTRY = 'https://registry.brainsait.org';
+const REGISTRY = 'https://registry.brainsait.de';
 const IDENTITY = 'https://id.brainsait.org';
 
 interface PartnerAggregate {

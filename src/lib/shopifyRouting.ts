@@ -72,8 +72,8 @@ export const GHIO_LINKS = {
   oidDemo: `${STORE_BASE}/pages/oid-interactive-demo`,
   
   // External ecosystem links
-  registry: 'https://registry.brainsait.org',
-  verify: 'https://verify.brainsait.org',
+  registry: 'https://registry.brainsait.de',
+  verify: 'https://verify.brainsait.de',
   calendar: 'https://calendar.app.google/Ve9KSKmaVA6ehDP48',
   calendarBuild: 'https://calendar.app.google/rAqiE6pNumtECdnd7',
   notioFounders: 'https://fadil369.notion.site/Founder-OS-3ba3479c6f628117966fd1be6c120ac2',
