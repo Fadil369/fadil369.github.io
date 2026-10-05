@@ -1733,23 +1733,32 @@
       "storeUrlMonthly": null
     },
     {
+      "slug": "cap-net-claim-acceptance-prediction",
+      "stage": "solutions",
       "name": "CAP-Net | Claim Acceptance Prediction",
       "nameAr": "كيب-نت | توقع قبول المطالبات",
-      "blurbEn": "AI-powered NPHIES claim acceptance prediction. Score claims before submission with acceptance probability, risk analysis, fix recommendations, and smart submission routing.",
-      "blurbAr": "ذكاء اصطناعي لتوقع قبول مطالبات NPHIES. قيم مطالباتك قبل التقديم مع احتمال القبول، وتحليل المخاطر، وتوصيات التصحيح، وتوجيه التقديم الذكي.",
-      "price": 384.23,
-      "shopifyHandle": "cap-net-claim-predictor",
-      "tags": [
-        "NPHIES",
-        "claims",
-        "AI",
-        "prediction"
-      ],
+      "tagline": "AI-powered NPHIES claim acceptance prediction",
+      "taglineAr": "ذكاء اصطناعي لتوقع قبول مطالبات NPHIES",
+      "description": "AI-powered NPHIES claim acceptance prediction. Score claims before submission with acceptance probability, risk analysis, fix recommendations, and smart submission routing.",
+      "descriptionAr": "ذكاء اصطناعي لتوقع قبول مطالبات NPHIES. قيم مطالباتك قبل التقديم مع احتمال القبول، وتحليل المخاطر، وتوصيات التصحيح، وتوجيه التقديم الذكي.",
+      "category": "Apps",
+      "price": 499.0,
       "originalPrice": 499.0,
-      "offerPrice": 384.23,
-      "offerLabelEn": "Saudi National Day 2026 — 23% off",
-      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
-      "offerUntil": "2026-09-30"
+      "storeHandle": "cap-net-claim-acceptance-prediction",
+      "sku": "BS-APP-0280",
+      "commercial": "service",
+      "badges": [
+        "Bilingual",
+        "NPHIES"
+      ],
+      "tier": "standalone",
+      "sub": "hospital_it",
+      "available": true,
+      "flags": [
+        "scope_agreed_directly"
+      ],
+      "note": "Repaired 2026-10-05: this entry had no slug, no stage and used blurbEn/blurbAr, so it rendered an /products/undefined link and the sync could never match it. Editorial copy preserved verbatim.",
+      "storeUrl": "https://shop.brainsait.de/product/cap-net-claim-acceptance-prediction/"
     }
   ],
   "meta": {
@@ -1765,12 +1774,12 @@
     "product_count": {
       "learn": 35,
       "build": 6,
-      "solutions": 6,
+      "solutions": 7,
       "templates": 20,
       "oid": 8,
       "bpr": 0
     },
-    "updated": "2026-10-05T23:53:19.279453+00:00",
+    "updated": "2026-10-05T23:55:43.832087+00:00",
     "saudiNationalDay2026": {
       "active": true,
       "discountPercent": 23,
@@ -1798,7 +1807,7 @@
     },
     "source": "https://shop.brainsait.de/wp-json/wc/store/v1/products",
     "source_hash": "d62533ec6baf5bdf0d9d3e8574d5f961e3d018700604bed8266273aa3b503a5d",
-    "generated_at": "2026-10-05T23:53:19.279453+00:00"
+    "generated_at": "2026-10-05T23:55:43.832087+00:00"
   },
   "templates": [
     {
