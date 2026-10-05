@@ -117,6 +117,14 @@ def map_product(product, existing):
         raise SystemExit(f"refusing to write an .org permalink: {permalink}")
 
     merged = dict(existing) if existing else {}
+    for legacy, modern in (
+        ("shopifyUrlMonthly", "storeUrlMonthly"),
+        ("shopifyUrlOneTime", "storeUrlOneTime"),
+        ("shopifyHandle", "storeHandle"),
+        ("shopifyUrl", "storeUrl"),
+    ):
+        if legacy in merged:
+            merged.setdefault(modern, merged.pop(legacy))
     merged["slug"] = product.get("slug")
     merged["name"] = product.get("name")
     merged["sku"] = product.get("sku")
@@ -125,6 +133,8 @@ def map_product(product, existing):
     merged["available"] = bool(product.get("is_purchasable"))
     merged["storeUrl"] = permalink
     merged["storeHandle"] = product.get("slug")
+    for legacy in ("shopifyUrl", "shopifyHandle"):
+        merged.pop(legacy, None)
 
     if offer_price is not None:
         merged["offerPrice"] = offer_price

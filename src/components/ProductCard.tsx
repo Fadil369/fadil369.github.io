@@ -71,20 +71,20 @@ export default function ProductCard({ p }: { p: Product }) {
   // Determine payment URL based on product tier
   // Items unpublished/removed from the store (available === false) never get a buy link.
   const isUnavailable = !isBuyable(p);
-  const isPayable = !isUnavailable && Boolean(p.shopifyUrl || isLearn || isBuild || isSolutions || isBpr);
+  const isPayable = !isUnavailable && Boolean(p.storeUrl || isLearn || isBuild || isSolutions || isBpr);
   
   const paymentUrl = isBpr
     ? (ar ? GHIO_LINKS.bprAnnual : GHIO_LINKS.bprMonthly)
     : isLearn
-      ? (p.shopifyUrlOneTime || GHIO_LINKS.learnMonthly)
+      ? (p.storeUrlOneTime || GHIO_LINKS.learnMonthly)
       : isBuild
-        ? (p.shopifyUrl || GHIO_LINKS.buildMonthly)
+        ? (p.storeUrl || GHIO_LINKS.buildMonthly)
         : isSolutions
-          ? (p.shopifyUrlMonthly || GHIO_LINKS.solutionMonthly)
-          : (p.shopifyUrl || '');
+          ? (p.storeUrlMonthly || GHIO_LINKS.solutionMonthly)
+          : (p.storeUrl || '');
 
   // Solutions ready (24k one-time) payment URL
-  const readyPaymentUrl = p.shopifyUrlOneTime || GHIO_LINKS.solutionReadyProduct;
+  const readyPaymentUrl = p.storeUrlOneTime || GHIO_LINKS.solutionReadyProduct;
 
   // Learn more / detail page URL
   const detailUrl = `/products/${p.slug}`;
@@ -95,7 +95,7 @@ export default function ProductCard({ p }: { p: Product }) {
   const priceDisplay = isBpr
     ? (ar ? `سنوي ${money(STAGE_PRICING.bpr.annual, false)} · شهري ${money(STAGE_PRICING.bpr.monthly, false)}` : `Annual ${money(STAGE_PRICING.bpr.annual, false)} · Monthly ${money(STAGE_PRICING.bpr.monthly, false)}`)
     : isLearn
-      ? (p.shopifyUrlOneTime
+      ? (p.storeUrlOneTime
           ? (ar ? `فردي ${money(p.oneTimePrice ?? STAGE_PRICING.learn.oneTime, false)} ريال · أو ${money(STAGE_PRICING.learn.monthly, false)} ريال/شهر للمكتبة` : `One-time ${money(p.oneTimePrice ?? STAGE_PRICING.learn.oneTime, false)} SAR · or ${money(STAGE_PRICING.learn.monthly, false)} SAR/mo for full library`)
           : (ar ? `${money(STAGE_PRICING.learn.monthly, false)} ريال/شهر — كامل المكتبة` : `${money(STAGE_PRICING.learn.monthly, false)} SAR/mo — Full library`))
       : isBuild
@@ -161,9 +161,9 @@ export default function ProductCard({ p }: { p: Product }) {
              ) : isUnavailable ? (
                <span className="button disabled sm">{t('cta.soon')}</span>
              ) : isPayable ? (
-               <a className="button primary sm" href={withUtm(paymentUrl, { utm_content: p.slug, plan: isLearn ? (p.shopifyUrlOneTime ? 'learn-one-time' : 'learn-monthly') : isBuild ? (p.shopifyUrl ? 'build-monthly' : 'build-ticket') : isSolutions ? 'solution-monthly' : '' })}
+               <a className="button primary sm" href={withUtm(paymentUrl, { utm_content: p.slug, plan: isLearn ? (p.storeUrlOneTime ? 'learn-one-time' : 'learn-monthly') : isBuild ? (p.storeUrl ? 'build-monthly' : 'build-ticket') : isSolutions ? 'solution-monthly' : '' })}
                   target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                 {ar ? (isLearn && p.shopifyUrlOneTime ? `ادفع · ${money(p.oneTimePrice ?? STAGE_PRICING.learn.oneTime, false)} ريال` : isLearn ? `ادفع · ${money(STAGE_PRICING.learn.monthly, false)}` : isBuild ? (p.shopifyUrl ? `ادفع · ${money(STAGE_PRICING.build.monthly, false)}` : `ادفع · ${money(STAGE_PRICING.build.full, false)}`) : isSolutions ? `ادفع · ${money(STAGE_PRICING.solutions.monthly, false)}` : 'ادفع') : (isLearn && p.shopifyUrlOneTime ? `Pay · ${money(p.oneTimePrice ?? STAGE_PRICING.learn.oneTime, false)}` : isLearn ? `Pay · ${money(STAGE_PRICING.learn.monthly, false)}` : isBuild ? (p.shopifyUrl ? `Pay · ${money(STAGE_PRICING.build.monthly, false)}` : `Pay · ${money(STAGE_PRICING.build.full, false)}`) : isSolutions ? `Pay · ${money(STAGE_PRICING.solutions.monthly, false)}` : `Pay · ${ownPriceText}`)} <ExternalLink size={14} aria-hidden="true" />
+                 {ar ? (isLearn && p.storeUrlOneTime ? `ادفع · ${money(p.oneTimePrice ?? STAGE_PRICING.learn.oneTime, false)} ريال` : isLearn ? `ادفع · ${money(STAGE_PRICING.learn.monthly, false)}` : isBuild ? (p.storeUrl ? `ادفع · ${money(STAGE_PRICING.build.monthly, false)}` : `ادفع · ${money(STAGE_PRICING.build.full, false)}`) : isSolutions ? `ادفع · ${money(STAGE_PRICING.solutions.monthly, false)}` : 'ادفع') : (isLearn && p.storeUrlOneTime ? `Pay · ${money(p.oneTimePrice ?? STAGE_PRICING.learn.oneTime, false)}` : isLearn ? `Pay · ${money(STAGE_PRICING.learn.monthly, false)}` : isBuild ? (p.storeUrl ? `Pay · ${money(STAGE_PRICING.build.monthly, false)}` : `Pay · ${money(STAGE_PRICING.build.full, false)}`) : isSolutions ? `Pay · ${money(STAGE_PRICING.solutions.monthly, false)}` : `Pay · ${ownPriceText}`)} <ExternalLink size={14} aria-hidden="true" />
                </a>
              ) : p.demoUrl ? (
                <a className="button primary sm" href={withUtm(p.demoUrl)}

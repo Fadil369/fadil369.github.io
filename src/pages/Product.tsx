@@ -111,7 +111,7 @@ export default function Product() {
           <p className="product-price">{isBpr
             ? (ar ? `سنوي ${money(STAGE_PRICING.bpr.annual, true)} ر.س · شهري ${money(STAGE_PRICING.bpr.monthly, true)} ر.س للمبتدئين` : `Annual ${money(STAGE_PRICING.bpr.annual, false)} SAR · Junior monthly ${money(STAGE_PRICING.bpr.monthly, false)} SAR`)
             : isLearn
-            ? (p.shopifyUrlOneTime
+            ? (p.storeUrlOneTime
                 ? (ar ? `PDF فردي ${money(p.oneTimePrice ?? STAGE_PRICING.learn.oneTime, true)} · أو ${money(STAGE_PRICING.learn.monthly, true)} ريال/شهر لكل مكتبة LEARN المنشورة حالياً` : `Individual PDF ${money(p.oneTimePrice ?? STAGE_PRICING.learn.oneTime, false)} · or ${money(STAGE_PRICING.learn.monthly, false)} SAR/month for the currently published LEARN library`)
                 : (ar ? `متوفر ضمن اشتراك LEARN — ${money(STAGE_PRICING.learn.monthly, true)} ريال/شهر لعدد ${stats.learn} بطاقة منشورة حالياً` : `Available in LEARN — ${money(STAGE_PRICING.learn.monthly, false)} SAR/month for ${stats.learn} currently published cards`))
             : money(shownPrice, ar) + periodLabel}</p>
@@ -145,9 +145,9 @@ export default function Product() {
                 </ul>
               </div>
             </>
-          ) : p.stage === 'solutions' && (p.shopifyUrlMonthly || p.shopifyUrl) ? (
+          ) : p.stage === 'solutions' && (p.storeUrlMonthly || p.storeUrl) ? (
             <>
-              <a className="button primary lg" href={withUtm(p.shopifyUrlMonthly || GHIO_LINKS.solutionMonthly, { utm_content: p.slug, plan: 'solution-monthly' })}
+              <a className="button primary lg" href={withUtm(p.storeUrlMonthly || GHIO_LINKS.solutionMonthly, { utm_content: p.slug, plan: 'solution-monthly' })}
                    target="_blank" rel="noopener noreferrer" onClick={onBuy}>
                   {ar ? `🚀 اشترك في خطة الحلول الشهرية — ${money(STAGE_PRICING.solutions.monthly, true)} ريال/شهر` : `🚀 Subscribe to Solutions monthly — ${money(STAGE_PRICING.solutions.monthly, false)} SAR/mo`} <ExternalLink size={16} />
               </a>
@@ -185,8 +185,8 @@ export default function Product() {
             </>
           ) : isLearn ? (
             <>
-              {p.shopifyUrlOneTime && (
-                <a className="button primary lg" href={withUtm(p.shopifyUrlOneTime, { utm_content: p.slug, plan: 'learn-one-time' })}
+              {p.storeUrlOneTime && (
+                <a className="button primary lg" href={withUtm(p.storeUrlOneTime, { utm_content: p.slug, plan: 'learn-one-time' })}
                    target="_blank" rel="noopener noreferrer" onClick={onBuy}>
                   {ar ? `اشترِ PDF الآن · ${money(p.oneTimePrice ?? 99, true)}` : `Buy PDF now · ${money(p.oneTimePrice ?? 99, false)}`} <ExternalLink size={16} />
                 </a>
@@ -206,10 +206,10 @@ export default function Product() {
                 </ul>
               </div>
             </>
-          ) : p.shopifyUrl ? (
+          ) : p.storeUrl ? (
             freeForYou ? (
               <>
-                <a className="button primary lg" href={p.shopifyUrl}
+                <a className="button primary lg" href={p.storeUrl}
                    target="_blank" rel="noopener noreferrer" onClick={onFree}>
                   {t('cta.getFree')} <ExternalLink size={16} />
                 </a>
@@ -221,7 +221,7 @@ export default function Product() {
               </>
             ) : (
               <>
-                <a className="button primary lg" href={p.shopifyUrl}
+                <a className="button primary lg" href={p.storeUrl}
                    target="_blank" rel="noopener noreferrer" onClick={onBuy}>
                   {ctaLabel} <ExternalLink size={16} />
                 </a>

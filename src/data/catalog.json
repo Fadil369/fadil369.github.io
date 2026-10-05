@@ -140,15 +140,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/digital-income-strategy-your-three-pathways",
-      "shopifyHandle": "digital-income-strategy-your-three-pathways",
       "sku": "BSP-DIGITAL-INCOME-STRATEGY",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/digital-income-strategy-your-three-pathways/",
-      "storeHandle": "digital-income-strategy-your-three-pathways"
+      "storeHandle": "digital-income-strategy-your-three-pathways",
+      "storeUrlMonthly": null
     },
     {
       "slug": "digital-organization-handbook",
@@ -176,15 +174,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/digital-organization-handbook",
-      "shopifyHandle": "digital-organization-handbook",
       "sku": "BSP-NB-DIGITAL-ORG",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/digital-organization-handbook/",
-      "storeHandle": "digital-organization-handbook"
+      "storeHandle": "digital-organization-handbook",
+      "storeUrlMonthly": null
     },
     {
       "slug": "etimad-digital-governance-blueprint",
@@ -212,15 +208,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/etimad-digital-governance-blueprint",
-      "shopifyHandle": "etimad-digital-governance-blueprint",
       "sku": "BSP-ETIMAD-GOVERNANCE-BP",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/etimad-digital-governance-blueprint/",
-      "storeHandle": "etimad-digital-governance-blueprint"
+      "storeHandle": "etimad-digital-governance-blueprint",
+      "storeUrlMonthly": null
     },
     {
       "slug": "from-mind-to-market",
@@ -248,15 +242,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/from-mind-to-market",
-      "shopifyHandle": "from-mind-to-market",
       "sku": "BSP-MIND-TO-MARKET",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/from-mind-to-market/",
-      "storeHandle": "from-mind-to-market"
+      "storeHandle": "from-mind-to-market",
+      "storeUrlMonthly": null
     },
     {
       "slug": "hyper-scalable-agency-system",
@@ -284,15 +276,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/hyper-scalable-agency-system",
-      "shopifyHandle": "hyper-scalable-agency-system",
       "sku": "BSP-HYPER-SCALABLE-AGENCY",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/hyper-scalable-agency-system/",
-      "storeHandle": "hyper-scalable-agency-system"
+      "storeHandle": "hyper-scalable-agency-system",
+      "storeUrlMonthly": null
     },
     {
       "slug": "one-ecosystem-limitless-intelligence",
@@ -320,15 +310,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/one-ecosystem-limitless-intelligence",
-      "shopifyHandle": "one-ecosystem-limitless-intelligence",
       "sku": "BSP-ONE-ECOSYSTEM",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/one-ecosystem-limitless-intelligence/",
-      "storeHandle": "one-ecosystem-limitless-intelligence"
+      "storeHandle": "one-ecosystem-limitless-intelligence",
+      "storeUrlMonthly": null
     },
     {
       "slug": "private-ai-blueprint",
@@ -356,15 +344,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/private-ai-blueprint",
-      "shopifyHandle": "private-ai-blueprint",
       "sku": "BSP-PRIVATE-AI-BLUEPRINT",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/private-ai-blueprint/",
-      "storeHandle": "private-ai-blueprint"
+      "storeHandle": "private-ai-blueprint",
+      "storeUrlMonthly": null
     },
     {
       "slug": "professional-writing-mastery",
@@ -392,15 +378,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/professional-writing-mastery",
-      "shopifyHandle": "professional-writing-mastery",
       "sku": "BSP-PROF-WRITING-MASTERY",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/professional-writing-mastery/",
-      "storeHandle": "professional-writing-mastery"
+      "storeHandle": "professional-writing-mastery",
+      "storeUrlMonthly": null
     },
     {
       "slug": "solo-ai-business-blueprint",
@@ -428,15 +412,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/solo-ai-business-blueprint",
-      "shopifyHandle": "solo-ai-business-blueprint",
       "sku": "BSP-SOLO-AI-BUSINESS",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/solo-ai-business-blueprint/",
-      "storeHandle": "solo-ai-business-blueprint"
+      "storeHandle": "solo-ai-business-blueprint",
+      "storeUrlMonthly": null
     },
     {
       "slug": "the-ai-skill-economy",
@@ -464,15 +446,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/the-ai-skill-economy",
-      "shopifyHandle": "the-ai-skill-economy",
       "sku": "BSP-AI-SKILL-ECONOMY",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/the-ai-skill-economy/",
-      "storeHandle": "the-ai-skill-economy"
+      "storeHandle": "the-ai-skill-economy",
+      "storeUrlMonthly": null
     },
     {
       "slug": "the-outlier-equation",
@@ -500,15 +480,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/the-outlier-equation",
-      "shopifyHandle": "the-outlier-equation",
       "sku": "BSP-OUTLIER-EQUATION",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/the-outlier-equation/",
-      "storeHandle": "the-outlier-equation"
+      "storeHandle": "the-outlier-equation",
+      "storeUrlMonthly": null
     },
     {
       "slug": "the-ultimate-persistent-ai-agent",
@@ -538,15 +516,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/the-ultimate-persistent-ai-agent",
-      "shopifyHandle": "the-ultimate-persistent-ai-agent",
       "sku": "BSP-PERSISTENT-AI-AGENT-D",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/the-ultimate-persistent-ai-agent/",
-      "storeHandle": "the-ultimate-persistent-ai-agent"
+      "storeHandle": "the-ultimate-persistent-ai-agent",
+      "storeUrlMonthly": null
     },
     {
       "slug": "voice-agent-production-blueprint",
@@ -576,15 +552,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/voice-agent-production-blueprint",
-      "shopifyHandle": "voice-agent-production-blueprint",
       "sku": "BSP-VOICE-AGENT-PRODUCTION",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/voice-agent-production-blueprint/",
-      "storeHandle": "voice-agent-production-blueprint"
+      "storeHandle": "voice-agent-production-blueprint",
+      "storeUrlMonthly": null
     },
     {
       "slug": "apple-ai-anatomy",
@@ -612,15 +586,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/apple-ai-anatomy",
-      "shopifyHandle": "apple-ai-anatomy",
       "sku": "BSP-APPLE-AI-ANATOMY",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/apple-ai-anatomy/",
-      "storeHandle": "apple-ai-anatomy"
+      "storeHandle": "apple-ai-anatomy",
+      "storeUrlMonthly": null
     },
     {
       "slug": "digital-autonomy-blueprint",
@@ -648,15 +620,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/digital-autonomy-blueprint",
-      "shopifyHandle": "digital-autonomy-blueprint",
       "sku": "BSP-DIGITAL-AUTONOMY-BP",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/digital-autonomy-blueprint/",
-      "storeHandle": "digital-autonomy-blueprint"
+      "storeHandle": "digital-autonomy-blueprint",
+      "storeUrlMonthly": null
     },
     {
       "slug": "dom-study-notes",
@@ -684,15 +654,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/dom-study-notes",
-      "shopifyHandle": "dom-study-notes",
       "sku": "BSP-NB-DOM-STUDY-NOTES",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/dom-study-notes/",
-      "storeHandle": "dom-study-notes"
+      "storeHandle": "dom-study-notes",
+      "storeUrlMonthly": null
     },
     {
       "slug": "one-million-rps-achieved",
@@ -720,15 +688,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/one-million-rps-achieved",
-      "shopifyHandle": "one-million-rps-achieved",
       "sku": "BSP-ONE-MILLION-RPS",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/one-million-rps-achieved/",
-      "storeHandle": "one-million-rps-achieved"
+      "storeHandle": "one-million-rps-achieved",
+      "storeUrlMonthly": null
     },
     {
       "slug": "stealth-python-networking",
@@ -756,15 +722,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/stealth-python-networking",
-      "shopifyHandle": "stealth-python-networking",
       "sku": "BSP-STEALTH-PYTHON-NET",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/stealth-python-networking/",
-      "storeHandle": "stealth-python-networking"
+      "storeHandle": "stealth-python-networking",
+      "storeUrlMonthly": null
     },
     {
       "slug": "the-api-blueprint",
@@ -792,15 +756,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/the-api-blueprint",
-      "shopifyHandle": "the-api-blueprint",
       "sku": "BSP-THE-API-BLUEPRINT",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/the-api-blueprint/",
-      "storeHandle": "the-api-blueprint"
+      "storeHandle": "the-api-blueprint",
+      "storeUrlMonthly": null
     },
     {
       "slug": "brainsait-ai-masterclass",
@@ -828,15 +790,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/brainsait-ai-masterclass",
-      "shopifyHandle": "brainsait-ai-masterclass",
       "sku": "BSP-AI-MASTERCLASS",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/brainsait-ai-masterclass/",
-      "storeHandle": "brainsait-ai-masterclass"
+      "storeHandle": "brainsait-ai-masterclass",
+      "storeUrlMonthly": null
     },
     {
       "slug": "brainsait-health-os",
@@ -864,15 +824,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/brainsait-health-os",
-      "shopifyHandle": "brainsait-health-os",
       "sku": "BSP-HEALTH-OS",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/brainsait-health-os/",
-      "storeHandle": "brainsait-health-os"
+      "storeHandle": "brainsait-health-os",
+      "storeUrlMonthly": null
     },
     {
       "slug": "clinical-code",
@@ -900,15 +858,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/clinical-code",
-      "shopifyHandle": "clinical-code",
       "sku": "BSP-CLINICAL-CODE",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/clinical-code/",
-      "storeHandle": "clinical-code"
+      "storeHandle": "clinical-code",
+      "storeUrlMonthly": null
     },
     {
       "slug": "digital-health-bridge",
@@ -936,15 +892,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/digital-health-bridge",
-      "shopifyHandle": "digital-health-bridge",
       "sku": "BSP-DIGITAL-HEALTH-BRIDGE",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/digital-health-bridge/",
-      "storeHandle": "digital-health-bridge"
+      "storeHandle": "digital-health-bridge",
+      "storeUrlMonthly": null
     },
     {
       "slug": "etimad-and-nphies-integration",
@@ -972,15 +926,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/etimad-and-nphies-integration",
-      "shopifyHandle": "etimad-and-nphies-integration",
       "sku": "BSP-ETIMAD-NPHIES",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/etimad-and-nphies-integration/",
-      "storeHandle": "etimad-and-nphies-integration"
+      "storeHandle": "etimad-and-nphies-integration",
+      "storeUrlMonthly": null
     },
     {
       "slug": "leading-joy-in-healthcare",
@@ -1008,15 +960,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/leading-joy-in-healthcare",
-      "shopifyHandle": "leading-joy-in-healthcare",
       "sku": "BSP-LEADING-JOY-HEALTHCARE",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/leading-joy-in-healthcare/",
-      "storeHandle": "leading-joy-in-healthcare"
+      "storeHandle": "leading-joy-in-healthcare",
+      "storeUrlMonthly": null
     },
     {
       "slug": "saudi-health-innovation-guide",
@@ -1044,15 +994,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/saudi-health-innovation-guide",
-      "shopifyHandle": "saudi-health-innovation-guide",
       "sku": "BSP-SAUDI-HEALTH-INNOVATION",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/saudi-health-innovation-guide/",
-      "storeHandle": "saudi-health-innovation-guide"
+      "storeHandle": "saudi-health-innovation-guide",
+      "storeUrlMonthly": null
     },
     {
       "slug": "saudi-health-transformation",
@@ -1080,15 +1028,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/saudi-health-transformation",
-      "shopifyHandle": "saudi-health-transformation",
       "sku": "BSP-NB-SAUDI-HEALTH-TRANSFORM",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/saudi-health-transformation/",
-      "storeHandle": "saudi-health-transformation"
+      "storeHandle": "saudi-health-transformation",
+      "storeUrlMonthly": null
     },
     {
       "slug": "sbs-nphies-integration-blueprint",
@@ -1116,15 +1062,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/sbs-nphies-integration-blueprint",
-      "shopifyHandle": "sbs-nphies-integration-blueprint",
       "sku": "BSP-SBS-NPHIES-BP",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/sbs-nphies-integration-blueprint/",
-      "storeHandle": "sbs-nphies-integration-blueprint"
+      "storeHandle": "sbs-nphies-integration-blueprint",
+      "storeUrlMonthly": null
     },
     {
       "slug": "sdc-fhir-stu-4-notes",
@@ -1152,15 +1096,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/sdc-fhir-stu-4-notes",
-      "shopifyHandle": "sdc-fhir-stu-4-notes",
       "sku": "BSP-SDC-FHIR-STU4",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/sdc-fhir-stu-4-notes/",
-      "storeHandle": "sdc-fhir-stu-4-notes"
+      "storeHandle": "sdc-fhir-stu-4-notes",
+      "storeUrlMonthly": null
     },
     {
       "slug": "the-decentralized-hospital-1",
@@ -1188,15 +1130,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/the-decentralized-hospital",
-      "shopifyHandle": "the-decentralized-hospital",
       "sku": "BSP-DECENTRALIZED-HOSPITAL",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/the-decentralized-hospital-1/",
-      "storeHandle": "the-decentralized-hospital-1"
+      "storeHandle": "the-decentralized-hospital-1",
+      "storeUrlMonthly": null
     },
     {
       "slug": "the-hospital-at-home",
@@ -1224,15 +1164,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/the-hospital-at-home",
-      "shopifyHandle": "the-hospital-at-home",
       "sku": "BSP-HOSPITAL-AT-HOME",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/the-hospital-at-home/",
-      "storeHandle": "the-hospital-at-home"
+      "storeHandle": "the-hospital-at-home",
+      "storeUrlMonthly": null
     },
     {
       "slug": "republic-of-cells-complete-edition",
@@ -1260,15 +1198,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/republic-of-cells",
-      "shopifyHandle": "republic-of-cells",
       "sku": "BSP-REPUBLIC-OF-CELLS",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/republic-of-cells-complete-edition/",
-      "storeHandle": "republic-of-cells-complete-edition"
+      "storeHandle": "republic-of-cells-complete-edition",
+      "storeUrlMonthly": null
     },
     {
       "slug": "digital-healthcare-masterclass",
@@ -1298,15 +1234,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/digital-healthcare-masterclass",
-      "shopifyHandle": "digital-healthcare-masterclass",
       "sku": "BS-LEARN-DIGITAL-HEALTHCARE-M",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/digital-healthcare-masterclass/",
-      "storeHandle": "digital-healthcare-masterclass"
+      "storeHandle": "digital-healthcare-masterclass",
+      "storeUrlMonthly": null
     },
     {
       "slug": "oid-integration-blueprint-developer-guide",
@@ -1337,15 +1271,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/oid-integration-blueprint-developer-guide",
-      "shopifyHandle": "oid-integration-blueprint-developer-guide",
       "sku": "BSP-OID-INTEGRATION-BLUEPRINT",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 182.0,
       "storeUrl": "https://shop.brainsait.de/product/oid-integration-blueprint-developer-guide/",
-      "storeHandle": "oid-integration-blueprint-developer-guide"
+      "storeHandle": "oid-integration-blueprint-developer-guide",
+      "storeUrlMonthly": null
     },
     {
       "slug": "oid-arduino-iot-scanner-hardware-blueprint",
@@ -1395,15 +1327,13 @@
         "flag": null,
         "demoUrl": null,
         "limitedDemo": false,
-        "shopifyUrl": "https://store.brainsait.de/products/build-full-program-ticket",
-        "shopifyHandle": "build-full-program-ticket",
         "sku": "BSP-BUILD-FORGE",
         "available": true,
         "commercial": true,
-        "shopifyUrlMonthly": null,
         "originalPrice": 9630.0,
         "storeUrl": "https://shop.brainsait.de/product/brainsait-incubation-program/",
-        "storeHandle": "brainsait-incubation-program"
+        "storeHandle": "brainsait-incubation-program",
+        "storeUrlMonthly": null
       },
       {
         "slug": "solo-ai-business-workshop",
@@ -1431,15 +1361,13 @@
         "flag": null,
         "demoUrl": null,
         "limitedDemo": false,
-        "shopifyUrl": null,
-        "shopifyHandle": null,
         "sku": "BSP-COURSE-SOLO-AI-001",
         "available": true,
         "commercial": true,
-        "shopifyUrlMonthly": null,
         "originalPrice": 1926.0,
         "storeUrl": "https://shop.brainsait.de/product/solo-ai-business-workshop/",
-        "storeHandle": "solo-ai-business-workshop"
+        "storeHandle": "solo-ai-business-workshop",
+        "storeUrlMonthly": null
       },
       {
         "slug": "from-mind-to-market-guided-build",
@@ -1467,15 +1395,13 @@
         "flag": null,
         "demoUrl": null,
         "limitedDemo": false,
-        "shopifyUrl": null,
-        "shopifyHandle": null,
         "sku": "BSP-COURSE-M2M-002",
         "available": true,
         "commercial": true,
-        "shopifyUrlMonthly": null,
         "originalPrice": 1926.0,
         "storeUrl": "https://shop.brainsait.de/product/from-mind-to-market-guided-build/",
-        "storeHandle": "from-mind-to-market-guided-build"
+        "storeHandle": "from-mind-to-market-guided-build",
+        "storeUrlMonthly": null
       },
       {
         "slug": "the-api-blueprint-hands-on-lab",
@@ -1503,15 +1429,13 @@
         "flag": null,
         "demoUrl": null,
         "limitedDemo": false,
-        "shopifyUrl": null,
-        "shopifyHandle": null,
         "sku": "BSP-COURSE-API-003",
         "available": true,
         "commercial": true,
-        "shopifyUrlMonthly": null,
         "originalPrice": 1926.0,
         "storeUrl": "https://shop.brainsait.de/product/the-api-blueprint-hands-on-lab/",
-        "storeHandle": "the-api-blueprint-hands-on-lab"
+        "storeHandle": "the-api-blueprint-hands-on-lab",
+        "storeUrlMonthly": null
       },
       {
         "slug": "fhir-nphies-hands-on-lab",
@@ -1539,15 +1463,13 @@
         "flag": null,
         "demoUrl": null,
         "limitedDemo": false,
-        "shopifyUrl": null,
-        "shopifyHandle": null,
         "sku": "BSP-COURSE-FHIR-004",
         "available": true,
         "commercial": true,
-        "shopifyUrlMonthly": null,
         "originalPrice": 1926.0,
         "storeUrl": "https://shop.brainsait.de/product/fhir-nphies-hands-on-lab/",
-        "storeHandle": "fhir-nphies-hands-on-lab"
+        "storeHandle": "fhir-nphies-hands-on-lab",
+        "storeUrlMonthly": null
       },
       {
         "slug": "clinical-code-practicum-guide",
@@ -1575,15 +1497,13 @@
         "flag": null,
         "demoUrl": null,
         "limitedDemo": false,
-        "shopifyUrl": null,
-        "shopifyHandle": null,
         "sku": "BSP-GUIDE-CLIN-005",
         "available": true,
         "commercial": true,
-        "shopifyUrlMonthly": null,
         "originalPrice": 1926.0,
         "storeUrl": "https://shop.brainsait.de/product/clinical-code-practicum-guide/",
-        "storeHandle": "clinical-code-practicum-guide"
+        "storeHandle": "clinical-code-practicum-guide",
+        "storeUrlMonthly": null
       }
     ]
   },
@@ -1617,15 +1537,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/solutions-ready-clinic-os",
-      "shopifyHandle": "solutions-ready-clinic-os",
       "sku": "BS-READY-BRAINSAIT-ECAREPLUS-",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 24000.0,
       "storeUrl": "https://shop.brainsait.de/product/brainsait-ecareplus-portal/",
-      "storeHandle": "brainsait-ecareplus-portal"
+      "storeHandle": "brainsait-ecareplus-portal",
+      "storeUrlMonthly": null
     },
     {
       "slug": "nphies-linc",
@@ -1656,15 +1574,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/solutions-ready-nphies-platform",
-      "shopifyHandle": "solutions-ready-nphies-platform",
       "sku": "BS-READY-NPHIES-LINC",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 24000.0,
       "storeUrl": "https://shop.brainsait.de/product/nphies-linc/",
-      "storeHandle": "nphies-linc"
+      "storeHandle": "nphies-linc",
+      "storeUrlMonthly": null
     },
     {
       "slug": "hospital-os-solutions-ready",
@@ -1695,15 +1611,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/solutions-ready-hospital-os",
-      "shopifyHandle": "solutions-ready-hospital-os",
       "sku": "BS-READY-HOSPITAL-OS&#8212;SOLUTI",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 24000.0,
       "storeUrl": "https://shop.brainsait.de/product/hospital-os-solutions-ready/",
-      "storeHandle": "hospital-os-solutions-ready"
+      "storeHandle": "hospital-os-solutions-ready",
+      "storeUrlMonthly": null
     },
     {
       "slug": "cloud-kitchen-solutions-ready",
@@ -1734,15 +1648,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/solutions-ready-cloud-kitchen",
-      "shopifyHandle": "solutions-ready-cloud-kitchen",
       "sku": "BS-READY-CLOUD-KITCHEN&#8212;SOLU",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 24000.0,
       "storeUrl": "https://shop.brainsait.de/product/cloud-kitchen-solutions-ready/",
-      "storeHandle": "cloud-kitchen-solutions-ready"
+      "storeHandle": "cloud-kitchen-solutions-ready",
+      "storeUrlMonthly": null
     },
     {
       "slug": "oid-system-solutions-ready",
@@ -1774,15 +1686,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/solutions-ready-enterprise-deployment-1",
-      "shopifyHandle": "solutions-ready-enterprise-deployment-1",
       "sku": "BS-READY-OID-SYSTEM&#8212;SOLUTIO",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 24000.0,
       "storeUrl": "https://shop.brainsait.de/product/oid-system-solutions-ready/",
-      "storeHandle": "oid-system-solutions-ready"
+      "storeHandle": "oid-system-solutions-ready",
+      "storeUrlMonthly": null
     },
     {
       "slug": "basma-voice-agent-solutions-ready",
@@ -1814,15 +1724,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/solutions-ready-basma-voice",
-      "shopifyHandle": "solutions-ready-basma-voice",
       "sku": "BS-READY-BASMA-VOICE-AGENT&#8212;",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 24000.0,
       "storeUrl": "https://shop.brainsait.de/product/basma-voice-agent-solutions-ready/",
-      "storeHandle": "basma-voice-agent-solutions-ready"
+      "storeHandle": "basma-voice-agent-solutions-ready",
+      "storeUrlMonthly": null
     },
     {
       "name": "CAP-Net | Claim Acceptance Prediction",
@@ -1848,12 +1756,10 @@
     "storeBase": "https://store.brainsait.de",
     "currency": "SAR",
     "checkout": {
-      "cartUrl": "https://daftra.brainsait.org/shop",
-      "learnProductUrl": "https://store.brainsait.de/products/brainsait-learn-digital-access-library-membership",
+      "cartUrl": "https://shop.brainsait.de/cart/",
+      "learnProductUrl": "https://shop.brainsait.de/product/brainsait-learn-digital-access-library-membership/",
       "products_json": "src/data/products.json",
-      "unified_registry": "https://register.brainsait.org",
-      "product_count": {},
-      "updated": "2026-09-09T12:20:15.279Z"
+      "unified_registry": "https://registry.brainsait.de/onboard"
     },
     "product_count": {
       "learn": 35,
@@ -1863,7 +1769,7 @@
       "oid": 8,
       "bpr": 0
     },
-    "updated": "2026-10-05T23:12:42.868887+00:00",
+    "updated": "2026-10-05T23:13:53.341619+00:00",
     "saudiNationalDay2026": {
       "active": true,
       "discountPercent": 23,
@@ -1891,7 +1797,7 @@
     },
     "source": "https://shop.brainsait.de/wp-json/wc/store/v1/products",
     "source_hash": "d62533ec6baf5bdf0d9d3e8574d5f961e3d018700604bed8266273aa3b503a5d",
-    "generated_at": "2026-10-05T23:12:42.868887+00:00"
+    "generated_at": "2026-10-05T23:13:53.341619+00:00"
   },
   "templates": [
     {
@@ -1923,15 +1829,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-knowledge-base",
-      "shopifyHandle": "tpl-knowledge-base",
       "sku": "BSAGT-017",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 1499.0,
       "storeUrl": "https://shop.brainsait.de/product/knowledge-base-research-assistant-agent-enterprise/",
-      "storeHandle": "knowledge-base-research-assistant-agent-enterprise"
+      "storeHandle": "knowledge-base-research-assistant-agent-enterprise",
+      "storeUrlMonthly": null
     },
     {
       "slug": "ai-business-chat-agent-bilingual-en-ar-support",
@@ -1962,15 +1866,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-ai-chat-business",
-      "shopifyHandle": "tpl-ai-chat-business",
       "sku": "BSAGT-002",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 1999.0,
       "storeUrl": "https://shop.brainsait.de/product/ai-business-chat-agent-bilingual-en-ar-support/",
-      "storeHandle": "ai-business-chat-agent-bilingual-en-ar-support"
+      "storeHandle": "ai-business-chat-agent-bilingual-en-ar-support",
+      "storeUrlMonthly": null
     },
     {
       "slug": "ecommerce-ai-chatbot-product-q-a-lead-capture",
@@ -2041,15 +1943,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-helpdesk-faq",
-      "shopifyHandle": "tpl-helpdesk-faq",
       "sku": "BSAGT-010",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 499.0,
       "storeUrl": "https://shop.brainsait.de/product/helpdesk-faq-request-agent-team-autopilot/",
-      "storeHandle": "helpdesk-faq-request-agent-team-autopilot"
+      "storeHandle": "helpdesk-faq-request-agent-team-autopilot",
+      "storeUrlMonthly": null
     },
     {
       "slug": "multi-channel-message-routing-agent-smart-triage",
@@ -2080,15 +1980,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-message-routing",
-      "shopifyHandle": "tpl-message-routing",
       "sku": "BSAGT-015",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 999.0,
       "storeUrl": "https://shop.brainsait.de/product/multi-channel-message-routing-agent-smart-triage/",
-      "storeHandle": "multi-channel-message-routing-agent-smart-triage"
+      "storeHandle": "multi-channel-message-routing-agent-smart-triage",
+      "storeUrlMonthly": null
     },
     {
       "slug": "unified-lead-capture-agent-multi-source-crm-funnel",
@@ -2119,15 +2017,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-unified-lead-capture",
-      "shopifyHandle": "tpl-unified-lead-capture",
       "sku": "BSAGT-001",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 3960.0,
       "storeUrl": "https://shop.brainsait.de/product/unified-lead-capture-agent-multi-source-crm-funnel/",
-      "storeHandle": "unified-lead-capture-agent-multi-source-crm-funnel"
+      "storeHandle": "unified-lead-capture-agent-multi-source-crm-funnel",
+      "storeUrlMonthly": null
     },
     {
       "slug": "employee-onboarding-manager-agent",
@@ -2158,15 +2054,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-employee-onboarding",
-      "shopifyHandle": "tpl-employee-onboarding",
       "sku": "BSAGT-007",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 999.0,
       "storeUrl": "https://shop.brainsait.de/product/employee-onboarding-manager-agent/",
-      "storeHandle": "employee-onboarding-manager-agent"
+      "storeHandle": "employee-onboarding-manager-agent",
+      "storeUrlMonthly": null
     },
     {
       "slug": "sales-opportunity-radar-in-support-tickets",
@@ -2196,15 +2090,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-sales-opps-support",
-      "shopifyHandle": "tpl-sales-opps-support",
       "sku": "BSAGT-011",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 2499.0,
       "storeUrl": "https://shop.brainsait.de/product/sales-opportunity-radar-in-support-tickets/",
-      "storeHandle": "sales-opportunity-radar-in-support-tickets"
+      "storeHandle": "sales-opportunity-radar-in-support-tickets",
+      "storeUrlMonthly": null
     },
     {
       "slug": "ai-lead-enrichment-agent-research-score-new-leads",
@@ -2235,15 +2127,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-lead-enrichment",
-      "shopifyHandle": "tpl-lead-enrichment",
       "sku": "BSAGT-003",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 2999.0,
       "storeUrl": "https://shop.brainsait.de/product/ai-lead-enrichment-agent-research-score-new-leads/",
-      "storeHandle": "ai-lead-enrichment-agent-research-score-new-leads"
+      "storeHandle": "ai-lead-enrichment-agent-research-score-new-leads",
+      "storeUrlMonthly": null
     },
     {
       "slug": "lead-capture-follow-up-agent-forms-to-crm",
@@ -2274,15 +2164,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-lead-capture-followup",
-      "shopifyHandle": "tpl-lead-capture-followup",
       "sku": "BSAGT-005",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 2499.0,
       "storeUrl": "https://shop.brainsait.de/product/lead-capture-follow-up-agent-forms-to-crm/",
-      "storeHandle": "lead-capture-follow-up-agent-forms-to-crm"
+      "storeHandle": "lead-capture-follow-up-agent-forms-to-crm",
+      "storeUrlMonthly": null
     },
     {
       "slug": "company-sourcing-intelligence-agent-60s-reports",
@@ -2313,15 +2201,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-company-sourcing",
-      "shopifyHandle": "tpl-company-sourcing",
       "sku": "BSAGT-016",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 2499.0,
       "storeUrl": "https://shop.brainsait.de/product/company-sourcing-intelligence-agent-60s-reports/",
-      "storeHandle": "company-sourcing-intelligence-agent-60s-reports"
+      "storeHandle": "company-sourcing-intelligence-agent-60s-reports",
+      "storeUrlMonthly": null
     },
     {
       "slug": "viral-content-creation-agent-trends-to-publish",
@@ -2352,15 +2238,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-viral-content",
-      "shopifyHandle": "tpl-viral-content",
       "sku": "BSAGT-022",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 1299.0,
       "storeUrl": "https://shop.brainsait.de/product/viral-content-creation-agent-trends-to-publish/",
-      "storeHandle": "viral-content-creation-agent-trends-to-publish"
+      "storeHandle": "viral-content-creation-agent-trends-to-publish",
+      "storeUrlMonthly": null
     },
     {
       "slug": "marketing-campaign-tracker-agent-weekly-ai-reports",
@@ -2391,15 +2275,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-campaign-tracker",
-      "shopifyHandle": "tpl-campaign-tracker",
       "sku": "BSAGT-008",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 1999.0,
       "storeUrl": "https://shop.brainsait.de/product/marketing-campaign-tracker-agent-weekly-ai-reports/",
-      "storeHandle": "marketing-campaign-tracker-agent-weekly-ai-reports"
+      "storeHandle": "marketing-campaign-tracker-agent-weekly-ai-reports",
+      "storeUrlMonthly": null
     },
     {
       "slug": "youtube-shorts-creator-agent",
@@ -2430,15 +2312,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-youtube-shorts",
-      "shopifyHandle": "tpl-youtube-shorts",
       "sku": "BSAGT-021",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 1299.0,
       "storeUrl": "https://shop.brainsait.de/product/youtube-shorts-creator-agent/",
-      "storeHandle": "youtube-shorts-creator-agent"
+      "storeHandle": "youtube-shorts-creator-agent",
+      "storeUrlMonthly": null
     },
     {
       "slug": "ai-intake-form-fewer-fields-cleaner-data",
@@ -2468,15 +2348,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-ai-form",
-      "shopifyHandle": "tpl-ai-form",
       "sku": "BSAGT-006",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 1499.0,
       "storeUrl": "https://shop.brainsait.de/product/ai-intake-form-fewer-fields-cleaner-data/",
-      "storeHandle": "ai-intake-form-fewer-fields-cleaner-data"
+      "storeHandle": "ai-intake-form-fewer-fields-cleaner-data",
+      "storeUrlMonthly": null
     },
     {
       "slug": "ai-logo-generator-shareable-brand-builder",
@@ -2506,15 +2384,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-logo-generator",
-      "shopifyHandle": "tpl-logo-generator",
       "sku": "BSAGT-014",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 799.0,
       "storeUrl": "https://shop.brainsait.de/product/ai-logo-generator-shareable-brand-builder/",
-      "storeHandle": "ai-logo-generator-shareable-brand-builder"
+      "storeHandle": "ai-logo-generator-shareable-brand-builder",
+      "storeUrlMonthly": null
     },
     {
       "slug": "launch-readiness-report-agent",
@@ -2545,15 +2421,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-launch-readiness",
-      "shopifyHandle": "tpl-launch-readiness",
       "sku": "BSAGT-018",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 999.0,
       "storeUrl": "https://shop.brainsait.de/product/launch-readiness-report-agent/",
-      "storeHandle": "launch-readiness-report-agent"
+      "storeHandle": "launch-readiness-report-agent",
+      "storeUrlMonthly": null
     },
     {
       "slug": "content-repurposing-agent-one-idea-many-channels",
@@ -2584,15 +2458,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-content-repurposing",
-      "shopifyHandle": "tpl-content-repurposing",
       "sku": "BSAGT-020",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 899.0,
       "storeUrl": "https://shop.brainsait.de/product/content-repurposing-agent-one-idea-many-channels/",
-      "storeHandle": "content-repurposing-agent-one-idea-many-channels"
+      "storeHandle": "content-repurposing-agent-one-idea-many-channels",
+      "storeUrlMonthly": null
     },
     {
       "slug": "linkedin-post-scheduler-agent",
@@ -2623,15 +2495,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-linkedin-scheduler",
-      "shopifyHandle": "tpl-linkedin-scheduler",
       "sku": "BSAGT-023",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 699.0,
       "storeUrl": "https://shop.brainsait.de/product/linkedin-post-scheduler-agent/",
-      "storeHandle": "linkedin-post-scheduler-agent"
+      "storeHandle": "linkedin-post-scheduler-agent",
+      "storeUrlMonthly": null
     },
     {
       "slug": "custom-agent-builder-starter-scaffold",
@@ -2662,15 +2532,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-custom-agent-scaffold",
-      "shopifyHandle": "tpl-custom-agent-scaffold",
       "sku": "BSAGT-009",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 1299.0,
       "storeUrl": "https://shop.brainsait.de/product/custom-agent-builder-starter-scaffold/",
-      "storeHandle": "custom-agent-builder-starter-scaffold"
+      "storeHandle": "custom-agent-builder-starter-scaffold",
+      "storeUrlMonthly": null
     }
   ],
   "oid": [
@@ -2702,15 +2570,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/oid-white-label-enterprise",
-      "shopifyHandle": "oid-white-label-enterprise",
       "sku": "BS-OID-OID-WHITE-LABEL-ENTE",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 480000.0,
       "storeUrl": "https://shop.brainsait.de/product/oid-white-label-enterprise/",
-      "storeHandle": "oid-white-label-enterprise"
+      "storeHandle": "oid-white-label-enterprise",
+      "storeUrlMonthly": null
     },
     {
       "slug": "oid-enterprise-namespace-license",
@@ -2740,15 +2606,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/oid-enterprise-namespace-license",
-      "shopifyHandle": "oid-enterprise-namespace-license",
       "sku": "BS-OID-OID-ENTERPRISE-NAMES",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 240000.0,
       "storeUrl": "https://shop.brainsait.de/product/oid-enterprise-namespace-license/",
-      "storeHandle": "oid-enterprise-namespace-license"
+      "storeHandle": "oid-enterprise-namespace-license",
+      "storeUrlMonthly": null
     },
     {
       "slug": "oid-fhir-integration-platform",
@@ -2778,15 +2642,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/oid-fhir-integration-platform",
-      "shopifyHandle": "oid-fhir-integration-platform",
       "sku": "BS-OID-OID-FHIR-INTEGRATION",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 120000.0,
       "storeUrl": "https://shop.brainsait.de/product/oid-fhir-integration-platform/",
-      "storeHandle": "oid-fhir-integration-platform"
+      "storeHandle": "oid-fhir-integration-platform",
+      "storeUrlMonthly": null
     },
     {
       "slug": "nphies-oid-healthcare-identity-bundle",
@@ -2816,15 +2678,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/nphies-oid-healthcare-identity-bundle",
-      "shopifyHandle": "nphies-oid-healthcare-identity-bundle",
       "sku": "BS-OID-NPHIES-OID-HEALTHCAR",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 48000.0,
       "storeUrl": "https://shop.brainsait.de/product/nphies-oid-healthcare-identity-bundle/",
-      "storeHandle": "nphies-oid-healthcare-identity-bundle"
+      "storeHandle": "nphies-oid-healthcare-identity-bundle",
+      "storeUrlMonthly": null
     },
     {
       "slug": "oid-explorer-seat",
@@ -2854,15 +2714,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/oid-explorer-seat",
-      "shopifyHandle": "oid-explorer-seat",
       "sku": "BS-OID-OID-EXPLORER-SEAT",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 24000.0,
       "storeUrl": "https://shop.brainsait.de/product/oid-explorer-seat/",
-      "storeHandle": "oid-explorer-seat"
+      "storeHandle": "oid-explorer-seat",
+      "storeUrlMonthly": null
     },
     {
       "slug": "brainsait-provider-registry-bpr-membership",
@@ -2890,15 +2748,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/provider-registry",
-      "shopifyHandle": "provider-registry",
       "sku": "BS-OID-BRAINSAIT-PROVIDER-R",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 163.0,
       "storeUrl": "https://shop.brainsait.de/product/brainsait-provider-registry-bpr-membership/",
-      "storeHandle": "brainsait-provider-registry-bpr-membership"
+      "storeHandle": "brainsait-provider-registry-bpr-membership",
+      "storeUrlMonthly": null
     },
     {
       "slug": "oid-verification-badge",
@@ -2928,15 +2784,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/oid-verification-badge",
-      "shopifyHandle": "oid-verification-badge",
       "sku": "BS-OID-OID-VERIFICATION-BAD",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 990.0,
       "storeUrl": "https://shop.brainsait.de/product/oid-verification-badge/",
-      "storeHandle": "oid-verification-badge"
+      "storeHandle": "oid-verification-badge",
+      "storeUrlMonthly": null
     },
     {
       "slug": "brainsait-oid-identity",
@@ -2966,15 +2820,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/oid-identity",
-      "shopifyHandle": "oid-identity",
       "sku": "BS-OID-BRAINSAIT-OID-IDENTI",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 499.0,
       "storeUrl": "https://shop.brainsait.de/product/brainsait-oid-identity/",
-      "storeHandle": "brainsait-oid-identity"
+      "storeHandle": "brainsait-oid-identity",
+      "storeUrlMonthly": null
     }
   ]
 }

@@ -34,12 +34,12 @@ export interface Product {
   /** Commercial classification: 'product' (Store buy) | 'demo' (Solutions Lab) | 'service' (consulting) */
   commercial?: 'product' | 'demo' | 'service' | 'saas';
   /** Live Shopify product page — payment completes there via PayPal. For solutions: the one-time "pre-built / ready" purchase. */
-  shopifyUrl?: string | null;
+  storeUrl?: string | null;
   /** Solutions monthly plan (Super Partner program) — recurring subscription purchase. */
-  shopifyUrlMonthly?: string | null;
+  storeUrlMonthly?: string | null;
   /** LEARN book one-time purchase (individual ebook/novel, instant R2 download). */
-  shopifyUrlOneTime?: string | null;
-  shopifyHandle?: string | null;
+  storeUrlOneTime?: string | null;
+  storeHandle?: string | null;
   sku?: string | null;
   available?: boolean;
 }
@@ -75,7 +75,7 @@ export interface Program {
   standardPrice?: number;
   offerPrice?: number;
   offerEnds?: string;
-  shopifyUrl?: string;
+  storeUrl?: string;
   billingEn?: string; billingAr?: string;
   tagline?: string; taglineAr?: string;
   description?: string; descriptionAr?: string;
