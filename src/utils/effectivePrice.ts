@@ -1,5 +1,5 @@
 export interface Priced {
-  price: number;
+  price?: number | null;
   offerPrice?: number | null;
   offerLabel?: string | null;
   offerUntil?: string | null;
@@ -25,6 +25,7 @@ export function fromHalala(minor: string | number | null | undefined): number {
 
 export function effectivePrice(item: Priced, today?: string): EffectivePrice {
   const now = today ?? new Date().toISOString().slice(0, 10);
+  const base = typeof item.price === 'number' && Number.isFinite(item.price) ? item.price : 0;
   const offer = item.offerPrice;
   const until = item.offerUntil;
 
@@ -32,7 +33,7 @@ export function effectivePrice(item: Priced, today?: string): EffectivePrice {
     typeof offer === 'number' &&
     Number.isFinite(offer) &&
     offer > 0 &&
-    offer < item.price &&
+    offer < base &&
     typeof until === 'string' &&
     ISO_DATE.test(until) &&
     until >= now;
@@ -40,7 +41,7 @@ export function effectivePrice(item: Priced, today?: string): EffectivePrice {
   if (usable) {
     return {
       current: offer,
-      was: item.price,
+      was: base,
       badge: item.offerLabel ?? null,
       expired: false,
       free: false,
@@ -51,7 +52,7 @@ export function effectivePrice(item: Priced, today?: string): EffectivePrice {
     typeof offer === 'number' && Number.isFinite(offer) && offer > 0;
 
   return {
-    current: item.price,
+    current: base,
     was: null,
     badge: null,
     expired: hadOffer && Boolean(until),

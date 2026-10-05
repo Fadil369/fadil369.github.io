@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ExternalLink, ShieldCheck, Lock, MessageCircle } from 'lucide-react';
 import data from '../data/catalogLive';
-import type { Catalog, Product as P } from '../types';
+import type { Catalog, Product as P, StagePricing } from '../types';
 import { useI18n, money } from '../i18n';
 import { track, trackViewItem } from '../analytics';
 import { useAccountHolder } from '../hooks/useAccountHolder';
@@ -10,8 +10,10 @@ import { usePageMeta } from '../hooks/usePageMeta';
 import { getCatalogStats } from '../lib/catalogStats';
 import { GHIO_LINKS, withUtm } from '../lib/shopifyRouting';
 import { CALENDAR_URL } from '../config/build';
+import { effectivePrice } from '../utils/effectivePrice';
 
 const cat = data as unknown as Catalog;
+const STAGE_PRICING = cat.meta.pricing as StagePricing;
 const ALL: P[] = [...cat.learn, ...cat.solutions, ...cat.build.courses, ...cat.templates, ...(cat.oid ?? [])];
 
 function formatFormats(product: P, ar: boolean) {
@@ -76,7 +78,7 @@ export default function Product() {
   const name = ar ? p.nameAr || p.name : p.name;
   const desc = ar ? p.descriptionAr || p.description : p.description;
   const freeForYou = accountHolder === true;
-  const shownPrice = freeForYou ? 0 : p.price;
+  const shownPrice = freeForYou ? 0 : effectivePrice(p).current;
   const isMonthly = (p.billingEn || '').toLowerCase() === 'monthly';
   const isAvailable = p.available !== false;
   const isLearn = p.stage === 'learn';
@@ -107,11 +109,11 @@ export default function Product() {
           {desc && <p className="lede">{desc}</p>}
 
           <p className="product-price">{isBpr
-            ? (ar ? 'سنوي 3,960 ر.س · شهري 163 ر.س للمبتدئين' : 'Annual 3,960 SAR · Junior monthly 163 SAR')
+            ? (ar ? `سنوي ${money(STAGE_PRICING.bpr.annual, true)} ر.س · شهري ${money(STAGE_PRICING.bpr.monthly, true)} ر.س للمبتدئين` : `Annual ${money(STAGE_PRICING.bpr.annual, false)} SAR · Junior monthly ${money(STAGE_PRICING.bpr.monthly, false)} SAR`)
             : isLearn
             ? (p.shopifyUrlOneTime
-                ? (ar ? `PDF فردي ${money(p.oneTimePrice ?? 99, true)} · أو 182 ريال/شهر لكل مكتبة LEARN المنشورة حالياً` : `Individual PDF ${money(p.oneTimePrice ?? 99, false)} · or 182 SAR/month for the currently published LEARN library`)
-                : (ar ? `متوفر ضمن اشتراك LEARN — 182 ريال/شهر لعدد ${stats.learn} بطاقة منشورة حالياً` : `Available in LEARN — 182 SAR/month for ${stats.learn} currently published cards`))
+                ? (ar ? `PDF فردي ${money(p.oneTimePrice ?? STAGE_PRICING.learn.oneTime, true)} · أو ${money(STAGE_PRICING.learn.monthly, true)} ريال/شهر لكل مكتبة LEARN المنشورة حالياً` : `Individual PDF ${money(p.oneTimePrice ?? STAGE_PRICING.learn.oneTime, false)} · or ${money(STAGE_PRICING.learn.monthly, false)} SAR/month for the currently published LEARN library`)
+                : (ar ? `متوفر ضمن اشتراك LEARN — ${money(STAGE_PRICING.learn.monthly, true)} ريال/شهر لعدد ${stats.learn} بطاقة منشورة حالياً` : `Available in LEARN — ${money(STAGE_PRICING.learn.monthly, false)} SAR/month for ${stats.learn} currently published cards`))
             : money(shownPrice, ar) + periodLabel}</p>
 
           {!isAvailable ? (
@@ -120,11 +122,11 @@ export default function Product() {
             <>
               <a className="button primary lg" href={withUtm(GHIO_LINKS.bpr, { utm_content: p.slug, plan: 'bpr-annual' })}
                    target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                  {ar ? 'ابدأ بالخطة السنوية — 3,960 ريال' : 'Start annual membership — 3,960 SAR'} <ExternalLink size={16} />
+                  {ar ? `ابدأ بالخطة السنوية — ${money(STAGE_PRICING.bpr.annual, true)} ريال` : `Start annual membership — ${money(STAGE_PRICING.bpr.annual, false)} SAR`} <ExternalLink size={16} />
               </a>
               <a className="button secondary lg demo-alt" href={withUtm(GHIO_LINKS.bpr, { utm_content: p.slug, plan: 'bpr-monthly' })}
                  target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                {ar ? 'الخطة الشهرية للمبتدئين — 163 ريال' : 'Junior monthly membership — 163 SAR'} <ExternalLink size={16} />
+                {ar ? `الخطة الشهرية للمبتدئين — ${money(STAGE_PRICING.bpr.monthly, true)} ريال` : `Junior monthly membership — ${money(STAGE_PRICING.bpr.monthly, false)} SAR`} <ExternalLink size={16} />
               </a>
               {p.demoUrl && (
                 <a className="button secondary lg demo-alt" href={p.demoUrl}
@@ -147,11 +149,11 @@ export default function Product() {
             <>
               <a className="button primary lg" href={withUtm(p.shopifyUrlMonthly || GHIO_LINKS.solutionMonthly, { utm_content: p.slug, plan: 'solution-monthly' })}
                    target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                  {ar ? '🚀 اشترك في خطة الحلول الشهرية — 1,999 ريال/شهر' : '🚀 Subscribe to Solutions monthly — 1,999 SAR/mo'} <ExternalLink size={16} />
+                  {ar ? `🚀 اشترك في خطة الحلول الشهرية — ${money(STAGE_PRICING.solutions.monthly, true)} ريال/شهر` : `🚀 Subscribe to Solutions monthly — ${money(STAGE_PRICING.solutions.monthly, false)} SAR/mo`} <ExternalLink size={16} />
               </a>
               <a className="button secondary lg" href={withUtm(GHIO_LINKS.solutionReadyProduct, { utm_content: p.slug, plan: 'solution-ready' })}
                    target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                  {ar ? '⚡ حل جاهز — دفعة واحدة 24,000 ريال' : '⚡ Pre-built solution — one-time 24,000 SAR'}
+                  {ar ? `⚡ حل جاهز — دفعة واحدة ${money(STAGE_PRICING.solutions.ready, true)} ريال` : `⚡ Pre-built solution — one-time ${money(STAGE_PRICING.solutions.ready, false)} SAR`}
                   <ExternalLink size={16} />
               </a>
               {p.demoUrl && (
@@ -170,8 +172,8 @@ export default function Product() {
                 <strong>{ar ? 'ماذا بعد الدفع؟ — Solutions' : 'What happens after payment? — Solutions'}</strong>
                 <ul style={{ margin: '6px 0 0', paddingInlineStart: '1.2rem' }}>
                   <li>{ar ? 'إيميل شكراً + ترحيبي مخصص بالخطة (شهري أو جاهز) + تتبع عبر Hub' : 'Thank-you + tailored welcome email (monthly or pre-built) + Hub tracking'}</li>
-                  <li>{ar ? 'شهري 1,999 ر.س: رابط Learn خاص + كل صفحات Build (Notion + العقل الثاني) + بوت تليجرام + وصول Super-Partner إلى Lark — حضانة شركة خطوة بخطوة حتى التسويق والتخرج والشهادة' : 'Monthly 1,999 SAR: private Learn link + all Build pages (Notion + 2nd Brain) + Telegram bot + Super-Partner Lark — incubated step-by-step to launch, marketing & badge'}</li>
-                  <li>{ar ? 'جاهز 24,000 ر.س لمرة واحدة: رابط Google Calendar فوري لحجز جلسة + استبيان متطلبات آمن للبنية والمجال والاستضافة وتسليم الكود المصدري كحزمة' : 'Pre-built 24k one-time: instant Google Calendar link to book a session + secure requirements intake for infra/domain/hosting & source code as packaged solution'}</li>
+                  <li>{ar ? `شهري ${money(STAGE_PRICING.solutions.monthly, true)} ر.س: رابط Learn خاص + كل صفحات Build (Notion + العقل الثاني) + بوت تليجرام + وصول Super-Partner إلى Lark — حضانة شركة خطوة بخطوة حتى التسويق والتخرج والشهادة` : `Monthly ${money(STAGE_PRICING.solutions.monthly, false)} SAR: private Learn link + all Build pages (Notion + 2nd Brain) + Telegram bot + Super-Partner Lark — incubated step-by-step to launch, marketing & badge`}</li>
+                  <li>{ar ? `جاهز ${money(STAGE_PRICING.solutions.ready, true)} ر.س لمرة واحدة: رابط Google Calendar فوري لحجز جلسة + استبيان متطلبات آمن للبنية والمجال والاستضافة وتسليم الكود المصدري كحزمة` : `Pre-built ${money(STAGE_PRICING.solutions.ready, false)} SAR one-time: instant Google Calendar link to book a session + secure requirements intake for infra/domain/hosting & source code as packaged solution`}</li>
                   <li>
                     {ar ? 'وصول منصة الكود مضمون في الخطتين: ' : 'Code platform access is included in both plans: '}
                     <a href="https://code.brainsait.org" target="_blank" rel="noopener noreferrer">code.brainsait.org</a>
@@ -191,7 +193,7 @@ export default function Product() {
               )}
               <a className="button secondary lg demo-alt" href={withUtm(GHIO_LINKS.learnMonthly, { utm_content: p.slug, plan: 'learn-monthly' })}
                  target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                {ar ? 'افتح كل الكتب · 182 ريال/شهر' : 'Unlock all books · 182 SAR/month'} <ExternalLink size={16} />
+                {ar ? `افتح كل الكتب · ${money(STAGE_PRICING.learn.monthly, true)} ريال/شهر` : `Unlock all books · ${money(STAGE_PRICING.learn.monthly, false)} SAR/month`} <ExternalLink size={16} />
               </a>
               <p className="fineprint"><ShieldCheck size={14} /> {ar ? 'تحميل PDF فوري للشراء الفردي، أو رابط واحد للوصول إلى المكتبة كاملة.' : 'Instant PDF delivery for one-time purchases, or one link for the complete library.'}</p>
               <div className="glass" style={{ padding: '12px 16px', borderRadius: 12, marginTop: 12, fontSize: '0.9rem', lineHeight: 1.6 }}>
@@ -275,7 +277,7 @@ export default function Product() {
           <section className="book-section reveal" style={{ marginTop: 18 }}>
             <div className="section-head">
               <h2>{ar ? 'استبيان الحل الجاهز — سلم متطلباتك' : 'Pre-built Solution Form — Submit your requirements'}</h2>
-              <span className="book-note">{ar ? 'بعد دفع 24,000 ر.س، يصلك رابط الاستبيان الآمن مع حجز الجلسة لتسليم تفاصيل البنية، المجال، الاستضافة والحزمة المطلوبة.' : 'After 24k payment, you receive the secure intake form with the booking flow for infra, domain, hosting, and package details.'}</span>
+              <span className="book-note">{ar ? `بعد دفع ${money(STAGE_PRICING.solutions.ready, true)} ر.س، يصلك رابط الاستبيان الآمن مع حجز الجلسة لتسليم تفاصيل البنية، المجال، الاستضافة والحزمة المطلوبة.` : `After paying ${money(STAGE_PRICING.solutions.ready, false)} SAR, you receive the secure intake form with the booking flow for infra, domain, hosting, and package details.`}</span>
             </div>
             <div className="glass" style={{ padding: 18, borderRadius: 14 }}>
               <p style={{ margin: '0 0 12px', color: 'var(--ink-soft)' }}>

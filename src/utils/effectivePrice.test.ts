@@ -116,3 +116,26 @@ test('a malformed non-object item is never buyable', () => {
   assert.equal(isBuyable('nope'), false);
   assert.equal(isBuyable(undefined), false);
 });
+
+test('a missing catalog price renders zero rather than NaN', () => {
+  assert.deepEqual(effectivePrice({}, TODAY), {
+    current: 0,
+    was: null,
+    badge: null,
+    expired: false,
+    free: false,
+  });
+  assert.deepEqual(effectivePrice({ price: null }, TODAY), {
+    current: 0,
+    was: null,
+    badge: null,
+    expired: false,
+    free: false,
+  });
+});
+
+test('an offer is never shown against a missing base price', () => {
+  const r = effectivePrice({ offerPrice: 100, offerUntil: '2026-12-01' }, TODAY);
+  assert.equal(r.current, 0);
+  assert.equal(r.was, null);
+});

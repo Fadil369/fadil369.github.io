@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
 import { BadgeCheck, CreditCard, ExternalLink, Info, MonitorPlay, Star } from 'lucide-react';
-import type { Product } from '../types';
+import type { Product, StagePricing } from '../types';
 import { useI18n, money } from '../i18n';
 import { track } from '../analytics';
 import { useAccountHolder } from '../hooks/useAccountHolder';
 import { GHIO_LINKS, withUtm } from '../lib/shopifyRouting';
+import catalog from '../data/catalogLive';
+import { effectivePrice, isBuyable } from '../utils/effectivePrice';
+
+/** Stage-level price points. Single source: catalog.meta.pricing. */
+const STAGE_PRICING = catalog.meta.pricing as StagePricing;
 
 /** Derive a small format/type chip from the product name (bilingual). */
 function formatLabel(name: string, ar: boolean): string | null {
@@ -65,7 +70,7 @@ export default function ProductCard({ p }: { p: Product }) {
 
   // Determine payment URL based on product tier
   // Items unpublished/removed from the store (available === false) never get a buy link.
-  const isUnavailable = p.available === false;
+  const isUnavailable = !isBuyable(p);
   const isPayable = !isUnavailable && Boolean(p.shopifyUrl || isLearn || isBuild || isSolutions || isBpr);
   
   const paymentUrl = isBpr
@@ -84,18 +89,22 @@ export default function ProductCard({ p }: { p: Product }) {
   // Learn more / detail page URL
   const detailUrl = `/products/${p.slug}`;
 
-// Format price display
+// Format price display. Per-product pricing is fail-closed via effectivePrice;
+  // stage-level price points come from catalog.meta.pricing.
+  const own = effectivePrice(p);
   const priceDisplay = isBpr
-    ? (ar ? 'سنوي 3,960 · شهري 163' : 'Annual 3,960 · Monthly 163')
+    ? (ar ? `سنوي ${money(STAGE_PRICING.bpr.annual, false)} · شهري ${money(STAGE_PRICING.bpr.monthly, false)}` : `Annual ${money(STAGE_PRICING.bpr.annual, false)} · Monthly ${money(STAGE_PRICING.bpr.monthly, false)}`)
     : isLearn
       ? (p.shopifyUrlOneTime
-          ? (ar ? `فردي ${money(p.oneTimePrice ?? 99, false)} ريال · أو 182 ريال/شهر للمكتبة` : `One-time ${p.oneTimePrice ?? 99} SAR · or 182 SAR/mo for full library`)
-          : (ar ? '182 ريال/شهر — كامل المكتبة' : '182 SAR/mo — Full library'))
+          ? (ar ? `فردي ${money(p.oneTimePrice ?? STAGE_PRICING.learn.oneTime, false)} ريال · أو ${money(STAGE_PRICING.learn.monthly, false)} ريال/شهر للمكتبة` : `One-time ${money(p.oneTimePrice ?? STAGE_PRICING.learn.oneTime, false)} SAR · or ${money(STAGE_PRICING.learn.monthly, false)} SAR/mo for full library`)
+          : (ar ? `${money(STAGE_PRICING.learn.monthly, false)} ريال/شهر — كامل المكتبة` : `${money(STAGE_PRICING.learn.monthly, false)} SAR/mo — Full library`))
       : isBuild
-        ? (ar ? 'شهري 499 ريال · أو 9,630 كامل' : 'Monthly 499 SAR · or 9,630 full')
+        ? (ar ? `شهري ${money(STAGE_PRICING.build.monthly, false)} ريال · أو ${money(STAGE_PRICING.build.full, false)} كامل` : `Monthly ${money(STAGE_PRICING.build.monthly, false)} SAR · or ${money(STAGE_PRICING.build.full, false)} full`)
         : isSolutions
-          ? (ar ? 'شهري 1,999 · جاهز 24,000' : 'Monthly 1,999 · Ready 24k')
-          : money(freeForYou ? 0 : (p.price ?? 0), ar) + (isMonthly && !isLearn ? (ar ? '/شهر' : '/mo') : '');
+          ? (ar ? `شهري ${money(STAGE_PRICING.solutions.monthly, false)} · جاهز ${money(STAGE_PRICING.solutions.ready, false)}` : `Monthly ${money(STAGE_PRICING.solutions.monthly, false)} · Ready ${money(STAGE_PRICING.solutions.ready, false)}`)
+          : money(freeForYou ? 0 : own.current, ar) + (isMonthly && !isLearn ? (ar ? '/شهر' : '/mo') : '');
+
+  const ownPriceText = money(freeForYou ? 0 : own.current, false);
 
   return (
     <article className="pcard">
@@ -154,7 +163,7 @@ export default function ProductCard({ p }: { p: Product }) {
              ) : isPayable ? (
                <a className="button primary sm" href={withUtm(paymentUrl, { utm_content: p.slug, plan: isLearn ? (p.shopifyUrlOneTime ? 'learn-one-time' : 'learn-monthly') : isBuild ? (p.shopifyUrl ? 'build-monthly' : 'build-ticket') : isSolutions ? 'solution-monthly' : '' })}
                   target="_blank" rel="noopener noreferrer" onClick={onBuy}>
-                 {ar ? (isLearn && p.shopifyUrlOneTime ? `ادفع · ${(p.oneTimePrice ?? 99)} ريال` : isLearn ? 'ادفع · 182' : isBuild ? (p.shopifyUrl ? 'ادفع · 499' : 'ادفع · 9,630') : isSolutions ? 'ادفع · 1,999' : 'ادفع') : (isLearn && p.shopifyUrlOneTime ? `Pay · ${(p.oneTimePrice ?? 99)}` : isLearn ? 'Pay · 182' : isBuild ? (p.shopifyUrl ? 'Pay · 499' : 'Pay · 9,630') : isSolutions ? 'Pay · 1,999' : 'Pay')} <ExternalLink size={14} aria-hidden="true" />
+                 {ar ? (isLearn && p.shopifyUrlOneTime ? `ادفع · ${money(p.oneTimePrice ?? STAGE_PRICING.learn.oneTime, false)} ريال` : isLearn ? `ادفع · ${money(STAGE_PRICING.learn.monthly, false)}` : isBuild ? (p.shopifyUrl ? `ادفع · ${money(STAGE_PRICING.build.monthly, false)}` : `ادفع · ${money(STAGE_PRICING.build.full, false)}`) : isSolutions ? `ادفع · ${money(STAGE_PRICING.solutions.monthly, false)}` : 'ادفع') : (isLearn && p.shopifyUrlOneTime ? `Pay · ${money(p.oneTimePrice ?? STAGE_PRICING.learn.oneTime, false)}` : isLearn ? `Pay · ${money(STAGE_PRICING.learn.monthly, false)}` : isBuild ? (p.shopifyUrl ? `Pay · ${money(STAGE_PRICING.build.monthly, false)}` : `Pay · ${money(STAGE_PRICING.build.full, false)}`) : isSolutions ? `Pay · ${money(STAGE_PRICING.solutions.monthly, false)}` : `Pay · ${ownPriceText}`)} <ExternalLink size={14} aria-hidden="true" />
                </a>
              ) : p.demoUrl ? (
                <a className="button primary sm" href={withUtm(p.demoUrl)}
@@ -186,7 +195,7 @@ export default function ProductCard({ p }: { p: Product }) {
             <a className="button tertiary sm" href={withUtm(readyPaymentUrl, { utm_content: p.slug, plan: 'solution-ready' })}
                target="_blank" rel="noopener noreferrer" onClick={onBuy}
                style={{ marginTop: 4, fontSize: 12, padding: '6px 10px' }}>
-              {ar ? 'جاهز · 24,000' : 'Ready · 24k'} <ExternalLink size={12} aria-hidden="true" />
+              {ar ? `جاهز · ${money(STAGE_PRICING.solutions.ready, false)}` : `Ready · ${money(STAGE_PRICING.solutions.ready, false)}`} <ExternalLink size={12} aria-hidden="true" />
             </a>
           )}
 

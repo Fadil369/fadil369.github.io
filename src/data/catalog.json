@@ -1927,6 +1927,26 @@
       "active": true,
       "discountPercent": 23,
       "until": "2026-09-30"
+    },
+    "pricing": {
+      "bpr": {
+        "annual": 3960,
+        "monthly": 163
+      },
+      "learn": {
+        "oneTime": 99,
+        "monthly": 182
+      },
+      "build": {
+        "monthly": 499,
+        "full": 9630
+      },
+      "solutions": {
+        "monthly": 1999,
+        "ready": 24000
+      },
+      "currency": "SAR",
+      "source": "moved verbatim out of ProductCard.tsx and Product.tsx on 2026-10-05 so the UI has one price source"
     }
   },
   "templates": [

@@ -91,6 +91,15 @@ export interface StageDef {
 }
 export interface SubDef { id: string; en: string; ar: string; }
 
+export interface StagePricing {
+  bpr: { annual: number; monthly: number };
+  learn: { oneTime: number; monthly: number };
+  build: { monthly: number; full: number };
+  solutions: { monthly: number; ready: number };
+  currency: string;
+  source: string;
+}
+
 export interface Catalog {
   stages: StageDef[];
   subcategories: SubDef[];
@@ -99,5 +108,5 @@ export interface Catalog {
   solutions: Product[];
   templates: Product[];
   oid?: Product[];
-  meta: { storeBase: string; currency: string; checkout: string };
+  meta: { storeBase: string; currency: string; checkout: string; pricing?: StagePricing };
 }
