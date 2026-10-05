@@ -1770,7 +1770,7 @@
       "oid": 8,
       "bpr": 0
     },
-    "updated": "2026-10-05T23:48:18.790930+00:00",
+    "updated": "2026-10-05T23:53:19.279453+00:00",
     "saudiNationalDay2026": {
       "active": true,
       "discountPercent": 23,
@@ -1798,7 +1798,7 @@
     },
     "source": "https://shop.brainsait.de/wp-json/wc/store/v1/products",
     "source_hash": "d62533ec6baf5bdf0d9d3e8574d5f961e3d018700604bed8266273aa3b503a5d",
-    "generated_at": "2026-10-05T23:48:18.790930+00:00"
+    "generated_at": "2026-10-05T23:53:19.279453+00:00"
   },
   "templates": [
     {
@@ -1876,11 +1876,11 @@
       "storeUrlMonthly": null
     },
     {
-      "slug": "ecommerce-ai-chatbot-product-q-a-lead-capture",
+      "slug": "ecommerce-ai-chatbot-product-qa-lead-capture",
       "stage": "templates",
-      "name": "Ecommerce AI Chatbot — Product Q&A & Lead Capture",
+      "name": "Ecommerce AI Chatbot — Product Q&amp;A &amp; Lead Capture",
       "nameAr": "روبوت محادثة التجارة الإلكترونية — أسئلة المنتجات وتقاط العملاء",
-      "category": "AGENT TEMPLATES",
+      "category": "Templates",
       "categoryAr": "",
       "sub": "agency_owner",
       "tier": "standalone",
@@ -1888,7 +1888,7 @@
       "taglineAr": "أسئلة المنتجات والطلبات والمقاسات والشحن — يجيب عنها الذكاء الاصطناعي في متجرك.",
       "description": "Product questions, orders, sizes, shipping — answered by AI on your store. Knows every product in your catalog: prices, stock, variants EN/AR with RTL; captures lead emails from chat Our own store runs one — see it live on store.brainsait.de",
       "descriptionAr": "أسئلة المنتجات والطلبات والمقاسات والشحن — يجيب عنها الذكاء الاصطناعي في متجرك. يعرف كل منتجاتك: الأسعار والمخزون والنسخ عربي وإنجليزي مع RTL؛ يلتقط بريد الزوار من المحادثة متجرنا يركّب واحدًا — رآه حيًا على store.brainsait.de",
-      "price": 1154.23,
+      "price": 1499.0,
       "image": "",
       "badges": [
         "Bilingual"
@@ -1903,17 +1903,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "shopifyUrl": "https://store.brainsait.de/products/tpl-ecommerce-chatbot",
-      "shopifyHandle": "tpl-ecommerce-chatbot",
-      "sku": "BSAGT-004",
+      "sku": "BS-TEM-0256",
       "available": true,
       "commercial": true,
-      "shopifyUrlMonthly": null,
       "originalPrice": 1499.0,
-      "offerPrice": 1154.23,
-      "offerLabelEn": "Saudi National Day 2026 — 23% off",
-      "offerLabelAr": "عرض اليوم الوطني ٢٠٢٦ — خصم ٢٣٪",
-      "offerUntil": "2026-09-30"
+      "storeHandle": "ecommerce-ai-chatbot-product-qa-lead-capture",
+      "storeUrlMonthly": null,
+      "storeUrl": "https://shop.brainsait.de/product/ecommerce-ai-chatbot-product-qa-lead-capture/"
     },
     {
       "slug": "helpdesk-faq-request-agent-team-autopilot",

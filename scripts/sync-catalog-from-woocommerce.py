@@ -89,6 +89,11 @@ def file_hash(path):
     return hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()
 
 
+def handle_index(products):
+    """WooCommerce slug -> product, for matching editorial entries to commerce."""
+    return {p["slug"]: p for p in products}
+
+
 def stage_index(catalog):
     index = {}
     for stage in ("learn", "solutions", "templates", "oid"):
@@ -177,7 +182,19 @@ def main():
 
     wc_slugs = {p["slug"] for p in products}
     unmapped = sorted(wc_slugs - set(stages))
-    catalog_only = sorted(set(stages) - wc_slugs)
+    # An editorial entry is accounted for when its commerce handle exists in the
+    # store, even if the editorial slug differs from the store slug.
+    accounted = set(stages) | {
+        item.get("storeHandle")
+        for stage in ("learn", "solutions", "templates", "oid")
+        for item in (catalog.get(stage) or [])
+        if isinstance(item, dict) and item.get("storeHandle")
+    } | {
+        item.get("storeHandle")
+        for item in (catalog.get("build") or {}).get("courses") or []
+        if isinstance(item, dict) and item.get("storeHandle")
+    }
+    catalog_only = sorted(h for h in accounted if h and h not in wc_slugs)
     malformed = [
         i
         for i in (catalog.get("solutions") or [])
@@ -221,6 +238,7 @@ def main():
         if isinstance(item, dict) and item.get("slug"):
             existing_by_slug[item["slug"]] = item
 
+    by_handle = handle_index(products)
     counts = collections.Counter()
     for stage in ("learn", "solutions", "templates", "oid"):
         rebuilt = []
@@ -228,7 +246,8 @@ def main():
             if not isinstance(item, dict) or not item.get("slug"):
                 rebuilt.append(item)
                 continue
-            fresh = next((p for p in products if p["slug"] == item["slug"]), None)
+            handle = item.get("storeHandle") or item.get("slug")
+            fresh = by_handle.get(handle)
             if fresh is None:
                 rebuilt.append(item)
                 counts[f"{stage}:absent"] += 1
@@ -244,7 +263,8 @@ def main():
         if not isinstance(item, dict) or not item.get("slug"):
             courses.append(item)
             continue
-        fresh = next((p for p in products if p["slug"] == item["slug"]), None)
+        handle = item.get("storeHandle") or item.get("slug")
+        fresh = by_handle.get(handle)
         if fresh is None:
             courses.append(item)
             continue
