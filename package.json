@@ -3,7 +3,7 @@
   "private": true,
   "version": "2.0.0",
   "type": "module",
-  "description": "BrainSAIT Store \u2014 Learn \u00b7 Build \u00b7 Solutions (AR/EN)",
+  "description": "BrainSAIT Store — Learn · Build · Solutions (AR/EN)",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -20,6 +20,7 @@
     "react-router-dom": "^6.30.6"
   },
   "devDependencies": {
+    "@types/node": "^26.6.4",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.7.0",
