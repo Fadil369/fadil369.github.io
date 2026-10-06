@@ -216,7 +216,8 @@ def main():
     if unmapped:
         print(
             f"\nUNMAPPED {len(unmapped)} WooCommerce product(s) have no editorial stage.\n"
-            "They are NOT written. Assign a stage for each, or drop them from the store.",
+            "They are written to the store catalogue, NOT to a stage: presenting them\n"
+            "honestly is better than inventing taxonomy. Assign a stage to graduate one.",
             file=sys.stderr,
         )
     if args.dry_run:
@@ -284,6 +285,24 @@ def main():
             ("bpr", meta.get("product_count", {}).get("bpr", 0)),
         ]
     )
+
+    # The store catalogue: real, sellable products that no editorial stage claims.
+    # They are grouped by their WooCommerce category so the grouping is factual,
+    # never invented. Nothing here claims an editorial tier.
+    by_slug = {p["slug"]: p for p in products}
+    catalogue = []
+    for slug in unmapped:
+        fresh = by_slug.get(slug)
+        if fresh is None:
+            continue
+        item = map_product(fresh, {})
+        item["stage"] = "catalogue"
+        item["sub"] = (fresh.get("categories") or [{}])[0].get("slug") or "uncategorised"
+        item["category"] = (fresh.get("categories") or [{}])[0].get("name") or "Uncategorised"
+        item["subLabel"] = item["category"]
+        catalogue.append(item)
+    catalog["catalogue"] = catalogue
+    meta["product_count"]["catalogue"] = len(catalogue)
 
     CATALOG.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\n")
     PROVENANCE.write_text(

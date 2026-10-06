@@ -1,4 +1,4 @@
-export type Stage = 'learn' | 'build' | 'solutions' | 'templates' | 'oid-registry';
+export type Stage = 'learn' | 'build' | 'solutions' | 'templates' | 'oid-registry' | 'catalogue';
 
 export interface Product {
   slug: string;
@@ -108,5 +108,13 @@ export interface Catalog {
   solutions: Product[];
   templates: Product[];
   oid?: Product[];
-  meta: { storeBase: string; currency: string; checkout: string; pricing?: StagePricing };
+  /** Store products no editorial stage claims. Grouped by store category, not by tier. */
+  catalogue?: Product[];
+  meta: {
+    storeBase: string;
+    currency: string;
+    checkout: string;
+    pricing?: StagePricing;
+    product_count?: Record<string, number>;
+  };
 }

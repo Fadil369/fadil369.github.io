@@ -22,7 +22,7 @@ const index = readFileSync(indexFile, 'utf8');
 writeFileSync(join(root, '404.html'), index); // SPA fallback for hard refresh
 writeFileSync(join(root, 'index.html'), index);
 
-for (const route of ['learn', 'build', 'solutions', 'templates', 'oid', 'sprint', 'benefits', 'account', 'track', 'faq', 'terms', 'support', 'contact', 'slots', 'doctors']) {
+for (const route of ['learn', 'build', 'solutions', 'templates', 'oid', 'catalogue', 'sprint', 'benefits', 'account', 'track', 'faq', 'terms', 'support', 'contact', 'slots', 'doctors']) {
   const routeDir = join(root, route);
   mkdirSync(routeDir, { recursive: true });
   writeFileSync(join(routeDir, 'index.html'), index);
@@ -66,6 +66,7 @@ if (existsSync(catalogPath)) {
     ...(catalog.learn ?? []), ...(catalog.solutions ?? []),
     ...(catalog.templates ?? []), ...(catalog.oid ?? []),
     ...((catalog.build ?? {}).courses ?? []),
+    ...(catalog.catalogue ?? []),
   ].filter((i) => i && typeof i === 'object' && i.slug);
 
   for (const item of items) {

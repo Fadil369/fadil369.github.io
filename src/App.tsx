@@ -8,6 +8,7 @@ import { withUtm } from './lib/shopifyRouting';
 import './styles/app.css';
 
 const Shelf = lazy(() => import('./pages/Shelf'));
+const Catalogue = lazy(() => import('./pages/Catalogue'));
 const Build = lazy(() => import('./pages/Build'));
 const Benefits = lazy(() => import('./pages/Benefits'));
 const InfoPage = lazy(() => import('./pages/InfoPage'));
@@ -154,6 +155,7 @@ function Header() {
           <NavLink to="/solutions">{t('nav.solutions')}</NavLink>
           <NavLink to="/templates">{t('nav.templates')}</NavLink>
           <NavLink to="/oid">{ar ? 'الهوية والسجل' : 'OID & Registry'}</NavLink>
+          <NavLink to="/catalogue">{ar ? 'كتالوج المتجر' : 'Catalogue'}</NavLink>
           <NavLink to="/slots" style={{ color: '#10b981', fontWeight: 700 }}>
             {ar ? 'الشواغر' : 'Slots'}
           </NavLink>
@@ -319,6 +321,7 @@ export default function App() {
               <Route path="/terms" element={<InfoPage page="terms" />} />
               <Route path="/support" element={<InfoPage page="support" />} />
               <Route path="/contact" element={<InfoPage page="contact" />} />
+              <Route path="/catalogue" element={<Catalogue />} />
               <Route path="/products/:slug" element={<Product />} />
               <Route path="/account" element={<Account />} />
               <Route path="/account/authorize" element={<AccountAuthorize />} />
