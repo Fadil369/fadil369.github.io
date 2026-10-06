@@ -30,6 +30,7 @@ MAX_PAGES = 20
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "src/data/catalog.json"
 PROVENANCE = ROOT / "src/data/.catalog-provenance.json"
+ASSIGNMENTS = ROOT / "src/data/stage-assignments.json"
 
 EDITORIAL_FIELDS = (
     "nameAr",
@@ -180,8 +181,16 @@ def main():
         print(file_hash(CATALOG))
         return 0
 
+    # Operator-reviewed assignments graduate a store product into a real stage
+    # instead of leaving it in the catalogue. The assignment file is the only
+    # place that decision is recorded; catalog.json stays generated.
+    assigned = {}
+    if ASSIGNMENTS.exists():
+        assigned = (json.loads(ASSIGNMENTS.read_text()) or {}).get("assignments") or {}
+    applied = [slug for slug in assigned if slug in {p["slug"] for p in products}]
+
     wc_slugs = {p["slug"] for p in products}
-    unmapped = sorted(wc_slugs - set(stages))
+    unmapped = sorted(wc_slugs - set(stages) - set(applied))
     # An editorial entry is accounted for when its commerce handle exists in the
     # store, even if the editorial slug differs from the store slug.
     accounted = set(stages) | {
@@ -206,6 +215,7 @@ def main():
         "source": STORE_API,
         "woocommerce_products": len(products),
         "mapped_by_existing_stage": len(wc_slugs & set(stages)),
+        "assigned_slugs": sorted(applied),
         "unmapped_woocommerce_slugs": unmapped,
         "catalog_slugs_absent_from_woocommerce": catalog_only,
         "malformed_existing_entries": len(malformed),
@@ -238,6 +248,15 @@ def main():
     for item in (catalog.get("build") or {}).get("courses") or []:
         if isinstance(item, dict) and item.get("slug"):
             existing_by_slug[item["slug"]] = item
+
+    for slug in applied:
+        # NB: do not name this `meta` — `meta` is the catalog's meta object.
+        decision = assigned[slug]
+        stage = decision["stage"]
+        bucket = catalog.setdefault(stage, [])
+        if any(isinstance(i, dict) and i.get("slug") == slug for i in bucket):
+            continue
+        bucket.append({"slug": slug, "stage": stage, "sub": decision.get("sub", "agents")})
 
     by_handle = handle_index(products)
     counts = collections.Counter()
@@ -302,7 +321,24 @@ def main():
         item["subLabel"] = item["category"]
         catalogue.append(item)
     catalog["catalogue"] = catalogue
-    meta["product_count"]["catalogue"] = len(catalogue)
+    # Recompute the counts that this pass changed, so meta can never disagree
+    # with the arrays it describes.
+    counts_now = meta.setdefault("product_count", collections.OrderedDict())
+    counts_now["templates"] = len([i for i in (catalog.get("templates") or []) if isinstance(i, dict) and i.get("slug")])
+    counts_now["catalogue"] = len(catalogue)
+
+    # Register the sub-categories this pass introduced so the stage page can
+    # offer them as filters rather than silently dropping them.
+    known = {s.get("id") for s in (catalog.get("subcategories") or [])}
+    for slug, label, blurb in (
+        ("agents", "Agents", "Named agents with an identity card, system prompt and runbook."),
+        ("skills", "Skills", "Capability packs an agent or operator can load."),
+    ):
+        if slug not in known:
+            catalog.setdefault("subcategories", []).append(collections.OrderedDict([
+                ("id", slug), ("label", label), ("labelAr", label),
+                ("blurb", blurb), ("blurbAr", blurb),
+            ]))
 
     CATALOG.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\n")
     PROVENANCE.write_text(

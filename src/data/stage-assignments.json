@@ -1,0 +1,121 @@
+{
+  "note": "Operator-reviewed stage assignment for products the store sells but no editorial stage claimed. Applied by scripts/sync-catalog-from-woocommerce.py; catalog.json stays generated output.",
+  "decision": "Both families (BS-AGE-* named agents, BS-SKI-* capability packs) are downloadable reusable agent assets, which is what the templates stage already holds. Sub-category keeps Agents vs Skills visible in the UI.",
+  "assignments": {
+    "brainsait-business-apps-for-lark": {
+      "stage": "templates",
+      "sub": "agents",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "claimlinc": {
+      "stage": "templates",
+      "sub": "agents",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "compliancelinc": {
+      "stage": "templates",
+      "sub": "agents",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "ecosystem-hub-skill": {
+      "stage": "templates",
+      "sub": "skills",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "executive-partner-ai": {
+      "stage": "templates",
+      "sub": "skills",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "healthcarelinc": {
+      "stage": "templates",
+      "sub": "agents",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "jev-decision-receipts": {
+      "stage": "templates",
+      "sub": "agents",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "lark-approvals-skill": {
+      "stage": "templates",
+      "sub": "skills",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "lark-apps-skill-spark": {
+      "stage": "templates",
+      "sub": "skills",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "lark-docs-skill": {
+      "stage": "templates",
+      "sub": "skills",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "lark-drive-skill": {
+      "stage": "templates",
+      "sub": "skills",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "lark-meetings-skill": {
+      "stage": "templates",
+      "sub": "skills",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "lark-slides-skill": {
+      "stage": "templates",
+      "sub": "skills",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "lark-tasks-skill": {
+      "stage": "templates",
+      "sub": "skills",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "lark-whiteboard-skill": {
+      "stage": "templates",
+      "sub": "skills",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "masterlinc": {
+      "stage": "templates",
+      "sub": "agents",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "mcp-enterprise-tier": {
+      "stage": "templates",
+      "sub": "agents",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "mcp-free-tier": {
+      "stage": "templates",
+      "sub": "agents",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "mcp-professional-tier": {
+      "stage": "templates",
+      "sub": "agents",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "meego-project-management": {
+      "stage": "templates",
+      "sub": "skills",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "oid-registrar": {
+      "stage": "templates",
+      "sub": "agents",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "shoplinc": {
+      "stage": "templates",
+      "sub": "agents",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    },
+    "typesafe-ai-jev-skill": {
+      "stage": "templates",
+      "sub": "skills",
+      "rationale": "Reusable agent asset, same family as the existing templates stage. The Agents/Skills distinction survives as the sub-category."
+    }
+  }
+}
