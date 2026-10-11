@@ -1,6 +1,6 @@
 {
-  "input_hash": "d62533ec6baf5bdf0d9d3e8574d5f961e3d018700604bed8266273aa3b503a5d",
-  "output_hash": "5295e8c6b1ffc56724dd5e745641ba296623a6e411d3106fe3ae290f6258876c",
-  "generated_at": "2026-10-06T01:27:52.767432+00:00",
-  "source": "https://shop.brainsait.de/wp-json/wc/store/v1/products"
+  "input_hash": "768b70200e87f462dadc7456ab888b6c3f751fe536ae64dfbd20114f092b1f70",
+  "output_hash": "2fc2d985965f30e5f41c90df53ad3d4d3bb4415da8d903f02a4ca6741ebddab9",
+  "generated_at": "2026-10-11T13:46:28.789182+00:00",
+  "source": "shopify:https://store.brainsait.de"
 }

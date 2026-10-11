@@ -155,11 +155,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-DIGITAL-INCOME-STRATEGY",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/digital-income-strategy-your-three-pathways/",
-      "storeHandle": "digital-income-strategy-your-three-pathways",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -189,11 +188,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-NB-DIGITAL-ORG",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/digital-organization-handbook/",
-      "storeHandle": "digital-organization-handbook",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -223,11 +221,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-ETIMAD-GOVERNANCE-BP",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/etimad-digital-governance-blueprint/",
-      "storeHandle": "etimad-digital-governance-blueprint",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -257,11 +254,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-MIND-TO-MARKET",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/from-mind-to-market/",
-      "storeHandle": "from-mind-to-market",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -291,11 +287,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-HYPER-SCALABLE-AGENCY",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/hyper-scalable-agency-system/",
-      "storeHandle": "hyper-scalable-agency-system",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -325,11 +320,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-ONE-ECOSYSTEM",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/one-ecosystem-limitless-intelligence/",
-      "storeHandle": "one-ecosystem-limitless-intelligence",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -359,11 +353,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-PRIVATE-AI-BLUEPRINT",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/private-ai-blueprint/",
-      "storeHandle": "private-ai-blueprint",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -393,11 +386,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-PROF-WRITING-MASTERY",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/professional-writing-mastery/",
-      "storeHandle": "professional-writing-mastery",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -427,11 +419,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-SOLO-AI-BUSINESS",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/solo-ai-business-blueprint/",
-      "storeHandle": "solo-ai-business-blueprint",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -461,11 +452,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-AI-SKILL-ECONOMY",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/the-ai-skill-economy/",
-      "storeHandle": "the-ai-skill-economy",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -495,11 +485,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-OUTLIER-EQUATION",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/the-outlier-equation/",
-      "storeHandle": "the-outlier-equation",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -531,11 +520,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-PERSISTENT-AI-AGENT-D",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/the-ultimate-persistent-ai-agent/",
-      "storeHandle": "the-ultimate-persistent-ai-agent",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -567,11 +555,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-VOICE-AGENT-PRODUCTION",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/voice-agent-production-blueprint/",
-      "storeHandle": "voice-agent-production-blueprint",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -601,11 +588,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-APPLE-AI-ANATOMY",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/apple-ai-anatomy/",
-      "storeHandle": "apple-ai-anatomy",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -635,11 +621,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-DIGITAL-AUTONOMY-BP",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/digital-autonomy-blueprint/",
-      "storeHandle": "digital-autonomy-blueprint",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -669,11 +654,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-NB-DOM-STUDY-NOTES",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/dom-study-notes/",
-      "storeHandle": "dom-study-notes",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -703,11 +687,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-ONE-MILLION-RPS",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/one-million-rps-achieved/",
-      "storeHandle": "one-million-rps-achieved",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -737,11 +720,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-STEALTH-PYTHON-NET",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/stealth-python-networking/",
-      "storeHandle": "stealth-python-networking",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -771,11 +753,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-THE-API-BLUEPRINT",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/the-api-blueprint/",
-      "storeHandle": "the-api-blueprint",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -805,11 +786,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-AI-MASTERCLASS",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/brainsait-ai-masterclass/",
-      "storeHandle": "brainsait-ai-masterclass",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -839,11 +819,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-HEALTH-OS",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/brainsait-health-os/",
-      "storeHandle": "brainsait-health-os",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -873,11 +852,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-CLINICAL-CODE",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/clinical-code/",
-      "storeHandle": "clinical-code",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -907,11 +885,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-DIGITAL-HEALTH-BRIDGE",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/digital-health-bridge/",
-      "storeHandle": "digital-health-bridge",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -941,11 +918,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-ETIMAD-NPHIES",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/etimad-and-nphies-integration/",
-      "storeHandle": "etimad-and-nphies-integration",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -975,11 +951,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-LEADING-JOY-HEALTHCARE",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/leading-joy-in-healthcare/",
-      "storeHandle": "leading-joy-in-healthcare",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -1009,11 +984,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-SAUDI-HEALTH-INNOVATION",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/saudi-health-innovation-guide/",
-      "storeHandle": "saudi-health-innovation-guide",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -1043,11 +1017,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-NB-SAUDI-HEALTH-TRANSFORM",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/saudi-health-transformation/",
-      "storeHandle": "saudi-health-transformation",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -1077,11 +1050,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-SBS-NPHIES-BP",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/sbs-nphies-integration-blueprint/",
-      "storeHandle": "sbs-nphies-integration-blueprint",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -1111,11 +1083,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-SDC-FHIR-STU4",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/sdc-fhir-stu-4-notes/",
-      "storeHandle": "sdc-fhir-stu-4-notes",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -1145,11 +1116,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-DECENTRALIZED-HOSPITAL",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/the-decentralized-hospital-1/",
-      "storeHandle": "the-decentralized-hospital-1",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -1179,11 +1149,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BSP-HOSPITAL-AT-HOME",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/the-hospital-at-home/",
-      "storeHandle": "the-hospital-at-home",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -1212,13 +1181,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "sku": "BSP-REPUBLIC-OF-CELLS",
+      "sku": "REPUBLIC-OF-CELLS",
       "available": true,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/republic-of-cells-complete-edition/",
-      "storeHandle": "republic-of-cells-complete-edition",
-      "storeUrlMonthly": null
+      "storeUrl": "https://store.brainsait.de/products/republic-of-cells",
+      "storeUrlMonthly": null,
+      "storeHandle": "republic-of-cells"
     },
     {
       "slug": "digital-healthcare-masterclass",
@@ -1248,13 +1217,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "sku": "BS-LEARN-DIGITAL-HEALTHCARE-M",
+      "sku": "BSP-DIGITAL-HC-MASTERCLASS",
       "available": true,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/digital-healthcare-masterclass/",
-      "storeHandle": "digital-healthcare-masterclass",
-      "storeUrlMonthly": null
+      "storeUrl": "https://store.brainsait.de/products/digital-healthcare-masterclass",
+      "storeUrlMonthly": null,
+      "storeHandle": "digital-healthcare-masterclass"
     },
     {
       "slug": "oid-integration-blueprint-developer-guide",
@@ -1289,7 +1258,7 @@
       "available": true,
       "commercial": true,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/oid-integration-blueprint-developer-guide/",
+      "storeUrl": "https://store.brainsait.de/products/oid-integration-blueprint-developer-guide",
       "storeHandle": "oid-integration-blueprint-developer-guide",
       "storeUrlMonthly": null
     },
@@ -1297,12 +1266,11 @@
       "slug": "oid-arduino-iot-scanner-hardware-blueprint",
       "name": "OID Arduino IoT Scanner — Hardware Blueprint",
       "status": "draft",
-      "available": true,
+      "available": false,
       "sku": "BS-BOO-0247",
       "price": 182.0,
       "originalPrice": 182.0,
-      "storeUrl": "https://shop.brainsait.de/product/oid-arduino-iot-scanner-hardware-blueprint/",
-      "storeHandle": "oid-arduino-iot-scanner-hardware-blueprint",
+      "storeUrl": "",
       "category": "Books",
       "description": "<p>The edition has not been published yet, so it is listed for reference and is not for sale.</p>",
       "stage": "learn"
@@ -1518,6 +1486,103 @@
         "storeUrl": "https://shop.brainsait.de/product/clinical-code-practicum-guide/",
         "storeHandle": "clinical-code-practicum-guide",
         "storeUrlMonthly": null
+      },
+      {
+        "slug": "deepsearch-production-ai-lab",
+        "stage": "build",
+        "name": "DeepSearch — Production AI Lab",
+        "nameAr": "ديب سيرش — مختبر الذكاء الاصطناعي الإنتاجي",
+        "category": "Courses",
+        "categoryAr": "",
+        "sub": "general_professional",
+        "tier": "standalone",
+        "tagline": "From working demo to production system — build a real DeepSearch application end to end, with the infrastructure, observability and engineering discipline that professional AI software demands.",
+        "taglineAr": "من نموذج أولي إلى نظام يعمل في الإنتاج — ابنِ تطبيق DeepSearch متكاملًا من الصفر، بالبنية التحتية والرصد والانضباط الهندسي الذي تتطلبه تطبيقات الذكاء الاصطناعي الاحترافية.",
+        "description": "Calling an LLM API and streaming back a chat response is the easy part — it is also where most AI projects stop. The distance between a proof-of-concept and a system that runs in production is not a longer prompt; it is the engineering around the prompt: databases, caching, authentication, the evaluation harness and observability. This lab builds a DeepSearch application from the ground up so you leave with both the architecture and the vocabulary to discuss AI systems the way you discuss any other production software.",
+        "descriptionAr": "استدعاء واجهة نموذج لغوي كبير وإعادة رد محادثة هو الجزء السهل، وهو أيضًا الموضع الذي تتوقف فيه معظم مشاريع الذكاء الاصطناعي. المسافة بين النموذج الأولي والنظام الذي يعمل في الإنتاج ليست موجهًا أطول، بل الهندسة المحيطة بالموجه: قواعد البيانات، والتخزين المؤقت، والمصادقة، وحلقة التقييم، والرصد. يبني هذا المختبر تطبيق DeepSearch من الصفر، لتخرج بالمعمار والمفردات اللازمة للحديث عن أنظمة الذكاء الاصطناعي بالطريقة التي تتحدث بها عن أي برمجية إنتاجية أخرى.",
+        "price": 1926.0,
+        "image": "/assets/images/books/deepsearch-production-ai-lab.svg",
+        "badges": [
+          "Hands-on",
+          "Ships a deployed system",
+          "Bilingual EN/AR",
+          "No vibe checks"
+        ],
+        "benefits": [
+          "Backend infrastructure built for AI — databases, caching and auth designed for agent workloads, not retrofitted from a CRUD template",
+          "Agent decisions you can actually debug — trace what an agent did and why, especially once it has several tools to choose between",
+          "A front end that stays coherent — chat persistence, deterministic routing and live UI updates that never drift out of sync",
+          "Measurement instead of vibes — replace \"feels better now\" with scores you can compare and defend",
+          "Logic that survives change — composable agent design instead of one brittle, monolithic prompt nobody wants to touch"
+        ],
+        "benefitsAr": [
+          "بنية تحتية خلفية مبنية للذكاء الاصطناعي — قواعد بيانات وتخزين مؤقت ومصادقة مصممة لأحمال عمل الوكلاء، لا مأخوذة من قالب CRUD",
+          "قرارات وكيل يمكن تتبعها فعلًا — اعرف ما فعله الوكيل ولماذا، خاصة مع تعدد الأدوات المتاحة له",
+          "واجهة أمامية تبقى متسقة — حفظ سجل المحادثة، وتوجيه حتمي، وتحديثات فورية لا تفقد التزامن",
+          "قياس بدل تقدير ذاتي — استبدل عبارة «يبدو أفضل الآن» بأرقام قابلة للمقارنة والدفاع عنها",
+          "منطق يتحمل التغيير — تصميم وكيل قابل للتركيب، بدل موجه واحد متشابك لا يجرؤ أحد على تعديله"
+        ],
+        "formats": "Live lab · source code · bilingual materials",
+        "whatsIncluded": [
+          "A deployed DeepSearch system — backend, retrieval pipeline, tool use and persistence",
+          "An evaluation loop you can extend and re-run on your own data",
+          "Full source code with an architecture walkthrough",
+          "Bilingual EN/AR materials with correct RTL rendering"
+        ],
+        "whatsIncludedAr": [
+          "نظام DeepSearch منشور — طبقة خلفية، وخط استرجاع، واستخدام للأدوات، وحفظ للبيانات",
+          "حلقة تقييم قابلة للتوسيع وإعادة التشغيل على بياناتك الخاصة",
+          "الكود المصدري الكامل مع شرح معماري مفصّل",
+          "مواد ثنائية اللغة عربي/إنجليزي مع اتجاه صحيح من اليمين إلى اليسار"
+        ],
+        "faqs": [
+          [
+            "What do I need to know first?",
+            "Comfortable with JavaScript or Python and basic web APIs. No prior AI-infrastructure experience required — that is what the lab teaches."
+          ],
+          [
+            "Is this a notebook course or a real system?",
+            "A deployed system. You finish with a running backend, a retrieval pipeline, tool use, persistence and an evaluation loop — not a notebook you have to figure out how to productionise."
+          ],
+          [
+            "What will I have built by the end?",
+            "A DeepSearch application built from the ground up, plus the architecture and vocabulary to discuss AI systems like any other production software."
+          ],
+          [
+            "Is the Arabic content real or machine-translated?",
+            "Written natively. All materials are authored bilingually with proper RTL, the same standard as the rest of the BrainSAIT catalogue."
+          ]
+        ],
+        "faqAr": [
+          [
+            "ما المطلوب معرفته مسبقًا؟",
+            "إلمام بجافاسكربت أو بايثون وأساسيات واجهات الويب. لا يلزم خبرة سابقة في بنية الذكاء الاصطناعي التحتية — هذا هو ما يعلّمه المختبر."
+          ],
+          [
+            "هل هذه دورة بدفتر ملاحظات أم نظام حقيقي؟",
+            "نظام منشور فعلًا. تخرج بخلفية عاملة، وخط استرجاع، واستخدام للأدوات، وحفظ للبيانات، وحلقة تقييم — لا بدفتر ملاحظات يتعين عليك تحويله إلى الإنتاج."
+          ],
+          [
+            "ماذا سأكون قد بنيت في النهاية؟",
+            "تطبيق DeepSearch مبنيًا من الصفر، مع المعمار والمفردات اللازمة للحديث عن أنظمة الذكاء الاصطناعي كأي برمجية إنتاجية أخرى."
+          ],
+          [
+            "هل المحتوى العربي أصلي أم مترجم آليًا؟",
+            "مكتوب أصلاً. جميع المواد مؤلفة ثنائية اللغة مع اتجاه صحيح من اليمين إلى اليسار، بالمعيار نفسه لبقية كتالوج برينسايت."
+          ]
+        ],
+        "rating": null,
+        "users": "",
+        "flag": null,
+        "demoUrl": null,
+        "limitedDemo": false,
+        "sku": "BSP-COURSE-DEEPSEARCH-006",
+        "available": true,
+        "commercial": true,
+        "originalPrice": 1926.0,
+        "storeUrl": "https://shop.brainsait.de/product/deepsearch-production-ai-lab/",
+        "storeHandle": "deepsearch-production-ai-lab",
+        "storeUrlMonthly": null
       }
     ]
   },
@@ -1552,11 +1617,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BS-READY-BRAINSAIT-ECAREPLUS-",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 24000.0,
-      "storeUrl": "https://shop.brainsait.de/product/brainsait-ecareplus-portal/",
-      "storeHandle": "brainsait-ecareplus-portal",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -1589,11 +1653,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BS-READY-NPHIES-LINC",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 24000.0,
-      "storeUrl": "https://shop.brainsait.de/product/nphies-linc/",
-      "storeHandle": "nphies-linc",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -1625,13 +1688,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "sku": "BS-READY-HOSPITAL-OS&#8212;SOLUTI",
+      "sku": "BSP-SR-HOSPITAL-OS",
       "available": true,
       "commercial": true,
       "originalPrice": 24000.0,
-      "storeUrl": "https://shop.brainsait.de/product/hospital-os-solutions-ready/",
-      "storeHandle": "hospital-os-solutions-ready",
-      "storeUrlMonthly": null
+      "storeUrl": "https://store.brainsait.de/products/solutions-ready-hospital-os",
+      "storeUrlMonthly": null,
+      "storeHandle": "solutions-ready-hospital-os"
     },
     {
       "slug": "cloud-kitchen-solutions-ready",
@@ -1662,13 +1725,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "sku": "BS-READY-CLOUD-KITCHEN&#8212;SOLU",
+      "sku": "BSP-SR-CLOUD-KITCHEN",
       "available": true,
       "commercial": true,
       "originalPrice": 24000.0,
-      "storeUrl": "https://shop.brainsait.de/product/cloud-kitchen-solutions-ready/",
-      "storeHandle": "cloud-kitchen-solutions-ready",
-      "storeUrlMonthly": null
+      "storeUrl": "https://store.brainsait.de/products/solutions-ready-cloud-kitchen",
+      "storeUrlMonthly": null,
+      "storeHandle": "solutions-ready-cloud-kitchen"
     },
     {
       "slug": "oid-system-solutions-ready",
@@ -1701,11 +1764,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BS-READY-OID-SYSTEM&#8212;SOLUTIO",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 24000.0,
-      "storeUrl": "https://shop.brainsait.de/product/oid-system-solutions-ready/",
-      "storeHandle": "oid-system-solutions-ready",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -1739,11 +1801,10 @@
       "demoUrl": null,
       "limitedDemo": false,
       "sku": "BS-READY-BASMA-VOICE-AGENT&#8212;",
-      "available": true,
+      "available": false,
       "commercial": true,
       "originalPrice": 24000.0,
-      "storeUrl": "https://shop.brainsait.de/product/basma-voice-agent-solutions-ready/",
-      "storeHandle": "basma-voice-agent-solutions-ready",
+      "storeUrl": "",
       "storeUrlMonthly": null
     },
     {
@@ -1758,7 +1819,6 @@
       "category": "Apps",
       "price": 499.0,
       "originalPrice": 499.0,
-      "storeHandle": "cap-net-claim-acceptance-prediction",
       "sku": "BS-APP-0280",
       "commercial": "service",
       "badges": [
@@ -1767,12 +1827,12 @@
       ],
       "tier": "standalone",
       "sub": "hospital_it",
-      "available": true,
+      "available": false,
       "flags": [
         "scope_agreed_directly"
       ],
       "note": "Repaired 2026-10-05: this entry had no slug, no stage and used blurbEn/blurbAr, so it rendered an /products/undefined link and the sync could never match it. Editorial copy preserved verbatim.",
-      "storeUrl": "https://shop.brainsait.de/product/cap-net-claim-acceptance-prediction/"
+      "storeUrl": ""
     }
   ],
   "meta": {
@@ -1787,7 +1847,7 @@
     },
     "product_count": {
       "learn": 35,
-      "build": 6,
+      "build": 7,
       "solutions": 7,
       "templates": 43,
       "oid": 8,
@@ -1838,7 +1898,7 @@
       "taglineAr": "ذكاء اصطناعي يعرف عملك حقًا — مستندات وخيوط ويكيات.",
       "description": "An AI that actually knows your work — docs, threads and wikis included. Ingests your docs, chat threads and wiki pages into one KB Answers with real context, not surface-level guesses Role-aware access; PDPL/NDAs respected by design",
       "descriptionAr": "ذكاء اصطناعي يعرف عملك حقًا — مستندات وخيوط ويكيات. يجمع مستنداتك وخيوط الدردشة وصفحات الويكي في قاعدة واحدة يجيب بسياق حقيقي لا تخمينات سطحية وصول حسب الأدوار؛ يحترم PDPL والاتفاقيات",
-      "price": 1499.0,
+      "price": 900.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -1858,8 +1918,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 1499.0,
-      "storeUrl": "https://shop.brainsait.de/product/knowledge-base-research-assistant-agent-enterprise/",
-      "storeHandle": "knowledge-base-research-assistant-agent-enterprise",
+      "storeUrl": "https://store.brainsait.de/products/tpl-knowledge-base",
+      "storeHandle": "tpl-knowledge-base",
       "storeUrlMonthly": null
     },
     {
@@ -1875,7 +1935,7 @@
       "taglineAr": "وكيل محادثة ثنائي اللغة يجيب عملاءك فورًا — ليل نهار.",
       "description": "A bilingual AI chat agent that answers customers instantly — day and night. Trains on your FAQ, policies and product catalog (RAG) EN + AR with proper RTL; hands off to a human when unsure Cuts first-response time from hours to seconds",
       "descriptionAr": "وكيل محادثة ثنائي اللغة يجيب عملاءك فورًا — ليل نهار. تدرّب على أسئلتك الشائعة وسياساتك وفهرس منتجاتك عربي وإنجليزي مع RTL صحيح، وينقل المحادثة لإنسان عند الحاجة يخفض زمن الاستجابة الأولى من ساعات إلى ثوانٍ",
-      "price": 1999.0,
+      "price": 900.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -1895,8 +1955,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 1999.0,
-      "storeUrl": "https://shop.brainsait.de/product/ai-business-chat-agent-bilingual-en-ar-support/",
-      "storeHandle": "ai-business-chat-agent-bilingual-en-ar-support",
+      "storeUrl": "https://store.brainsait.de/products/tpl-ai-chat-business",
+      "storeHandle": "tpl-ai-chat-business",
       "storeUrlMonthly": null
     },
     {
@@ -1912,7 +1972,7 @@
       "taglineAr": "أسئلة المنتجات والطلبات والمقاسات والشحن — يجيب عنها الذكاء الاصطناعي في متجرك.",
       "description": "Product questions, orders, sizes, shipping — answered by AI on your store. Knows every product in your catalog: prices, stock, variants EN/AR with RTL; captures lead emails from chat Our own store runs one — see it live on store.brainsait.de",
       "descriptionAr": "أسئلة المنتجات والطلبات والمقاسات والشحن — يجيب عنها الذكاء الاصطناعي في متجرك. يعرف كل منتجاتك: الأسعار والمخزون والنسخ عربي وإنجليزي مع RTL؛ يلتقط بريد الزوار من المحادثة متجرنا يركّب واحدًا — رآه حيًا على store.brainsait.de",
-      "price": 1499.0,
+      "price": 900.0,
       "image": "",
       "badges": [
         "Bilingual"
@@ -1927,13 +1987,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "sku": "BS-TEM-0256",
+      "sku": "BSAGT-004",
       "available": true,
       "commercial": true,
-      "originalPrice": 1499.0,
-      "storeHandle": "ecommerce-ai-chatbot-product-qa-lead-capture",
+      "originalPrice": 900.0,
       "storeUrlMonthly": null,
-      "storeUrl": "https://shop.brainsait.de/product/ecommerce-ai-chatbot-product-qa-lead-capture/"
+      "storeUrl": "https://store.brainsait.de/products/tpl-ecommerce-chatbot",
+      "storeHandle": "tpl-ecommerce-chatbot"
     },
     {
       "slug": "helpdesk-faq-request-agent-team-autopilot",
@@ -1968,8 +2028,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 499.0,
-      "storeUrl": "https://shop.brainsait.de/product/helpdesk-faq-request-agent-team-autopilot/",
-      "storeHandle": "helpdesk-faq-request-agent-team-autopilot",
+      "storeUrl": "https://store.brainsait.de/products/tpl-helpdesk-faq",
+      "storeHandle": "tpl-helpdesk-faq",
       "storeUrlMonthly": null
     },
     {
@@ -1985,7 +2045,7 @@
       "taglineAr": "بريد وواتساب وتليغرام ونماذج — عقل واحد يوجّه كل رسالة إلى الفريق الصحيح.",
       "description": "Email, WhatsApp, Telegram, forms — one brain routes every message to the right team. AI categorizes and prioritizes every inbound message Routes to the right team channel, ticket or person SLA timer: unhandled messages escalate automatically",
       "descriptionAr": "بريد وواتساب وتليغرام ونماذج — عقل واحد يوجّه كل رسالة إلى الفريق الصحيح. يصنف الذكاء ويولّي كل رسالة واردة الأولوية يوجّهها إلى قناة الفريق أو التذكرة أو الشخص الصحيح مؤقت SLA: الرسائل غير المعالجة تُصعّد تلقائيًا",
-      "price": 999.0,
+      "price": 900.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2005,8 +2065,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 999.0,
-      "storeUrl": "https://shop.brainsait.de/product/multi-channel-message-routing-agent-smart-triage/",
-      "storeHandle": "multi-channel-message-routing-agent-smart-triage",
+      "storeUrl": "https://store.brainsait.de/products/tpl-message-routing",
+      "storeHandle": "tpl-message-routing",
       "storeUrlMonthly": null
     },
     {
@@ -2022,7 +2082,7 @@
       "taglineAr": "كل عميل محتمل، من كل قناة، في خط أنابيب واحد نظيف إلى نظام CRM الخاص بك.",
       "description": "Every lead, every channel, one clean pipeline into your CRM. Capture leads from web forms, WhatsApp, Telegram and email in one place AI cleanup: dedupe, format and score before CRM entry Weekly pipeline digest posted to your team channel",
       "descriptionAr": "كل عميل محتمل، من كل قناة، في خط أنابيب واحد نظيف إلى نظام CRM الخاص بك. التقاط العملاء من نماذج الويب وواتساب وتليغرام والبريد في مكان واحد تنظيف بالذكاء الاصطناعي: إزالة التكرار والتنسيق والتصنيف قبل الإضافة ملخص أسبوعي يظهر في قناة فريقك",
-      "price": 3960.0,
+      "price": 900.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2042,8 +2102,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 3960.0,
-      "storeUrl": "https://shop.brainsait.de/product/unified-lead-capture-agent-multi-source-crm-funnel/",
-      "storeHandle": "unified-lead-capture-agent-multi-source-crm-funnel",
+      "storeUrl": "https://store.brainsait.de/products/tpl-unified-lead-capture",
+      "storeHandle": "tpl-unified-lead-capture",
       "storeUrlMonthly": null
     },
     {
@@ -2059,7 +2119,7 @@
       "taglineAr": "من يوم أول موظف جديد إلى استقطاب كامل — يديره وكيل لا جداول.",
       "description": "New hire day one to full onboarding — run by an agent, not spreadsheets. Centralized team hub: info, docs, checklists in one place One-button onboarding: emails, tasks and reminders auto-fire PDPL-aware handling of employee personal data",
       "descriptionAr": "من يوم أول موظف جديد إلى استقطاب كامل — يديره وكيل لا جداول. مركز فريق موحّد: معلومات ووثائق وقوائم في مكان استقطاب بزر: بريد ومهام وتذكيرات تطلق تلقائيًا معالجة لبيانات الموظفين الشخصية وفق PDPL",
-      "price": 999.0,
+      "price": 900.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2079,8 +2139,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 999.0,
-      "storeUrl": "https://shop.brainsait.de/product/employee-onboarding-manager-agent/",
-      "storeHandle": "employee-onboarding-manager-agent",
+      "storeUrl": "https://store.brainsait.de/products/tpl-employee-onboarding",
+      "storeHandle": "tpl-employee-onboarding",
       "storeUrlMonthly": null
     },
     {
@@ -2096,7 +2156,7 @@
       "taglineAr": "صندوق الدعم الخاص بك قمع مبيعات. الوكيل يجد الفرص وأنت نائم.",
       "description": "Your support inbox is a sales funnel. The agent finds it while you sleep. AI scans every ticket for upsell/cross-sell signals Scores opportunity size and posts to your sales channel Drafts the personal upsell message for one-click send",
       "descriptionAr": "صندوق الدعم الخاص بك قمع مبيعات. الوكيل يجد الفرص وأنت نائم. يفحص الذكاء كل تذكرة لإشارات البيع الإضافي يصنّف حجم الفرصة وينشرها في قناة المبيعات يكتب رسالة البيع الشخصية جاهزة للإرسال بنقرة",
-      "price": 2499.0,
+      "price": 900.0,
       "image": "",
       "badges": [
         "Bilingual"
@@ -2115,8 +2175,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 2499.0,
-      "storeUrl": "https://shop.brainsait.de/product/sales-opportunity-radar-in-support-tickets/",
-      "storeHandle": "sales-opportunity-radar-in-support-tickets",
+      "storeUrl": "https://store.brainsait.de/products/tpl-sales-opps-support",
+      "storeHandle": "tpl-sales-opps-support",
       "storeUrlMonthly": null
     },
     {
@@ -2132,7 +2192,7 @@
       "taglineAr": "عميل جديد؟ الوكيل يبحث عمن هو قبل أن يتصل فريق المبيعات.",
       "description": "New lead in? The agent researches who they are before your sales team calls. Auto-research: company, role, tech stack, decision path Flags hot leads for immediate outreach Plays well with any CRM you already use",
       "descriptionAr": "عميل جديد؟ الوكيل يبحث عمن هو قبل أن يتصل فريق المبيعات. بحث تلقائي: الشركة والمنصب والتقنيات ومسار القرار يشير إلى العملاء الساخنين للتواصل الفوري يعمل مع أي نظام CRM تستخدمه",
-      "price": 2999.0,
+      "price": 900.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2152,8 +2212,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 2999.0,
-      "storeUrl": "https://shop.brainsait.de/product/ai-lead-enrichment-agent-research-score-new-leads/",
-      "storeHandle": "ai-lead-enrichment-agent-research-score-new-leads",
+      "storeUrl": "https://store.brainsait.de/products/tpl-lead-enrichment",
+      "storeHandle": "tpl-lead-enrichment",
       "storeUrlMonthly": null
     },
     {
@@ -2169,7 +2229,7 @@
       "taglineAr": "من تعبئة النموذج إلى أول متابعة — دون أن يلمسها أحد.",
       "description": "From form fill to first follow-up — without anyone touching it. Captures form data and confirms instantly (email/WhatsApp) AI writes the personal first follow-up 3-touch nurture sequence until reply or conversion",
       "descriptionAr": "من تعبئة النموذج إلى أول متابعة — دون أن يلمسها أحد. التقاط بيانات النموذج وتأكيد فوري (بريد/واتساب) الوكيل يكتب أول متابعة شخصية تسلسل تربية من 3 لمسات حتى الرد أو التحويل",
-      "price": 2499.0,
+      "price": 900.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2189,8 +2249,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 2499.0,
-      "storeUrl": "https://shop.brainsait.de/product/lead-capture-follow-up-agent-forms-to-crm/",
-      "storeHandle": "lead-capture-follow-up-agent-forms-to-crm",
+      "storeUrl": "https://store.brainsait.de/products/tpl-lead-capture-followup",
+      "storeHandle": "tpl-lead-capture-followup",
       "storeUrlMonthly": null
     },
     {
@@ -2206,7 +2266,7 @@
       "taglineAr": "اكتب اسم شركة؛ واحصل على من تتواصل وكيف — في 60 ثانية.",
       "description": "Type a company name; get who to contact and how — in 60 seconds. Named people to source: titles, roles, decision paths Tech stack + outreach angles + LinkedIn Boolean strings Report lands in your channel or sheet, ready to act",
       "descriptionAr": "اكتب اسم شركة؛ واحصل على من تتواصل وكيف — في 60 ثانية. أشخاص مسماون للاستهداف: مسميات أدوار ومسارات قرار التقنيات وزوايا التواصل وخطوات بحث لينكد إن التقرير يصل إلى قناتك أو جدولك جاهزًا للتنفيذ",
-      "price": 2499.0,
+      "price": 900.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2226,8 +2286,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 2499.0,
-      "storeUrl": "https://shop.brainsait.de/product/company-sourcing-intelligence-agent-60s-reports/",
-      "storeHandle": "company-sourcing-intelligence-agent-60s-reports",
+      "storeUrl": "https://store.brainsait.de/products/tpl-company-sourcing",
+      "storeHandle": "tpl-company-sourcing",
       "storeUrlMonthly": null
     },
     {
@@ -2243,7 +2303,7 @@
       "taglineAr": "الاتجاه مرصود، والنص مكتوب، والتفاعل مضبوط — قبل أن يبلغ الموجة ذروتها.",
       "description": "Trend spotted, video scripted, engagement set — before the wave peaks. Monitors trends in your niche and picks what fits Scripts the video + sets engagement automation Compiles the campaign into a shareable doc",
       "descriptionAr": "الاتجاه مرصود، والنص مكتوب، والتفاعل مضبوط — قبل أن يبلغ الموجة ذروتها. يرصد الاتجاهات في مجالك ويختار ما يناسب يكتب نص الفيديو ويضبط أتمتة التفاعل يفصّل الحملة في وثيقة قابلة للمشاركة",
-      "price": 1299.0,
+      "price": 900.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2263,8 +2323,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 1299.0,
-      "storeUrl": "https://shop.brainsait.de/product/viral-content-creation-agent-trends-to-publish/",
-      "storeHandle": "viral-content-creation-agent-trends-to-publish",
+      "storeUrl": "https://store.brainsait.de/products/tpl-viral-content",
+      "storeHandle": "tpl-viral-content",
       "storeUrlMonthly": null
     },
     {
@@ -2280,7 +2340,7 @@
       "taglineAr": "إعلانات فيسبوك ولينكد إن في جدول واحد، مع تقرير أسبوعي بالذكاء في قناتك.",
       "description": "Facebook + LinkedIn ads into one table, with a weekly AI report in your channel. Pulls ad performance from Meta and LinkedIn daily Custom SAR metrics: CAC, ROAS, cost per lead AI agent writes the weekly report + what to change",
       "descriptionAr": "إعلانات فيسبوك ولينكد إن في جدول واحد، مع تقرير أسبوعي بالذكاء في قناتك. يسحب أداء الإعلانات من ميتا ولينكد إن يوميًا مقاييس مخصصة بالريال: تكلفة الاكتساب وROAS وتكلفة العميل وكيل الذكاء يكتب التقرير الأسبوعي وما يجب تعديله",
-      "price": 1999.0,
+      "price": 900.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2300,8 +2360,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 1999.0,
-      "storeUrl": "https://shop.brainsait.de/product/marketing-campaign-tracker-agent-weekly-ai-reports/",
-      "storeHandle": "marketing-campaign-tracker-agent-weekly-ai-reports",
+      "storeUrl": "https://store.brainsait.de/products/tpl-campaign-tracker",
+      "storeHandle": "tpl-campaign-tracker",
       "storeUrlMonthly": null
     },
     {
@@ -2317,7 +2377,7 @@
       "taglineAr": "فيديو طويل يدخل، وأسبوع من المقاطع القصيرة يخرج — نصوصًا ورفعًا.",
       "description": "Long video in, a week of shorts out — scripted and uploaded. Finds the hook moments in your long-form video Scripts + captions each short (EN/AR subtitles) Uploads to YouTube with title, tags and description",
       "descriptionAr": "فيديو طويل يدخل، وأسبوع من المقاطع القصيرة يخرج — نصوصًا ورفعًا. يجد لحظات الخطف في فيديوك الطويل يكتب النص والترجمة لكل مقطع (عربي/إنجليزي) يرفع إلى يوتيوب مع العنوان والوسوم والوصف",
-      "price": 1299.0,
+      "price": 900.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2337,8 +2397,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 1299.0,
-      "storeUrl": "https://shop.brainsait.de/product/youtube-shorts-creator-agent/",
-      "storeHandle": "youtube-shorts-creator-agent",
+      "storeUrl": "https://store.brainsait.de/products/tpl-youtube-shorts",
+      "storeHandle": "tpl-youtube-shorts",
       "storeUrlMonthly": null
     },
     {
@@ -2354,7 +2414,7 @@
       "taglineAr": "نموذج لا يسأل شيئًا زائدًا — الذكاء الاصطناعي يستخرج البيانات مما يكتبونه.",
       "description": "A form that asks nothing extra — AI pulls the data from what they type. Fewer fields: AI extracts name, role, company, need from free text Works as web widget, WhatsApp or embedded form EN/AR with RTL — feels native to Saudi customers",
       "descriptionAr": "نموذج لا يسأل شيئًا زائدًا — الذكاء الاصطناعي يستخرج البيانات مما يكتبونه. حقول أقل: يستخرج الاسم والمنصب والشركة والحاجة من النص الحر يعمل كمكوّن ويب أو واتساب أو نموذج مضمّن عربي وإنجليزي مع RTL — إحساس محلي للزائر السعودي",
-      "price": 1499.0,
+      "price": 900.0,
       "image": "",
       "badges": [
         "Bilingual"
@@ -2373,8 +2433,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 1499.0,
-      "storeUrl": "https://shop.brainsait.de/product/ai-intake-form-fewer-fields-cleaner-data/",
-      "storeHandle": "ai-intake-form-fewer-fields-cleaner-data",
+      "storeUrl": "https://store.brainsait.de/products/tpl-ai-form",
+      "storeHandle": "tpl-ai-form",
       "storeUrlMonthly": null
     },
     {
@@ -2409,8 +2469,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 799.0,
-      "storeUrl": "https://shop.brainsait.de/product/ai-logo-generator-shareable-brand-builder/",
-      "storeHandle": "ai-logo-generator-shareable-brand-builder",
+      "storeUrl": "https://store.brainsait.de/products/tpl-logo-generator",
+      "storeHandle": "tpl-logo-generator",
       "storeUrlMonthly": null
     },
     {
@@ -2426,7 +2486,7 @@
       "taglineAr": "أخضر أو أحمر قبل يوم الإطلاق — لا بعده.",
       "description": "Green or red before launch day — not after. Pulls task status + project docs into one assessment Flags risks, blockers and missing owners Readiness report posted to your channel with a score",
       "descriptionAr": "أخضر أو أحمر قبل يوم الإطلاق — لا بعده. يجمع حالة المهام ومستندات المشروع في تقييم واحد يشير إلى المخاطر والعوائق وأصحابها المفقودين تقرير الجاهزية يُنشر في قناتك مع درجة",
-      "price": 999.0,
+      "price": 900.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2446,8 +2506,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 999.0,
-      "storeUrl": "https://shop.brainsait.de/product/launch-readiness-report-agent/",
-      "storeHandle": "launch-readiness-report-agent",
+      "storeUrl": "https://store.brainsait.de/products/tpl-launch-readiness",
+      "storeHandle": "tpl-launch-readiness",
       "storeUrlMonthly": null
     },
     {
@@ -2483,8 +2543,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 899.0,
-      "storeUrl": "https://shop.brainsait.de/product/content-repurposing-agent-one-idea-many-channels/",
-      "storeHandle": "content-repurposing-agent-one-idea-many-channels",
+      "storeUrl": "https://store.brainsait.de/products/tpl-content-repurposing",
+      "storeHandle": "tpl-content-repurposing",
       "storeUrlMonthly": null
     },
     {
@@ -2520,8 +2580,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 699.0,
-      "storeUrl": "https://shop.brainsait.de/product/linkedin-post-scheduler-agent/",
-      "storeHandle": "linkedin-post-scheduler-agent",
+      "storeUrl": "https://store.brainsait.de/products/tpl-linkedin-scheduler",
+      "storeHandle": "tpl-linkedin-scheduler",
       "storeUrlMonthly": null
     },
     {
@@ -2537,7 +2597,7 @@
       "taglineAr": "اللوحة الفارغة: وكيلك الخاص، ببيانات أعمالك الحية، و7000+ تطبيق.",
       "description": "The blank canvas: your own agent, live business data, 7,000+ apps. Pre-wired scaffold you own: instructions, data tools, triggers Live business data connections (CRM, sheets, chat) Documented so any dev or AI can extend it",
       "descriptionAr": "اللوحة الفارغة: وكيلك الخاص، ببيانات أعمالك الحية، و7000+ تطبيق. هيكل جاهز تملكه: تعليمات وأدوات بيانات ومحفزات روابط ببيانات أعمالك الحية (CRM وجداول ودردشات) موثّق بحيث يستطيع أي مطوّر أو ذكاء توسيعه",
-      "price": 1299.0,
+      "price": 900.0,
       "image": "",
       "badges": [
         "Bilingual",
@@ -2557,8 +2617,8 @@
       "available": true,
       "commercial": true,
       "originalPrice": 1299.0,
-      "storeUrl": "https://shop.brainsait.de/product/custom-agent-builder-starter-scaffold/",
-      "storeHandle": "custom-agent-builder-starter-scaffold",
+      "storeUrl": "https://store.brainsait.de/products/tpl-custom-agent-scaffold",
+      "storeHandle": "tpl-custom-agent-scaffold",
       "storeUrlMonthly": null
     },
     {
@@ -2567,11 +2627,10 @@
       "sub": "agents",
       "name": "BrainSAIT Business Apps for Lark",
       "sku": "BS-AGE-0310",
-      "price": 9800.0,
-      "originalPrice": 9800.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/brainsait-business-apps-for-lark/",
-      "storeHandle": "brainsait-business-apps-for-lark",
+      "price": 700.0,
+      "originalPrice": 700.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Agents",
       "description": "<p>A production-ready agent with its identity card, system prompt and runbook. Instant delivery.</p>"
     },
@@ -2581,11 +2640,10 @@
       "sub": "agents",
       "name": "ClaimLinc",
       "sku": "BS-AGE-0291",
-      "price": 2000.0,
-      "originalPrice": 2000.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/claimlinc/",
-      "storeHandle": "claimlinc",
+      "price": 800.0,
+      "originalPrice": 800.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Agents",
       "description": "<p>A named agent in the BrainSAIT registry. Its identity card, system prompt and runbook have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2595,11 +2653,10 @@
       "sub": "agents",
       "name": "COMPLIANCELINC",
       "sku": "BS-AGE-0292",
-      "price": 2000.0,
-      "originalPrice": 2000.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/compliancelinc/",
-      "storeHandle": "compliancelinc",
+      "price": 800.0,
+      "originalPrice": 800.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Agents",
       "description": "<p>A named agent in the BrainSAIT registry. Its identity card, system prompt and runbook have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2609,11 +2666,10 @@
       "sub": "skills",
       "name": "Ecosystem Hub Skill",
       "sku": "BS-SKI-0298",
-      "price": 384.0,
-      "originalPrice": 384.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/ecosystem-hub-skill/",
-      "storeHandle": "ecosystem-hub-skill",
+      "price": 450.0,
+      "originalPrice": 450.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Skills",
       "description": "<p>A capability pack for an agent or operator. The reference files have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2623,11 +2679,10 @@
       "sub": "skills",
       "name": "Executive Partner AI",
       "sku": "BS-SKI-0299",
-      "price": 384.0,
-      "originalPrice": 384.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/executive-partner-ai/",
-      "storeHandle": "executive-partner-ai",
+      "price": 550.0,
+      "originalPrice": 550.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Skills",
       "description": "<p>A capability pack for an agent or operator. The reference files have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2637,11 +2692,10 @@
       "sub": "agents",
       "name": "HEALTHCARELINC",
       "sku": "BS-AGE-0290",
-      "price": 2000.0,
-      "originalPrice": 2000.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/healthcarelinc/",
-      "storeHandle": "healthcarelinc",
+      "price": 850.0,
+      "originalPrice": 850.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Agents",
       "description": "<p>A named agent in the BrainSAIT registry. Its identity card, system prompt and runbook have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2651,11 +2705,10 @@
       "sub": "agents",
       "name": "JEV Decision Receipts",
       "sku": "BS-AGE-0311",
-      "price": 2450.0,
-      "originalPrice": 2450.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/jev-decision-receipts/",
-      "storeHandle": "jev-decision-receipts",
+      "price": 650.0,
+      "originalPrice": 650.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Agents",
       "description": "<p>A production-ready agent with its identity card, system prompt and runbook. Instant delivery.</p>"
     },
@@ -2665,11 +2718,10 @@
       "sub": "skills",
       "name": "Lark Approvals Skill",
       "sku": "BS-SKI-0305",
-      "price": 384.0,
-      "originalPrice": 384.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/lark-approvals-skill/",
-      "storeHandle": "lark-approvals-skill",
+      "price": 400.0,
+      "originalPrice": 400.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Skills",
       "description": "<p>A capability pack for an agent or operator. The reference files have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2679,11 +2731,10 @@
       "sub": "skills",
       "name": "Lark Apps Skill (Spark)",
       "sku": "BS-SKI-0306",
-      "price": 384.0,
-      "originalPrice": 384.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/lark-apps-skill-spark/",
-      "storeHandle": "lark-apps-skill-spark",
+      "price": 300.0,
+      "originalPrice": 300.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Skills",
       "description": "<p>A capability pack for an agent or operator. The reference files have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2693,11 +2744,10 @@
       "sub": "skills",
       "name": "Lark Docs Skill",
       "sku": "BS-SKI-0300",
-      "price": 384.0,
-      "originalPrice": 384.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/lark-docs-skill/",
-      "storeHandle": "lark-docs-skill",
+      "price": 350.0,
+      "originalPrice": 350.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Skills",
       "description": "<p>A capability pack for an agent or operator. The reference files have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2707,11 +2757,10 @@
       "sub": "skills",
       "name": "Lark Drive Skill",
       "sku": "BS-SKI-0301",
-      "price": 384.0,
-      "originalPrice": 384.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/lark-drive-skill/",
-      "storeHandle": "lark-drive-skill",
+      "price": 350.0,
+      "originalPrice": 350.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Skills",
       "description": "<p>A capability pack for an agent or operator. The reference files have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2721,11 +2770,10 @@
       "sub": "skills",
       "name": "Lark Meetings Skill",
       "sku": "BS-SKI-0303",
-      "price": 384.0,
-      "originalPrice": 384.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/lark-meetings-skill/",
-      "storeHandle": "lark-meetings-skill",
+      "price": 350.0,
+      "originalPrice": 350.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Skills",
       "description": "<p>A capability pack for an agent or operator. The reference files have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2735,11 +2783,10 @@
       "sub": "skills",
       "name": "Lark Slides Skill",
       "sku": "BS-SKI-0302",
-      "price": 384.0,
-      "originalPrice": 384.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/lark-slides-skill/",
-      "storeHandle": "lark-slides-skill",
+      "price": 400.0,
+      "originalPrice": 400.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Skills",
       "description": "<p>A capability pack for an agent or operator. The reference files have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2749,11 +2796,10 @@
       "sub": "skills",
       "name": "Lark Tasks Skill",
       "sku": "BS-SKI-0304",
-      "price": 384.0,
-      "originalPrice": 384.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/lark-tasks-skill/",
-      "storeHandle": "lark-tasks-skill",
+      "price": 300.0,
+      "originalPrice": 300.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Skills",
       "description": "<p>A capability pack for an agent or operator. The reference files have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2763,11 +2809,10 @@
       "sub": "skills",
       "name": "Lark Whiteboard Skill",
       "sku": "BS-SKI-0307",
-      "price": 384.0,
-      "originalPrice": 384.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/lark-whiteboard-skill/",
-      "storeHandle": "lark-whiteboard-skill",
+      "price": 400.0,
+      "originalPrice": 400.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Skills",
       "description": "<p>A capability pack for an agent or operator. The reference files have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2777,11 +2822,10 @@
       "sub": "agents",
       "name": "MASTERLINC",
       "sku": "BS-AGE-0289",
-      "price": 4000.0,
-      "originalPrice": 4000.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/masterlinc/",
-      "storeHandle": "masterlinc",
+      "price": 900.0,
+      "originalPrice": 900.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Agents",
       "description": "<p>A named agent in the BrainSAIT registry. Its identity card, system prompt and runbook have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2791,11 +2835,10 @@
       "sub": "agents",
       "name": "MCP Enterprise Tier",
       "sku": "BS-AGE-0297",
-      "price": 4900.0,
-      "originalPrice": 4900.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/mcp-enterprise-tier/",
-      "storeHandle": "mcp-enterprise-tier",
+      "price": 900.0,
+      "originalPrice": 900.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Agents",
       "description": "<p>A named agent in the BrainSAIT registry. Its identity card, system prompt and runbook have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2805,11 +2848,10 @@
       "sub": "agents",
       "name": "MCP Free Tier",
       "sku": "BS-AGE-0295",
-      "price": 0.0,
-      "originalPrice": 0.0,
+      "price": 600.0,
+      "originalPrice": 600.0,
       "available": false,
-      "storeUrl": "https://shop.brainsait.de/product/mcp-free-tier/",
-      "storeHandle": "mcp-free-tier",
+      "storeUrl": "",
       "category": "Agents",
       "description": "<p>A named agent in the BrainSAIT registry. Its identity card, system prompt and runbook have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2819,11 +2861,10 @@
       "sub": "agents",
       "name": "MCP Professional Tier",
       "sku": "BS-AGE-0296",
-      "price": 500.0,
-      "originalPrice": 500.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/mcp-professional-tier/",
-      "storeHandle": "mcp-professional-tier",
+      "price": 750.0,
+      "originalPrice": 750.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Agents",
       "description": "<p>A named agent in the BrainSAIT registry. Its identity card, system prompt and runbook have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2833,11 +2874,10 @@
       "sub": "skills",
       "name": "Meego Project Management",
       "sku": "BS-SKI-0308",
-      "price": 384.0,
-      "originalPrice": 384.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/meego-project-management/",
-      "storeHandle": "meego-project-management",
+      "price": 500.0,
+      "originalPrice": 500.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Skills",
       "description": "<p>A capability pack for an agent or operator. The reference files have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2847,11 +2887,10 @@
       "sub": "agents",
       "name": "OID-REGISTRAR",
       "sku": "BS-AGE-0293",
-      "price": 2000.0,
-      "originalPrice": 2000.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/oid-registrar/",
-      "storeHandle": "oid-registrar",
+      "price": 750.0,
+      "originalPrice": 750.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Agents",
       "description": "<p>A named agent in the BrainSAIT registry. Its identity card, system prompt and runbook have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2861,11 +2900,10 @@
       "sub": "agents",
       "name": "SHOPLINC",
       "sku": "BS-AGE-0294",
-      "price": 2000.0,
-      "originalPrice": 2000.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/shoplinc/",
-      "storeHandle": "shoplinc",
+      "price": 750.0,
+      "originalPrice": 750.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Agents",
       "description": "<p>A named agent in the BrainSAIT registry. Its identity card, system prompt and runbook have not been published yet, so it is listed for reference and is not for sale.</p>"
     },
@@ -2875,11 +2913,10 @@
       "sub": "skills",
       "name": "TypeSafe AI (Jev) Skill",
       "sku": "BS-SKI-0309",
-      "price": 384.0,
-      "originalPrice": 384.0,
-      "available": true,
-      "storeUrl": "https://shop.brainsait.de/product/typesafe-ai-jev-skill/",
-      "storeHandle": "typesafe-ai-jev-skill",
+      "price": 500.0,
+      "originalPrice": 500.0,
+      "available": false,
+      "storeUrl": "",
       "category": "Skills",
       "description": "<p>A capability pack for an agent or operator. The reference files have not been published yet, so it is listed for reference and is not for sale.</p>"
     }
@@ -2913,13 +2950,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "sku": "BS-OID-OID-WHITE-LABEL-ENTE",
+      "sku": "OID-WHITE-LABEL",
       "available": true,
       "commercial": true,
       "originalPrice": 480000.0,
-      "storeUrl": "https://shop.brainsait.de/product/oid-white-label-enterprise/",
-      "storeHandle": "oid-white-label-enterprise",
-      "storeUrlMonthly": null
+      "storeUrl": "https://store.brainsait.de/products/oid-white-label-enterprise",
+      "storeUrlMonthly": null,
+      "storeHandle": "oid-white-label-enterprise"
     },
     {
       "slug": "oid-enterprise-namespace-license",
@@ -2949,13 +2986,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "sku": "BS-OID-OID-ENTERPRISE-NAMES",
+      "sku": "OID-ENTERPRISE-NAMESPACE",
       "available": true,
       "commercial": true,
       "originalPrice": 240000.0,
-      "storeUrl": "https://shop.brainsait.de/product/oid-enterprise-namespace-license/",
-      "storeHandle": "oid-enterprise-namespace-license",
-      "storeUrlMonthly": null
+      "storeUrl": "https://store.brainsait.de/products/oid-enterprise-namespace-license",
+      "storeUrlMonthly": null,
+      "storeHandle": "oid-enterprise-namespace-license"
     },
     {
       "slug": "oid-fhir-integration-platform",
@@ -2985,13 +3022,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "sku": "BS-OID-OID-FHIR-INTEGRATION",
+      "sku": "OID-FHIR-PLATFORM",
       "available": true,
       "commercial": true,
       "originalPrice": 120000.0,
-      "storeUrl": "https://shop.brainsait.de/product/oid-fhir-integration-platform/",
-      "storeHandle": "oid-fhir-integration-platform",
-      "storeUrlMonthly": null
+      "storeUrl": "https://store.brainsait.de/products/oid-fhir-integration-platform",
+      "storeUrlMonthly": null,
+      "storeHandle": "oid-fhir-integration-platform"
     },
     {
       "slug": "nphies-oid-healthcare-identity-bundle",
@@ -3021,13 +3058,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "sku": "BS-OID-NPHIES-OID-HEALTHCAR",
+      "sku": "NPHIES-OID-BUNDLE",
       "available": true,
       "commercial": true,
       "originalPrice": 48000.0,
-      "storeUrl": "https://shop.brainsait.de/product/nphies-oid-healthcare-identity-bundle/",
-      "storeHandle": "nphies-oid-healthcare-identity-bundle",
-      "storeUrlMonthly": null
+      "storeUrl": "https://store.brainsait.de/products/nphies-oid-healthcare-identity-bundle",
+      "storeUrlMonthly": null,
+      "storeHandle": "nphies-oid-healthcare-identity-bundle"
     },
     {
       "slug": "oid-explorer-seat",
@@ -3057,13 +3094,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "sku": "BS-OID-OID-EXPLORER-SEAT",
+      "sku": "OID-EXPLORER-SEAT",
       "available": true,
       "commercial": true,
       "originalPrice": 24000.0,
-      "storeUrl": "https://shop.brainsait.de/product/oid-explorer-seat/",
-      "storeHandle": "oid-explorer-seat",
-      "storeUrlMonthly": null
+      "storeUrl": "https://store.brainsait.de/products/oid-explorer-seat",
+      "storeUrlMonthly": null,
+      "storeHandle": "oid-explorer-seat"
     },
     {
       "slug": "brainsait-provider-registry-bpr-membership",
@@ -3078,7 +3115,7 @@
       "taglineAr": "",
       "description": "Annual BPR membership. Certified healthcare provider identity with registry listing.",
       "descriptionAr": "عضوية BPR السنوية. هوية مزود رعاية صحية معتمدة مع إدراج في السجل.",
-      "price": 163.0,
+      "price": 3960.0,
       "image": "",
       "badges": [],
       "benefits": [],
@@ -3091,13 +3128,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "sku": "BS-OID-BRAINSAIT-PROVIDER-R",
+      "sku": "BPR-ANNUAL",
       "available": true,
       "commercial": true,
-      "originalPrice": 163.0,
-      "storeUrl": "https://shop.brainsait.de/product/brainsait-provider-registry-bpr-membership/",
-      "storeHandle": "brainsait-provider-registry-bpr-membership",
-      "storeUrlMonthly": null
+      "originalPrice": 3960.0,
+      "storeUrl": "https://store.brainsait.de/products/provider-registry",
+      "storeUrlMonthly": null,
+      "storeHandle": "provider-registry"
     },
     {
       "slug": "oid-verification-badge",
@@ -3127,13 +3164,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "sku": "BS-OID-OID-VERIFICATION-BAD",
+      "sku": "OID-VERIFICATION-BADGE",
       "available": true,
       "commercial": true,
       "originalPrice": 990.0,
-      "storeUrl": "https://shop.brainsait.de/product/oid-verification-badge/",
-      "storeHandle": "oid-verification-badge",
-      "storeUrlMonthly": null
+      "storeUrl": "https://store.brainsait.de/products/oid-verification-badge",
+      "storeUrlMonthly": null,
+      "storeHandle": "oid-verification-badge"
     },
     {
       "slug": "brainsait-oid-identity",
@@ -3163,13 +3200,13 @@
       "flag": null,
       "demoUrl": null,
       "limitedDemo": false,
-      "sku": "BS-OID-BRAINSAIT-OID-IDENTI",
+      "sku": "OID-IDENTITY",
       "available": true,
       "commercial": true,
       "originalPrice": 499.0,
-      "storeUrl": "https://shop.brainsait.de/product/brainsait-oid-identity/",
-      "storeHandle": "brainsait-oid-identity",
-      "storeUrlMonthly": null
+      "storeUrl": "https://store.brainsait.de/products/oid-identity",
+      "storeUrlMonthly": null,
+      "storeHandle": "oid-identity"
     }
   ],
   "catalogue": []

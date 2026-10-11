@@ -18,6 +18,8 @@ Without --write the script prints a dry-run summary.
 """
 
 import argparse
+import datetime
+import hashlib
 import json
 import os
 import re
@@ -28,6 +30,7 @@ from typing import Any
 
 SHOPIFY_STORE_URL = "https://store.brainsait.de"
 CATALOG_PATH = Path(__file__).parent.parent / "src" / "data" / "catalog.json"
+PROVENANCE_PATH = Path(__file__).parent.parent / "src" / "data" / ".catalog-provenance.json"
 
 
 def shopify_request(path: str) -> dict:
@@ -199,6 +202,39 @@ def load_catalog() -> dict:
         return json.load(f)
 
 
+def canonical_hash(obj: Any) -> str:
+    """Order-independent hash of the source payload."""
+    payload = json.dumps(obj, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def file_hash(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def write_provenance(input_hash: str) -> None:
+    """Record the hashes the pre-commit provenance gate checks against.
+
+    Lives in a separate committed file on purpose: recording the output hash
+    inside catalog.json would mean any edit to the file also edits the
+    reference it is compared against.
+    """
+    PROVENANCE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    PROVENANCE_PATH.write_text(
+        json.dumps(
+            {
+                "input_hash": input_hash,
+                "output_hash": file_hash(CATALOG_PATH),
+                "generated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                "source": f"shopify:{SHOPIFY_STORE_URL}",
+            },
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+
 def save_catalog(catalog: dict) -> None:
     with open(CATALOG_PATH, "w", encoding="utf-8") as f:
         json.dump(catalog, f, ensure_ascii=False, indent=2)
@@ -223,6 +259,8 @@ def main() -> int:
     parser.add_argument("--write", action="store_true", help="Write changes to catalog.json")
     parser.add_argument("--token", default=os.environ.get("SHOPIFY_ADMIN_TOKEN", ""), help="Shopify Admin API token")
     parser.add_argument("--shop", default=os.environ.get("SHOPIFY_STORE_DOMAIN", "brainsait.myshopify.com"), help="Shopify admin domain")
+    parser.add_argument("--print-input-hash", action="store_true", help="Print hash of the live Shopify payload and exit")
+    parser.add_argument("--print-file-hash", action="store_true", help="Print hash of catalog.json bytes and exit")
     args = parser.parse_args()
 
     if not args.token:
@@ -323,8 +361,16 @@ def main() -> int:
         for title, reason in skipped[:5]:
             print(f"  ! {title} ({reason})")
 
+    if args.print_input_hash:
+        print(canonical_hash(products))
+        return 0
+    if args.print_file_hash:
+        print(file_hash(CATALOG_PATH))
+        return 0
+
     if args.write:
         save_catalog(catalog)
+        write_provenance(canonical_hash(products))
         print(f"\nWrote {CATALOG_PATH}")
     else:
         print("\nDry run — pass --write to save changes.")
