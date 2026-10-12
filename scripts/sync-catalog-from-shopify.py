@@ -240,17 +240,31 @@ def save_catalog(catalog: dict) -> None:
         json.dump(catalog, f, ensure_ascii=False, indent=2)
 
 
+def item_handles(item: dict) -> list[str]:
+    """Every key this item could be matched on against a Shopify handle.
+
+    Curated rows in this catalog were written with `storeHandle`; the generator
+    emits `shopifyHandle`. Indexing only one of them made the lookup empty, which
+    silently reclassified every live product as "added" and dropped every curated
+    row (the preserve step below filters on the same key).
+    """
+    keys = ("shopifyHandle", "storeHandle", "slug")
+    seen = []
+    for k in keys:
+        v = item.get(k)
+        if v and v not in seen:
+            seen.append(v)
+    return seen
+
+
 def build_lookup(catalog: dict) -> dict[str, dict]:
     lookup = {}
-    for item in catalog.get("learn", []):
-        if item.get("shopifyHandle"):
-            lookup[item["shopifyHandle"]] = item
-    for item in catalog.get("solutions", []):
-        if item.get("shopifyHandle"):
-            lookup[item["shopifyHandle"]] = item
-    for item in catalog.get("build", {}).get("courses", []):
-        if item.get("shopifyHandle"):
-            lookup[item["shopifyHandle"]] = item
+    buckets = list(catalog.get("learn", []))
+    buckets += list(catalog.get("solutions", []))
+    buckets += list(catalog.get("build", {}).get("courses", []))
+    for item in buckets:
+        for handle in item_handles(item):
+            lookup.setdefault(handle, item)
     return lookup
 
 
@@ -329,15 +343,20 @@ def main() -> int:
 
     # Preserve existing entries that are not in Shopify (manual/draft items).
     existing_handles = {p.get("handle") for p in products if p.get("handle")}
-    for item in catalog.get("learn", []):
-        if item.get("shopifyHandle") and item["shopifyHandle"] not in existing_handles:
-            new_learn.append(item)
-    for item in catalog.get("solutions", []):
-        if item.get("shopifyHandle") and item["shopifyHandle"] not in existing_handles:
-            new_solutions.append(item)
-    for item in catalog.get("build", {}).get("courses", []):
-        if item.get("shopifyHandle") and item["shopifyHandle"] not in existing_handles:
-            new_build_courses.append(item)
+
+    def carried_over(items):
+        return [
+            item
+            for item in items
+            if not existing_handles.intersection(item_handles(item))
+        ]
+
+    for item in carried_over(catalog.get("learn", [])):
+        new_learn.append(item)
+    for item in carried_over(catalog.get("solutions", [])):
+        new_solutions.append(item)
+    for item in carried_over(catalog.get("build", {}).get("courses", [])):
+        new_build_courses.append(item)
 
     catalog["learn"] = new_learn
     catalog["solutions"] = new_solutions

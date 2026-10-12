@@ -1,6 +1,7 @@
 {
-  "input_hash": "768b70200e87f462dadc7456ab888b6c3f751fe536ae64dfbd20114f092b1f70",
-  "output_hash": "c73d01492e4a8076596699a6425c7233442a68cb6b77546a73f49691ee438db3",
-  "generated_at": "2026-10-11T13:53:32.931732+00:00",
-  "source": "shopify:https://store.brainsait.de"
+  "input_hash": "6bd02eec9ac6fb0bd583e8d17bcb238b5281dd3a325636a62f030b17d8cbfd53",
+  "output_hash": "3bd54acc9b294b1a39e805c1b1d47c8fe84aebfca08a9a47375d5b708d4e7385",
+  "generated_at": "2026-10-12T03:37:45.315139+00:00",
+  "source": "shopify:https://store.brainsait.de",
+  "note": "Provenance re-stamped after an intentional hand-sync of the templates stage (23 BSAGT agents -> 900 SAR, +BSAGT-012/013/019). The learn/solutions/build stages remain curated and are NOT a full regeneration of the Shopify payload; sync-catalog-from-shopify.py mis-stages live products as 'solutions'. See BLOCKER in the session report."
 }
