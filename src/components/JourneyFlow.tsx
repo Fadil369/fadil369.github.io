@@ -7,7 +7,7 @@ export default function JourneyFlow() {
   const [hubOk, setHubOk] = useState<boolean | null>(null);
 
   useEffect(() => {
-    fetch('https://hub.brainsait.de/health').then(r => setHubOk(r.ok)).catch(() => setHubOk(false));
+    fetch('https://hub.brainsait.org/health').then(r => setHubOk(r.ok)).catch(() => setHubOk(false));
   }, []);
 
   const steps = [

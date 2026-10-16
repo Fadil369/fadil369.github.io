@@ -18,7 +18,7 @@ export default function ShopifyAccountPanel() {
     let active = true;
     if (status === 'signed-in' && email) {
       setEntitlements(null);
-      fetch(`https://hub.brainsait.de/api/entitlement?email=${encodeURIComponent(email)}`)
+      fetch(`https://hub.brainsait.org/api/entitlement?email=${encodeURIComponent(email)}`)
         .then((r) => (r.ok ? r.json() : null))
         .then((d) => { if (active) setEntitlements(d?.entitlements || []); })
         .catch(() => { if (active) setEntitlements([]); });
