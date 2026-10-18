@@ -154,6 +154,9 @@ function Header() {
           <NavLink to="/build">{t('nav.build')}</NavLink>
           <NavLink to="/solutions">{t('nav.solutions')}</NavLink>
           <NavLink to="/templates">{t('nav.templates')}</NavLink>
+          <a href="https://brainsait.de/bpr/" target="_blank" rel="noopener noreferrer" className="nav-bpr">
+            {ar ? 'سجل BPR' : 'BPR Registry'}
+          </a>
           <NavLink to="/oid">{ar ? 'الهوية والسجل' : 'OID & Registry'}</NavLink>
           <NavLink to="/catalogue">{ar ? 'كتالوج المتجر' : 'Catalogue'}</NavLink>
           <NavLink to="/slots" style={{ color: '#10b981', fontWeight: 700 }}>

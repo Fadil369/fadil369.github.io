@@ -1234,6 +1234,16 @@ img { max-width: 100%; }
   padding: 0.42rem 0.72rem;
   font-size: 0.88rem;
 }
+.main-nav a.nav-bpr {
+  color: var(--ink);
+  background: var(--gold);
+  box-shadow: 0 0 0 1px rgba(233, 196, 106, 0.4);
+}
+.main-nav a.nav-bpr:hover,
+.main-nav a.nav-bpr:focus-visible {
+  color: var(--ink);
+  background: #f1d486;
+}
 .head-actions { flex: 0 0 auto; }
 .icon-btn.round { border-radius: var(--radius-sm); }
 

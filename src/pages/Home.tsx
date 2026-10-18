@@ -51,6 +51,14 @@ export default function Home() {
           <span className="launch-now">{ar ? `${stats.solutions} حلول جاهزة · 24,000 ر.س` : `${stats.solutions} Ready solutions · 24,000 SAR`}</span>
           <span className="launch-now">{ar ? `${stats.oid} هوية وسجل` : `${stats.oid} OID & Registry`}</span>
         </div>
+        <div className="hero-actions" style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '1.25rem' }}>
+          <a className="button primary" href="https://brainsait.de/bpr/" target="_blank" rel="noopener noreferrer">
+            {ar ? 'افتح سجل BPR' : 'Open the BPR Registry'}
+          </a>
+          <Link className="button secondary" to="/oid">
+            {ar ? 'منتجات الهوية والسجل' : 'Identity products'}
+          </Link>
+        </div>
       </section>
 
       <section className="ecosystem-command reveal" aria-label={ar ? 'غرفة تشغيل BrainSAIT' : 'BrainSAIT operating room'}>
