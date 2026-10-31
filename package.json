@@ -9,6 +9,8 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "test": "node --test --experimental-strip-types src/utils/*.test.ts",
+    "assets:brand": "node scripts/generate-brand-assets.mjs",
+    "verify:design": "node scripts/verify-design.mjs",
     "sync:store": "python3 scripts/sync-catalog-from-woocommerce.py && bash scripts/verify-catalog-provenance.sh",
     "verify:catalog": "bash scripts/verify-catalog-provenance.sh",
     "deploy": "npm run build && node scripts/publish.mjs",
@@ -17,15 +19,20 @@
   },
   "dependencies": {
     "lucide-react": "^0.468.0",
+    "qrcode": "^1.5.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.30.6"
   },
   "devDependencies": {
     "@types/node": "^26.6.4",
+    "@types/qrcode": "^1.5.6",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.7.0",
+    "jsqr": "^1.4.0",
+    "playwright": "^1.64.1",
+    "pngjs": "^7.0.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.1"
   }

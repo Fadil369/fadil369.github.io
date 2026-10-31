@@ -3,6 +3,8 @@ import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-do
 import { I18nProvider, useI18n } from './i18n';
 import Home from './pages/Home';
 import BprHub from './pages/BprHub';
+import ProfessionalCv from './pages/ProfessionalCv';
+import BusinessCard from './pages/BusinessCard';
 import './styles/app.css';
 
 function SkipLink() {
@@ -35,6 +37,8 @@ function AppShell() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/catalogue" element={<BprHub />} />
+          <Route path="/cv" element={<ProfessionalCv />} />
+          <Route path="/card" element={<BusinessCard />} />
           <Route path="/store" element={<BprHub />} />
           <Route path="/oid" element={<BprHub />} />
           <Route path="/learn" element={<BprHub />} />

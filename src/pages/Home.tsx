@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  ArrowDown, ArrowUpRight, BookOpen, Boxes, Braces, Check, Download,
+  ArrowDown, ArrowUpRight, BookOpen, Boxes, Braces, Check, CreditCard, Download,
   ExternalLink, FileText, Fingerprint, Github, HeartPulse, Languages,
   Linkedin, Moon, Network, ShieldCheck, Stethoscope, Sun,
 } from 'lucide-react';
@@ -96,6 +96,7 @@ export function ProfileHeader() {
         <Link to="/#journey">{ar ? 'المسار' : 'Journey'}</Link>
         <Link to="/#research">{ar ? 'البحث' : 'Research'}</Link>
         <Link to="/catalogue">BPR Hub</Link>
+        <Link to="/card">{ar ? 'البطاقة' : 'Card'}</Link>
       </nav>
       <div className="profile-controls">
         <button onClick={switchTheme} aria-label={dark ? (ar ? 'الوضع الفاتح' : 'Light mode') : (ar ? 'الوضع الداكن' : 'Dark mode')}>
@@ -139,9 +140,12 @@ export default function Home() {
             </p>
             <div className="profile-actions">
               <a className="profile-button primary" href="#work">{ar ? 'استكشف أعمالي' : 'Explore my work'}<ArrowDown size={17} /></a>
-              <a className="profile-button secondary" href="/assets/Dr_Mohamed_El_Fadil_CV_2026.pdf" download>
-                <Download size={17} />{ar ? 'تنزيل السيرة الذاتية' : 'Download CV'}
-              </a>
+              <Link className="profile-button secondary" to="/cv">
+                <Download size={17} />{ar ? 'السيرة الذاتية' : 'Professional CV'}
+              </Link>
+              <Link className="profile-button text-button" to="/card">
+                <CreditCard size={17} />{ar ? 'بطاقة الأعمال' : 'Business card'}
+              </Link>
             </div>
             <div className="profile-socials">
               <a href="https://github.com/Fadil369" target="_blank" rel="noreferrer"><Github size={17} />GitHub</a>
@@ -253,7 +257,7 @@ export default function Home() {
       </div>
       <footer className="profile-footer">
         <span>© {new Date().getFullYear()} Dr. Mohamed El Fadil</span>
-        <div><a href="https://elfadil.brainsait.de" target="_blank" rel="noreferrer">elfadil.brainsait.de</a><Link to="/catalogue">BrainSAIT Store</Link><a href="/assets/Dr_Mohamed_El_Fadil_CV_2026.pdf"><FileText size={14} />CV</a></div>
+        <div><a href="https://elfadil.brainsait.de" target="_blank" rel="noreferrer">elfadil.brainsait.de</a><Link to="/catalogue">BPR Hub</Link><Link to="/card">Card</Link><Link to="/cv"><FileText size={14} />CV</Link></div>
         <span className="profile-verified"><Check size={13} />{ar ? 'مصمم ليكون قابلاً للتحقق' : 'Designed to be verifiable'}</span>
       </footer>
     </div>

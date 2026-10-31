@@ -32,7 +32,7 @@ interface ProviderProfile {
   slots_held?: { id: string; title: string; state: string }[];
 }
 
-const FEATURED_SPID = 'SA-PHY-000001';
+const FEATURED_SPID = 'SA-PHY-000003';
 
 const STATE_STYLE: Record<string, { bg: string; fg: string; en: string; ar: string }> = {
   live:  { bg: 'rgba(16,185,129,.15)', fg: '#10b981', en: 'LIVE',  ar: 'مُفعّل' },
@@ -195,7 +195,7 @@ export default function Slots() {
                     </p>
                   ) : (
                     <>
-                      <input value={spid} onChange={e => setSpid(e.target.value)} placeholder={ar ? 'معرّفك SPID (مثال SA-PHY-000001)' : 'Your SPID (e.g. SA-PHY-000001)'}
+                      <input value={spid} onChange={e => setSpid(e.target.value)} placeholder={ar ? 'معرّفك SPID (مثال SA-PHY-000003)' : 'Your SPID (e.g. SA-PHY-000003)'}
                         style={{ padding: '10px 12px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--line)', background: 'var(--bg)', color: 'inherit', fontSize: '13px' }} />
                       <textarea value={message} onChange={e => setMessage(e.target.value)} rows={2} placeholder={ar ? 'رسالة اختيارية للمستشفى' : 'Optional message to the hospital'}
                         style={{ padding: '10px 12px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--line)', background: 'var(--bg)', color: 'inherit', fontSize: '13px', resize: 'vertical' }} />
