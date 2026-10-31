@@ -565,3 +565,5 @@
 /* E12 (screen only): give the black card artwork an edge on the near-black page */
 .card-preview-item img { outline: 1px solid rgba(237, 243, 74, .28); outline-offset: 0; }
 @media print { .card-preview-item img { outline: 0; } }
+/* WCAG 2.5.8 target size for the CV contact links (screen only; print keeps its compact masthead) */
+@media screen { .cv-contact a { display: inline-block; padding-block: 5px; line-height: 14px; } }

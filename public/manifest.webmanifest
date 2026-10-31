@@ -1,0 +1,22 @@
+{
+  "name": "Dr. Mohamed El Fadil · BPR",
+  "short_name": "El Fadil · BPR",
+  "description": "Physician and BrainSAIT founder. Professional profile, CV and the BrainSAIT Provider Registry: verify a clinician on your device.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#090a08",
+  "theme_color": "#090a08",
+  "lang": "en",
+  "dir": "auto",
+  "icons": [
+    { "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Verify a provider", "url": "/bpr/verify", "description": "Check a BPR credential on this device" },
+    { "name": "CV", "url": "/cv" },
+    { "name": "Provider workspace", "url": "/bpr/workspace" }
+  ]
+}

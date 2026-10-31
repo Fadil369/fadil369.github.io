@@ -1,5 +1,7 @@
+# Everyone is welcome, including AI crawlers and agents. Start with /llms.txt.
 User-agent: *
 Allow: /
 Disallow: /scripts/
+Disallow: /src/
 
 Sitemap: https://fadil369.github.io/sitemap.xml

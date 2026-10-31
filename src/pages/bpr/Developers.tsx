@@ -66,7 +66,7 @@ export default function Developers() {
         <div className="bpr-panel-head"><h2>FHIR {cap.state === 'ready' ? cap.data.fhirVersion : 'R4'} · CapabilityStatement</h2>{cap.state === 'ready' && <SourceBadge source={cap.source} />}</div>
         {cap.state === 'loading' && <Loading />}
         {cap.state === 'error' && <Failed />}
-        {cap.state === 'ready' && <div className="bpr-table-wrap"><table className="bpr-table" dir="ltr">
+        {cap.state === 'ready' && <div className="bpr-table-wrap" tabIndex={0} role="region" aria-label={ar ? 'جدول موارد FHIR' : 'FHIR resources table'}><table className="bpr-table" dir="ltr">
           <thead><tr><th>Resource</th><th>Interactions</th><th>Search parameters</th></tr></thead>
           <tbody>{cap.data.rest[0].resource.map((r) => (
             <tr key={r.type}><td><strong>{r.type}</strong></td><td>{(r.interaction || []).map((i) => <code key={i.code}>{i.code}</code>)}</td><td>{(r.searchParam || []).map((s) => <code key={s.name} title={s.documentation}>{s.name}</code>)}</td></tr>

@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { Component, lazy, ReactNode, Suspense, useEffect, useState } from 'react';
 import { BrowserRouter, Link, Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { I18nProvider, useI18n } from './i18n';
 import Home from './pages/Home';
@@ -41,6 +41,37 @@ function SpidRedirect() {
   return <Navigate to={`/bpr/p/${spid.toUpperCase()}`} replace />;
 }
 
+class RouteBoundary extends Component<{ children: ReactNode; ar: boolean; path: string }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() { return { failed: true }; }
+  componentDidUpdate(prev: { path: string }) { if (prev.path !== this.props.path && this.state.failed) this.setState({ failed: false }); }
+  render() {
+    if (!this.state.failed) return this.props.children;
+    const { ar } = this.props;
+    return (
+      <div className="profile-page" style={{ minHeight: '60vh', display: 'grid', placeContent: 'center', padding: 30, textAlign: 'center' }} role="alert">
+        <h1 style={{ fontSize: 28 }}>{ar ? 'تعذّر تحميل هذه الصفحة' : 'This page could not load'}</h1>
+        <p style={{ color: 'var(--profile-muted)' }}>{ar ? 'قد يكون الاتصال مقطوعًا. حاول مرة أخرى عند عودة الاتصال.' : 'You may be offline. Try again when the connection is back.'}</p>
+        <div className="profile-actions" style={{ justifyContent: 'center' }}><button className="profile-button primary" onClick={() => window.location.reload()}>{ar ? 'إعادة المحاولة' : 'Try again'}</button><Link className="profile-button secondary" to="/">{ar ? 'الملف الشخصي' : 'Profile'}</Link></div>
+      </div>
+    );
+  }
+}
+
+function OfflineBanner() {
+  const { ar } = useI18n();
+  const [offline, setOffline] = useState(() => typeof navigator !== 'undefined' && navigator.onLine === false);
+  useEffect(() => {
+    const on = () => setOffline(false), off = () => setOffline(true);
+    window.addEventListener('online', on); window.addEventListener('offline', off);
+    return () => { window.removeEventListener('online', on); window.removeEventListener('offline', off); };
+  }, []);
+  if (!offline) return null;
+  return <div className="offline-banner" role="status">{ar
+    ? 'أنت غير متصل. تُعرض النسخة المحفوظة؛ تعمل فحوص التوقيع على اللقطة المحفوظة.'
+    : 'You are offline. Showing the saved copy; signature checks run against the saved snapshot.'}</div>;
+}
+
 function AppShell() {
   const location = useLocation();
   useEffect(() => {
@@ -62,7 +93,9 @@ function AppShell() {
     <>
       <SkipLink />
       <CommandPalette />
+      <OfflineBanner />
       <main id="main-content">
+        <RouteBoundary ar={document.documentElement.lang === 'ar'} path={location.pathname}>
         <Suspense fallback={<div className="profile-page" style={{ minHeight: '100vh' }} />}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -85,6 +118,7 @@ function AppShell() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>
+        </RouteBoundary>
       </main>
     </>
   );

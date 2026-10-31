@@ -20,8 +20,15 @@ export interface Loaded<T> { data: T; source: Source }
 
 const cache = new Map<string, Promise<Loaded<unknown>>>();
 
+// A hung registry must not hang the page: give up after 8 s and let the snapshot answer.
+const TIMEOUT_MS = 8000;
+function timeoutSignal(ms: number): AbortSignal | undefined {
+  const A = AbortSignal as typeof AbortSignal & { timeout?: (ms: number) => AbortSignal };
+  return typeof A.timeout === 'function' ? A.timeout(ms) : undefined;
+}
+
 async function json<T>(url: string): Promise<T> {
-  const r = await fetch(url, { cache: 'no-store' });
+  const r = await fetch(url, { cache: 'no-store', signal: timeoutSignal(TIMEOUT_MS) });
   if (!r.ok) throw new Error(`${r.status}`);
   return r.json() as Promise<T>;
 }
@@ -178,7 +185,7 @@ export async function verifyJwt(jwt: string, jwks: Jwk[]): Promise<Check> {
     return ok ? { state: 'ok', how: 'device' } : { state: 'fail', detail: 'signature does not match', how: 'device' };
   } catch {
     try {
-      const r = await (await fetch(`${REGISTRY}/vc/verify`, { method: 'POST', body: jwt.trim() })).json();
+      const r = await (await fetch(`${REGISTRY}/vc/verify`, { method: 'POST', body: jwt.trim(), signal: timeoutSignal(TIMEOUT_MS) })).json();
       return r.ok ? { state: 'ok', how: 'server' } : { state: 'fail', detail: (r.reasons || []).join('; ') || 'rejected', how: 'server' };
     } catch {
       return { state: 'unavailable', detail: 'no Ed25519 in this browser and the registry is unreachable' };

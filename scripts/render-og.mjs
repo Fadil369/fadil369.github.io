@@ -54,5 +54,17 @@ for (const p of list) {
 await render(shell(`<div class="k">BPR · BRAINSAIT PROVIDER REGISTRY</div><h1 style="font-size:76px;max-width:900px">One trusted identity.<br>Anyone can check it.</h1>
 <div class="ar" style="margin-top:18px">هوية واحدة موثوقة. يمكن لأي شخص التحقق منها.</div>
 <div class="foot"><span>Signed credentials · transparency log · FHIR R4 · checked in your browser</span><span>fadil369.github.io/bpr</span></div>`), 'bpr.png');
+// App icons: the EF monogram used across the site (favicon, card, header).
+const iconDir = join(root, 'public', 'assets', 'icons');
+mkdirSync(iconDir, { recursive: true });
+const icon = (size, pad) => `<!doctype html><html><head><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap" rel="stylesheet">
+<style>*{margin:0}body{width:${size}px;height:${size}px;background:#090a08;display:grid;place-items:center}
+div{width:${size - pad * 2}px;height:${size - pad * 2}px;background:#edf34a;display:grid;place-items:center;color:#111207;font:800 ${Math.round((size - pad * 2) * 0.42)}px Manrope,sans-serif;letter-spacing:-.04em}</style></head><body><div>EF</div></body></html>`;
+for (const [file, size, pad] of [['icon-192.png', 192, 18], ['icon-512.png', 512, 48], ['icon-maskable-512.png', 512, 104], ['apple-touch-icon.png', 180, 16]]) {
+  await page.setViewportSize({ width: size, height: size });
+  await page.setContent(icon(size, pad), { waitUntil: 'networkidle' });
+  await page.evaluate(() => document.fonts.ready);
+  await page.screenshot({ path: join(iconDir, file) });
+}
 await browser.close();
 console.log(`og: ${n} provider image(s) + bpr.png → public/assets/og/`);

@@ -2,24 +2,15 @@
 // Runs after publish.mjs: serves the repo root, prints with the page's own @page rules, and
 // refuses to write a PDF that is not exactly one page (the print layout clips, so overflow would
 // otherwise vanish silently). The QR stamp is taken live from the transparency log at render time.
-import { createServer } from 'node:http';
-import { readFileSync, existsSync, statSync, writeFileSync, copyFileSync, mkdirSync } from 'node:fs';
-import { dirname, join, extname } from 'node:path';
+import { writeFileSync, mkdirSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
+import { serve } from './lib-serve.mjs';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.pdf': 'application/pdf' };
-const server = createServer((req, res) => {
-  let p = decodeURIComponent(new URL(req.url, 'http://x').pathname);
-  let f = join(root, p);
-  if (!f.startsWith(root)) { res.writeHead(403).end(); return; }
-  if (existsSync(f) && statSync(f).isDirectory()) f = join(f, 'index.html');
-  if (!existsSync(f)) f = join(root, '404.html');
-  res.writeHead(200, { 'content-type': TYPES[extname(f)] || 'application/octet-stream' }).end(readFileSync(f));
-}).listen(0, '127.0.0.1');
-await new Promise((r) => server.once('listening', r));
-const base = `http://127.0.0.1:${server.address().port}`;
+const server = await serve(root);
+const base = server.base;
 
 const OUT = [['en', 'Dr_Mohamed_El_Fadil_CV_2026_Redesigned.pdf'], ['ar', 'Dr_Mohamed_El_Fadil_CV_2026_AR.pdf']];
 const browser = await chromium.launch();

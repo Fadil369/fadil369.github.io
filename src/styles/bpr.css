@@ -405,3 +405,11 @@
 .ws-band-row em { font-style: normal; font-size: 12px; padding: 3px 9px; border: 1px solid color-mix(in srgb, var(--bpr-ok) 40%, transparent); color: var(--profile-text); border-radius: 999px; }
 .ws-band-row em.planned { border-style: dashed; border-color: var(--profile-line); color: var(--profile-muted); }
 @media (max-width: 860px) { .ws-band { grid-template-columns: 1fr; } .ws-band > svg { display: none; } .ws-band .profile-button { justify-self: start; } }
+.bpr-trust dd { display: block; }
+.bpr-trust-value { display: flex; align-items: center; gap: 6px; }
+.bpr-trust .na .bpr-trust-value { color: var(--bpr-warn); }
+.bpr-trust .none .bpr-trust-value { color: var(--profile-muted); }
+.bpr-trust .neg .bpr-trust-value { color: var(--bpr-fail); }
+.bpr-trust .pos .bpr-trust-value { color: var(--bpr-ok); }
+.bpr-trust dd small { font-weight: 400; }
+.bpr-table-wrap:focus-visible { outline: 2px solid var(--profile-accent); outline-offset: 2px; }

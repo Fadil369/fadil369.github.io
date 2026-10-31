@@ -40,7 +40,11 @@ export default function Overview() {
   const list = useLoad<ProviderList>('/api/providers', 'providers.json');
   const [cred, setCred] = useState<CredentialResult | null>(null);
   const [ledger, setLedger] = useState<LedgerResult | null>(null);
-  useEffect(() => { checkCredential(SPID).then(setCred, () => {}); replayLedger().then(setLedger, () => {}); }, []);
+  const [credErr, setCredErr] = useState(false);
+  const [ledgerErr, setLedgerErr] = useState(false);
+  useEffect(() => { checkCredential(SPID).then(setCred, () => setCredErr(true)); replayLedger().then(setLedger, () => setLedgerErr(true)); }, []);
+  const NA = { state: 'unavailable' as const, detail: ar ? 'تعذّر الوصول إلى السجل' : 'registry unreachable' };
+  const pending = { state: 'pending' as const };
   usePageMeta({
     title: ar ? 'BPR — سجل برينسايت لمقدمي الرعاية' : 'BPR — BrainSAIT Provider Registry',
     description: ar ? 'هوية موقّعة لكل ممارس صحي: دليل، تحقق على الجهاز، سجل شفاف، بصمة بحثية وFHIR R4.' : 'Signed identity for every clinician: directory, on-device verification, transparency log, research footprint and FHIR R4.',
@@ -81,11 +85,11 @@ export default function Overview() {
         </div>
         <div className="bpr-panel">
           <h2>{ar ? 'فحص مباشر الآن' : 'Checked just now, in this tab'}</h2>
-          <CheckRow label={ar ? 'توقيع الشهادة' : 'Credential signature'} check={cred?.signature || { state: 'pending' }} />
-          <CheckRow label={ar ? 'فترة الصلاحية' : 'Validity window'} check={cred?.expiry || { state: 'pending' }} okText={ar ? 'سارية' : 'In date'} />
-          <CheckRow label={ar ? 'الحالة المباشرة' : 'Live status'} check={cred?.status || { state: 'pending' }} okText={valueLabel(cred?.status.value, ar)} />
-          <CheckRow label={ar ? 'سلسلة التجزئة' : 'Hash chain replay'} check={ledger?.chain || { state: 'pending' }} />
-          <CheckRow label={ar ? 'رأس السجل الموقّع' : 'Signed ledger head'} check={ledger?.headSignature || { state: 'pending' }}>
+          <CheckRow label={ar ? 'توقيع الشهادة' : 'Credential signature'} check={cred?.signature || (credErr ? NA : pending)} />
+          <CheckRow label={ar ? 'فترة الصلاحية' : 'Validity window'} check={cred?.expiry || (credErr ? NA : pending)} okText={ar ? 'سارية' : 'In date'} />
+          <CheckRow label={ar ? 'الحالة المباشرة' : 'Live status'} check={cred?.status || (credErr ? NA : pending)} okText={valueLabel(cred?.status.value, ar)} />
+          <CheckRow label={ar ? 'سلسلة التجزئة' : 'Hash chain replay'} check={ledger?.chain || (ledgerErr ? NA : pending)} />
+          <CheckRow label={ar ? 'رأس السجل الموقّع' : 'Signed ledger head'} check={ledger?.headSignature || (ledgerErr ? NA : pending)}>
             {ledger && <code className="bpr-hash" dir="ltr">{short(ledger.head.hash, 14)}</code>}
           </CheckRow>
           <ScfhsPending compact />

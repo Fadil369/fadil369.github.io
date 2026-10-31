@@ -88,7 +88,7 @@ export function CheckRow({ label, check, okText, children }: { label: string; ch
   const how = check.how === 'device' ? (ar ? 'على جهازك' : 'on your device') : check.how === 'server' ? (ar ? 'عبر السجل' : 'by the registry') : '';
   const word = check.state === 'ok' ? (okText || (ar ? 'ناجح' : 'Pass')) : check.state === 'fail' ? (ar ? 'فشل' : 'Fail') : check.state === 'pending' ? (ar ? 'جارٍ…' : 'Checking…') : (ar ? 'غير متاح' : 'Unavailable');
   return (
-    <div className={`bpr-check ${check.state}`}>
+    <div className={`bpr-check ${check.state}`} data-check={label} data-state={check.state}>
       <Icon size={17} aria-hidden="true" />
       <span className="bpr-check-label">{label}</span>
       <strong>{word}</strong>
@@ -147,9 +147,11 @@ export function TrustGrid({ trust, legend = true }: { trust: Trust; legend?: boo
           return (
             <div key={k} className={tone}>
               <dt>{TRUST_LABEL[k][ar ? 1 : 0]}</dt>
-              <dd><TrustGlyph tone={tone} />{valueLabel(trust[k], ar)}</dd>
-              <small className="bpr-attestor">{ATTESTOR[k][ar ? 1 : 0]}</small>
-              {pending && <small className="bpr-pending"><Hourglass size={11} aria-hidden="true" />{ar ? 'بانتظار تكامل الهيئة' : 'Awaiting SCFHS integration'}</small>}
+              <dd>
+                <span className="bpr-trust-value"><TrustGlyph tone={tone} />{valueLabel(trust[k], ar)}</span>
+                <small className="bpr-attestor">{ATTESTOR[k][ar ? 1 : 0]}</small>
+                {pending && <small className="bpr-pending"><Hourglass size={11} aria-hidden="true" />{ar ? 'بانتظار تكامل الهيئة' : 'Awaiting SCFHS integration'}</small>}
+              </dd>
             </div>
           );
         })}
