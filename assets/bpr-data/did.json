@@ -1,0 +1,44 @@
+{
+ "@context": [
+  "https://www.w3.org/ns/did/v1",
+  "https://w3id.org/security/jwk/v1"
+ ],
+ "id": "did:web:registry.brainsait.de",
+ "alsoKnownAs": [
+  "https://registry.brainsait.de",
+  "urn:oid:1.3.6.1.4.1.61026"
+ ],
+ "verificationMethod": [
+  {
+   "id": "did:web:registry.brainsait.de#key-1",
+   "type": "JsonWebKey",
+   "controller": "did:web:registry.brainsait.de",
+   "publicKeyJwk": {
+    "kty": "OKP",
+    "crv": "Ed25519",
+    "x": "r8PtEntq8q146yjDe4vLTKNvTmvkOgFjHsrXYZgoC00",
+    "kid": "did:web:registry.brainsait.de#key-1"
+   }
+  }
+ ],
+ "assertionMethod": [
+  "did:web:registry.brainsait.de#key-1"
+ ],
+ "service": [
+  {
+   "id": "did:web:registry.brainsait.de#transparency-log",
+   "type": "TransparencyLog",
+   "serviceEndpoint": "https://registry.brainsait.de/transparency/log.json"
+  },
+  {
+   "id": "did:web:registry.brainsait.de#status",
+   "type": "CredentialStatusService",
+   "serviceEndpoint": "https://registry.brainsait.de/vc/status/"
+  },
+  {
+   "id": "did:web:registry.brainsait.de#verifier",
+   "type": "LinkedDomains",
+   "serviceEndpoint": "https://registry.brainsait.de/verify"
+  }
+ ]
+}

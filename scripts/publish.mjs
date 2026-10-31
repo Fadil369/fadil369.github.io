@@ -22,7 +22,8 @@ const index = readFileSync(indexFile, 'utf8');
 writeFileSync(join(root, '404.html'), index); // SPA fallback for hard refresh
 writeFileSync(join(root, 'index.html'), index);
 
-for (const route of ['learn', 'build', 'solutions', 'templates', 'oid', 'catalogue', 'store', 'sprint', 'benefits', 'account', 'track', 'faq', 'terms', 'support', 'contact', 'slots', 'doctors', 'cv', 'card']) {
+for (const route of ['learn', 'build', 'solutions', 'templates', 'oid', 'catalogue', 'store', 'sprint', 'benefits', 'account', 'track', 'faq', 'terms', 'support', 'contact', 'slots', 'doctors', 'cv', 'card',
+  'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join']) {
   const routeDir = join(root, route);
   mkdirSync(routeDir, { recursive: true });
   writeFileSync(join(routeDir, 'index.html'), index);
@@ -84,6 +85,27 @@ if (existsSync(catalogPath)) {
   }
   console.log(`Pre-rendered ${deepWritten} product deep route(s).`);
 }
+
+// BPR provider pages: one real file per listed provider (from the build snapshot), with
+// provider-specific share tags, so /bpr/p/{SPID} and /bpr/research/{SPID} return 200.
+const snapDir = join(root, 'public', 'assets', 'bpr-data');
+const snapList = join(snapDir, 'providers.json');
+let bprWritten = 0;
+if (existsSync(snapList)) {
+  const { items = [] } = JSON.parse(readFileSync(snapList, 'utf8'));
+  for (const p of items) {
+    if (!/^SA-[A-Z]{2,4}-\d{6}$/.test(p.spid)) continue;
+    const page = (path, title, description) => {
+      const dir = join(root, path);
+      mkdirSync(dir, { recursive: true });
+      writeFileSync(join(dir, 'index.html'), deepRouteHtml({ title, description, image: `${ORIGIN}/assets/profile-og.png`, url: `${ORIGIN}/${path}/` }).replace('content="product"', 'content="profile"'));
+      bprWritten += 1;
+    };
+    page(`bpr/p/${p.spid}`, `${p.name_en} · ${p.spid} — BPR`, p.trust_summary || 'BrainSAIT Provider Registry profile');
+    if (p.research_url) page(`bpr/research/${p.spid}`, `Research footprint · ${p.name_en} — BPR`, 'Works matched by DOI across ORCID, Zenodo and Hugging Face.');
+  }
+}
+console.log(`Pre-rendered ${bprWritten} BPR provider route(s).`);
 
 const bprRoute = join(root, 'products', 'bpr');
 mkdirSync(bprRoute, { recursive: true });

@@ -13,7 +13,8 @@
     "verify:design": "node scripts/verify-design.mjs",
     "sync:store": "python3 scripts/sync-catalog-from-woocommerce.py && bash scripts/verify-catalog-provenance.sh",
     "verify:catalog": "bash scripts/verify-catalog-provenance.sh",
-    "deploy": "npm run build && node scripts/publish.mjs",
+    "snapshot:bpr": "node scripts/snapshot-bpr.mjs",
+    "deploy": "node scripts/snapshot-bpr.mjs && npm run build && node scripts/publish.mjs",
     "sync:shopify": "python3 scripts/sync-catalog-from-shopify.py --write",
     "sync:shopify:dry": "python3 scripts/sync-catalog-from-shopify.py"
   },

@@ -1,0 +1,82 @@
+import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Search } from 'lucide-react';
+import { useI18n } from '../../i18n';
+import { usePageMeta } from '../../hooks/usePageMeta';
+import { BprLayout, Failed, Loading, SourceBadge, valueLabel } from '../../components/BprKit';
+import { ProviderList, useLoad } from '../../lib/bpr';
+
+type Filter = 'all' | 'orcid' | 'signed' | 'member';
+
+const norm = (s: string) => s.toLowerCase().normalize('NFKD').replace(/[ً-ٰٟ]/g, '').replace(/[أإآ]/g, 'ا');
+
+export default function Providers() {
+  const { ar } = useI18n();
+  const [q, setQ] = useState('');
+  const [filter, setFilter] = useState<Filter>('all');
+  const list = useLoad<ProviderList>('/api/providers', 'providers.json');
+  usePageMeta({
+    title: ar ? 'دليل مقدمي الرعاية — BPR' : 'Provider directory — BPR',
+    description: ar ? 'ابحث في مقدمي الرعاية المدرجين في سجل برينسايت وشاهد كل بُعد للثقة بشكل منفصل.' : 'Search providers listed in the BrainSAIT Provider Registry, with each trust dimension shown separately.',
+    url: '/bpr/providers', type: 'website',
+  });
+
+  const items = useMemo(() => {
+    if (list.state !== 'ready') return [];
+    const n = norm(q.trim());
+    return list.data.items.filter((p) => {
+      if (filter === 'orcid' && p.trust.identity !== 'confirmed') return false;
+      if (filter === 'signed' && p.trust.signature !== 'current') return false;
+      if (filter === 'member' && !['active', 'renew_due'].includes(p.membership)) return false;
+      return !n || [p.name_en, p.name_ar, p.spid, p.specialty || '', p.type].some((f) => norm(f).includes(n));
+    });
+  }, [list, q, filter]);
+
+  const FILTERS: [Filter, string, string][] = [
+    ['all', 'All', 'الكل'], ['orcid', 'ORCID confirmed', 'ORCID مؤكد'], ['signed', 'Signed credential', 'اعتماد موقّع'], ['member', 'Members', 'الأعضاء'],
+  ];
+
+  return (
+    <BprLayout
+      kicker={ar ? 'الدليل' : 'Directory'}
+      title={ar ? 'مقدمو الرعاية المدرجون' : 'Listed providers'}
+      lead={ar
+        ? 'الإدراج لا يعني التوثيق. لكل مقدم رعاية تُعرض الهوية والتوقيع والعضوية والترخيص كحالات منفصلة، كما يسجّلها السجل.'
+        : 'Listed is not the same as verified. Identity, signature, membership and licence are shown as separate states, exactly as the registry records them.'}
+    >
+      <div className="bpr-toolbar">
+        <label className="bpr-search">
+          <Search size={16} aria-hidden="true" />
+          <span className="sr-only">{ar ? 'بحث' : 'Search'}</span>
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={ar ? 'الاسم أو SPID أو التخصص' : 'Name, SPID or specialty'} />
+        </label>
+        <div className="bpr-chips" role="group" aria-label={ar ? 'تصفية' : 'Filter'}>
+          {FILTERS.map(([k, en, a]) => <button key={k} aria-pressed={filter === k} onClick={() => setFilter(k)}>{ar ? a : en}</button>)}
+        </div>
+        {list.state === 'ready' && <SourceBadge source={list.source} />}
+      </div>
+
+      {list.state === 'loading' && <Loading />}
+      {list.state === 'error' && <Failed />}
+      {list.state === 'ready' && (items.length === 0
+        ? <div className="bpr-state">{ar ? 'لا توجد نتائج.' : 'No providers match.'}</div>
+        : <div className="bpr-provider-grid">
+          {items.map((p) => (
+            <Link key={p.spid} to={`/bpr/p/${p.spid}`} className="bpr-provider">
+              <div className="bpr-provider-top"><code dir="ltr">{p.spid}</code><span>{p.type}</span></div>
+              <h3>{ar ? p.name_ar : p.name_en}</h3>
+              <p className="bpr-provider-alt">{ar ? p.name_en : p.name_ar}</p>
+              <p className="bpr-provider-spec">{p.specialty || (ar ? 'التخصص غير مذكور' : 'Specialty not stated')}</p>
+              <ul className="bpr-pills">
+                <li className={p.trust.identity === 'confirmed' ? 'pos' : ''}>ORCID · {valueLabel(p.trust.identity, ar)}</li>
+                <li className={p.trust.signature === 'current' ? 'pos' : ''}>{ar ? 'التوقيع' : 'Signature'} · {valueLabel(p.trust.signature, ar)}</li>
+                <li className={p.membership === 'active' ? 'pos' : ''}>{ar ? 'العضوية' : 'Membership'} · {valueLabel(p.membership, ar)}</li>
+              </ul>
+              <strong className="bpr-provider-go">{ar ? 'افتح الملف' : 'Open profile'}<ArrowRight size={14} /></strong>
+            </Link>
+          ))}
+        </div>)}
+      {list.state === 'ready' && list.data.note && <p className="bpr-note">{list.data.note}</p>}
+    </BprLayout>
+  );
+}

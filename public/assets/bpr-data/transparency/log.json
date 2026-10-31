@@ -1,0 +1,19 @@
+{
+ "head": {
+  "size": 1,
+  "hash": "be1b51acbac192ccb5acb1f886040c773b5e0dbf774a2dcd2db909c7543a2a0c",
+  "at": "2026-10-31T21:53:38Z",
+  "signed": "BPR-TLOG-v1\n1\nbe1b51acbac192ccb5acb1f886040c773b5e0dbf774a2dcd2db909c7543a2a0c\n2026-10-31T21:53:38Z",
+  "kid": "did:web:registry.brainsait.de#key-1",
+  "sig": "ZmVFO6Z7AfW-uFhc-km6Q8ac5LVAhn6iW71LKZXZclow5jh-cR7UzXXRSHcjJsP76WyEunEroq2btIbEhdlnBQ"
+ },
+ "genesis": "0000000000000000000000000000000000000000000000000000000000000000",
+ "rule": "hash = sha256(line); line.prev = previous hash; line.seq = 1..n",
+ "entries": [
+  {
+   "seq": 1,
+   "line": "{\"seq\":1,\"at\":\"2026-10-24T17:43:25Z\",\"event\":\"issued\",\"spid\":\"SA-PHY-000003\",\"jti\":\"urn:uuid:b397c7f5-2d34-4c96-9528-bfb737e9b6b4\",\"vc_sha256\":\"042956cfca24c84e20c33b9359b01c8fd1a3a12f4827c63778c910f00e0edeb8\",\"validUntil\":\"2027-10-23T23:59:59Z\",\"supersedes\":null,\"prev\":\"0000000000000000000000000000000000000000000000000000000000000000\"}",
+   "hash": "be1b51acbac192ccb5acb1f886040c773b5e0dbf774a2dcd2db909c7543a2a0c"
+  }
+ ]
+}

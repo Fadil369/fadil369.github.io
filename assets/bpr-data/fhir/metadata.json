@@ -1,0 +1,166 @@
+{
+ "resourceType": "CapabilityStatement",
+ "id": "brainsait-bpr",
+ "url": "https://registry.brainsait.de/fhir/CapabilityStatement/brainsait-bpr",
+ "version": "2.1.0",
+ "name": "BrainSAITProviderRegistry",
+ "title": "BrainSAIT Provider Registry FHIR R4 API",
+ "status": "active",
+ "experimental": false,
+ "date": "2026-10-25",
+ "publisher": "BrainSAIT",
+ "description": "Read-only FHIR R4 access to the BrainSAIT Provider Registry: published practitioner profiles, the BPR membership as a PractitionerRole, and the referencing organisations. Licence numbers, uploaded documents, contact details and any other private record are never served.",
+ "purpose": "Interoperability surface for OpenEMR instances and any EHR or HIS that speaks FHIR R4. Every practitioner resource describes public profile facts only; a credential is present only when it has been verified.",
+ "copyright": "BrainSAIT. Registry content is published under the registry terms.",
+ "kind": "instance",
+ "instantiates": [
+  "http://hl7.org/fhir/StructureDefinition/CapabilityStatement"
+ ],
+ "fhirVersion": "4.0.1",
+ "format": [
+  "application/fhir+json",
+  "xml",
+  "application/fhir+xml"
+ ],
+ "patchFormat": [],
+ "implementationGuide": [
+  "https://registry.brainsait.de/fhir/ImplementationGuide/bpr"
+ ],
+ "rest": [
+  {
+   "mode": "server",
+   "documentation": "Read-only. There is no write, update, delete, patch, conditional-create or conditional-update interaction, and no subscription channel. Nothing a client sends can change the registry.",
+   "security": {
+    "cors": false,
+    "description": "The public read API needs no authentication. It serves published profile facts only and is rate limited.",
+    "service": [
+     {
+      "coding": [
+       {
+        "system": "http://terminology.hl7.org/CodeSystem/restful-security-service",
+        "code": "SMART-on-FHIR",
+        "display": "SMART-on-FHIR"
+       }
+      ],
+      "text": "Open access for public registry data."
+     }
+    ]
+   },
+   "resource": [
+    {
+     "type": "Practitioner",
+     "profile": "https://registry.brainsait.de/fhir/StructureDefinition/bpr-practitioner",
+     "supportedProfile": [
+      "https://registry.brainsait.de/fhir/StructureDefinition/bpr-practitioner"
+     ],
+     "documentation": "A healthcare professional published in the registry. Name, specialty, verified qualification kinds and issuers, and the active language. Never a licence number, never a document reference.",
+     "interaction": [
+      {
+       "code": "read"
+      },
+      {
+       "code": "search-type"
+      },
+      {
+       "code": "vread"
+      }
+     ],
+     "searchParam": [
+      {
+       "name": "name",
+       "definition": "http://hl7.org/fhir/SearchParameter/Practitioner-name",
+       "type": "string",
+       "documentation": "Name of the practitioner as published."
+      },
+      {
+       "name": "identifier",
+       "definition": "http://hl7.org/fhir/SearchParameter/Resource-identifier",
+       "type": "token",
+       "documentation": "SPID or ORCID iD."
+      },
+      {
+       "name": "_count",
+       "definition": "http://hl7.org/fhir/SearchParameter/_count",
+       "type": "number",
+       "documentation": "Page size. 1 to 100, default 50."
+      },
+      {
+       "name": "_offset",
+       "definition": "http://hl7.org/fhir/SearchParameter/_offset",
+       "type": "number",
+       "documentation": "Zero-based offset into the result set."
+      }
+     ],
+     "operation": [
+      {
+       "name": "validate",
+       "definition": "https://registry.brainsait.de/fhir/OperationDefinition/bpr-validate",
+       "documentation": "Validate a resource against the registry profile."
+      }
+     ]
+    },
+    {
+     "type": "PractitionerRole",
+     "profile": "https://registry.brainsait.de/fhir/StructureDefinition/bpr-practitioner-role",
+     "supportedProfile": [
+      "https://registry.brainsait.de/fhir/StructureDefinition/bpr-practitioner-role"
+     ],
+     "documentation": "The BPR membership of a practitioner, as a role. The period carries the paid membership window when there is one; an expired membership is still returned, with active false.",
+     "interaction": [
+      {
+       "code": "read"
+      },
+      {
+       "code": "search-type"
+      }
+     ],
+     "searchParam": [
+      {
+       "name": "identifier",
+       "definition": "http://hl7.org/fhir/SearchParameter/Resource-identifier",
+       "type": "token",
+       "documentation": "SPID of the practitioner."
+      },
+      {
+       "name": "practitioner",
+       "definition": "http://hl7.org/fhir/SearchParameter/PractitionerRole-practitioner",
+       "type": "reference",
+       "documentation": "Reference to the Practitioner resource."
+      },
+      {
+       "name": "organization",
+       "definition": "http://hl7.org/fhir/SearchParameter/PractitionerRole-organization",
+       "type": "reference",
+       "documentation": "The registry organisation."
+      }
+     ]
+    },
+    {
+     "type": "Organization",
+     "documentation": "The registry itself and the authorities a practitioner may be verified against.",
+     "interaction": [
+      {
+       "code": "read"
+      }
+     ],
+     "searchParam": [
+      {
+       "name": "name",
+       "definition": "http://hl7.org/fhir/SearchParameter/Organization-name",
+       "type": "string"
+      }
+     ]
+    }
+   ],
+   "interaction": [
+    {
+     "code": "transaction"
+    },
+    {
+     "code": "batch"
+    }
+   ]
+  }
+ ],
+ "mimeType": "application/fhir+json"
+}

@@ -1,0 +1,44 @@
+{
+ "resourceType": "Practitioner",
+ "id": "SA-PHY-000002",
+ "meta": {
+  "versionId": "20261019204151"
+ },
+ "identifier": [
+  {
+   "system": "https://registry.brainsait.de/ns/spid",
+   "value": "SA-PHY-000002"
+  }
+ ],
+ "active": true,
+ "name": [
+  {
+   "use": "official",
+   "text": "Dr. Farroukh Raza"
+  },
+  {
+   "_text": {
+    "extension": [
+     {
+      "url": "http://hl7.org/fhir/StructureDefinition/language",
+      "valueCode": "ar"
+     }
+    ]
+   },
+   "use": "official",
+   "text": "د. فاروخ رازا"
+  }
+ ],
+ "qualification": [],
+ "communication": [
+  {
+   "coding": [
+    {
+     "system": "urn:ietf:bcp:47",
+     "code": "ar",
+     "display": "Arabic"
+    }
+   ]
+  }
+ ]
+}

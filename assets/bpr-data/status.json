@@ -1,0 +1,51 @@
+{
+ "checked_at": "2026-10-31T21:50:02+00:00",
+ "sites": {
+  "https://brainsait.de/": "ok",
+  "https://brainsait.de/connect/": "ok",
+  "https://brainsait.de/bpr/": "ok",
+  "https://givc.de/": "down",
+  "https://nphies.de/": "down",
+  "https://registry.brainsait.de/api/health": "ok",
+  "https://registry.brainsait.de/.well-known/did.json": "ok",
+  "https://sa-phy-000003.emr.brainsait.de/": "ok",
+  "https://api.brainsait.de/": "ok",
+  "https://momfood.de/": "ok",
+  "https://naracafe.de/": "ok",
+  "https://hub.brainsait.de/": "ok",
+  "https://elfadil.brainsait.de/": "ok",
+  "https://verify.brainsait.de/SA-PHY-000001": "ok",
+  "https://dr.fadi-ghareeb.givc.de/": "down"
+ },
+ "operations": {
+  "verdict": "failing",
+  "checked_at": "2026-10-31T21:50:01+00:00",
+  "checks": {
+   "sites": "fail",
+   "integrity": "ok",
+   "consistency": "ok",
+   "emr": "ok",
+   "backup": "ok",
+   "offsite": "ok",
+   "emr_backup": "ok",
+   "vc_log": "ok",
+   "vc_key": "ok",
+   "migrations": "ok",
+   "automation": "ok",
+   "daftra": "ok",
+   "reminders": "ok",
+   "research": "ok",
+   "onboarding": "ok",
+   "digest": "ok",
+   "journey_email": "ok",
+   "journey_sms": "off",
+   "copilot_ai": "ok",
+   "copilot_briefs": "ok",
+   "network": "ok",
+   "premium": "ok",
+   "disk": "ok",
+   "code": "warn"
+  }
+ },
+ "note": "Server-side checks every 5 minutes from registry.brainsait.de. ok, down or cert_expiring. Operations: ok, off, warn or fail per scheduled job."
+}

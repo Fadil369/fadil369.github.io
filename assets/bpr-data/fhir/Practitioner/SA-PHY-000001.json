@@ -1,0 +1,44 @@
+{
+ "resourceType": "Practitioner",
+ "id": "SA-PHY-000001",
+ "meta": {
+  "versionId": "20261019204151"
+ },
+ "identifier": [
+  {
+   "system": "https://registry.brainsait.de/ns/spid",
+   "value": "SA-PHY-000001"
+  }
+ ],
+ "active": true,
+ "name": [
+  {
+   "use": "official",
+   "text": "Dr. Fadi Al Ghareeb"
+  },
+  {
+   "_text": {
+    "extension": [
+     {
+      "url": "http://hl7.org/fhir/StructureDefinition/language",
+      "valueCode": "ar"
+     }
+    ]
+   },
+   "use": "official",
+   "text": "د. فادي الغريب"
+  }
+ ],
+ "qualification": [],
+ "communication": [
+  {
+   "coding": [
+    {
+     "system": "urn:ietf:bcp:47",
+     "code": "ar",
+     "display": "Arabic"
+    }
+   ]
+  }
+ ]
+}

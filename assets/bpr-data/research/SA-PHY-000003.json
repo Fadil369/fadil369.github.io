@@ -1,0 +1,501 @@
+{
+ "spid": "SA-PHY-000003",
+ "orcid": "https://orcid.org/0009-0003-7485-3575",
+ "works": [
+  {
+   "title": "Augmented Clinical Notes (30K)",
+   "kind": "dataset",
+   "year": "2026",
+   "url": "https://zenodo.org/records/23604367",
+   "doi": "10.5281/zenodo.23604367",
+   "sources": {
+    "orcid": "https://doi.org/10.5281/zenodo.23604367",
+    "zenodo": "https://zenodo.org/records/23604367",
+    "hf": "https://huggingface.co/datasets/Fadil369/augmented-clinical-notes"
+   },
+   "metrics": {
+    "orcid": [],
+    "zenodo": {
+     "views": 2,
+     "downloads": 7,
+     "bpr_community": 1
+    },
+    "hf": {
+     "downloads": 69,
+     "likes": 0
+    }
+   },
+   "authorship": {
+    "status": "confirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:39:45+00:00"
+   },
+   "in_community": true
+  },
+  {
+   "title": "BPR Unified Provider Portal v1.0",
+   "kind": "software",
+   "year": "2026",
+   "url": "https://zenodo.org/records/23609100",
+   "doi": "10.5281/zenodo.23609100",
+   "sources": {
+    "zenodo": "https://zenodo.org/records/23609100"
+   },
+   "metrics": {
+    "zenodo": {
+     "views": 2,
+     "downloads": 12,
+     "bpr_community": 1
+    }
+   },
+   "authorship": {
+    "status": "confirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:40:05+00:00"
+   },
+   "in_community": true
+  },
+  {
+   "title": "BrainSAIT Clinical Data Collection",
+   "kind": "dataset",
+   "year": "2026",
+   "url": "https://zenodo.org/records/23604390",
+   "doi": "10.5281/zenodo.23604390",
+   "sources": {
+    "orcid": "https://doi.org/10.5281/zenodo.23604390",
+    "zenodo": "https://zenodo.org/records/23604390"
+   },
+   "metrics": {
+    "orcid": [],
+    "zenodo": {
+     "views": 2,
+     "downloads": 58,
+     "bpr_community": 1
+    }
+   },
+   "authorship": {
+    "status": "confirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:39:46+00:00"
+   },
+   "in_community": true
+  },
+  {
+   "title": "BrainSAIT Providers Registry (BPR) v1.0",
+   "kind": "dataset",
+   "year": "2026",
+   "url": "https://zenodo.org/records/23610258",
+   "doi": "10.5281/zenodo.23610258",
+   "sources": {
+    "zenodo": "https://zenodo.org/records/23610258"
+   },
+   "metrics": {
+    "zenodo": {
+     "views": 6,
+     "downloads": 25,
+     "bpr_community": 1
+    }
+   },
+   "authorship": {
+    "status": "confirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:40:04+00:00"
+   },
+   "in_community": true
+  },
+  {
+   "title": "Clinical Trial Reason-to-Stop Dataset",
+   "kind": "dataset",
+   "year": "2026",
+   "url": "https://zenodo.org/records/23604352",
+   "doi": "10.5281/zenodo.23604352",
+   "sources": {
+    "orcid": "https://doi.org/10.5281/zenodo.23604352",
+    "zenodo": "https://zenodo.org/records/23604352",
+    "hf": "https://huggingface.co/datasets/Fadil369/clinical_trial_reason_to_stop"
+   },
+   "metrics": {
+    "orcid": [],
+    "zenodo": {
+     "views": 2,
+     "downloads": 2,
+     "bpr_community": 1
+    },
+    "hf": {
+     "downloads": 51,
+     "likes": 0
+    }
+   },
+   "authorship": {
+    "status": "confirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:39:47+00:00"
+   },
+   "in_community": true
+  },
+  {
+   "title": "Clinical Trial Texts",
+   "kind": "dataset",
+   "year": "2026",
+   "url": "https://zenodo.org/records/23604414",
+   "doi": "10.5281/zenodo.23604414",
+   "sources": {
+    "orcid": "https://doi.org/10.5281/zenodo.23604414",
+    "zenodo": "https://zenodo.org/records/23604414",
+    "hf": "https://huggingface.co/datasets/Fadil369/clinical_trial_texts"
+   },
+   "metrics": {
+    "orcid": [],
+    "zenodo": {
+     "views": 2,
+     "downloads": 56,
+     "bpr_community": 1
+    },
+    "hf": {
+     "downloads": 81,
+     "likes": 0
+    }
+   },
+   "authorship": {
+    "status": "confirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:39:48+00:00"
+   },
+   "in_community": true
+  },
+  {
+   "title": "Linc",
+   "kind": "data-set",
+   "year": "2026",
+   "url": "https://doi.org/10.57967/hf/11035",
+   "doi": "10.57967/hf/11035",
+   "sources": {
+    "orcid": "https://doi.org/10.57967/hf/11035"
+   },
+   "metrics": {
+    "orcid": []
+   },
+   "authorship": {
+    "status": "unconfirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:39:56+00:00"
+   },
+   "in_community": false
+  },
+  {
+   "title": "Medical Instruction 100K",
+   "kind": "dataset",
+   "year": "2026",
+   "url": "https://zenodo.org/records/23604357",
+   "doi": "10.5281/zenodo.23604357",
+   "sources": {
+    "orcid": "https://doi.org/10.5281/zenodo.23604357",
+    "zenodo": "https://zenodo.org/records/23604357",
+    "hf": "https://huggingface.co/datasets/Fadil369/medical-instruction-100k"
+   },
+   "metrics": {
+    "orcid": [],
+    "zenodo": {
+     "views": 2,
+     "downloads": 3,
+     "bpr_community": 1
+    },
+    "hf": {
+     "downloads": 48,
+     "likes": 0
+    }
+   },
+   "authorship": {
+    "status": "confirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:39:49+00:00"
+   },
+   "in_community": true
+  },
+  {
+   "title": "Medical Question-Answering Datasets (Compilation)",
+   "kind": "dataset",
+   "year": "2026",
+   "url": "https://zenodo.org/records/23604388",
+   "doi": "10.5281/zenodo.23604388",
+   "sources": {
+    "orcid": "https://doi.org/10.5281/zenodo.23604388",
+    "zenodo": "https://zenodo.org/records/23604388",
+    "hf": "https://huggingface.co/datasets/Fadil369/medical-question-answering-datasets"
+   },
+   "metrics": {
+    "orcid": [],
+    "zenodo": {
+     "views": 2,
+     "downloads": 15,
+     "bpr_community": 1
+    },
+    "hf": {
+     "downloads": 78,
+     "likes": 2
+    }
+   },
+   "authorship": {
+    "status": "confirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:39:50+00:00"
+   },
+   "in_community": true
+  },
+  {
+   "title": "Medical o1 Reasoning SFT (EN/ZH)",
+   "kind": "dataset",
+   "year": "2026",
+   "url": "https://zenodo.org/records/23604361",
+   "doi": "10.5281/zenodo.23604361",
+   "sources": {
+    "orcid": "https://doi.org/10.5281/zenodo.23604361",
+    "zenodo": "https://zenodo.org/records/23604361",
+    "hf": "https://huggingface.co/datasets/Fadil369/medical-o1-reasoning-SFT"
+   },
+   "metrics": {
+    "orcid": [],
+    "zenodo": {
+     "views": 1,
+     "downloads": 5,
+     "bpr_community": 1
+    },
+    "hf": {
+     "downloads": 68,
+     "likes": 1
+    }
+   },
+   "authorship": {
+    "status": "confirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:39:51+00:00"
+   },
+   "in_community": true
+  },
+  {
+   "title": "NPHIES FHIR Clinical Document Engine v1.0",
+   "kind": "software",
+   "year": "2026",
+   "url": "https://zenodo.org/records/23609088",
+   "doi": "10.5281/zenodo.23609088",
+   "sources": {
+    "zenodo": "https://zenodo.org/records/23609088"
+   },
+   "metrics": {
+    "zenodo": {
+     "views": 2,
+     "downloads": 9,
+     "bpr_community": 1
+    }
+   },
+   "authorship": {
+    "status": "confirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:40:06+00:00"
+   },
+   "in_community": true
+  },
+  {
+   "title": "Project Imaging X Dataset",
+   "kind": "dataset",
+   "year": "2026",
+   "url": "https://zenodo.org/records/23604355",
+   "doi": "10.5281/zenodo.23604355",
+   "sources": {
+    "orcid": "https://doi.org/10.5281/zenodo.23604355",
+    "zenodo": "https://zenodo.org/records/23604355",
+    "hf": "https://huggingface.co/datasets/Fadil369/Project-Imaging-X"
+   },
+   "metrics": {
+    "orcid": [],
+    "zenodo": {
+     "views": 2,
+     "downloads": 13,
+     "bpr_community": 1
+    },
+    "hf": {
+     "downloads": 149,
+     "likes": 0
+    }
+   },
+   "authorship": {
+    "status": "confirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:39:52+00:00"
+   },
+   "in_community": true
+  },
+  {
+   "title": "ReasonMed",
+   "kind": "dataset",
+   "year": "2026",
+   "url": "https://zenodo.org/records/23604392",
+   "doi": "10.5281/zenodo.23604392",
+   "sources": {
+    "orcid": "https://doi.org/10.5281/zenodo.23604392",
+    "zenodo": "https://zenodo.org/records/23604392",
+    "hf": "https://huggingface.co/datasets/Fadil369/ReasonMed"
+   },
+   "metrics": {
+    "orcid": [],
+    "zenodo": {
+     "views": 2,
+     "downloads": 3,
+     "bpr_community": 1
+    },
+    "hf": {
+     "downloads": 27,
+     "likes": 1
+    }
+   },
+   "authorship": {
+    "status": "confirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:39:53+00:00"
+   },
+   "in_community": true
+  },
+  {
+   "title": "The Clinical Commons v1.1",
+   "kind": "report",
+   "year": "2026",
+   "url": "https://doi.org/10.5281/zenodo.23604175",
+   "doi": "10.5281/zenodo.23604175",
+   "sources": {
+    "orcid": "https://doi.org/10.5281/zenodo.23604175"
+   },
+   "metrics": {
+    "orcid": []
+   },
+   "authorship": {
+    "status": "confirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:39:54+00:00"
+   },
+   "in_community": false
+  },
+  {
+   "title": "The Clinical Commons v1.2",
+   "kind": "publication",
+   "year": "2026",
+   "url": "https://zenodo.org/records/23606022",
+   "doi": "10.5281/zenodo.23606022",
+   "sources": {
+    "orcid": "https://doi.org/10.5281/zenodo.23606022",
+    "zenodo": "https://zenodo.org/records/23606022"
+   },
+   "metrics": {
+    "orcid": [],
+    "zenodo": {
+     "views": 7,
+     "downloads": 9,
+     "bpr_community": 1
+    }
+   },
+   "authorship": {
+    "status": "confirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:39:55+00:00"
+   },
+   "in_community": true
+  },
+  {
+   "title": "Optimizing Intravenous Access for Long-Term Parenteral Nutrition.",
+   "kind": "journal-article",
+   "year": "2024",
+   "url": "https://doi.org/10.1007/s13668-024-00534-y",
+   "doi": "10.1007/s13668-024-00534-y",
+   "sources": {
+    "orcid": "https://doi.org/10.1007/s13668-024-00534-y"
+   },
+   "metrics": {
+    "orcid": []
+   },
+   "authorship": {
+    "status": "unconfirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:39:59+00:00"
+   },
+   "in_community": false
+  },
+  {
+   "title": "The role of artificial intelligence in developing a banking risk index: an application of Adaptive Neural Network-Based Fuzzy Inference System (ANFIS).",
+   "kind": "journal-article",
+   "year": "2023",
+   "url": "https://doi.org/10.1007/s10462-023-10473-9",
+   "doi": "10.1007/s10462-023-10473-9",
+   "sources": {
+    "orcid": "https://doi.org/10.1007/s10462-023-10473-9"
+   },
+   "metrics": {
+    "orcid": []
+   },
+   "authorship": {
+    "status": "unconfirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:40:00+00:00"
+   },
+   "in_community": false
+  },
+  {
+   "title": "Myocardial Injury Is Associated with Higher Morbidity and Mortality in Patients with 2019 Novel Coronavirus Disease (COVID-19).",
+   "kind": "journal-article",
+   "year": "2020",
+   "url": "https://doi.org/10.1007/s42399-020-00569-6",
+   "doi": "10.1007/s42399-020-00569-6",
+   "sources": {
+    "orcid": "https://doi.org/10.1007/s42399-020-00569-6"
+   },
+   "metrics": {
+    "orcid": []
+   },
+   "authorship": {
+    "status": "unconfirmed",
+    "publisher_orcids": [],
+    "checked_at": "2026-10-26T14:40:03+00:00"
+   },
+   "in_community": false
+  }
+ ],
+ "community_url": "https://zenodo.org/communities/bpr-doctors/",
+ "counts": {
+  "orcid": 15,
+  "zenodo": 13,
+  "hf": 8,
+  "in_community": 13,
+  "dois": 18,
+  "dois_on_orcid": 15,
+  "publisher_confirmed": 14,
+  "not_confirmed": 4,
+  "attributed_elsewhere": 6
+ },
+ "authorship_rule": "A work counts as authored only when the publisher record (Crossref/DataCite) names this ORCID iD. Works the publisher attributes to a different ORCID iD are not shown.",
+ "metrics": {
+  "zenodo_views": 34,
+  "zenodo_downloads": 217,
+  "hf_downloads": 571
+ },
+ "not_on_orcid": [
+  "10.5281/zenodo.23609100",
+  "10.5281/zenodo.23610258",
+  "10.5281/zenodo.23609088"
+ ],
+ "runs": {
+  "orcid": {
+   "ok": 1,
+   "note": "21 items",
+   "at": "2026-10-31T05:15:01+00:00"
+  },
+  "zenodo": {
+   "ok": 1,
+   "note": "13 items",
+   "at": "2026-10-31T05:15:01+00:00"
+  },
+  "hf": {
+   "ok": 1,
+   "note": "8 items",
+   "at": "2026-10-31T05:15:01+00:00"
+  }
+ },
+ "note": "Public ORCID, Zenodo and Hugging Face data matched by DOI. Hugging Face repos count only when their card cites this ORCID iD."
+}

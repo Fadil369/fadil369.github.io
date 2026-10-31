@@ -1,0 +1,55 @@
+{
+ "jwt": "eyJhbGciOiJFZERTQSIsInR5cCI6InZjK2p3dCIsImN0eSI6InZjIiwia2lkIjoiZGlkOndlYjpyZWdpc3RyeS5icmFpbnNhaXQuZGUja2V5LTEifQ.eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiXSwiaWQiOiJ1cm46dXVpZDpiMzk3YzdmNS0yZDM0LTRjOTYtOTUyOC1iZmI3MzdlOWI2YjQiLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiQlBSUHJvdmlkZXJDcmVkZW50aWFsIl0sImlzc3VlciI6eyJpZCI6ImRpZDp3ZWI6cmVnaXN0cnkuYnJhaW5zYWl0LmRlIiwibmFtZSI6IkJyYWluU0FJVCBQcm92aWRlciBSZWdpc3RyeSJ9LCJ2YWxpZEZyb20iOiIyMDI2LTEwLTI0VDE3OjQzOjI1WiIsInZhbGlkVW50aWwiOiIyMDI3LTEwLTIzVDIzOjU5OjU5WiIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiaHR0cHM6Ly9yZWdpc3RyeS5icmFpbnNhaXQuZGUvcC9TQS1QSFktMDAwMDAzIiwic3BpZCI6IlNBLVBIWS0wMDAwMDMiLCJuYW1lIjoiRHIuIE1vaGFtZWQgRWwgRmFkaWwiLCJuYW1lQXIiOiLYry4g2YXYrdmF2K8g2KfZhNmB2KfYttmEIiwicHJvZmVzc2lvbiI6InBoeXNpY2lhbiIsIm9yY2lkIjoiaHR0cHM6Ly9vcmNpZC5vcmcvMDAwOS0wMDAzLTc0ODUtMzU3NSIsInZlcmlmaWNhdGlvbkxldmVsIjoibm90X2Fzc2Vzc2VkIiwibWVtYmVyc2hpcCI6eyJzdGF0ZSI6ImFjdGl2ZSIsInZhbGlkVG8iOiIyMDI3LTEwLTIzIn0sInF1YWxpZmljYXRpb25zIjpbXSwiZmhpciI6Imh0dHBzOi8vcmVnaXN0cnkuYnJhaW5zYWl0LmRlL2ZoaXIvUHJhY3RpdGlvbmVyL1NBLVBIWS0wMDAwMDMifSwiY3JlZGVudGlhbFN0YXR1cyI6eyJpZCI6Imh0dHBzOi8vcmVnaXN0cnkuYnJhaW5zYWl0LmRlL3ZjL3N0YXR1cy9TQS1QSFktMDAwMDAzIiwidHlwZSI6IkJQUkxpdmVTdGF0dXMifX0.4cZJs8rL6_kxCepj0quEqD4silNUkAECGrhIWdvDlYQxOOrRAA3RxTHZTSgQsZRrk_HW7iOcCV4Bbyawm633Bg",
+ "credential": {
+  "@context": [
+   "https://www.w3.org/ns/credentials/v2"
+  ],
+  "id": "urn:uuid:b397c7f5-2d34-4c96-9528-bfb737e9b6b4",
+  "type": [
+   "VerifiableCredential",
+   "BPRProviderCredential"
+  ],
+  "issuer": {
+   "id": "did:web:registry.brainsait.de",
+   "name": "BrainSAIT Provider Registry"
+  },
+  "validFrom": "2026-10-24T17:43:25Z",
+  "validUntil": "2027-10-23T23:59:59Z",
+  "credentialSubject": {
+   "id": "https://registry.brainsait.de/p/SA-PHY-000003",
+   "spid": "SA-PHY-000003",
+   "name": "Dr. Mohamed El Fadil",
+   "nameAr": "د. محمد الفاضل",
+   "profession": "physician",
+   "orcid": "https://orcid.org/0009-0003-7485-3575",
+   "verificationLevel": "not_assessed",
+   "membership": {
+    "state": "active",
+    "validTo": "2027-10-23"
+   },
+   "qualifications": [],
+   "fhir": "https://registry.brainsait.de/fhir/Practitioner/SA-PHY-000003"
+  },
+  "credentialStatus": {
+   "id": "https://registry.brainsait.de/vc/status/SA-PHY-000003",
+   "type": "BPRLiveStatus"
+  }
+ },
+ "status": {
+  "spid": "SA-PHY-000003",
+  "current": {
+   "id": "urn:uuid:b397c7f5-2d34-4c96-9528-bfb737e9b6b4",
+   "issuedAt": "2026-10-24T17:43:25Z",
+   "validUntil": "2027-10-23T23:59:59Z",
+   "logSeq": 1
+  },
+  "checkedAt": "2026-10-31T21:53:39+00:00",
+  "credential": {
+   "id": "urn:uuid:b397c7f5-2d34-4c96-9528-bfb737e9b6b4",
+   "state": "current",
+   "logSeq": 1,
+   "supersededAt": null
+  }
+ },
+ "verify": "https://registry.brainsait.de/verify?spid=SA-PHY-000003"
+}

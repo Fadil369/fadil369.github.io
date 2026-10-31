@@ -1,0 +1,33 @@
+{
+ "spid": "SA-PHY-000003",
+ "type": "physician",
+ "name_en": "Dr. Mohamed El Fadil",
+ "name_ar": "د. محمد الفاضل",
+ "specialty": null,
+ "publisher_oid_root": "1.3.6.1.4.1.61026",
+ "profile_url": "https://registry.brainsait.de/p/SA-PHY-000003",
+ "passport_url": "https://elfadil.brainsait.de/",
+ "orcid": "https://orcid.org/0009-0003-7485-3575",
+ "research_url": "https://registry.brainsait.de/api/providers/SA-PHY-000003/research",
+ "verification": {
+  "credentials": "not_assessed",
+  "signature": "current",
+  "domain_ownership": "not_assessed"
+ },
+ "trust": {
+  "identity": "confirmed",
+  "signature": "current",
+  "membership": "active",
+  "licence": "not_assessed",
+  "qualifications": "not_assessed",
+  "privileges": "none"
+ },
+ "trust_summary": "ORCID iD ownership confirmed · Signed credential current · Membership active · Professional licence not assessed · Qualifications not assessed · No hospital privileges recorded",
+ "trust_summary_ar": "ملكية معرّف ORCID مؤكدة · الاعتماد الموقّع ساري · العضوية فعّالة · الترخيص المهني لم يُقيَّم · المؤهلات لم تُقيَّم · لا امتيازات سريرية مسجلة",
+ "membership": "active",
+ "membership_valid_to": "2027-10-23",
+ "card_url": "https://registry.brainsait.de/card.php?spid=SA-PHY-000003",
+ "source": "https://brainsait.de/bpr/",
+ "updated_at": "2026-10-23T22:37:44Z",
+ "note": "Published public metadata. trust.identity = ORCID iD ownership (sign-in), not authorship or licensure; trust.signature = BrainSAIT-signed credential state; trust.membership = BPR membership (commercial); trust.licence / trust.qualifications = checked with the issuer by a reviewer, else not_assessed; trust.privileges = recorded hospital privileges."
+}

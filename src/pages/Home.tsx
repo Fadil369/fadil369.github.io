@@ -95,7 +95,7 @@ export function ProfileHeader() {
         <Link to="/#work">{ar ? 'الأعمال' : 'Work'}</Link>
         <Link to="/#journey">{ar ? 'المسار' : 'Journey'}</Link>
         <Link to="/#research">{ar ? 'البحث' : 'Research'}</Link>
-        <Link to="/catalogue">BPR Hub</Link>
+        <Link to="/bpr">BPR</Link>
         <Link to="/card">{ar ? 'البطاقة' : 'Card'}</Link>
       </nav>
       <div className="profile-controls">
@@ -257,7 +257,7 @@ export default function Home() {
       </div>
       <footer className="profile-footer">
         <span>© {new Date().getFullYear()} Dr. Mohamed El Fadil</span>
-        <div><a href="https://elfadil.brainsait.de" target="_blank" rel="noreferrer">elfadil.brainsait.de</a><Link to="/catalogue">BPR Hub</Link><Link to="/card">Card</Link><Link to="/cv"><FileText size={14} />CV</Link></div>
+        <div><a href="https://elfadil.brainsait.de" target="_blank" rel="noreferrer">elfadil.brainsait.de</a><Link to="/bpr">BPR</Link><Link to="/card">Card</Link><Link to="/cv"><FileText size={14} />CV</Link></div>
         <span className="profile-verified"><Check size={13} />{ar ? 'مصمم ليكون قابلاً للتحقق' : 'Designed to be verifiable'}</span>
       </footer>
     </div>
