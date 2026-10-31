@@ -23,7 +23,7 @@ writeFileSync(join(root, '404.html'), index); // SPA fallback for hard refresh
 writeFileSync(join(root, 'index.html'), index);
 
 for (const route of ['learn', 'build', 'solutions', 'templates', 'oid', 'catalogue', 'store', 'sprint', 'benefits', 'account', 'track', 'faq', 'terms', 'support', 'contact', 'slots', 'doctors', 'cv', 'card',
-  'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join']) {
+  'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace']) {
   const routeDir = join(root, route);
   mkdirSync(routeDir, { recursive: true });
   writeFileSync(join(routeDir, 'index.html'), index);
@@ -98,14 +98,34 @@ if (existsSync(snapList)) {
     const page = (path, title, description) => {
       const dir = join(root, path);
       mkdirSync(dir, { recursive: true });
-      writeFileSync(join(dir, 'index.html'), deepRouteHtml({ title, description, image: `${ORIGIN}/assets/profile-og.png`, url: `${ORIGIN}/${path}/` }).replace('content="product"', 'content="profile"'));
+      writeFileSync(join(dir, 'index.html'), deepRouteHtml({ title, description, image: `${ORIGIN}/assets/og/${p.spid}.png`, url: `${ORIGIN}/${path}/` }).replace('content="product"', 'content="profile"'));
       bprWritten += 1;
     };
     page(`bpr/p/${p.spid}`, `${p.name_en} · ${p.spid} — BPR`, p.trust_summary || 'BrainSAIT Provider Registry profile');
+    page(`bpr/embed/${p.spid}`, `${p.name_en} · ${p.spid} — BPR live check`, p.trust_summary || 'Live BPR provider check');
     if (p.research_url) page(`bpr/research/${p.spid}`, `Research footprint · ${p.name_en} — BPR`, 'Works matched by DOI across ORCID, Zenodo and Hugging Face.');
   }
 }
 console.log(`Pre-rendered ${bprWritten} BPR provider route(s).`);
+
+// Static pages with their own title and share image instead of the home page's.
+const ROUTE_META = {
+  cv: ['Professional CV — Dr. Mohamed El Fadil', 'Physician, BrainSAIT founder, RCM & Healthcare Intelligent Improvement Advisor. One-page A4 CV with a live BPR verification QR.', '/assets/profile-og.png'],
+  card: ['Business card — Dr. Mohamed El Fadil', 'Black and lemon business card with a brain-framed QR code. Print-ready PDF.', '/assets/card/dr-mohamed-el-fadil-front.png'],
+  bpr: ['BPR — BrainSAIT Provider Registry', 'Signed identity for every clinician: directory, on-device verification, transparency log, research footprint and FHIR R4.'],
+  'bpr/workspace': ['Provider workspace — BPR', 'Own OpenEMR, a clinical copilot with Arabic dictation, FHIR, specialty tools and research — live and planned features stated per card.'],
+  'bpr/providers': ['Provider directory — BPR', 'Listed providers with every trust dimension shown separately.'],
+  'bpr/verify': ['Verify a provider — BPR', 'Check a BPR signed credential on your device: signature, validity window and live status.'],
+  'bpr/ledger': ['Transparency log — BPR', 'Every credential issue, renewal and revocation in a public hash chain your browser replays.'],
+  'bpr/research': ['Research footprint — BPR', 'Provider works matched by DOI across ORCID, Zenodo and Hugging Face.'],
+  'bpr/developers': ['FHIR R4 & public API — BPR', 'FHIR resources, the public JSON API and an embeddable live check.'],
+  'bpr/status': ['Operations status — BPR', 'The registry’s own health verdict, failures included.'],
+  'bpr/join': ['Join BPR', 'From ORCID sign-in to a signed credential.'],
+};
+for (const [route, [title, description, image]] of Object.entries(ROUTE_META)) {
+  writeFileSync(join(root, route, 'index.html'), deepRouteHtml({ title, description, image: `${ORIGIN}${image || '/assets/og/bpr.png'}`, url: `${ORIGIN}/${route}/` }).replace('content="product"', 'content="website"'));
+}
+console.log(`Wrote share tags for ${Object.keys(ROUTE_META).length} static route(s).`);
 
 const bprRoute = join(root, 'products', 'bpr');
 mkdirSync(bprRoute, { recursive: true });

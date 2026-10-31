@@ -1,8 +1,9 @@
-import { ArrowDownToLine, ArrowUpRight, Check, Download, Printer, QrCode, RotateCcw } from 'lucide-react';
+import { ArrowDownToLine, ArrowUpRight, Check, Contact, Download, Printer, QrCode, RotateCcw } from 'lucide-react';
+import { downloadVCard } from '../components/CommandPalette';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../i18n';
 import { usePageMeta } from '../hooks/usePageMeta';
-import { ProfileHeader } from './Home';
+import { ProfileHeader } from '../components/ProfileHeader';
 import '../styles/profile.css';
 
 export default function BusinessCard() {
@@ -15,7 +16,7 @@ export default function BusinessCard() {
   return (
     <div className="profile-page card-page" id="top">
       <ProfileHeader />
-      <main className="card-studio">
+      <div className="card-studio">
         <header className="card-studio-head">
           <div>
             <div className="profile-eyebrow"><span />{ar ? 'هوية ملموسة · إصدار 01' : 'Physical identity · Edition 01'}</div>
@@ -29,6 +30,7 @@ export default function BusinessCard() {
         <div className="card-studio-actions">
           <button className="profile-button primary" onClick={() => window.print()}><Printer size={17} />{ar ? 'اطبع الوجهين الآن' : 'Print both sides'}</button>
           <a className="profile-button secondary" href="/assets/card/dr-mohamed-el-fadil-print.pdf" download><Download size={17} />{ar ? 'تنزيل PDF للطباعة' : 'Download print PDF'}</a>
+          <button className="profile-button secondary" onClick={downloadVCard}><Contact size={17} />{ar ? 'حفظ جهة الاتصال' : 'Save contact'}</button>
           <span>{ar ? 'مقاس الطباعة 3.5 × 2 بوصة · صفحتان' : '3.5 × 2 inches · two pages'}</span>
         </div>
 
@@ -59,10 +61,10 @@ export default function BusinessCard() {
         <section className="card-specs">
           <div><Check size={16} /><span>{ar ? 'وجهة الرمز' : 'QR destination'}</span><a href="https://fadil369.github.io/">fadil369.github.io <ArrowUpRight size={13} /></a></div>
           <div><RotateCcw size={16} /><span>{ar ? 'مساحة هادئة محفوظة' : 'Quiet zone preserved'}</span><strong>{ar ? 'وحدات QR غير مشوهة' : 'Undistorted QR modules'}</strong></div>
-          <div><Check size={16} /><span>{ar ? 'هوية موثقة' : 'Verified identity'}</span><strong dir="ltr">SA-PHY-000003</strong></div>
+          <div><Check size={16} /><span>{ar ? 'معرّف BPR · اعتماد موقّع' : 'BPR provider ID · signed credential'}</span><Link to="/bpr/p/SA-PHY-000003"><strong dir="ltr">SA-PHY-000003</strong></Link></div>
         </section>
         <div className="card-back-link"><Link to="/" className="profile-text-link">{ar ? 'العودة إلى الملف المهني' : 'Return to professional profile'}<ArrowUpRight size={15} /></Link></div>
-      </main>
+      </div>
     </div>
   );
 }

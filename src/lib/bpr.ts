@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 
 // Data layer for the BPR pages on GitHub Pages.
 //
-// Every read tries registry.brainsait.de first. Routes that send CORS (credential, DID
-// document, transparency log) load live; /api and /fhir currently do not, so the browser
-// blocks them and the page falls back to the snapshot written at build time by
+// Every read goes to registry.brainsait.de first (all public routes send CORS *). If the
+// registry cannot be reached, the page falls back to the snapshot written at build time by
 // scripts/snapshot-bpr.mjs. Each result says which source it came from, and the pages
 // show it — a snapshot is never presented as live data.
 //
@@ -261,3 +260,27 @@ export async function replayLedger(): Promise<LedgerResult> {
 }
 
 export const short = (h?: string, n = 10) => (h ? `${h.slice(0, n)}…${h.slice(-4)}` : '…');
+
+// ── AI provenance ledger (BrainSAIT Copilot inside each provider's EMR) ─────────
+
+export interface AiHead { instance: string; size: number; hash: string; chain_ok: boolean; signed: string; kid: string; sig: string; check: Check }
+export interface AiLedger { heads: AiHead[]; rule?: string; source: Source }
+
+/** Loads the signed AI-provenance heads and checks each signature on this device. */
+export async function checkAiLedger(): Promise<AiLedger> {
+  const [keys, r] = await Promise.all([
+    registryKeys(),
+    json<{ heads: Omit<AiHead, 'check'>[]; rule?: string }>(`${REGISTRY}/transparency/ai.json`).then((data) => ({ data, source: 'live' as const })),
+  ]);
+  const heads = await Promise.all(r.data.heads.map(async (h) => {
+    const jwk = keys.data.find((k) => k.kid === h.kid);
+    if (!jwk) return { ...h, check: { state: 'fail', detail: 'unknown key' } as Check };
+    try {
+      const ok = await edVerify(jwk, b64u(h.sig), enc.encode(h.signed));
+      return { ...h, check: (ok ? { state: 'ok', how: 'device' } : { state: 'fail', detail: 'signature does not match' }) as Check };
+    } catch {
+      return { ...h, check: { state: 'unavailable', detail: 'no Ed25519 in this browser' } as Check };
+    }
+  }));
+  return { heads, rule: r.data.rule, source: r.source };
+}

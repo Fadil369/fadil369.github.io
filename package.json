@@ -3,7 +3,7 @@
   "private": true,
   "version": "2.0.0",
   "type": "module",
-  "description": "Dr. Mohamed El Fadil and the BrainSAIT Provider Registry — bilingual professional profile and BPR hub",
+  "description": "Dr. Mohamed El Fadil and the BrainSAIT Provider Registry \u2014 bilingual professional profile and BPR hub",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -14,11 +14,12 @@
     "sync:store": "python3 scripts/sync-catalog-from-woocommerce.py && bash scripts/verify-catalog-provenance.sh",
     "verify:catalog": "bash scripts/verify-catalog-provenance.sh",
     "snapshot:bpr": "node scripts/snapshot-bpr.mjs",
-    "deploy": "node scripts/snapshot-bpr.mjs && npm run build && node scripts/publish.mjs",
+    "deploy": "node scripts/snapshot-bpr.mjs && node scripts/render-og.mjs && npm run build && node scripts/publish.mjs && node scripts/render-cv-pdf.mjs",
     "sync:shopify": "python3 scripts/sync-catalog-from-shopify.py --write",
     "sync:shopify:dry": "python3 scripts/sync-catalog-from-shopify.py"
   },
   "dependencies": {
+    "jsqr": "^1.4.0",
     "lucide-react": "^0.468.0",
     "qrcode": "^1.5.4",
     "react": "^18.3.1",
@@ -31,7 +32,6 @@
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.7.0",
-    "jsqr": "^1.4.0",
     "playwright": "^1.64.1",
     "pngjs": "^7.0.0",
     "typescript": "^5.9.3",

@@ -1,14 +1,15 @@
-import { ReactNode } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { AlertTriangle, ArrowUpRight, Check, CircleDashed, Database, Radio, X } from 'lucide-react';
+import { ReactNode, useEffect, useRef } from 'react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
+import { AlertTriangle, ArrowRight, ArrowUpRight, Check, CircleDashed, Database, Hourglass, LayoutGrid, Minus, Radio, X } from 'lucide-react';
 import { useI18n } from '../i18n';
-import { ProfileHeader } from '../pages/Home';
+import { ProfileHeader } from './ProfileHeader';
 import { Check as CheckT, REGISTRY, Source, Trust, useManifest } from '../lib/bpr';
 import '../styles/profile.css';
 import '../styles/bpr.css';
 
 const NAV = [
   { to: '/bpr', end: true, en: 'Overview', ar: 'نظرة عامة' },
+  { to: '/bpr/workspace', en: 'Workspace', ar: 'مساحة العمل' },
   { to: '/bpr/providers', en: 'Directory', ar: 'الدليل' },
   { to: '/bpr/verify', en: 'Verify', ar: 'التحقق' },
   { to: '/bpr/ledger', en: 'Ledger', ar: 'السجل الشفاف' },
@@ -20,12 +21,16 @@ const NAV = [
 
 export function BprLayout({ children, kicker, title, lead, actions }: { children: ReactNode; kicker: string; title: string; lead?: ReactNode; actions?: ReactNode }) {
   const { ar } = useI18n();
+  const loc = useLocation();
+  const strip = useRef<HTMLDivElement>(null);
+  // On narrow screens keep the current app's pill in view instead of scrolled off the strip.
+  useEffect(() => { strip.current?.querySelector('a.active')?.scrollIntoView({ inline: 'center', block: 'nearest' }); }, [loc.pathname]);
   return (
     <div className="profile-page bpr-app" id="top">
       <ProfileHeader />
       <nav className="bpr-subnav" aria-label={ar ? 'تطبيقات BPR' : 'BPR apps'}>
         <span className="bpr-subnav-mark" aria-hidden="true">BPR</span>
-        <div>{NAV.map((n) => <NavLink key={n.to} to={n.to} end={n.end}>{ar ? n.ar : n.en}</NavLink>)}</div>
+        <div ref={strip}>{NAV.map((n) => <NavLink key={n.to} to={n.to} end={n.end}>{ar ? n.ar : n.en}</NavLink>)}</div>
       </nav>
       <div className="bpr-app-body">
         <header className="bpr-app-head">
@@ -51,7 +56,7 @@ function BprFooter() {
         <a href={REGISTRY} target="_blank" rel="noreferrer">registry.brainsait.de <ArrowUpRight size={12} /></a>
         <Link to="/">{ar ? 'الملف المهني' : 'Profile'}</Link>
       </div>
-      <span className="bpr-footer-snap" dir="ltr">{m ? `snapshot ${fmtDate(m.snapshotAt, false, true)}` : ''}</span>
+      <span className="bpr-footer-snap">{m ? `${ar ? 'لقطة احتياطية دون اتصال' : 'Offline fallback snapshot'} · ${fmtDate(m.snapshotAt, ar, true)}` : ''}</span>
     </footer>
   );
 }
@@ -71,7 +76,7 @@ export function SourceBadge({ source }: { source: Source }) {
   const m = useManifest();
   return source === 'live'
     ? <span className="bpr-source live"><Radio size={12} />{ar ? 'مباشر من السجل' : 'Live from registry'}</span>
-    : <span className="bpr-source snap" title={ar ? 'الواجهة لا تسمح بالطلب من المتصفح؛ تُعرض لقطة البناء' : 'The registry blocks this request from browsers, so the build snapshot is shown'}>
+    : <span className="bpr-source snap" title={ar ? 'تعذّر الوصول إلى السجل؛ تُعرض لقطة البناء' : 'The registry could not be reached, so the build snapshot is shown'}>
       <Database size={12} />{ar ? 'لقطة' : 'Snapshot'}{m ? ` · ${fmtDate(m.snapshotAt, ar, true)}` : ''}</span>;
 }
 
@@ -93,13 +98,22 @@ export function CheckRow({ label, check, okText, children }: { label: string; ch
   );
 }
 
-const TRUST_LABEL: Record<keyof Trust, [string, string]> = {
+export const TRUST_LABEL: Record<keyof Trust, [string, string]> = {
   identity: ['ORCID identity', 'هوية ORCID'],
   signature: ['Signed credential', 'الاعتماد الموقّع'],
   membership: ['Membership', 'العضوية'],
   licence: ['Professional licence', 'الترخيص المهني'],
   qualifications: ['Qualifications', 'المؤهلات'],
   privileges: ['Hospital privileges', 'الامتيازات السريرية'],
+};
+// Who stands behind each state — taken from the registry's own API note.
+const ATTESTOR: Record<keyof Trust, [string, string]> = {
+  identity: ['ORCID sign-in', 'تسجيل الدخول عبر ORCID'],
+  signature: ['BrainSAIT Ed25519 signature', 'توقيع برينسايت Ed25519'],
+  membership: ['BPR membership (commercial)', 'عضوية BPR (تجارية)'],
+  licence: ['Issuer, checked by a reviewer', 'الجهة المصدِرة، بمراجعة مراجع'],
+  qualifications: ['Issuer, checked by a reviewer', 'الجهة المصدِرة، بمراجعة مراجع'],
+  privileges: ['Recorded hospital privileges', 'امتيازات المستشفى المسجلة'],
 };
 const VALUE_LABEL: Record<string, [string, string]> = {
   confirmed: ['Confirmed', 'مؤكدة'], not_linked: ['Not linked', 'غير مرتبط'], current: ['Current', 'ساري'],
@@ -108,18 +122,83 @@ const VALUE_LABEL: Record<string, [string, string]> = {
 };
 export const valueLabel = (v: string | null | undefined, ar: boolean) => (v && VALUE_LABEL[v] ? VALUE_LABEL[v][ar ? 1 : 0] : v || '—');
 const POSITIVE = new Set(['confirmed', 'current', 'active', 'verified']);
+const NEGATIVE = new Set(['expired', 'revoked', 'superseded']);
+export type TrustTone = 'pos' | 'na' | 'neg' | 'none';
+export const trustTone = (v: string): TrustTone => POSITIVE.has(v) ? 'pos' : NEGATIVE.has(v) ? 'neg' : v === 'not_assessed' ? 'na' : 'none';
+export function TrustGlyph({ tone }: { tone: TrustTone }) {
+  const I = tone === 'pos' ? Check : tone === 'neg' ? X : tone === 'na' ? CircleDashed : Minus;
+  return <I size={13} aria-hidden="true" className="bpr-glyph" />;
+}
 
-/** The registry keeps each trust dimension separate; so does this grid. */
-export function TrustGrid({ trust }: { trust: Trust }) {
+// Licence and qualification checks need the Saudi Commission for Health Specialties. Until the
+// official integration exists, BPR does not assess them — say so wherever "not assessed" appears.
+export const SCFHS_REG_CHECK = 'https://scfhs.org.sa/ar/E-Services/regvaliddescription';
+const SCFHS_DEPENDENT = new Set<keyof Trust>(['licence', 'qualifications']);
+
+/** The registry keeps each trust dimension separate; so does this grid. No score, no merged badge. */
+export function TrustGrid({ trust, legend = true }: { trust: Trust; legend?: boolean }) {
   const { ar } = useI18n();
   return (
-    <dl className="bpr-trust">
-      {(Object.keys(TRUST_LABEL) as (keyof Trust)[]).map((k) => (
-        <div key={k} className={POSITIVE.has(trust[k]) ? 'pos' : 'neutral'}>
-          <dt>{TRUST_LABEL[k][ar ? 1 : 0]}</dt><dd>{valueLabel(trust[k], ar)}</dd>
+    <>
+      <dl className="bpr-trust">
+        {(Object.keys(TRUST_LABEL) as (keyof Trust)[]).map((k) => {
+          const tone = trustTone(trust[k]);
+          const pending = SCFHS_DEPENDENT.has(k) && trust[k] === 'not_assessed';
+          return (
+            <div key={k} className={tone}>
+              <dt>{TRUST_LABEL[k][ar ? 1 : 0]}</dt>
+              <dd><TrustGlyph tone={tone} />{valueLabel(trust[k], ar)}</dd>
+              <small className="bpr-attestor">{ATTESTOR[k][ar ? 1 : 0]}</small>
+              {pending && <small className="bpr-pending"><Hourglass size={11} aria-hidden="true" />{ar ? 'بانتظار تكامل الهيئة' : 'Awaiting SCFHS integration'}</small>}
+            </div>
+          );
+        })}
+      </dl>
+      {legend && <details className="bpr-legend">
+        <summary>{ar ? 'كيف تقرأ هذا' : 'How to read this'}</summary>
+        <p>{ar
+          ? 'لكل بُعد حالته الخاصة ولا تُدمج في درجة واحدة. نجاح التوقيع يثبت أن السجل أصدر هذه البيانات تمامًا دون تعديل؛ لا يثبت الترخيص ولا المؤهلات ولا الامتيازات. «لم يُقيَّم» تعني أن أحدًا لم يتحقق بعد — ليست نتيجة سلبية.'
+          : 'Each dimension is its own state; none is merged into a score. A signature pass proves the registry issued exactly these claims, unaltered — it does not prove licence, qualifications or privileges. “Not assessed” means nobody has checked yet — not a negative finding.'}</p>
+      </details>}
+    </>
+  );
+}
+
+/** Explains why licence and qualifications read "not assessed", and where to check them today. */
+export function ScfhsPending({ compact = false }: { compact?: boolean }) {
+  const { ar } = useI18n();
+  return (
+    <aside className={`bpr-scfhs${compact ? ' compact' : ''}`} role="note">
+      <Hourglass size={18} aria-hidden="true" />
+      <div>
+        <strong>{ar ? 'الترخيص والمؤهلات — بانتظار التكامل الرسمي مع الهيئة السعودية للتخصصات الصحية' : 'Licence & qualifications — awaiting official SCFHS credential integration'}</strong>
+        {!compact && <p>{ar
+          ? 'لا يستقبل BPR بعدُ الاعتمادات من الهيئة السعودية للتخصصات الصحية، لذلك تظهر التراخيص والمؤهلات «لم تُقيَّم». إلى حين تفعيل التكامل الرسمي، تحقّق من تسجيل الممارس مباشرة لدى الهيئة.'
+          : 'BPR does not yet receive credentials from the Saudi Commission for Health Specialties, so professional licences and qualifications show as “not assessed”. Until the official integration is live, check a practitioner’s registration directly with SCFHS.'}</p>}
+        <div className="bpr-scfhs-links">
+          <ExtLink href={SCFHS_REG_CHECK}>{ar ? 'التحقق من التسجيل لدى الهيئة' : 'SCFHS registration check'}</ExtLink>
+          {!compact && <ExtLink href={`${REGISTRY}/scfhs.php`}>{ar ? 'دليل التصنيف المهني' : 'Classification guide'}</ExtLink>}
         </div>
-      ))}
-    </dl>
+      </div>
+    </aside>
+  );
+}
+
+/** Compact pointer to the provider workspace; live and planned capabilities stay visibly separate. */
+export function WorkspaceBand() {
+  const { ar } = useI18n();
+  const live = ar ? ['OpenEMR خاص ومخصص', 'مساعد سريري بـ14 مهارة', 'إملاء صوتي عربي', 'FHIR R4', 'الحاسبات والنماذج', 'صفحة البحث'] : ['Own customised OpenEMR', '14-skill Copilot', 'Arabic voice-to-text', 'FHIR R4', 'Calculators & forms', 'Research page'];
+  const planned = ar ? ['نفيس', 'مراجعة الأقران', 'فريقك', 'الإرشاد والتدريب', 'الفترات المتاحة', 'المطابقة'] : ['NPHIES', 'Peer review', 'Your team', 'Mentoring & training', 'Open slots', 'Matching'];
+  return (
+    <section className="ws-band" aria-label={ar ? 'مساحة عمل مقدم الرعاية' : 'Provider workspace'}>
+      <LayoutGrid size={26} aria-hidden="true" />
+      <div>
+        <h2>{ar ? 'لكل مقدم رعاية مساحة عمل ذكية متكاملة' : 'Every provider gets a complete, intelligent workspace'}</h2>
+        <div className="ws-band-row"><span className="ws-status live">{ar ? 'يعمل اليوم' : 'Live today'}</span>{live.map((x) => <em key={x}>{x}</em>)}</div>
+        <div className="ws-band-row"><span className="ws-status planned">{ar ? 'مخطط' : 'Planned'}</span>{planned.map((x) => <em key={x} className="planned">{x}</em>)}</div>
+      </div>
+      <Link className="profile-button primary" to="/bpr/workspace">{ar ? 'استكشف مساحة العمل' : 'Explore the workspace'}<ArrowRight size={16} /></Link>
+    </section>
   );
 }
 

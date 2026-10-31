@@ -38,51 +38,35 @@
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23090a08'/%3E%3Ctext x='50' y='62' font-family='Arial,sans-serif' font-size='36' fill='%23edf34a' text-anchor='middle'%3EEF%3C/text%3E%3C/svg%3E" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Almarai:wght@300;400;700;800&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <!-- Google Tag Manager (shared with store.brainsait.de) -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Almarai:wght@300;400;700;800&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Analytics (GTM, Meta Pixel, GA; shared with store.brainsait.de) load everywhere except the
+         BPR registry pages, where the URL carries the SPID someone is checking. -->
     <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-TP24GSTF');
-    </script>
-    <!-- End Google Tag Manager -->
-    <!-- Meta Pixel (shared with store.brainsait.de) -->
-    <script>
-      !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
-          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = '2.0';
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '850048551165707');
-      fbq('track', 'PageView');
-    </script>
-    <!-- End Meta Pixel -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-75ZCDM8R74"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'G-75ZCDM8R74');
+      (function (w, d) {
+        if (/^\/bpr(\/|$)/.test(w.location.pathname)) return;
+        function load(src) { var j = d.createElement('script'); j.async = true; j.src = src; d.head.appendChild(j); }
+        w.dataLayer = w.dataLayer || [];
+        w.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        load('https://www.googletagmanager.com/gtm.js?id=GTM-TP24GSTF');
+        var n = (w.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); });
+        if (!w._fbq) w._fbq = n;
+        n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+        load('https://connect.facebook.net/en_US/fbevents.js');
+        n.disablePushState = true; // landing page view only; in-app navigation is not sent to Meta
+        w.fbq('init', '850048551165707');
+        w.fbq('track', 'PageView');
+        load('https://www.googletagmanager.com/gtag/js?id=G-75ZCDM8R74');
+        w.gtag = function () { w.dataLayer.push(arguments); };
+        w.gtag('js', new Date());
+        w.gtag('config', 'G-75ZCDM8R74');
+        // GA's per-property kill switch, set from the destination URL before GA sees the change.
+        var guard = function (url) { w['ga-disable-G-75ZCDM8R74'] = /^\/bpr(\/|$)/.test(new URL(url || w.location.href, w.location.href).pathname); };
+        ['pushState', 'replaceState'].forEach(function (k) {
+          var orig = history[k];
+          history[k] = function (state, title, url) { guard(url); return orig.apply(this, arguments); };
+        });
+        w.addEventListener('popstate', function () { guard(); });
+      })(window, document);
     </script>
     <script>
       /* Set theme before first paint to avoid flash — dark is the default luxury mode */
@@ -91,24 +75,25 @@
           var t = localStorage.getItem('bs-theme');
           if (t !== 'light' && t !== 'dark') t = 'dark';
           document.documentElement.setAttribute('data-theme', t);
+          if (localStorage.getItem('bs-lang') === 'ar') { document.documentElement.lang = 'ar'; document.documentElement.dir = 'rtl'; }
         } catch (e) {
           document.documentElement.setAttribute('data-theme', 'dark');
         }
       })();
     </script>
-    <script type="module" crossorigin src="/assets/index-DIgAb079.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DGRWzcIi.css">
+    <script type="module" crossorigin src="/assets/index-DDs_JeO4.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BZS0y7bG.css">
       <title>Dr. Farroukh Raza · SA-PHY-000002 — BPR</title>
     <meta property="og:type" content="profile" />
     <meta property="og:site_name" content="BrainSAIT" />
     <meta property="og:title" content="Dr. Farroukh Raza · SA-PHY-000002 — BPR" />
     <meta property="og:description" content="No ORCID iD linked · No signed credential · Not a member · Professional licence not assessed · Qualifications not assessed · No hospital privileges recorded" />
     <meta property="og:url" content="https://fadil369.github.io/bpr/p/SA-PHY-000002/" />
-    <meta property="og:image" content="https://fadil369.github.io/assets/profile-og.png" />
+    <meta property="og:image" content="https://fadil369.github.io/assets/og/SA-PHY-000002.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Dr. Farroukh Raza · SA-PHY-000002 — BPR" />
     <meta name="twitter:description" content="No ORCID iD linked · No signed credential · Not a member · Professional licence not assessed · Qualifications not assessed · No hospital privileges recorded" />
-    <meta name="twitter:image" content="https://fadil369.github.io/assets/profile-og.png" />
+    <meta name="twitter:image" content="https://fadil369.github.io/assets/og/SA-PHY-000002.png" />
   </head>
   <body>
     <div id="root"></div>

@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Search } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
-import { BprLayout, Failed, Loading, SourceBadge, valueLabel } from '../../components/BprKit';
+import { BprLayout, Failed, Loading, ScfhsPending, SourceBadge, TRUST_LABEL, TrustGlyph, trustTone, valueLabel } from '../../components/BprKit';
+import type { Trust } from '../../lib/bpr';
 import { ProviderList, useLoad } from '../../lib/bpr';
 
 type Filter = 'all' | 'orcid' | 'signed' | 'member';
@@ -56,6 +57,7 @@ export default function Providers() {
         {list.state === 'ready' && <SourceBadge source={list.source} />}
       </div>
 
+      <ScfhsPending compact />
       {list.state === 'loading' && <Loading />}
       {list.state === 'error' && <Failed />}
       {list.state === 'ready' && (items.length === 0
@@ -67,16 +69,18 @@ export default function Providers() {
               <h3>{ar ? p.name_ar : p.name_en}</h3>
               <p className="bpr-provider-alt">{ar ? p.name_en : p.name_ar}</p>
               <p className="bpr-provider-spec">{p.specialty || (ar ? 'التخصص غير مذكور' : 'Specialty not stated')}</p>
-              <ul className="bpr-pills">
-                <li className={p.trust.identity === 'confirmed' ? 'pos' : ''}>ORCID · {valueLabel(p.trust.identity, ar)}</li>
-                <li className={p.trust.signature === 'current' ? 'pos' : ''}>{ar ? 'التوقيع' : 'Signature'} · {valueLabel(p.trust.signature, ar)}</li>
-                <li className={p.membership === 'active' ? 'pos' : ''}>{ar ? 'العضوية' : 'Membership'} · {valueLabel(p.membership, ar)}</li>
+              <ul className="bpr-pills" aria-label={ar ? 'حالات الثقة' : 'Trust states'}>
+                {(Object.keys(TRUST_LABEL) as (keyof Trust)[]).map((k) => (
+                  <li key={k} className={trustTone(p.trust[k])}><TrustGlyph tone={trustTone(p.trust[k])} />{TRUST_LABEL[k][ar ? 1 : 0]} · {valueLabel(p.trust[k], ar)}</li>
+                ))}
               </ul>
               <strong className="bpr-provider-go">{ar ? 'افتح الملف' : 'Open profile'}<ArrowRight size={14} /></strong>
             </Link>
           ))}
         </div>)}
-      {list.state === 'ready' && list.data.note && <p className="bpr-note">{list.data.note}</p>}
+      <p className="bpr-note">{ar
+        ? 'هوية ORCID = ملكية المعرّف عبر تسجيل الدخول، لا التأليف ولا الترخيص · الاعتماد الموقّع = توقيع برينسايت · العضوية = اشتراك BPR التجاري · الترخيص والمؤهلات = تُراجع لدى الجهة المصدِرة، وإلا «لم تُقيَّم» · الامتيازات = المسجلة لدى المستشفى.'
+        : 'ORCID identity = ownership of the iD via sign-in, not authorship or licensure · Signed credential = BrainSAIT signature · Membership = commercial BPR membership · Licence & qualifications = checked with the issuer, otherwise “not assessed” · Privileges = recorded hospital privileges.'}</p>
     </BprLayout>
   );
 }

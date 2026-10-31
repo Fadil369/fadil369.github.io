@@ -1,7 +1,8 @@
 .profile-home .site-head,
 .profile-home .site-foot,
 .profile-home .bg-aurora { display: none; }
-.profile-home body { background: var(--profile-bg); }
+.profile-home, .profile-home body { background: #090a08; }
+[data-theme='light'].profile-home, [data-theme='light'].profile-home body { background: #f2f1e8; }
 .profile-home #main-content { padding: 0; }
 .profile-page {
   --profile-bg: #090a08;
@@ -23,7 +24,7 @@
   background-size: 72px 72px, 72px 72px, auto, auto;
   font-family: 'Manrope', system-ui, sans-serif;
   line-height: 1.6;
-  overflow: hidden;
+  overflow-x: clip;
 }
 [data-theme='light'] .profile-page {
   --profile-bg: #f2f1e8;
@@ -213,6 +214,7 @@
   .profile-footer > div { order: 3; width: 100%; flex-wrap: wrap; }
 }
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
   .profile-page *, .profile-page *::before, .profile-page *::after { scroll-behavior: auto !important; transition: none !important; }
 }
 .profile-page a:focus-visible, .profile-page button:focus-visible { outline: 2px solid var(--profile-accent); outline-offset: 4px; }
@@ -339,7 +341,7 @@
 .cv-monogram { width: 64px; height: 74px; display: grid; place-items: center; position: relative; border: 1px solid #edf34a; color: #edf34a; font: 700 25px 'Manrope', sans-serif; }
 .cv-monogram span { position: absolute; width: 12px; height: 12px; background: #edf34a; inset-inline-end: -6px; bottom: 12px; }
 .cv-kicker { color: #edf34a; font: 500 9px 'IBM Plex Mono', monospace; letter-spacing: .17em; }
-.cv-name h1 { margin: 9px 0 8px; font-size: 37px; line-height: 1.08; letter-spacing: -.045em; }
+.cv-name h1 { margin: 9px 0 8px; font-size: 37px; line-height: 1.08; letter-spacing: -.03em; font-weight: 600; }
 .cv-name p { max-width: 580px; margin: 0; color: #c5c5b9; font-size: 11px; }
 .cv-contact { display: grid; gap: 5px; text-align: end; font: 9px 'IBM Plex Mono', monospace; color: #d5d5ca; direction: ltr; }
 .cv-layout { display: grid; grid-template-columns: minmax(0, 1fr) 295px; }
@@ -352,7 +354,8 @@
 .cv-role-head { display: flex; justify-content: space-between; gap: 16px; }
 .cv-role-head h3 { margin: 0 0 3px; font-size: 12px; line-height: 1.35; }
 .cv-role-head strong { color: #696b00; font-size: 9px; font-weight: 700; }
-.cv-role-head time { flex: none; color: #62635a; font: 8px 'IBM Plex Mono', monospace; direction: ltr; }
+.cv-role-head time { flex: none; color: #62635a; font: 9px 'IBM Plex Mono', monospace; }
+.cv-document[dir='ltr'] .cv-role-head time { direction: ltr; }
 .cv-experience ul { margin: 10px 0 0; padding-inline-start: 15px; color: #505148; font-size: 9.5px; }
 .cv-experience li { margin-top: 4px; padding-inline-start: 3px; }
 .cv-experience li::marker { color: #a4aa00; }
@@ -456,15 +459,15 @@
   .cv-contact { grid-column: auto; text-align: end; }
   .cv-layout { grid-template-columns: minmax(0, 1fr) 64mm; }
   .cv-main { padding: 8mm 8mm 3mm 11mm; }
-  .cv-sidebar { display: block; padding: 7mm; border: 0; background: transparent; }
-  .cv-sidebar section { margin-bottom: 4.5mm; }
+  .cv-sidebar { display: block; padding: 6mm 7mm 4mm; border: 0; background: transparent; }
+  .cv-sidebar section { margin-bottom: 3.4mm; }
   .cv-sidebar h2 { margin-bottom: 2.5mm; }
   .cv-document h2 { margin-bottom: 3.5mm; }
   .cv-summary p { margin-bottom: 8mm; line-height: 1.65; }
-  .cv-identity { padding: 4mm; }
-  .cv-capabilities li { padding: 1.4mm 0; }
-  .cv-education { margin-bottom: 2.2mm; }
-  .cv-side-link { padding: 1.2mm 0; }
+  .cv-identity { padding: 3.2mm 3.5mm; }
+  .cv-capabilities li { padding: 1mm 0; }
+  .cv-education { margin-bottom: 1.6mm; }
+  .cv-side-link { padding: .9mm 0; }
   .cv-document-footer { position: absolute; bottom: 0; inset-inline: 0; padding: 3mm 11mm; }
   .cv-experience article { padding-bottom: 6mm; margin-bottom: 6mm; }
   .cv-experience ul { margin-top: 1.8mm; }
@@ -481,3 +484,84 @@
 [data-theme='light'] .profile-button.primary,
 [data-theme='light'] .bpr-verify button,
 [data-theme='light'] .profile-brand > span { background: #d8df28; color: #111207; }
+
+.profile-controls .profile-cmdk span { font: 600 11px 'IBM Plex Mono', monospace; }
+@media (max-width: 700px) { .profile-controls .profile-cmdk { display: none; } }
+
+.cv-identity { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: end; }
+.cv-identity-text > svg { color: #edf34a; margin-bottom: 10px; }
+.cv-identity-text > span { display: block; color: #bbbcb0; font-size: 8px; }
+.cv-identity-text > strong { display: block; margin: 4px 0 9px; color: #edf34a; font: 500 14px 'IBM Plex Mono', monospace; white-space: nowrap; }
+.cv-identity-text > a { display: flex; align-items: center; gap: 4px; font: 8px 'IBM Plex Mono', monospace; }
+.cv-identity-qr { display: block; width: 64px; padding: 4px; background: #edf34a; }
+.cv-identity-qr svg { display: block; width: 100%; height: auto; }
+@media print { .cv-identity-qr { width: 18mm; padding: 1.2mm; } .cv-identity-text > strong { font-size: 12px; } }
+.cv-identity-pending { grid-column: 1 / -1; display: block; margin-top: 2px; padding-top: 7px; border-top: 1px solid rgba(237, 243, 74, .25); color: #d9d27a; font: 7.5px/1.45 'IBM Plex Mono', monospace; }
+/* Arabic never set in the monospace face: it has no Arabic glyphs, so the fallback renders letter-spaced. */
+.cv-document[dir='rtl'] .cv-identity-pending, .cv-document[dir='rtl'] .cv-identity-text > a, .cv-document[dir='rtl'] .cv-identity-text > span,
+.cv-document[dir='rtl'] .cv-role-head time, .cv-document[dir='rtl'] .cv-kicker { font-family: 'Almarai', sans-serif; letter-spacing: 0; }
+.cv-document[dir='rtl'] .cv-identity-pending { font-size: 8.5px; }
+
+.profile-credential em { display: inline-flex; align-items: center; gap: 4px; margin-top: 3px; color: #f5c97a; font: normal 10px 'IBM Plex Mono', monospace; }
+[data-theme='light'] .profile-credential em { color: #8a5a00; }
+[dir='rtl'] .profile-credential em { font-family: 'Almarai', sans-serif; }
+.profile-credential.ok > svg { color: #9fe870; }
+[data-theme='light'] .profile-credential.ok > svg { color: #2f7d12; }
+.profile-footprint { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 16px; margin-bottom: 18px; border: 1px solid var(--profile-line); border-top: 2px solid var(--profile-accent); }
+.profile-footprint span { display: grid; gap: 2px; color: var(--profile-muted); font-size: 11px; }
+.profile-footprint strong { color: var(--profile-accent); font-size: 26px; letter-spacing: -.03em; line-height: 1.1; }
+.profile-footprint small { grid-column: 1 / -1; display: inline-flex; align-items: center; gap: 4px; color: var(--profile-muted); font: 10px 'IBM Plex Mono', monospace; }
+[dir='rtl'] .profile-footprint small { font-family: 'Almarai', sans-serif; }
+
+/* ── Design review pass (2026-11-01) ───────────────────────────────────────── */
+/* F3 mobile menu + F16 active page */
+.profile-menu { display: none !important; }
+.profile-head { position: relative; }
+.profile-head nav a.active { color: var(--profile-text); box-shadow: inset 0 -2px 0 var(--profile-accent); }
+@media (max-width: 900px) {
+  .profile-menu { display: grid !important; }
+  .profile-head nav { display: none; position: absolute; inset-inline: 0; top: 100%; z-index: 40; flex-direction: column; align-items: stretch; gap: 0;
+    padding: 6px; background: var(--profile-surface); border: 1px solid var(--profile-line); box-shadow: 0 20px 40px rgba(0,0,0,.35); }
+  .profile-head nav[data-open='true'] { display: flex; }
+  .profile-head nav a { min-height: 48px; display: flex; align-items: center; padding-inline: 14px; font-size: 15px; color: var(--profile-text); }
+  .profile-head nav a.active { box-shadow: inset 3px 0 0 var(--profile-accent); }
+  [dir='rtl'] .profile-head nav a.active { box-shadow: inset -3px 0 0 var(--profile-accent); }
+}
+/* F4 anchored sections clear the top edge */
+.profile-section, .profile-contact { scroll-margin-top: 24px; }
+/* F10 Arabic: no tracking or forced case — it breaks cursive joins */
+[dir='rtl'] .profile-page :is(h1, h2, h3, h4, .profile-eyebrow, .profile-section-label, .cv-kicker, .bpr-provider-top, .bpr-work-meta span, .ev, .profile-paper-meta, .bpr-subnav-mark, .cv-document h2) { letter-spacing: 0; text-transform: none; }
+/* F12 back arrow mirrors in RTL */
+[dir='rtl'] .cv-back svg { transform: scaleX(-1); }
+/* F18 SPIDs and other LTR codes never break at the hyphen */
+.profile-page code[dir='ltr'], .profile-page strong[dir='ltr'] { white-space: nowrap; }
+/* F19 store-theme leftovers */
+.profile-home ::selection { background: rgba(237, 243, 74, .35); color: inherit; }
+.profile-home ::-webkit-scrollbar-thumb { background: #3a3b2c; border-radius: 99px; }
+.profile-home ::-webkit-scrollbar-track { background: #090a08; }
+.profile-home .skip-to-content-link { background: #edf34a; color: #111207; }
+/* F20 touch targets */
+@media (pointer: coarse) {
+  .profile-controls button, .bpr-subnav a, .bpr-chips button, .bpr-endpoint-actions button, .profile-footer a { min-height: 44px; }
+  .profile-controls button { min-width: 44px; }
+}
+/* F9 CV readable on screen: scale the whole paper instead of each size */
+@media screen and (min-width: 1000px) {
+  .cv-document { zoom: 1.18; width: min(950px, calc((100% - 48px) / 1.18)); }
+}
+@media print {
+  .cv-experience ul { font-size: 10px; }
+  .cv-education span, .cv-side-link, .cv-language strong { font-size: 8.6px; }
+  .cv-document-footer { font-size: 7.6px; }
+}
+/* E1 live BPR state on the profile */
+.profile-feature-live { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); align-items: center; }
+.profile-feature-live p { color: var(--profile-muted); }
+.profile-feature-trust { min-width: 0; }
+.profile-feature-trust-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 10px; }
+.profile-feature-trust-head code { color: var(--profile-accent); font: 13px 'IBM Plex Mono', monospace; }
+@media (max-width: 900px) { .profile-feature-live { grid-template-columns: 1fr; } }
+.cv-identity-stamp { grid-column: 1 / -1; color: #bbbcb0; font: 7.5px 'IBM Plex Mono', monospace; }
+/* E12 (screen only): give the black card artwork an edge on the near-black page */
+.card-preview-item img { outline: 1px solid rgba(237, 243, 74, .28); outline-offset: 0; }
+@media print { .card-preview-item img { outline: 0; } }

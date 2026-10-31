@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Hammer } from 'lucide-react';
+import { Hammer, RotateCcw } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout, CheckRow, Failed, fmtDate, Loading, SourceBadge } from '../../components/BprKit';
@@ -11,6 +11,7 @@ export default function Ledger() {
   const [log, setLog] = useState<LedgerResult | null>(null);
   const [err, setErr] = useState(false);
   const [tamper, setTamper] = useState<Check | null>(null);
+  const [diff, setDiff] = useState<{ orig: string; altered: string; token: [string, string]; stored: string; recomputed: string } | null>(null);
   useEffect(() => { replayLedger().then(setLog, () => setErr(true)); }, []);
   usePageMeta({
     title: ar ? 'السجل الشفاف — BPR' : 'Transparency log — BPR',
@@ -22,10 +23,21 @@ export default function Ledger() {
   const tryTamper = async () => {
     if (!log?.entries.length) return;
     const e = log.entries[0];
-    const swapped = e.line.replace(`"event":"${e.event}"`, `"event":"${e.event === 'revoked' ? 'issued' : 'revoked'}"`);
-    const altered = await sha256Hex(swapped === e.line ? e.line + ' ' : swapped);
-    setTamper(altered === e.hash ? { state: 'ok' } : { state: 'fail', detail: `#1 → ${short(altered, 12)} ≠ ${short(e.hash, 12)}`, how: 'device' });
+    const to = e.event === 'revoked' ? 'issued' : 'revoked';
+    const swapped = e.line.replace(`"event":"${e.event}"`, `"event":"${to}"`);
+    const altered = swapped === e.line ? e.line + ' ' : swapped;
+    const recomputed = await sha256Hex(altered);
+    setDiff({ orig: e.line, altered, token: [e.event, to], stored: e.hash, recomputed });
+    setTamper(recomputed === e.hash ? { state: 'ok' } : { state: 'fail', detail: `#1 → ${short(recomputed, 12)} ≠ ${short(e.hash, 12)}`, how: 'device' });
   };
+  const reset = () => { setTamper(null); setDiff(null); };
+  const mark = (line: string, token: string) => {
+    const i = line.indexOf(`"event":"${token}"`);
+    if (i < 0) return line;
+    const a = i + 9, b = a + token.length;
+    return <>{line.slice(0, a)}<mark>{line.slice(a, b)}</mark>{line.slice(b)}</>;
+  };
+  const hexDiff = (h: string, ref: string) => [...h].map((c, i) => <span key={i} className={c === ref[i] ? '' : 'hx'}>{c}</span>);
 
   return (
     <BprLayout kicker={ar ? 'السجل الشفاف' : 'Transparency log'}
@@ -44,9 +56,10 @@ export default function Ledger() {
             <div className="bpr-forge">
               <Hammer size={18} />
               <div><strong>{ar ? 'جرّب العبث' : 'Try tampering'}</strong><p>{ar ? 'نعيد كتابة السطر الأول بحدث مختلف ونعيد حساب تجزئته.' : 'Rewrite entry #1 with a different event and recompute its hash.'}</p></div>
-              <button className="profile-button secondary" onClick={tryTamper} disabled={!log.entries.length}>{ar ? 'اعبث' : 'Tamper'}</button>
+              {diff ? <button className="profile-button secondary" onClick={reset}><RotateCcw size={14} />{ar ? 'إعادة' : 'Reset'}</button>
+                : <button className="profile-button secondary" onClick={tryTamper} disabled={!log.entries.length}>{ar ? 'اعبث' : 'Tamper'}</button>}
             </div>
-            {tamper && <CheckRow label={ar ? 'سلسلة معدّلة' : 'Altered chain'} check={tamper} />}
+            {tamper && <div aria-live="polite"><CheckRow label={ar ? 'سلسلة معدّلة (محاكاة)' : 'Altered chain (simulation)'} check={tamper} /></div>}
           </section>
           <section className="bpr-panel">
             <h2>{ar ? 'الرأس الموقّع' : 'Signed head'}</h2>
@@ -61,21 +74,31 @@ export default function Ledger() {
         </div>
 
         <section className="bpr-panel">
-          <h2>{ar ? 'الأسطر' : 'Entries'}</h2>
-          <ol className="bpr-chain" dir="ltr">
-            <li className="genesis"><span>0</span><code>{short(log.genesis, 16)}</code><em>genesis</em></li>
-            {log.entries.map((e) => (
-              <li key={e.seq}>
-                <span>{e.seq}</span>
-                <div>
-                  <strong className={`ev ${e.event}`}>{e.event}</strong>
+          <h2>{ar ? 'السلسلة' : 'The chain'}</h2>
+          <ol className="ledger-chain" dir="ltr">
+            <li className="ledger-block genesis"><span className="ledger-seq">0</span><strong>genesis</strong><code>{short(log.genesis, 6)}</code></li>
+            {log.entries.map((e, i) => {
+              const broken = !!diff && i >= 0;
+              return (
+                <li key={e.seq} className={`ledger-block${broken ? ' broken' : ''}`} style={{ ['--fp' as string]: `#${e.hash.slice(0, 6)}` }}>
+                  <span className="ledger-seq">{e.seq}</span>
+                  <strong className={`ev ${diff && i === 0 ? diff.token[1] : e.event}`}>{diff && i === 0 ? diff.token[1] : e.event}</strong>
                   <Link to={`/bpr/p/${e.spid}`}>{e.spid}</Link>
                   <time>{fmtDate(e.at, ar, true)}</time>
-                </div>
-                <code title={e.hash}>prev {short(e.prev, 10)} → {short(e.hash, 10)}</code>
-              </li>
-            ))}
+                  <code title={e.hash}>prev {short(e.prev, 4)}</code>
+                  <code title={e.hash}>hash {short(diff && i === 0 ? diff.recomputed : e.hash, 6)}</code>
+                </li>
+              );
+            })}
+            <li className={`ledger-block head${diff ? ' broken' : ''}`}><span className="ledger-seq">✎</span><strong>{ar ? 'الرأس الموقّع' : 'signed head'}</strong><code>{short(log.head.hash, 6)}</code><small>{diff ? (ar ? 'لم يعد يطابق' : 'no longer matches') : log.headSignature.state === 'ok' ? (ar ? 'توقيع صالح' : 'signature valid') : ''}</small></li>
           </ol>
+          {diff && <div className="ledger-diff">
+            <p className="bpr-note"><strong>{ar ? 'محاكاة فقط. السجل الحقيقي لم يتغير.' : 'Simulation only. The real log is unchanged.'}</strong></p>
+            <div><small>{ar ? 'السطر الأصلي' : 'Original line'}</small><pre dir="ltr">{mark(diff.orig, diff.token[0])}</pre></div>
+            <div><small>{ar ? 'السطر بعد العبث' : 'Tampered line'}</small><pre dir="ltr">{mark(diff.altered, diff.token[1])}</pre></div>
+            <div><small>{ar ? 'التجزئة المخزنة' : 'Stored hash'}</small><pre dir="ltr">{diff.stored}</pre></div>
+            <div><small>{ar ? 'التجزئة المعاد حسابها' : 'Recomputed hash'}</small><pre dir="ltr">{hexDiff(diff.recomputed, diff.stored)}</pre></div>
+          </div>}
         </section>
       </>}
     </BprLayout>

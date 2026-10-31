@@ -4,7 +4,7 @@ import QRCode from 'qrcode';
 import { ArrowRight, Braces, FlaskConical, IdCard, KeyRound } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
-import { BprLayout, CheckRow, ExtLink, Failed, fmtDate, Loading, SourceBadge, TrustGrid, valueLabel } from '../../components/BprKit';
+import { BprLayout, CheckRow, ExtLink, Failed, fmtDate, Loading, ScfhsPending, SourceBadge, TrustGrid, valueLabel } from '../../components/BprKit';
 import { checkCredential, CredentialResult, Provider, SPID_RE, useLoad } from '../../lib/bpr';
 
 const ORIGIN = 'https://fadil369.github.io';
@@ -27,7 +27,7 @@ export default function ProviderProfile() {
   }, [prov, spid]);
   useEffect(() => {
     if (!valid) return;
-    QRCode.toString(`${ORIGIN}/bpr/verify?spid=${spid}`, { type: 'svg', margin: 1, errorCorrectionLevel: 'M', color: { dark: '#111207', light: '#edf34a' } }).then(setQr, () => setQr(''));
+    QRCode.toString(`${ORIGIN}/bpr/verify?spid=${spid}`, { type: 'svg', margin: 4, errorCorrectionLevel: 'M', color: { dark: '#111207', light: '#edf34a' } }).then(setQr, () => setQr(''));
   }, [spid, valid]);
 
   usePageMeta({
@@ -46,12 +46,13 @@ export default function ProviderProfile() {
 
   return (
     <BprLayout kicker={`BPR · ${prov.type}`} title={ar ? prov.name_ar : prov.name_en}
-      lead={<span dir="auto">{ar ? prov.name_en : prov.name_ar} · <code dir="ltr">{spid}</code> · {prov.specialty || (ar ? 'التخصص غير مذكور' : 'Specialty not stated')}</span>}>
+      lead={<span><bdi dir={ar ? 'ltr' : 'rtl'} lang={ar ? 'en' : 'ar'}>{ar ? prov.name_en : prov.name_ar}</bdi> · <bdi dir="ltr"><code dir="ltr">{spid}</code></bdi> · {prov.specialty || (ar ? 'التخصص غير مذكور' : 'Specialty not stated')}</span>}>
       <div className="bpr-profile-grid">
         <section className="bpr-panel">
           <div className="bpr-panel-head"><h2>{ar ? 'حالة الثقة' : 'Trust, dimension by dimension'}</h2><SourceBadge source={src} /></div>
           <TrustGrid trust={prov.trust} />
           <p className="bpr-note" dir="auto">{ar ? prov.trust_summary_ar : prov.trust_summary}</p>
+          {(prov.trust.licence === 'not_assessed' || prov.trust.qualifications === 'not_assessed') && <ScfhsPending />}
           <dl className="bpr-facts">
             <div><dt>{ar ? 'العضوية صالحة حتى' : 'Membership valid to'}</dt><dd>{fmtDate(prov.membership_valid_to, ar)}</dd></div>
             <div><dt>{ar ? 'المستندات' : 'Credentials review'}</dt><dd>{valueLabel(prov.verification.credentials, ar)}</dd></div>
@@ -70,6 +71,7 @@ export default function ProviderProfile() {
             {prov.card_url && <ExtLink href={prov.card_url}>{ar ? 'بطاقة العضوية' : 'Member card'}</ExtLink>}
             {prov.orcid && <ExtLink href={prov.orcid}>ORCID</ExtLink>}
             {prov.passport_url && <ExtLink href={prov.passport_url}>{ar ? 'الصفحة الشخصية' : 'Personal page'}</ExtLink>}
+            {spid === 'SA-PHY-000003' && <><Link className="bpr-ext" to="/">{ar ? 'الملف المهني' : 'Professional profile'}<ArrowRight size={13} /></Link><Link className="bpr-ext" to="/cv">{ar ? 'السيرة الذاتية' : 'CV'}<ArrowRight size={13} /></Link></>}
           </div>
         </aside>
       </div>

@@ -1,5 +1,5 @@
 {
- "checked_at": "2026-10-31T21:50:02+00:00",
+ "checked_at": "2026-10-31T22:55:03+00:00",
  "sites": {
   "https://brainsait.de/": "ok",
   "https://brainsait.de/connect/": "ok",
@@ -19,7 +19,7 @@
  },
  "operations": {
   "verdict": "failing",
-  "checked_at": "2026-10-31T21:50:01+00:00",
+  "checked_at": "2026-10-31T22:50:01+00:00",
   "checks": {
    "sites": "fail",
    "integrity": "ok",

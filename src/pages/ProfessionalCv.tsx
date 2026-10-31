@@ -1,8 +1,11 @@
+import { useEffect, useState } from 'react';
+import QRCode from 'qrcode';
+import { replayLedger, short } from '../lib/bpr';
 import { ArrowLeft, ArrowUpRight, Download, ExternalLink, Printer, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../i18n';
 import { usePageMeta } from '../hooks/usePageMeta';
-import { ProfileHeader } from './Home';
+import { ProfileHeader } from '../components/ProfileHeader';
 import '../styles/profile.css';
 
 const experience = [
@@ -58,8 +61,28 @@ const capabilities = [
   ['Bilingual product leadership', 'قيادة المنتجات ثنائية اللغة'],
 ];
 
+const VERIFY_URL = 'https://fadil369.github.io/bpr/verify?spid=SA-PHY-000003';
+// Generic words only; institution names stay as written until official Arabic names are supplied.
+const AR_WORDS: [RegExp, string][] = [[/Saudi Arabia/g, 'المملكة العربية السعودية'], [/Riyadh/g, 'الرياض'], [/(\d+) branches/g, '$1 فروع']];
+const arText = (t: string) => AR_WORDS.reduce((v, [re, to]) => v.replace(re, to), t);
+
 export default function ProfessionalCv() {
   const { ar } = useI18n();
+  const [qr, setQr] = useState('');
+  const [stamp, setStamp] = useState<{ size: number; hash: string; at: string } | null>(null);
+  // The QR carries the transparency-log state at render time, so a printed copy can be checked later.
+  useEffect(() => {
+    let alive = true;
+    const draw = (url: string) => QRCode.toString(url, { type: 'svg', margin: 2, errorCorrectionLevel: 'M', color: { dark: '#11120d', light: '#edf34a' } }).then((q) => alive && setQr(q), () => {});
+    replayLedger().then((log) => {
+      if (!alive || log.chain.state !== 'ok' || !log.entries.length) return draw(VERIFY_URL);
+      const st = { size: log.entries.length, hash: log.head.hash, at: new Date().toISOString() };
+      setStamp(st);
+      draw(`${VERIFY_URL}&stamp=${st.size}-${st.hash.slice(0, 12)}`);
+    }, () => draw(VERIFY_URL));
+    return () => { alive = false; };
+  }, []);
+  const verifyHref = stamp ? `${VERIFY_URL}&stamp=${stamp.size}-${stamp.hash.slice(0, 12)}` : VERIFY_URL;
   usePageMeta({
     title: ar ? 'السيرة الذاتية — د. محمد الفاضل' : 'Professional CV — Dr. Mohamed El Fadil',
     description: ar ? 'السيرة الذاتية المهنية لد. محمد الفاضل: الطب، تحسين الرعاية الصحية، دورة الإيرادات والتقنية الصحية.' : 'The professional CV of Dr. Mohamed El Fadil: medicine, healthcare improvement, revenue cycle and health technology.',
@@ -72,10 +95,11 @@ export default function ProfessionalCv() {
         <Link to="/" className="cv-back"><ArrowLeft size={16} />{ar ? 'العودة إلى الملف' : 'Back to profile'}</Link>
         <div>
           <button className="profile-button secondary" onClick={() => window.print()}><Printer size={16} />{ar ? 'طباعة' : 'Print'}</button>
-          <a className="profile-button primary" href="/assets/Dr_Mohamed_El_Fadil_CV_2026_Redesigned.pdf" download><Download size={16} />{ar ? 'تنزيل PDF' : 'Download PDF'}</a>
+          <a className="profile-button primary" href="/assets/Dr_Mohamed_El_Fadil_CV_2026_Redesigned.pdf" download><Download size={16} />PDF · English</a>
+          <a className="profile-button secondary" href="/assets/Dr_Mohamed_El_Fadil_CV_2026_AR.pdf" download lang="ar"><Download size={16} />PDF · العربية</a>
         </div>
       </div>
-      <main className="cv-document" dir={ar ? 'rtl' : 'ltr'}>
+      <article className="cv-document" dir={ar ? 'rtl' : 'ltr'}>
         <header className="cv-masthead">
           <div className="cv-monogram" aria-hidden="true">EF<span /></div>
           <div className="cv-name">
@@ -84,7 +108,7 @@ export default function ProfessionalCv() {
             <p>{ar ? 'طبيب · مؤسس BrainSAIT · مستشار تحسين ذكي للرعاية الصحية ودورة الإيرادات' : 'Physician · BrainSAIT Founder · RCM, Healthcare Intelligent Improvement Advisor'}</p>
           </div>
           <div className="cv-contact">
-            <span>Riyadh, Saudi Arabia</span>
+            <span>{ar ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia'}</span>
             <a href="mailto:elfadil369@icloud.com">elfadil369@icloud.com</a>
             <a href="tel:+966543560672" dir="ltr">+966 543 560 672</a>
             <a href="https://fadil369.github.io/">fadil369.github.io</a>
@@ -103,7 +127,7 @@ export default function ProfessionalCv() {
               <h2>{ar ? 'الخبرة المهنية' : 'Professional experience'}</h2>
               {experience.map((item) => (
                 <article key={item.role}>
-                  <div className="cv-role-head"><div><h3>{ar ? item.roleAr : item.role}</h3><strong>{item.org}</strong></div><time>{ar ? item.datesAr : item.dates}</time></div>
+                  <div className="cv-role-head"><div><h3>{ar ? item.roleAr : item.role}</h3><strong>{ar ? arText(item.org) : item.org}</strong></div><time>{ar ? item.datesAr : item.dates}</time></div>
                   <ul>{(ar ? item.pointsAr : item.points).map(point => <li key={point}>{point}</li>)}</ul>
                 </article>
               ))}
@@ -111,10 +135,15 @@ export default function ProfessionalCv() {
           </div>
           <aside className="cv-sidebar">
             <section className="cv-identity">
-              <ShieldCheck size={22} />
-              <span>{ar ? 'هوية مقدم رعاية موثقة' : 'Verified provider identity'}</span>
-              <strong dir="ltr">SA-PHY-000003</strong>
-              <a href="https://registry.brainsait.de/p/SA-PHY-000003" target="_blank" rel="noreferrer">BPR / BrainSAIT <ArrowUpRight size={12} /></a>
+              <div className="cv-identity-text">
+                <ShieldCheck size={22} />
+                <span>{ar ? 'معرّف BPR · اعتماد موقّع' : 'BPR provider ID · signed credential'}</span>
+                <strong dir="ltr">SA-PHY-000003</strong>
+                <a href={verifyHref} target="_blank" rel="noreferrer">{ar ? 'امسح للتحقق المباشر' : 'Scan to check it live'} <ArrowUpRight size={12} /></a>
+              </div>
+              {qr && <a className="cv-identity-qr" href={verifyHref} target="_blank" rel="noreferrer" aria-label={ar ? 'رمز QR للتحقق من اعتماد BPR' : 'QR code: verify the BPR credential'} dangerouslySetInnerHTML={{ __html: qr }} />}
+              {stamp && <small className="cv-identity-stamp" dir="ltr">{ar ? 'ختم السجل' : 'Log stamp'} #{stamp.size} · {short(stamp.hash, 8)} · {stamp.at.slice(0, 10)}</small>}
+              <small className="cv-identity-pending">{ar ? 'الترخيص والمؤهلات: بانتظار التكامل الرسمي مع الهيئة السعودية للتخصصات الصحية' : 'Licence & qualifications: awaiting official SCFHS credential integration'}</small>
             </section>
             <section>
               <h2>{ar ? 'الكفاءات الأساسية' : 'Core expertise'}</h2>
@@ -146,7 +175,7 @@ export default function ProfessionalCv() {
           </aside>
         </div>
         <footer className="cv-document-footer"><span>DR. MOHAMED EL FADIL · BPR / BrainSAIT</span><a href="https://fadil369.github.io/">fadil369.github.io</a></footer>
-      </main>
+      </article>
       <div className="cv-source-note cv-browser-only">{ar ? 'نسخة محدثة من السيرة الذاتية الأصلية، مع الحفاظ على المصدر الأصلي دون تغيير.' : 'A redesigned edition of the original CV. The original source PDF remains preserved.'}</div>
     </div>
   );

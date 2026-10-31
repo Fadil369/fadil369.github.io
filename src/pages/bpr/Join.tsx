@@ -1,7 +1,7 @@
 import { ArrowUpRight, Calculator, FileCheck2, IdCard, KeyRound, LogIn, Server, UserPlus } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
-import { BprLayout, ExtLink } from '../../components/BprKit';
+import { BprLayout, ExtLink, ScfhsPending, WorkspaceBand } from '../../components/BprKit';
 import { REGISTRY } from '../../lib/bpr';
 
 // Joining writes personal data, so it stays on registry.brainsait.de (ORCID sign-in, CSRF-protected
@@ -36,11 +36,13 @@ export default function Join() {
           <li key={s.en}><span>{String(i + 1).padStart(2, '0')}</span><Icon size={22} /><div><h3>{ar ? s.ar : s.en}</h3><p>{ar ? s.arText : s.enText}</p></div></li>
         ))}
       </ol>
+      <WorkspaceBand />
+      <ScfhsPending />
       <section className="bpr-section">
         <div className="profile-section-label">{ar ? 'للأعضاء' : 'For members'}</div>
         <div className="bpr-module-grid two">
           <a className="bpr-module members" href={`${REGISTRY}/tools.php`} target="_blank" rel="noreferrer">
-            <div className="bpr-module-top"><Calculator size={24} /><small>13 kits</small></div>
+            <div className="bpr-module-top"><Calculator size={24} /><small>{ar ? 'للأعضاء' : 'Members'}</small></div>
             <h3>{ar ? 'أدوات التخصص' : 'Specialty toolkit'}</h3>
             <p>{ar ? 'قوائم تحقق وقوالب وحاسبات سريرية — مرجع يُراجع مقابل البروتوكول المحلي.' : 'Checklists, templates and clinical calculators — reference aids, checked against local protocol.'}</p>
             <strong>{ar ? 'على السجل' : 'On the registry'}<ArrowUpRight size={14} /></strong>

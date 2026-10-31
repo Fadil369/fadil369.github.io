@@ -1,9 +1,9 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Activity, ArrowRight, ArrowUpRight, BadgeCheck, Braces, Calculator, Check, FlaskConical, Fingerprint, KeyRound, Link2, Network, Search, Server, ShieldCheck, Stethoscope, Users } from 'lucide-react';
+import { Activity, LayoutGrid, ArrowRight, ArrowUpRight, BadgeCheck, Braces, Calculator, Check, FlaskConical, Fingerprint, KeyRound, Link2, Network, Search, Server, ShieldCheck, Stethoscope, Users } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
-import { BprLayout, CheckRow, SourceBadge, valueLabel } from '../../components/BprKit';
+import { BprLayout, CheckRow, ScfhsPending, SourceBadge, valueLabel, WorkspaceBand } from '../../components/BprKit';
 import { checkCredential, CredentialResult, LedgerResult, ProviderList, REGISTRY, replayLedger, short, useLoad } from '../../lib/bpr';
 
 const SPID = 'SA-PHY-000003';
@@ -11,6 +11,8 @@ const SPID = 'SA-PHY-000003';
 // Every module below runs today on registry.brainsait.de. "here" = rebuilt as a page on this site;
 // members-only tools stay on the registry, behind its sign-in.
 const MODULES = [
+  { icon: LayoutGrid, to: '/bpr/workspace', en: 'Provider workspace', ar: 'مساحة عمل مقدم الرعاية', tag: 'OpenEMR · Copilot · Arabic voice',
+    enText: 'Own EMR, a clinical copilot with Arabic dictation, FHIR, specialty tools and research — with what is live and what is planned stated per feature.', arText: 'سجل طبي خاص ومساعد سريري بإملاء عربي وFHIR وأدوات التخصص والبحث — مع بيان ما يعمل وما هو مخطط لكل ميزة.' },
   { icon: KeyRound, to: '/bpr/verify', en: 'Signed credentials', ar: 'شهادات موقّعة', tag: 'W3C VC 2.0 · Ed25519',
     enText: 'Check a registry-signed credential on your own device — no account, nothing uploaded.', arText: 'تحقق من شهادة موقّعة من السجل على جهازك — دون حساب ودون رفع أي شيء.' },
   { icon: Link2, to: '/bpr/ledger', en: 'Transparency log', ar: 'السجل الشفاف', tag: 'Append-only · signed head',
@@ -25,7 +27,7 @@ const MODULES = [
     enText: 'The registry’s own health verdict: sites, backups, key, ledger and consistency checks.', arText: 'حكم السجل على صحته: المواقع والنسخ الاحتياطية والمفتاح والسجل الشفاف واتساق البيانات.' },
   { icon: Users, to: '/bpr/join', en: 'Onboarding', ar: 'الانضمام', tag: 'One question per slide',
     enText: 'Arabic-first wizard, ORCID sign-in and reviewed documents that become verified qualifications.', arText: 'معالج عربي أولاً وتسجيل دخول عبر ORCID ومستندات تُراجع لتصبح مؤهلات موثّقة.' },
-  { icon: Calculator, href: `${REGISTRY}/tools.php`, en: 'Specialty toolkit', ar: 'أدوات التخصص', tag: 'Members · 13 kits',
+  { icon: Calculator, href: `${REGISTRY}/tools.php`, en: 'Specialty toolkit', ar: 'أدوات التخصص', tag: 'Members',
     enText: 'Checklists, templates and clinical calculators matched to the specialty. Members only, on the registry.', arText: 'قوائم تحقق وقوالب وحاسبات سريرية حسب التخصص. للأعضاء فقط، على السجل.' },
   { icon: Server, href: 'https://emr.brainsait.de/', en: 'Personal EMR', ar: 'سجل طبي شخصي', tag: 'Members · OpenEMR',
     enText: 'An isolated OpenEMR instance per provider on its own subdomain, database and TLS.', arText: 'نسخة OpenEMR معزولة لكل مقدم رعاية بنطاق فرعي وقاعدة بيانات وشهادة TLS خاصة.' },
@@ -52,15 +54,17 @@ export default function Overview() {
   return (
     <BprLayout
       kicker="BrainSAIT Provider Registry"
-      title={ar ? 'هوية واحدة موثقة. يمكن لأي شخص التحقق منها.' : 'One trusted identity. Anyone can check it.'}
+      title={ar ? 'هوية واحدة موثوقة. يمكن لأي شخص التحقق منها.' : 'One trusted identity. Anyone can check it.'}
       lead={ar
         ? 'BPR يمنح كل ممارس صحي معرّفًا دائمًا وشهادة موقّعة وسجلًا عامًا. هذه الصفحات تعيد التحقق بنفسها — التوقيعات وسلسلة التجزئة تُفحص في متصفحك.'
         : 'BPR gives every clinician a permanent ID, a signed credential and a public record. These pages re-check it themselves — signatures and the hash chain are verified in your browser.'}
       actions={<>
         <Link className="profile-button primary" to="/bpr/providers">{ar ? 'تصفح الدليل' : 'Browse the directory'}<ArrowRight size={16} /></Link>
-        <a className="profile-button secondary" href={`${REGISTRY}/join.php`} target="_blank" rel="noreferrer">{ar ? 'انضم إلى BPR' : 'Join BPR'}<ArrowUpRight size={16} /></a>
+        <Link className="profile-button secondary" to="/bpr/join">{ar ? 'انضم إلى BPR' : 'Join BPR'}<ArrowRight size={16} /></Link>
       </>}
     >
+      <WorkspaceBand />
+
       <section className="bpr-live-strip" aria-label={ar ? 'مؤشرات مباشرة' : 'Live indicators'}>
         <div><span>{ar ? 'مقدمو رعاية مدرجون' : 'Listed providers'}</span><strong>{list.state === 'ready' ? items.length : '…'}</strong>{list.state === 'ready' && <SourceBadge source={list.source} />}</div>
         <div><span>{ar ? 'ORCID مؤكد' : 'ORCID confirmed'}</span><strong>{list.state === 'ready' ? linked : '…'}</strong><small>{ar ? 'من الدليل' : 'from the directory'}</small></div>
@@ -71,7 +75,7 @@ export default function Overview() {
       <section className="bpr-split">
         <div className="bpr-pass">
           <div className="bpr-pass-head"><span>BPR / PROVIDER CREDENTIAL</span><BadgeCheck size={25} /></div>
-          <div className="bpr-pass-person"><img src="/assets/img/prof_pic.jpg" alt="" /><div><strong>{cred?.claims.credentialSubject.name || 'Dr. Mohamed El Fadil'}</strong><span>{cred?.claims.credentialSubject.nameAr || 'د. محمد الفاضل'}</span></div></div>
+          <div className="bpr-pass-person"><span className="bpr-monogram" aria-hidden="true">{(cred?.claims.credentialSubject.name || 'Mohamed El Fadil').replace(/^Dr\.?\s*/, '').split(/\s+/).filter((w) => /^[A-Z]/.test(w)).filter((w, i, a) => i === 0 || i === a.length - 1).map((w) => w[0]).join('') || 'EF'}</span><div><strong>{cred?.claims.credentialSubject.name || 'Dr. Mohamed El Fadil'}</strong><span>{cred?.claims.credentialSubject.nameAr || 'د. محمد الفاضل'}</span></div></div>
           <dl><div><dt>SPID</dt><dd>{SPID}</dd></div><div><dt>{ar ? 'صالحة حتى' : 'VALID UNTIL'}</dt><dd>{cred ? cred.claims.validUntil.slice(0, 10) : '…'}</dd></div><div><dt>ISSUER</dt><dd>did:web:registry.brainsait.de</dd></div></dl>
           <div className="bpr-pass-foot"><span><Check size={13} />Ed25519 · W3C VC</span><Fingerprint size={29} /></div>
         </div>
@@ -84,6 +88,7 @@ export default function Overview() {
           <CheckRow label={ar ? 'رأس السجل الموقّع' : 'Signed ledger head'} check={ledger?.headSignature || { state: 'pending' }}>
             {ledger && <code className="bpr-hash" dir="ltr">{short(ledger.head.hash, 14)}</code>}
           </CheckRow>
+          <ScfhsPending compact />
           <form className="bpr-inline-form" onSubmit={go}>
             <label className="sr-only" htmlFor="ov-spid">SPID</label>
             <input id="ov-spid" dir="ltr" value={spid} onChange={(e) => setSpid(e.target.value)} placeholder="SA-PHY-000003" />

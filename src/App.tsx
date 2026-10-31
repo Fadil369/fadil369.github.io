@@ -4,6 +4,7 @@ import { I18nProvider, useI18n } from './i18n';
 import Home from './pages/Home';
 import ProfessionalCv from './pages/ProfessionalCv';
 import BusinessCard from './pages/BusinessCard';
+import CommandPalette from './components/CommandPalette';
 import './styles/app.css';
 
 const Overview = lazy(() => import('./pages/bpr/Overview'));
@@ -15,6 +16,8 @@ const Research = lazy(() => import('./pages/bpr/Research'));
 const Developers = lazy(() => import('./pages/bpr/Developers'));
 const Status = lazy(() => import('./pages/bpr/Status'));
 const Join = lazy(() => import('./pages/bpr/Join'));
+const Workspace = lazy(() => import('./pages/bpr/Workspace'));
+const Embed = lazy(() => import('./pages/bpr/Embed'));
 
 function SkipLink() {
   const { ar } = useI18n();
@@ -42,11 +45,23 @@ function AppShell() {
   const location = useLocation();
   useEffect(() => {
     document.documentElement.classList.add('profile-home');
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+  }, []);
+  // Route change: jump to the top instantly. Hash link (/#work): scroll to that section, also when
+  // the hash changes on the same page — pushState navigation never does this by itself.
+  useEffect(() => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const go = () => {
+      const el = id ? document.getElementById(id) : null;
+      if (el) el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      else window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+    };
+    if (id) requestAnimationFrame(() => requestAnimationFrame(go)); else go();
+  }, [location.pathname, location.hash]);
   return (
     <>
       <SkipLink />
+      <CommandPalette />
       <main id="main-content">
         <Suspense fallback={<div className="profile-page" style={{ minHeight: '100vh' }} />}>
         <Routes>
@@ -63,6 +78,8 @@ function AppShell() {
           <Route path="/bpr/developers" element={<Developers />} />
           <Route path="/bpr/status" element={<Status />} />
           <Route path="/bpr/join" element={<Join />} />
+          <Route path="/bpr/workspace" element={<Workspace />} />
+          <Route path="/bpr/embed/:spid" element={<Embed />} />
           <Route path="/doctors/:spid" element={<SpidRedirect />} />
           {['/catalogue', '/store', '/oid', '/learn', '/solutions', '/templates', '/products/bpr', '/doctors'].map((p) => <Route key={p} path={p} element={<Navigate to="/bpr" replace />} />)}
           <Route path="*" element={<NotFound />} />

@@ -1,9 +1,8 @@
 // snapshot-bpr.mjs — copy public BrainSAIT Provider Registry data into the static site.
 //
-// GitHub Pages cannot proxy, and the registry's /api and /fhir routes send no CORS
-// header, so the BPR pages read this snapshot when a live call is blocked. The
-// credential, DID document and transparency log are snapshotted too, as an offline
-// fallback; the pages still try those live first and verify signatures in the browser.
+// The BPR pages read the registry live (every public route sends CORS *). This snapshot is
+// the fallback when the registry cannot be reached, and the source for the pre-rendered
+// per-provider pages. Signatures are still verified in the browser either way.
 //
 // Only public data the registry already publishes is written. A failed fetch keeps the
 // previous file, so a registry outage never empties the site.

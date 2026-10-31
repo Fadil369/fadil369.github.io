@@ -1,0 +1,24 @@
+/* Command palette — uses the profile tokens, which live on .profile-page, so it restates them. */
+.palette-backdrop {
+  --pal-bg: #11120e; --pal-line: rgba(244, 243, 233, .14); --pal-text: #f4f3e9; --pal-muted: #aaa99d; --pal-accent: #edf34a; --pal-active: #191a13;
+  position: fixed; inset: 0; z-index: 1000; display: grid; justify-items: center; align-items: start; padding: 12vh 16px 16px;
+  background: rgba(5, 6, 4, .62); backdrop-filter: blur(6px);
+}
+[data-theme='light'] .palette-backdrop { --pal-bg: #fbfaf2; --pal-line: rgba(19, 20, 15, .17); --pal-text: #13140f; --pal-muted: #626256; --pal-accent: #626800; --pal-active: #e7e6d9; background: rgba(19, 20, 15, .35); }
+.palette { width: min(620px, 100%); max-height: 70vh; display: flex; flex-direction: column; background: var(--pal-bg); color: var(--pal-text); border: 1px solid var(--pal-line); border-top: 3px solid var(--pal-accent); box-shadow: 0 30px 80px rgba(0,0,0,.45); font-family: 'Manrope', system-ui, sans-serif; }
+[dir='rtl'] .palette { font-family: 'Almarai', system-ui, sans-serif; }
+.palette-input { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--pal-line); color: var(--pal-muted); }
+.palette-input input { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--pal-text); font: inherit; font-size: 16px; outline: none; }
+.palette kbd { padding: 2px 6px; border: 1px solid var(--pal-line); border-radius: 3px; font: 10px 'IBM Plex Mono', monospace; color: var(--pal-muted); }
+.palette-list { list-style: none; margin: 0; padding: 6px 0; overflow-y: auto; }
+.palette-group { padding: 10px 16px 4px; color: var(--pal-muted); font: 600 10px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; }
+.palette-item { display: flex; align-items: center; gap: 12px; padding: 10px 16px; cursor: pointer; font-size: 14px; }
+.palette-item span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.palette-item small { color: var(--pal-muted); font: 11px 'IBM Plex Mono', monospace; }
+.palette-item[aria-selected='true'] { background: var(--pal-active); box-shadow: inset 3px 0 0 var(--pal-accent); }
+[dir='rtl'] .palette-item[aria-selected='true'] { box-shadow: inset -3px 0 0 var(--pal-accent); }
+.palette-item svg { color: var(--pal-accent); }
+.palette-empty { padding: 18px 16px; color: var(--pal-muted); font-size: 14px; }
+.palette-foot { display: flex; gap: 18px; padding: 10px 16px; border-top: 1px solid var(--pal-line); color: var(--pal-muted); font-size: 11px; }
+.palette-foot kbd { margin-inline-end: 3px; }
+@media (max-width: 640px) { .palette-backdrop { padding-top: 8vh; } .palette-foot { display: none; } }

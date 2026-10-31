@@ -1,18 +1,24 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  ArrowDown, ArrowUpRight, BookOpen, Boxes, Braces, Check, CreditCard, Download,
-  ExternalLink, FileText, Fingerprint, Github, HeartPulse, Languages,
+  ArrowDown, ArrowUpRight, BookOpen, Boxes, Braces, Check, Command, CreditCard, Download,
+  ExternalLink, FileText, Fingerprint, Github, HeartPulse, Hourglass, Languages, Contact,
   Linkedin, Moon, Network, ShieldCheck, Stethoscope, Sun,
 } from 'lucide-react';
 import { useI18n } from '../i18n';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { downloadVCard } from '../components/CommandPalette';
+import { ProfileHeader } from '../components/ProfileHeader';
+import { checkCredential, CredentialResult, load, Provider, Research, useLoad } from '../lib/bpr';
+import { SourceBadge, TrustGrid } from '../components/BprKit';
 import '../styles/profile.css';
+
+const SPID = 'SA-PHY-000003';
 
 const projects = [
   {
     name: 'BPR — Provider Registry',
-    url: 'https://registry.brainsait.de/p/SA-PHY-000003',
+    url: '/bpr',
     icon: Fingerprint,
     en: 'A signed, portable provider identity connecting credentials, research and clinical tools.',
     ar: 'هوية موقّعة وقابلة للنقل لمقدم الرعاية، تربط الاعتمادات والأبحاث والأدوات السريرية.',
@@ -77,39 +83,6 @@ const journey = [
   },
 ];
 
-export function ProfileHeader() {
-  const { ar, toggle } = useI18n();
-  const [dark, setDark] = useState(() => document.documentElement.dataset.theme !== 'light');
-  const switchTheme = () => {
-    const next = dark ? 'light' : 'dark';
-    setDark(!dark);
-    document.documentElement.dataset.theme = next;
-    try { localStorage.setItem('bs-theme', next); } catch { /* storage is optional */ }
-  };
-  return (
-    <header className="profile-head">
-      <Link className="profile-brand" to="/" aria-label="Dr. Mohamed El Fadil">
-        <span>EF</span><strong>{ar ? 'د. محمد الفاضل' : 'Dr. El Fadil'}</strong>
-      </Link>
-      <nav aria-label={ar ? 'التنقل الرئيسي' : 'Main navigation'}>
-        <Link to="/#work">{ar ? 'الأعمال' : 'Work'}</Link>
-        <Link to="/#journey">{ar ? 'المسار' : 'Journey'}</Link>
-        <Link to="/#research">{ar ? 'البحث' : 'Research'}</Link>
-        <Link to="/bpr">BPR</Link>
-        <Link to="/card">{ar ? 'البطاقة' : 'Card'}</Link>
-      </nav>
-      <div className="profile-controls">
-        <button onClick={switchTheme} aria-label={dark ? (ar ? 'الوضع الفاتح' : 'Light mode') : (ar ? 'الوضع الداكن' : 'Dark mode')}>
-          {dark ? <Sun size={17} /> : <Moon size={17} />}
-        </button>
-        <button onClick={toggle} aria-label={ar ? 'Switch to English' : 'التبديل إلى العربية'}>
-          <Languages size={16} /><span>{ar ? 'EN' : 'ع'}</span>
-        </button>
-      </div>
-    </header>
-  );
-}
-
 export default function Home() {
   const { ar } = useI18n();
   usePageMeta({
@@ -124,6 +97,15 @@ export default function Home() {
     document.documentElement.classList.add('profile-home');
     return () => document.documentElement.classList.remove('profile-home');
   }, []);
+  // The hero chip shows the real result of checking the signed BPR credential in this browser.
+  const [cred, setCred] = useState<CredentialResult | null | 'error'>(null);
+  const [research, setResearch] = useState<Research | null>(null);
+  const me = useLoad<Provider>(`/api/providers/${SPID}`, `providers/${SPID}.json`);
+  useEffect(() => {
+    checkCredential(SPID).then(setCred, () => setCred('error'));
+    load<Research>(`/api/research?spid=${SPID}`, `research/${SPID}.json`).then((r) => setResearch(r.data), () => {});
+  }, []);
+  const credOk = cred && cred !== 'error' && cred.signature.state === 'ok' && cred.expiry.state === 'ok' && cred.status.state === 'ok';
 
   return (
     <div className="profile-page" id="top">
@@ -139,13 +121,9 @@ export default function Home() {
                 : 'I’m Dr. Mohamed El Fadil, founder of BrainSAIT in Riyadh. I turn emergency, critical-care and claims experience into verifiable infrastructure—from provider identity to clinical AI.'}
             </p>
             <div className="profile-actions">
-              <a className="profile-button primary" href="#work">{ar ? 'استكشف أعمالي' : 'Explore my work'}<ArrowDown size={17} /></a>
-              <Link className="profile-button secondary" to="/cv">
-                <Download size={17} />{ar ? 'السيرة الذاتية' : 'Professional CV'}
-              </Link>
-              <Link className="profile-button text-button" to="/card">
-                <CreditCard size={17} />{ar ? 'بطاقة الأعمال' : 'Business card'}
-              </Link>
+              <Link className="profile-button primary" to="/cv"><FileText size={17} />{ar ? 'السيرة الذاتية' : 'Professional CV'}</Link>
+              <a className="profile-button secondary" href="#contact">{ar ? 'احجز مكالمة' : 'Book a call'}<ArrowDown size={17} /></a>
+              <a className="profile-button text-button" href="#work">{ar ? 'استكشف أعمالي' : 'Explore my work'}<ArrowDown size={17} /></a>
             </div>
             <div className="profile-socials">
               <a href="https://github.com/Fadil369" target="_blank" rel="noreferrer"><Github size={17} />GitHub</a>
@@ -159,9 +137,17 @@ export default function Home() {
               <img src="/assets/img/prof_pic.jpg" alt={ar ? 'د. محمد الفاضل' : 'Dr. Mohamed El Fadil'} width="520" height="650" />
               <div className="profile-portrait-caption"><span>{ar ? 'الرياض، السعودية' : 'Riyadh, Saudi Arabia'}</span><strong>BrainSAIT</strong></div>
             </div>
-            <a className="profile-credential" href="https://registry.brainsait.de/p/SA-PHY-000003" target="_blank" rel="noreferrer">
-              <ShieldCheck size={22} /><span><small>{ar ? 'هوية موثقة' : 'Verifiable identity'}</small><strong dir="ltr">SA-PHY-000003</strong></span><ArrowUpRight size={16} />
-            </a>
+            <Link className={`profile-credential${credOk ? ' ok' : ''}`} to={`/bpr/p/${SPID}`}>
+              <ShieldCheck size={22} />
+              <span>
+                <small>{cred === null ? (ar ? 'جارٍ فحص اعتماد BPR…' : 'Checking BPR credential…')
+                  : credOk ? (ar ? 'اعتماد BPR موقّع · فُحص في متصفحك' : 'Signed BPR credential · checked in your browser')
+                  : (ar ? 'اعتماد BPR · تعذّر الفحص الآن' : 'BPR credential · could not check now')}</small>
+                <strong dir="ltr">{SPID}</strong>
+                <em><Hourglass size={10} aria-hidden="true" />{ar ? 'الترخيص: بانتظار تكامل الهيئة' : 'Licence: awaiting SCFHS integration'}</em>
+              </span>
+              <ArrowUpRight size={16} />
+            </Link>
           </div>
         </section>
 
@@ -169,7 +155,7 @@ export default function Home() {
           <div><strong>2010</strong><span>{ar ? 'بداية المسار الطبي' : 'Medical journey began'}</span></div>
           <div><strong>6</strong><span>{ar ? 'فروع في مراجعة المطالبات' : 'Branches in claims review'}</span></div>
           <div><strong>2</strong><span>{ar ? 'حزم مفتوحة المصدر على PyPI' : 'Open-source PyPI packages'}</span></div>
-          <div><strong>AR / EN</strong><span>{ar ? 'تصميم ثنائي اللغة' : 'Bilingual by design'}</span></div>
+          <div><strong>{research ? research.counts.publisher_confirmed : '…'}</strong><span>{ar ? 'أعمال بتأليف مؤكد من الناشر' : 'Publisher-confirmed works'}</span></div>
         </section>
 
         <section className="profile-section profile-thesis">
@@ -188,28 +174,33 @@ export default function Home() {
             <a href="https://github.com/Fadil369" target="_blank" rel="noreferrer">{ar ? 'كل المستودعات' : 'All repositories'}<ArrowUpRight size={16} /></a>
           </div>
           <div className="profile-projects">
-            {projects.map(({ icon: Icon, ...project }) => (
-              <a className="profile-project" href={project.url} target="_blank" rel="noreferrer" key={project.name}>
+            {projects.map(({ icon: Icon, ...project }) => {
+              const body = <>
                 <div className="profile-project-top"><Icon size={25} /><ArrowUpRight size={18} /></div>
                 <h3>{project.name}</h3><p>{ar ? project.ar : project.en}</p>
                 <div className="profile-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
-              </a>
-            ))}
+              </>;
+              return project.url.startsWith('/')
+                ? <Link className="profile-project" to={project.url} key={project.name}>{body}</Link>
+                : <a className="profile-project" href={project.url} target="_blank" rel="noreferrer" key={project.name}>{body}</a>;
+            })}
           </div>
         </section>
 
-        <section className="profile-feature">
-          <div className="profile-feature-visual" aria-hidden="true">
-            <div className="profile-signal"><Stethoscope size={34} /><span /><Fingerprint size={40} /><span /><Boxes size={34} /></div>
-            <code>identity → interoperability → intelligence</code>
-          </div>
+        <section className="profile-feature profile-feature-live">
           <div>
             <div className="profile-section-label">BPR · BrainSAIT</div>
-            <h2>{ar ? 'هوية واحدة. كل الأدوات التي ينبغي أن تتبعها.' : 'One identity. Every tool that should follow it.'}</h2>
+            <h2>{ar ? 'هوية واحدة. يمكن لأي شخص التحقق منها.' : 'One identity. Anyone can check it.'}</h2>
             <p>{ar
-              ? 'يضع سجل مقدمي الخدمة BPR الطبيب في قلب قابل للتحقق والتدقيق داخل منظومة الرعاية، بدل أن يكون مجرد نقطة نهاية في أنظمة متفرقة.'
-              : 'The BrainSAIT Provider Registry places the physician at a verifiable, auditable centre of care—not as another endpoint across disconnected systems.'}</p>
-            <a className="profile-text-link" href="https://elfadil.brainsait.de" target="_blank" rel="noreferrer">{ar ? 'ادخل التجربة التفاعلية' : 'Enter the interactive portfolio'}<ExternalLink size={16} /></a>
+              ? 'هذه حالتي في سجل BPR، تُقرأ مباشرة من السجل. كل بُعد منفصل — وما لم يُقيَّم بعد يظهر كما هو.'
+              : 'This is my state in the BPR registry, read live from the registry. Each dimension is separate — and what has not been assessed yet shows as exactly that.'}</p>
+            <div className="profile-actions">
+              <Link className="profile-button secondary" to={`/bpr/verify?spid=${SPID}`}>{ar ? 'تحقق على جهازك' : 'Verify on your device'}<ArrowUpRight size={16} /></Link>
+              <Link className="profile-text-link" to="/bpr/workspace">{ar ? 'مساحة عمل مقدم الرعاية' : 'The provider workspace'}<ArrowUpRight size={16} /></Link>
+            </div>
+          </div>
+          <div className="profile-feature-trust">
+            {me.state === 'ready' ? <><div className="profile-feature-trust-head"><code dir="ltr">{SPID}</code><SourceBadge source={me.source} /></div><TrustGrid trust={me.data.trust} legend={false} /></> : <div className="profile-feature-visual" aria-hidden="true"><code>identity → interoperability → intelligence</code></div>}
           </div>
         </section>
 
@@ -219,7 +210,7 @@ export default function Home() {
           <div className="profile-journey">
             {journey.map(item => (
               <article key={item.years}>
-                <time dir="ltr">{ar ? item.yearsAr : item.years}</time>
+                <time dir={ar ? 'rtl' : 'ltr'}>{ar ? item.yearsAr : item.years}</time>
                 <div><h3>{ar ? item.ar : item.en}</h3><strong>{item.org}</strong><p>{ar ? item.arText : item.enText}</p></div>
               </article>
             ))}
@@ -237,6 +228,12 @@ export default function Home() {
               <span className="profile-text-link">{ar ? 'اقرأ الدراسة' : 'Read the study'}<ArrowUpRight size={16} /></span>
             </a>
             <div className="profile-writing">
+              {research && <Link className="profile-footprint" to={`/bpr/research/${SPID}`}>
+                <span><strong>{research.counts.dois}</strong>{ar ? 'أعمال بمعرّف DOI' : 'DOI-registered works'}</span>
+                <span><strong>{research.metrics.zenodo_downloads}</strong>{ar ? 'تنزيل من Zenodo' : 'Zenodo downloads'}</span>
+                <span><strong>{research.metrics.hf_downloads}</strong>{ar ? 'تنزيل من Hugging Face' : 'Hugging Face downloads'}</span>
+                <small>{ar ? 'مباشر من البصمة البحثية في BPR' : 'Live from the BPR research footprint'}<ArrowUpRight size={12} /></small>
+              </Link>}
               <h3>{ar ? 'أدوات ومعرفة مفتوحة' : 'Open tools & knowledge'}</h3>
               <a href="https://pypi.org/project/brainsait-pyheart/" target="_blank" rel="noreferrer"><span><strong>brainsait-pyheart</strong><small>FHIR / HL7 interoperability</small></span><ArrowUpRight size={17} /></a>
               <a href="https://pypi.org/project/brainsait-pybrain/" target="_blank" rel="noreferrer"><span><strong>brainsait-pybrain</strong><small>Clinical NLP & data intelligence</small></span><ArrowUpRight size={17} /></a>
@@ -246,18 +243,19 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="profile-contact">
+        <section className="profile-contact" id="contact">
           <div><div className="profile-section-label">05 · {ar ? 'لنتحدث' : 'Start a conversation'}</div><h2>{ar ? 'تبني شيئًا مع الممارسين الصحيين؟' : 'Building something with clinicians?'}</h2></div>
           <p>{ar ? 'أعمل مع المستشفيات وفرق التقنية الصحية والمستثمرين في السعودية والخليج وأفريقيا.' : 'I work with hospitals, health-tech teams and investors across Saudi Arabia, the Gulf and Africa.'}</p>
           <div className="profile-actions">
             <a className="profile-button primary" href="https://elfadil.brainsait.de/#contact" target="_blank" rel="noreferrer">{ar ? 'احجز مكالمة' : 'Book a call'}<ArrowUpRight size={17} /></a>
             <a className="profile-button secondary" href="mailto:elfadil369@icloud.com">{ar ? 'راسلني' : 'Email me'}</a>
+            <button className="profile-button secondary" onClick={downloadVCard}><Contact size={16} />{ar ? 'حفظ جهة الاتصال' : 'Save contact'}</button>
           </div>
         </section>
       </div>
       <footer className="profile-footer">
         <span>© {new Date().getFullYear()} Dr. Mohamed El Fadil</span>
-        <div><a href="https://elfadil.brainsait.de" target="_blank" rel="noreferrer">elfadil.brainsait.de</a><Link to="/bpr">BPR</Link><Link to="/card">Card</Link><Link to="/cv"><FileText size={14} />CV</Link></div>
+        <div><a href="https://elfadil.brainsait.de" target="_blank" rel="noreferrer">elfadil.brainsait.de</a><Link to="/bpr">BPR</Link><Link to="/card">{ar ? 'البطاقة' : 'Card'}</Link><Link to="/cv"><FileText size={14} />{ar ? 'السيرة' : 'CV'}</Link></div>
         <span className="profile-verified"><Check size={13} />{ar ? 'مصمم ليكون قابلاً للتحقق' : 'Designed to be verifiable'}</span>
       </footer>
     </div>
