@@ -1,344 +1,53 @@
-import { useEffect, useState, lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route, NavLink, Link } from 'react-router-dom';
-import { Languages, Sun, Moon, ShoppingBag } from 'lucide-react';
+import { useEffect } from 'react';
+import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom';
 import { I18nProvider, useI18n } from './i18n';
 import Home from './pages/Home';
-import { isSignedIn as shopifySignedIn } from './lib/customerAccountAuth';
-import { withUtm } from './lib/shopifyRouting';
+import BprHub from './pages/BprHub';
 import './styles/app.css';
-
-const Shelf = lazy(() => import('./pages/Shelf'));
-const Catalogue = lazy(() => import('./pages/Catalogue'));
-const Build = lazy(() => import('./pages/Build'));
-const Benefits = lazy(() => import('./pages/Benefits'));
-const InfoPage = lazy(() => import('./pages/InfoPage'));
-const Product = lazy(() => import('./pages/Product'));
-const Account = lazy(() => import('./pages/Account'));
-const AccountAuthorize = lazy(() => import('./pages/AccountAuthorize'));
-const Track = lazy(() => import('./pages/Track'));
-const Sprint = lazy(() => import('./pages/Sprint'));
-const IntakeForm = lazy(() => import('./pages/IntakeForm'));
-const Slots = lazy(() => import('./pages/Slots'));
-const Doctor = lazy(() => import('./pages/Doctor'));
-
-type Theme = 'dark' | 'light';
-
-/* ═══════════════════════════════════════════════════════════
-   Skeleton Loading States
-   ═══════════════════════════════════════════════════════════ */
-
-function SkeletonCard() {
-  return (
-    <div className="skeleton-card">
-      <div className="skeleton-card__cover skeleton" />
-      <div className="skeleton-card__body">
-        <div className="skeleton skeleton-card__eyebrow" />
-        <div className="skeleton skeleton-card__title" />
-        <div className="skeleton skeleton-card__prop" />
-        <div className="skeleton skeleton-card__price" />
-        <div className="skeleton-card__cta">
-          <div className="skeleton skeleton-card__btn" />
-          <div className="skeleton skeleton-card__btn" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function PageLoader() {
-  return (
-    <div className="page" style={{ padding: '4rem 2rem', textAlign: 'center' }}>
-      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-        <div className="skeleton" style={{ height: '200px', borderRadius: 'var(--radius)', marginBottom: '1.5rem' }} />
-        <div className="skeleton" style={{ height: '28px', width: '60%', margin: '0 auto 1rem', borderRadius: 'var(--radius-sm)' }} />
-        <div className="skeleton" style={{ height: '16px', width: '80%', margin: '0 auto 2rem', borderRadius: 'var(--radius-sm)' }} />
-        <div className="grid is-loading" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1.5rem' }}>
-          <SkeletonCard />
-          <SkeletonCard />
-          <SkeletonCard />
-          <SkeletonCard />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════
-   404 Page
-   ═══════════════════════════════════════════════════════════ */
-
-function NotFound() {
-  const { ar, t } = useI18n();
-  return (
-    <div className="page" style={{ padding: '4rem 2rem', textAlign: 'center', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ maxWidth: '500px' }}>
-        <div className="skeleton" style={{ height: '120px', width: '120px', borderRadius: '24px', margin: '0 auto 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '48px', fontWeight: '800', color: 'var(--gold)' }}>
-          404
-        </div>
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: '28px', marginBottom: '0.5rem' }}>
-          {ar ? 'الصفحة غير موجودة' : 'Page Not Found'}
-        </h2>
-        <p style={{ color: 'var(--ink-soft)', marginBottom: '2rem', lineHeight: 1.6 }}>
-          {ar
-            ? 'العذر، الصفحة التي تبحث عنها لم تعد متاحة أو لم تكن موجودة أبداً.'
-            : "The page you're looking for doesn't exist or has been moved."}
-        </p>
-        <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link to="/" className="button primary">
-            {ar ? '↩ العودة للمتجر' : '↩ Back to Store'}
-          </Link>
-          <Link to="/learn" className="button secondary">
-            📚 {ar ? 'تعلّم' : 'Learn'}
-          </Link>
-          <Link to="/solutions" className="button secondary">
-            🚀 {ar ? 'حلول' : 'Solutions'}
-          </Link>
-        </div>
-        <nav style={{ marginTop: '2.5rem', paddingTop: '1.5rem', borderTop: '1px solid var(--line)', display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link to="/learn" style={{ color: 'var(--ink-soft)', fontSize: '13px', padding: '6px 12px', borderRadius: '8px', textDecoration: 'none', border: '1px solid var(--line)', background: 'var(--surface)' }}>
-            {ar ? 'تعلّم' : 'Learn'}
-          </Link>
-          <Link to="/build" style={{ color: 'var(--ink-soft)', fontSize: '13px', padding: '6px 12px', borderRadius: '8px', textDecoration: 'none', border: '1px solid var(--line)', background: 'var(--surface)' }}>
-            {ar ? 'ابنِ' : 'Build'}
-          </Link>
-          <Link to="/solutions" style={{ color: 'var(--ink-soft)', fontSize: '13px', padding: '6px 12px', borderRadius: '8px', textDecoration: 'none', border: '1px solid var(--line)', background: 'var(--surface)' }}>
-            {ar ? 'حلول' : 'Solutions'}
-          </Link>
-          <Link to="/benefits" style={{ color: 'var(--ink-soft)', fontSize: '13px', padding: '6px 12px', borderRadius: '8px', textDecoration: 'none', border: '1px solid var(--line)', background: 'var(--surface)' }}>
-            {ar ? 'المزايا' : 'Benefits'}
-          </Link>
-        </nav>
-      </div>
-    </div>
-  );
-}
-
-function useTheme(): { theme: Theme; toggle: () => void } {
-  const [theme, setTheme] = useState<Theme>(() => {
-    try {
-      const t = localStorage.getItem('bs-theme');
-      return t === 'light' ? 'light' : 'dark';
-    } catch {
-      return 'dark';
-    }
-  });
-  useEffect(() => {
-    try { localStorage.setItem('bs-theme', theme); } catch { /* ignore */ }
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-  return { theme, toggle: () => setTheme(t => (t === 'dark' ? 'light' : 'dark')) };
-}
 
 function SkipLink() {
   const { ar } = useI18n();
-  return (
-    <a href="#main-content" className="skip-to-content-link">
-      {ar ? 'تخطي إلى المحتوى' : 'Skip to content'}
-    </a>
-  );
+  return <a href="#main-content" className="skip-to-content-link">{ar ? 'تخطي إلى المحتوى' : 'Skip to content'}</a>;
 }
 
-function Header() {
-  const { ar, t, toggle } = useI18n();
-  const { theme, toggle: toggleTheme } = useTheme();
-
-  return (
-    <header className="site-head">
-      <div className="head-inner">
-        <Link to="/" className="brand">
-          <span className="brand-mark" aria-hidden="true">B</span>
-          <span className="brand-name">{t('brand')}</span>
-        </Link>
-        <nav className="main-nav">
-          <NavLink to="/learn">{t('nav.learn')}</NavLink>
-          <NavLink to="/build">{t('nav.build')}</NavLink>
-          <NavLink to="/solutions">{t('nav.solutions')}</NavLink>
-          <NavLink to="/templates">{t('nav.templates')}</NavLink>
-          <a href="https://brainsait.de/bpr/" target="_blank" rel="noopener noreferrer" className="nav-bpr">
-            {ar ? 'سجل BPR' : 'BPR Registry'}
-          </a>
-          <NavLink to="/oid">{ar ? 'الهوية والسجل' : 'OID & Registry'}</NavLink>
-          <NavLink to="/catalogue">{ar ? 'كتالوج المتجر' : 'Catalogue'}</NavLink>
-          <NavLink to="/slots" style={{ color: '#10b981', fontWeight: 700 }}>
-            {ar ? 'الشواغر' : 'Slots'}
-          </NavLink>
-          <NavLink to="/sprint" style={{ color: '#f59e0b', fontWeight: 700 }}>
-            {ar ? 'سباق 48 ساعة' : '48h Sprint'}
-          </NavLink>
-          <NavLink to="/intake" style={{ color: '#0ea5e9', fontWeight: 600 }}>
-            {ar ? 'تقديم الطلب' : 'Apply Now'}
-          </NavLink>
-          <a
-            href={withUtm('https://store.brainsait.de/collections/solutions-ready', { utm_content: 'nav-solutions-ready' })}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {ar ? 'حلول جاهزة' : 'Solutions Ready'}
-          </a>
-          <a
-            href={withUtm('https://store.brainsait.de/collections/all', { utm_content: 'nav-catalog' })}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {ar ? 'الكتالوج' : 'Catalog'}
-          </a>
-          <NavLink to="/benefits">{ar ? 'المزايا' : 'Benefits'}</NavLink>
-          <NavLink to="/account">
-            {ar ? 'حسابي' : 'Account'}
-            {shopifySignedIn() && <span className="acct-dot" aria-hidden="true" />}
-          </NavLink>
-        </nav>
-        <div className="head-actions">
-          <a
-            className="button secondary sm"
-            href={withUtm('https://store.brainsait.de', { utm_content: 'header-store' })}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {ar ? 'المتجر' : 'Store'}
-          </a>
-          <a className="button secondary sm" href="https://brainsait.org"
-             target="_blank" rel="noopener noreferrer">brainsait.org</a>
-          <button className="icon-btn round" onClick={toggleTheme}
-                  aria-label={theme === 'dark' ? t('theme.light') : t('theme.dark')}
-                  title={theme === 'dark' ? t('theme.light') : t('theme.dark')}>
-            {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
-          </button>
-          <button className="lang-btn icon-btn" onClick={toggle}
-                  aria-label={ar ? 'Switch to English' : 'التبديل إلى العربية'}>
-            <Languages size={15} /> {ar ? 'EN' : 'ع'}
-          </button>
-        </div>
-      </div>
-    </header>
-  );
-}
-
-function Footer() {
-  const { ar, t } = useI18n();
-  return (
-    <footer className="site-foot" role="contentinfo">
-      <nav className="foot-nav" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '0.6rem' }}>
-        <Link to="/faq">{ar ? 'الأسئلة الشائعة' : 'FAQ'}</Link>
-        <Link to="/support">{ar ? 'الدعم' : 'Support'}</Link>
-        <Link to="/contact">{ar ? 'تواصل معنا' : 'Contact'}</Link>
-        <Link to="/terms">{ar ? 'شروط الخدمة' : 'Terms'}</Link>
-      </nav>
-      <p>{t('checkout.note')}</p>
-      <p className="muted">
-        © {new Date().getFullYear()} BrainSAIT LTD ·{' '}
-        {ar ? 'جميع الحقوق محفوظة' : 'All rights reserved'}
-      </p>
-    </footer>
-  );
-}
-
-function NationalDayRibbon() {
+function NotFound() {
   const { ar } = useI18n();
-  const day = ar ? 'اليوم الوطني 96' : 'Saudi National Day 96';
-  const title = ar ? 'عروضنا منشورة للجميع — الأسواق، سجل الأطباء، الاستشارات، والشواغر مفتوحة الآن' : 'Our published ecosystem is open to the public — markets, doctor registry, consultations and slots are live now';
-  const utm = 'utm_source=fadil369githubio&utm_medium=ribbon&utm_campaign=nd96';
-  const links = ar
-    ? [
-        ['العرض الوطني', `https://brainsait.org/?${utm}`],
-        ['سجل الأطباء', `/oid?${utm}`],
-        ['الشواغر الطبية', `https://fadil369.github.io/slots?${utm}`],
-        ['صفحة الطبيب', `https://registry.brainsait.de/p/SA-PHY-000001?${utm}`],
-        ['التحقق', `https://verify.brainsait.de/SA-PHY-000001?${utm}`],
-        ['المساعد السريري', 'https://chatgpt.com/g/g-675e783e5464819187886b7cf9d1b082-saudi-clinical-copilot'],
-      ]
-    : [
-        ['National Day Offer', `https://brainsait.org/?${utm}`],
-        ['Provider Registry', `/oid?${utm}`],
-        ['Hospital Slots', `https://fadil369.github.io/slots?${utm}`],
-        ['Doctor Page', `https://registry.brainsait.de/p/SA-PHY-000001?${utm}`],
-        ['Verify', `https://verify.brainsait.de/SA-PHY-000001?${utm}`],
-        ['Clinical Copilot', 'https://chatgpt.com/g/g-675e783e5464819187886b7cf9d1b082-saudi-clinical-copilot'],
-      ];
   return (
-    <div
-      style={{
-        background: 'linear-gradient(90deg, #0b3d27, #116b3e 45%, #14a866)',
-        color: '#eafff3',
-        padding: '9px 16px',
-        fontSize: 13,
-        fontWeight: 600,
-        textAlign: 'center',
-        display: 'flex',
-        flexWrap: 'wrap',
-        gap: '6px 14px',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative',
-        zIndex: 120,
-      }}
-    >
-      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-        <span aria-hidden="true">🇸🇦</span>
-        <b style={{ color: '#fff', whiteSpace: 'nowrap' }}>{day}</b>
-      </span>
-      <span>{title}</span>
-      {links.map(([label, href]) => (
-        <a
-          key={label}
-          href={href}
-          target={href.startsWith('http') ? '_blank' : undefined}
-          rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-          style={{
-            color: '#03170d',
-            background: '#eafff3',
-            padding: '3px 11px',
-            borderRadius: 999,
-            fontWeight: 800,
-            fontSize: 12,
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          {label} ↗
-        </a>
-      ))}
+    <div className="profile-page" style={{ minHeight: '100vh', display: 'grid', placeContent: 'center', padding: 30, textAlign: 'center' }}>
+      <div className="profile-section-label">404 · BPR</div>
+      <h1>{ar ? 'هذه الصفحة غير موجودة' : 'This page is not in the registry'}</h1>
+      <p style={{ color: 'var(--profile-muted)' }}>{ar ? 'عد إلى الملف المهني أو افتح سجل مقدمي الخدمة.' : 'Return to the professional profile or open the provider registry.'}</p>
+      <div className="profile-actions" style={{ justifyContent: 'center' }}><Link className="profile-button primary" to="/">{ar ? 'الملف الشخصي' : 'Profile'}</Link><Link className="profile-button secondary" to="/catalogue">BPR Hub</Link></div>
     </div>
+  );
+}
+
+function AppShell() {
+  const location = useLocation();
+  useEffect(() => {
+    document.documentElement.classList.add('profile-home');
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+  return (
+    <>
+      <SkipLink />
+      <main id="main-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/catalogue" element={<BprHub />} />
+          <Route path="/store" element={<BprHub />} />
+          <Route path="/oid" element={<BprHub />} />
+          <Route path="/learn" element={<BprHub />} />
+          <Route path="/solutions" element={<BprHub />} />
+          <Route path="/templates" element={<BprHub />} />
+          <Route path="/products/bpr" element={<BprHub />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+    </>
   );
 }
 
 export default function App() {
-  return (
-    <I18nProvider>
-      <BrowserRouter>
-        <div className="bg-aurora" aria-hidden="true" />
-        <SkipLink />
-        <NationalDayRibbon />
-        <Header />
-        <main id="main-content">
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/learn" element={<Shelf stage="learn" />} />
-              <Route path="/solutions" element={<Shelf stage="solutions" />} />
-              <Route path="/templates" element={<Shelf stage="templates" />} />
-              <Route path="/oid" element={<Shelf stage="oid-registry" />} />
-              <Route path="/build" element={<Build />} />
-              <Route path="/benefits" element={<Benefits />} />
-              <Route path="/faq" element={<InfoPage page="faq" />} />
-              <Route path="/terms" element={<InfoPage page="terms" />} />
-              <Route path="/support" element={<InfoPage page="support" />} />
-              <Route path="/contact" element={<InfoPage page="contact" />} />
-              <Route path="/catalogue" element={<Catalogue />} />
-              <Route path="/products/:slug" element={<Product />} />
-              <Route path="/account" element={<Account />} />
-              <Route path="/account/authorize" element={<AccountAuthorize />} />
-              <Route path="/track" element={<Track />} />
-              <Route path="/sprint" element={<Sprint />} />
-              <Route path="/intake" element={<IntakeForm />} />
-              <Route path="/slots" element={<Slots />} />
-              <Route path="/doctors/:spid" element={<Doctor />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </main>
-        <Footer />
-      </BrowserRouter>
-    </I18nProvider>
-  );
+  return <I18nProvider><BrowserRouter><AppShell /></BrowserRouter></I18nProvider>;
 }

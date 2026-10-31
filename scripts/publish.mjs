@@ -22,7 +22,7 @@ const index = readFileSync(indexFile, 'utf8');
 writeFileSync(join(root, '404.html'), index); // SPA fallback for hard refresh
 writeFileSync(join(root, 'index.html'), index);
 
-for (const route of ['learn', 'build', 'solutions', 'templates', 'oid', 'catalogue', 'sprint', 'benefits', 'account', 'track', 'faq', 'terms', 'support', 'contact', 'slots', 'doctors']) {
+for (const route of ['learn', 'build', 'solutions', 'templates', 'oid', 'catalogue', 'store', 'sprint', 'benefits', 'account', 'track', 'faq', 'terms', 'support', 'contact', 'slots', 'doctors']) {
   const routeDir = join(root, route);
   mkdirSync(routeDir, { recursive: true });
   writeFileSync(join(routeDir, 'index.html'), index);
@@ -67,7 +67,7 @@ if (existsSync(catalogPath)) {
     ...(catalog.templates ?? []), ...(catalog.oid ?? []),
     ...((catalog.build ?? {}).courses ?? []),
     ...(catalog.catalogue ?? []),
-  ].filter((i) => i && typeof i === 'object' && i.slug);
+  ].filter((i) => i && typeof i === 'object' && i.slug === 'bpr');
 
   for (const item of items) {
     const dir = join(root, 'products', item.slug);
@@ -84,6 +84,10 @@ if (existsSync(catalogPath)) {
   }
   console.log(`Pre-rendered ${deepWritten} product deep route(s).`);
 }
+
+const bprRoute = join(root, 'products', 'bpr');
+mkdirSync(bprRoute, { recursive: true });
+writeFileSync(join(bprRoute, 'index.html'), index);
 
 for (const f of ['assets']) {
   const src = join(dist, f), dst = join(root, f);

@@ -42,7 +42,7 @@ const C = createContext<Ctx>(null as unknown as Ctx);
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLang] = useState<Lang>(() => {
-    try { return (localStorage.getItem('bs-lang') as Lang) || 'ar'; } catch { return 'ar'; }
+    try { return (localStorage.getItem('bs-lang') as Lang) || 'en'; } catch { return 'en'; }
   });
   useEffect(() => {
     try { localStorage.setItem('bs-lang', lang); } catch { /* ignore */ }

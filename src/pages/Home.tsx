@@ -1,164 +1,261 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Hammer, Boxes, ArrowLeft, Sparkles, Fingerprint, LayoutTemplate, Clock } from 'lucide-react';
-import data from '../data/catalogLive';
-import type { Catalog } from '../types';
-import { useI18n, money } from '../i18n';
-import ProductCard from '../components/ProductCard';
-import BenefitsMatrix from '../components/BenefitsMatrix';
-import JourneyFlow from '../components/JourneyFlow';
+import {
+  ArrowDown, ArrowUpRight, BookOpen, Boxes, Braces, Check, Download,
+  ExternalLink, FileText, Fingerprint, Github, HeartPulse, Languages,
+  Linkedin, Moon, Network, ShieldCheck, Stethoscope, Sun,
+} from 'lucide-react';
+import { useI18n } from '../i18n';
 import { usePageMeta } from '../hooks/usePageMeta';
-import { catalogSummary, getCatalogStats } from '../lib/catalogStats';
-import { GHIO_LINKS, withUtm } from '../lib/shopifyRouting';
+import '../styles/profile.css';
 
-const cat = data as unknown as Catalog;
-const ICONS = [BookOpen, Hammer, Boxes, LayoutTemplate, Fingerprint];
-const ACCENTS = ['learn', 'build', 'solutions', 'templates', 'oid'];
+const projects = [
+  {
+    name: 'BPR — Provider Registry',
+    url: 'https://registry.brainsait.de/p/SA-PHY-000003',
+    icon: Fingerprint,
+    en: 'A signed, portable provider identity connecting credentials, research and clinical tools.',
+    ar: 'هوية موقّعة وقابلة للنقل لمقدم الرعاية، تربط الاعتمادات والأبحاث والأدوات السريرية.',
+    tags: ['Ed25519', 'W3C VC', 'FHIR R4'],
+  },
+  {
+    name: 'LINC FHIR',
+    url: 'https://github.com/Fadil369/brainsait-linc-fhir',
+    icon: Network,
+    en: 'Bilingual healthcare agents and FHIR integration for the InterSystems ecosystem.',
+    ar: 'وكلاء صحيون ثنائيو اللغة وتكامل FHIR ضمن منظومة InterSystems.',
+    tags: ['Agents', 'FHIR R4', 'InterSystems'],
+  },
+  {
+    name: 'BrainSAIT RCM',
+    url: 'https://github.com/Fadil369/brainsait-rcm',
+    icon: HeartPulse,
+    en: 'Saudi claims intelligence, rejection management and revenue-cycle automation.',
+    ar: 'ذكاء المطالبات السعودية وإدارة الرفض وأتمتة دورة الإيرادات.',
+    tags: ['NPHIES', 'Claims', 'TypeScript'],
+  },
+  {
+    name: 'Healthcare MCP',
+    url: 'https://github.com/Fadil369/brainsait-mcp-dxt',
+    icon: Braces,
+    en: 'Auditable healthcare connectors that give AI assistants controlled FHIR capabilities.',
+    ar: 'موصلات صحية قابلة للتدقيق تمنح المساعدات الذكية قدرات FHIR منضبطة.',
+    tags: ['MCP', 'Audit', 'FHIR R4'],
+  },
+];
+
+const journey = [
+  {
+    years: '2019 — now', yearsAr: '2019 — الآن',
+    en: 'Founder & CEO', ar: 'المؤسس والرئيس التنفيذي', org: 'BrainSAIT Ltd',
+    enText: 'Building AI-native healthcare infrastructure, provider identity and interoperable clinical tools.',
+    arText: 'بناء بنية صحية أصيلة في الذكاء الاصطناعي، وهوية مقدمي الرعاية، وأدوات سريرية مترابطة.',
+  },
+  {
+    years: '2024 — now', yearsAr: '2024 — الآن',
+    en: 'Corporate Physician · RCM', ar: 'طبيب مؤسسي · دورة الإيرادات', org: 'Al Hayat National Hospital',
+    enText: 'Claims-rejection review, analysis and resubmission across six branches and contracted payers.',
+    arText: 'مراجعة المطالبات المرفوضة وتحليلها وإعادة تقديمها عبر ستة فروع وشركات التأمين المتعاقدة.',
+  },
+  {
+    years: '2021 — 2024', yearsAr: '2021 — 2024',
+    en: 'Critical Care & ICU Physician', ar: 'طبيب عناية حرجة ومركزة', org: 'Anfas Medical Care Hospital',
+    enText: 'High-acuity care that shaped practical documentation and clinical-handover requirements.',
+    arText: 'رعاية الحالات الحرجة التي شكّلت متطلبات عملية للتوثيق وتسليم المرضى.',
+  },
+  {
+    years: '2018 — 2021', yearsAr: '2018 — 2021',
+    en: 'Neurosurgery Physician', ar: 'طبيب جراحة أعصاب', org: 'Aster Sanad Hospital',
+    enText: 'Multidisciplinary neurosurgical care and coordination across clinical teams.',
+    arText: 'رعاية جراحية عصبية متعددة التخصصات وتنسيق بين الفرق السريرية.',
+  },
+  {
+    years: '2016 — 2018', yearsAr: '2016 — 2018',
+    en: 'Emergency Medicine Physician', ar: 'طبيب طب طوارئ', org: 'Rafa Medical Center',
+    enText: 'Rapid assessment and high-stakes decisions across acute presentations.',
+    arText: 'تقييم سريع وقرارات دقيقة للحالات الحادة في بيئات عالية الضغط.',
+  },
+];
+
+export function ProfileHeader() {
+  const { ar, toggle } = useI18n();
+  const [dark, setDark] = useState(() => document.documentElement.dataset.theme !== 'light');
+  const switchTheme = () => {
+    const next = dark ? 'light' : 'dark';
+    setDark(!dark);
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('bs-theme', next); } catch { /* storage is optional */ }
+  };
+  return (
+    <header className="profile-head">
+      <Link className="profile-brand" to="/" aria-label="Dr. Mohamed El Fadil">
+        <span>EF</span><strong>{ar ? 'د. محمد الفاضل' : 'Dr. El Fadil'}</strong>
+      </Link>
+      <nav aria-label={ar ? 'التنقل الرئيسي' : 'Main navigation'}>
+        <Link to="/#work">{ar ? 'الأعمال' : 'Work'}</Link>
+        <Link to="/#journey">{ar ? 'المسار' : 'Journey'}</Link>
+        <Link to="/#research">{ar ? 'البحث' : 'Research'}</Link>
+        <Link to="/catalogue">BPR Hub</Link>
+      </nav>
+      <div className="profile-controls">
+        <button onClick={switchTheme} aria-label={dark ? (ar ? 'الوضع الفاتح' : 'Light mode') : (ar ? 'الوضع الداكن' : 'Dark mode')}>
+          {dark ? <Sun size={17} /> : <Moon size={17} />}
+        </button>
+        <button onClick={toggle} aria-label={ar ? 'Switch to English' : 'التبديل إلى العربية'}>
+          <Languages size={16} /><span>{ar ? 'EN' : 'ع'}</span>
+        </button>
+      </div>
+    </header>
+  );
+}
 
 export default function Home() {
-  const { ar, t } = useI18n();
-  const bpr = cat.solutions.find(p => p.slug === 'bpr');
-  const featured = bpr ? [bpr, ...cat.learn.slice(0, 7)] : cat.learn.slice(0, 8);
-  const stats = getCatalogStats(cat);
-  const counts: Record<string, number> = {
-    learn: cat.learn.length,
-    build: stats.build,
-    solutions: cat.solutions.length,
-    templates: cat.templates.length,
-    'oid-registry': (cat.oid ?? []).length,
-  };
-
+  const { ar } = useI18n();
   usePageMeta({
-    title: ar ? 'متجر BrainSAIT — تعلّم · ابنِ · حلول' : 'BrainSAIT Store — Learn · Build · Solutions',
-    description: 'BrainSAIT Store — Learn, Build, Solutions. Books, courses, incubation program and live software for healthcare, business and development.',
+    title: ar ? 'د. محمد الفاضل — طبيب ومؤسس BrainSAIT' : 'Dr. Mohamed El Fadil — Physician & Healthcare AI Founder',
+    description: ar
+      ? 'طبيب ومؤسس BrainSAIT في الرياض. أبني هوية صحية قابلة للتحقق وأدوات مترابطة للممارسين عبر FHIR وNPHIES والذكاء الاصطناعي.'
+      : 'Physician and BrainSAIT founder in Riyadh, building verifiable provider identity and interoperable clinical tools with FHIR, NPHIES and AI.',
     url: '/',
-    type: 'website',
+    type: 'profile',
   });
+  useEffect(() => {
+    document.documentElement.classList.add('profile-home');
+    return () => document.documentElement.classList.remove('profile-home');
+  }, []);
 
   return (
-    <main className="page">
-      <section className="hero reveal">
-        <span className="hero-eyebrow"><span className="dot" /> {ar ? 'متجر برينسايت الفاخر' : 'The BrainSAIT Luxury Store'}</span>
-        <h1>{ar ? 'تعلّم · ابنِ · حلول' : 'Learn · Build · Solutions'}</h1>
-        <p className="lede">
-          {ar
-            ? `كتالوج BrainSAIT الحالي يضم ${stats.total} عرضاً قابلاً للتسويق: تعلّم، بناء، حلول جاهزة، قوالب وكلاء، وهوية OID/BPR — متصلة بمدفوعات Shopify ومسارات متابعة بعد الشراء.`
-            : `The current BrainSAIT catalog has ${stats.total} market-ready offers across Learn, Build, Solutions Ready, agent templates, and OID/BPR identity — connected to Shopify checkout and post-purchase follow-up.`}
-        </p>
-        <div className="build-launch-strip home-pricing-strip">
-          <span className="launch-tag">{ar ? 'مسارات المتجر الحية' : 'Live store paths'}</span>
-          <span className="launch-now">{ar ? `${stats.learn} تعلّم · 182 ر.س/شهر` : `${stats.learn} Learn · 182 SAR/mo`}</span>
-          <span className="launch-now">{ar ? `${stats.build} بناء · حتى 9,630 ر.س` : `${stats.build} Build · up to 9,630 SAR`}</span>
-          <span className="launch-now">{ar ? `${stats.solutions} حلول جاهزة · 24,000 ر.س` : `${stats.solutions} Ready solutions · 24,000 SAR`}</span>
-          <span className="launch-now">{ar ? `${stats.oid} هوية وسجل` : `${stats.oid} OID & Registry`}</span>
-        </div>
-        <div className="hero-actions" style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '1.25rem' }}>
-          <a className="button primary" href="https://brainsait.de/bpr/" target="_blank" rel="noopener noreferrer">
-            {ar ? 'افتح سجل BPR' : 'Open the BPR Registry'}
-          </a>
-          <Link className="button secondary" to="/oid">
-            {ar ? 'منتجات الهوية والسجل' : 'Identity products'}
-          </Link>
-        </div>
-      </section>
-
-      <section className="ecosystem-command reveal" aria-label={ar ? 'غرفة تشغيل BrainSAIT' : 'BrainSAIT operating room'}>
-        <div className="ecosystem-command__copy">
-          <span className="hero-eyebrow"><span className="dot" /> {ar ? 'تشغيل موحّد' : 'Unified operating layer'}</span>
-          <h2>{ar ? 'متجر واحد في الواجهة، منظومة كاملة خلفه' : 'One storefront on the surface, a complete ecosystem behind it'}</h2>
-          <p>{catalogSummary(cat, ar)}</p>
-          <p>
-            {ar
-              ? 'كل بطاقة يجب أن تقود إلى قرار واضح: ادفع، شاهد ديمو، أو اترك طلباً. لذلك رتبنا المسارات حول الثقة، الدفع، والتسليم بدل كثرة الروابط.'
-              : 'Every card should lead to one clear decision: pay, view a demo, or submit a request. The experience is now framed around trust, checkout, and delivery instead of link sprawl.'}
-          </p>
-        </div>
-        <div className="ecosystem-command__grid">
-          <a href={withUtm(GHIO_LINKS.learnMonthly, { utm_content: 'home-operating-room', plan: 'learn-monthly' })} target="_blank" rel="noopener noreferrer">
-            <strong>{ar ? 'LEARN' : 'LEARN'}</strong>
-            <span>{ar ? 'دفع شهري واضح للمكتبة' : 'Clear monthly library checkout'}</span>
-          </a>
-          <Link to="/build">
-            <strong>{ar ? 'BUILD' : 'BUILD'}</strong>
-            <span>{ar ? 'مسار بناء مؤسس إلى إطلاق' : 'Founder build path to launch'}</span>
-          </Link>
-          <Link to="/solutions">
-            <strong>{ar ? 'SOLUTIONS' : 'SOLUTIONS'}</strong>
-            <span>{ar ? 'حلول جاهزة مع ديمو ودفع' : 'Ready solutions with demos and payment'}</span>
-          </Link>
-          <Link to="/oid">
-            <strong>{ar ? 'OID / BPR' : 'OID / BPR'}</strong>
-            <span>{ar ? 'هوية، تحقق، وسجل مزودين' : 'Identity, verification, provider registry'}</span>
-          </Link>
-        </div>
-      </section>
-
-      <section className="stages">
-        {cat.stages.map((s, i) => {
-          const Icon = ICONS[i] || BookOpen;
-          return (
-            <Link key={s.id} to={s.route} className={`stage-card ${ACCENTS[i] || ''}`}>
-              <span className="stage-icon"><Icon size={24} strokeWidth={2.2} /></span>
-              <h2>
-                {ar ? s.ar : s.en}
-                {s.id === 'build' && <span> <Sparkles size={20} style={{ verticalAlign: 'text-bottom' }} /></span>}
-              </h2>
-              <p>{ar ? s.blurbAr : s.blurbEn}</p>
-              <span className="stage-count" data-suffix={ar ? 'عنواناً' : 'titles'}>{counts[s.id]}</span>
-              <ArrowLeft size={18} className="stage-arrow" />
-            </Link>
-          );
-        })}
-      </section>
-
-      <BenefitsMatrix />
-
-      <JourneyFlow />
-
-      <section>
-        <div className="section-head reveal">
-          <h2>{ar ? 'مميز' : 'Featured'}</h2>
-          <Link className="button secondary sm" to="/learn">{t('nav.all')}</Link>
-        </div>
-        <div className="grid reveal">
-          {featured.map(p => <ProductCard key={p.slug} p={p} />)}
-        </div>
-      </section>
-
-      {cat.build.program ? (
-        <section className="program-teaser reveal">
-          <h2>{ar ? cat.build.program.nameAr : cat.build.program.name}</h2>
-          <p>{ar ? cat.build.program.taglineAr : cat.build.program.tagline}</p>
-          <strong>{money(cat.build.program.price, ar)}</strong>
-          <Link className="button primary" to="/build">{t('cta.apply')}</Link>
+    <div className="profile-page" id="top">
+      <ProfileHeader />
+      <div className="profile-content">
+        <section className="profile-hero" aria-labelledby="profile-title">
+          <div className="profile-hero-copy">
+            <div className="profile-eyebrow"><span />{ar ? 'طبيب · مؤسس · مهندس حلول صحية' : 'Physician · Founder · Healthcare builder'}</div>
+            <h1 id="profile-title">{ar ? 'أبني تقنية صحية تبدأ من الطبيب.' : 'Healthcare technology, built around the physician.'}</h1>
+            <p className="profile-lead">
+              {ar
+                ? 'أنا د. محمد الفاضل، مؤسس BrainSAIT في الرياض. أحوّل خبرة الطوارئ والعناية المركزة والمطالبات إلى بنية تحتية قابلة للتحقق — من هوية مقدم الرعاية إلى الذكاء الاصطناعي السريري.'
+                : 'I’m Dr. Mohamed El Fadil, founder of BrainSAIT in Riyadh. I turn emergency, critical-care and claims experience into verifiable infrastructure—from provider identity to clinical AI.'}
+            </p>
+            <div className="profile-actions">
+              <a className="profile-button primary" href="#work">{ar ? 'استكشف أعمالي' : 'Explore my work'}<ArrowDown size={17} /></a>
+              <a className="profile-button secondary" href="/assets/Dr_Mohamed_El_Fadil_CV_2026.pdf" download>
+                <Download size={17} />{ar ? 'تنزيل السيرة الذاتية' : 'Download CV'}
+              </a>
+            </div>
+            <div className="profile-socials">
+              <a href="https://github.com/Fadil369" target="_blank" rel="noreferrer"><Github size={17} />GitHub</a>
+              <a href="https://sa.linkedin.com/in/fadil369" target="_blank" rel="noreferrer"><Linkedin size={17} />LinkedIn</a>
+              <a href="https://orcid.org/0009-0003-7485-3575" target="_blank" rel="noreferrer">ORCID</a>
+            </div>
+          </div>
+          <div className="profile-portrait-wrap">
+            <div className="profile-orbit" aria-hidden="true"><span>FHIR</span><span>NPHIES</span><span>AI</span></div>
+            <div className="profile-portrait">
+              <img src="/assets/img/prof_pic.jpg" alt={ar ? 'د. محمد الفاضل' : 'Dr. Mohamed El Fadil'} width="520" height="650" />
+              <div className="profile-portrait-caption"><span>{ar ? 'الرياض، السعودية' : 'Riyadh, Saudi Arabia'}</span><strong>BrainSAIT</strong></div>
+            </div>
+            <a className="profile-credential" href="https://registry.brainsait.de/p/SA-PHY-000003" target="_blank" rel="noreferrer">
+              <ShieldCheck size={22} /><span><small>{ar ? 'هوية موثقة' : 'Verifiable identity'}</small><strong dir="ltr">SA-PHY-000003</strong></span><ArrowUpRight size={16} />
+            </a>
+          </div>
         </section>
-      ) : (
-        <section className="program-teaser reveal">
-          <h2>{ar ? 'مسار BUILD مفتوح عبر المختبرات التطبيقية' : 'BUILD is open through hands-on labs'}</h2>
-          <p>{ar ? `ابدأ من أحد مسارات البناء المنشورة حالياً (${stats.build})، ثم انتقل إلى جلسة استراتيجية أو حل جاهز حسب جاهزية مشروعك.` : `Start from one of the currently published build paths (${stats.build}), then move into a strategy session or ready solution based on your project maturity.`}</p>
-          <strong>{ar ? 'حتى 9,630 ر.س' : 'Up to 9,630 SAR'}</strong>
-          <Link className="button primary" to="/build">{t('cta.apply')}</Link>
-        </section>
-      )}
 
-      {/* Intake CTA */}
-      <section className="program-teaser reveal" style={{ background: 'linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%)', borderRadius: 'var(--radius)', padding: '3rem 2rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
-          <Clock size={28} style={{ color: '#f59e0b' }} />
-          <h2 style={{ marginBottom: 0 }}>{ar ? 'سباق 48 ساعة — هوية صحية جاهزة' : '48-Hour Sprint — AI-Native Healthcare Identity'}</h2>
-        </div>
-        <p style={{ color: '#94a3b8', maxWidth: 600, lineHeight: 1.6, marginBottom: 24 }}>
-          {ar
-            ? 'أطباء، عيادات، مؤسسين، ومؤسسات صحية — قدّم الآن وسنرشدك إلى أسرع مسار: جلسة استراتيجية، BUILD، BPR، أو حلول جاهزة.'
-            : 'For doctors, clinics, founders, and healthcare organizations — apply now and we will guide you to the fastest path: strategy session, BUILD, BPR, or Solutions Ready.'}
-        </p>
-        <Link to="/intake" className="button primary">
-          {ar ? 'قدّم الآن — ابدأ' : 'Apply Now — Get Started'}
-          {' '}→
-        </Link>
-        <Link to="/sprint" className="button secondary" style={{ marginLeft: 12 }}>
-          {ar ? 'مزيد من المعلومات' : 'Learn More'}
-        </Link>
-      </section>
-    </main>
+        <section className="profile-proof" aria-label={ar ? 'نبذة مهنية' : 'Professional highlights'}>
+          <div><strong>2010</strong><span>{ar ? 'بداية المسار الطبي' : 'Medical journey began'}</span></div>
+          <div><strong>6</strong><span>{ar ? 'فروع في مراجعة المطالبات' : 'Branches in claims review'}</span></div>
+          <div><strong>2</strong><span>{ar ? 'حزم مفتوحة المصدر على PyPI' : 'Open-source PyPI packages'}</span></div>
+          <div><strong>AR / EN</strong><span>{ar ? 'تصميم ثنائي اللغة' : 'Bilingual by design'}</span></div>
+        </section>
+
+        <section className="profile-section profile-thesis">
+          <div className="profile-section-label">01 · {ar ? 'الفكرة' : 'The thesis'}</div>
+          <div>
+            <h2>{ar ? 'الحكم السريري يحدد ما نبنيه. والهندسة تحدد إن كان يستحق الثقة.' : 'Clinical judgement decides what ships. Engineering decides whether it can be trusted.'}</h2>
+            <p>{ar
+              ? 'من غرفة الطوارئ إلى مكتب المطالبات، رأيت المشكلة نفسها: أنظمة صُممت حول الجميع إلا الطبيب الذي يتخذ القرار. لذلك أبني أدوات تجعل الهوية والبيانات والمساءلة جزءًا واحدًا مترابطًا.'
+              : 'From the emergency room to the claims desk, I found the same problem: systems designed around everyone except the physician making the call. I build tools where identity, data and accountability form one connected layer.'}</p>
+          </div>
+        </section>
+
+        <section className="profile-section" id="work">
+          <div className="profile-section-heading">
+            <div><div className="profile-section-label">02 · {ar ? 'أعمال مختارة' : 'Selected work'}</div><h2>{ar ? 'من السرير إلى النظام.' : 'From bedside to system.'}</h2></div>
+            <a href="https://github.com/Fadil369" target="_blank" rel="noreferrer">{ar ? 'كل المستودعات' : 'All repositories'}<ArrowUpRight size={16} /></a>
+          </div>
+          <div className="profile-projects">
+            {projects.map(({ icon: Icon, ...project }) => (
+              <a className="profile-project" href={project.url} target="_blank" rel="noreferrer" key={project.name}>
+                <div className="profile-project-top"><Icon size={25} /><ArrowUpRight size={18} /></div>
+                <h3>{project.name}</h3><p>{ar ? project.ar : project.en}</p>
+                <div className="profile-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="profile-feature">
+          <div className="profile-feature-visual" aria-hidden="true">
+            <div className="profile-signal"><Stethoscope size={34} /><span /><Fingerprint size={40} /><span /><Boxes size={34} /></div>
+            <code>identity → interoperability → intelligence</code>
+          </div>
+          <div>
+            <div className="profile-section-label">BPR · BrainSAIT</div>
+            <h2>{ar ? 'هوية واحدة. كل الأدوات التي ينبغي أن تتبعها.' : 'One identity. Every tool that should follow it.'}</h2>
+            <p>{ar
+              ? 'يضع سجل مقدمي الخدمة BPR الطبيب في قلب قابل للتحقق والتدقيق داخل منظومة الرعاية، بدل أن يكون مجرد نقطة نهاية في أنظمة متفرقة.'
+              : 'The BrainSAIT Provider Registry places the physician at a verifiable, auditable centre of care—not as another endpoint across disconnected systems.'}</p>
+            <a className="profile-text-link" href="https://elfadil.brainsait.de" target="_blank" rel="noreferrer">{ar ? 'ادخل التجربة التفاعلية' : 'Enter the interactive portfolio'}<ExternalLink size={16} /></a>
+          </div>
+        </section>
+
+        <section className="profile-section" id="journey">
+          <div className="profile-section-label">03 · {ar ? 'المسار' : 'The journey'}</div>
+          <div className="profile-section-heading"><h2>{ar ? 'خبرة سريرية تتحول إلى متطلبات منتج.' : 'Clinical experience becomes product requirements.'}</h2></div>
+          <div className="profile-journey">
+            {journey.map(item => (
+              <article key={item.years}>
+                <time dir="ltr">{ar ? item.yearsAr : item.years}</time>
+                <div><h3>{ar ? item.ar : item.en}</h3><strong>{item.org}</strong><p>{ar ? item.arText : item.enText}</p></div>
+              </article>
+            ))}
+            <article><time>MBBS</time><div><h3>{ar ? 'بكالوريوس الطب والجراحة' : 'Bachelor of Medicine & Surgery'}</h3><strong>International University of Africa</strong></div></article>
+          </div>
+        </section>
+
+        <section className="profile-section" id="research">
+          <div className="profile-section-label">04 · {ar ? 'بحث وكتابة' : 'Research & writing'}</div>
+          <div className="profile-research-grid">
+            <a className="profile-paper" href="https://doi.org/10.5281/zenodo.23606022" target="_blank" rel="noreferrer">
+              <BookOpen size={28} /><span className="profile-paper-meta">ZENODO · V1.2 · 2026</span>
+              <h2>{ar ? 'المشاع السريري' : 'The Clinical Commons'}</h2>
+              <p>{ar ? 'تصميم مؤسسي مقترح للمستشفيات: فرق سريرية متعددة التخصصات، إدارة خاضعة للمساءلة، وإشراف مجتمعي — يبدأ بتجربة محدودة وقابلة للتراجع.' : 'A proposed hospital design: multidisciplinary clinical stewardship, accountable management and community oversight—beginning with a limited, reversible pilot.'}</p>
+              <span className="profile-text-link">{ar ? 'اقرأ الدراسة' : 'Read the study'}<ArrowUpRight size={16} /></span>
+            </a>
+            <div className="profile-writing">
+              <h3>{ar ? 'أدوات ومعرفة مفتوحة' : 'Open tools & knowledge'}</h3>
+              <a href="https://pypi.org/project/brainsait-pyheart/" target="_blank" rel="noreferrer"><span><strong>brainsait-pyheart</strong><small>FHIR / HL7 interoperability</small></span><ArrowUpRight size={17} /></a>
+              <a href="https://pypi.org/project/brainsait-pybrain/" target="_blank" rel="noreferrer"><span><strong>brainsait-pybrain</strong><small>Clinical NLP & data intelligence</small></span><ArrowUpRight size={17} /></a>
+              <a href="https://elfadil.brainsait.de/the_leverage_point.html" target="_blank" rel="noreferrer"><span><strong>{ar ? 'نقطة الرفع' : 'The Leverage Point'}</strong><small>{ar ? 'مقال مختار' : 'Selected essay'}</small></span><ArrowUpRight size={17} /></a>
+              <a href="https://zenodo.org/communities/bpr-doctors/" target="_blank" rel="noreferrer"><span><strong>BPR · Zenodo</strong><small>{ar ? 'سجل بحثي قابل للاستشهاد' : 'Citable research record'}</small></span><ArrowUpRight size={17} /></a>
+            </div>
+          </div>
+        </section>
+
+        <section className="profile-contact">
+          <div><div className="profile-section-label">05 · {ar ? 'لنتحدث' : 'Start a conversation'}</div><h2>{ar ? 'تبني شيئًا مع الممارسين الصحيين؟' : 'Building something with clinicians?'}</h2></div>
+          <p>{ar ? 'أعمل مع المستشفيات وفرق التقنية الصحية والمستثمرين في السعودية والخليج وأفريقيا.' : 'I work with hospitals, health-tech teams and investors across Saudi Arabia, the Gulf and Africa.'}</p>
+          <div className="profile-actions">
+            <a className="profile-button primary" href="https://elfadil.brainsait.de/#contact" target="_blank" rel="noreferrer">{ar ? 'احجز مكالمة' : 'Book a call'}<ArrowUpRight size={17} /></a>
+            <a className="profile-button secondary" href="mailto:elfadil369@icloud.com">{ar ? 'راسلني' : 'Email me'}</a>
+          </div>
+        </section>
+      </div>
+      <footer className="profile-footer">
+        <span>© {new Date().getFullYear()} Dr. Mohamed El Fadil</span>
+        <div><a href="https://elfadil.brainsait.de" target="_blank" rel="noreferrer">elfadil.brainsait.de</a><Link to="/catalogue">BrainSAIT Store</Link><a href="/assets/Dr_Mohamed_El_Fadil_CV_2026.pdf"><FileText size={14} />CV</a></div>
+        <span className="profile-verified"><Check size={13} />{ar ? 'مصمم ليكون قابلاً للتحقق' : 'Designed to be verifiable'}</span>
+      </footer>
+    </div>
   );
 }
