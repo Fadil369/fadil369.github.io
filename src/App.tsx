@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import ProfessionalCv from './pages/ProfessionalCv';
 import BusinessCard from './pages/BusinessCard';
 import CommandPalette from './components/CommandPalette';
+import { BASENAME } from './lib/locale';
 import './styles/app.css';
 
 const Overview = lazy(() => import('./pages/bpr/Overview'));
@@ -125,5 +126,5 @@ function AppShell() {
 }
 
 export default function App() {
-  return <I18nProvider><BrowserRouter><AppShell /></BrowserRouter></I18nProvider>;
+  return <I18nProvider><BrowserRouter basename={BASENAME}><AppShell /></BrowserRouter></I18nProvider>;
 }

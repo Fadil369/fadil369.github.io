@@ -1,6 +1,6 @@
 # Dr. Mohamed El Fadil · BrainSAIT Provider Registry (BPR)
 
-> Personal site of Dr. Mohamed El Fadil (physician, founder of BrainSAIT, Riyadh) and the public face of the BrainSAIT Provider Registry: signed provider identity, on-device credential verification, a transparency log, research footprints and FHIR R4. Bilingual English/Arabic. Every page is readable without JavaScript.
+> Personal site of Dr. Mohamed El Fadil (physician, founder of BrainSAIT, Riyadh) and the public face of the BrainSAIT Provider Registry: signed provider identity, on-device credential verification, a transparency log, research footprints and FHIR R4. Bilingual: every page exists in English and in Arabic under /ar/ (e.g. https://fadil369.github.io/ar/bpr/verify/), linked with hreflang. Every page is readable without JavaScript.
 
 Facts for agents:
 - Trust states are separate and must not be merged into one "verified" claim: identity (ORCID ownership), signature (BrainSAIT-signed credential), membership (commercial), licence, qualifications, privileges.

@@ -68,16 +68,30 @@ const ROUTES = [
   ]),
 ];
 
+const PAGE_TYPES = new Set(['ProfilePage', 'WebPage', 'CollectionPage']);
+const arGraph = (graph) => graph.map((g) => {
+  if (PAGE_TYPES.has(g['@type'])) return { ...g, '@id': g['@id'].replace(ORIGIN + '/', ORIGIN + '/ar/'), url: g.url.replace(ORIGIN + '/', ORIGIN + '/ar/'), inLanguage: 'ar' };
+  if (g['@type'] === 'BreadcrumbList') return { ...g, itemListElement: g.itemListElement.map((it) => ({ ...it, item: it.item.replace(ORIGIN + '/', ORIGIN + '/ar/') })) };
+  return g;
+});
+const ALL = [...ROUTES.map(([p, g, pr]) => [p, g.map((x) => (PAGE_TYPES.has(x['@type']) ? { ...x, inLanguage: 'en' } : x)), pr, 'en']), ...ROUTES.map(([p, g, pr]) => ['/ar' + p, arGraph(g), pr, 'ar'])];
+const twin = (path) => (path.startsWith('/ar/') ? path.slice(3) : '/ar' + path);
+
 const server = await serve(root);
 const browser = await chromium.launch();
-const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
-await ctx.route(/googletagmanager|google-analytics|facebook\.net|facebook\.com/, (r) => r.abort());
-await ctx.addInitScript(() => { try { localStorage.setItem('bs-lang', 'en'); localStorage.setItem('bs-theme', 'dark'); } catch { /* */ } });
-const tab = await ctx.newPage();
+// One context per language: the stored preference would otherwise redirect the other version.
+const tabs = {};
+for (const lang of ['en', 'ar']) {
+  const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, locale: lang === 'ar' ? 'ar-SA' : 'en-GB' });
+  await ctx.route(/googletagmanager|google-analytics|facebook\.net|facebook\.com/, (r) => r.abort());
+  await ctx.addInitScript((l) => { try { localStorage.setItem('bs-lang', l); localStorage.setItem('bs-theme', 'dark'); } catch { /* */ } }, lang);
+  tabs[lang] = await ctx.newPage();
+}
 let written = 0;
 const failures = [];
 
-for (const [path, graph] of ROUTES) {
+for (const [path, graph, , lang] of ALL) {
+  const tab = tabs[lang];
   const file = join(root, path, 'index.html');
   if (!existsSync(file)) { failures.push(`${path}: no file`); continue; }
   await tab.goto(server.base + path, { waitUntil: 'networkidle' });
@@ -101,7 +115,9 @@ for (const [path, graph] of ROUTES) {
   html = html.replace(/<script type="application\/ld\+json"( data-route)?>[\s\S]*?<\/script>/g, '');
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(got.title)}</title>`);
   html = html.replace(/<meta name="description" content="[^"]*"\s*\/?>/, `<meta name="description" content="${esc(got.description)}" />`);
-  html = html.replace(/<link rel="canonical"[^>]*>\s*/g, '');
+  html = html.replace(/<link rel="canonical"[^>]*>\s*/g, '').replace(/<link rel="alternate" hreflang="[^"]*"[^>]*>\s*/g, '');
+  const en = path.startsWith('/ar/') ? twin(path) : path, ar = path.startsWith('/ar/') ? path : twin(path);
+  html = html.replace('</head>', `    <link rel="alternate" hreflang="en" href="${ORIGIN}${en}" />\n    <link rel="alternate" hreflang="ar" href="${ORIGIN}${ar}" />\n    <link rel="alternate" hreflang="x-default" href="${ORIGIN}${en}" />\n  </head>`);
   const ld = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
   html = html.replace('</head>', `    <link rel="canonical" href="${ORIGIN}${path}" />\n    <script type="application/ld+json" data-route>${ld}</script>\n  </head>`);
   html = html.replace('<div id="root"></div>', `<div id="root"></div><noscript data-prerendered>${got.html}</noscript>`);
@@ -113,10 +129,14 @@ await browser.close();
 server.close();
 
 // sitemap — only routes that exist and render
-const live = ROUTES.filter(([p]) => !failures.some((f) => f.startsWith(p + ':')));
+const live = ALL.filter(([p]) => !failures.some((f) => f.startsWith(p + ':')));
 writeFileSync(join(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${live.map(([p, , pr]) => `  <url><loc>${ORIGIN}${p}</loc><lastmod>${today}</lastmod><priority>${pr.toFixed(1)}</priority></url>`).join('\n')}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${live.map(([p, , pr]) => {
+    const en = p.startsWith('/ar/') ? twin(p) : p, ar = p.startsWith('/ar/') ? p : twin(p);
+    return `  <url><loc>${ORIGIN}${p}</loc><lastmod>${today}</lastmod><priority>${pr.toFixed(1)}</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="${ORIGIN}${en}"/><xhtml:link rel="alternate" hreflang="ar" href="${ORIGIN}${ar}"/><xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}${en}"/></url>`;
+  }).join('\n')}
 </urlset>
 `);
 
@@ -132,7 +152,7 @@ Sitemap: ${ORIGIN}/sitemap.xml
 const provLines = providers.map((p) => `- [${p.name_en} (${p.spid})](${ORIGIN}/bpr/p/${p.spid}/): ${p.trust_summary}`).join('\n');
 writeFileSync(join(root, 'llms.txt'), `# Dr. Mohamed El Fadil · BrainSAIT Provider Registry (BPR)
 
-> Personal site of Dr. Mohamed El Fadil (physician, founder of BrainSAIT, Riyadh) and the public face of the BrainSAIT Provider Registry: signed provider identity, on-device credential verification, a transparency log, research footprints and FHIR R4. Bilingual English/Arabic. Every page is readable without JavaScript.
+> Personal site of Dr. Mohamed El Fadil (physician, founder of BrainSAIT, Riyadh) and the public face of the BrainSAIT Provider Registry: signed provider identity, on-device credential verification, a transparency log, research footprints and FHIR R4. Bilingual: every page exists in English and in Arabic under /ar/ (e.g. ${ORIGIN}/ar/bpr/verify/), linked with hreflang. Every page is readable without JavaScript.
 
 Facts for agents:
 - Trust states are separate and must not be merged into one "verified" claim: identity (ORCID ownership), signature (BrainSAIT-signed credential), membership (commercial), licence, qualifications, privileges.
@@ -170,5 +190,5 @@ ${provLines}
 - Embeddable live check: ${ORIGIN}/bpr/embed/{SPID}
 `);
 
-console.log(`prerender: ${written}/${ROUTES.length} page(s) written; sitemap ${live.length} URL(s); robots.txt; llms.txt`);
+console.log(`prerender: ${written}/${ALL.length} page(s) written (EN + AR); sitemap ${live.length} URL(s); robots.txt; llms.txt`);
 if (failures.length) { console.error('prerender failures:\n  ' + failures.join('\n  ')); process.exit(1); }

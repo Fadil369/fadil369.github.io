@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo } from 'react';
+import { AR_URL, counterpartUrl } from './lib/locale';
 
 type Lang = 'ar' | 'en';
 interface Ctx { lang: Lang; ar: boolean; toggle: () => void; t: (k: string) => string; }
@@ -41,9 +42,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
 const C = createContext<Ctx>(null as unknown as Ctx);
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Lang>(() => {
-    try { return (localStorage.getItem('bs-lang') as Lang) || 'en'; } catch { return 'en'; }
-  });
+  const lang: Lang = AR_URL ? 'ar' : 'en';
   useEffect(() => {
     try { localStorage.setItem('bs-lang', lang); } catch { /* ignore */ }
     document.documentElement.lang = lang;
@@ -51,7 +50,11 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   }, [lang]);
   const value = useMemo<Ctx>(() => ({
     lang, ar: lang === 'ar',
-    toggle: () => setLang(l => (l === 'ar' ? 'en' : 'ar')),
+    // Switching language = opening the same page at its other URL.
+    toggle: () => {
+      try { localStorage.setItem('bs-lang', lang === 'ar' ? 'en' : 'ar'); } catch { /* ignore */ }
+      window.location.assign(counterpartUrl());
+    },
     t: (k) => STRINGS[lang][k] ?? k,
   }), [lang]);
   return <C.Provider value={value}>{children}</C.Provider>;

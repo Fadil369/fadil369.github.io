@@ -1,0 +1,40 @@
+# Dr. Mohamed El Fadil · BrainSAIT Provider Registry (BPR)
+
+> Personal site of Dr. Mohamed El Fadil (physician, founder of BrainSAIT, Riyadh) and the public face of the BrainSAIT Provider Registry: signed provider identity, on-device credential verification, a transparency log, research footprints and FHIR R4. Bilingual: every page exists in English and in Arabic under /ar/ (e.g. https://fadil369.github.io/ar/bpr/verify/), linked with hreflang. Every page is readable without JavaScript.
+
+Facts for agents:
+- Trust states are separate and must not be merged into one "verified" claim: identity (ORCID ownership), signature (BrainSAIT-signed credential), membership (commercial), licence, qualifications, privileges.
+- Licence and qualifications show "not assessed" while the official SCFHS (Saudi Commission for Health Specialties) credential integration is pending. No NPHIES conformance is claimed.
+- On the provider-workspace page each capability is labelled Live, Awaiting or Planned; only "Live" items run today.
+- Data on these pages comes live from https://registry.brainsait.de; a build snapshot (dated) is the fallback.
+
+## Person
+- [Profile](https://fadil369.github.io/): physician-founder profile, live BPR credential state, selected work, research
+- [CV](https://fadil369.github.io/cv/): one-page CV; PDFs in [English](https://fadil369.github.io/assets/Dr_Mohamed_El_Fadil_CV_2026_Redesigned.pdf) and [Arabic](https://fadil369.github.io/assets/Dr_Mohamed_El_Fadil_CV_2026_AR.pdf)
+- [Business card](https://fadil369.github.io/card/)
+- ORCID: https://orcid.org/0009-0003-7485-3575 · BPR SPID: SA-PHY-000003
+
+## BPR pages
+- [Overview](https://fadil369.github.io/bpr/)
+- [Provider workspace](https://fadil369.github.io/bpr/workspace/): what each provider gets, with status per capability
+- [Directory](https://fadil369.github.io/bpr/providers/)
+- [Verify a provider](https://fadil369.github.io/bpr/verify/): `https://fadil369.github.io/bpr/verify?spid={SPID}` re-checks the signature in the browser
+- [Transparency log](https://fadil369.github.io/bpr/ledger/)
+- [Research](https://fadil369.github.io/bpr/research/)
+- [FHIR & API](https://fadil369.github.io/bpr/developers/)
+- [Status](https://fadil369.github.io/bpr/status/)
+- [Join](https://fadil369.github.io/bpr/join/)
+
+## Providers
+- [Dr. Fadi Al Ghareeb (SA-PHY-000001)](https://fadil369.github.io/bpr/p/SA-PHY-000001/): No ORCID iD linked · No signed credential · Not a member · Professional licence not assessed · Qualifications not assessed · No hospital privileges recorded
+- [Dr. Farroukh Raza (SA-PHY-000002)](https://fadil369.github.io/bpr/p/SA-PHY-000002/): No ORCID iD linked · No signed credential · Not a member · Professional licence not assessed · Qualifications not assessed · No hospital privileges recorded
+- [Dr. Mohamed El Fadil (SA-PHY-000003)](https://fadil369.github.io/bpr/p/SA-PHY-000003/): ORCID iD ownership confirmed · Signed credential current · Membership active · Professional licence not assessed · Qualifications not assessed · No hospital privileges recorded
+
+## Machine-readable (all public, CORS *, read-only)
+- Providers: https://registry.brainsait.de/api/providers · one provider: https://registry.brainsait.de/api/providers/{SPID} · search: https://registry.brainsait.de/api/search?q=
+- Research: https://registry.brainsait.de/api/research?spid={SPID}
+- FHIR R4: https://registry.brainsait.de/fhir/metadata · https://registry.brainsait.de/fhir/Practitioner/{SPID} · https://registry.brainsait.de/fhir/PractitionerRole?identifier={SPID}
+- Signed credential (VC-JOSE, EdDSA): https://registry.brainsait.de/vc/{SPID} · status: https://registry.brainsait.de/vc/status/{SPID} · issuer keys: https://registry.brainsait.de/.well-known/did.json
+- Transparency log: https://registry.brainsait.de/transparency/log.json · AI provenance heads: https://registry.brainsait.de/transparency/ai.json
+- Snapshot copies on this site: https://fadil369.github.io/assets/bpr-data/ (providers.json, providers/{SPID}.json, research/{SPID}.json, fhir/…, manifest.json)
+- Embeddable live check: https://fadil369.github.io/bpr/embed/{SPID}

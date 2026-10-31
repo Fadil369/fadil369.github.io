@@ -1,3 +1,4 @@
+import { AR_URL, localized } from './locale';
 // Per-page social/SEO meta handler for the BrainSAIT SPA.
 // Lives behind the GitHub Pages client-side fallback, so a JS-less crawler
 // only sees the static head (see src/index.html). This module keeps title +
@@ -49,7 +50,9 @@ function setCanonical(href: string) {
 /** Update document.title + OG/Twitter/canonical for the current page. */
 export function applyPageMeta(meta: PageMeta) {
   try {
-    const url = absolutize(meta.url ?? '/');
+    // GitHub Pages serves each route at a trailing-slash URL (it redirects /cv → /cv/); match it.
+    const path = localized(meta.url ?? '/').replace(/^([^?#]*?[^/?#.]+)(?=$|[?#])/, '$1/');
+    const url = absolutize(path);
     const image = absolutize(meta.image);
     const type = meta.type ?? 'website';
 
@@ -60,6 +63,7 @@ export function applyPageMeta(meta: PageMeta) {
     setOrCreate('property', 'og:image', image);
     setOrCreate('property', 'og:url', url);
     setOrCreate('property', 'og:type', type);
+    setOrCreate('property', 'og:locale', AR_URL ? 'ar_SA' : 'en_US');
 
     setOrCreate('name', 'twitter:title', meta.title);
     setOrCreate('name', 'twitter:description', meta.description);

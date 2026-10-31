@@ -19,7 +19,7 @@ for (const [lang, file] of OUT) {
   const ctx = await browser.newContext({ viewport: { width: 794, height: 1123 } });
   await ctx.addInitScript((l) => localStorage.setItem('bs-lang', l), lang);
   const page = await ctx.newPage();
-  await page.goto(`${base}/cv/`, { waitUntil: 'networkidle' });
+  await page.goto(`${base}${lang === 'ar' ? '/ar' : ''}/cv/`, { waitUntil: 'networkidle' });
   await page.waitForSelector('.cv-identity-qr svg', { timeout: 15000 });
   await page.evaluate(() => document.fonts.ready);
   const pdf = await page.pdf({ preferCSSPageSize: true, printBackground: true });

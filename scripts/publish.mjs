@@ -140,6 +140,53 @@ for (const f of ['assets']) {
   if (existsSync(dst)) rmSync(dst, { recursive: true, force: true });
   cpSync(src, dst, { recursive: true });
 }
+// ── Arabic twins (/ar/...) ──────────────────────────────────────────────────
+// Every page also exists under /ar with lang="ar" dir="rtl" in the HTML itself and Arabic share
+// tags; the app reads the language from the URL. prerender.mjs then fills in Arabic content.
+const AR_META = {
+  '': ['د. محمد الفاضل — طبيب ومؤسس BrainSAIT', 'طبيب ومؤسس BrainSAIT في الرياض. أبني هوية صحية قابلة للتحقق وأدوات مترابطة للممارسين عبر FHIR ونفيس والذكاء الاصطناعي.'],
+  cv: ['السيرة الذاتية — د. محمد الفاضل', 'طبيب ومؤسس BrainSAIT ومستشار تحسين ذكي للرعاية الصحية ودورة الإيرادات. سيرة ذاتية بصفحة A4 واحدة مع رمز تحقق BPR مباشر.'],
+  card: ['بطاقة الأعمال — د. محمد الفاضل', 'بطاقة أعمال سوداء وليمونية برمز QR على شكل دماغ. ملف PDF جاهز للطباعة.'],
+  bpr: ['BPR — سجل برينسايت لمقدمي الرعاية', 'هوية موقّعة لكل ممارس صحي: دليل، تحقق على الجهاز، سجل شفاف، بصمة بحثية وFHIR R4.'],
+  'bpr/workspace': ['مساحة عمل مقدم الرعاية — BPR', 'OpenEMR خاص، مساعد سريري بإملاء عربي، FHIR، أدوات التخصص والبحث — مع بيان ما يعمل وما هو مخطط لكل ميزة.'],
+  'bpr/providers': ['دليل مقدمي الرعاية — BPR', 'مقدمو الرعاية المدرجون مع عرض كل بُعد للثقة بشكل منفصل.'],
+  'bpr/verify': ['التحقق من مقدم رعاية — BPR', 'تحقق من اعتماد BPR الموقّع على جهازك: التوقيع والصلاحية والحالة المباشرة.'],
+  'bpr/ledger': ['السجل الشفاف — BPR', 'كل إصدار وتجديد وإلغاء لاعتمادات BPR في سلسلة تجزئة عامة يعيد متصفحك التحقق منها.'],
+  'bpr/research': ['البصمة البحثية — BPR', 'أعمال مقدمي الرعاية مطابقة عبر DOI من ORCID وZenodo وHugging Face.'],
+  'bpr/developers': ['FHIR والواجهة العامة — BPR', 'موارد FHIR R4 وواجهة JSON عامة وبطاقة تحقق قابلة للتضمين.'],
+  'bpr/status': ['حالة التشغيل — BPR', 'حكم السجل على صحته، بما في ذلك الإخفاقات.'],
+  'bpr/join': ['انضم إلى BPR', 'من تسجيل الدخول عبر ORCID إلى اعتماد موقّع.'],
+};
+const toArabic = (html, route, meta) => {
+  let out = html.replace(/<html lang="en" dir="ltr"/, '<html lang="ar" dir="rtl"')
+    .replace(/(<meta property="og:url" content=")https:\/\/fadil369\.github\.io\//g, '$1https://fadil369.github.io/ar/');
+  if (meta) {
+    const [title, desc] = meta;
+    out = out.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`)
+      .replace(/(<meta (?:property|name)="(?:og:title|twitter:title)" content=")[^"]*"/g, `$1${esc(title)}"`)
+      .replace(/(<meta (?:name="description"|property="og:description"|name="twitter:description") content=")[^"]*"/g, `$1${esc(desc)}"`);
+  }
+  return out;
+};
+let arWritten = 0;
+const arPages = [['', join(root, 'index.html')], ...['cv', 'card', 'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace'].map((r) => [r, join(root, r, 'index.html')])];
+if (existsSync(snapList)) {
+  for (const p of JSON.parse(readFileSync(snapList, 'utf8')).items || []) {
+    if (!/^SA-[A-Z]{2,4}-\d{6}$/.test(p.spid)) continue;
+    AR_META[`bpr/p/${p.spid}`] = [`${p.name_ar} · ${p.spid} — BPR`, p.trust_summary_ar || ''];
+    arPages.push([`bpr/p/${p.spid}`, join(root, 'bpr', 'p', p.spid, 'index.html')], [`bpr/embed/${p.spid}`, join(root, 'bpr', 'embed', p.spid, 'index.html')]);
+    if (p.research_url) { AR_META[`bpr/research/${p.spid}`] = [`البصمة البحثية · ${p.name_ar} — BPR`, 'أعمال مطابقة عبر DOI من ORCID وZenodo وHugging Face.']; arPages.push([`bpr/research/${p.spid}`, join(root, 'bpr', 'research', p.spid, 'index.html')]); }
+  }
+}
+for (const [route, src] of arPages) {
+  if (!existsSync(src)) continue;
+  const dir = join(root, 'ar', route);
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, 'index.html'), toArabic(readFileSync(src, 'utf8'), route, AR_META[route]));
+  arWritten += 1;
+}
+console.log(`Wrote ${arWritten} Arabic page(s) under /ar/.`);
+
 // ── service worker (offline + resilience) ───────────────────────────────────
 // Versioned by the hashed entry bundle, so every deploy replaces the old cache.
 // Same-origin only: registry calls, fonts and analytics are never intercepted.
@@ -152,7 +199,8 @@ for (const f of ['assets']) {
   const walk = (dir) => readdirSync(dir, { withFileTypes: true }).flatMap((d) => d.isDirectory() ? walk(join(dir, d.name)) : [join(dir, d.name)]);
   const chunks = readdirSync(join(dist, 'assets')).filter((f) => /\.(js|css)$/.test(f)).map((f) => '/assets/' + f);
   const data = walk(join(dist, 'assets', 'bpr-data')).map((f) => '/' + relative(dist, f).split(sep).join('/'));
-  const pages = ['/', '/cv/', '/card/', '/bpr/', '/bpr/verify/', '/bpr/workspace/', '/bpr/providers/', '/bpr/ledger/', '/bpr/research/', '/bpr/developers/', '/bpr/status/', '/bpr/join/'];
+  const enPages = ['/', '/cv/', '/card/', '/bpr/', '/bpr/verify/', '/bpr/workspace/', '/bpr/providers/', '/bpr/ledger/', '/bpr/research/', '/bpr/developers/', '/bpr/status/', '/bpr/join/'];
+  const pages = [...enPages, ...enPages.map((p) => '/ar' + p)];
   const precache = [...new Set([...pages, '/' + entry, ...css, ...chunks, ...data, '/manifest.webmanifest', '/assets/icons/icon-192.png'])];
   const sw = `// generated by scripts/publish.mjs — do not edit
 const VERSION = '${version}';

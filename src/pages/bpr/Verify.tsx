@@ -4,6 +4,7 @@ import { ArrowRight, Camera, Check as CheckIcon, Download, FileKey2, Link2, Sear
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout, CheckRow, Failed, fmtDate, Loading, ScfhsPending, SourceBadge, valueLabel } from '../../components/BprKit';
+import { localized } from '../../lib/locale';
 import { Check, checkCredential, CredentialClaims, CredentialResult, decodeClaims, forgeName, REGISTRY, registryKeys, replayLedger, SPID_RE, verifyJwt } from '../../lib/bpr';
 
 const QrScanner = lazy(() => import('../../components/QrScanner'));
@@ -60,7 +61,7 @@ export default function Verify() {
   const onScan = useCallback((id: string) => {
     setScanning(false); setMode('spid'); setSpid(id); setParams({ spid: id }, { replace: true }); run(id);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  const shareUrl = () => `${window.location.origin}/bpr/verify?spid=${result!.claims.credentialSubject.spid}`;
+  const shareUrl = () => `${window.location.origin}${localized('/bpr/verify')}?spid=${result!.claims.credentialSubject.spid}`;
   const shareText = () => {
     const id = result!.claims.credentialSubject.spid;
     const when = new Date().toLocaleString(ar ? 'ar-SA-u-nu-latn-ca-gregory' : 'en-GB', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Asia/Riyadh' });

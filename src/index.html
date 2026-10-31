@@ -56,10 +56,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Almarai:wght@300;400;700;800&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <!-- Analytics (GTM, Meta Pixel, GA; shared with store.brainsait.de) load everywhere except the
-         BPR registry pages, where the URL carries the SPID someone is checking. -->
+         BPR registry pages (/bpr and /ar/bpr), where the URL carries the SPID someone is checking. -->
     <script>
       (function (w, d) {
-        if (/^\/bpr(\/|$)/.test(w.location.pathname)) return;
+        if (/^\/(ar\/)?bpr(\/|$)/.test(w.location.pathname)) return;
         function load(src) { var j = d.createElement('script'); j.async = true; j.src = src; d.head.appendChild(j); }
         w.dataLayer = w.dataLayer || [];
         w.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
@@ -76,7 +76,7 @@
         w.gtag('js', new Date());
         w.gtag('config', 'G-75ZCDM8R74');
         // GA's per-property kill switch, set from the destination URL before GA sees the change.
-        var guard = function (url) { w['ga-disable-G-75ZCDM8R74'] = /^\/bpr(\/|$)/.test(new URL(url || w.location.href, w.location.href).pathname); };
+        var guard = function (url) { w['ga-disable-G-75ZCDM8R74'] = /^\/(ar\/)?bpr(\/|$)/.test(new URL(url || w.location.href, w.location.href).pathname); };
         ['pushState', 'replaceState'].forEach(function (k) {
           var orig = history[k];
           history[k] = function (state, title, url) { guard(url); return orig.apply(this, arguments); };
@@ -91,7 +91,13 @@
           var t = localStorage.getItem('bs-theme');
           if (t !== 'light' && t !== 'dark') t = 'dark';
           document.documentElement.setAttribute('data-theme', t);
-          if (localStorage.getItem('bs-lang') === 'ar') { document.documentElement.lang = 'ar'; document.documentElement.dir = 'rtl'; }
+          // Language is the URL (/ar/... = Arabic). A visitor who chose Arabic and opens an English
+          // URL goes to its Arabic twin; crawlers carry no preference, so their URLs stay stable.
+          var p = location.pathname, isAr = /^\/ar(\/|$)/.test(p);
+          if (!isAr && localStorage.getItem('bs-lang') === 'ar' && !/^\/(assets|bpr\/embed)\//.test(p)) {
+            location.replace('/ar' + (p === '/' ? '/' : p) + location.search + location.hash);
+          }
+          if (isAr) { document.documentElement.lang = 'ar'; document.documentElement.dir = 'rtl'; }
         } catch (e) {
           document.documentElement.setAttribute('data-theme', 'dark');
         }
