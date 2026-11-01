@@ -2,10 +2,10 @@
  "head": {
   "size": 1,
   "hash": "be1b51acbac192ccb5acb1f886040c773b5e0dbf774a2dcd2db909c7543a2a0c",
-  "at": "2026-11-01T00:17:12Z",
-  "signed": "BPR-TLOG-v1\n1\nbe1b51acbac192ccb5acb1f886040c773b5e0dbf774a2dcd2db909c7543a2a0c\n2026-11-01T00:17:12Z",
+  "at": "2026-11-01T00:29:47Z",
+  "signed": "BPR-TLOG-v1\n1\nbe1b51acbac192ccb5acb1f886040c773b5e0dbf774a2dcd2db909c7543a2a0c\n2026-11-01T00:29:47Z",
   "kid": "did:web:registry.brainsait.de#key-1",
-  "sig": "LQ021bbiWXKXaYiBsS3we3YJRV_FnoMa22ZEtlAaFcpjvKVHDTk_VhmQ5bvIo47F_t7_yO0WVvKIIQGgNpdUDw"
+  "sig": "jcDWy2jQpmGyNaz1qHpM9FiO1bSUkhHwiHK48XVwdZMUf3YXHfxwhHXrKY8IDo1GO7RfvlmSoci3-DZIE8PYCA"
  },
  "genesis": "0000000000000000000000000000000000000000000000000000000000000000",
  "rule": "hash = sha256(line); line.prev = previous hash; line.seq = 1..n",

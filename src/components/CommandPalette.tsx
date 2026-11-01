@@ -67,6 +67,7 @@ export default function CommandPalette() {
       { id: 'cv', group: P, label: ar ? 'السيرة الذاتية' : 'CV', hint: '/cv', run: go('/cv') },
       { id: 'card', group: P, label: ar ? 'بطاقة الأعمال' : 'Business card', hint: '/card', run: go('/card') },
       { id: 'bpr', group: B, label: ar ? 'نظرة عامة على BPR' : 'BPR overview', hint: '/bpr', run: go('/bpr') },
+      { id: 'rec', group: B, label: ar ? 'سجل BPR الخاص بي' : 'My BPR record', hint: '/bpr/record', run: go('/bpr/record') },
       { id: 'ws', group: B, label: ar ? 'مساحة عمل مقدم الرعاية' : 'Provider workspace', hint: '/bpr/workspace', run: go('/bpr/workspace') },
       { id: 'dir', group: B, label: ar ? 'دليل مقدمي الرعاية' : 'Provider directory', hint: '/bpr/providers', run: go('/bpr/providers') },
       { id: 'ver', group: B, label: ar ? 'التحقق من مقدم رعاية' : 'Verify a provider', hint: '/bpr/verify', run: go('/bpr/verify') },

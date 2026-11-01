@@ -196,7 +196,7 @@ export default function Home() {
               : 'This is my state in the BPR registry, read live from the registry. Each dimension is separate — and what has not been assessed yet shows as exactly that.'}</p>
             <div className="profile-actions">
               <Link className="profile-button secondary" to={`/bpr/verify?spid=${SPID}`}>{ar ? 'تحقق على جهازك' : 'Verify on your device'}<ArrowUpRight size={16} /></Link>
-              <Link className="profile-text-link" to="/bpr/workspace">{ar ? 'مساحة عمل مقدم الرعاية' : 'The provider workspace'}<ArrowUpRight size={16} /></Link>
+              <Link className="profile-text-link" to="/bpr/record">{ar ? 'سجل BPR الكامل' : 'My full BPR record'}<ArrowUpRight size={16} /></Link>
             </div>
           </div>
           <div className="profile-feature-trust">
