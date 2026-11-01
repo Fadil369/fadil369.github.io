@@ -112,11 +112,11 @@ export default function Home() {
       <div className="profile-content">
         <section className="profile-hero" aria-labelledby="profile-title">
           <div className="profile-hero-copy">
-            <div className="profile-eyebrow"><span />{ar ? 'طبيب · مؤسس · مهندس حلول صحية' : 'Physician · Founder · Healthcare builder'}</div>
-            <h1 id="profile-title">{ar ? 'تكنولوجيا صحية تصنعها أيدي الأطباء.' : 'Healthcare technology, built by the physician.'}</h1>
+            <div className="profile-eyebrow"><span />{ar ? 'طبيب · مؤسس · يشق طريقه في التقنية الصحية' : 'Physician · Founder · Healthcare builder'}</div>
+            <h1 id="profile-title">{ar ? 'تقنية صحية من يد الطبيب، لكل طبيب.' : 'Healthcare technology, built by physicians.'}</h1>
             <p className="profile-lead">
               {ar
-                ? 'أنا د. محمد الفاضل، مؤسس BrainSAIT في الرياض. حول خبرة الطوارئ والعناية المركزة والمطالبات إلى بنية تحتية صحية قابلة للتحقق — من هوية مقدم الرعاية إلى الذكاء الاصطناعي السريري، كل أداة مصممة لتمنح الطبيب السيطرة.'
+                ? 'أنا د. محمد الفاضل، مؤسس BrainSAIT في الرياض. حولت خبرة الطوارئ والعناية المركزة والمطالبات إلى بنية تحتية صحية قابلة للتحقق — من هوية مقدم الرعاية إلى الذكاء الاصطناعي السريري. كل أداة صممت لتعيد السيطرة للطبيب.'
                 : 'I’m Dr. Mohamed El Fadil, founder of BrainSAIT in Riyadh. I turn emergency, critical-care and claims experience into verifiable healthcare infrastructure—from provider identity to clinical AI—every tool built to put the physician in control.'}
             </p>
             <div className="profile-actions">
@@ -163,14 +163,14 @@ export default function Home() {
           <div>
             <h2>{ar ? 'الطبيب يقرر — والهندسة تكسب الثقة.' : 'The physician decides. Engineering earns the trust.'}</h2>
             <p>{ar
-              ? 'من غرفة الطوارئ إلى مكتب المطالبات، رأيت المشكلة نفسها: أنظمة صُممت حول الجميع باستثناء الطبيب الذي يتخذ القرار. لذلك أبني أدوات تجعل الهوية والبيانات والمساءلة طبقة واحدة مترابطة — صحية أولًا، قابلة للتحقق دائمًا.'
+              ? 'من غرفة الطوارئ إلى مكتب المطالبات، رأيت المشكلة نفسها: أنظمة صُممت حول الجميع باستثناء الطبيب الذي يتخذ القرار. इसलिए أبني أدوات تجعل الهوية والبيانات والمساءلة طبقة واحدة مترابطة — صحية أولًا، قابلة للتحقق دائمًا.'
               : 'From the emergency room to the claims desk, I found the same problem: systems designed around everyone except the physician making the call. I build tools where identity, data and accountability form one connected layer—healthcare first, verifiable always.'}</p>
           </div>
         </section>
 
         <section className="profile-section" id="work">
           <div className="profile-section-heading">
-            <div><div className="profile-section-label">02 · {ar ? 'أعمال مختارة' : 'Selected work'}</div><h2>{ar ? 'من السرير إلى النظام — وكله مصنوع للتحقق.' : 'From bedside to system. Everything built to be verified.'}</h2></div>
+            <div><div className="profile-section-label">02 · {ar ? 'أعمال مختارة' : 'Selected work'}</div><h2>{ar ? 'من السرير إلى النظام. كل أداة مصممة لتكون موضع ثقة وتحقيق.' : 'From bedside to system. Every tool built to be trusted and verified.'}</h2></div>
             <a href="https://github.com/Fadil369" target="_blank" rel="noreferrer">{ar ? 'كل المستودعات' : 'All repositories'}<ArrowUpRight size={16} /></a>
           </div>
           <div className="profile-projects">
@@ -190,7 +190,7 @@ export default function Home() {
         <section className="profile-feature profile-feature-live">
           <div>
             <div className="profile-section-label">BPR · BrainSAIT</div>
-            <h2>{ar ? 'هوية واحدة. يمكن لأي شخص التحقق منها.' : 'One identity. Anyone can check it.'}</h2>
+            <h2>{ar ? 'هوية واحدة. يمكنك التحقق منها بنفسك.' : 'One identity. You can verify it yourself.'}</h2>
             <p>{ar
               ? 'هذه حالتي في سجل BPR، تُقرأ مباشرة من السجل. كل بُعد منفصل — وما لم يُقيَّم بعد يظهر كما هو، لا أكثر ولا أقل.'
               : 'This is my state in the BPR registry, read live from the registry. Each dimension is separate — and what has not been assessed yet shows as exactly that, nothing more, nothing less.'}</p>
@@ -207,7 +207,7 @@ export default function Home() {
 
         <section className="profile-section" id="journey">
           <div className="profile-section-label">03 · {ar ? 'المسار' : 'The journey'}</div>
-          <div className="profile-section-heading"><h2>{ar ? 'كل نتيجة سريرية صارت متطلبات منتج.' : 'Every clinical outcome became a product requirement.'}</h2></div>
+          <div className="profile-section-heading"><h2>{ar ? 'كل لحظة سريرية صارت متطلبًا منتجًا.' : 'Every clinical moment became a product requirement.'}</h2></div>
           <div className="profile-journey">
             {journey.map(item => (
               <article key={item.years}>
@@ -221,7 +221,7 @@ export default function Home() {
 
         <section className="profile-section" id="research">
           <div className="profile-section-label">04 · {ar ? 'بحث وكتابة' : 'Research & writing'}</div>
-          <div className="profile-section-heading"><h2>{ar ? 'بحث يُنسب إلى صاحبه بدليل.' : 'Research, traced to its author.'}</h2></div>
+          <div className="profile-section-heading"><h2>{ar ? 'بحث يعود بأثره إلى صاحبه بدليل.' : 'Research, traced to its author with proof.'}</h2></div>
           <div className="profile-research-grid">
             <a className="profile-paper" href="https://doi.org/10.5281/zenodo.23606022" target="_blank" rel="noreferrer">
               <BookOpen size={28} /><span className="profile-paper-meta">ZENODO · V1.2 · 2026</span>
@@ -246,8 +246,8 @@ export default function Home() {
         </section>
 
         <section className="profile-contact" id="contact">
-          <div><div className="profile-section-label">05 · {ar ? 'لنتحدث' : 'Start a conversation'}</div><h2>{ar ? 'تبني شيئًا مع الممارسين الصحيين؟ دعنا نبنيه.' : 'Building with clinicians? Let’s build it.'}</h2></div>
-          <p>{ar ? 'أعمل مع المستشفيات وفرق التقنية الصحية والمستثمرين في السعودية والخليج وأفريقيا — لبناء أدوات صحية يمكن التحقق منها فعليًا.' : 'I work with hospitals, health-tech teams and investors across Saudi Arabia, the Gulf and Africa—building healthcare tools you can actually verify.'}</p>
+          <div><div className="profile-section-label">05 · {ar ? 'لنتحدث' : 'Start a conversation'}</div><h2>{ar ? 'تبني شيئًا مع الممارسين الصحيين؟ دعنا نبنيه معًا.' : 'Building with clinicians? Let’s build it together.'}</h2></div>
+          <p>{ar ? 'أعمل مع المستشفيات وفرق التقنية الصحية والمستثمرين في السعودية والخليج وأفريقيا — لبناء أدوات صحية يمكن التحقق منها فعليًا، وتُعيد السيطرة للطبيب.' : 'I work with hospitals, health-tech teams and investors across Saudi Arabia, the Gulf and Africa—building healthcare tools you can actually verify, and that put control back in the physician’s hands.'}</p>
           <div className="profile-actions">
             <a className="profile-button primary" href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">{ar ? 'احجز مكالمة الآن' : 'Book a call now'}<ArrowUpRight size={17} /></a>
             <a className="profile-button secondary" href="mailto:elfadil369@icloud.com">{ar ? 'راسلني' : 'Email me'}</a>
