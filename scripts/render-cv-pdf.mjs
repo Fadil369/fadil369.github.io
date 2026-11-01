@@ -22,6 +22,9 @@ for (const [lang, file] of OUT) {
   await page.goto(`${base}${lang === 'ar' ? '/ar' : ''}/cv/`, { waitUntil: 'networkidle' });
   await page.waitForSelector('.cv-identity-qr svg', { timeout: 15000 });
   await page.evaluate(() => document.fonts.ready);
+  // Web fonts can arrive late; a PDF printed with fallback fonts looks wrong, so insist they loaded.
+  const fontsOk = await page.waitForFunction(() => [...document.fonts].filter((f) => f.status === 'loaded').length >= 3 && document.fonts.status === 'loaded', null, { timeout: 20000 }).then(() => true, () => false);
+  if (!fontsOk) { console.error(`cv-pdf: ${lang} web fonts did not load — not written`); failed = true; await ctx.close(); continue; }
   const pdf = await page.pdf({ preferCSSPageSize: true, printBackground: true });
   const pages = (pdf.toString('latin1').match(/\/Type\s*\/Page[^s]/g) || []).length;
   if (pages !== 1) { console.error(`cv-pdf: ${lang} rendered ${pages} pages — not written`); failed = true; await ctx.close(); continue; }
