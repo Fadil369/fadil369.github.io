@@ -13,12 +13,12 @@ const experience = [
     dates: '2019 — Present', datesAr: '2019 — الآن', role: 'Founder & Chief Executive Officer', roleAr: 'المؤسس والرئيس التنفيذي', org: 'BrainSAIT Ltd · Riyadh',
     points: [
       'Build AI-native healthcare infrastructure spanning provider identity, interoperability, clinical intelligence and revenue-cycle tools.',
-      'Develop FHIR R4 / HL7 interoperability and NPHIES-focused claims workflows with bilingual English/Arabic delivery.',
+      'Develop FHIR R4 / HL7 interoperability and bilingual claims workflows; NPHIES integration is ongoing.',
       'Published brainsait-pyheart and brainsait-pybrain as open-source Python packages.',
     ],
     pointsAr: [
       'بناء بنية صحية أصيلة في الذكاء الاصطناعي تشمل هوية مقدمي الرعاية والتشغيل البيني والذكاء السريري وأدوات دورة الإيرادات.',
-      'تطوير التشغيل البيني عبر FHIR R4 وHL7 ومسارات مطالبات موجهة لـNPHIES بتسليم ثنائي اللغة.',
+      'تطوير التشغيل البيني عبر FHIR R4 وHL7 ومسارات مطالبات ثنائية اللغة؛ والتكامل مع نفيس جارٍ.',
       'نشر حزمتي brainsait-pyheart وbrainsait-pybrain مفتوحتي المصدر عبر Python.',
     ],
   },
@@ -55,7 +55,8 @@ const experience = [
 const capabilities = [
   ['Revenue cycle & claims review', 'دورة الإيرادات ومراجعة المطالبات'],
   ['Healthcare quality improvement', 'تحسين جودة الرعاية الصحية'],
-  ['FHIR R4 · HL7 · NPHIES', 'FHIR R4 · HL7 · NPHIES'],
+  ['FHIR R4 · HL7', 'FHIR R4 · HL7'],
+  ['NPHIES · Ongoing integration', 'نفيس · تكامل جارٍ'],
   ['Clinical AI & decision support', 'الذكاء السريري ودعم القرار'],
   ['Provider identity & verification', 'هوية مقدمي الرعاية والتحقق'],
   ['Bilingual product leadership', 'قيادة المنتجات ثنائية اللغة'],

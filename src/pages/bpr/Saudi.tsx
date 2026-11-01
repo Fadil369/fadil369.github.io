@@ -47,9 +47,9 @@ export default function Saudi() {
       lead={ar
         ? 'كيف يمنح BPR كل جهة صحية في المملكة هوية مهنية موثوقة لكوادرها — وما الذي يفتحه كل تكامل من قيمة.'
         : 'How BPR gives every Saudi health organisation trusted professional identity for its workforce — and what each integration unlocks.'}
-      actions={<Link className="profile-button primary" to="/bpr/record">{ar ? 'شاهد سجلًا حيًا' : 'See a live record'}<ArrowRight size={16} /></Link>}>
+      actions={<><Link className="profile-button primary" to="/bpr/developers">{ar ? 'استكشف واجهات التكامل' : 'Explore integration APIs'}<ArrowRight size={16} /></Link><Link className="profile-button secondary" to="/slots">{ar ? 'الشواغر المباشرة' : 'Live hospital slots'}<ArrowRight size={16} /></Link></>}>
       <section className="ksa-today">
-        <div><span className="ws-status live">{ar ? 'يعمل اليوم' : 'Live today'}</span><p>{ar ? 'اعتماد W3C موقّع يُتحقق منه من أي هاتف · سجل شفاف عام · واجهة FHIR R4 · OpenEMR لكل مقدم رعاية مع مساعد سريري بالعربية أولاً' : 'Signed W3C credential verifiable on any phone · public transparency log · FHIR R4 API · per-provider OpenEMR with an Arabic-first clinical Copilot'}</p></div>
+        <div><span className="ws-status live">{ar ? 'يعمل اليوم' : 'Live today'}</span><p>{ar ? 'اعتماد W3C موقّع يُتحقق منه من أي هاتف · سجل شفاف عام · واجهة FHIR R4 · مساحة OpenEMR خاصة لكل مقدم رعاية · شواغر مستشفيات مباشرة' : 'Signed W3C credential verifiable on any phone · public transparency log · FHIR R4 API · private per-provider OpenEMR workspace · live hospital vacancy slots'}</p></div>
         <div><span className="ws-status awaiting">{ar ? 'تكامل جارٍ' : 'Ongoing integration'}</span><p>{ar ? 'التحقق من اعتمادات الهيئة السعودية للتخصصات الصحية' : 'SCFHS credential verification'}</p></div>
         <div><span className="ws-status awaiting">{ar ? 'تكامل جارٍ' : 'Ongoing integration'}</span><p>{ar ? 'التكامل مع نفيس' : 'NPHIES integration'}</p></div>
       </section>

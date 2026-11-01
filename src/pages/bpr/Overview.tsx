@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Activity, LayoutGrid, ArrowRight, ArrowUpRight, BadgeCheck, Braces, Calculator, Check, FlaskConical, Fingerprint, KeyRound, Link2, Network, Search, Server, ShieldCheck, Stethoscope, Users } from 'lucide-react';
+import { CalendarClock, LayoutGrid, ArrowRight, ArrowUpRight, BadgeCheck, Braces, BookOpenCheck, Calculator, Check, FlaskConical, Fingerprint, GraduationCap, HeartHandshake, Hourglass, KeyRound, Link2, Network, Search, Server, ShieldCheck, Shuffle, Stethoscope, Users, UsersRound } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout, CheckRow, SourceBadge, valueLabel, WorkspaceBand } from '../../components/BprKit';
@@ -8,29 +8,49 @@ import { checkCredential, CredentialResult, LedgerResult, ProviderList, REGISTRY
 
 const SPID = 'SA-PHY-000003';
 
+type ModuleStatus = 'live' | 'awaiting' | 'planned';
+const STATUS_LABEL: Record<ModuleStatus, [string, string]> = {
+  live: ['Live today', 'يعمل اليوم'],
+  awaiting: ['Ongoing integration', 'تكامل جارٍ'],
+  planned: ['Coming next', 'قادمًا'],
+};
+const TIER_ORDER: ModuleStatus[] = ['live', 'awaiting', 'planned'];
+
 // Every module below runs today on registry.brainsait.de. "here" = rebuilt as a page on this site;
 // members-only tools stay on the registry, behind its sign-in.
 const MODULES = [
-  { icon: LayoutGrid, to: '/bpr/workspace', en: 'Provider workspace', ar: 'مساحة عمل مقدم الرعاية', tag: 'OpenEMR · Copilot · Arabic voice',
-    enText: 'Own EMR, a clinical copilot with Arabic dictation, FHIR, specialty tools and research — with what is live and what is planned stated per feature.', arText: 'سجل طبي خاص ومساعد سريري بإملاء عربي وFHIR وأدوات التخصص والبحث — مع بيان ما يعمل وما هو مخطط لكل ميزة.' },
-  { icon: KeyRound, to: '/bpr/verify', en: 'Signed credentials', ar: 'شهادات موقّعة', tag: 'W3C VC 2.0 · Ed25519',
+  { icon: LayoutGrid, to: '/bpr/workspace', status: 'live' as ModuleStatus, en: 'Provider workspace', ar: 'مساحة عمل مقدم الرعاية', tag: 'OpenEMR · Copilot · Arabic voice',
+    enText: 'Own EMR, a clinical copilot with Arabic dictation, FHIR, specialty tools and research — each feature marked live, ongoing or planned.', arText: 'سجل طبي خاص ومساعد سريري بإملاء عربي وFHIR وأدوات التخصص والبحث — مع بيان ما يعمل وما هو جارٍ وما هو قادم لكل ميزة.' },
+  { icon: KeyRound, to: '/bpr/verify', status: 'live' as ModuleStatus, en: 'Signed credentials', ar: 'شهادات موقّعة', tag: 'W3C VC 2.0 · Ed25519',
     enText: 'Check a registry-signed credential on your own device — no account, nothing uploaded.', arText: 'تحقق من شهادة موقّعة من السجل على جهازك — دون حساب ودون رفع أي شيء.' },
-  { icon: Link2, to: '/bpr/ledger', en: 'Transparency log', ar: 'السجل الشفاف', tag: 'Append-only · signed head',
+  { icon: Link2, to: '/bpr/ledger', status: 'live' as ModuleStatus, en: 'Transparency log', ar: 'السجل الشفاف', tag: 'Append-only · signed head',
     enText: 'Every issue, renewal and revocation is a line in a public hash chain your browser replays.', arText: 'كل إصدار وتجديد وإلغاء سطر في سلسلة تجزئة عامة يعيد متصفحك التحقق منها.' },
-  { icon: Fingerprint, to: '/bpr/providers', en: 'Provider directory', ar: 'دليل مقدمي الرعاية', tag: 'SPID · OID 1.3.6.1.4.1.61026',
+  { icon: Fingerprint, to: '/bpr/providers', status: 'live' as ModuleStatus, en: 'Provider directory', ar: 'دليل مقدمي الرعاية', tag: 'SPID · OID 1.3.6.1.4.1.61026',
     enText: 'Permanent provider IDs with every trust dimension shown separately — never blended into one badge.', arText: 'معرّفات دائمة لمقدمي الرعاية مع عرض كل بُعد للثقة بشكل منفصل — دون دمجها في شارة واحدة.' },
-  { icon: FlaskConical, to: '/bpr/research', en: 'Research footprint', ar: 'البصمة البحثية', tag: 'ORCID × Zenodo × Hugging Face',
+  { icon: FlaskConical, to: '/bpr/research', status: 'live' as ModuleStatus, en: 'Research footprint', ar: 'البصمة البحثية', tag: 'ORCID × Zenodo × Hugging Face',
     enText: 'Works matched by DOI across three sources; counted only when the publisher names the ORCID iD.', arText: 'أعمال مطابقة عبر DOI من ثلاثة مصادر؛ تُحتسب فقط عندما يذكر الناشر معرّف ORCID.' },
-  { icon: Braces, to: '/bpr/developers', en: 'FHIR R4 & public API', ar: 'FHIR R4 والواجهة العامة', tag: 'Interoperability',
+  { icon: Braces, to: '/bpr/developers', status: 'live' as ModuleStatus, en: 'FHIR R4 & public API', ar: 'FHIR R4 والواجهة العامة', tag: 'Interoperability',
     enText: 'Practitioner, PractitionerRole and Organization resources, plus a JSON API — public fields only.', arText: 'موارد Practitioner وPractitionerRole وOrganization وواجهة JSON — بيانات عامة فقط.' },
-  { icon: Activity, to: '/bpr/status', en: 'Operations status', ar: 'حالة التشغيل', tag: 'Health verdict',
-    enText: 'The registry’s own health verdict: sites, backups, key, ledger and consistency checks.', arText: 'حكم السجل على صحته: المواقع والنسخ الاحتياطية والمفتاح والسجل الشفاف واتساق البيانات.' },
-  { icon: Users, to: '/bpr/join', en: 'Onboarding', ar: 'الانضمام', tag: 'One question per slide',
+  { icon: CalendarClock, to: '/slots', status: 'live' as ModuleStatus, en: 'Live hospital slots', ar: 'شواغر المستشفيات المباشرة', tag: 'Open opportunities · live API',
+    enText: 'Browse published opportunities, compare integration and monthly fees, and submit a request with your SPID.', arText: 'تصفّح الفرص المنشورة وقارن رسوم التكامل والاشتراك الشهري ثم أرسل طلبك بمعرّف SPID.' },
+  { icon: Users, to: '/bpr/join', status: 'live' as ModuleStatus, en: 'Onboarding', ar: 'الانضمام', tag: 'One question per slide',
     enText: 'Arabic-first wizard, ORCID sign-in and reviewed documents that become verified qualifications.', arText: 'معالج عربي أولاً وتسجيل دخول عبر ORCID ومستندات تُراجع لتصبح مؤهلات موثّقة.' },
-  { icon: Calculator, href: `${REGISTRY}/tools.php`, en: 'Specialty toolkit', ar: 'أدوات التخصص', tag: 'Members',
+  { icon: Calculator, href: `${REGISTRY}/tools.php`, status: 'live' as ModuleStatus, en: 'Specialty toolkit', ar: 'أدوات التخصص', tag: 'Members',
     enText: 'Checklists, templates and clinical calculators matched to the specialty. Members only, on the registry.', arText: 'قوائم تحقق وقوالب وحاسبات سريرية حسب التخصص. للأعضاء فقط، على السجل.' },
-  { icon: Server, href: 'https://emr.brainsait.de/', en: 'Personal EMR', ar: 'سجل طبي شخصي', tag: 'Members · OpenEMR',
-    enText: 'An isolated OpenEMR instance per provider on its own subdomain, database and TLS.', arText: 'نسخة OpenEMR معزولة لكل مقدم رعاية بنطاق فرعي وقاعدة بيانات وشهادة TLS خاصة.' },
+  { icon: Server, to: '/bpr/workspace', status: 'live' as ModuleStatus, en: 'Private clinical workspace', ar: 'مساحة سريرية خاصة', tag: 'Members · OpenEMR',
+    enText: 'A provisioned OpenEMR workspace per provider, with a separate subdomain, database and TLS. Access is for members, not a public demo.', arText: 'مساحة OpenEMR مخصصة لكل مقدم رعاية بنطاق فرعي وقاعدة بيانات وشهادة TLS مستقلة. الوصول للأعضاء، وليست نسخة تجريبية عامة.' },
+  { icon: Network, to: null as unknown as string, status: 'awaiting' as ModuleStatus, en: 'NPHIES integration', ar: 'التكامل مع نفيس', tag: 'Eligibility · claims · pre-authorisation',
+    enText: 'NPHIES eligibility, pre-authorisation and claims from the workspace — integration is ongoing.', arText: 'الأهلية والموافقات المسبقة والمطالبات من مساحة العمل من خلال تكامل نفيس — والتكامل جارٍ.' },
+  { icon: BookOpenCheck, to: null as unknown as string, status: 'awaiting' as ModuleStatus, en: 'SCFHS credential check', ar: 'التحقق من اعتماد الهيئة', tag: 'Licence · qualifications',
+    enText: 'Licence and qualifications read directly from the Saudi Commission for Health Specialties. Integration is ongoing; until it goes live they show as “not assessed”.', arText: 'قراءة الترخيص والمؤهلات مباشرة من الهيئة السعودية للتخصصات الصحية. التكامل جارٍ، وإلى أن يكتمل تظهر «لم تُقيَّم».' },
+  { icon: HeartHandshake, to: null as unknown as string, status: 'planned' as ModuleStatus, en: 'Peer-to-peer review', ar: 'مراجعة الأقران', tag: 'Case & note review',
+    enText: 'Structured case and note reviews between providers, recorded against each provider’s BPR identity.', arText: 'مراجعات منظمة للحالات والملاحظات بين مقدمي الرعاية، تُسجَّل على هوية BPR لكل منهم.' },
+  { icon: UsersRound, to: null as unknown as string, status: 'planned' as ModuleStatus, en: 'Your care team', ar: 'فريق الرعاية الخاص بك', tag: 'Roles · access',
+    enText: 'Onboard nurses, therapists, receptionists and more — each with their own role and access.', arText: 'أضف ممرضين وأخصائيين وموظفين إلى مساحة عملك، لكل منهم دوره وصلاحياته.' },
+  { icon: GraduationCap, to: null as unknown as string, status: 'planned' as ModuleStatus, en: 'Mentoring & training', ar: 'الإرشاد والتدريب', tag: 'Rotations · teaching',
+    enText: 'Mentor colleagues and run training sessions using the same tools, calculators and cases.', arText: 'أرشد الزملاء وأدر جلسات تدريبية باستخدام الأدوات والحاسبات والحالات نفسها.' },
+  { icon: Shuffle, to: null as unknown as string, status: 'planned' as ModuleStatus, en: 'Shift matching', ar: 'تغطية المناوبات والمطابقة الذكية', tag: 'Slots · rotations',
+    enText: 'Publish a shift you need covered and match it automatically to a suitable provider profile.', arText: 'انشر مناوبة تحتاج إلى تغطيتها وطابقها تلقائيًا مع ملف مقدم الرعاية المناسب.' },
 ];
 
 export default function Overview() {
@@ -61,9 +81,10 @@ export default function Overview() {
       title={ar ? 'هوية مهنية واحدة موثوقة، يتحقق منها أي شخص.' : 'One trusted identity. Anyone can check it.'}
       lead={ar
         ? 'يمنح BPR كل ممارس صحي معرّفًا دائمًا واعتمادًا موقّعًا رقميًا يتحقق منه أي مستشفى أو جهة دافعة أو مريض في ثوانٍ، من أي هاتف، دون حساب. لا تثق بكلامنا — هذه الصفحة تتحقق بنفسها أمامك.'
-        : 'BPR gives every healthcare professional a permanent ID and a digitally signed credential that any hospital, payer or patient can check in seconds — on any phone, no account needed. Don’t take our word for it: this page verifies itself, live, in front of you.'}
+        : 'BPR gives every healthcare professional a permanent ID and a digitally signed credential any hospital, payer or patient can check in seconds — on any phone, no account needed. Don’t take our word for it: this page verifies itself, live, in front of you.'}
       actions={<>
         <Link className="profile-button primary" to="/bpr/providers">{ar ? 'تصفح الدليل' : 'Browse the directory'}<ArrowRight size={16} /></Link>
+        <a className="profile-button secondary" href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">{ar ? 'احجز عرضًا توضيحيًا مباشرًا' : 'Book a live demo'}<ArrowRight size={16} /></a>
         <Link className="profile-button secondary" to="/bpr/join">{ar ? 'انضم إلى BPR' : 'Join BPR'}<ArrowRight size={16} /></Link>
       </>}
     >
@@ -74,6 +95,13 @@ export default function Overview() {
         <div><span>{ar ? 'ORCID مؤكد' : 'ORCID confirmed'}</span><strong>{list.state === 'ready' ? linked : '…'}</strong><small>{ar ? 'من الدليل' : 'from the directory'}</small></div>
         <div><span>{ar ? 'شهادات موقّعة سارية' : 'Current signed credentials'}</span><strong>{list.state === 'ready' ? signed : '…'}</strong><small>W3C VC · EdDSA</small></div>
         <div><span>{ar ? 'أسطر السجل الشفاف' : 'Ledger entries'}</span><strong>{ledger ? ledger.head.size : '…'}</strong>{ledger && <SourceBadge source={ledger.source} />}</div>
+      </section>
+
+      <section className="bpr-live-strip" aria-label={ar ? 'أدوات BPR حسب الحالة' : 'BPR tools by status'}>
+        <div><span>{ar ? 'أدوات تعمل اليوم' : 'Tools live today'}</span><strong>{MODULES.filter((m) => m.status === 'live').length}</strong><small>{ar ? 'مباشرة على الموقع' : 'live on this site'}</small></div>
+        <div><span>{ar ? 'تكامل جارٍ' : 'Ongoing integration'}</span><strong>{MODULES.filter((m) => m.status === 'awaiting').length}</strong><small>{ar ? 'يُبنى الآن' : 'being built'}</small></div>
+        <div><span>{ar ? 'قادمًا' : 'Coming next'}</span><strong>{MODULES.filter((m) => m.status === 'planned').length}</strong><small>{ar ? 'في الخطة القادمة' : 'on the roadmap'}</small></div>
+        <div><span>{ar ? 'إجمالي الأدوات' : 'Total tools'}</span><strong>{MODULES.length}</strong><small>{ar ? 'في أدوات BPR' : 'in the BPR toolkit'}</small></div>
       </section>
 
       <section className="bpr-split">
@@ -102,19 +130,32 @@ export default function Overview() {
 
       <section className="bpr-section">
         <div className="profile-section-label">01 · {ar ? 'التطبيقات' : 'The apps'}</div>
-        <h2 className="bpr-h2">{ar ? 'كل ما في BPR — على هذا الموقع.' : 'Everything BPR does — on this site.'}</h2>
-        <div className="bpr-module-grid">
-          {MODULES.map(({ icon: Icon, ...m }) => {
-            const body = <>
-              <div className="bpr-module-top"><Icon size={24} /><small>{m.tag}</small></div>
-              <h3>{ar ? m.ar : m.en}</h3><p>{ar ? m.arText : m.enText}</p>
-              <strong>{m.to ? (ar ? 'افتح' : 'Open') : (ar ? 'على السجل' : 'On the registry')}{m.to ? <ArrowRight size={14} /> : <ArrowUpRight size={14} />}</strong>
-            </>;
-            return m.to
-              ? <Link key={m.en} to={m.to} className="bpr-module">{body}</Link>
-              : <a key={m.en} href={m.href} target="_blank" rel="noreferrer" className="bpr-module members">{body}</a>;
-          })}
-        </div>
+        <h2 className="bpr-h2">{ar ? 'كل أداة في BPR — وما يعمل منها اليوم.' : 'Every BPR tool — and what runs today.'}</h2>
+        {TIER_ORDER.map((status) => {
+          const tier = MODULES.filter((m) => m.status === status);
+          if (!tier.length) return null;
+          const [labelEn, labelAr] = STATUS_LABEL[status];
+          return (
+            <section key={status} className="bpr-tier">
+              <div className="bpr-tier-head">
+                <span className={`bpr-tier-badge ${status}`}>{ar ? labelAr : labelEn}</span>
+                <span className="bpr-tier-count">{tier.length} {ar ? 'أداة' : 'tool'}{tier.length !== 1 ? (ar ? 'أدوات' : 's') : ''}</span>
+              </div>
+              <div className="bpr-module-grid">
+                {tier.map(({ icon: Icon, ...m }) => {
+                  const body = <>
+                    <div className="bpr-module-top"><Icon size={24} /><span className={`bpr-chip ${status}`}>{ar ? labelAr : labelEn}</span></div>
+                    <h3>{ar ? m.ar : m.en}</h3><p>{ar ? m.arText : m.enText}</p>
+                    {m.to || m.href ? <strong>{(ar ? 'افتح' : 'Open')}{m.to ? <ArrowRight size={14} /> : <ArrowUpRight size={14} />}</strong> : <strong className="bpr-chip-unavailable">{ar ? 'لا يزال يُبنى' : 'Being built'}</strong>}
+                  </>;
+                  if (m.to) return <Link key={m.en} to={m.to} className={`bpr-module ${status}`}>{body}</Link>;
+                  if (m.href) return <a key={m.en} href={m.href} target="_blank" rel="noreferrer" className={`bpr-module members ${status}`}>{body}</a>;
+                  return <div key={m.en} className={`bpr-module ${status} bpr-module-planned`}>{body}</div>;
+                })}
+              </div>
+            </section>
+          );
+        })}
       </section>
 
       <section className="bpr-architecture">

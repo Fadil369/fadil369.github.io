@@ -10,8 +10,9 @@ import '../styles/bpr.css';
 const NAV = [
   { to: '/bpr', end: true, en: 'Overview', ar: 'نظرة عامة' },
   { to: '/bpr/workspace', en: 'Workspace', ar: 'مساحة العمل' },
-  { to: '/bpr/saudi', en: 'Saudi', ar: 'المملكة' },
   { to: '/bpr/providers', en: 'Directory', ar: 'الدليل' },
+  { to: '/slots', en: 'Hospital slots', ar: 'شواغر المستشفيات' },
+  { to: '/bpr/saudi', en: 'For organizations', ar: 'للمؤسسات' },
   { to: '/bpr/verify', en: 'Verify', ar: 'التحقق' },
   { to: '/bpr/ledger', en: 'Ledger', ar: 'السجل الشفاف' },
   { to: '/bpr/research', en: 'Research', ar: 'البحث' },
@@ -50,13 +51,16 @@ function BprFooter() {
   const { ar } = useI18n();
   const m = useManifest();
   return (
-    <footer className="profile-footer bpr-footer">
-      <span>© {new Date().getFullYear()} BrainSAIT · BPR</span>
-      <div>
-        <a href={REGISTRY} target="_blank" rel="noreferrer">registry.brainsait.de <ArrowUpRight size={12} /></a>
-        <Link to="/">{ar ? 'الملف المهني' : 'Profile'}</Link>
+    <footer className="bpr-footer">
+      <div className="bpr-footer-main">
+        <div className="bpr-footer-brand"><strong>BPR</strong><p>{ar ? 'هوية مهنية موقّعة، وأدوات سريرية مترابطة، ودليل عام يمكن التحقق منه — مصنوع للممارسين الصحيين.' : 'Signed professional identity, connected clinical tools and a public directory anyone can verify — built for healthcare professionals.'}</p></div>
+        <nav aria-label={ar ? 'روابط BPR في التذييل' : 'BPR footer navigation'}>
+          <div><strong>{ar ? 'استكشف' : 'Explore'}</strong><Link to="/bpr/providers">{ar ? 'دليل مقدمي الرعاية' : 'Provider directory'}</Link><Link to="/slots">{ar ? 'شواغر المستشفيات' : 'Hospital slots'}</Link><Link to="/bpr/research">{ar ? 'البصمة البحثية' : 'Research footprint'}</Link></div>
+          <div><strong>{ar ? 'ابنِ وتحقق' : 'Build & verify'}</strong><Link to="/bpr/verify">{ar ? 'التحقق العام' : 'Public verification'}</Link><Link to="/bpr/developers">FHIR & API</Link><Link to="/bpr/workspace">{ar ? 'مساحة العمل' : 'Provider workspace'}</Link></div>
+          <div><strong>BrainSAIT</strong><Link to="/">{ar ? 'الملف المهني' : 'Professional profile'}</Link><a href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">Book via Google Calendar <ArrowUpRight size={12} /></a><Link to="/bpr/join">{ar ? 'انضم إلى BPR' : 'Join BPR'}</Link><a href={REGISTRY} target="_blank" rel="noreferrer">registry.brainsait.de <ArrowUpRight size={12} /></a></div>
+        </nav>
       </div>
-      <span className="bpr-footer-snap">{m ? `${ar ? 'لقطة احتياطية دون اتصال' : 'Offline fallback snapshot'} · ${fmtDate(m.snapshotAt, ar, true)}` : ''}</span>
+      <div className="bpr-footer-base"><span>© {new Date().getFullYear()} BrainSAIT · BPR</span><span className="bpr-footer-snap">{m ? `${ar ? 'لقطة دون اتصال' : 'Offline snapshot'} · ${fmtDate(m.snapshotAt, ar, true)}` : ''}</span></div>
     </footer>
   );
 }
@@ -189,9 +193,9 @@ export function ScfhsPending({ compact = false }: { compact?: boolean }) {
 /** Compact pointer to the provider workspace; live and planned capabilities stay visibly separate. */
 export function WorkspaceBand() {
   const { ar } = useI18n();
-  const live = ar ? ['OpenEMR خاص ومخصص', 'مساعد سريري بـ14 مهارة', 'إملاء صوتي عربي', 'FHIR R4', 'الحاسبات والنماذج', 'صفحة البحث'] : ['Own customised OpenEMR', '14-skill Copilot', 'Arabic voice-to-text', 'FHIR R4', 'Calculators & forms', 'Research page'];
+  const live = ar ? ['مساحة OpenEMR خاصة', 'مساعد سريري بـ14 مهارة', 'إملاء صوتي عربي', 'FHIR R4', 'الحاسبات والنماذج', 'صفحة البحث'] : ['Private OpenEMR workspace', '14-skill Copilot', 'Arabic voice-to-text', 'FHIR R4', 'Calculators & forms', 'Research page'];
   const ongoing = ar ? ['التحقق من اعتماد الهيئة', 'نفيس'] : ['SCFHS credential check', 'NPHIES'];
-  const planned = ar ? ['مراجعة الأقران', 'فريقك', 'الإرشاد والتدريب', 'الفترات المتاحة', 'المطابقة'] : ['Peer review', 'Your team', 'Mentoring & training', 'Open slots', 'Matching'];
+  const planned = ar ? ['مراجعة الأقران', 'فريقك', 'الإرشاد والتدريب', 'مطابقة المناوبات'] : ['Peer review', 'Your team', 'Mentoring & training', 'Shift matching'];
   return (
     <section className="ws-band" aria-label={ar ? 'مساحة عمل مقدم الرعاية' : 'Provider workspace'}>
       <LayoutGrid size={26} aria-hidden="true" />

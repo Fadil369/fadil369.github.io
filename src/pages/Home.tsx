@@ -20,8 +20,8 @@ const projects = [
     name: 'BPR — Provider Registry',
     url: '/bpr',
     icon: Fingerprint,
-    en: 'A signed, portable provider identity connecting credentials, research and clinical tools.',
-    ar: 'هوية موقّعة وقابلة للنقل لمقدم الرعاية، تربط الاعتمادات والأبحاث والأدوات السريرية.',
+    en: 'Signed, portable provider identity connecting credentials, research and clinical tools — verified on any device.',
+    ar: 'هوية موقّعة وقابلة للنقل لمقدم الرعاية، تربط الاعتمادات والأبحاث والأدوات السريرية — تُتحقق من أي جهاز.',
     tags: ['Ed25519', 'W3C VC', 'FHIR R4'],
   },
   {
@@ -36,15 +36,14 @@ const projects = [
     name: 'BrainSAIT RCM',
     url: 'https://github.com/Fadil369/brainsait-rcm',
     icon: HeartPulse,
-    en: 'Saudi claims intelligence, rejection management and revenue-cycle automation.',
-    ar: 'ذكاء المطالبات السعودية وإدارة الرفض وأتمتة دورة الإيرادات.',
-    tags: ['NPHIES', 'Claims', 'TypeScript'],
-  },
-  {
+    en: 'Saudi claims intelligence, rejection management and revenue-cycle automation — NPHIES integration ongoing.',
+    ar: 'ذكاء المطالبات السعودية وإدارة الرفض وأتمتة دورة الإيرادات — التكامل مع نفيس جارٍ.',
+    tags: ['NPHIES · ongoing', 'Claims', 'TypeScript'],
+  },  {
     name: 'Healthcare MCP',
     url: 'https://github.com/Fadil369/brainsait-mcp-dxt',
     icon: Braces,
-    en: 'Auditable healthcare connectors that give AI assistants controlled FHIR capabilities.',
+    en: 'Auditable healthcare connectors giving AI assistants controlled FHIR capabilities.',
     ar: 'موصلات صحية قابلة للتدقيق تمنح المساعدات الذكية قدرات FHIR منضبطة.',
     tags: ['MCP', 'Audit', 'FHIR R4'],
   },
@@ -88,8 +87,8 @@ export default function Home() {
   usePageMeta({
     title: ar ? 'د. محمد الفاضل — طبيب ومؤسس BrainSAIT' : 'Dr. Mohamed El Fadil — Physician & Healthcare AI Founder',
     description: ar
-      ? 'طبيب ومؤسس BrainSAIT في الرياض. أبني هوية صحية قابلة للتحقق وأدوات مترابطة للممارسين عبر FHIR وNPHIES والذكاء الاصطناعي.'
-      : 'Physician and BrainSAIT founder in Riyadh, building verifiable provider identity and interoperable clinical tools with FHIR, NPHIES and AI.',
+      ? 'طبيب ومؤسس BrainSAIT في الرياض. أبني هوية صحية قابلة للتحقق وأدوات مترابطة للممارسين عبر FHIR والذكاء الاصطناعي؛ والتكامل مع نفيس جارٍ.'
+      : 'Physician and BrainSAIT founder in Riyadh, building verifiable provider identity and interoperable clinical tools with FHIR and AI. NPHIES integration is ongoing.',
     url: '/',
     type: 'profile',
   });
@@ -114,17 +113,18 @@ export default function Home() {
         <section className="profile-hero" aria-labelledby="profile-title">
           <div className="profile-hero-copy">
             <div className="profile-eyebrow"><span />{ar ? 'طبيب · مؤسس · مهندس حلول صحية' : 'Physician · Founder · Healthcare builder'}</div>
-            <h1 id="profile-title">{ar ? 'أبني تقنية صحية تبدأ من الطبيب.' : 'Healthcare technology, built around the physician.'}</h1>
+            <h1 id="profile-title">{ar ? 'تكنولوجيا صحية تصنعها أيدي الأطباء.' : 'Healthcare technology, built by the physician.'}</h1>
             <p className="profile-lead">
               {ar
-                ? 'أنا د. محمد الفاضل، مؤسس BrainSAIT في الرياض. أحوّل خبرة الطوارئ والعناية المركزة والمطالبات إلى بنية تحتية قابلة للتحقق — من هوية مقدم الرعاية إلى الذكاء الاصطناعي السريري.'
-                : 'I’m Dr. Mohamed El Fadil, founder of BrainSAIT in Riyadh. I turn emergency, critical-care and claims experience into verifiable infrastructure—from provider identity to clinical AI.'}
+                ? 'أنا د. محمد الفاضل، مؤسس BrainSAIT في الرياض. حول خبرة الطوارئ والعناية المركزة والمطالبات إلى بنية تحتية صحية قابلة للتحقق — من هوية مقدم الرعاية إلى الذكاء الاصطناعي السريري، كل أداة مصممة لتمنح الطبيب السيطرة.'
+                : 'I’m Dr. Mohamed El Fadil, founder of BrainSAIT in Riyadh. I turn emergency, critical-care and claims experience into verifiable healthcare infrastructure—from provider identity to clinical AI—every tool built to put the physician in control.'}
             </p>
             <div className="profile-actions">
               <Link className="profile-button primary" to="/cv"><FileText size={17} />{ar ? 'السيرة الذاتية' : 'Professional CV'}</Link>
-              <a className="profile-button secondary" href="#contact">{ar ? 'احجز مكالمة' : 'Book a call'}<ArrowDown size={17} /></a>
+              <a className="profile-button secondary" href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">{ar ? 'احجز مكالمة مباشرة' : 'Book a live call'}<ArrowDown size={17} /></a>
               <a className="profile-button text-button" href="#work">{ar ? 'استكشف أعمالي' : 'Explore my work'}<ArrowDown size={17} /></a>
             </div>
+            <p className="profile-eyebrow" style={{ marginTop: 16, fontSize: '11px', textTransform: 'none', letterSpacing: 0, color: 'var(--profile-accent)' }}><strong>Google Calendar</strong>{ar ? ' — حجز مكالمات وعروض توضيحية مباشرة' : ' — book via Google Calendar'}</p>
             <div className="profile-socials">
               <a href="https://github.com/Fadil369" target="_blank" rel="noreferrer"><Github size={17} />GitHub</a>
               <a href="https://sa.linkedin.com/in/fadil369" target="_blank" rel="noreferrer"><Linkedin size={17} />LinkedIn</a>
@@ -161,16 +161,16 @@ export default function Home() {
         <section className="profile-section profile-thesis">
           <div className="profile-section-label">01 · {ar ? 'الفكرة' : 'The thesis'}</div>
           <div>
-            <h2>{ar ? 'الحكم السريري يحدد ما نبنيه. والهندسة تحدد إن كان يستحق الثقة.' : 'Clinical judgement decides what ships. Engineering decides whether it can be trusted.'}</h2>
+            <h2>{ar ? 'الطبيب يقرر — والهندسة تكسب الثقة.' : 'The physician decides. Engineering earns the trust.'}</h2>
             <p>{ar
-              ? 'من غرفة الطوارئ إلى مكتب المطالبات، رأيت المشكلة نفسها: أنظمة صُممت حول الجميع إلا الطبيب الذي يتخذ القرار. لذلك أبني أدوات تجعل الهوية والبيانات والمساءلة جزءًا واحدًا مترابطًا.'
-              : 'From the emergency room to the claims desk, I found the same problem: systems designed around everyone except the physician making the call. I build tools where identity, data and accountability form one connected layer.'}</p>
+              ? 'من غرفة الطوارئ إلى مكتب المطالبات، رأيت المشكلة نفسها: أنظمة صُممت حول الجميع باستثناء الطبيب الذي يتخذ القرار. لذلك أبني أدوات تجعل الهوية والبيانات والمساءلة طبقة واحدة مترابطة — صحية أولًا، قابلة للتحقق دائمًا.'
+              : 'From the emergency room to the claims desk, I found the same problem: systems designed around everyone except the physician making the call. I build tools where identity, data and accountability form one connected layer—healthcare first, verifiable always.'}</p>
           </div>
         </section>
 
         <section className="profile-section" id="work">
           <div className="profile-section-heading">
-            <div><div className="profile-section-label">02 · {ar ? 'أعمال مختارة' : 'Selected work'}</div><h2>{ar ? 'من السرير إلى النظام.' : 'From bedside to system.'}</h2></div>
+            <div><div className="profile-section-label">02 · {ar ? 'أعمال مختارة' : 'Selected work'}</div><h2>{ar ? 'من السرير إلى النظام — وكله مصنوع للتحقق.' : 'From bedside to system. Everything built to be verified.'}</h2></div>
             <a href="https://github.com/Fadil369" target="_blank" rel="noreferrer">{ar ? 'كل المستودعات' : 'All repositories'}<ArrowUpRight size={16} /></a>
           </div>
           <div className="profile-projects">
@@ -192,10 +192,11 @@ export default function Home() {
             <div className="profile-section-label">BPR · BrainSAIT</div>
             <h2>{ar ? 'هوية واحدة. يمكن لأي شخص التحقق منها.' : 'One identity. Anyone can check it.'}</h2>
             <p>{ar
-              ? 'هذه حالتي في سجل BPR، تُقرأ مباشرة من السجل. كل بُعد منفصل — وما لم يُقيَّم بعد يظهر كما هو.'
-              : 'This is my state in the BPR registry, read live from the registry. Each dimension is separate — and what has not been assessed yet shows as exactly that.'}</p>
+              ? 'هذه حالتي في سجل BPR، تُقرأ مباشرة من السجل. كل بُعد منفصل — وما لم يُقيَّم بعد يظهر كما هو، لا أكثر ولا أقل.'
+              : 'This is my state in the BPR registry, read live from the registry. Each dimension is separate — and what has not been assessed yet shows as exactly that, nothing more, nothing less.'}</p>
             <div className="profile-actions">
               <Link className="profile-button secondary" to={`/bpr/verify?spid=${SPID}`}>{ar ? 'تحقق على جهازك' : 'Verify on your device'}<ArrowUpRight size={16} /></Link>
+              <Link className="profile-button secondary" to="/bpr/workspace">{ar ? 'استكشف أدوات BPR' : 'Explore BPR tools'}<ArrowUpRight size={16} /></Link>
               <Link className="profile-text-link" to="/bpr/record">{ar ? 'سجل BPR الكامل' : 'My full BPR record'}<ArrowUpRight size={16} /></Link>
             </div>
           </div>
@@ -206,7 +207,7 @@ export default function Home() {
 
         <section className="profile-section" id="journey">
           <div className="profile-section-label">03 · {ar ? 'المسار' : 'The journey'}</div>
-          <div className="profile-section-heading"><h2>{ar ? 'خبرة سريرية تتحول إلى متطلبات منتج.' : 'Clinical experience becomes product requirements.'}</h2></div>
+          <div className="profile-section-heading"><h2>{ar ? 'كل نتيجة سريرية صارت متطلبات منتج.' : 'Every clinical outcome became a product requirement.'}</h2></div>
           <div className="profile-journey">
             {journey.map(item => (
               <article key={item.years}>
@@ -220,6 +221,7 @@ export default function Home() {
 
         <section className="profile-section" id="research">
           <div className="profile-section-label">04 · {ar ? 'بحث وكتابة' : 'Research & writing'}</div>
+          <div className="profile-section-heading"><h2>{ar ? 'بحث يُنسب إلى صاحبه بدليل.' : 'Research, traced to its author.'}</h2></div>
           <div className="profile-research-grid">
             <a className="profile-paper" href="https://doi.org/10.5281/zenodo.23606022" target="_blank" rel="noreferrer">
               <BookOpen size={28} /><span className="profile-paper-meta">ZENODO · V1.2 · 2026</span>
@@ -244,10 +246,10 @@ export default function Home() {
         </section>
 
         <section className="profile-contact" id="contact">
-          <div><div className="profile-section-label">05 · {ar ? 'لنتحدث' : 'Start a conversation'}</div><h2>{ar ? 'تبني شيئًا مع الممارسين الصحيين؟' : 'Building something with clinicians?'}</h2></div>
-          <p>{ar ? 'أعمل مع المستشفيات وفرق التقنية الصحية والمستثمرين في السعودية والخليج وأفريقيا.' : 'I work with hospitals, health-tech teams and investors across Saudi Arabia, the Gulf and Africa.'}</p>
+          <div><div className="profile-section-label">05 · {ar ? 'لنتحدث' : 'Start a conversation'}</div><h2>{ar ? 'تبني شيئًا مع الممارسين الصحيين؟ دعنا نبنيه.' : 'Building with clinicians? Let’s build it.'}</h2></div>
+          <p>{ar ? 'أعمل مع المستشفيات وفرق التقنية الصحية والمستثمرين في السعودية والخليج وأفريقيا — لبناء أدوات صحية يمكن التحقق منها فعليًا.' : 'I work with hospitals, health-tech teams and investors across Saudi Arabia, the Gulf and Africa—building healthcare tools you can actually verify.'}</p>
           <div className="profile-actions">
-            <a className="profile-button primary" href="https://elfadil.brainsait.de/#contact" target="_blank" rel="noreferrer">{ar ? 'احجز مكالمة' : 'Book a call'}<ArrowUpRight size={17} /></a>
+            <a className="profile-button primary" href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">{ar ? 'احجز مكالمة الآن' : 'Book a call now'}<ArrowUpRight size={17} /></a>
             <a className="profile-button secondary" href="mailto:elfadil369@icloud.com">{ar ? 'راسلني' : 'Email me'}</a>
             <button className="profile-button secondary" onClick={downloadVCard}><Contact size={16} />{ar ? 'حفظ جهة الاتصال' : 'Save contact'}</button>
           </div>
@@ -255,7 +257,7 @@ export default function Home() {
       </div>
       <footer className="profile-footer">
         <span>© {new Date().getFullYear()} Dr. Mohamed El Fadil</span>
-        <div><a href="https://elfadil.brainsait.de" target="_blank" rel="noreferrer">elfadil.brainsait.de</a><Link to="/bpr">BPR</Link><Link to="/card">{ar ? 'البطاقة' : 'Card'}</Link><Link to="/cv"><FileText size={14} />{ar ? 'السيرة' : 'CV'}</Link></div>
+        <div><a href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">Book via Google Calendar</a><Link to="/bpr">BPR</Link><Link to="/card">{ar ? 'البطاقة' : 'Card'}</Link><Link to="/cv"><FileText size={14} />{ar ? 'السيرة' : 'CV'}</Link></div>
         <span className="profile-verified"><Check size={13} />{ar ? 'مصمم ليكون قابلاً للتحقق' : 'Designed to be verifiable'}</span>
       </footer>
     </div>

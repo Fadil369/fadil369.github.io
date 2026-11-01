@@ -126,6 +126,25 @@
 .bpr-module strong { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 13px; color: var(--profile-accent); }
 .bpr-module.members strong { color: var(--profile-muted); }
 
+/* Toolkit tiers on the BPR overview — live / ongoing integration / coming next */
+.bpr-tier { margin-top: 6px; }
+.bpr-tier-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 26px; background: var(--profile-surface); border: 1px solid var(--profile-line); border-bottom: 0; border-radius: 3px 3px 0 0; font: 700 11px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--profile-muted); }
+.bpr-tier-badge { border: 1px solid; padding: 2px 9px; border-radius: 999px; font-size: 10px; white-space: nowrap; }
+.bpr-tier-badge.live { color: var(--bpr-ok); border-color: color-mix(in srgb, var(--bpr-ok) 55%, transparent); }
+.bpr-tier-badge.awaiting { color: var(--bpr-warn); border-color: color-mix(in srgb, var(--bpr-warn) 55%, transparent); border-style: dashed; }
+.bpr-tier-badge.planned { color: var(--profile-muted); border-color: var(--profile-line); border-style: dashed; }
+.bpr-tier-count { color: var(--profile-accent); }
+.bpr-module-grid { border-top: 0; }
+.bpr-module-grid > .bpr-module { border-top: 0; border-radius: 0 0 3px 3px; }
+.bpr-module.live { border-top: 2px solid var(--profile-accent); }
+.bpr-module.awaiting { border-style: dashed; border-top-color: var(--bpr-warn); background: transparent; }
+.bpr-module.planned { border-style: dashed; border-top-color: var(--profile-line); background: transparent; opacity: .92; }
+.bpr-chip { display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; border-radius: 999px; font: 700 9px 'IBM Plex Mono', monospace; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; border: 1px solid; }
+.bpr-chip.live { color: var(--bpr-ok); border-color: color-mix(in srgb, var(--bpr-ok) 45%, transparent); }
+.bpr-chip.awaiting { color: var(--bpr-warn); border-color: color-mix(in srgb, var(--bpr-warn) 45%, transparent); border-style: dashed; }
+.bpr-chip.planned { color: var(--profile-muted); border-color: var(--profile-line); border-style: dashed; }
+.bpr-chip-unavailable { color: var(--profile-muted); font-size: 12px; }
+
 .bpr-qr-panel { display: grid; gap: 12px; justify-items: start; }
 .bpr-qr { width: 176px; padding: 0; background: #edf34a; }
 .bpr-qr svg { display: block; width: 100%; height: auto; }
@@ -471,3 +490,68 @@
 .ksa-needs { color: var(--bpr-warn); font-size: 12px; }
 .bpr-section .profile-section-label svg { vertical-align: -2px; }
 @media (max-width: 800px) { .ksa-today { grid-template-columns: 1fr; } }
+
+/* Shared app chrome */
+.bpr-app-head { position: relative; padding: 12px 0 22px; border-bottom: 1px solid var(--profile-line); }
+.bpr-app-head::after { content: ''; position: absolute; inset-inline-start: 0; bottom: -1px; width: 88px; height: 2px; background: var(--profile-accent); }
+.bpr-app-head h1 { max-width: 940px; font-family: 'Playfair Display', Georgia, serif; text-wrap: balance; }
+[dir='rtl'] .bpr-app-head h1 { font-family: 'Amiri', Georgia, serif; letter-spacing: 0; }
+.bpr-app-head p { line-height: 1.85; text-wrap: pretty; }
+.bpr-subnav a { min-height: 38px; display: inline-flex; align-items: center; }
+.bpr-subnav a:focus-visible { outline-offset: -2px; }
+.bpr-footer { width: min(1240px, calc(100% - 64px)); margin: 0 auto; border-top: 1px solid var(--profile-line); }
+.bpr-footer-main { display: grid; grid-template-columns: minmax(220px, .8fr) minmax(0, 2fr); gap: 48px; padding: 42px 0; }
+.bpr-footer-brand > strong { display: inline-grid; place-items: center; width: 48px; height: 48px; border: 1px solid var(--profile-accent); color: var(--profile-accent); font: 700 14px 'IBM Plex Mono', monospace; letter-spacing: .12em; }
+.bpr-footer-brand p { max-width: 320px; margin: 16px 0 0; color: var(--profile-muted); font-size: 13px; }
+.bpr-footer nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.bpr-footer nav > div { display: grid; align-content: start; gap: 9px; }
+.bpr-footer nav strong { margin-bottom: 4px; color: var(--profile-text); font-size: 12px; }
+.bpr-footer nav a { display: inline-flex; align-items: center; gap: 4px; width: fit-content; color: var(--profile-muted); font-size: 12px; }
+.bpr-footer nav a:hover { color: var(--profile-accent); }
+.bpr-footer-base { display: flex; justify-content: space-between; gap: 16px; padding: 18px 0 26px; border-top: 1px solid var(--profile-line); color: var(--profile-muted); font-size: 10px; }
+@media (max-width: 800px) { .bpr-footer-main { grid-template-columns: 1fr; gap: 28px; } }
+@media (max-width: 640px) {
+  .bpr-footer { width: calc(100% - 32px); }
+  .bpr-footer nav { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; }
+  .bpr-footer-base { flex-direction: column; }
+  .bpr-subnav a { min-height: 42px; }
+}
+
+/* Live hospital opportunities */
+.slots-summary { display: grid; grid-template-columns: repeat(2, minmax(120px, .5fr)) minmax(240px, 1.5fr); border: 1px solid var(--profile-line); background: var(--profile-surface); }
+.slots-summary > div { min-height: 100px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-inline-end: 1px solid var(--profile-line); }
+.slots-summary > div:last-child { border-inline-end: 0; }
+.slots-summary span { color: var(--profile-muted); font-size: 13px; }
+.slots-summary strong { color: var(--profile-accent); font-size: 36px; line-height: 1; }
+.slots-summary .slots-summary-source { justify-content: flex-end; }
+.slots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 16px; }
+.slot-card { display: flex; flex-direction: column; align-items: flex-start; gap: 13px; min-width: 0; padding: 24px; border: 1px solid var(--profile-line); background: color-mix(in srgb, var(--profile-surface) 88%, transparent); }
+.slot-card:hover { border-color: color-mix(in srgb, var(--profile-accent) 55%, transparent); }
+.slot-card-top { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.slot-card-top code { color: var(--profile-muted); font-size: 11px; overflow-wrap: anywhere; }
+.slot-card h2 { margin: 2px 0 0; font-size: 20px; line-height: 1.35; }
+.slot-card p { margin: 0; }
+.slot-org, .slot-specialty { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; color: var(--profile-muted); font-size: 13px; }
+.slot-org svg, .slot-specialty svg { color: var(--profile-accent); flex: none; }
+.slot-prices { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 4px 0 0; background: var(--profile-line); border: 1px solid var(--profile-line); }
+.slot-prices > div { padding: 10px 12px; background: var(--profile-bg); }
+.slot-prices dt { color: var(--profile-muted); font-size: 11px; }
+.slot-prices dd { margin: 2px 0 0; font: 600 13px 'IBM Plex Mono', monospace; }
+.slot-request { width: 100%; margin-top: auto; }
+.slot-form { width: 100%; display: grid; gap: 8px; padding-top: 14px; border-top: 1px solid var(--profile-line); }
+.slot-form label { margin-top: 5px; color: var(--profile-muted); font-size: 12px; }
+.slot-form input, .slot-form textarea { width: 100%; padding: 11px 12px; border: 1px solid var(--profile-line); border-radius: 3px; background: var(--profile-bg); color: var(--profile-text); font: 13px 'IBM Plex Mono', monospace; }
+.slot-form textarea { font-family: inherit; resize: vertical; }
+.slot-form input:focus-visible, .slot-form textarea:focus-visible { outline: 2px solid var(--profile-accent); outline-offset: 1px; }
+.slot-form .profile-button { margin-top: 6px; }
+.slot-success { display: flex; gap: 10px; color: var(--bpr-ok); }
+.slot-success svg { flex: none; margin-top: 3px; }
+.slot-success strong { color: var(--profile-text); font-size: 14px; }
+.slot-success p { color: var(--profile-muted); font-size: 12px; }
+.slot-error { color: var(--bpr-fail); font-size: 12px; }
+.slot-provider { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.slot-provider h2 { margin-bottom: 4px; }
+.slot-provider p { margin: 0; color: var(--profile-muted); }
+@media (max-width: 760px) { .slots-summary { grid-template-columns: 1fr 1fr; } .slots-summary .slots-summary-source { grid-column: 1 / -1; border-top: 1px solid var(--profile-line); } .slots-summary > div:nth-child(2) { border-inline-end: 0; } }
+@media (max-width: 480px) { .slots-grid { grid-template-columns: 1fr; } .slot-card { padding: 19px; } .slots-summary > div { padding: 16px; } .slot-provider { align-items: flex-start; flex-direction: column; } }
+.bpr-state button.profile-text-link { padding: 0; border: 0; background: transparent; cursor: pointer; }

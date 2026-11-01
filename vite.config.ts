@@ -6,9 +6,12 @@ import react from '@vitejs/plugin-react';
 // built index.html back to the repo root) never clobbers the build entry.
 export default defineConfig({
   plugins: [react()],
+  root: `${import.meta.dirname}/src`,
+  publicDir: `${import.meta.dirname}/public`,
   base: '/',
   build: {
-    outDir: 'dist',
+    outDir: `${import.meta.dirname}/dist`,
+    emptyOutDir: true,
     assetsDir: 'assets',
     sourcemap: false,
     rollupOptions: {

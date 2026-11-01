@@ -427,7 +427,8 @@
   .card-downloads { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
-  .cv-toolbar { width: calc(100% - 28px); align-items: flex-start; }
+  .cv-toolbar { width: calc(100% - 28px); align-items: flex-start; flex-wrap: wrap; }
+  .cv-toolbar > div { margin-inline-start: auto; }
   .cv-toolbar .profile-button { padding: 0 12px; }
   .cv-back { max-width: 65px; }
   .cv-document { width: calc(100% - 20px); }
@@ -475,10 +476,9 @@
   .card-page .profile-head, .card-studio-head, .card-studio-actions, .card-downloads, .card-specs, .card-back-link, .card-preview-meta { display: none !important; }
   .card-studio { width: 3.5in !important; margin: 0 !important; padding: 0 !important; }
   .card-showcase { display: block !important; width: 3.5in; margin: 0 !important; perspective: none; }
-  .card-preview-item { page: business-card; width: 3.5in; height: 2in; margin: 0; break-after: page; page-break-after: always; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-  .card-preview-item:last-child { break-after: auto; page-break-after: auto; }
+  .card-preview-item { position: relative; width: 3.5in; height: 2in; margin: 0; overflow: hidden; line-height: 0; break-inside: avoid; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   .card-preview-item > a { width: 3.5in; height: 2in; }
-  .card-preview-item img, .card-preview-item:first-child img, .card-preview-item:last-child img, .card-preview-item:hover img { width: 3.5in !important; height: 2in !important; margin: 0; transform: none !important; box-shadow: none !important; object-fit: contain; }
+  .card-preview-item img, .card-preview-item:first-child img, .card-preview-item:last-child img, .card-preview-item:hover img { position: absolute; inset: 0; display: block; width: 3.5in !important; height: 2in !important; margin: 0; transform: none !important; box-shadow: none !important; object-fit: contain; }
 }
 
 [data-theme='light'] .profile-button.primary,

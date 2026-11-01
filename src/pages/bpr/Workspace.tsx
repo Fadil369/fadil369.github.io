@@ -21,8 +21,7 @@ const GROUPS: { en: string; ar: string; caps: Cap[] }[] = [
       { icon: Server, status: 'live', en: 'Your own customised OpenEMR', ar: 'OpenEMR خاص ومخصص لك',
         enText: 'An isolated OpenEMR 7 for each provider — own subdomain, own database, own TLS, encrypted offsite backups — showing your name, in the BrainSAIT theme with accessible contrast. Provisioned from the registry.',
         arText: 'نسخة OpenEMR 7 معزولة لكل مقدم رعاية — نطاق فرعي وقاعدة بيانات وشهادة TLS خاصة ونسخ احتياطية مشفرة خارج الموقع — باسمك وبهوية برينسايت وتباين ألوان مناسب. تُجهَّز من السجل.',
-        facts: [['{spid}.emr.brainsait.de', '{spid}.emr.brainsait.de'], ['SMART-on-FHIR launch', 'إطلاق SMART-on-FHIR'], ['Copilot built in at /copilot', 'المساعد مدمج في /copilot']],
-        link: { href: 'https://emr.brainsait.de/', en: 'EMR portal', ar: 'بوابة السجل الطبي' } },
+        facts: [['{spid}.emr.brainsait.de', '{spid}.emr.brainsait.de'], ['SMART-on-FHIR launch', 'إطلاق SMART-on-FHIR'], ['Copilot built in at /copilot', 'المساعد مدمج في /copilot'], ['Private member deployment', 'نشر خاص للأعضاء']] },
       { icon: Bot, status: 'live', en: 'BrainSAIT Copilot', ar: 'مساعد برينسايت',
         enText: 'A built-in clinical assistant with 14 bilingual skills, running by default on models hosted on BrainSAIT’s own server, so patient data stays on that server. It drafts; the clinician reviews, edits and saves.',
         arText: 'مساعد سريري مدمج بـ14 مهارة ثنائية اللغة، يعمل افتراضيًا على نماذج مستضافة على خادم برينسايت، فتبقى بيانات المرضى على ذلك الخادم. يقدّم مسودات؛ والطبيب يراجع ويعدّل ويحفظ.',
@@ -77,9 +76,13 @@ const GROUPS: { en: string; ar: string; caps: Cap[] }[] = [
       { icon: GraduationCap, status: 'planned', en: 'Mentoring & training', ar: 'الإرشاد والتدريب',
         enText: 'Mentor colleagues and run training sessions using the same tools, calculators and cases.',
         arText: 'أرشد الزملاء وأدر جلسات تدريبية باستخدام الأدوات والحاسبات والحالات نفسها.' },
-      { icon: CalendarClock, status: 'planned', en: 'Open slots', ar: 'الفترات المتاحة',
-        enText: 'Publish a slot you need covered, or pick up any open slot that matches your verified profile.',
-        arText: 'انشر فترة تحتاج إلى تغطيتها، أو التقط أي فترة متاحة تناسب ملفك.' },
+      { icon: CalendarClock, status: 'live', en: 'Live hospital vacancy slots', ar: 'شواغر المستشفيات المباشرة',
+        enText: 'Browse organization-published openings, see the listed fees and request a slot through the registry API.',
+        arText: 'تصفّح الشواغر التي تنشرها المؤسسات واطّلع على الرسوم المدرجة وأرسل طلبك عبر واجهة السجل.',
+        link: { to: '/slots', en: 'Browse live slots', ar: 'تصفّح الشواغر المباشرة' } },
+      { icon: Shuffle, status: 'planned', en: 'Shift cover & smart matching', ar: 'تغطية المناوبات والمطابقة الذكية',
+        enText: 'Publish a shift you need covered and match it automatically to a suitable provider profile.',
+        arText: 'انشر مناوبة تحتاج إلى تغطيتها وطابقها تلقائيًا مع ملف مقدم الرعاية المناسب.' },
       { icon: Shuffle, status: 'planned', en: 'Matching', ar: 'المطابقة',
         enText: 'Match providers to slots and teams — and doctors in training to mentors and rotations.',
         arText: 'مطابقة مقدمي الرعاية مع الفترات والفرق — والأطباء المتدربين مع المرشدين والتدويرات.' },
@@ -90,7 +93,7 @@ const GROUPS: { en: string; ar: string; caps: Cap[] }[] = [
 // What every provider gets — one row per capability, in the order the owner listed them.
 const CHECKLIST: { status: Status; en: string; ar: string; enText: string; arText: string; to?: string; href?: string }[] = [
   { status: 'live', en: 'A complete, intelligent workspace', ar: 'مساحة عمل ذكية متكاملة', enText: 'One BPR identity opens everything below.', arText: 'هوية BPR واحدة تفتح كل ما يلي.', to: '/bpr/p/SA-PHY-000003' },
-  { status: 'live', en: 'Your own customised OpenEMR', ar: 'OpenEMR خاص ومخصص لك', enText: 'Isolated instance with your name, BrainSAIT theme, own database, TLS and backups.', arText: 'نسخة معزولة باسمك وبهوية برينسايت، بقاعدة بيانات وشهادة ونسخ احتياطية خاصة.', href: 'https://emr.brainsait.de/' },
+  { status: 'live', en: 'Your own customised OpenEMR', ar: 'OpenEMR خاص ومخصص لك', enText: 'Private member deployment with your name, BrainSAIT theme, own database, TLS and backups.', arText: 'نشر خاص للأعضاء باسمك وبهوية برينسايت، بقاعدة بيانات وشهادة ونسخ احتياطية خاصة.' },
   { status: 'live', en: 'Built-in Copilot assistant', ar: 'مساعد سريري مدمج', enText: '14 bilingual skills inside your EMR, on BrainSAIT-hosted models by default; drafts only, you save.', arText: '14 مهارة ثنائية اللغة داخل سجلك الطبي، على نماذج مستضافة لدى برينسايت افتراضيًا؛ مسودات فقط والحفظ لك.' },
   { status: 'live', en: 'Arabic voice-to-text', ar: 'تحويل الصوت العربي إلى نص', enText: 'On-premise speech recognition, Arabic validated: dictation → SOAP draft or into any field.', arText: 'تعرّف محلي على الكلام مُختبَر بالعربية: إملاء ← مسودة SOAP أو في أي حقل.' },
   { status: 'live', en: 'FHIR integration', ar: 'التكامل عبر FHIR', enText: 'FHIR R4 registry API and SMART-on-FHIR launch inside the EMR.', arText: 'واجهة FHIR R4 للسجل وإطلاق SMART-on-FHIR داخل السجل الطبي.', to: '/bpr/developers' },
@@ -101,7 +104,7 @@ const CHECKLIST: { status: Status; en: string; ar: string; enText: string; arTex
   { status: 'planned', en: 'Peer-to-peer review', ar: 'مراجعة الأقران', enText: 'Structured case and note review between providers.', arText: 'مراجعة منظمة للحالات والملاحظات بين مقدمي الرعاية.' },
   { status: 'planned', en: 'Choose or onboard your team', ar: 'اختيار فريقك أو ضمّه', enText: 'Nurses, respiratory therapists, receptionists and more — each with a role and access.', arText: 'ممرضون وأخصائيو علاج تنفسي وموظفو استقبال وغيرهم — لكل دوره وصلاحياته.' },
   { status: 'planned', en: 'Mentoring & training sessions', ar: 'الإرشاد وجلسات التدريب', enText: 'Teach with the same tools, calculators and cases.', arText: 'التدريب بالأدوات والحاسبات والحالات نفسها.' },
-  { status: 'planned', en: 'Submit or pick up open slots', ar: 'نشر الفترات المتاحة أو العمل عليها', enText: 'Post a slot you need covered, or work any open slot that fits your profile.', arText: 'انشر فترة تحتاج تغطيتها، أو اعمل على أي فترة تناسب ملفك.' },
+  { status: 'live', en: 'Request live hospital slots', ar: 'اطلب شواغر المستشفيات المباشرة', enText: 'Browse organization-published vacancies and submit a request with your SPID.', arText: 'تصفّح الشواغر التي تنشرها المؤسسات وأرسل طلبك بمعرّف SPID.', to: '/slots' },
   { status: 'planned', en: 'Matching for providers & trainees', ar: 'المطابقة لمقدمي الرعاية والمتدربين', enText: 'Providers to slots and teams; doctors in training to mentors and rotations.', arText: 'مقدمو الرعاية مع الفترات والفرق؛ والأطباء المتدربون مع المرشدين والتدويرات.' },
 ];
 
@@ -142,11 +145,12 @@ export default function Workspace() {
     <BprLayout kicker={ar ? 'مساحة العمل' : 'Provider workspace'}
       title={ar ? 'مساحة عمل ذكية متكاملة لكل ممارس صحي.' : 'Every healthcare professional gets a complete, intelligent workspace.'}
       lead={ar
-        ? 'تفتحها هويتك في BPR: نظام سجلات طبية خاص بك، ومساعد سريري يفهم العربية ويكتب ملاحظاتك من صوتك، وتكامل وفق المعايير، وأدوات تخصصية جاهزة. والمزيد في الطريق: فريقك، ومراجعة الأقران، والفترات المتاحة.'
-        : 'Your BPR identity opens it: your own medical record system, a clinical assistant that understands Arabic and writes your notes from your voice, standards-based integration and ready-made specialty tools. More is on the way: your team, peer review and open slots.'}
+        ? 'تفتحها هويتك في BPR: سجل طبي خاص للأعضاء، ومساعد سريري يفهم العربية ويحوّل صوتك إلى مسودة ملاحظة، وتكامل وفق المعايير، وأدوات تخصصية جاهزة. ويمكنك أيضًا طلب شواغر المستشفيات المنشورة مباشرة.'
+        : 'Your BPR identity opens a private member EMR, a clinical assistant that understands Arabic and turns your voice into a draft note, standards-based integration and ready-made specialty tools. You can also request live hospital openings.'}
       actions={<>
         <Link className="profile-button primary" to="/bpr/join">{ar ? 'انضم واحصل على مساحتك' : 'Join and get your workspace'}<ArrowRight size={16} /></Link>
-        <a className="profile-button secondary" href="https://emr.brainsait.de/" target="_blank" rel="noreferrer">{ar ? 'بوابة السجل الطبي' : 'EMR portal'}<ArrowUpRight size={16} /></a>
+        <a className="profile-button secondary" href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">{ar ? 'احجز عرضًا توضيحيًا مباشرًا' : 'Book a live workspace demo'}<ArrowRight size={16} /></a>
+        <Link className="profile-button secondary" to="/slots">{ar ? 'تصفّح شواغر المستشفيات' : 'Browse hospital slots'}<ArrowRight size={16} /></Link>
       </>}>
       <div className="ws-legend" role="list" aria-label={ar ? 'دليل الحالات' : 'Status legend'}>
         {(Object.keys(STATUS) as Status[]).map((s) => <span key={s} role="listitem" className={`ws-status ${s}`}>{s === 'awaiting' && <Hourglass size={12} />}{STATUS[s][ar ? 1 : 0]} · {counts[s] || 0}</span>)}
@@ -186,7 +190,7 @@ export default function Workspace() {
 
       <section className="ws-hero" aria-label={ar ? 'مخطط مساحة العمل' : 'Workspace map'}>
         <div className="ws-core"><Stethoscope size={28} /><strong>{ar ? 'مقدم الرعاية' : 'Provider'}</strong><code dir="ltr">SA-PHY-000003</code><small>{ar ? 'هوية BPR موقّعة' : 'Signed BPR identity'}</small></div>
-        {[[Server, 'OpenEMR', 'OpenEMR', 'live'], [Bot, 'Copilot', 'المساعد', 'live'], [Mic, 'Arabic voice', 'الصوت العربي', 'live'], [Layers, 'FHIR R4', 'FHIR R4', 'live'], [Calculator, 'Tools', 'الأدوات', 'live'], [FlaskConical, 'Research', 'البحث', 'live'], [Network, 'NPHIES', 'نفيس', 'awaiting'], [UsersRound, 'Team', 'الفريق', 'planned'], [GraduationCap, 'Mentoring', 'الإرشاد', 'planned'], [CalendarClock, 'Slots', 'الفترات', 'planned']].map(([Icon, en, a, st], i) => {
+        {[[Server, 'OpenEMR', 'OpenEMR', 'live'], [Bot, 'Copilot', 'المساعد', 'live'], [Mic, 'Arabic voice', 'الصوت العربي', 'live'], [Layers, 'FHIR R4', 'FHIR R4', 'live'], [Calculator, 'Tools', 'الأدوات', 'live'], [FlaskConical, 'Research', 'البحث', 'live'], [Network, 'NPHIES', 'نفيس', 'awaiting'], [UsersRound, 'Team', 'الفريق', 'planned'], [GraduationCap, 'Mentoring', 'الإرشاد', 'planned'], [CalendarClock, 'Hospital slots', 'شواغر المستشفيات', 'live']].map(([Icon, en, a, st], i) => {
           const I = Icon as typeof Bot;
           return <div key={en as string} className={`ws-node ${st}`} style={{ ['--i' as string]: i }}><I size={18} /><span>{ar ? a as string : en as string}</span></div>;
         })}

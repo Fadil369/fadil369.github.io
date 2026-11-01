@@ -1,4 +1,5 @@
-import { ArrowUpRight, Calculator, FileCheck2, IdCard, KeyRound, LogIn, Server, UserPlus } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, ArrowUpRight, Calculator, FileCheck2, IdCard, KeyRound, LogIn, Server, UserPlus } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout, ExtLink, WorkspaceBand } from '../../components/BprKit';
@@ -46,12 +47,12 @@ export default function Join() {
             <p>{ar ? 'قوائم تحقق وقوالب وحاسبات سريرية — مرجع يُراجع مقابل البروتوكول المحلي.' : 'Checklists, templates and clinical calculators — reference aids, checked against local protocol.'}</p>
             <strong>{ar ? 'على السجل' : 'On the registry'}<ArrowUpRight size={14} /></strong>
           </a>
-          <a className="bpr-module members" href="https://emr.brainsait.de/" target="_blank" rel="noreferrer">
-            <div className="bpr-module-top"><Server size={24} /><small>OpenEMR</small></div>
-            <h3>{ar ? 'سجل طبي شخصي' : 'Personal EMR'}</h3>
-            <p>{ar ? 'نسخة OpenEMR معزولة لكل مقدم رعاية بنطاق فرعي وقاعدة بيانات خاصة.' : 'An isolated OpenEMR instance per provider, with its own subdomain and database.'}</p>
-            <strong>{ar ? 'بوابة EMR' : 'EMR portal'}<ArrowUpRight size={14} /></strong>
-          </a>
+          <Link className="bpr-module members" to="/bpr/workspace">
+            <div className="bpr-module-top"><Server size={24} /><small>OpenEMR · {ar ? 'خاص بالأعضاء' : 'Private to members'}</small></div>
+            <h3>{ar ? 'مساحة سريرية خاصة' : 'Private clinical workspace'}</h3>
+            <p>{ar ? 'نسخة OpenEMR معزولة لكل مقدم رعاية بنطاق فرعي وقاعدة بيانات خاصة، تُجهَّز بعد الانضمام.' : 'An isolated OpenEMR instance per provider, with its own subdomain and database, provisioned after joining.'}</p>
+            <strong>{ar ? 'استكشف المساحة' : 'Explore the workspace'}<ArrowRight size={14} /></strong>
+          </Link>
         </div>
       </section>
       <p className="bpr-note"><ExtLink href={`${REGISTRY}/knowledge.php`}>{ar ? 'مركز المعرفة (بحث الأدوية)' : 'Knowledge hub (drug lookup)'}</ExtLink></p>

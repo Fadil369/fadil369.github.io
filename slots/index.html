@@ -1,3 +1,89 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Moved</title>
-<meta name="robots" content="noindex, follow"><link rel="canonical" href="https://fadil369.github.io/bpr/workspace/"><meta http-equiv="refresh" content="0; url=/bpr/workspace/">
-</head><body><p>This page moved to <a href="/bpr/workspace/">https://fadil369.github.io/bpr/workspace/</a>.</p></body></html>
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="description" content="Physician and BrainSAIT founder in Riyadh, building verifiable provider identity and interoperable clinical tools with FHIR and AI. NPHIES integration is ongoing." />
+    <meta name="author" content="Dr. Mohamed El Fadil" />
+    <meta name="google-site-verification" content="IEcCC9-RV2DFTkwj_zkaOtiYtPBl7lnZPjfyAb13gAU" />
+    <meta name="theme-color" content="#090a08" />
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="alternate" type="text/plain" title="Summary for AI agents" href="/llms.txt" />
+    
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23090a08'/%3E%3Ctext x='50' y='62' font-family='Arial,sans-serif' font-size='36' fill='%23edf34a' text-anchor='middle'%3EEF%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Almarai:wght@300;400;700;800&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Analytics (GTM, Meta Pixel, GA; shared with store.brainsait.de) load everywhere except the
+         BPR registry pages (/bpr and /ar/bpr), where the URL carries the SPID someone is checking. -->
+    <script>
+      (function (w, d) {
+        if (/^\/(ar\/)?bpr(\/|$)/.test(w.location.pathname)) return;
+        function load(src) { var j = d.createElement('script'); j.async = true; j.src = src; d.head.appendChild(j); }
+        w.dataLayer = w.dataLayer || [];
+        w.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        load('https://www.googletagmanager.com/gtm.js?id=GTM-TP24GSTF');
+        var n = (w.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); });
+        if (!w._fbq) w._fbq = n;
+        n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+        load('https://connect.facebook.net/en_US/fbevents.js');
+        n.disablePushState = true; // landing page view only; in-app navigation is not sent to Meta
+        w.fbq('init', '850048551165707');
+        w.fbq('track', 'PageView');
+        load('https://www.googletagmanager.com/gtag/js?id=G-75ZCDM8R74');
+        w.gtag = function () { w.dataLayer.push(arguments); };
+        w.gtag('js', new Date());
+        w.gtag('config', 'G-75ZCDM8R74');
+        // GA's per-property kill switch, set from the destination URL before GA sees the change.
+        var guard = function (url) { w['ga-disable-G-75ZCDM8R74'] = /^\/(ar\/)?bpr(\/|$)/.test(new URL(url || w.location.href, w.location.href).pathname); };
+        ['pushState', 'replaceState'].forEach(function (k) {
+          var orig = history[k];
+          history[k] = function (state, title, url) { guard(url); return orig.apply(this, arguments); };
+        });
+        w.addEventListener('popstate', function () { guard(); });
+      })(window, document);
+    </script>
+    <script>
+      /* Set theme before first paint to avoid flash — dark is the default luxury mode */
+      (function () {
+        try {
+          var t = localStorage.getItem('bs-theme');
+          if (t !== 'light' && t !== 'dark') t = 'dark';
+          document.documentElement.setAttribute('data-theme', t);
+          // Language is the URL (/ar/... = Arabic). A visitor who chose Arabic and opens an English
+          // URL goes to its Arabic twin; crawlers carry no preference, so their URLs stay stable.
+          var p = location.pathname, isAr = /^\/ar(\/|$)/.test(p);
+          if (!isAr && localStorage.getItem('bs-lang') === 'ar' && !/^\/(assets|bpr\/embed)\//.test(p)) {
+            location.replace('/ar' + (p === '/' ? '/' : p) + location.search + location.hash);
+          }
+          if (isAr) { document.documentElement.lang = 'ar'; document.documentElement.dir = 'rtl'; }
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-B3cRXfe_.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CfbdI1WI.css">
+      <title>Live hospital slots — BPR</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BrainSAIT" />
+    <meta property="og:title" content="Live hospital slots — BPR" />
+    <meta property="og:description" content="Browse live organization-published opportunities and request a slot with your BPR ID." />
+    <meta property="og:url" content="https://fadil369.github.io/slots/" />
+    <meta property="og:image" content="https://fadil369.github.io/assets/og/bpr.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Live hospital slots — BPR" />
+    <meta name="twitter:description" content="Browse live organization-published opportunities and request a slot with your BPR ID." />
+    <meta name="twitter:image" content="https://fadil369.github.io/assets/og/bpr.png" />
+      <link rel="alternate" hreflang="en" href="https://fadil369.github.io/slots/" />
+    <link rel="alternate" hreflang="ar" href="https://fadil369.github.io/ar/slots/" />
+    <link rel="alternate" hreflang="x-default" href="https://fadil369.github.io/slots/" />
+      <link rel="canonical" href="https://fadil369.github.io/slots/" />
+    <script type="application/ld+json" data-route>{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://fadil369.github.io/slots/#page","url":"https://fadil369.github.io/slots/","name":"Live hospital slots — BPR","inLanguage":"en","isPartOf":{"@type":"WebSite","@id":"https://fadil369.github.io/#site","name":"Dr. Mohamed El Fadil · BPR","url":"https://fadil369.github.io/"},"about":{"@id":"https://fadil369.github.io/bpr#registry"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BPR","item":"https://fadil369.github.io/bpr/"},{"@type":"ListItem","position":2,"name":"Hospital slots","item":"https://fadil369.github.io/slots/"}]}]}</script>
+  </head>
+  <body>
+    <div id="root"></div><noscript data-prerendered><main id="pr-main-content"><div class="profile-page bpr-app" id="pr-top"><header class="profile-head"><a class="profile-brand" aria-label="Dr. Mohamed El Fadil" href="/"><span>EF</span><strong>Dr. El Fadil</strong></a><nav id="pr-profile-nav" data-open="false" aria-label="Main navigation"><a class="" href="/">Profile</a><a class="" href="/cv">CV</a><a class="" href="/card">Card</a><a class="" href="/bpr">BPR</a></nav><div class="profile-controls"><button class="profile-cmdk" aria-label="Command palette (Ctrl+K)" aria-keyshortcuts="Control+K Meta+K"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-command"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"></path></svg><span>K</span></button><button aria-label="Light mode"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></button><button aria-label="التبديل إلى العربية"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-languages"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg><span>ع</span></button><button class="profile-menu" aria-expanded="false" aria-controls="profile-nav" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button></div></header><nav class="bpr-subnav" aria-label="BPR apps"><span class="bpr-subnav-mark" aria-hidden="true">BPR</span><div><a class="" href="/bpr">Overview</a><a class="" href="/bpr/workspace">Workspace</a><a class="" href="/bpr/providers">Directory</a><a aria-current="page" class="active" href="/slots">Hospital slots</a><a class="" href="/bpr/saudi">For organizations</a><a class="" href="/bpr/verify">Verify</a><a class="" href="/bpr/ledger">Ledger</a><a class="" href="/bpr/research">Research</a><a class="" href="/bpr/developers">FHIR &amp; API</a><a class="" href="/bpr/join">Join</a></div></nav><div class="bpr-app-body"><header class="bpr-app-head"><div class="profile-eyebrow"><span></span>Work opportunities · live from the registry</div><h1>Hospital opportunities, from listing to request.</h1><p>Organizations publish open slots and healthcare professionals request them with a BPR ID. Listings, prices and states come straight from the registry, and requests use its public API.</p><div class="profile-actions"><a class="profile-button primary" href="/bpr/providers">Find a provider<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a><a class="profile-button secondary" href="/bpr/join">Get a BPR ID<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a></div></header><section class="slots-summary" aria-label="Slot summary"><div><span>Open now</span><strong>—</strong></div><div><span>All published slots</span><strong>—</strong></div><div class="slots-summary-source"><button class="profile-button secondary"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-refresh-cw"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>Refresh</button></div></section><div class="bpr-toolbar"><div class="bpr-chips" role="group" aria-label="Filter slots"><button aria-pressed="true">All</button><button aria-pressed="false">Open</button><button aria-pressed="false">Filled</button></div></div><div class="bpr-state fail" role="alert"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-triangle-alert"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>Slots could not be reached. Retry to check the latest listings. <button class="profile-text-link">Try again<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-refresh-cw"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg></button></div></div><footer class="bpr-footer"><div class="bpr-footer-main"><div class="bpr-footer-brand"><strong>BPR</strong><p>Signed professional identity, connected clinical tools and a public directory anyone can verify — built for healthcare professionals.</p></div><nav aria-label="BPR footer navigation"><div><strong>Explore</strong><a href="/bpr/providers">Provider directory</a><a href="/slots">Hospital slots</a><a href="/bpr/research">Research footprint</a></div><div><strong>Build &amp; verify</strong><a href="/bpr/verify">Public verification</a><a href="/bpr/developers">FHIR &amp; API</a><a href="/bpr/workspace">Provider workspace</a></div><div><strong>BrainSAIT</strong><a href="/">Professional profile</a><a href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">Book via Google Calendar <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a><a href="/bpr/join">Join BPR</a><a href="https://registry.brainsait.de" target="_blank" rel="noreferrer">registry.brainsait.de <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a></div></nav></div><div class="bpr-footer-base"><span>© 2026 BrainSAIT · BPR</span><span class="bpr-footer-snap">Offline snapshot · 1 Nov 2026, 06:03</span></div></footer></div></main></noscript>
+  </body>
+</html>

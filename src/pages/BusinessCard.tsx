@@ -13,6 +13,16 @@ export default function BusinessCard() {
     description: ar ? 'بطاقة أعمال سوداء وليمونية برمز QR على شكل دماغ يوجه إلى الملف المهني.' : 'A black and lemon business card with a brain-framed QR code linking to the professional profile.',
     url: '/card', type: 'website',
   });
+  const printCard = () => {
+    const pageStyle = document.createElement('style');
+    pageStyle.dataset.cardPrint = '';
+    pageStyle.textContent = '@page { size: 3.5in 2in; margin: 0; }';
+    document.head.appendChild(pageStyle);
+    const cleanup = () => pageStyle.remove();
+    window.addEventListener('afterprint', cleanup, { once: true });
+    window.print();
+    window.setTimeout(cleanup, 1000);
+  };
   return (
     <div className="profile-page card-page" id="top">
       <ProfileHeader />
@@ -25,10 +35,11 @@ export default function BusinessCard() {
           <p>{ar
             ? 'بطاقة بوجهين بالأسود والليموني. يحيط شكل الدماغ برمز QR أصلي دون تشويه وحداته، ويربط مباشرة بالملف المهني.'
             : 'A two-sided black-and-lemon card. The brain frame surrounds an undistorted QR code that opens the professional profile directly.'}</p>
+          <p className="profile-eyebrow" style={{ marginTop: 10, textTransform: 'none', letterSpacing: 0, color: 'var(--profile-accent)' }}><strong>Google Calendar</strong>{ar ? ' — احجز عرضًا توضيحيًا مباشرًا' : ' — book via Google Calendar'}</p>
         </header>
 
         <div className="card-studio-actions">
-          <button className="profile-button primary" onClick={() => window.print()}><Printer size={17} />{ar ? 'اطبع الوجهين الآن' : 'Print both sides'}</button>
+          <button className="profile-button primary" onClick={printCard}><Printer size={17} />{ar ? 'اطبع الوجهين الآن' : 'Print both sides'}</button>
           <a className="profile-button secondary" href="/assets/card/dr-mohamed-el-fadil-print.pdf" download><Download size={17} />{ar ? 'تنزيل PDF للطباعة' : 'Download print PDF'}</a>
           <button className="profile-button secondary" onClick={downloadVCard}><Contact size={17} />{ar ? 'حفظ جهة الاتصال' : 'Save contact'}</button>
           <span>{ar ? 'مقاس الطباعة 3.5 × 2 بوصة · صفحتان' : '3.5 × 2 inches · two pages'}</span>

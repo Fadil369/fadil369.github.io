@@ -140,8 +140,11 @@ export default function Record() {
 
         <section className="bpr-panel rec-row">
           <Server size={22} />
-          <div><h2>{ar ? 'مساحة العمل' : 'Workspace'}</h2><p>{ar ? 'OpenEMR خاص بي مع المساعد السريري المدمج والإملاء العربي — يعمل اليوم. نفيس ومراجعة الأقران والفرق مخططة.' : 'My own OpenEMR with the built-in Copilot and Arabic dictation — live today. NPHIES, peer review and teams are planned.'}</p></div>
-          <Link className="profile-button secondary" to="/bpr/workspace">{ar ? 'التفاصيل' : 'Details'}<ArrowRight size={14} /></Link>
+          <div><h2>{ar ? 'مساحة العمل' : 'Workspace'}</h2><p>{ar ? 'مساحة OpenEMR خاصة مع المساعد السريري والإملاء العربي تعمل اليوم. التكامل مع نفيس جارٍ؛ ومراجعة الأقران والفرق قادمة تاليًا.' : 'A private OpenEMR workspace with the built-in Copilot and Arabic dictation is live today. NPHIES integration is ongoing; peer review and teams are coming next.'}</p></div>
+          <div className="bpr-result-actions" style={{ marginTop: 0 }}>
+            <Link className="profile-button secondary" to="/bpr/workspace">{ar ? 'التفاصيل' : 'Details'}<ArrowRight size={14} /></Link>
+            <a className="profile-button primary" href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">{ar ? 'احجز عرضًا توضيحيًا مباشرًا' : 'Book a live demo'}<ArrowUpRight size={14} /></a>
+          </div>
         </section>
 
         <section className="bpr-panel">

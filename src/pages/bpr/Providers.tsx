@@ -60,7 +60,7 @@ export default function Providers() {
       {list.state === 'loading' && <Loading />}
       {list.state === 'error' && <Failed />}
       {list.state === 'ready' && (items.length === 0
-        ? <div className="bpr-state">{ar ? 'لا توجد نتائج.' : 'No providers match.'}</div>
+        ? <div className="bpr-state"><span>{ar ? 'لا يطابق بحثك أي مقدم رعاية في هذا العرض.' : 'No providers match this search and filter.'}</span><button className="profile-text-link" onClick={() => { setQ(''); setFilter('all'); }}>{ar ? 'مسح البحث والتصفية' : 'Clear search & filters'}</button></div>
         : <div className="bpr-provider-grid">
           {items.map((p) => (
             <Link key={p.spid} to={`/bpr/p/${p.spid}`} className="bpr-provider">

@@ -22,7 +22,7 @@ const index = readFileSync(indexFile, 'utf8');
 writeFileSync(join(root, '404.html'), index); // SPA fallback for hard refresh
 writeFileSync(join(root, 'index.html'), index);
 
-for (const route of ['cv', 'card',
+for (const route of ['cv', 'card', 'slots',
   'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi']) {
   const routeDir = join(root, route);
   mkdirSync(routeDir, { recursive: true });
@@ -112,6 +112,7 @@ console.log(`Pre-rendered ${bprWritten} BPR provider route(s).`);
 const ROUTE_META = {
   cv: ['Professional CV — Dr. Mohamed El Fadil', 'Physician, BrainSAIT founder, RCM & Healthcare Intelligent Improvement Advisor. One-page A4 CV with a live BPR verification QR.', '/assets/profile-og.png'],
   card: ['Business card — Dr. Mohamed El Fadil', 'Black and lemon business card with a brain-framed QR code. Print-ready PDF.', '/assets/card/dr-mohamed-el-fadil-front.png'],
+  slots: ['Live hospital slots — BPR', 'Browse live organization-published opportunities and request a slot with your BPR ID.'],
   bpr: ['BPR — BrainSAIT Provider Registry', 'Signed identity for every clinician: directory, on-device verification, transparency log, research footprint and FHIR R4.'],
   'bpr/workspace': ['Provider workspace — BPR', 'Own OpenEMR, a clinical copilot with Arabic dictation, FHIR, specialty tools and research — live and planned features stated per card.'],
   'bpr/providers': ['Provider directory — BPR', 'Listed providers with every trust dimension shown separately.'],
@@ -146,6 +147,7 @@ const AR_META = {
   '': ['د. محمد الفاضل — طبيب ومؤسس BrainSAIT', 'طبيب ومؤسس BrainSAIT في الرياض. أبني هوية صحية قابلة للتحقق وأدوات مترابطة للممارسين عبر FHIR ونفيس والذكاء الاصطناعي.'],
   cv: ['السيرة الذاتية — د. محمد الفاضل', 'طبيب ومؤسس BrainSAIT ومستشار تحسين ذكي للرعاية الصحية ودورة الإيرادات. سيرة ذاتية بصفحة A4 واحدة مع رمز تحقق BPR مباشر.'],
   card: ['بطاقة الأعمال — د. محمد الفاضل', 'بطاقة أعمال سوداء وليمونية برمز QR على شكل دماغ. ملف PDF جاهز للطباعة.'],
+  slots: ['شواغر المستشفيات المباشرة — BPR', 'تصفّح الفرص التي تنشرها المؤسسات مباشرة واطلب الفترة المناسبة بمعرّف BPR.'],
   bpr: ['BPR — سجل برينسايت لمقدمي الرعاية', 'هوية موقّعة لكل ممارس صحي: دليل، تحقق على الجهاز، سجل شفاف، بصمة بحثية وFHIR R4.'],
   'bpr/workspace': ['مساحة عمل مقدم الرعاية — BPR', 'OpenEMR خاص، مساعد سريري بإملاء عربي، FHIR، أدوات التخصص والبحث — مع بيان ما يعمل وما هو مخطط لكل ميزة.'],
   'bpr/providers': ['دليل مقدمي الرعاية — BPR', 'مقدمو الرعاية المدرجون مع عرض كل بُعد للثقة بشكل منفصل.'],
@@ -170,7 +172,7 @@ const toArabic = (html, route, meta) => {
   return out;
 };
 let arWritten = 0;
-const arPages = [['', join(root, 'index.html')], ...['cv', 'card', 'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi'].map((r) => [r, join(root, r, 'index.html')])];
+const arPages = [['', join(root, 'index.html')], ...['cv', 'card', 'slots', 'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi'].map((r) => [r, join(root, r, 'index.html')])];
 if (existsSync(snapList)) {
   for (const p of JSON.parse(readFileSync(snapList, 'utf8')).items || []) {
     if (!/^SA-[A-Z]{2,4}-\d{6}$/.test(p.spid)) continue;
@@ -191,7 +193,7 @@ console.log(`Wrote ${arWritten} Arabic page(s) under /ar/.`);
 // ── legacy store routes → static redirect stubs ────────────────────────────
 // Old storefront URLs keep working for people with bookmarks, but are not indexable duplicates.
 const LEGACY = { id: '/bpr/record/', learn: '/bpr/', build: '/bpr/', solutions: '/bpr/', templates: '/bpr/', oid: '/bpr/', catalogue: '/bpr/', store: '/bpr/', 'products/bpr': '/bpr/',
-  doctors: '/bpr/providers/', slots: '/bpr/workspace/', sprint: '/bpr/workspace/', benefits: '/bpr/join/', account: '/', track: '/', faq: '/', terms: '/', support: '/#contact', contact: '/#contact' };
+  doctors: '/bpr/providers/', sprint: '/bpr/workspace/', benefits: '/bpr/join/', account: '/', track: '/', faq: '/', terms: '/', support: '/#contact', contact: '/#contact' };
 for (const [route, to] of Object.entries(LEGACY)) {
   const dir = join(root, route);
   mkdirSync(dir, { recursive: true });
@@ -242,7 +244,7 @@ console.log(`Wrote ${Object.keys(LEGACY).length} legacy redirect stub(s) and ${p
   const walk = (dir) => readdirSync(dir, { withFileTypes: true }).flatMap((d) => d.isDirectory() ? walk(join(dir, d.name)) : [join(dir, d.name)]);
   const chunks = readdirSync(join(dist, 'assets')).filter((f) => /\.(js|css)$/.test(f)).map((f) => '/assets/' + f);
   const data = walk(join(dist, 'assets', 'bpr-data')).map((f) => '/' + relative(dist, f).split(sep).join('/'));
-  const enPages = ['/', '/cv/', '/card/', '/bpr/', '/bpr/verify/', '/bpr/workspace/', '/bpr/providers/', '/bpr/ledger/', '/bpr/research/', '/bpr/developers/', '/bpr/status/', '/bpr/join/'];
+  const enPages = ['/', '/cv/', '/card/', '/slots/', '/bpr/', '/bpr/verify/', '/bpr/workspace/', '/bpr/providers/', '/bpr/ledger/', '/bpr/research/', '/bpr/developers/', '/bpr/status/', '/bpr/join/', '/bpr/record/', '/bpr/saudi/'];
   const pages = [...enPages, ...enPages.map((p) => '/ar' + p)];
   const precache = [...new Set([...pages, '/' + entry, ...css, ...chunks, ...data, '/manifest.webmanifest', '/assets/icons/icon-192.png'])];
   const sw = `// generated by scripts/publish.mjs — do not edit

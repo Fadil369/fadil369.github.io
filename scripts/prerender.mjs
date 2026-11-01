@@ -42,6 +42,7 @@ const ROUTES = [
   ['/', [page('ProfilePage', '/', 'Dr. Mohamed El Fadil', { mainEntity: { '@id': `${ORIGIN}/#person` } }), person], 1.0],
   ['/cv/', [page('ProfilePage', '/cv/', 'Professional CV — Dr. Mohamed El Fadil', { mainEntity: { '@id': `${ORIGIN}/#person` } }), person], 0.9],
   ['/card/', [page('WebPage', '/card/', 'Business card — Dr. Mohamed El Fadil', { about: { '@id': `${ORIGIN}/#person` } })], 0.5],
+  ['/slots/', [page('CollectionPage', '/slots/', 'Live hospital slots — BPR', { about: { '@id': `${ORIGIN}/bpr#registry` } }), crumbs([['BPR', '/bpr/'], ['Hospital slots', '/slots/']])], 0.8],
   ['/bpr/', [page('WebPage', '/bpr/', 'BPR — BrainSAIT Provider Registry', { about: { '@id': `${ORIGIN}/bpr#registry` } }), registryOrg], 0.9],
   ['/bpr/record/', [page('ProfilePage', '/bpr/record/', 'BPR record · Dr. Mohamed El Fadil', { mainEntity: { '@id': `${ORIGIN}/#person` } }), person, crumbs([['BPR', '/bpr/'], ['Record', '/bpr/record/']])], 0.9],
   ['/bpr/saudi/', [page('WebPage', '/bpr/saudi/', 'BPR across the Saudi health system'), crumbs([['BPR', '/bpr/'], ['Saudi', '/bpr/saudi/']])], 0.7],
@@ -161,6 +162,7 @@ Facts for agents:
 - Trust states are separate and must not be merged into one "verified" claim: identity (ORCID ownership), signature (BrainSAIT-signed credential), membership (commercial), licence, qualifications, privileges.
 - Licence and qualifications show "not assessed" while the SCFHS (Saudi Commission for Health Specialties) credential integration is ongoing. NPHIES integration is ongoing.
 - On the provider-workspace page each capability is labelled Live today, Ongoing integration or Coming next; only "Live today" items run now.
+- OpenEMR workspaces are private member deployments. There is no public OpenEMR demo, public demo login, synthetic-patient reset or public patient dataset.
 - Data on these pages comes live from ${REGISTRY}; a build snapshot (dated) is the fallback.
 
 ## Person
@@ -175,6 +177,7 @@ Facts for agents:
 - [BPR across the Saudi health system](${ORIGIN}/bpr/saudi/): proposals per organisation, not partnerships
 - [Provider workspace](${ORIGIN}/bpr/workspace/): what each provider gets, with status per capability
 - [Directory](${ORIGIN}/bpr/providers/)
+- [Live hospital slots](${ORIGIN}/slots/): organization-published openings and the registry request flow
 - [Verify a provider](${ORIGIN}/bpr/verify/): \`${ORIGIN}/bpr/verify?spid={SPID}\` re-checks the signature in the browser
 - [Transparency log](${ORIGIN}/bpr/ledger/)
 - [Research](${ORIGIN}/bpr/research/)

@@ -75,7 +75,7 @@ export default function CommandPalette() {
       { id: 'led', group: B, label: ar ? 'السجل الشفاف' : 'Transparency log', hint: '/bpr/ledger', run: go('/bpr/ledger') },
       { id: 'res', group: B, label: ar ? 'البصمة البحثية' : 'Research footprint', hint: '/bpr/research', run: go('/bpr/research') },
       { id: 'dev', group: B, label: ar ? 'FHIR والواجهة العامة' : 'FHIR & public API', hint: '/bpr/developers', run: go('/bpr/developers') },
-      { id: 'sta', group: B, label: ar ? 'حالة التشغيل' : 'Operations status', hint: '/bpr/status', run: go('/bpr/status') },
+      { id: 'slots', group: B, label: ar ? 'شواغر المستشفيات المباشرة' : 'Live hospital slots', hint: '/slots', run: go('/slots') },
       { id: 'join', group: B, label: ar ? 'انضم إلى BPR' : 'Join BPR', hint: '/bpr/join', run: go('/bpr/join') },
       { id: 'vcf', group: A, label: ar ? 'حفظ جهة الاتصال (vCard)' : 'Save contact (vCard)', run: () => { setOpen(false); downloadVCard(); } },
       { id: 'pdf', group: A, label: ar ? 'تنزيل السيرة الذاتية PDF' : 'Download CV (PDF)', run: () => { setOpen(false); window.location.href = '/assets/Dr_Mohamed_El_Fadil_CV_2026_Redesigned.pdf'; } },

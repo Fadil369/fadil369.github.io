@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Building2, Stethoscope, Clock, MapPin, BadgeCheck, Send, RefreshCw } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, BadgeCheck, Building2, Clock3, RefreshCw, Send, Stethoscope } from 'lucide-react';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { useI18n } from '../i18n';
-
-/* Hospital Vacancy Slots — live marketplace fed by the BPR registry
-   (registry.brainsait.de). CORS is open on the registry; all data on
-   this page is fetched live in the browser, nothing is baked in. */
+import { BprLayout, Failed, Loading, SourceBadge } from '../components/BprKit';
 
 const REGISTRY = 'https://registry.brainsait.de';
+const FEATURED_SPID = 'SA-PHY-000003';
 
 interface Slot {
   id: string;
@@ -17,7 +16,7 @@ interface Slot {
   title: string;
   price_integration_sar: number;
   price_monthly_sar: number;
-  state: string; // empty | requested | paid | verified | live
+  state: string;
   holder_spid: string | null;
   org_name?: string;
   org_trust_level?: string;
@@ -28,28 +27,16 @@ interface ProviderProfile {
   name: string;
   headline?: string;
   services?: string[];
-  trust_level?: string;
-  slots_held?: { id: string; title: string; state: string }[];
 }
 
-const FEATURED_SPID = 'SA-PHY-000003';
-
-const STATE_STYLE: Record<string, { bg: string; fg: string; en: string; ar: string }> = {
-  live:  { bg: 'rgba(16,185,129,.15)', fg: '#10b981', en: 'LIVE',  ar: 'مُفعّل' },
-  empty: { bg: 'rgba(245,158,11,.15)', fg: '#f59e0b', en: 'OPEN',  ar: 'متاح' },
-};
-
-function stateStyle(state: string) {
-  return STATE_STYLE[state] ?? { bg: 'rgba(148,163,184,.15)', fg: '#94a3b8', en: state.toUpperCase(), ar: state };
-}
+type Filter = 'all' | 'empty' | 'live';
 
 export default function Slots() {
   const { ar } = useI18n();
   const [slots, setSlots] = useState<Slot[]>([]);
   const [provider, setProvider] = useState<ProviderProfile | null>(null);
-  const [filter, setFilter] = useState<'all' | 'empty' | 'live'>('all');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [filter, setFilter] = useState<Filter>('all');
+  const [state, setState] = useState<'loading' | 'ready' | 'error'>('loading');
   const [requestSlot, setRequestSlot] = useState<string | null>(null);
   const [spid, setSpid] = useState('');
   const [message, setMessage] = useState('');
@@ -57,183 +44,111 @@ export default function Slots() {
   const [requestId, setRequestId] = useState('');
 
   usePageMeta({
-    title: ar ? 'شواغر المستشفيات — سوق BrainSAIT' : 'Hospital Vacancy Slots — BrainSAIT Marketplace',
+    title: ar ? 'شواغر المستشفيات المباشرة — BPR' : 'Live hospital slots — BPR',
     description: ar
-      ? 'تصفّح الشواغر الطبية المباشرة من سجل مقدمي الخدمة. اطلب شاغراً، ادفع رسوم التكامل، وابدأ العمل بهويتك الموثقة.'
-      : 'Browse live hospital vacancy slots from the BrainSAIT Provider Registry. Request a slot, pay the integration fee, and start operating with your verified identity.',
-    url: '/slots',
-    type: 'website',
+      ? 'تصفّح الشواغر المنشورة مباشرة من سجل برينسايت واطلب الفترة المناسبة باستخدام معرّف BPR الخاص بك.'
+      : 'Browse opportunities published live by the BrainSAIT Provider Registry and request a suitable slot with your BPR ID.',
+    url: '/slots', type: 'website',
   });
 
-  const load = () => {
-    setLoading(true);
-    setError(false);
-    Promise.all([
-      fetch(`${REGISTRY}/slots`).then(r => r.json()),
-      fetch(`${REGISTRY}/api/profiles/${FEATURED_SPID}`).then(r => (r.ok ? r.json() : null)),
-    ])
-      .then(([slotsData, profileData]) => {
-        setSlots(slotsData.slots ?? []);
-        setProvider(profileData);
-        setLoading(false);
-      })
-      .catch(() => { setError(true); setLoading(false); });
+  const load = async () => {
+    setState('loading');
+    try {
+      const [slotResponse, profileResponse] = await Promise.all([
+        fetch(`${REGISTRY}/slots`, { cache: 'no-store' }),
+        fetch(`${REGISTRY}/api/profiles/${FEATURED_SPID}`, { cache: 'no-store' }),
+      ]);
+      if (!slotResponse.ok) throw new Error('slots unavailable');
+      const slotData = await slotResponse.json();
+      setSlots(Array.isArray(slotData.slots) ? slotData.slots : []);
+      setProvider(profileResponse.ok ? await profileResponse.json() : null);
+      setState('ready');
+    } catch {
+      setState('error');
+    }
   };
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(load, []);
+  useEffect(() => { void load(); }, []);
 
   const submitRequest = async (slotId: string) => {
     if (!spid.trim()) return;
     setSubmitState('sending');
     try {
-      const r = await fetch(`${REGISTRY}/slots/${slotId}/request`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ spid: spid.trim(), message: message.trim() || undefined }),
+      const response = await fetch(`${REGISTRY}/slots/${encodeURIComponent(slotId)}/request`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ spid: spid.trim().toUpperCase(), message: message.trim() || undefined }),
       });
-      const data = await r.json();
-      if (r.ok) {
-        setRequestId(data.id ?? data.request_id ?? '');
-        setSubmitState('done');
-      } else {
-        setSubmitState('failed');
-      }
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error('request failed');
+      setRequestId(data.id ?? data.request_id ?? '');
+      setSubmitState('done');
     } catch {
       setSubmitState('failed');
     }
   };
 
-  const visible = slots.filter(s => filter === 'all' || s.state === filter);
-  const openCount = slots.filter(s => s.state === 'empty').length;
+  const visible = slots.filter((slot) => filter === 'all' || slot.state === filter);
+  const openCount = slots.filter((slot) => slot.state === 'empty').length;
 
   return (
-    <main className="page" style={{ maxWidth: '1100px', margin: '0 auto', padding: '3rem 1.25rem' }}>
-      {/* Hero */}
-      <section style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 14px', borderRadius: '999px', border: '1px solid var(--line)', background: 'var(--surface)', fontSize: '12px', fontWeight: 700, letterSpacing: '.08em', color: '#10b981' }}>
-          <BadgeCheck size={14} /> {ar ? 'مباشر من السجل' : 'LIVE FROM THE REGISTRY'}
-        </div>
-        <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 5vw, 44px)', margin: '1rem 0 .5rem' }}>
-          {ar ? 'شواغر المستشفيات' : 'Hospital Vacancy Slots'}
-        </h1>
-        <p style={{ color: 'var(--ink-soft)', maxWidth: '640px', margin: '0 auto', lineHeight: 1.7 }}>
-          {ar
-            ? 'المستشفيات تنشر شواغرها، الأطباء يطلبون بهويتهم الموثقة (SPID)، يدفعون رسوم التكامل، ويبدأون العمل — بمساعدة الوكلاء الأذكياء.'
-            : 'Hospitals publish empty slots. Doctors request with their verified SPID, pay the integration fee, and start operating — assisted by agents.'}
-        </p>
-        <p style={{ marginTop: '.75rem', fontSize: '14px', color: 'var(--ink-soft)' }}>
-          {ar ? `${openCount} شاغر متاح · ${slots.length} إجمالي` : `${openCount} open · ${slots.length} total`}
-          <button onClick={load} className="icon-btn round" style={{ marginInlineStart: '8px', verticalAlign: 'middle' }} aria-label={ar ? 'تحديث' : 'Refresh'}>
-            <RefreshCw size={14} />
-          </button>
-        </p>
+    <BprLayout
+      kicker={ar ? 'فرص العمل · مباشر من السجل' : 'Work opportunities · live from the registry'}
+      title={ar ? 'شواغر المستشفيات، من النشر إلى الطلب.' : 'Hospital opportunities, from listing to request.'}
+      lead={ar
+        ? 'تنشر المؤسسات الفترات المتاحة، ويطلبها مقدمو الرعاية بمعرّف BPR. تُقرأ القوائم والأسعار والحالات مباشرة من السجل، ويستكمل الطلب عبر واجهته العامة.'
+        : 'Organizations publish open slots and healthcare professionals request them with a BPR ID. Listings, prices and states come straight from the registry, and requests use its public API.'}
+      actions={<>
+        <Link className="profile-button primary" to="/bpr/providers">{ar ? 'ابحث عن مقدم رعاية' : 'Find a provider'}<ArrowRight size={16} /></Link>
+        <Link className="profile-button secondary" to="/bpr/join">{ar ? 'احصل على معرّف BPR' : 'Get a BPR ID'}<ArrowRight size={16} /></Link>
+      </>}
+    >
+      <section className="slots-summary" aria-label={ar ? 'ملخص الشواغر' : 'Slot summary'}>
+        <div><span>{ar ? 'متاح الآن' : 'Open now'}</span><strong>{state === 'ready' ? openCount : '—'}</strong></div>
+        <div><span>{ar ? 'كل الفترات المنشورة' : 'All published slots'}</span><strong>{state === 'ready' ? slots.length : '—'}</strong></div>
+        <div className="slots-summary-source">{state === 'ready' && <SourceBadge source="live" />}<button className="profile-button secondary" onClick={() => void load()} disabled={state === 'loading'}><RefreshCw size={15} />{ar ? 'تحديث' : 'Refresh'}</button></div>
       </section>
 
-      {/* Filters */}
-      <div style={{ display: 'flex', gap: '.5rem', justifyContent: 'center', marginBottom: '2rem', flexWrap: 'wrap' }}>
-        {(['all', 'empty', 'live'] as const).map(f => (
-          <button key={f} onClick={() => setFilter(f)}
-            className={filter === f ? 'button primary sm' : 'button secondary sm'}>
-            {f === 'all' ? (ar ? 'الكل' : 'All') : f === 'empty' ? (ar ? 'متاح' : 'Open') : (ar ? 'مُفعّل' : 'Live')}
-          </button>
-        ))}
+      <div className="bpr-toolbar">
+        <div className="bpr-chips" role="group" aria-label={ar ? 'تصفية الشواغر' : 'Filter slots'}>
+          {(['all', 'empty', 'live'] as const).map((value) => <button key={value} aria-pressed={filter === value} onClick={() => setFilter(value)}>
+            {value === 'all' ? (ar ? 'الكل' : 'All') : value === 'empty' ? (ar ? 'متاح' : 'Open') : (ar ? 'مُفعّل' : 'Filled')}
+          </button>)}
+        </div>
       </div>
 
-      {loading && <p style={{ textAlign: 'center', color: 'var(--ink-soft)' }}>{ar ? 'جارٍ التحميل…' : 'Loading live slots…'}</p>}
-      {error && (
-        <p style={{ textAlign: 'center', color: '#f87171' }}>
-          {ar ? 'تعذر الوصول إلى السجل. حاول مجدداً.' : 'Could not reach the registry. Try refreshing.'}
-        </p>
-      )}
+      {state === 'loading' && <Loading label={ar ? 'جارٍ تحميل الشواغر من السجل…' : 'Loading slots from the registry…'} />}
+      {state === 'error' && <Failed>{ar ? 'تعذّر الوصول إلى الشواغر. أعد المحاولة للتحقق من أحدث القوائم.' : 'Slots could not be reached. Retry to check the latest listings.'} <button className="profile-text-link" onClick={() => void load()}>{ar ? 'إعادة المحاولة' : 'Try again'}<RefreshCw size={13} /></button></Failed>}
+      {state === 'ready' && visible.length === 0 && <div className="bpr-state"><Clock3 size={18} /><div><strong>{ar ? 'لا توجد فترات في هذا العرض.' : 'No slots in this view.'}</strong><p>{filter === 'all' ? (ar ? 'تحقق لاحقًا؛ تظهر القوائم الجديدة هنا فور نشرها.' : 'Check back later; new listings appear here as they are published.') : (ar ? 'جرّب «الكل» لرؤية بقية الفترات المنشورة.' : 'Choose “All” to see the other published slots.')}</p></div></div>}
 
-      {/* Slot cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.25rem' }}>
-        {visible.map(slot => {
-          const st = stateStyle(slot.state);
+      {state === 'ready' && visible.length > 0 && <div className="slots-grid">
+        {visible.map((slot) => {
           const open = slot.state === 'empty';
-          return (
-            <article key={slot.id} style={{ border: '1px solid var(--line)', borderRadius: 'var(--radius)', background: 'var(--surface)', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '.75rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '.5rem' }}>
-                <span style={{ fontSize: '12px', fontWeight: 800, letterSpacing: '.06em', padding: '3px 10px', borderRadius: '999px', background: st.bg, color: st.fg }}>
-                  {ar ? st.ar : st.en}
-                </span>
-                <code style={{ fontSize: '11px', color: 'var(--ink-soft)' }}>{slot.id}</code>
-              </div>
-              <h3 style={{ margin: 0, fontSize: '17px', lineHeight: 1.4 }}>{slot.title}</h3>
-              <p style={{ margin: 0, fontSize: '13px', color: 'var(--ink-soft)', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
-                <Building2 size={14} /> {slot.org_name ?? slot.org_spid}
-                {slot.org_trust_level && <span style={{ fontSize: '11px', color: '#10b981' }}>· {slot.org_trust_level}</span>}
-              </p>
-              <p style={{ margin: 0, fontSize: '13px', color: 'var(--ink-soft)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <Stethoscope size={14} /> {slot.specialty.replace(/_/g, ' ')} · {slot.slot_type}
-              </p>
-              <p style={{ margin: 0, fontSize: '14px' }}>
-                <strong>{slot.price_integration_sar.toLocaleString()} SAR</strong> {ar ? 'رسوم تكامل' : 'integration'}
-                <span style={{ color: 'var(--ink-soft)' }}> · </span>
-                <strong>{slot.price_monthly_sar.toLocaleString()} SAR</strong>/{ar ? 'شهر' : 'mo'}
-              </p>
-              {slot.state === 'live' && slot.holder_spid && (
-                <a href={`${REGISTRY}/p/${slot.holder_spid}`} target="_blank" rel="noopener noreferrer"
-                   style={{ fontSize: '13px', color: '#10b981', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <MapPin size={14} /> {ar ? 'المشغّل الحالي' : 'Current operator'}: {slot.holder_spid} ↗
-                </a>
-              )}
-              {open && requestSlot !== slot.id && (
-                <button className="button primary" style={{ marginTop: 'auto' }}
-                  onClick={() => { setRequestSlot(slot.id); setSubmitState('idle'); }}>
-                  <Send size={15} /> {ar ? 'اطلب هذا الشاغر' : 'Request this slot'}
-                </button>
-              )}
-              {open && requestSlot === slot.id && (
-                <div style={{ marginTop: 'auto', borderTop: '1px solid var(--line)', paddingTop: '.75rem', display: 'flex', flexDirection: 'column', gap: '.5rem' }}>
-                  {submitState === 'done' ? (
-                    <p style={{ margin: 0, fontSize: '13px', color: '#10b981', lineHeight: 1.6 }}>
-                      {ar
-                        ? `تم استلام طلبك ${requestId}. بعد موافقة المستشفى ستصلك رسوم التكامل للدفع، ثم يُفعّل الشاغر باسمك.`
-                        : `Request ${requestId} received. After the hospital approves, you'll receive the integration-fee payment link, then the slot goes live under your name.`}
-                    </p>
-                  ) : (
-                    <>
-                      <input value={spid} onChange={e => setSpid(e.target.value)} placeholder={ar ? 'معرّفك SPID (مثال SA-PHY-000003)' : 'Your SPID (e.g. SA-PHY-000003)'}
-                        style={{ padding: '10px 12px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--line)', background: 'var(--bg)', color: 'inherit', fontSize: '13px' }} />
-                      <textarea value={message} onChange={e => setMessage(e.target.value)} rows={2} placeholder={ar ? 'رسالة اختيارية للمستشفى' : 'Optional message to the hospital'}
-                        style={{ padding: '10px 12px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--line)', background: 'var(--bg)', color: 'inherit', fontSize: '13px', resize: 'vertical' }} />
-                      <button className="button primary sm" disabled={submitState === 'sending' || !spid.trim()} onClick={() => submitRequest(slot.id)}>
-                        {submitState === 'sending' ? (ar ? 'جارٍ الإرسال…' : 'Sending…') : (ar ? 'إرسال الطلب' : 'Submit request')}
-                      </button>
-                      {submitState === 'failed' && (
-                        <p style={{ margin: 0, fontSize: '12px', color: '#f87171' }}>
-                          {ar ? 'فشل الإرسال — تحقق من SPID أو حاول لاحقاً.' : 'Submit failed — check your SPID or try later.'}
-                        </p>
-                      )}
-                    </>
-                  )}
-                </div>
-              )}
-            </article>
-          );
+          const requesting = requestSlot === slot.id;
+          return <article key={slot.id} className="slot-card">
+            <div className="slot-card-top"><span className={`ws-status ${open ? 'awaiting' : 'live'}`}>{open ? (ar ? 'متاح' : 'Open') : (ar ? 'مُفعّل' : 'Filled')}</span><code dir="ltr">{slot.id}</code></div>
+            <h2>{slot.title}</h2>
+            <p className="slot-org"><Building2 size={15} />{slot.org_name ?? slot.org_spid}{slot.org_trust_level && <small>· {slot.org_trust_level}</small>}</p>
+            <p className="slot-specialty"><Stethoscope size={15} />{slot.specialty.replace(/_/g, ' ')} · {slot.slot_type.replace(/_/g, ' ')}</p>
+            <dl className="slot-prices"><div><dt>{ar ? 'رسوم التكامل' : 'Integration fee'}</dt><dd>{slot.price_integration_sar.toLocaleString()} SAR</dd></div><div><dt>{ar ? 'شهريًا' : 'Monthly'}</dt><dd>{slot.price_monthly_sar.toLocaleString()} SAR</dd></div></dl>
+            {!open && slot.holder_spid && <Link className="bpr-ext" to={`/bpr/p/${slot.holder_spid}`}>{ar ? 'مقدم الرعاية الحالي' : 'Current provider'} · <bdi dir="ltr">{slot.holder_spid}</bdi><ArrowRight size={13} /></Link>}
+            {open && !requesting && <button className="profile-button primary slot-request" onClick={() => { setRequestSlot(slot.id); setSubmitState('idle'); setRequestId(''); }}><Send size={15} />{ar ? 'اطلب هذه الفترة' : 'Request this slot'}</button>}
+            {open && requesting && <form className="slot-form" onSubmit={(event) => { event.preventDefault(); void submitRequest(slot.id); }}>
+              {submitState === 'done' ? <div className="slot-success" role="status"><BadgeCheck size={19} /><div><strong>{ar ? 'استلم السجل طلبك.' : 'The registry received your request.'}</strong><p>{requestId ? `${ar ? 'رقم الطلب' : 'Request ID'}: ${requestId}. ` : ''}{ar ? 'تخضع الخطوات التالية لموافقة المستشفى.' : 'Next steps are subject to hospital approval.'}</p></div></div> : <>
+                <label htmlFor={`spid-${slot.id}`}>{ar ? 'معرّف BPR الخاص بك' : 'Your BPR SPID'}</label>
+                <input id={`spid-${slot.id}`} dir="ltr" autoComplete="off" value={spid} onChange={(event) => setSpid(event.target.value)} placeholder="SA-PHY-000003" required />
+                <label htmlFor={`message-${slot.id}`}>{ar ? 'رسالة للمستشفى (اختياري)' : 'Message to the hospital (optional)'}</label>
+                <textarea id={`message-${slot.id}`} rows={3} value={message} onChange={(event) => setMessage(event.target.value)} />
+                <button className="profile-button primary" type="submit" disabled={submitState === 'sending' || !spid.trim()}><Send size={14} />{submitState === 'sending' ? (ar ? 'جارٍ الإرسال…' : 'Sending…') : (ar ? 'إرسال الطلب' : 'Submit request')}</button>
+                {submitState === 'failed' && <p className="slot-error" role="alert">{ar ? 'لم يُرسل الطلب. راجع المعرّف وحاول مرة أخرى.' : 'The request was not sent. Check the ID and try again.'}</p>}
+              </>}
+            </form>}
+          </article>;
         })}
-      </div>
+      </div>}
 
-      {/* Featured provider */}
-      {provider && (
-        <section style={{ marginTop: '3.5rem', border: '1px solid var(--line)', borderRadius: 'var(--radius)', background: 'var(--surface)', padding: '1.75rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: 700, letterSpacing: '.08em', color: '#10b981', marginBottom: '.75rem' }}>
-            <Clock size={14} /> {ar ? 'أول طبيب-مشغّل على الشبكة' : 'FIRST DOCTOR-OPERATOR ON THE GRID'}
-          </div>
-          <h2 style={{ margin: '0 0 .25rem', fontSize: '22px' }}>{provider.name}</h2>
-          <p style={{ margin: '0 0 1rem', color: 'var(--ink-soft)' }}>{provider.headline}</p>
-          <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
-            {(provider.services ?? []).map(s => (
-              <span key={s} style={{ fontSize: '12px', padding: '4px 10px', borderRadius: '999px', border: '1px solid var(--line)', color: 'var(--ink-soft)' }}>{s}</span>
-            ))}
-          </div>
-          <a href={`${REGISTRY}/p/${provider.spid}`} target="_blank" rel="noopener noreferrer" className="button secondary">
-            {ar ? 'الملف الكامل: ماذا · كيف · أين · متى · مع من · التكلفة' : 'Full profile: what · how · where · when · who assists · cost'} ↗
-          </a>
-        </section>
-      )}
-    </main>
+      {provider && <section className="bpr-panel slot-provider">
+        <div><span className="profile-section-label">{ar ? 'ملف مقدم رعاية على الشبكة' : 'Provider on the network'}</span><h2>{provider.name}</h2><p>{provider.headline}</p></div>
+        <Link className="profile-button secondary" to={`/bpr/p/${provider.spid}`}>{ar ? 'افتح الملف العام' : 'Open public profile'}<ArrowRight size={15} /></Link>
+      </section>}
+    </BprLayout>
   );
 }
