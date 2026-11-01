@@ -104,6 +104,34 @@ export default function Overview() {
         <div><span>{ar ? 'إجمالي الأدوات' : 'Total tools'}</span><strong>{MODULES.length}</strong><small>{ar ? 'في أدوات BPR' : 'in the BPR toolkit'}</small></div>
       </section>
 
+      <section className="bpr-marketplace" aria-label={ar ? 'سوق أدوات BPR' : 'BPR tool marketplace'}>
+        <div className="profile-section-label">{ar ? 'سوق الأدوات' : 'Tool marketplace'}</div>
+        <h2 className="bpr-h2">{ar ? 'كل أداة.Provider تحتاجها، في مكان واحد.' : 'Every provider tool, in one marketplace.'}</h2>
+        <p className="bpr-marketplace-lead">{ar ? 'من هوية مقدم الرعاية إلى الشواغر المباشرة، كل أداة في BPR مصممة للممارسة السريرية الفعلية. افتح أي أداة من الدليل أدناه.' : 'From provider identity to live hospital slots, every BPR tool is built for real clinical practice. Open any tool from the marketplace below.'}</p>
+        <div className="bpr-marketplace-grid">
+          {MODULES.map(({ icon: Icon, ...m }) => {
+            const isLive = m.status === 'live';
+            const isSlots = m.en === 'Live hospital slots';
+            const body = <>
+              <div className="bpr-marketplace-top">
+                <Icon size={26} />
+                <span className={`bpr-chip ${m.status}`}>{ar ? STATUS_LABEL[m.status][1] : STATUS_LABEL[m.status][0]}</span>
+              </div>
+              <h3>{ar ? m.ar : m.en}</h3>
+              <p>{ar ? m.arText : m.enText}</p>
+              {m.to || m.href ? <strong>{(ar ? 'افتح' : 'Open')}{m.to ? <ArrowRight size={14} /> : <ArrowUpRight size={14} />}</strong> : <strong className="bpr-chip-unavailable">{ar ? 'لا يزال يُبنى' : 'Being built'}</strong>}
+            </>;
+            const cls = `bpr-module ${m.status} ${isSlots ? 'bpr-module-featured' : ''}`;
+            const el = m.to
+              ? <Link key={m.en} to={m.to} className={cls} data-badge={isSlots ? (ar ? 'سوق الشواغر' : 'Slots marketplace') : undefined}>{body}</Link>
+              : m.href
+                ? <a key={m.en} href={m.href} target="_blank" rel="noreferrer" className={cls} data-badge={isSlots ? (ar ? 'سوق الشواغر' : 'Slots marketplace') : undefined}>{body}</a>
+                : <div key={m.en} className={cls} data-badge={isSlots ? (ar ? 'سوق الشواغر' : 'Slots marketplace') : undefined}>{body}</div>;
+            return el;
+          })}
+        </div>
+      </section>
+
       <section className="bpr-split">
         <div className="bpr-pass">
           <div className="bpr-pass-head"><span>BPR / PROVIDER CREDENTIAL</span><BadgeCheck size={25} /></div>

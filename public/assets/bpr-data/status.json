@@ -1,5 +1,5 @@
 {
- "checked_at": "2026-11-01T03:00:03+00:00",
+ "checked_at": "2026-11-01T03:10:03+00:00",
  "sites": {
   "https://brainsait.de/": "ok",
   "https://brainsait.de/connect/": "ok",
@@ -19,12 +19,12 @@
  },
  "operations": {
   "verdict": "failing",
-  "checked_at": "2026-11-01T03:00:02+00:00",
+  "checked_at": "2026-11-01T03:10:01+00:00",
   "checks": {
    "sites": "fail",
    "integrity": "ok",
    "consistency": "fail",
-   "emr": "fail",
+   "emr": "ok",
    "backup": "ok",
    "offsite": "ok",
    "emr_backup": "fail",

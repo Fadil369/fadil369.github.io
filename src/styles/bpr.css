@@ -126,6 +126,29 @@
 .bpr-module strong { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 13px; color: var(--profile-accent); }
 .bpr-module.members strong { color: var(--profile-muted); }
 
+/* Tool marketplace on the BPR overview — big visual cards, slots marketplace featured */
+.bpr-marketplace { margin-top: 10px; }
+.bpr-marketplace h2 { margin: 10px 0 8px; }
+.bpr-marketplace-lead { color: var(--profile-muted); font-size: 15px; line-height: 1.7; max-width: 860px; margin: 0 0 22px; }
+.bpr-marketplace-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--profile-line); border: 1px solid var(--profile-line); }
+.bpr-marketplace-top { display: flex; justify-content: space-between; align-items: center; color: var(--profile-accent); }
+.bpr-marketplace h3 { margin: 10px 0 6px; font-size: 18px; }
+.bpr-marketplace p { margin: 0 0 14px; color: var(--profile-muted); font-size: 13px; line-height: 1.6; }
+.bpr-module-featured { position: relative; border-top: 3px solid var(--profile-accent); }
+.bpr-module-featured::after {
+  content: attr(data-badge);
+  position: absolute; top: -10px; inset-inline-start: 12px;
+  background: var(--profile-accent); color: var(--profile-accent-ink);
+  font: 700 8px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 3px; z-index: 2;
+}
+@media (max-width: 960px) {
+  .bpr-marketplace-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .bpr-marketplace-grid { grid-template-columns: 1fr; }
+}
+
 /* Toolkit tiers on the BPR overview — live / ongoing integration / coming next */
 .bpr-tier { margin-top: 6px; }
 .bpr-tier-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 26px; background: var(--profile-surface); border: 1px solid var(--profile-line); border-bottom: 0; border-radius: 3px 3px 0 0; font: 700 11px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--profile-muted); }
