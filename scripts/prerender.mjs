@@ -44,6 +44,7 @@ const ROUTES = [
   ['/card/', [page('WebPage', '/card/', 'Business card — Dr. Mohamed El Fadil', { about: { '@id': `${ORIGIN}/#person` } })], 0.5],
   ['/bpr/', [page('WebPage', '/bpr/', 'BPR — BrainSAIT Provider Registry', { about: { '@id': `${ORIGIN}/bpr#registry` } }), registryOrg], 0.9],
   ['/bpr/record/', [page('ProfilePage', '/bpr/record/', 'BPR record · Dr. Mohamed El Fadil', { mainEntity: { '@id': `${ORIGIN}/#person` } }), person, crumbs([['BPR', '/bpr/'], ['Record', '/bpr/record/']])], 0.9],
+  ['/bpr/saudi/', [page('WebPage', '/bpr/saudi/', 'BPR across the Saudi health system'), crumbs([['BPR', '/bpr/'], ['Saudi', '/bpr/saudi/']])], 0.7],
   ['/bpr/workspace/', [page('WebPage', '/bpr/workspace/', 'Provider workspace — BPR'), crumbs([['BPR', '/bpr/'], ['Workspace', '/bpr/workspace/']])], 0.8],
   ['/bpr/providers/', [page('CollectionPage', '/bpr/providers/', 'Provider directory — BPR', {
     mainEntity: { '@type': 'ItemList', numberOfItems: providers.length, itemListElement: providers.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: `${ORIGIN}/bpr/p/${p.spid}`, name: p.name_en })) },
@@ -171,6 +172,7 @@ Facts for agents:
 ## BPR pages
 - [Overview](${ORIGIN}/bpr/)
 - [Dr. Mohamed El Fadil — BPR record](${ORIGIN}/bpr/record/): standalone showcase of SA-PHY-000003, every check live
+- [BPR across the Saudi health system](${ORIGIN}/bpr/saudi/): proposals per organisation, not partnerships
 - [Provider workspace](${ORIGIN}/bpr/workspace/): what each provider gets, with status per capability
 - [Directory](${ORIGIN}/bpr/providers/)
 - [Verify a provider](${ORIGIN}/bpr/verify/): \`${ORIGIN}/bpr/verify?spid={SPID}\` re-checks the signature in the browser

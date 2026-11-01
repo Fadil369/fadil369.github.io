@@ -23,7 +23,7 @@ writeFileSync(join(root, '404.html'), index); // SPA fallback for hard refresh
 writeFileSync(join(root, 'index.html'), index);
 
 for (const route of ['cv', 'card',
-  'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record']) {
+  'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi']) {
   const routeDir = join(root, route);
   mkdirSync(routeDir, { recursive: true });
   writeFileSync(join(routeDir, 'index.html'), index);
@@ -121,6 +121,7 @@ const ROUTE_META = {
   'bpr/developers': ['FHIR R4 & public API — BPR', 'FHIR resources, the public JSON API and an embeddable live check.'],
   'bpr/status': ['Operations status — BPR', 'The registry’s own health verdict, failures included.'],
   'bpr/join': ['Join BPR', 'From ORCID sign-in to a signed credential.'],
+  'bpr/saudi': ['BPR across the Saudi health system', 'Where the BrainSAIT Provider Registry could serve Saudi health organisations — proposals, with what runs today and what each depends on.'],
   'bpr/record': ['Dr. Mohamed El Fadil · BPR record SA-PHY-000003', 'A signed provider record, checked live in your browser: signature, validity, status, transparency log and research footprint.', '/assets/og/SA-PHY-000003.png'],
 };
 for (const [route, [title, description, image]] of Object.entries(ROUTE_META)) {
@@ -154,6 +155,7 @@ const AR_META = {
   'bpr/developers': ['FHIR والواجهة العامة — BPR', 'موارد FHIR R4 وواجهة JSON عامة وبطاقة تحقق قابلة للتضمين.'],
   'bpr/status': ['حالة التشغيل — BPR', 'حكم السجل على صحته، بما في ذلك الإخفاقات.'],
   'bpr/join': ['انضم إلى BPR', 'من تسجيل الدخول عبر ORCID إلى اعتماد موقّع.'],
+  'bpr/saudi': ['BPR في المنظومة الصحية السعودية', 'أين يمكن أن يخدم سجل برينسايت الجهات الصحية السعودية — مقترحات، مع بيان ما يعمل اليوم وما يعتمد عليه كل تكامل.'],
   'bpr/record': ['د. محمد الفاضل · سجل BPR SA-PHY-000003', 'سجل مقدم رعاية موقّع يُتحقق منه مباشرة في متصفحك: التوقيع والصلاحية والحالة والسجل الشفاف والبصمة البحثية.'],
 };
 const toArabic = (html, route, meta) => {
@@ -168,7 +170,7 @@ const toArabic = (html, route, meta) => {
   return out;
 };
 let arWritten = 0;
-const arPages = [['', join(root, 'index.html')], ...['cv', 'card', 'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record'].map((r) => [r, join(root, r, 'index.html')])];
+const arPages = [['', join(root, 'index.html')], ...['cv', 'card', 'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi'].map((r) => [r, join(root, r, 'index.html')])];
 if (existsSync(snapList)) {
   for (const p of JSON.parse(readFileSync(snapList, 'utf8')).items || []) {
     if (!/^SA-[A-Z]{2,4}-\d{6}$/.test(p.spid)) continue;

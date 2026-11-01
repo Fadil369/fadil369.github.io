@@ -17,6 +17,7 @@ Facts for agents:
 ## BPR pages
 - [Overview](https://fadil369.github.io/bpr/)
 - [Dr. Mohamed El Fadil — BPR record](https://fadil369.github.io/bpr/record/): standalone showcase of SA-PHY-000003, every check live
+- [BPR across the Saudi health system](https://fadil369.github.io/bpr/saudi/): proposals per organisation, not partnerships
 - [Provider workspace](https://fadil369.github.io/bpr/workspace/): what each provider gets, with status per capability
 - [Directory](https://fadil369.github.io/bpr/providers/)
 - [Verify a provider](https://fadil369.github.io/bpr/verify/): `https://fadil369.github.io/bpr/verify?spid={SPID}` re-checks the signature in the browser

@@ -462,3 +462,12 @@
   .rec { width: 100%; padding: 0; gap: 10px; }
   .rec .bpr-panel, .rec-card { break-inside: avoid; box-shadow: none; }
 }
+
+/* Saudi overview */
+.ksa-today { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1px; background: var(--profile-line); border: 1px solid var(--profile-line); }
+.ksa-today > div { padding: 16px 18px; background: var(--profile-bg); display: grid; gap: 8px; align-content: start; justify-items: start; }
+.ksa-today p { margin: 0; font-size: 13px; color: var(--profile-muted); }
+.ksa-alt { margin: 0; color: var(--profile-muted); font-size: 12.5px; }
+.ksa-needs { color: var(--bpr-warn); font-size: 12px; }
+.bpr-section .profile-section-label svg { vertical-align: -2px; }
+@media (max-width: 800px) { .ksa-today { grid-template-columns: 1fr; } }

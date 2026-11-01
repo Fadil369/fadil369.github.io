@@ -20,6 +20,7 @@ const Join = lazy(() => import('./pages/bpr/Join'));
 const Workspace = lazy(() => import('./pages/bpr/Workspace'));
 const Embed = lazy(() => import('./pages/bpr/Embed'));
 const Record = lazy(() => import('./pages/bpr/Record'));
+const Saudi = lazy(() => import('./pages/bpr/Saudi'));
 
 function SkipLink() {
   const { ar } = useI18n();
@@ -116,6 +117,7 @@ function AppShell() {
           <Route path="/bpr/workspace" element={<Workspace />} />
           <Route path="/bpr/embed/:spid" element={<Embed />} />
           <Route path="/bpr/record" element={<Record />} />
+          <Route path="/bpr/saudi" element={<Saudi />} />
           <Route path="/id" element={<Navigate to="/bpr/record" replace />} />
           <Route path="/doctors/:spid" element={<SpidRedirect />} />
           {['/catalogue', '/store', '/oid', '/learn', '/solutions', '/templates', '/products/bpr', '/doctors'].map((p) => <Route key={p} path={p} element={<Navigate to="/bpr" replace />} />)}

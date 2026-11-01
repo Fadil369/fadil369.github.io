@@ -10,6 +10,7 @@ import '../styles/bpr.css';
 const NAV = [
   { to: '/bpr', end: true, en: 'Overview', ar: 'نظرة عامة' },
   { to: '/bpr/workspace', en: 'Workspace', ar: 'مساحة العمل' },
+  { to: '/bpr/saudi', en: 'Saudi', ar: 'المملكة' },
   { to: '/bpr/providers', en: 'Directory', ar: 'الدليل' },
   { to: '/bpr/verify', en: 'Verify', ar: 'التحقق' },
   { to: '/bpr/ledger', en: 'Ledger', ar: 'السجل الشفاف' },
