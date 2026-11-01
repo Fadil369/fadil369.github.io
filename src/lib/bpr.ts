@@ -201,6 +201,24 @@ export function forgeName(jwt: string, name: string): string {
   return [h, toB64u(enc.encode(JSON.stringify(claims))), s].join('.');
 }
 
+export const ISSUER = 'did:web:registry.brainsait.de';
+const SKEW_MS = 5 * 60 * 1000;
+
+/** Why a credential cannot stand for this provider, or '' when subject and issuer match. */
+export function bindingProblem(claims: CredentialClaims, spid?: string): string {
+  if (claims.issuer?.id !== ISSUER) return `issuer is ${claims.issuer?.id || 'missing'}, not ${ISSUER}`;
+  if (spid && claims.credentialSubject?.spid !== spid) return `credential is for ${claims.credentialSubject?.spid || 'no SPID'}, not ${spid}`;
+  return '';
+}
+
+/** validFrom ≤ now ≤ validUntil (5 min clock skew allowed). */
+export function validityWindow(claims: CredentialClaims): Check {
+  const now = Date.now();
+  if (Date.parse(claims.validFrom) - SKEW_MS > now) return { state: 'fail', detail: `not valid until ${claims.validFrom}` };
+  if (!(Date.parse(claims.validUntil) + SKEW_MS > now)) return { state: 'fail', detail: `expired ${claims.validUntil}` };
+  return { state: 'ok', detail: claims.validUntil };
+}
+
 export interface CredentialResult {
   jwt: string; claims: CredentialClaims; header: { alg: string; kid: string };
   signature: Check; expiry: Check; status: Check & { value?: string }; source: Source; keySource: Source;
@@ -211,9 +229,10 @@ export async function checkCredential(spid: string): Promise<CredentialResult> {
   const [keys, vc] = await Promise.all([registryKeys(), load<{ jwt: string }>(`/vc/${spid}`, `vc/${spid}.json`)]);
   const jwt = vc.data.jwt;
   const claims = decodeClaims(jwt);
-  const signature = await verifyJwt(jwt, keys.data);
-  const expired = Date.parse(claims.validUntil) < Date.now();
-  const expiry: Check = expired ? { state: 'fail', detail: `expired ${claims.validUntil}` } : { state: 'ok', detail: claims.validUntil };
+  // A valid signature is not enough: the credential must be about this SPID, from this issuer.
+  const bound = bindingProblem(claims, spid);
+  const signature: Check = bound ? { state: 'fail', detail: bound, how: 'device' } : await verifyJwt(jwt, keys.data);
+  const expiry = validityWindow(claims);
   let status: CredentialResult['status'];
   try {
     const st = await json<{ credential?: { state: string } }>(`${REGISTRY}/vc/status/${spid}?jti=${encodeURIComponent(claims.id)}`);
@@ -251,10 +270,14 @@ export async function replayLedger(): Promise<LedgerResult> {
     prev = h;
   }
   if (!bad && L.head.hash !== prev) bad = 'signed head does not match the last entry';
+  // The signature covers head.signed only, so that text must restate exactly the chain just replayed.
+  const expected = `BPR-TLOG-v1\n${entries.length}\n${prev}\n${L.head.at}`;
+  if (!bad && (L.head.signed !== expected || L.head.size !== entries.length)) bad = 'signed head does not describe this chain';
   const chain: Check = bad ? { state: 'fail', detail: bad, how: 'device' } : { state: 'ok', how: 'device' };
   let headSignature: Check;
   const jwk = keys.data.find((k) => k.kid === L.head.kid);
-  if (!jwk) headSignature = { state: 'fail', detail: 'unknown key' };
+  if (bad === 'signed head does not describe this chain') headSignature = { state: 'fail', detail: bad, how: 'device' };
+  else if (!jwk) headSignature = { state: 'fail', detail: 'unknown key' };
   else {
     try {
       const ok = await edVerify(jwk, b64u(L.head.sig), enc.encode(L.head.signed));
@@ -280,6 +303,10 @@ export async function checkAiLedger(): Promise<AiLedger> {
     json<{ heads: Omit<AiHead, 'check'>[]; rule?: string }>(`${REGISTRY}/transparency/ai.json`).then((data) => ({ data, source: 'live' as const })),
   ]);
   const heads = await Promise.all(r.data.heads.map(async (h) => {
+    // The signed text must restate the fields shown next to it.
+    const parts = h.signed.split('\n');
+    if (parts[0] !== 'BrainSAIT-AI-PROVENANCE-v1' || parts[1] !== h.instance || parts[2] !== String(h.size) || parts[3] !== h.hash)
+      return { ...h, check: { state: 'fail', detail: 'signed head does not match the fields shown', how: 'device' } as Check };
     const jwk = keys.data.find((k) => k.kid === h.kid);
     if (!jwk) return { ...h, check: { state: 'fail', detail: 'unknown key' } as Check };
     try {
@@ -290,4 +317,10 @@ export async function checkAiLedger(): Promise<AiLedger> {
     }
   }));
   return { heads, rule: r.data.rule, source: r.source };
+}
+
+/** Only http(s) links leave this site; anything else (javascript:, data:, …) becomes inert. */
+export function safeUrl(u: string | null | undefined): string | undefined {
+  if (!u) return undefined;
+  try { const x = new URL(u); return x.protocol === 'https:' || x.protocol === 'http:' ? x.href : undefined; } catch { return undefined; }
 }

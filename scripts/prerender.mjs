@@ -145,6 +145,7 @@ User-agent: *
 Allow: /
 Disallow: /scripts/
 Disallow: /src/
+Disallow: /docs/
 
 Sitemap: ${ORIGIN}/sitemap.xml
 `);

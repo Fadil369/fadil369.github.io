@@ -5,7 +5,7 @@ import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout, CheckRow, Failed, fmtDate, Loading, ScfhsPending, SourceBadge, valueLabel } from '../../components/BprKit';
 import { localized } from '../../lib/locale';
-import { Check, checkCredential, CredentialClaims, CredentialResult, decodeClaims, forgeName, REGISTRY, registryKeys, replayLedger, SPID_RE, verifyJwt } from '../../lib/bpr';
+import { bindingProblem, Check, checkCredential, CredentialClaims, validityWindow, CredentialResult, decodeClaims, forgeName, REGISTRY, registryKeys, replayLedger, SPID_RE, verifyJwt } from '../../lib/bpr';
 
 const QrScanner = lazy(() => import('../../components/QrScanner'));
 
@@ -81,8 +81,9 @@ export default function Verify() {
     if (!keys) { setPaste({ signature: { state: 'unavailable', detail: 'registry keys unavailable' } }); return; }
     let claims: CredentialClaims | undefined;
     try { claims = decodeClaims(jwt.trim()); } catch { /* reported by verifyJwt */ }
-    const signature = await verifyJwt(jwt, keys.data);
-    const expiry: Check | undefined = claims ? (Date.parse(claims.validUntil) < Date.now() ? { state: 'fail', detail: `expired ${claims.validUntil}` } : { state: 'ok', detail: claims.validUntil }) : undefined;
+    const bound = claims ? bindingProblem(claims) : '';
+    const signature: Check = bound ? { state: 'fail', detail: bound, how: 'device' } : await verifyJwt(jwt, keys.data);
+    const expiry: Check | undefined = claims ? validityWindow(claims) : undefined;
     setPaste({ claims, signature, expiry });
   };
   const tryForgery = async () => {

@@ -4,7 +4,7 @@ import { ArrowRight, FileDown } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout, ExtLink, Failed, fmtDate, Loading, SourceBadge } from '../../components/BprKit';
-import { ProviderList, Research as ResearchT, ResearchWork, SPID_RE, useLoad } from '../../lib/bpr';
+import { ProviderList, Research as ResearchT, ResearchWork, safeUrl, SPID_RE, useLoad } from '../../lib/bpr';
 
 export default function Research() {
   const spid = (useParams().spid || '').toUpperCase();
@@ -119,10 +119,10 @@ function Footprint({ spid }: { spid: string }) {
             <div className="bpr-work-meta"><span>{KIND[w.kind]?.[ar ? 1 : 0] || w.kind}</span><span>{w.year}</span>
               {w.authorship?.status && <span className={w.authorship.status === 'confirmed' ? 'pos' : ''}>{w.authorship.status === 'confirmed' ? (ar ? 'تأليف مؤكد' : 'Authorship confirmed') : (ar ? 'غير مؤكد' : 'Not confirmed')}</span>}
               {w.in_community && <span>bpr-doctors</span>}</div>
-            <a href={w.url} target="_blank" rel="noreferrer"><h3 dir="auto">{w.title}</h3></a>
+            {safeUrl(w.url) ? <a href={safeUrl(w.url)} target="_blank" rel="noreferrer"><h3 dir="auto">{w.title}</h3></a> : <h3 dir="auto">{w.title}</h3>}
             <div className="bpr-work-foot">
               {w.doi && <code dir="ltr">{w.doi}</code>}
-              {w.sources && Object.entries(w.sources).map(([k, u]) => <a key={k} href={u} target="_blank" rel="noreferrer">{SOURCE[k] || k}</a>)}
+              {w.sources && Object.entries(w.sources).filter(([, u]) => safeUrl(u)).map(([k, u]) => <a key={k} href={safeUrl(u)} target="_blank" rel="noreferrer">{SOURCE[k] || k}</a>)}
               {w.metrics?.zenodo?.downloads != null && <small>{w.metrics.zenodo.downloads} ↓ Zenodo</small>}
               {w.metrics?.hf?.downloads != null && <small>{w.metrics.hf.downloads} ↓ HF</small>}
             </div>

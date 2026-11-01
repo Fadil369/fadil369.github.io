@@ -3,7 +3,7 @@ import { NavLink, Link, useLocation } from 'react-router-dom';
 import { AlertTriangle, ArrowRight, ArrowUpRight, Check, CircleDashed, Database, Hourglass, LayoutGrid, Minus, Radio, X } from 'lucide-react';
 import { useI18n } from '../i18n';
 import { ProfileHeader } from './ProfileHeader';
-import { Check as CheckT, REGISTRY, Source, Trust, useManifest } from '../lib/bpr';
+import { Check as CheckT, REGISTRY, safeUrl, Source, Trust, useManifest } from '../lib/bpr';
 import '../styles/profile.css';
 import '../styles/bpr.css';
 
@@ -214,5 +214,7 @@ export function Failed({ children }: { children?: ReactNode }) {
 }
 
 export function ExtLink({ href, children }: { href: string; children: ReactNode }) {
-  return <a href={href} target="_blank" rel="noreferrer" className="bpr-ext">{children}<ArrowUpRight size={13} /></a>;
+  const safe = safeUrl(href);
+  if (!safe) return null;
+  return <a href={safe} target="_blank" rel="noreferrer" className="bpr-ext">{children}<ArrowUpRight size={13} /></a>;
 }

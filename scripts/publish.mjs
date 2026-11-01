@@ -22,7 +22,7 @@ const index = readFileSync(indexFile, 'utf8');
 writeFileSync(join(root, '404.html'), index); // SPA fallback for hard refresh
 writeFileSync(join(root, 'index.html'), index);
 
-for (const route of ['learn', 'build', 'solutions', 'templates', 'oid', 'catalogue', 'store', 'sprint', 'benefits', 'account', 'track', 'faq', 'terms', 'support', 'contact', 'slots', 'doctors', 'cv', 'card',
+for (const route of ['cv', 'card',
   'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace']) {
   const routeDir = join(root, route);
   mkdirSync(routeDir, { recursive: true });
@@ -127,9 +127,6 @@ for (const [route, [title, description, image]] of Object.entries(ROUTE_META)) {
 }
 console.log(`Wrote share tags for ${Object.keys(ROUTE_META).length} static route(s).`);
 
-const bprRoute = join(root, 'products', 'bpr');
-mkdirSync(bprRoute, { recursive: true });
-writeFileSync(join(bprRoute, 'index.html'), index);
 
 for (const f of ['manifest.webmanifest', 'llms.txt']) {
   const src = join(dist, f);
@@ -186,6 +183,48 @@ for (const [route, src] of arPages) {
   arWritten += 1;
 }
 console.log(`Wrote ${arWritten} Arabic page(s) under /ar/.`);
+
+// ── legacy store routes → static redirect stubs ────────────────────────────
+// Old storefront URLs keep working for people with bookmarks, but are not indexable duplicates.
+const LEGACY = { learn: '/bpr/', build: '/bpr/', solutions: '/bpr/', templates: '/bpr/', oid: '/bpr/', catalogue: '/bpr/', store: '/bpr/', 'products/bpr': '/bpr/',
+  doctors: '/bpr/providers/', slots: '/bpr/workspace/', sprint: '/bpr/workspace/', benefits: '/bpr/join/', account: '/', track: '/', faq: '/', terms: '/', support: '/#contact', contact: '/#contact' };
+for (const [route, to] of Object.entries(LEGACY)) {
+  const dir = join(root, route);
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, 'index.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Moved</title>
+<meta name="robots" content="noindex, follow"><link rel="canonical" href="${ORIGIN}${to}"><meta http-equiv="refresh" content="0; url=${to}">
+</head><body><p>This page moved to <a href="${to}">${ORIGIN}${to}</a>.</p></body></html>
+`);
+}
+// Old storefront product pages pointed at bundles that no longer exist (they rendered blank).
+const productsDir = join(root, 'products');
+let productStubs = 0;
+if (existsSync(productsDir)) for (const slug of readdirSync(productsDir)) {
+  if (slug === 'bpr' || !existsSync(join(productsDir, slug, 'index.html'))) continue;
+  writeFileSync(join(productsDir, slug, 'index.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Moved</title>
+<meta name="robots" content="noindex, follow"><link rel="canonical" href="${ORIGIN}/bpr/"><meta http-equiv="refresh" content="0; url=/bpr/">
+</head><body><p>The BrainSAIT store moved. See <a href="/bpr/">${ORIGIN}/bpr/</a>.</p></body></html>
+`);
+  productStubs += 1;
+}
+console.log(`Wrote ${Object.keys(LEGACY).length} legacy redirect stub(s) and ${productStubs} product stub(s).`);
+
+// ── Content Security Policy for the BPR pages (no analytics there) ──────────
+// Inline scripts are pinned by hash; links can only open http(s); only the registry is reachable.
+{
+  const { createHash } = await import('node:crypto');
+  const hashes = [...index.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((m) => `'sha256-${createHash('sha256').update(m[1]).digest('base64')}'`);
+  const csp = ["default-src 'self'", `script-src 'self' ${hashes.join(' ')}`, "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com", "font-src 'self' https://fonts.gstatic.com",
+    "img-src 'self' data: blob:", "connect-src 'self' https://registry.brainsait.de", "frame-src 'self'", "worker-src 'self'", "manifest-src 'self'", "object-src 'none'", "base-uri 'self'", "form-action 'self'"].join('; ');
+  const walkHtml = (dir) => existsSync(dir) ? readdirSync(dir, { withFileTypes: true }).flatMap((d) => d.isDirectory() ? walkHtml(join(dir, d.name)) : d.name === 'index.html' ? [join(dir, d.name)] : []) : [];
+  let n = 0;
+  for (const f of [...walkHtml(join(root, 'bpr')), ...walkHtml(join(root, 'ar', 'bpr'))]) {
+    const h = readFileSync(f, 'utf8').replace(/\s*<meta http-equiv="Content-Security-Policy"[^>]*>/, '');
+    writeFileSync(f, h.replace(/<head>/, `<head>\n    <meta http-equiv="Content-Security-Policy" content="${csp}" />`));
+    n += 1;
+  }
+  console.log(`CSP on ${n} BPR page(s) (${hashes.length} inline script hash(es)).`);
+}
 
 // ── service worker (offline + resilience) ───────────────────────────────────
 // Versioned by the hashed entry bundle, so every deploy replaces the old cache.

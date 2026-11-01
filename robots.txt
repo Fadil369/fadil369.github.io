@@ -3,5 +3,6 @@ User-agent: *
 Allow: /
 Disallow: /scripts/
 Disallow: /src/
+Disallow: /docs/
 
 Sitemap: https://fadil369.github.io/sitemap.xml
