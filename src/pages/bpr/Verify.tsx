@@ -94,10 +94,10 @@ export default function Verify() {
 
   return (
     <BprLayout kicker={ar ? 'التحقق' : 'Verify'}
-      title={ar ? 'تحقق من مقدم رعاية — على جهازك.' : 'Verify a provider — on your device.'}
+      title={ar ? 'تحقّق من الممارس الصحي على جهازك.' : 'Check a healthcare professional — on your own device.'}
       lead={ar
-        ? 'يُفحص توقيع Ed25519 في متصفحك باستخدام المفتاح العام المنشور في did:web:registry.brainsait.de. لا حاجة لحساب، ولا يُرفع أي شيء.'
-        : 'The Ed25519 signature is checked in your browser against the public key published at did:web:registry.brainsait.de. No account, nothing uploaded.'}>
+        ? 'أدخل المعرّف أو الصق الاعتماد أو امسح رمز البطاقة. يُفحص التوقيع الرقمي داخل متصفحك باستخدام المفتاح العام الذي ينشره السجل. لا حاجة إلى حساب، ولا يغادر ما تلصقه أو تمسحه جهازك.'
+        : 'Enter an ID, paste a credential or scan a card. The digital signature is checked in your browser against the public key the registry publishes. No account needed, and what you paste or scan never leaves your device.'}>
       <div className="bpr-tabs" role="group" aria-label={ar ? 'طريقة التحقق' : 'How to verify'}>
         <button aria-pressed={mode === 'spid'} onClick={() => setMode('spid')}><Search size={15} />{ar ? 'بالمعرّف' : 'By SPID'}</button>
         <button aria-pressed={mode === 'jwt'} onClick={() => setMode('jwt')}><FileKey2 size={15} />{ar ? 'لصق اعتماد' : 'Paste a credential'}</button>

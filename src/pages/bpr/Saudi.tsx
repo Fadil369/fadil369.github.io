@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Building2, FileCheck2, Landmark, Network, Package, Cpu } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
-import { BprLayout, ScfhsPending } from '../../components/BprKit';
+import { BprLayout } from '../../components/BprKit';
 
 // Public overview: where BPR could fit in the Saudi health system. Proposals only — no meetings,
 // statuses, notes or pipeline data (those live in the owner's private roadshow tool).
@@ -43,15 +43,15 @@ export default function Saudi() {
   });
   return (
     <BprLayout kicker={ar ? 'المملكة العربية السعودية' : 'Saudi Arabia'}
-      title={ar ? 'هوية واحدة قابلة للتحقق، عبر المنظومة الصحية.' : 'One verifiable identity, across the health system.'}
+      title={ar ? 'هوية مهنية واحدة قابلة للتحقق في أرجاء المنظومة الصحية.' : 'One verifiable identity, across the health system.'}
       lead={ar
-        ? 'أين يمكن أن يخدم BPR الجهات الصحية في المملكة. هذه مقترحات: لا تعني شراكة أو اعتمادًا من أي جهة.'
-        : 'Where BPR could serve Saudi health organisations. These are proposals — no partnership or endorsement by any organisation is implied.'}
+        ? 'كيف يمنح BPR كل جهة صحية في المملكة هوية مهنية موثوقة لكوادرها — وما الذي يفتحه كل تكامل من قيمة.'
+        : 'How BPR gives every Saudi health organisation trusted professional identity for its workforce — and what each integration unlocks.'}
       actions={<Link className="profile-button primary" to="/bpr/record">{ar ? 'شاهد سجلًا حيًا' : 'See a live record'}<ArrowRight size={16} /></Link>}>
       <section className="ksa-today">
         <div><span className="ws-status live">{ar ? 'يعمل اليوم' : 'Live today'}</span><p>{ar ? 'اعتماد W3C موقّع يُتحقق منه من أي هاتف · سجل شفاف عام · واجهة FHIR R4 · OpenEMR لكل مقدم رعاية مع مساعد سريري بالعربية أولاً' : 'Signed W3C credential verifiable on any phone · public transparency log · FHIR R4 API · per-provider OpenEMR with an Arabic-first clinical Copilot'}</p></div>
-        <div><span className="ws-status awaiting">{ar ? 'بانتظار' : 'Awaiting'}</span><p>{ar ? 'التكامل الرسمي مع اعتمادات الهيئة السعودية للتخصصات الصحية' : 'The official SCFHS credential integration'}</p></div>
-        <div><span className="ws-status planned">{ar ? 'مخطط' : 'Planned'}</span><p>{ar ? 'التكامل مع نفيس' : 'NPHIES integration'}</p></div>
+        <div><span className="ws-status awaiting">{ar ? 'تكامل جارٍ' : 'Ongoing integration'}</span><p>{ar ? 'التحقق من اعتمادات الهيئة السعودية للتخصصات الصحية' : 'SCFHS credential verification'}</p></div>
+        <div><span className="ws-status awaiting">{ar ? 'تكامل جارٍ' : 'Ongoing integration'}</span><p>{ar ? 'التكامل مع نفيس' : 'NPHIES integration'}</p></div>
       </section>
       {GROUPS.map(({ icon: Icon, ...g }) => (
         <section key={g.en} className="bpr-section">
@@ -59,17 +59,17 @@ export default function Saudi() {
           <div className="ws-grid">
             {g.orgs.map((o) => (
               <article key={o.en} className="ws-card planned">
-                <div className="ws-card-top"><Network size={20} /><span className="ws-status planned">{ar ? 'مقترح' : 'Proposed'}</span></div>
+                <div className="ws-card-top"><Network size={20} /><span className="ws-status planned">{ar ? 'فرصة' : 'Opportunity'}</span></div>
                 <h3>{ar ? o.ar : o.en}</h3>
                 <p className="ksa-alt"><bdi>{ar ? o.en : o.ar}</bdi></p>
                 <p>{ar ? o.valueAr : o.valueEn}</p>
-                <small className="ksa-needs">{ar ? 'يعتمد على: ' : 'Depends on: '}{ar ? o.needsAr : o.needsEn}</small>
+                <small className="ksa-needs">{ar ? 'يُفعَّل بـ: ' : 'Unlocked by: '}{ar ? o.needsAr : o.needsEn}</small>
               </article>
             ))}
           </div>
         </section>
       ))}
-      <ScfhsPending />
+      <p className="bpr-note">{ar ? 'مقترحات للنقاش مع كل جهة.' : 'Proposals for discussion with each organisation.'}</p>
     </BprLayout>
   );
 }

@@ -144,7 +144,7 @@ export default function Home() {
                   : credOk ? (ar ? 'اعتماد BPR موقّع · فُحص في متصفحك' : 'Signed BPR credential · checked in your browser')
                   : (ar ? 'اعتماد BPR · تعذّر الفحص الآن' : 'BPR credential · could not check now')}</small>
                 <strong dir="ltr">{SPID}</strong>
-                <em><Hourglass size={10} aria-hidden="true" />{ar ? 'الترخيص: بانتظار تكامل الهيئة' : 'Licence: awaiting SCFHS integration'}</em>
+                <em><Hourglass size={10} aria-hidden="true" />{ar ? 'الترخيص: تكامل الهيئة جارٍ' : 'Licence: SCFHS integration ongoing'}</em>
               </span>
               <ArrowUpRight size={16} />
             </Link>

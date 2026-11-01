@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Activity, LayoutGrid, ArrowRight, ArrowUpRight, BadgeCheck, Braces, Calculator, Check, FlaskConical, Fingerprint, KeyRound, Link2, Network, Search, Server, ShieldCheck, Stethoscope, Users } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
-import { BprLayout, CheckRow, ScfhsPending, SourceBadge, valueLabel, WorkspaceBand } from '../../components/BprKit';
+import { BprLayout, CheckRow, SourceBadge, valueLabel, WorkspaceBand } from '../../components/BprKit';
 import { checkCredential, CredentialResult, LedgerResult, ProviderList, REGISTRY, replayLedger, short, useLoad } from '../../lib/bpr';
 
 const SPID = 'SA-PHY-000003';
@@ -58,10 +58,10 @@ export default function Overview() {
   return (
     <BprLayout
       kicker="BrainSAIT Provider Registry"
-      title={ar ? 'هوية واحدة موثوقة. يمكن لأي شخص التحقق منها.' : 'One trusted identity. Anyone can check it.'}
+      title={ar ? 'هوية مهنية واحدة موثوقة، يتحقق منها أي شخص.' : 'One trusted identity. Anyone can check it.'}
       lead={ar
-        ? 'BPR يمنح كل ممارس صحي معرّفًا دائمًا وشهادة موقّعة وسجلًا عامًا. هذه الصفحات تعيد التحقق بنفسها — التوقيعات وسلسلة التجزئة تُفحص في متصفحك.'
-        : 'BPR gives every clinician a permanent ID, a signed credential and a public record. These pages re-check it themselves — signatures and the hash chain are verified in your browser.'}
+        ? 'يمنح BPR كل ممارس صحي معرّفًا دائمًا واعتمادًا موقّعًا رقميًا يتحقق منه أي مستشفى أو جهة دافعة أو مريض في ثوانٍ، من أي هاتف، دون حساب. لا تثق بكلامنا — هذه الصفحة تتحقق بنفسها أمامك.'
+        : 'BPR gives every healthcare professional a permanent ID and a digitally signed credential that any hospital, payer or patient can check in seconds — on any phone, no account needed. Don’t take our word for it: this page verifies itself, live, in front of you.'}
       actions={<>
         <Link className="profile-button primary" to="/bpr/providers">{ar ? 'تصفح الدليل' : 'Browse the directory'}<ArrowRight size={16} /></Link>
         <Link className="profile-button secondary" to="/bpr/join">{ar ? 'انضم إلى BPR' : 'Join BPR'}<ArrowRight size={16} /></Link>
@@ -92,7 +92,6 @@ export default function Overview() {
           <CheckRow label={ar ? 'رأس السجل الموقّع' : 'Signed ledger head'} check={ledger?.headSignature || (ledgerErr ? NA : pending)}>
             {ledger && <code className="bpr-hash" dir="ltr">{short(ledger.head.hash, 14)}</code>}
           </CheckRow>
-          <ScfhsPending compact />
           <form className="bpr-inline-form" onSubmit={go}>
             <label className="sr-only" htmlFor="ov-spid">SPID</label>
             <input id="ov-spid" dir="ltr" value={spid} onChange={(e) => setSpid(e.target.value)} placeholder="SA-PHY-000003" />

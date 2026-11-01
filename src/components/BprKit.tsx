@@ -16,7 +16,6 @@ const NAV = [
   { to: '/bpr/ledger', en: 'Ledger', ar: 'السجل الشفاف' },
   { to: '/bpr/research', en: 'Research', ar: 'البحث' },
   { to: '/bpr/developers', en: 'FHIR & API', ar: 'FHIR والواجهات' },
-  { to: '/bpr/status', en: 'Status', ar: 'الحالة' },
   { to: '/bpr/join', en: 'Join', ar: 'انضم' },
 ];
 
@@ -151,7 +150,7 @@ export function TrustGrid({ trust, legend = true }: { trust: Trust; legend?: boo
               <dd>
                 <span className="bpr-trust-value"><TrustGlyph tone={tone} />{valueLabel(trust[k], ar)}</span>
                 <small className="bpr-attestor">{ATTESTOR[k][ar ? 1 : 0]}</small>
-                {pending && <small className="bpr-pending"><Hourglass size={11} aria-hidden="true" />{ar ? 'بانتظار تكامل الهيئة' : 'Awaiting SCFHS integration'}</small>}
+                {pending && <small className="bpr-pending"><Hourglass size={11} aria-hidden="true" />{ar ? 'تكامل الهيئة جارٍ' : 'SCFHS integration ongoing'}</small>}
               </dd>
             </div>
           );
@@ -174,10 +173,10 @@ export function ScfhsPending({ compact = false }: { compact?: boolean }) {
     <aside className={`bpr-scfhs${compact ? ' compact' : ''}`} role="note">
       <Hourglass size={18} aria-hidden="true" />
       <div>
-        <strong>{ar ? 'الترخيص والمؤهلات — بانتظار التكامل الرسمي مع الهيئة السعودية للتخصصات الصحية' : 'Licence & qualifications — awaiting official SCFHS credential integration'}</strong>
+        <strong>{ar ? 'الترخيص والمؤهلات — التكامل مع الهيئة السعودية للتخصصات الصحية جارٍ' : 'Licence & qualifications — SCFHS credential integration ongoing'}</strong>
         {!compact && <p>{ar
-          ? 'لا يستقبل BPR بعدُ الاعتمادات من الهيئة السعودية للتخصصات الصحية، لذلك تظهر التراخيص والمؤهلات «لم تُقيَّم». إلى حين تفعيل التكامل الرسمي، تحقّق من تسجيل الممارس مباشرة لدى الهيئة.'
-          : 'BPR does not yet receive credentials from the Saudi Commission for Health Specialties, so professional licences and qualifications show as “not assessed”. Until the official integration is live, check a practitioner’s registration directly with SCFHS.'}</p>}
+          ? 'التكامل مع الهيئة السعودية للتخصصات الصحية جارٍ. وإلى أن يكتمل، تظهر التراخيص والمؤهلات «لم تُقيَّم»، ويمكن التحقق من تسجيل الممارس مباشرة لدى الهيئة.'
+          : 'Integration with the Saudi Commission for Health Specialties is ongoing. Until it goes live, licences and qualifications show as “not assessed” — you can check a practitioner’s registration directly with SCFHS.'}</p>}
         <div className="bpr-scfhs-links">
           <ExtLink href={SCFHS_REG_CHECK}>{ar ? 'التحقق من التسجيل لدى الهيئة' : 'SCFHS registration check'}</ExtLink>
           {!compact && <ExtLink href={`${REGISTRY}/scfhs.php`}>{ar ? 'دليل التصنيف المهني' : 'Classification guide'}</ExtLink>}
@@ -191,14 +190,16 @@ export function ScfhsPending({ compact = false }: { compact?: boolean }) {
 export function WorkspaceBand() {
   const { ar } = useI18n();
   const live = ar ? ['OpenEMR خاص ومخصص', 'مساعد سريري بـ14 مهارة', 'إملاء صوتي عربي', 'FHIR R4', 'الحاسبات والنماذج', 'صفحة البحث'] : ['Own customised OpenEMR', '14-skill Copilot', 'Arabic voice-to-text', 'FHIR R4', 'Calculators & forms', 'Research page'];
-  const planned = ar ? ['نفيس', 'مراجعة الأقران', 'فريقك', 'الإرشاد والتدريب', 'الفترات المتاحة', 'المطابقة'] : ['NPHIES', 'Peer review', 'Your team', 'Mentoring & training', 'Open slots', 'Matching'];
+  const ongoing = ar ? ['التحقق من اعتماد الهيئة', 'نفيس'] : ['SCFHS credential check', 'NPHIES'];
+  const planned = ar ? ['مراجعة الأقران', 'فريقك', 'الإرشاد والتدريب', 'الفترات المتاحة', 'المطابقة'] : ['Peer review', 'Your team', 'Mentoring & training', 'Open slots', 'Matching'];
   return (
     <section className="ws-band" aria-label={ar ? 'مساحة عمل مقدم الرعاية' : 'Provider workspace'}>
       <LayoutGrid size={26} aria-hidden="true" />
       <div>
         <h2>{ar ? 'لكل مقدم رعاية مساحة عمل ذكية متكاملة' : 'Every provider gets a complete, intelligent workspace'}</h2>
         <div className="ws-band-row"><span className="ws-status live">{ar ? 'يعمل اليوم' : 'Live today'}</span>{live.map((x) => <em key={x}>{x}</em>)}</div>
-        <div className="ws-band-row"><span className="ws-status planned">{ar ? 'مخطط' : 'Planned'}</span>{planned.map((x) => <em key={x} className="planned">{x}</em>)}</div>
+        <div className="ws-band-row"><span className="ws-status awaiting">{ar ? 'تكامل جارٍ' : 'Ongoing integration'}</span>{ongoing.map((x) => <em key={x} className="planned">{x}</em>)}</div>
+        <div className="ws-band-row"><span className="ws-status planned">{ar ? 'قادمًا' : 'Coming next'}</span>{planned.map((x) => <em key={x} className="planned">{x}</em>)}</div>
       </div>
       <Link className="profile-button primary" to="/bpr/workspace">{ar ? 'استكشف مساحة العمل' : 'Explore the workspace'}<ArrowRight size={16} /></Link>
     </section>

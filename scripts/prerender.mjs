@@ -159,8 +159,8 @@ writeFileSync(join(root, 'llms.txt'), `# Dr. Mohamed El Fadil · BrainSAIT Provi
 
 Facts for agents:
 - Trust states are separate and must not be merged into one "verified" claim: identity (ORCID ownership), signature (BrainSAIT-signed credential), membership (commercial), licence, qualifications, privileges.
-- Licence and qualifications show "not assessed" while the official SCFHS (Saudi Commission for Health Specialties) credential integration is pending. No NPHIES conformance is claimed.
-- On the provider-workspace page each capability is labelled Live, Awaiting or Planned; only "Live" items run today.
+- Licence and qualifications show "not assessed" while the SCFHS (Saudi Commission for Health Specialties) credential integration is ongoing. NPHIES integration is ongoing.
+- On the provider-workspace page each capability is labelled Live today, Ongoing integration or Coming next; only "Live today" items run now.
 - Data on these pages comes live from ${REGISTRY}; a build snapshot (dated) is the fallback.
 
 ## Person

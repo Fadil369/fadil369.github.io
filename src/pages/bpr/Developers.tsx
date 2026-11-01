@@ -57,11 +57,11 @@ export default function Developers() {
   const copy = (path: string) => navigator.clipboard?.writeText(`curl -s '${REGISTRY}${path}'`).then(() => { setCopied(path); setTimeout(() => setCopied(''), 1600); }, () => {});
 
   return (
-    <BprLayout kicker={ar ? 'للمطورين' : 'Developers'}
-      title={ar ? 'اقرأ مقدمي الرعاية كبيانات، لا كصور.' : 'Read providers as data, not screenshots.'}
+    <BprLayout kicker={ar ? 'للمطورين' : 'For developers'}
+      title={ar ? 'بيانات مقدمي الرعاية، جاهزة لأنظمتكم.' : 'Provider data your systems can read directly.'}
       lead={ar
-        ? 'موارد FHIR R4 وواجهة JSON للبيانات العامة فقط — لا تُنشر أرقام التراخيص أبدًا. لا يُدّعى توافق مع NPHIES.'
-        : 'FHIR R4 resources and a JSON API over public fields only — licence numbers are never published. No NPHIES conformance is claimed.'}>
+        ? 'موارد FHIR R4 قياسية وواجهة JSON مفتوحة، تستدعيها من أي متصفح أو خادم دون مفاتيح ولا تسجيل. اربط نظامك اليوم، وبياناتك المهنية العامة محمية: لا تُنشر أرقام التراخيص إطلاقًا.'
+        : 'Standard FHIR R4 resources and an open JSON API — call them from any browser or server, no keys, no sign-up. Integrate today; licence numbers are never published.'}>
       <section className="bpr-panel">
         <div className="bpr-panel-head"><h2>FHIR {cap.state === 'ready' ? cap.data.fhirVersion : 'R4'} · CapabilityStatement</h2>{cap.state === 'ready' && <SourceBadge source={cap.source} />}</div>
         {cap.state === 'loading' && <Loading />}

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Search } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
-import { BprLayout, Failed, Loading, ScfhsPending, SourceBadge, TRUST_LABEL, TrustGlyph, trustTone, valueLabel } from '../../components/BprKit';
+import { BprLayout, Failed, Loading, SourceBadge, TRUST_LABEL, TrustGlyph, trustTone, valueLabel } from '../../components/BprKit';
 import type { Trust } from '../../lib/bpr';
 import { ProviderList, useLoad } from '../../lib/bpr';
 
@@ -40,10 +40,10 @@ export default function Providers() {
   return (
     <BprLayout
       kicker={ar ? 'الدليل' : 'Directory'}
-      title={ar ? 'مقدمو الرعاية المدرجون' : 'Listed providers'}
+      title={ar ? 'الممارسون الصحيون المدرجون' : 'Listed healthcare professionals'}
       lead={ar
-        ? 'الإدراج لا يعني التوثيق. لكل مقدم رعاية تُعرض الهوية والتوقيع والعضوية والترخيص كحالات منفصلة، كما يسجّلها السجل.'
-        : 'Listed is not the same as verified. Identity, signature, membership and licence are shown as separate states, exactly as the registry records them.'}
+        ? 'كل ممارس مدرج في لمحة واحدة: الهوية والتوقيع والعضوية والترخيص، كلٌّ في خانته، مباشرة من السجل.'
+        : 'Every listed professional at a glance: identity, signature, membership and licence, each in its own place, straight from the registry.'}
     >
       <div className="bpr-toolbar">
         <label className="bpr-search">
@@ -57,7 +57,6 @@ export default function Providers() {
         {list.state === 'ready' && <SourceBadge source={list.source} />}
       </div>
 
-      <ScfhsPending compact />
       {list.state === 'loading' && <Loading />}
       {list.state === 'error' && <Failed />}
       {list.state === 'ready' && (items.length === 0

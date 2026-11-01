@@ -21,8 +21,8 @@ export default function Status() {
   const ops = d?.operations;
   return (
     <BprLayout kicker={ar ? 'الحالة' : 'Status'}
-      title={ar ? 'ما يقوله السجل عن نفسه.' : 'What the registry reports about itself.'}
-      lead={ar ? 'تُعرض النتائج كما يرسلها السجل، بما في ذلك الإخفاقات.' : 'Shown exactly as the registry reports it, failures included.'}>
+      title={ar ? 'صحة السجل كما يرصدها بنفسه.' : 'Registry health, as the registry reports it.'}
+      lead={ar ? 'نتائج مباشرة من نظام المراقبة في السجل، تُعرض كما هي دون تعديل، بما فيها أي إخفاق قائم.' : 'Live results from the registry’s own monitoring, shown unedited — including anything that is failing right now.'}>
       {s.state === 'loading' && <Loading />}
       {s.state === 'error' && <Failed />}
       {d && <>

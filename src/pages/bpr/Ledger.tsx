@@ -41,10 +41,10 @@ export default function Ledger() {
 
   return (
     <BprLayout kicker={ar ? 'السجل الشفاف' : 'Transparency log'}
-      title={ar ? 'سلسلة عامة لا يمكن إعادة كتابتها بصمت.' : 'A public chain that cannot be quietly rewritten.'}
+      title={ar ? 'سجل عام لا يمكن تعديله خِفية.' : 'A public record that cannot be changed in secret.'}
       lead={ar
-        ? 'كل سطر يحمل تجزئة السطر السابق، ورأس السلسلة موقّع من السجل. يعيد متصفحك الآن حساب كل تجزئة من البداية.'
-        : 'Each line carries the hash of the line before it, and the head is signed by the registry. Your browser is recomputing every hash from genesis right now.'}>
+        ? 'كل اعتماد يُصدَر أو يُجدَّد أو يُلغى يُضاف سطرًا جديدًا مرتبطًا بما قبله، ويوقّع السجل آخر سطر فيه. ومتصفحك يتحقق الآن من السلسلة كاملة.'
+        : 'Every credential issued, renewed or revoked is added as a new line linked to the one before it, and the registry signs the latest line. Your browser is checking the whole chain right now.'}>
       {err && <Failed />}
       {!log && !err && <Loading label={ar ? 'جارٍ إعادة التحقق من السلسلة…' : 'Replaying the chain…'} />}
       {log && <>

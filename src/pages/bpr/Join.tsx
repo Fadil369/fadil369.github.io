@@ -1,7 +1,7 @@
 import { ArrowUpRight, Calculator, FileCheck2, IdCard, KeyRound, LogIn, Server, UserPlus } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
-import { BprLayout, ExtLink, ScfhsPending, WorkspaceBand } from '../../components/BprKit';
+import { BprLayout, ExtLink, WorkspaceBand } from '../../components/BprKit';
 import { REGISTRY } from '../../lib/bpr';
 
 // Joining writes personal data, so it stays on registry.brainsait.de (ORCID sign-in, CSRF-protected
@@ -23,10 +23,10 @@ export default function Join() {
   });
   return (
     <BprLayout kicker={ar ? 'الانضمام' : 'Join'}
-      title={ar ? 'من ORCID إلى اعتماد موقّع.' : 'From ORCID to a signed credential.'}
+      title={ar ? 'تبدأ هويتك المهنية الموقّعة من ORCID.' : 'Your signed professional identity starts with ORCID.'}
       lead={ar
-        ? 'يتم الانضمام على registry.brainsait.de لأنه يتضمن بيانات شخصية ومستندات خاصة. هذا هو المسار.'
-        : 'Joining happens on registry.brainsait.de, because it involves personal data and private documents. This is the path.'}
+        ? 'يتم الانضمام عبر منصة السجل مباشرة، حيث تبقى بياناتك الشخصية ومستنداتك محمية. إليك ما يحدث خطوة بخطوة.'
+        : 'Joining takes place on the registry itself, where your personal details and documents stay private. Here is what happens, step by step.'}
       actions={<>
         <a className="profile-button primary" href={`${REGISTRY}/join.php`} target="_blank" rel="noreferrer">{ar ? 'ابدأ الانضمام' : 'Start joining'}<ArrowUpRight size={16} /></a>
         <a className="profile-button secondary" href={`${REGISTRY}/scfhs.php`} target="_blank" rel="noreferrer">{ar ? 'دليل تصنيف الهيئة' : 'SCFHS classification guide'}<ArrowUpRight size={16} /></a>
@@ -37,7 +37,6 @@ export default function Join() {
         ))}
       </ol>
       <WorkspaceBand />
-      <ScfhsPending />
       <section className="bpr-section">
         <div className="profile-section-label">{ar ? 'للأعضاء' : 'For members'}</div>
         <div className="bpr-module-grid two">

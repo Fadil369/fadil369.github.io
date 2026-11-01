@@ -22,10 +22,10 @@ function ResearchIndex() {
   const withResearch = list.state === 'ready' ? list.data.items.filter((p) => p.research_url) : [];
   return (
     <BprLayout kicker={ar ? 'البحث' : 'Research'}
-      title={ar ? 'بحث يمكن نسبته، لا مجرد قائمة.' : 'Research you can attribute — not just a list.'}
+      title={ar ? 'أبحاث ثابتة النسبة إلى أصحابها.' : 'Research that can be traced to its author.'}
       lead={ar
-        ? 'يُحتسب العمل فقط عندما يذكر سجل الناشر (Crossref/DataCite) معرّف ORCID الخاص بمقدم الرعاية. تُستبعد الأعمال المنسوبة إلى معرّف آخر.'
-        : 'A work counts only when the publisher record (Crossref/DataCite) names the provider’s ORCID iD. Works attributed to a different iD are left out.'}
+        ? 'لا يُحتسب العمل إلا إذا ذكر سجل الناشر نفسه (Crossref أو DataCite) معرّف ORCID الخاص بالممارس، فيكون كل ما يظهر هنا منسوبًا إليه فعلًا.'
+        : 'A work is counted only when the publisher’s own record (Crossref or DataCite) names the professional’s ORCID iD — so everything shown here is genuinely theirs.'}
       actions={<ExtLink href="https://zenodo.org/communities/bpr-doctors/">{ar ? 'مجتمع BPR على Zenodo' : 'BPR community on Zenodo'}</ExtLink>}>
       {list.state === 'loading' && <Loading />}
       {list.state === 'error' && <Failed />}

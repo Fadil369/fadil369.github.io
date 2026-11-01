@@ -10,8 +10,8 @@ import { BprLayout, CheckRow, ScfhsPending, SourceBadge } from '../../components
 import { AiLedger, checkAiLedger, REGISTRY, short } from '../../lib/bpr';
 
 // The provider workspace, capability by capability. Status is stated per card and must match what
-// actually runs (see ~/BRAINSAIT-ESTATE.md): "live" = running today; "awaiting" = blocked on an
-// external body; "planned" = on the roadmap, not built. Never promote a card without shipping it.
+// actually runs (see ~/BRAINSAIT-ESTATE.md): "live" = running today; "awaiting" = integration in
+// progress (SCFHS, NPHIES), shown as "Ongoing integration"; "planned" = coming next, not built yet.
 type Status = 'live' | 'awaiting' | 'planned';
 interface Cap { icon: typeof Bot; status: Status; roles?: boolean; en: string; ar: string; enText: string; arText: string; facts?: [string, string][]; link?: { to?: string; href?: string; en: string; ar: string } }
 
@@ -42,12 +42,12 @@ const GROUPS: { en: string; ar: string; caps: Cap[] }[] = [
         enText: 'Providers published as FHIR Practitioner / PractitionerRole / Organization, and the EMR speaks FHIR to the Copilot through a SMART launch.',
         arText: 'مقدمو الرعاية منشورون كموارد FHIR Practitioner وPractitionerRole وOrganization، ويتواصل السجل الطبي مع المساعد عبر FHIR بإطلاق SMART.',
         link: { to: '/bpr/developers', en: 'FHIR & API', ar: 'FHIR والواجهات' } },
-      { icon: Network, status: 'planned', en: 'NPHIES integration', ar: 'التكامل مع نفيس',
-        enText: 'Eligibility, pre-authorisation and claims from the workspace. Not built yet — no NPHIES conformance is claimed today.',
-        arText: 'الأهلية والموافقات المسبقة والمطالبات من مساحة العمل. لم يُبنَ بعد — ولا يُدّعى اليوم أي توافق مع نفيس.' },
+      { icon: Network, status: 'awaiting', en: 'NPHIES integration', ar: 'التكامل مع نفيس',
+        enText: 'Eligibility, pre-authorisation and claims straight from the workspace — integration is ongoing.',
+        arText: 'الأهلية والموافقات المسبقة والمطالبات مباشرة من مساحة العمل — والتكامل جارٍ.' },
       { icon: BookOpenCheck, status: 'awaiting', en: 'SCFHS credential check', ar: 'التحقق من اعتماد الهيئة',
-        enText: 'Licence and qualifications read from the Saudi Commission for Health Specialties. Waiting on the official integration; until then they show as “not assessed”.',
-        arText: 'قراءة الترخيص والمؤهلات من الهيئة السعودية للتخصصات الصحية. بانتظار التكامل الرسمي؛ وإلى حينه تظهر «لم تُقيَّم».' },
+        enText: 'Licence and qualifications read directly from the Saudi Commission for Health Specialties. Integration is ongoing; until it goes live they show as “not assessed”.',
+        arText: 'قراءة الترخيص والمؤهلات مباشرة من الهيئة السعودية للتخصصات الصحية. التكامل جارٍ، وإلى أن يكتمل تظهر «لم تُقيَّم».' },
     ],
   },
   {
@@ -94,10 +94,10 @@ const CHECKLIST: { status: Status; en: string; ar: string; enText: string; arTex
   { status: 'live', en: 'Built-in Copilot assistant', ar: 'مساعد سريري مدمج', enText: '14 bilingual skills inside your EMR, on BrainSAIT-hosted models by default; drafts only, you save.', arText: '14 مهارة ثنائية اللغة داخل سجلك الطبي، على نماذج مستضافة لدى برينسايت افتراضيًا؛ مسودات فقط والحفظ لك.' },
   { status: 'live', en: 'Arabic voice-to-text', ar: 'تحويل الصوت العربي إلى نص', enText: 'On-premise speech recognition, Arabic validated: dictation → SOAP draft or into any field.', arText: 'تعرّف محلي على الكلام مُختبَر بالعربية: إملاء ← مسودة SOAP أو في أي حقل.' },
   { status: 'live', en: 'FHIR integration', ar: 'التكامل عبر FHIR', enText: 'FHIR R4 registry API and SMART-on-FHIR launch inside the EMR.', arText: 'واجهة FHIR R4 للسجل وإطلاق SMART-on-FHIR داخل السجل الطبي.', to: '/bpr/developers' },
-  { status: 'planned', en: 'NPHIES integration', ar: 'التكامل مع نفيس', enText: 'Eligibility, pre-authorisation and claims — on the roadmap; no conformance claimed today.', arText: 'الأهلية والموافقات المسبقة والمطالبات — ضمن خطة العمل؛ لا يُدّعى توافق اليوم.' },
+  { status: 'awaiting', en: 'NPHIES integration', ar: 'التكامل مع نفيس', enText: 'Eligibility, pre-authorisation and claims from the workspace — integration ongoing.', arText: 'الأهلية والموافقات المسبقة والمطالبات من مساحة العمل — والتكامل جارٍ.' },
   { status: 'live', en: 'Research page integration', ar: 'التكامل مع صفحة البحث', enText: 'DOI-matched works from ORCID, Zenodo and Hugging Face on your profile.', arText: 'أعمالك المطابقة عبر DOI من ORCID وZenodo وHugging Face في ملفك.', to: '/bpr/research/SA-PHY-000003' },
   { status: 'live', en: 'Calculators, forms & clinical tools', ar: 'الحاسبات والنماذج والأدوات السريرية', enText: 'Specialty kits with calculators, checklists, pre-filled forms and templates, printable with a verification QR.', arText: 'حزم تخصصية بحاسبات وقوائم تحقق ونماذج وقوالب معبأة، قابلة للطباعة مع رمز تحقق.', href: `${REGISTRY}/tools.php` },
-  { status: 'awaiting', en: 'SCFHS credential check', ar: 'التحقق من اعتماد الهيئة', enText: 'Licence and qualifications from SCFHS once the official integration is available.', arText: 'الترخيص والمؤهلات من الهيئة عند توفر التكامل الرسمي.' },
+  { status: 'awaiting', en: 'SCFHS credential check', ar: 'التحقق من اعتماد الهيئة', enText: 'Licence and qualifications read directly from SCFHS — integration ongoing.', arText: 'قراءة الترخيص والمؤهلات مباشرة من الهيئة — والتكامل جارٍ.' },
   { status: 'planned', en: 'Peer-to-peer review', ar: 'مراجعة الأقران', enText: 'Structured case and note review between providers.', arText: 'مراجعة منظمة للحالات والملاحظات بين مقدمي الرعاية.' },
   { status: 'planned', en: 'Choose or onboard your team', ar: 'اختيار فريقك أو ضمّه', enText: 'Nurses, respiratory therapists, receptionists and more — each with a role and access.', arText: 'ممرضون وأخصائيو علاج تنفسي وموظفو استقبال وغيرهم — لكل دوره وصلاحياته.' },
   { status: 'planned', en: 'Mentoring & training sessions', ar: 'الإرشاد وجلسات التدريب', enText: 'Teach with the same tools, calculators and cases.', arText: 'التدريب بالأدوات والحاسبات والحالات نفسها.' },
@@ -124,7 +124,7 @@ const SKILLS: { en: string; ar: string; items: [string, string][] }[] = [
 
 const ROLES: [string, string][] = [['Nurses', 'ممرضون'], ['Respiratory therapists', 'أخصائيو العلاج التنفسي'], ['Receptionists', 'موظفو الاستقبال'], ['Pharmacists', 'صيادلة'], ['Lab technicians', 'فنيو المختبر'], ['Medical coders / RCM', 'مرمّزون طبيون / دورة الإيرادات'], ['Doctors in training', 'أطباء متدربون']];
 
-const STATUS: Record<Status, [string, string]> = { live: ['Live today', 'يعمل اليوم'], awaiting: ['Awaiting SCFHS', 'بانتظار الهيئة'], planned: ['Planned', 'مخطط'] };
+const STATUS: Record<Status, [string, string]> = { live: ['Live today', 'يعمل اليوم'], awaiting: ['Ongoing integration', 'تكامل جارٍ'], planned: ['Coming next', 'قادمًا'] };
 
 export default function Workspace() {
   const { ar } = useI18n();
@@ -140,10 +140,10 @@ export default function Workspace() {
 
   return (
     <BprLayout kicker={ar ? 'مساحة العمل' : 'Provider workspace'}
-      title={ar ? 'لكل مقدم رعاية مساحة عمل ذكية متكاملة.' : 'Every provider gets a complete, intelligent workspace.'}
+      title={ar ? 'مساحة عمل ذكية متكاملة لكل ممارس صحي.' : 'Every healthcare professional gets a complete, intelligent workspace.'}
       lead={ar
-        ? 'هوية BPR هي المفتاح. خلفها: سجل طبي خاص، ومساعد سريري يفهم العربية، والتكامل، والأدوات، والفريق. كل بطاقة تذكر حالتها بصدق — ما يعمل اليوم وما هو مخطط.'
-        : 'Your BPR identity is the key. Behind it: your own EMR, a clinical copilot that understands Arabic, integration, tools and your team. Every card states its status honestly — what runs today, and what is planned.'}
+        ? 'تفتحها هويتك في BPR: نظام سجلات طبية خاص بك، ومساعد سريري يفهم العربية ويكتب ملاحظاتك من صوتك، وتكامل وفق المعايير، وأدوات تخصصية جاهزة. والمزيد في الطريق: فريقك، ومراجعة الأقران، والفترات المتاحة.'
+        : 'Your BPR identity opens it: your own medical record system, a clinical assistant that understands Arabic and writes your notes from your voice, standards-based integration and ready-made specialty tools. More is on the way: your team, peer review and open slots.'}
       actions={<>
         <Link className="profile-button primary" to="/bpr/join">{ar ? 'انضم واحصل على مساحتك' : 'Join and get your workspace'}<ArrowRight size={16} /></Link>
         <a className="profile-button secondary" href="https://emr.brainsait.de/" target="_blank" rel="noreferrer">{ar ? 'بوابة السجل الطبي' : 'EMR portal'}<ArrowUpRight size={16} /></a>
@@ -186,7 +186,7 @@ export default function Workspace() {
 
       <section className="ws-hero" aria-label={ar ? 'مخطط مساحة العمل' : 'Workspace map'}>
         <div className="ws-core"><Stethoscope size={28} /><strong>{ar ? 'مقدم الرعاية' : 'Provider'}</strong><code dir="ltr">SA-PHY-000003</code><small>{ar ? 'هوية BPR موقّعة' : 'Signed BPR identity'}</small></div>
-        {[[Server, 'OpenEMR', 'OpenEMR', 'live'], [Bot, 'Copilot', 'المساعد', 'live'], [Mic, 'Arabic voice', 'الصوت العربي', 'live'], [Layers, 'FHIR R4', 'FHIR R4', 'live'], [Calculator, 'Tools', 'الأدوات', 'live'], [FlaskConical, 'Research', 'البحث', 'live'], [Network, 'NPHIES', 'نفيس', 'planned'], [UsersRound, 'Team', 'الفريق', 'planned'], [GraduationCap, 'Mentoring', 'الإرشاد', 'planned'], [CalendarClock, 'Slots', 'الفترات', 'planned']].map(([Icon, en, a, st], i) => {
+        {[[Server, 'OpenEMR', 'OpenEMR', 'live'], [Bot, 'Copilot', 'المساعد', 'live'], [Mic, 'Arabic voice', 'الصوت العربي', 'live'], [Layers, 'FHIR R4', 'FHIR R4', 'live'], [Calculator, 'Tools', 'الأدوات', 'live'], [FlaskConical, 'Research', 'البحث', 'live'], [Network, 'NPHIES', 'نفيس', 'awaiting'], [UsersRound, 'Team', 'الفريق', 'planned'], [GraduationCap, 'Mentoring', 'الإرشاد', 'planned'], [CalendarClock, 'Slots', 'الفترات', 'planned']].map(([Icon, en, a, st], i) => {
           const I = Icon as typeof Bot;
           return <div key={en as string} className={`ws-node ${st}`} style={{ ['--i' as string]: i }}><I size={18} /><span>{ar ? a as string : en as string}</span></div>;
         })}

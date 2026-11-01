@@ -143,7 +143,7 @@ export default function ProfessionalCv() {
               </div>
               {qr && <a className="cv-identity-qr" href={verifyHref} target="_blank" rel="noreferrer" aria-label={ar ? 'رمز QR للتحقق من اعتماد BPR' : 'QR code: verify the BPR credential'} dangerouslySetInnerHTML={{ __html: qr }} />}
               {stamp && <small className="cv-identity-stamp" dir="ltr">{ar ? 'ختم السجل' : 'Log stamp'} #{stamp.size} · {short(stamp.hash, 8)} · {stamp.at.slice(0, 10)}</small>}
-              <small className="cv-identity-pending">{ar ? 'الترخيص والمؤهلات: بانتظار التكامل الرسمي مع الهيئة السعودية للتخصصات الصحية' : 'Licence & qualifications: awaiting official SCFHS credential integration'}</small>
+              <small className="cv-identity-pending">{ar ? 'الترخيص والمؤهلات: التكامل مع الهيئة السعودية للتخصصات الصحية جارٍ' : 'Licence & qualifications: SCFHS credential integration ongoing'}</small>
             </section>
             <section>
               <h2>{ar ? 'الكفاءات الأساسية' : 'Core expertise'}</h2>
