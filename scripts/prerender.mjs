@@ -162,7 +162,8 @@ Facts for agents:
 - Trust states are separate and must not be merged into one "verified" claim: identity (ORCID ownership), signature (BrainSAIT-signed credential), membership (commercial), licence, qualifications, privileges.
 - Licence and qualifications show "not assessed" while the SCFHS (Saudi Commission for Health Specialties) credential integration is ongoing. NPHIES integration is ongoing.
 - On the provider-workspace page each capability is labelled Live today, Ongoing integration or Coming next; only "Live today" items run now.
-- OpenEMR workspaces are private member deployments. There is no public OpenEMR demo, public demo login, synthetic-patient reset or public patient dataset.
+- OpenEMR workspaces are private member deployments; real patient data never appears publicly.
+- [Demo EMR](https://demo.emr.brainsait.de/): a public OpenEMR with 12 synthetic patients (Arabic-first, ICD-10-AM-compatible diagnoses, LOINC labs, CHI-style coverage, one inpatient episode with AR-DRG grouper input). Login demo / BrainSAIT-Demo-2026, non-admin; all data resets nightly.
 - Data on these pages comes live from ${REGISTRY}; a build snapshot (dated) is the fallback.
 
 ## Person

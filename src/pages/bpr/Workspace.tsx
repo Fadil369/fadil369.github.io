@@ -146,6 +146,7 @@ export default function Workspace() {
         : 'Your BPR identity opens a private member EMR, a clinical assistant that understands Arabic and turns your voice into a draft note, standards-based integration and ready-made specialty tools. Coming soon: hospital openings you request with your BPR ID.'}
       actions={<>
         <Link className="profile-button primary" to="/bpr/join">{ar ? 'انضم واحصل على مساحتك' : 'Join and get your workspace'}<ArrowRight size={16} /></Link>
+        <a className="profile-button secondary" href="https://demo.emr.brainsait.de/" target="_blank" rel="noreferrer">{ar ? 'جرّب السجل التجريبي (بيانات مصطنعة)' : 'Try the demo EMR (synthetic data)'}<ArrowUpRight size={16} /></a>
         <a className="profile-button secondary" href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">{ar ? 'احجز عرضًا توضيحيًا مباشرًا' : 'Book a live workspace demo'}<ArrowRight size={16} /></a>
       </>}>
       <div className="ws-legend" role="list" aria-label={ar ? 'دليل الحالات' : 'Status legend'}>

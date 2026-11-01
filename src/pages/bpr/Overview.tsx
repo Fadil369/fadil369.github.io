@@ -39,7 +39,7 @@ const MODULES = [
   { icon: Calculator, href: `${REGISTRY}/tools.php`, status: 'live' as ModuleStatus, en: 'Specialty toolkit', ar: 'أدوات التخصص', tag: 'Members',
     enText: 'Checklists, templates and clinical calculators matched to the specialty. Members only, on the registry.', arText: 'قوائم تحقق وقوالب وحاسبات سريرية حسب التخصص. للأعضاء فقط، على السجل.' },
   { icon: Server, to: '/bpr/workspace', status: 'live' as ModuleStatus, en: 'Private clinical workspace', ar: 'مساحة سريرية خاصة', tag: 'Members · OpenEMR',
-    enText: 'A provisioned OpenEMR workspace per provider, with a separate subdomain, database and TLS. Access is for members, not a public demo.', arText: 'مساحة OpenEMR مخصصة لكل مقدم رعاية بنطاق فرعي وقاعدة بيانات وشهادة TLS مستقلة. الوصول للأعضاء، وليست نسخة تجريبية عامة.' },
+    enText: 'A provisioned OpenEMR workspace per provider, with a separate subdomain, database and TLS. Access is for members; a public demo with synthetic patients runs at demo.emr.brainsait.de.', arText: 'مساحة OpenEMR مخصصة لكل مقدم رعاية بنطاق فرعي وقاعدة بيانات وشهادة TLS مستقلة. الوصول للأعضاء، وتتوفر نسخة تجريبية عامة ببيانات مصطنعة على demo.emr.brainsait.de.' },
   { icon: Network, to: null as unknown as string, status: 'awaiting' as ModuleStatus, en: 'NPHIES integration', ar: 'التكامل مع نفيس', tag: 'Eligibility · claims · pre-authorisation',
     enText: 'NPHIES eligibility, pre-authorisation and claims from the workspace — integration is ongoing.', arText: 'الأهلية والموافقات المسبقة والمطالبات من مساحة العمل من خلال تكامل نفيس — والتكامل جارٍ.' },
   { icon: BookOpenCheck, to: null as unknown as string, status: 'awaiting' as ModuleStatus, en: 'SCFHS credential check', ar: 'التحقق من اعتماد الهيئة', tag: 'Licence · qualifications',
