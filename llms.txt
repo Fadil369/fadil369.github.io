@@ -21,7 +21,7 @@ Facts for agents:
 - [BPR across the Saudi health system](https://fadil369.github.io/bpr/saudi/): proposals per organisation, not partnerships
 - [Provider workspace](https://fadil369.github.io/bpr/workspace/): what each provider gets, with status per capability
 - [Directory](https://fadil369.github.io/bpr/providers/)
-- [Live hospital slots](https://fadil369.github.io/slots/): organization-published openings and the registry request flow
+- [Hospital slots](https://fadil369.github.io/slots/): launching soon. Hospitals will publish openings and providers will request them with their SPID; the page switches to live listings once the registry publishes them
 - [Verify a provider](https://fadil369.github.io/bpr/verify/): `https://fadil369.github.io/bpr/verify?spid={SPID}` re-checks the signature in the browser
 - [Transparency log](https://fadil369.github.io/bpr/ledger/)
 - [Research](https://fadil369.github.io/bpr/research/)

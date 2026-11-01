@@ -484,17 +484,17 @@
   "orcid": {
    "ok": 1,
    "note": "21 items",
-   "at": "2026-11-01T02:01:14+00:00"
+   "at": "2026-11-01T05:15:01+00:00"
   },
   "zenodo": {
    "ok": 1,
    "note": "13 items",
-   "at": "2026-11-01T02:01:14+00:00"
+   "at": "2026-11-01T05:15:01+00:00"
   },
   "hf": {
    "ok": 1,
    "note": "8 items",
-   "at": "2026-11-01T02:01:14+00:00"
+   "at": "2026-11-01T05:15:01+00:00"
   }
  },
  "note": "Public ORCID, Zenodo and Hugging Face data matched by DOI. Hugging Face repos count only when their card cites this ORCID iD."

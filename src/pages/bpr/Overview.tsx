@@ -5,6 +5,7 @@ import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout, CheckRow, SourceBadge, valueLabel, WorkspaceBand } from '../../components/BprKit';
 import { checkCredential, CredentialResult, LedgerResult, ProviderList, REGISTRY, replayLedger, short, useLoad } from '../../lib/bpr';
+import { countTools } from '../../utils/arabicCount';
 
 const SPID = 'SA-PHY-000003';
 
@@ -31,8 +32,8 @@ const MODULES = [
     enText: 'Works matched by DOI across three sources; counted only when the publisher names the ORCID iD.', arText: 'أعمال مطابقة عبر DOI من ثلاثة مصادر؛ تُحتسب فقط عندما يذكر الناشر معرّف ORCID.' },
   { icon: Braces, to: '/bpr/developers', status: 'live' as ModuleStatus, en: 'FHIR R4 & public API', ar: 'FHIR R4 والواجهة العامة', tag: 'Interoperability',
     enText: 'Practitioner, PractitionerRole and Organization resources, plus a JSON API — public fields only.', arText: 'موارد Practitioner وPractitionerRole وOrganization وواجهة JSON — بيانات عامة فقط.' },
-  { icon: CalendarClock, to: '/slots', status: 'live' as ModuleStatus, en: 'Live hospital slots', ar: 'شواغر المستشفيات المباشرة', tag: 'Open opportunities · live API',
-    enText: 'Browse published opportunities, compare integration and monthly fees, and submit a request with your SPID.', arText: 'تصفّح الفرص المنشورة وقارن رسوم التكامل والاشتراك الشهري ثم أرسل طلبك بمعرّف SPID.' },
+  { icon: CalendarClock, to: '/slots', status: 'planned' as ModuleStatus, en: 'Hospital slots marketplace', ar: 'سوق شواغر المستشفيات', tag: 'Launching soon',
+    enText: 'Hospitals publish openings with fees up front; providers request them with their SPID. Launching soon — get your profile ready.', arText: 'تنشر المستشفيات فرصها مع الرسوم معلنة، ويطلبها مقدمو الرعاية بمعرّف SPID. ينطلق قريبًا — جهّز ملفك الآن.' },
   { icon: Users, to: '/bpr/join', status: 'live' as ModuleStatus, en: 'Onboarding', ar: 'الانضمام', tag: 'One question per slide',
     enText: 'Arabic-first wizard, ORCID sign-in and reviewed documents that become verified qualifications.', arText: 'معالج عربي أولاً وتسجيل دخول عبر ORCID ومستندات تُراجع لتصبح مؤهلات موثّقة.' },
   { icon: Calculator, href: `${REGISTRY}/tools.php`, status: 'live' as ModuleStatus, en: 'Specialty toolkit', ar: 'أدوات التخصص', tag: 'Members',
@@ -104,34 +105,6 @@ export default function Overview() {
         <div><span>{ar ? 'إجمالي الأدوات' : 'Total tools'}</span><strong>{MODULES.length}</strong><small>{ar ? 'في أدوات BPR' : 'in the BPR toolkit'}</small></div>
       </section>
 
-      <section className="bpr-marketplace" aria-label={ar ? 'سوق أدوات BPR' : 'BPR tool marketplace'}>
-        <div className="profile-section-label">{ar ? 'سوق الأدوات' : 'Tool marketplace'}</div>
-        <h2 className="bpr-h2">{ar ? 'كل أداة.Provider تحتاجها، في مكان واحد.' : 'Every provider tool, in one marketplace.'}</h2>
-        <p className="bpr-marketplace-lead">{ar ? 'من هوية مقدم الرعاية إلى الشواغر المباشرة، كل أداة في BPR مصممة للممارسة السريرية الفعلية. افتح أي أداة من الدليل أدناه.' : 'From provider identity to live hospital slots, every BPR tool is built for real clinical practice. Open any tool from the marketplace below.'}</p>
-        <div className="bpr-marketplace-grid">
-          {MODULES.map(({ icon: Icon, ...m }) => {
-            const isLive = m.status === 'live';
-            const isSlots = m.en === 'Live hospital slots';
-            const body = <>
-              <div className="bpr-marketplace-top">
-                <Icon size={26} />
-                <span className={`bpr-chip ${m.status}`}>{ar ? STATUS_LABEL[m.status][1] : STATUS_LABEL[m.status][0]}</span>
-              </div>
-              <h3>{ar ? m.ar : m.en}</h3>
-              <p>{ar ? m.arText : m.enText}</p>
-              {m.to || m.href ? <strong>{(ar ? 'افتح' : 'Open')}{m.to ? <ArrowRight size={14} /> : <ArrowUpRight size={14} />}</strong> : <strong className="bpr-chip-unavailable">{ar ? 'لا يزال يُبنى' : 'Being built'}</strong>}
-            </>;
-            const cls = `bpr-module ${m.status} ${isSlots ? 'bpr-module-featured' : ''}`;
-            const el = m.to
-              ? <Link key={m.en} to={m.to} className={cls} data-badge={isSlots ? (ar ? 'سوق الشواغر' : 'Slots marketplace') : undefined}>{body}</Link>
-              : m.href
-                ? <a key={m.en} href={m.href} target="_blank" rel="noreferrer" className={cls} data-badge={isSlots ? (ar ? 'سوق الشواغر' : 'Slots marketplace') : undefined}>{body}</a>
-                : <div key={m.en} className={cls} data-badge={isSlots ? (ar ? 'سوق الشواغر' : 'Slots marketplace') : undefined}>{body}</div>;
-            return el;
-          })}
-        </div>
-      </section>
-
       <section className="bpr-split">
         <div className="bpr-pass">
           <div className="bpr-pass-head"><span>BPR / PROVIDER CREDENTIAL</span><BadgeCheck size={25} /></div>
@@ -157,8 +130,9 @@ export default function Overview() {
       </section>
 
       <section className="bpr-section">
-        <div className="profile-section-label">01 · {ar ? 'التطبيقات' : 'The apps'}</div>
-        <h2 className="bpr-h2">{ar ? 'كل أداة في BPR — وما يعمل منها اليوم.' : 'Every BPR tool — and what runs today.'}</h2>
+        <div className="profile-section-label">01 · {ar ? 'أدوات BPR' : 'The BPR toolkit'}</div>
+        <h2 className="bpr-h2">{ar ? 'كل أداة يحتاجها مقدم الرعاية، في مكان واحد.' : 'Every tool a provider needs, in one place.'}</h2>
+        <p className="bpr-lead-note">{ar ? 'مرتّبة بوضوح: ما يعمل اليوم، وما يجري تكامله، وما هو قادم.' : 'Sorted plainly: what runs today, what is being integrated, and what comes next.'}</p>
         {TIER_ORDER.map((status) => {
           const tier = MODULES.filter((m) => m.status === status);
           if (!tier.length) return null;
@@ -167,14 +141,14 @@ export default function Overview() {
             <section key={status} className="bpr-tier">
               <div className="bpr-tier-head">
                 <span className={`bpr-tier-badge ${status}`}>{ar ? labelAr : labelEn}</span>
-                <span className="bpr-tier-count">{tier.length} {ar ? 'أداة' : 'tool'}{tier.length !== 1 ? (ar ? 'أدوات' : 's') : ''}</span>
+                <span className="bpr-tier-count">{countTools(tier.length, ar)}</span>
               </div>
               <div className="bpr-module-grid">
                 {tier.map(({ icon: Icon, ...m }) => {
                   const body = <>
                     <div className="bpr-module-top"><Icon size={24} /><span className={`bpr-chip ${status}`}>{ar ? labelAr : labelEn}</span></div>
                     <h3>{ar ? m.ar : m.en}</h3><p>{ar ? m.arText : m.enText}</p>
-                    {m.to || m.href ? <strong>{(ar ? 'افتح' : 'Open')}{m.to ? <ArrowRight size={14} /> : <ArrowUpRight size={14} />}</strong> : <strong className="bpr-chip-unavailable">{ar ? 'لا يزال يُبنى' : 'Being built'}</strong>}
+                    {m.to || m.href ? <strong>{status === 'planned' ? (ar ? 'اعرف المزيد' : 'Learn more') : (ar ? 'افتح' : 'Open')}{m.to ? <ArrowRight size={14} /> : <ArrowUpRight size={14} />}</strong> : <strong className="bpr-chip-unavailable">{ar ? 'لا يزال يُبنى' : 'Being built'}</strong>}
                   </>;
                   if (m.to) return <Link key={m.en} to={m.to} className={`bpr-module ${status}`}>{body}</Link>;
                   if (m.href) return <a key={m.en} href={m.href} target="_blank" rel="noreferrer" className={`bpr-module members ${status}`}>{body}</a>;

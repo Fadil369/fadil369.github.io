@@ -126,28 +126,7 @@
 .bpr-module strong { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 13px; color: var(--profile-accent); }
 .bpr-module.members strong { color: var(--profile-muted); }
 
-/* Tool marketplace on the BPR overview — big visual cards, slots marketplace featured */
-.bpr-marketplace { margin-top: 10px; }
-.bpr-marketplace h2 { margin: 10px 0 8px; }
-.bpr-marketplace-lead { color: var(--profile-muted); font-size: 15px; line-height: 1.7; max-width: 860px; margin: 0 0 22px; }
-.bpr-marketplace-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--profile-line); border: 1px solid var(--profile-line); }
-.bpr-marketplace-top { display: flex; justify-content: space-between; align-items: center; color: var(--profile-accent); }
-.bpr-marketplace h3 { margin: 10px 0 6px; font-size: 18px; }
-.bpr-marketplace p { margin: 0 0 14px; color: var(--profile-muted); font-size: 13px; line-height: 1.6; }
-.bpr-module-featured { position: relative; border-top: 3px solid var(--profile-accent); }
-.bpr-module-featured::after {
-  content: attr(data-badge);
-  position: absolute; top: -10px; inset-inline-start: 12px;
-  background: var(--profile-accent); color: var(--profile-accent-ink);
-  font: 700 8px 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase;
-  padding: 2px 8px; border-radius: 3px; z-index: 2;
-}
-@media (max-width: 960px) {
-  .bpr-marketplace-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 640px) {
-  .bpr-marketplace-grid { grid-template-columns: 1fr; }
-}
+.bpr-lead-note { margin: -4px 0 18px; max-width: 70ch; color: var(--profile-muted); font-size: 15px; line-height: 1.7; }
 
 /* Toolkit tiers on the BPR overview — live / ongoing integration / coming next */
 .bpr-tier { margin-top: 6px; }
@@ -578,3 +557,11 @@
 @media (max-width: 760px) { .slots-summary { grid-template-columns: 1fr 1fr; } .slots-summary .slots-summary-source { grid-column: 1 / -1; border-top: 1px solid var(--profile-line); } .slots-summary > div:nth-child(2) { border-inline-end: 0; } }
 @media (max-width: 480px) { .slots-grid { grid-template-columns: 1fr; } .slot-card { padding: 19px; } .slots-summary > div { padding: 16px; } .slot-provider { align-items: flex-start; flex-direction: column; } }
 .bpr-state button.profile-text-link { padding: 0; border: 0; background: transparent; cursor: pointer; }
+.slots-soon { display: grid; gap: 16px; border-style: dashed; }
+.slots-soon-head { display: flex; align-items: flex-start; gap: 16px; }
+.slots-soon-head > svg { flex: none; color: var(--profile-accent); margin-top: 4px; }
+.slots-soon-head h2 { margin: 8px 0 0; }
+.slots-soon > p { margin: 0; max-width: 68ch; color: var(--profile-muted); }
+.slots-soon .profile-actions { margin: 0; }
+.slots-soon button.text-button { background: transparent; border: 0; font: inherit; cursor: pointer; }
+.slots-soon button.text-button:hover { color: var(--profile-accent); }

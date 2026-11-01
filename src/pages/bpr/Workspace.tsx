@@ -76,16 +76,13 @@ const GROUPS: { en: string; ar: string; caps: Cap[] }[] = [
       { icon: GraduationCap, status: 'planned', en: 'Mentoring & training', ar: 'الإرشاد والتدريب',
         enText: 'Mentor colleagues and run training sessions using the same tools, calculators and cases.',
         arText: 'أرشد الزملاء وأدر جلسات تدريبية باستخدام الأدوات والحاسبات والحالات نفسها.' },
-      { icon: CalendarClock, status: 'live', en: 'Live hospital vacancy slots', ar: 'شواغر المستشفيات المباشرة',
-        enText: 'Browse organization-published openings, see the listed fees and request a slot through the registry API.',
-        arText: 'تصفّح الشواغر التي تنشرها المؤسسات واطّلع على الرسوم المدرجة وأرسل طلبك عبر واجهة السجل.',
-        link: { to: '/slots', en: 'Browse live slots', ar: 'تصفّح الشواغر المباشرة' } },
+      { icon: CalendarClock, status: 'planned', en: 'Hospital slots marketplace', ar: 'سوق شواغر المستشفيات',
+        enText: 'Hospitals publish openings with their fees up front; you request them with your SPID. Launching soon.',
+        arText: 'تنشر المستشفيات فرصها مع الرسوم معلنة من البداية، وتطلبها أنت بمعرّف SPID. ينطلق قريبًا.',
+        link: { to: '/slots', en: 'See what’s coming', ar: 'اطّلع على ما هو قادم' } },
       { icon: Shuffle, status: 'planned', en: 'Shift cover & smart matching', ar: 'تغطية المناوبات والمطابقة الذكية',
-        enText: 'Publish a shift you need covered and match it automatically to a suitable provider profile.',
-        arText: 'انشر مناوبة تحتاج إلى تغطيتها وطابقها تلقائيًا مع ملف مقدم الرعاية المناسب.' },
-      { icon: Shuffle, status: 'planned', en: 'Matching', ar: 'المطابقة',
-        enText: 'Match providers to slots and teams — and doctors in training to mentors and rotations.',
-        arText: 'مطابقة مقدمي الرعاية مع الفترات والفرق — والأطباء المتدربين مع المرشدين والتدويرات.' },
+        enText: 'Publish a shift you need covered and match it to a suitable provider — and match doctors in training to mentors and rotations.',
+        arText: 'انشر مناوبة تحتاج إلى تغطيتها وطابقها مع مقدم الرعاية المناسب — وطابق الأطباء المتدربين مع المرشدين والتدويرات.' },
     ],
   },
 ];
@@ -104,7 +101,7 @@ const CHECKLIST: { status: Status; en: string; ar: string; enText: string; arTex
   { status: 'planned', en: 'Peer-to-peer review', ar: 'مراجعة الأقران', enText: 'Structured case and note review between providers.', arText: 'مراجعة منظمة للحالات والملاحظات بين مقدمي الرعاية.' },
   { status: 'planned', en: 'Choose or onboard your team', ar: 'اختيار فريقك أو ضمّه', enText: 'Nurses, respiratory therapists, receptionists and more — each with a role and access.', arText: 'ممرضون وأخصائيو علاج تنفسي وموظفو استقبال وغيرهم — لكل دوره وصلاحياته.' },
   { status: 'planned', en: 'Mentoring & training sessions', ar: 'الإرشاد وجلسات التدريب', enText: 'Teach with the same tools, calculators and cases.', arText: 'التدريب بالأدوات والحاسبات والحالات نفسها.' },
-  { status: 'live', en: 'Request live hospital slots', ar: 'اطلب شواغر المستشفيات المباشرة', enText: 'Browse organization-published vacancies and submit a request with your SPID.', arText: 'تصفّح الشواغر التي تنشرها المؤسسات وأرسل طلبك بمعرّف SPID.', to: '/slots' },
+  { status: 'planned', en: 'Request hospital slots', ar: 'اطلب شواغر المستشفيات', enText: 'Request organization-published openings with your SPID — the marketplace launches soon.', arText: 'اطلب الفرص التي تنشرها المؤسسات بمعرّف SPID — والسوق ينطلق قريبًا.', to: '/slots' },
   { status: 'planned', en: 'Matching for providers & trainees', ar: 'المطابقة لمقدمي الرعاية والمتدربين', enText: 'Providers to slots and teams; doctors in training to mentors and rotations.', arText: 'مقدمو الرعاية مع الفترات والفرق؛ والأطباء المتدربون مع المرشدين والتدويرات.' },
 ];
 
@@ -145,12 +142,11 @@ export default function Workspace() {
     <BprLayout kicker={ar ? 'مساحة العمل' : 'Provider workspace'}
       title={ar ? 'مساحة عمل ذكية متكاملة لكل ممارس صحي.' : 'Every healthcare professional gets a complete, intelligent workspace.'}
       lead={ar
-        ? 'تفتحها هويتك في BPR: سجل طبي خاص للأعضاء، ومساعد سريري يفهم العربية ويحوّل صوتك إلى مسودة ملاحظة، وتكامل وفق المعايير، وأدوات تخصصية جاهزة. ويمكنك أيضًا طلب شواغر المستشفيات المنشورة مباشرة.'
-        : 'Your BPR identity opens a private member EMR, a clinical assistant that understands Arabic and turns your voice into a draft note, standards-based integration and ready-made specialty tools. You can also request live hospital openings.'}
+        ? 'تفتحها هويتك في BPR: سجل طبي خاص للأعضاء، ومساعد سريري يفهم العربية ويحوّل صوتك إلى مسودة ملاحظة، وتكامل وفق المعايير، وأدوات تخصصية جاهزة. وقريبًا: شواغر المستشفيات تطلبها بمعرّف BPR.'
+        : 'Your BPR identity opens a private member EMR, a clinical assistant that understands Arabic and turns your voice into a draft note, standards-based integration and ready-made specialty tools. Coming soon: hospital openings you request with your BPR ID.'}
       actions={<>
         <Link className="profile-button primary" to="/bpr/join">{ar ? 'انضم واحصل على مساحتك' : 'Join and get your workspace'}<ArrowRight size={16} /></Link>
         <a className="profile-button secondary" href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">{ar ? 'احجز عرضًا توضيحيًا مباشرًا' : 'Book a live workspace demo'}<ArrowRight size={16} /></a>
-        <Link className="profile-button secondary" to="/slots">{ar ? 'تصفّح شواغر المستشفيات' : 'Browse hospital slots'}<ArrowRight size={16} /></Link>
       </>}>
       <div className="ws-legend" role="list" aria-label={ar ? 'دليل الحالات' : 'Status legend'}>
         {(Object.keys(STATUS) as Status[]).map((s) => <span key={s} role="listitem" className={`ws-status ${s}`}>{s === 'awaiting' && <Hourglass size={12} />}{STATUS[s][ar ? 1 : 0]} · {counts[s] || 0}</span>)}
@@ -190,7 +186,7 @@ export default function Workspace() {
 
       <section className="ws-hero" aria-label={ar ? 'مخطط مساحة العمل' : 'Workspace map'}>
         <div className="ws-core"><Stethoscope size={28} /><strong>{ar ? 'مقدم الرعاية' : 'Provider'}</strong><code dir="ltr">SA-PHY-000003</code><small>{ar ? 'هوية BPR موقّعة' : 'Signed BPR identity'}</small></div>
-        {[[Server, 'OpenEMR', 'OpenEMR', 'live'], [Bot, 'Copilot', 'المساعد', 'live'], [Mic, 'Arabic voice', 'الصوت العربي', 'live'], [Layers, 'FHIR R4', 'FHIR R4', 'live'], [Calculator, 'Tools', 'الأدوات', 'live'], [FlaskConical, 'Research', 'البحث', 'live'], [Network, 'NPHIES', 'نفيس', 'awaiting'], [UsersRound, 'Team', 'الفريق', 'planned'], [GraduationCap, 'Mentoring', 'الإرشاد', 'planned'], [CalendarClock, 'Hospital slots', 'شواغر المستشفيات', 'live']].map(([Icon, en, a, st], i) => {
+        {[[Server, 'OpenEMR', 'OpenEMR', 'live'], [Bot, 'Copilot', 'المساعد', 'live'], [Mic, 'Arabic voice', 'الصوت العربي', 'live'], [Layers, 'FHIR R4', 'FHIR R4', 'live'], [Calculator, 'Tools', 'الأدوات', 'live'], [FlaskConical, 'Research', 'البحث', 'live'], [Network, 'NPHIES', 'نفيس', 'awaiting'], [UsersRound, 'Team', 'الفريق', 'planned'], [GraduationCap, 'Mentoring', 'الإرشاد', 'planned'], [CalendarClock, 'Hospital slots', 'شواغر المستشفيات', 'planned']].map(([Icon, en, a, st], i) => {
           const I = Icon as typeof Bot;
           return <div key={en as string} className={`ws-node ${st}`} style={{ ['--i' as string]: i }}><I size={18} /><span>{ar ? a as string : en as string}</span></div>;
         })}

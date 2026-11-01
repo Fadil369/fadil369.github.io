@@ -112,19 +112,18 @@ export default function Home() {
       <div className="profile-content">
         <section className="profile-hero" aria-labelledby="profile-title">
           <div className="profile-hero-copy">
-            <div className="profile-eyebrow"><span />{ar ? 'طبيب · مؤسس · يشق طريقه في التقنية الصحية' : 'Physician · Founder · Healthcare builder'}</div>
-            <h1 id="profile-title">{ar ? 'تقنية صحية من يد الطبيب، لكل طبيب.' : 'Healthcare technology, built by physicians.'}</h1>
+            <div className="profile-eyebrow"><span />{ar ? 'طبيب · مؤسس · صانع حلول صحية' : 'Physician · Founder · Healthcare builder'}</div>
+            <h1 id="profile-title">{ar ? 'تقنية صحية من يد الطبيب، لكل طبيب.' : 'Healthcare technology, built by a physician—for every physician.'}</h1>
             <p className="profile-lead">
               {ar
-                ? 'أنا د. محمد الفاضل، مؤسس BrainSAIT في الرياض. حولت خبرة الطوارئ والعناية المركزة والمطالبات إلى بنية تحتية صحية قابلة للتحقق — من هوية مقدم الرعاية إلى الذكاء الاصطناعي السريري. كل أداة صممت لتعيد السيطرة للطبيب.'
+                ? 'أنا د. محمد الفاضل، مؤسس BrainSAIT في الرياض. أحوّل خبرة الطوارئ والعناية المركزة والمطالبات إلى بنية تحتية صحية قابلة للتحقق — من هوية مقدم الرعاية إلى الذكاء الاصطناعي السريري — وكل أداة مصمَّمة لتعيد القرار إلى يد الطبيب.'
                 : 'I’m Dr. Mohamed El Fadil, founder of BrainSAIT in Riyadh. I turn emergency, critical-care and claims experience into verifiable healthcare infrastructure—from provider identity to clinical AI—every tool built to put the physician in control.'}
             </p>
             <div className="profile-actions">
               <Link className="profile-button primary" to="/cv"><FileText size={17} />{ar ? 'السيرة الذاتية' : 'Professional CV'}</Link>
-              <a className="profile-button secondary" href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">{ar ? 'احجز مكالمة مباشرة' : 'Book a live call'}<ArrowDown size={17} /></a>
+              <a className="profile-button secondary" href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">{ar ? 'احجز مكالمة مباشرة' : 'Book a live call'}<ArrowUpRight size={17} /></a>
               <a className="profile-button text-button" href="#work">{ar ? 'استكشف أعمالي' : 'Explore my work'}<ArrowDown size={17} /></a>
             </div>
-            <p className="profile-eyebrow" style={{ marginTop: 16, fontSize: '11px', textTransform: 'none', letterSpacing: 0, color: 'var(--profile-accent)' }}><strong>Google Calendar</strong>{ar ? ' — حجز مكالمات وعروض توضيحية مباشرة' : ' — book via Google Calendar'}</p>
             <div className="profile-socials">
               <a href="https://github.com/Fadil369" target="_blank" rel="noreferrer"><Github size={17} />GitHub</a>
               <a href="https://sa.linkedin.com/in/fadil369" target="_blank" rel="noreferrer"><Linkedin size={17} />LinkedIn</a>
@@ -163,14 +162,14 @@ export default function Home() {
           <div>
             <h2>{ar ? 'الطبيب يقرر — والهندسة تكسب الثقة.' : 'The physician decides. Engineering earns the trust.'}</h2>
             <p>{ar
-              ? 'من غرفة الطوارئ إلى مكتب المطالبات، رأيت المشكلة نفسها: أنظمة صُممت حول الجميع باستثناء الطبيب الذي يتخذ القرار. इसलिए أبني أدوات تجعل الهوية والبيانات والمساءلة طبقة واحدة مترابطة — صحية أولًا، قابلة للتحقق دائمًا.'
-              : 'From the emergency room to the claims desk, I found the same problem: systems designed around everyone except the physician making the call. I build tools where identity, data and accountability form one connected layer—healthcare first, verifiable always.'}</p>
+              ? 'من غرفة الطوارئ إلى مكتب المطالبات، واجهتُ المشكلة نفسها: أنظمة صُمِّمت لخدمة الجميع إلا الطبيب صاحب القرار. لذلك أبني أدوات تجمع الهوية والبيانات والمساءلة في طبقة واحدة مترابطة — الرعاية الصحية أولًا، والتحقق دائمًا.'
+              : 'From the emergency room to the claims desk, I met the same problem: systems designed around everyone except the physician making the call. So I build tools where identity, data and accountability form one connected layer—healthcare first, verifiable always.'}</p>
           </div>
         </section>
 
         <section className="profile-section" id="work">
           <div className="profile-section-heading">
-            <div><div className="profile-section-label">02 · {ar ? 'أعمال مختارة' : 'Selected work'}</div><h2>{ar ? 'من السرير إلى النظام. كل أداة مصممة لتكون موضع ثقة وتحقيق.' : 'From bedside to system. Every tool built to be trusted and verified.'}</h2></div>
+            <div><div className="profile-section-label">02 · {ar ? 'أعمال مختارة' : 'Selected work'}</div><h2>{ar ? 'من السرير إلى النظام. أدوات تستحق الثقة، ويمكن التحقق منها.' : 'From bedside to system. Every tool built to be trusted and verified.'}</h2></div>
             <a href="https://github.com/Fadil369" target="_blank" rel="noreferrer">{ar ? 'كل المستودعات' : 'All repositories'}<ArrowUpRight size={16} /></a>
           </div>
           <div className="profile-projects">
@@ -192,8 +191,8 @@ export default function Home() {
             <div className="profile-section-label">BPR · BrainSAIT</div>
             <h2>{ar ? 'هوية واحدة. يمكنك التحقق منها بنفسك.' : 'One identity. You can verify it yourself.'}</h2>
             <p>{ar
-              ? 'هذه حالتي في سجل BPR، تُقرأ مباشرة من السجل. كل بُعد منفصل — وما لم يُقيَّم بعد يظهر كما هو، لا أكثر ولا أقل.'
-              : 'This is my state in the BPR registry, read live from the registry. Each dimension is separate — and what has not been assessed yet shows as exactly that, nothing more, nothing less.'}</p>
+              ? 'هذه حالتي في سجل BPR، تُقرأ مباشرة الآن. كل بُعد مستقل بذاته — وما لم يُقيَّم بعد يظهر كما هو، بلا زيادة ولا نقصان.'
+              : 'This is my state in the BPR registry, read live. Each dimension is separate — and what has not been assessed yet shows as exactly that, nothing more, nothing less.'}</p>
             <div className="profile-actions">
               <Link className="profile-button secondary" to={`/bpr/verify?spid=${SPID}`}>{ar ? 'تحقق على جهازك' : 'Verify on your device'}<ArrowUpRight size={16} /></Link>
               <Link className="profile-button secondary" to="/bpr/workspace">{ar ? 'استكشف أدوات BPR' : 'Explore BPR tools'}<ArrowUpRight size={16} /></Link>
@@ -207,7 +206,7 @@ export default function Home() {
 
         <section className="profile-section" id="journey">
           <div className="profile-section-label">03 · {ar ? 'المسار' : 'The journey'}</div>
-          <div className="profile-section-heading"><h2>{ar ? 'كل لحظة سريرية صارت متطلبًا منتجًا.' : 'Every clinical moment became a product requirement.'}</h2></div>
+          <div className="profile-section-heading"><h2>{ar ? 'كل موقف سريري صار متطلبًا في المنتج.' : 'Every clinical moment became a product requirement.'}</h2></div>
           <div className="profile-journey">
             {journey.map(item => (
               <article key={item.years}>
@@ -221,7 +220,7 @@ export default function Home() {
 
         <section className="profile-section" id="research">
           <div className="profile-section-label">04 · {ar ? 'بحث وكتابة' : 'Research & writing'}</div>
-          <div className="profile-section-heading"><h2>{ar ? 'بحث يعود بأثره إلى صاحبه بدليل.' : 'Research, traced to its author with proof.'}</h2></div>
+          <div className="profile-section-heading"><h2>{ar ? 'أبحاث تُنسب إلى صاحبها بالدليل.' : 'Research, traced to its author with proof.'}</h2></div>
           <div className="profile-research-grid">
             <a className="profile-paper" href="https://doi.org/10.5281/zenodo.23606022" target="_blank" rel="noreferrer">
               <BookOpen size={28} /><span className="profile-paper-meta">ZENODO · V1.2 · 2026</span>
@@ -247,7 +246,7 @@ export default function Home() {
 
         <section className="profile-contact" id="contact">
           <div><div className="profile-section-label">05 · {ar ? 'لنتحدث' : 'Start a conversation'}</div><h2>{ar ? 'تبني شيئًا مع الممارسين الصحيين؟ دعنا نبنيه معًا.' : 'Building with clinicians? Let’s build it together.'}</h2></div>
-          <p>{ar ? 'أعمل مع المستشفيات وفرق التقنية الصحية والمستثمرين في السعودية والخليج وأفريقيا — لبناء أدوات صحية يمكن التحقق منها فعليًا، وتُعيد السيطرة للطبيب.' : 'I work with hospitals, health-tech teams and investors across Saudi Arabia, the Gulf and Africa—building healthcare tools you can actually verify, and that put control back in the physician’s hands.'}</p>
+          <p>{ar ? 'أعمل مع المستشفيات وفرق التقنية الصحية والمستثمرين في السعودية والخليج وأفريقيا — لبناء أدوات صحية يمكن التحقق منها فعليًا، وتعيد القرار إلى يد الطبيب.' : 'I work with hospitals, health-tech teams and investors across Saudi Arabia, the Gulf and Africa—building healthcare tools you can actually verify, and that put control back in the physician’s hands.'}</p>
           <div className="profile-actions">
             <a className="profile-button primary" href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">{ar ? 'احجز مكالمة الآن' : 'Book a call now'}<ArrowUpRight size={17} /></a>
             <a className="profile-button secondary" href="mailto:elfadil369@icloud.com">{ar ? 'راسلني' : 'Email me'}</a>
@@ -257,7 +256,7 @@ export default function Home() {
       </div>
       <footer className="profile-footer">
         <span>© {new Date().getFullYear()} Dr. Mohamed El Fadil</span>
-        <div><a href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">Book via Google Calendar</a><Link to="/bpr">BPR</Link><Link to="/card">{ar ? 'البطاقة' : 'Card'}</Link><Link to="/cv"><FileText size={14} />{ar ? 'السيرة' : 'CV'}</Link></div>
+        <div><a href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">{ar ? 'احجز موعدًا' : 'Book a call'}</a><Link to="/bpr">BPR</Link><Link to="/card">{ar ? 'البطاقة' : 'Card'}</Link><Link to="/cv"><FileText size={14} />{ar ? 'السيرة' : 'CV'}</Link></div>
         <span className="profile-verified"><Check size={13} />{ar ? 'مصمم ليكون قابلاً للتحقق' : 'Designed to be verifiable'}</span>
       </footer>
     </div>

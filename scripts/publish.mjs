@@ -112,7 +112,7 @@ console.log(`Pre-rendered ${bprWritten} BPR provider route(s).`);
 const ROUTE_META = {
   cv: ['Professional CV — Dr. Mohamed El Fadil', 'Physician, BrainSAIT founder, RCM & Healthcare Intelligent Improvement Advisor. One-page A4 CV with a live BPR verification QR.', '/assets/profile-og.png'],
   card: ['Business card — Dr. Mohamed El Fadil', 'Black and lemon business card with a brain-framed QR code. Print-ready PDF.', '/assets/card/dr-mohamed-el-fadil-front.png'],
-  slots: ['Live hospital slots — BPR', 'Browse live organization-published opportunities and request a slot with your BPR ID.'],
+  slots: ['Hospital slots — BPR', 'The BPR hospital slots marketplace: hospitals publish openings and verified providers request them with a BPR ID. Launching soon.'],
   bpr: ['BPR — BrainSAIT Provider Registry', 'Signed identity for every clinician: directory, on-device verification, transparency log, research footprint and FHIR R4.'],
   'bpr/workspace': ['Provider workspace — BPR', 'Own OpenEMR, a clinical copilot with Arabic dictation, FHIR, specialty tools and research — live and planned features stated per card.'],
   'bpr/providers': ['Provider directory — BPR', 'Listed providers with every trust dimension shown separately.'],
@@ -147,7 +147,7 @@ const AR_META = {
   '': ['د. محمد الفاضل — طبيب ومؤسس BrainSAIT', 'طبيب ومؤسس BrainSAIT في الرياض. أبني هوية صحية قابلة للتحقق وأدوات مترابطة للممارسين عبر FHIR ونفيس والذكاء الاصطناعي.'],
   cv: ['السيرة الذاتية — د. محمد الفاضل', 'طبيب ومؤسس BrainSAIT ومستشار تحسين ذكي للرعاية الصحية ودورة الإيرادات. سيرة ذاتية بصفحة A4 واحدة مع رمز تحقق BPR مباشر.'],
   card: ['بطاقة الأعمال — د. محمد الفاضل', 'بطاقة أعمال سوداء وليمونية برمز QR على شكل دماغ. ملف PDF جاهز للطباعة.'],
-  slots: ['شواغر المستشفيات المباشرة — BPR', 'تصفّح الفرص التي تنشرها المؤسسات مباشرة واطلب الفترة المناسبة بمعرّف BPR.'],
+  slots: ['شواغر المستشفيات — BPR', 'سوق شواغر المستشفيات في BPR: تنشر المستشفيات فتراتها، ويطلبها مقدمو الرعاية الموثّقون بمعرّف BPR. ينطلق قريبًا.'],
   bpr: ['BPR — سجل برينسايت لمقدمي الرعاية', 'هوية موقّعة لكل ممارس صحي: دليل، تحقق على الجهاز، سجل شفاف، بصمة بحثية وFHIR R4.'],
   'bpr/workspace': ['مساحة عمل مقدم الرعاية — BPR', 'OpenEMR خاص، مساعد سريري بإملاء عربي، FHIR، أدوات التخصص والبحث — مع بيان ما يعمل وما هو مخطط لكل ميزة.'],
   'bpr/providers': ['دليل مقدمي الرعاية — BPR', 'مقدمو الرعاية المدرجون مع عرض كل بُعد للثقة بشكل منفصل.'],

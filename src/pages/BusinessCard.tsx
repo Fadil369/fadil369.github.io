@@ -30,12 +30,11 @@ export default function BusinessCard() {
         <header className="card-studio-head">
           <div>
             <div className="profile-eyebrow"><span />{ar ? 'هوية تمسكها بيدك · إصدار 01' : 'Physical identity · Edition 01'}</div>
-            <h1>{ar ? 'فكرة تحملها. ملف يفتح بماسح واحد.' : 'An idea in hand. A profile one scan away.'}</h1>
+            <h1>{ar ? 'فكرة تحملها. ملف يفتح بمسحة واحدة.' : 'An idea in hand. A profile one scan away.'}</h1>
           </div>
           <p>{ar
-            ? 'بطاقة بوجهين بالأسود والليموني. يحيط شكل الدماغ برمز QR أصلي، وحداته محفوظة دون تشويه، ويربط مباشرة بملفك المهني بماسح واحد.'
+            ? 'بطاقة بوجهين بالأسود والليموني. يحيط شكل الدماغ برمز QR أصلي محفوظ الوحدات دون تشويه، يفتح الملف المهني مباشرة بمسحة واحدة.'
             : 'A two-sided black-and-lemon card. The brain frame surrounds an undistorted QR code that opens the professional profile directly.'}</p>
-          <p className="profile-eyebrow" style={{ marginTop: 10, textTransform: 'none', letterSpacing: 0, color: 'var(--profile-accent)' }}><strong>Google Calendar</strong>{ar ? ' — احجز عرضك التوضيحي الآن' : ' — book via Google Calendar'}</p>
         </header>
 
         <div className="card-studio-actions">

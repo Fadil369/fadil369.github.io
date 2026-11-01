@@ -42,7 +42,7 @@ const ROUTES = [
   ['/', [page('ProfilePage', '/', 'Dr. Mohamed El Fadil', { mainEntity: { '@id': `${ORIGIN}/#person` } }), person], 1.0],
   ['/cv/', [page('ProfilePage', '/cv/', 'Professional CV — Dr. Mohamed El Fadil', { mainEntity: { '@id': `${ORIGIN}/#person` } }), person], 0.9],
   ['/card/', [page('WebPage', '/card/', 'Business card — Dr. Mohamed El Fadil', { about: { '@id': `${ORIGIN}/#person` } })], 0.5],
-  ['/slots/', [page('CollectionPage', '/slots/', 'Live hospital slots — BPR', { about: { '@id': `${ORIGIN}/bpr#registry` } }), crumbs([['BPR', '/bpr/'], ['Hospital slots', '/slots/']])], 0.8],
+  ['/slots/', [page('WebPage', '/slots/', 'Hospital slots — BPR', { about: { '@id': `${ORIGIN}/bpr#registry` } }), crumbs([['BPR', '/bpr/'], ['Hospital slots', '/slots/']])], 0.8],
   ['/bpr/', [page('WebPage', '/bpr/', 'BPR — BrainSAIT Provider Registry', { about: { '@id': `${ORIGIN}/bpr#registry` } }), registryOrg], 0.9],
   ['/bpr/record/', [page('ProfilePage', '/bpr/record/', 'BPR record · Dr. Mohamed El Fadil', { mainEntity: { '@id': `${ORIGIN}/#person` } }), person, crumbs([['BPR', '/bpr/'], ['Record', '/bpr/record/']])], 0.9],
   ['/bpr/saudi/', [page('WebPage', '/bpr/saudi/', 'BPR across the Saudi health system'), crumbs([['BPR', '/bpr/'], ['Saudi', '/bpr/saudi/']])], 0.7],
@@ -177,7 +177,7 @@ Facts for agents:
 - [BPR across the Saudi health system](${ORIGIN}/bpr/saudi/): proposals per organisation, not partnerships
 - [Provider workspace](${ORIGIN}/bpr/workspace/): what each provider gets, with status per capability
 - [Directory](${ORIGIN}/bpr/providers/)
-- [Live hospital slots](${ORIGIN}/slots/): organization-published openings and the registry request flow
+- [Hospital slots](${ORIGIN}/slots/): launching soon. Hospitals will publish openings and providers will request them with their SPID; the page switches to live listings once the registry publishes them
 - [Verify a provider](${ORIGIN}/bpr/verify/): \`${ORIGIN}/bpr/verify?spid={SPID}\` re-checks the signature in the browser
 - [Transparency log](${ORIGIN}/bpr/ledger/)
 - [Research](${ORIGIN}/bpr/research/)

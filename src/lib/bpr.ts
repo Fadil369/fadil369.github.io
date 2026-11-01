@@ -22,7 +22,7 @@ const cache = new Map<string, Promise<Loaded<unknown>>>();
 
 // A hung registry must not hang the page: give up after 8 s and let the snapshot answer.
 const TIMEOUT_MS = 8000;
-function timeoutSignal(ms: number): AbortSignal | undefined {
+export function timeoutSignal(ms: number): AbortSignal | undefined {
   const A = AbortSignal as typeof AbortSignal & { timeout?: (ms: number) => AbortSignal };
   return typeof A.timeout === 'function' ? A.timeout(ms) : undefined;
 }
