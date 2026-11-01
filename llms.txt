@@ -7,6 +7,7 @@ Facts for agents:
 - Licence and qualifications show "not assessed" while the SCFHS (Saudi Commission for Health Specialties) credential integration is ongoing. NPHIES integration is ongoing.
 - On the provider-workspace page each capability is labelled Live today, Ongoing integration or Coming next; only "Live today" items run now.
 - OpenEMR workspaces are private member deployments; real patient data never appears publicly.
+- [Physician demo request](https://linkedin-lark-automation.brainsait.de/m/bpr?for=physician-demo): 20-minute BPR walkthrough with synthetic examples (identity, research or AI documentation); four fields, no documents. Walkthrough video: https://elfadil.brainsait.de/media/bpr-walkthrough.mp4
 - [Demo EMR](https://demo.emr.brainsait.de/): a public OpenEMR with 12 synthetic patients (Arabic-first, ICD-10-AM-compatible diagnoses, LOINC labs, CHI-style coverage, one inpatient episode with AR-DRG grouper input). Login demo / BrainSAIT-Demo-2026, non-admin; all data resets nightly.
 - Data on these pages comes live from https://registry.brainsait.de; a build snapshot (dated) is the fallback.
 

@@ -150,6 +150,26 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="profile-physicians" aria-labelledby="physicians-title">
+          <div className="profile-physicians-copy">
+            <div className="profile-section-label">BPR · {ar ? 'للأطباء' : 'For physicians'}</div>
+            <h2 id="physicians-title">{ar ? 'صُمّم للأطباء. ابدأ بسير عمل واحد مفيد.' : 'Built for physicians. Start with one useful workflow.'}</h2>
+            <p>{ar
+              ? 'استكشف هويتك المهنية، وملفك البحثي، ومساحة العمل المدعومة بالذكاء الاصطناعي — في عرض قصير بأمثلة مصطنعة، دون أي مستندات.'
+              : 'Explore your professional identity, research profile and AI-assisted workspace — in a short demo with synthetic examples, no documents needed.'}</p>
+            <div className="profile-actions">
+              <a className="profile-button primary" href="#walkthrough">{ar ? 'شاهد الجولة' : 'Watch the walkthrough'}<ArrowDown size={17} /></a>
+              <a className="profile-button secondary" href={`https://linkedin-lark-automation.brainsait.de/m/bpr?for=physician-demo&lang=${ar ? 'ar' : 'en'}&utm_source=website&utm_medium=homepage&utm_campaign=bpr_physicians&utm_content=hero`} target="_blank" rel="noopener">{ar ? 'اطلب عرضًا توضيحيًا للأطباء' : 'Request a physician demo'}<ArrowUpRight size={17} /></a>
+            </div>
+            <p className="profile-physicians-note">{ar ? 'التكامل مع الهيئة السعودية للتخصصات الصحية ونفيس جارٍ.' : 'SCFHS and NPHIES integration is ongoing.'}</p>
+          </div>
+          <figure className="profile-physicians-video" id="walkthrough">
+            <video src="https://elfadil.brainsait.de/media/bpr-walkthrough.mp4" poster="https://elfadil.brainsait.de/media/bpr-walkthrough.jpg" controls playsInline preload="none"
+              aria-label={ar ? 'جولة BPR في 54 ثانية' : 'BPR walkthrough, 54 seconds'} width={540} height={960} />
+            <figcaption>{ar ? 'جولة BPR · 54 ثانية' : 'BPR walkthrough · 54 seconds'}</figcaption>
+          </figure>
+        </section>
+
         <section className="profile-proof" aria-label={ar ? 'نبذة مهنية' : 'Professional highlights'}>
           <div><strong>2010</strong><span>{ar ? 'بداية المسار الطبي' : 'Medical journey began'}</span></div>
           <div><strong>6</strong><span>{ar ? 'فروع في مراجعة المطالبات' : 'Branches in claims review'}</span></div>
