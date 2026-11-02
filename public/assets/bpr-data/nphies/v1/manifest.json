@@ -1,0 +1,94 @@
+{
+ "name": "BPR NPHIES knowledge base",
+ "apiVersion": "v1",
+ "generated": "2026-11-02",
+ "publisher": "BrainSAIT",
+ "status": "Independent reference. Not issued or endorsed by CHI or NPHIES.",
+ "guidance": "Fields named official carry the source wording. Plain-language and action fields are BrainSAIT guidance.",
+ "sources": [
+  {
+   "document": "nphies -profiles v5.4.2_DRG Release_OBA_25 June 2026.xlsx",
+   "version": "5.4.2",
+   "label": "Public",
+   "sha256": "bf335465fb47200c13bb9f87e7d73a2f96df0696661749bb27e375da754d3324"
+  },
+  {
+   "document": "Nphies profiles v5.3.1.xlsx",
+   "version": "5.3.1",
+   "label": "Public",
+   "sha256": "630877e3d8314339dfdb388b1cc48eeeeaf73fda3f5c02118cbba3c004587003"
+  },
+  {
+   "document": "nphies -Codable Concept v5.5.2 _DRG Release_OBA_25 June 2026.xlsx",
+   "version": "5.5.2",
+   "label": "Public",
+   "sha256": "bdf5513beac2f1fc73b9435e3af30e5fb698fec53b6fcd0986bbb72a025a38bb"
+  },
+  {
+   "document": "Nphies Codeable Concept v5.4.xlsx",
+   "version": "5.4",
+   "label": "Public",
+   "sha256": "4898153bd93baf6efa9be18902abbb97587d52997f23b6e12f56e587d4402b7a"
+  }
+ ],
+ "excluded": "SBS, ICD-10-AM, AR-DRG, GMDN, LOINC and validation-rule text are not republished here.",
+ "counts": {
+  "rejectionReasons": 71,
+  "adjudicationErrors": 1683,
+  "practiceCodes": 210,
+  "clinicSpecialties": 88,
+  "adjustmentReasons": 13,
+  "codeSystems": 152,
+  "profiles": 35
+ },
+ "sourceDefectsNormalized": [
+  "Code system URL has stray characters: \"http://nphies.sa/terminology/CodeSystem/weight-absence-reason",
+  "Code system URL has stray characters: \"http://nphies.sa/terminology/CodeSystem/blood-pressure-absence-reason",
+  "Code system URL has stray characters: \"http://nphies.sa/terminology/CodeSystem/height-absence-reason",
+  "Code system URL has stray characters: \"http://nphies.sa/terminology/CodeSystem/temperature-absence-reason",
+  "Code system URL has stray characters: \"http://nphies.sa/terminology/CodeSystem/pulse-absence-reason",
+  "Code system URL has stray characters: \"http://nphies.sa/terminology/CodeSystem/oxygen-saturation-absence-rea",
+  "Code system URL has stray characters: \"http://nphies.sa/terminology/CodeSystem/respiratory-rate-absence-reas",
+  "Code system URL has stray characters: \"http://nphies.sa/terminology/CodeSystem/morphology-diagnosis",
+  "Code system URL has stray characters: \"http://nphies.sa/terminology/CodeSystem/rta-diagnosis",
+  "Code system URL has stray characters: \"http://nphies.sa/terminology/CodeSystem/work-related-diagnosis",
+  "Code system URL has stray characters: \"http://nphies.sa/terminology/CodeSystem/drg",
+  "Code system URL has stray characters: \"http://nphies.sa/terminology/CodeSystem/adjustment-reason",
+  "Profile sheet Claim Response: element path contains a space: ClaimResponse.item sequence",
+  "Profile sheet Authorization Response: element path contains a space: ClaimResponse.item sequence"
+ ],
+ "files": {
+  "rejection-reasons": {
+   "path": "/assets/bpr-data/nphies/v1/rejection-reasons.json",
+   "bytes": 36505
+  },
+  "adjudication-errors": {
+   "path": "/assets/bpr-data/nphies/v1/adjudication-errors.json",
+   "bytes": 183338
+  },
+  "practice-codes": {
+   "path": "/assets/bpr-data/nphies/v1/practice-codes.json",
+   "bytes": 10460
+  },
+  "clinic-specialties": {
+   "path": "/assets/bpr-data/nphies/v1/clinic-specialties.json",
+   "bytes": 4259
+  },
+  "adjustment-reasons": {
+   "path": "/assets/bpr-data/nphies/v1/adjustment-reasons.json",
+   "bytes": 1241
+  },
+  "code-systems": {
+   "path": "/assets/bpr-data/nphies/v1/code-systems.json",
+   "bytes": 54136
+  },
+  "profiles": {
+   "path": "/assets/bpr-data/nphies/v1/profiles.json",
+   "bytes": 129250
+  },
+  "changes": {
+   "path": "/assets/bpr-data/nphies/v1/changes.json",
+   "bytes": 13205
+  }
+ }
+}

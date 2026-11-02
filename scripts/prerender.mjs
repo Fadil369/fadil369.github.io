@@ -45,6 +45,7 @@ const ROUTES = [
   ['/slots/', [page('WebPage', '/slots/', 'Hospital slots — BPR', { about: { '@id': `${ORIGIN}/bpr#registry` } }), crumbs([['BPR', '/bpr/'], ['Hospital slots', '/slots/']])], 0.8],
   ['/bpr/', [page('WebPage', '/bpr/', 'BPR — BrainSAIT Provider Registry', { about: { '@id': `${ORIGIN}/bpr#registry` } }), registryOrg], 0.9],
   ['/bpr/record/', [page('ProfilePage', '/bpr/record/', 'BPR record · Dr. Mohamed El Fadil', { mainEntity: { '@id': `${ORIGIN}/#person` } }), person, crumbs([['BPR', '/bpr/'], ['Record', '/bpr/record/']])], 0.9],
+  ['/bpr/nphies/', [page('WebPage', '/bpr/nphies/', 'NPHIES desk: rejection codes, pre-check and readiness'), crumbs([['BPR', '/bpr/'], ['NPHIES desk', '/bpr/nphies/']])], 0.8],
   ['/bpr/saudi/', [page('WebPage', '/bpr/saudi/', 'BPR across the Saudi health system'), crumbs([['BPR', '/bpr/'], ['Saudi', '/bpr/saudi/']])], 0.7],
   ['/bpr/workspace/', [page('WebPage', '/bpr/workspace/', 'Provider workspace — BPR'), crumbs([['BPR', '/bpr/'], ['Workspace', '/bpr/workspace/']])], 0.8],
   ['/bpr/providers/', [page('CollectionPage', '/bpr/providers/', 'Provider directory — BPR', {
@@ -176,6 +177,7 @@ Facts for agents:
 ## BPR pages
 - [Overview](${ORIGIN}/bpr/)
 - [Dr. Mohamed El Fadil — BPR record](${ORIGIN}/bpr/record/): standalone showcase of SA-PHY-000003, every check live
+- [NPHIES desk](${ORIGIN}/bpr/nphies/): every official NPHIES rejection code with plain Arabic and English guidance, an on-device message pre-check, a readiness plan by facility type, and version changes. Demonstration with guidance still under review. Independent reference; not connected to or certified by NPHIES. Add ?tab=decode&code=AD-1-8 to open one code
 - [BPR across the Saudi health system](${ORIGIN}/bpr/saudi/): proposals per organisation, not partnerships
 - [Provider workspace](${ORIGIN}/bpr/workspace/): what each provider gets, with status per capability
 - [Directory](${ORIGIN}/bpr/providers/)
@@ -196,6 +198,7 @@ ${provLines}
 - FHIR R4: ${REGISTRY}/fhir/metadata · ${REGISTRY}/fhir/Practitioner/{SPID} · ${REGISTRY}/fhir/PractitionerRole?identifier={SPID}
 - Signed credential (VC-JOSE, EdDSA): ${REGISTRY}/vc/{SPID} · status: ${REGISTRY}/vc/status/{SPID} · issuer keys: ${REGISTRY}/.well-known/did.json
 - Transparency log: ${REGISTRY}/transparency/log.json · AI provenance heads: ${REGISTRY}/transparency/ai.json
+- NPHIES reference (static JSON with declared sources): ${ORIGIN}/assets/bpr-data/nphies/v1/manifest.json · rejection-reasons.json · adjudication-errors.json · practice-codes.json · clinic-specialties.json · adjustment-reasons.json · code-systems.json · profiles.json · changes.json. Official wording is in the official field; other text fields are BrainSAIT guidance
 - Snapshot copies on this site: ${ORIGIN}/assets/bpr-data/ (providers.json, providers/{SPID}.json, research/{SPID}.json, fhir/…, manifest.json)
 - Embeddable live check: ${ORIGIN}/bpr/embed/{SPID}
 `);

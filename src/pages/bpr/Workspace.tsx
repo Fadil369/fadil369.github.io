@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  ArrowRight, ArrowUpRight, BookOpenCheck, Bot, Calculator, CalendarClock, ClipboardList, FlaskConical, GraduationCap,
+  ArrowRight, ArrowUpRight, BookOpenCheck, Bot, Calculator, CalendarClock, ClipboardList, FileSearch, FlaskConical, GraduationCap,
   HeartHandshake, Hourglass, Layers, Mic, Network, Pill, Server, ShieldAlert, Shuffle, Stethoscope, UsersRound,
 } from 'lucide-react';
 import { useI18n } from '../../i18n';
@@ -60,6 +60,10 @@ const GROUPS: { en: string; ar: string; caps: Cap[] }[] = [
         enText: 'Your works matched by DOI across ORCID, Zenodo and Hugging Face, counted only when the publisher names your ORCID iD.',
         arText: 'أعمالك مطابقة عبر DOI من ORCID وZenodo وHugging Face، وتُحتسب فقط عندما يذكر الناشر معرّف ORCID الخاص بك.',
         link: { to: '/bpr/research', en: 'Research', ar: 'البحث' } },
+      { icon: FileSearch, status: 'live', en: 'NPHIES desk', ar: 'مكتب نفيس',
+        enText: 'Every official rejection code in plain Arabic and English, an on-device message pre-check and a readiness plan by facility type. A reference only: it does not send transactions.',
+        arText: 'كل رموز الرفض الرسمية بعربية وإنجليزية واضحتين، وفحص أولي للرسائل على جهازك، وخطة جاهزية حسب نوع المنشأة. وهو مرجع فقط ولا يرسل معاملات.',
+        link: { to: '/bpr/nphies', en: 'Open the desk', ar: 'افتح المكتب' } },
       { icon: Pill, status: 'live', en: 'Knowledge hub', ar: 'مركز المعرفة',
         enText: 'Drug lookup (RxNorm) and a curated reference shelf.', arText: 'بحث الأدوية (RxNorm) ورف مراجع منتقاة.',
         link: { href: `${REGISTRY}/knowledge.php`, en: 'Open', ar: 'افتح' } },
@@ -94,6 +98,7 @@ const CHECKLIST: { status: Status; en: string; ar: string; enText: string; arTex
   { status: 'live', en: 'Built-in Copilot assistant', ar: 'مساعد سريري مدمج', enText: '14 bilingual skills inside your EMR, on BrainSAIT-hosted models by default; drafts only, you save.', arText: '14 مهارة ثنائية اللغة داخل سجلك الطبي، على نماذج مستضافة لدى برينسايت افتراضيًا؛ مسودات فقط والحفظ لك.' },
   { status: 'live', en: 'Arabic voice-to-text', ar: 'تحويل الصوت العربي إلى نص', enText: 'On-premise speech recognition, Arabic validated: dictation → SOAP draft or into any field.', arText: 'تعرّف محلي على الكلام مُختبَر بالعربية: إملاء ← مسودة SOAP أو في أي حقل.' },
   { status: 'live', en: 'FHIR integration', ar: 'التكامل عبر FHIR', enText: 'FHIR R4 registry API and SMART-on-FHIR launch inside the EMR.', arText: 'واجهة FHIR R4 للسجل وإطلاق SMART-on-FHIR داخل السجل الطبي.', to: '/bpr/developers' },
+  { status: 'live', en: 'NPHIES desk', ar: 'مكتب نفيس', enText: 'Rejection codes explained, an on-device message pre-check and a readiness plan. A reference, not a connection to NPHIES.', arText: 'شرح رموز الرفض، وفحص أولي للرسائل على جهازك، وخطة جاهزية. وهو مرجع وليس اتصالًا بنفيس.', to: '/bpr/nphies' },
   { status: 'awaiting', en: 'NPHIES integration', ar: 'التكامل مع نفيس', enText: 'Eligibility, pre-authorisation and claims from the workspace — integration ongoing.', arText: 'الأهلية والموافقات المسبقة والمطالبات من مساحة العمل — والتكامل جارٍ.' },
   { status: 'live', en: 'Research page integration', ar: 'التكامل مع صفحة البحث', enText: 'DOI-matched works from ORCID, Zenodo and Hugging Face on your profile.', arText: 'أعمالك المطابقة عبر DOI من ORCID وZenodo وHugging Face في ملفك.', to: '/bpr/research/SA-PHY-000003' },
   { status: 'live', en: 'Calculators, forms & clinical tools', ar: 'الحاسبات والنماذج والأدوات السريرية', enText: 'Specialty kits with calculators, checklists, pre-filled forms and templates, printable with a verification QR.', arText: 'حزم تخصصية بحاسبات وقوائم تحقق ونماذج وقوالب معبأة، قابلة للطباعة مع رمز تحقق.', href: `${REGISTRY}/tools.php` },
@@ -118,7 +123,7 @@ const SKILLS: { en: string; ar: string; items: [string, string][] }[] = [
   { en: 'Labs', ar: 'المختبر', items: [['Extract to FHIR Observation', 'استخراج إلى FHIR Observation'], ['Trends & deltas', 'الاتجاهات والفروق']] },
   { en: 'Radiology', ar: 'الأشعة', items: [['Structure the report', 'هيكلة التقرير'], ['Image assist (review required)', 'مساعدة بالصور (تتطلب مراجعة)']] },
   { en: 'Medications', ar: 'الأدوية', items: [['Reconcile home vs active', 'مطابقة المنزلية والحالية'], ['Safety (Sentinel rules)', 'السلامة (قواعد Sentinel)']] },
-  { en: 'Diagnosis', ar: 'التشخيص', items: [['ICD-10-CM suggestions', 'اقتراحات ICD-10-CM'], ['Care gaps', 'فجوات الرعاية']] },
+  { en: 'Diagnosis', ar: 'التشخيص', items: [['ICD-10-AM suggestions', 'اقتراحات ICD-10-AM'], ['Care gaps', 'فجوات الرعاية']] },
   { en: 'Communication', ar: 'التواصل', items: [['Arabic-first patient education', 'تثقيف المريض بالعربية أولًا'], ['Referral letters', 'خطابات الإحالة']] },
 ];
 

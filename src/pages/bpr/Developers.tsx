@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Copy, Play } from 'lucide-react';
 import { useI18n } from '../../i18n';
@@ -95,6 +96,12 @@ export default function Developers() {
           ))}
         </ul>
         <p className="bpr-note"><ExtLink href={`${REGISTRY}/fhir/metadata`}>CapabilityStatement</ExtLink></p>
+      </section>
+
+      <section className="bpr-panel">
+        <h2>{ar ? 'وثائق نفيس كخدمة' : 'NPHIES docs as a service'}</h2>
+        <p>{ar ? 'رموز الرفض والأخطاء والتخصصات والملفات التعريفية بصيغة JSON ثابتة بمصدر معلن وبصمة لكل وثيقة.' : 'Rejection codes, error codes, practice codes and profile requirements as static JSON, with a declared source and fingerprint for each document.'}</p>
+        <p><Link to="/bpr/nphies?tab=api">{ar ? 'افتح واجهة الوثائق' : 'Open the docs API'}</Link> · <a href="/assets/bpr-data/nphies/v1/manifest.json"><code dir="ltr">manifest.json</code></a></p>
       </section>
 
       <section className="bpr-panel">

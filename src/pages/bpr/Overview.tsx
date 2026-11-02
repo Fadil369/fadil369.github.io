@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { CalendarClock, LayoutGrid, ArrowRight, ArrowUpRight, BadgeCheck, Braces, BookOpenCheck, Calculator, Check, FlaskConical, Fingerprint, GraduationCap, HeartHandshake, Hourglass, KeyRound, Link2, Network, Search, Server, ShieldCheck, Shuffle, Stethoscope, Users, UsersRound } from 'lucide-react';
+import { CalendarClock, LayoutGrid, ArrowRight, ArrowUpRight, BadgeCheck, Braces, BookOpenCheck, Calculator, Check, FlaskConical, Fingerprint, GraduationCap, HeartHandshake, Hourglass, KeyRound, Link2, Network, Search, Server, ShieldCheck, Shuffle, Stethoscope, Users, UsersRound, FileSearch } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout, CheckRow, SourceBadge, valueLabel, WorkspaceBand } from '../../components/BprKit';
@@ -22,6 +22,8 @@ const TIER_ORDER: ModuleStatus[] = ['live', 'awaiting', 'planned'];
 const MODULES = [
   { icon: LayoutGrid, to: '/bpr/workspace', status: 'live' as ModuleStatus, en: 'Provider workspace', ar: 'مساحة عمل مقدم الرعاية', tag: 'OpenEMR · Copilot · Arabic voice',
     enText: 'Own EMR, a clinical copilot with Arabic dictation, FHIR, specialty tools and research — each feature marked live, ongoing or planned.', arText: 'سجل طبي خاص ومساعد سريري بإملاء عربي وFHIR وأدوات التخصص والبحث — مع بيان ما يعمل وما هو جارٍ وما هو قادم لكل ميزة.' },
+  { icon: FileSearch, to: '/bpr/nphies', status: 'live' as ModuleStatus, en: 'NPHIES desk', ar: 'مكتب نفيس', tag: 'Rejection codes · Pre-check · Readiness',
+    enText: 'Every official rejection code in plain Arabic and English, a pre-check that runs on your device, and a readiness plan by facility type.', arText: 'كل رموز الرفض الرسمية بعربية وإنجليزية واضحتين، وفحص أولي يعمل على جهازك، وخطة جاهزية حسب نوع المنشأة.' },
   { icon: KeyRound, to: '/bpr/verify', status: 'live' as ModuleStatus, en: 'Signed credentials', ar: 'شهادات موقّعة', tag: 'W3C VC 2.0 · Ed25519',
     enText: 'Check a registry-signed credential on your own device — no account, nothing uploaded.', arText: 'تحقق من شهادة موقّعة من السجل على جهازك — دون حساب ودون رفع أي شيء.' },
   { icon: Link2, to: '/bpr/ledger', status: 'live' as ModuleStatus, en: 'Transparency log', ar: 'السجل الشفاف', tag: 'Append-only · signed head',

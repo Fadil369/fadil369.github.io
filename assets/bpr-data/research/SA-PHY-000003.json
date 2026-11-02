@@ -21,7 +21,7 @@
      "bpr_community": 1
     },
     "hf": {
-     "downloads": 77,
+     "downloads": 76,
      "likes": 0
     }
    },
@@ -43,7 +43,7 @@
    },
    "metrics": {
     "zenodo": {
-     "views": 2,
+     "views": 3,
      "downloads": 12,
      "bpr_community": 1
     }
@@ -91,7 +91,7 @@
    },
    "metrics": {
     "zenodo": {
-     "views": 6,
+     "views": 7,
      "downloads": 25,
      "bpr_community": 1
     }
@@ -117,12 +117,12 @@
    "metrics": {
     "orcid": [],
     "zenodo": {
-     "views": 2,
+     "views": 3,
      "downloads": 2,
      "bpr_community": 1
     },
     "hf": {
-     "downloads": 56,
+     "downloads": 57,
      "likes": 0
     }
    },
@@ -226,7 +226,7 @@
    "metrics": {
     "orcid": [],
     "zenodo": {
-     "views": 3,
+     "views": 4,
      "downloads": 15,
      "bpr_community": 1
     },
@@ -256,7 +256,7 @@
    "metrics": {
     "orcid": [],
     "zenodo": {
-     "views": 1,
+     "views": 2,
      "downloads": 5,
      "bpr_community": 1
     },
@@ -309,12 +309,12 @@
    "metrics": {
     "orcid": [],
     "zenodo": {
-     "views": 5,
+     "views": 7,
      "downloads": 13,
      "bpr_community": 1
     },
     "hf": {
-     "downloads": 158,
+     "downloads": 168,
      "likes": 0
     }
    },
@@ -387,7 +387,7 @@
    "metrics": {
     "orcid": [],
     "zenodo": {
-     "views": 7,
+     "views": 9,
      "downloads": 9,
      "bpr_community": 1
     }
@@ -471,9 +471,9 @@
  },
  "authorship_rule": "A work counts as authored only when the publisher record (Crossref/DataCite) names this ORCID iD. Works the publisher attributes to a different ORCID iD are not shown.",
  "metrics": {
-  "zenodo_views": 40,
+  "zenodo_views": 49,
   "zenodo_downloads": 217,
-  "hf_downloads": 590
+  "hf_downloads": 600
  },
  "not_on_orcid": [
   "10.5281/zenodo.23609100",
@@ -484,17 +484,17 @@
   "orcid": {
    "ok": 1,
    "note": "21 items",
-   "at": "2026-11-01T05:15:01+00:00"
+   "at": "2026-11-02T05:15:01+00:00"
   },
   "zenodo": {
    "ok": 1,
    "note": "13 items",
-   "at": "2026-11-01T05:15:01+00:00"
+   "at": "2026-11-02T05:15:01+00:00"
   },
   "hf": {
    "ok": 1,
    "note": "8 items",
-   "at": "2026-11-01T05:15:01+00:00"
+   "at": "2026-11-02T05:15:01+00:00"
   }
  },
  "note": "Public ORCID, Zenodo and Hugging Face data matched by DOI. Hugging Face repos count only when their card cites this ORCID iD."

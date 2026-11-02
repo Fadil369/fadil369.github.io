@@ -20,6 +20,7 @@ Facts for agents:
 ## BPR pages
 - [Overview](https://fadil369.github.io/bpr/)
 - [Dr. Mohamed El Fadil — BPR record](https://fadil369.github.io/bpr/record/): standalone showcase of SA-PHY-000003, every check live
+- [NPHIES desk](https://fadil369.github.io/bpr/nphies/): every official NPHIES rejection code with plain Arabic and English guidance, an on-device message pre-check, a readiness plan by facility type, and version changes. Demonstration with guidance still under review. Independent reference; not connected to or certified by NPHIES. Add ?tab=decode&code=AD-1-8 to open one code
 - [BPR across the Saudi health system](https://fadil369.github.io/bpr/saudi/): proposals per organisation, not partnerships
 - [Provider workspace](https://fadil369.github.io/bpr/workspace/): what each provider gets, with status per capability
 - [Directory](https://fadil369.github.io/bpr/providers/)
@@ -42,5 +43,6 @@ Facts for agents:
 - FHIR R4: https://registry.brainsait.de/fhir/metadata · https://registry.brainsait.de/fhir/Practitioner/{SPID} · https://registry.brainsait.de/fhir/PractitionerRole?identifier={SPID}
 - Signed credential (VC-JOSE, EdDSA): https://registry.brainsait.de/vc/{SPID} · status: https://registry.brainsait.de/vc/status/{SPID} · issuer keys: https://registry.brainsait.de/.well-known/did.json
 - Transparency log: https://registry.brainsait.de/transparency/log.json · AI provenance heads: https://registry.brainsait.de/transparency/ai.json
+- NPHIES reference (static JSON with declared sources): https://fadil369.github.io/assets/bpr-data/nphies/v1/manifest.json · rejection-reasons.json · adjudication-errors.json · practice-codes.json · clinic-specialties.json · adjustment-reasons.json · code-systems.json · profiles.json · changes.json. Official wording is in the official field; other text fields are BrainSAIT guidance
 - Snapshot copies on this site: https://fadil369.github.io/assets/bpr-data/ (providers.json, providers/{SPID}.json, research/{SPID}.json, fhir/…, manifest.json)
 - Embeddable live check: https://fadil369.github.io/bpr/embed/{SPID}

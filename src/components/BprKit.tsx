@@ -12,6 +12,7 @@ const NAV = [
   { to: '/bpr/workspace', en: 'Workspace', ar: 'مساحة العمل' },
   { to: '/bpr/providers', en: 'Directory', ar: 'الدليل' },
   { to: '/slots', en: 'Hospital slots', ar: 'شواغر المستشفيات' },
+  { to: '/bpr/nphies', en: 'NPHIES desk', ar: 'مكتب نفيس' },
   { to: '/bpr/saudi', en: 'For organizations', ar: 'للمؤسسات' },
   { to: '/bpr/verify', en: 'Verify', ar: 'التحقق' },
   { to: '/bpr/ledger', en: 'Ledger', ar: 'السجل الشفاف' },
