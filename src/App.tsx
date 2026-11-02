@@ -103,7 +103,9 @@ function AppShell() {
         <RouteBoundary ar={document.documentElement.lang === 'ar'} path={location.pathname}>
         <Suspense fallback={<div className="profile-page" style={{ minHeight: '100vh' }} />}>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Navigate to="/bpr" replace />} />
+          {/* Redirect /ar/* to /bpr with Arabic language preserved */}
+          <Route path="/ar" element={<Navigate to="/bpr?lang=ar" replace />} />
           <Route path="/cv" element={<ProfessionalCv />} />
           <Route path="/card" element={<BusinessCard />} />
           <Route path="/bpr" element={<Overview />} />
