@@ -4,12 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>BrainSAIT — Healthcare AI Platform</title>
-<meta name="description" content="OpenEMR. Clinical Copilot. NVIDIA AI on NPHIES. Brev HQ agents. One connected platform for healthcare professionals." />
+<meta name="description" content="OpenEMR · Clinical Copilot · NVIDIA AI on NPHIES · Brev HQ Agents · BrainSAIT Provider Registry. All connected." />
 <meta name="theme-color" content="#090a08" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="BrainSAIT" />
 <meta property="og:title" content="BrainSAIT — Healthcare AI Platform" />
-<meta property="og:description" content="OpenEMR. Clinical Copilot. NVIDIA AI on NPHIES. Brev HQ agents. One connected platform." />
+<meta property="og:description" content="OpenEMR · Copilot · NVIDIA AI on NPHIES · Brev HQ Agents · BPR Registry. One connected platform." />
 <meta property="og:url" content="https://fadil369.github.io/" />
 <meta property="og:image" content="https://fadil369.github.io/assets/profile-og.png" />
 <meta property="og:image:width" content="1200" />
@@ -21,585 +21,405 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
-/* ═══════════════════════════════════════════════════════════
-   BrainSAIT Landing — Premium Healthcare AI Platform
+/* ════════════════════════════════════════════════════════════
+   BrainSAIT — Deep Pro Healthcare AI Platform
    ═══════════════════════════════════════════════════════════ */
 
 :root {
-  --bg: #090a08; --bg2: #0c0e0c; --surface: #121512; --surface2: #1a1f1a;
-  --line: #2a3229; --line2: #35413b;
-  --text: #f2f6f3; --muted: #8a998d; --muted2: #5a6b5d;
-  --accent: #edf34a; --accent2: #64d8c5; --accent3: #c4a030;
-  --emr: #3b82f6; --copilot: #8b5cf6; --nvidia: #76b900;
-  --brev: #f97316; --nphies: #06b6d4; --bpr: #edf34a;
-  --fhir: #10b981; --voice: #ec4899; --sentinel: #ef4444;
-  --radius: 16px; --radius-sm: 10px; --radius-xs: 6px;
-  --mono: 'IBM Plex Mono', 'Fira Code', monospace;
-  --font: 'Manrope', system-ui, -apple-system, sans-serif;
+  --bg:#090a08; --bg2:#0c0e0c; --surface:#121512; --surface2:#1a1f1a;
+  --line:#2a3229; --line2:#35413b;
+  --text:#f2f6f3; --muted:#8a998d; --muted2:#5a6b5d;
+  --accent:#edf34a; --accent2:#64d8c5; --accent3:#c4a030;
+  --emr:#3b82f6; --copilot:#8b5cf6; --nvidia:#76b900;
+  --brev:#f97316; --nphies:#06b6d4; --bpr:#edf34a;
+  --fhir:#10b981; --voice:#ec4899; --sentinel:#ef4444;
+  --radius:18px; --radius-sm:12px; --radius-xs:8px;
+  --mono:'IBM Plex Mono','Fira Code',monospace;
+  --font:'Manrope',system-ui,-apple-system,sans-serif;
+  --glow:0 0 40px rgba(237,243,74,.15);
+  --transition:all .4s cubic-bezier(.16,1,.3,1);
 }
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { scroll-behavior: smooth; font-size: 16px; -webkit-font-smoothing: antialiased; }
-body {
-  background: var(--bg); color: var(--text);
-  font-family: var(--font); line-height: 1.6; overflow-x: hidden;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:var(--font);line-height:1.7;overflow-x:hidden;
 }
-a { color: inherit; text-decoration: none; transition: color .25s; }
-a:hover { color: var(--accent); }
-img { max-width: 100%; height: auto; }
+a{color:inherit;text-decoration:none;transition:color .25s}
+a:hover{color:var(--accent)}
+img{max-width:100%;height:auto}
 
 /* ═══ CANVAS BACKGROUND ═══ */
-#particle-canvas {
-  position: fixed; inset: 0; z-index: 0; pointer-events: none;
-  opacity: .6;
+#particle-canvas{
+  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;
 }
 
 /* ═══ NAV ═══ */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 16px 0; transition: all .4s cubic-bezier(.16,1,.3,1);
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;transition:all .4s;
 }
-.nav.scrolled {
-  background: rgba(9,10,8,.92); backdrop-filter: blur(24px) saturate(1.5);
-  border-bottom: 1px solid rgba(42,50,41,.5);
+.nav.scrolled{
+  background:rgba(9,10,8,.94);backdrop-filter:blur(28px)saturate(1.6);
+  border-bottom:1px solid rgba(42,50,41,.5);
 }
-.nav-inner {
-  max-width: 1280px; margin: 0 auto; padding: 0 32px;
-  display: flex; align-items: center; justify-content: space-between;
+.nav-inner{
+  max-width:1280px;margin:0 auto;padding:0 32px;
+  display:flex;align-items:center;justify-content:space-between;
 }
-.nav-brand {
-  display: flex; align-items: center; gap: 14px;
-  font-weight: 800; font-size: 20px; letter-spacing: -.02em;
+.nav-brand{
+  display:flex;align-items:center;gap:14px;font-weight:800;font-size:20px;letter-spacing:-.02em;
 }
-.nav-brand-icon {
-  width: 40px; height: 40px; background: var(--accent); border-radius: 10px;
-  display: grid; place-items: center; color: var(--bg);
-  font-weight: 800; font-size: 14px; font-family: var(--mono);
-  box-shadow: 0 0 20px rgba(237,243,74,.25);
+.nav-brand-icon{
+  width:40px;height:40px;background:var(--accent);border-radius:10px;
+  display:grid;place-items:center;color:var(--bg);font-weight:800;font-size:14px;font-family:var(--mono);
+  box-shadow:var(--glow);
 }
-.nav-links { display: flex; align-items: center; gap: 36px; }
-.nav-links a {
-  font-size: 14px; font-weight: 500; color: var(--muted);
-  position: relative; transition: color .25s;
+.nav-menu{display:flex;align-items:center;gap:4px}
+.nav-item{position:relative}
+.nav-link{
+  display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:999px;
+  font-size:14px;font-weight:500;color:var(--muted);background:none;border:none;cursor:pointer;
+  font-family:var(--font);transition:all .25s;text-decoration:none;
 }
-.nav-links a::after {
-  content: ''; position: absolute; bottom: -4px; left: 0;
-  width: 0; height: 1.5px; background: var(--accent);
-  transition: width .3s cubic-bezier(.16,1,.3,1);
-}
-.nav-links a:hover { color: var(--text); }
-.nav-links a:hover::after { width: 100%; }
-.nav-cta {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 22px; border-radius: 999px;
-  background: linear-gradient(135deg, var(--accent), #d8e030);
-  color: var(--bg); font-weight: 700; font-size: 14px;
-  border: none; cursor: pointer; transition: all .3s;
-  box-shadow: 0 0 20px rgba(237,243,74,.2);
-}
-.nav-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 40px rgba(237,243,74,.4);
-}
-
-/* ═══ MEGA MENU ═══ */
-.nav-menu {
-  display: flex; align-items: center; gap: 4px;
-}
-.nav-item { position: relative; }
-.nav-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 10px 16px; border-radius: 999px;
-  font-size: 14px; font-weight: 500; color: var(--muted);
-  background: none; border: none; cursor: pointer;
-  font-family: var(--font); transition: all .25s;
-  text-decoration: none;
-}
-.nav-link:hover, .nav-item.open > .nav-link {
-  color: var(--text); background: rgba(255,255,255,.04);
-}
-.nav-link svg { transition: transform .3s; }
-.nav-item.open .nav-link svg { transform: rotate(180deg); }
+.nav-link:hover,.nav-item.open>.nav-link{color:var(--text);background:rgba(255,255,255,.04)}
+.nav-link svg{transition:transform .3s}
+.nav-item.open .nav-link svg{transform:rotate(180deg)}
 
 /* Dropdown */
-.nav-dropdown {
-  position: absolute; top: calc(100% + 12px); left: 0;
-  min-width: 240px; padding: 12px;
-  background: rgba(18,21,18,.95); backdrop-filter: blur(24px);
-  border: 1px solid var(--line); border-radius: var(--radius);
-  opacity: 0; visibility: hidden; transform: translateY(8px);
-  transition: all .3s cubic-bezier(.16,1,.3,1);
-  z-index: 200; box-shadow: 0 20px 60px rgba(0,0,0,.5);
+.nav-dropdown{
+  position:absolute;top:calc(100% + 12px);left:0;min-width:240px;padding:12px;
+  background:rgba(18,21,18,.95);backdrop-filter:blur(24px);
+  border:1px solid var(--line);border-radius:var(--radius);
+  opacity:0;visibility:hidden;transform:translateY(8px);
+  transition:all .3s cubic-bezier(.16,1,.3,1);z-index:200;
+  box-shadow:0 24px 80px rgba(0,0,0,.6);
 }
-.nav-item.open .nav-dropdown {
-  opacity: 1; visibility: visible; transform: translateY(0);
+.nav-item.open .nav-dropdown{
+  opacity:1;visibility:visible;transform:translateY(0);
 }
+.nav-dropdown.mega{left:50%;transform:translateX(-50%)translateY(8px);min-width:820px;padding:20px}
+.nav-item.open .nav-dropdown.mega{transform:translateX(-50%)translateY(0)}
+.mega-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mega-card{
+  display:flex;flex-direction:column;gap:4px;padding:16px;border-radius:var(--radius-sm);
+  background:transparent;transition:all .25s;text-decoration:none;
+}
+.mega-card:hover{background:rgba(237,243,74,.06);transform:translateY(-2px)}
+.mega-icon{font-size:20px;margin-bottom:4px}
+.mega-title{font-size:14px;font-weight:600;color:var(--text)}
+.mega-desc{font-size:11px;color:var(--muted);font-family:var(--mono)}
+.nav-dd-item{
+  display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--radius-sm);
+  font-size:14px;color:var(--muted);transition:all .2s;text-decoration:none;
+}
+.nav-dd-item:hover{background:rgba(237,243,74,.06);color:var(--text)}
+.nav-lang{
+  display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;
+  border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--muted);
+  transition:all .25s;text-decoration:none;font-family:var(--mono);
+}
+.nav-lang:hover{border-color:var(--accent);color:var(--accent)}
+.nav-hamburger{
+  display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;
+}
+.nav-hamburger span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.nav-hamburger.active span:nth-child(1){transform:rotate(45deg)translate(5px,5px)}
+.nav-hamburger.active span:nth-child(2){opacity:0}
+.nav-hamburger.active span:nth-child(3){transform:rotate(-45deg)translate(5px,-5px)}
 
-/* Mega dropdown */
-.nav-dropdown.mega {
-  left: 50%; transform: translateX(-50%) translateY(8px);
-  min-width: 800px; padding: 20px;
+/* Mobile overlay & menu */
+.mobile-overlay{
+  position:fixed;inset:0;z-index:190;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);
+  opacity:0;visibility:hidden;transition:all .3s;
 }
-.nav-item.open .nav-dropdown.mega {
-  transform: translateX(-50%) translateY(0);
+.mobile-overlay.open{opacity:1;visibility:visible}
+.mobile-menu{
+  position:fixed;top:0;right:-320px;bottom:0;width:320px;z-index:195;
+  background:var(--bg2);border-left:1px solid var(--line);overflow-y:auto;
+  padding:80px 24px 40px;transition:right .4s cubic-bezier(.16,1,.3,1);
 }
-.mega-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+.mobile-menu.open{right:0}
+.mobile-section{margin-bottom:32px}
+.mobile-section-title{
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;
+  color:var(--accent);margin-bottom:12px;
 }
-.mega-card {
-  display: flex; flex-direction: column; gap: 4px;
-  padding: 16px; border-radius: var(--radius-sm);
-  background: transparent; transition: all .25s;
-  text-decoration: none;
+.mobile-section a{
+  display:block;padding:10px 16px;border-radius:var(--radius-sm);
+  font-size:14px;color:var(--muted);transition:all .2s;text-decoration:none;margin-bottom:2px;
 }
-.mega-card:hover {
-  background: rgba(237,243,74,.06);
-  transform: translateY(-2px);
+.mobile-section a:hover{background:rgba(237,243,74,.06);color:var(--text)}
+.mobile-lang{
+  font-size:16px!important;text-align:center;border:1px solid var(--line)!important;
+  margin-top:16px!important;
 }
-.mega-icon { font-size: 20px; margin-bottom: 4px; }
-.mega-title { font-size: 14px; font-weight: 600; color: var(--text); }
-.mega-desc { font-size: 11px; color: var(--muted); font-family: var(--mono); }
-
-/* Dropdown items */
-.nav-dd-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 14px; border-radius: var(--radius-sm);
-  font-size: 14px; color: var(--muted);
-  transition: all .2s; text-decoration: none;
-}
-.nav-dd-item:hover { background: rgba(237,243,74,.06); color: var(--text); }
-
-/* Language switcher */
-.nav-lang {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 8px 14px; border-radius: 999px;
-  border: 1px solid var(--line);
-  font-size: 13px; font-weight: 600; color: var(--muted);
-  transition: all .25s; text-decoration: none;
-  font-family: var(--mono);
-}
-.nav-lang:hover { border-color: var(--accent); color: var(--accent); }
-
-/* Hamburger */
-.nav-hamburger {
-  display: none; flex-direction: column; gap: 5px;
-  background: none; border: none; cursor: pointer; padding: 6px;
-}
-.nav-hamburger span {
-  width: 24px; height: 2px; background: var(--text);
-  border-radius: 2px; transition: all .3s;
-}
-.nav-hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.nav-hamburger.active span:nth-child(2) { opacity: 0; }
-.nav-hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-/* Mobile overlay */
-.mobile-overlay {
-  position: fixed; inset: 0; z-index: 190;
-  background: rgba(0,0,0,.6); backdrop-filter: blur(4px);
-  opacity: 0; visibility: hidden; transition: all .3s;
-}
-.mobile-overlay.open { opacity: 1; visibility: visible; }
-
-/* Mobile menu */
-.mobile-menu {
-  position: fixed; top: 0; right: -320px; bottom: 0;
-  width: 320px; z-index: 195;
-  background: var(--bg2); border-left: 1px solid var(--line);
-  overflow-y: auto; padding: 80px 24px 40px;
-  transition: right .4s cubic-bezier(.16,1,.3,1);
-}
-.mobile-menu.open { right: 0; }
-.mobile-section { margin-bottom: 32px; }
-.mobile-section-title {
-  font-size: 11px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 2px; color: var(--accent); margin-bottom: 12px;
-}
-.mobile-section a {
-  display: block; padding: 10px 16px; border-radius: var(--radius-sm);
-  font-size: 14px; color: var(--muted); transition: all .2s;
-  text-decoration: none; margin-bottom: 2px;
-}
-.mobile-section a:hover { background: rgba(237,243,74,.06); color: var(--text); }
-.mobile-lang { font-size: 16px !important; text-align: center; border: 1px solid var(--line) !important; margin-top: 16px !important; }
 
 /* ═══ HERO ═══ */
-.hero {
-  min-height: 100vh; display: flex; align-items: center;
-  position: relative; overflow: hidden; padding: 120px 32px 80px;
+.hero{
+  min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;
+  padding:120px 32px 80px;
 }
-.hero-bg {
-  position: absolute; inset: 0; z-index: 0;
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
   background:
     radial-gradient(ellipse 80% 60% at 50% 0%, rgba(237,243,74,.06) 0%, transparent 60%),
     radial-gradient(ellipse 60% 50% at 20% 80%, rgba(139,92,246,.04) 0%, transparent 50%),
     radial-gradient(ellipse 60% 50% at 80% 80%, rgba(100,216,197,.04) 0%, transparent 50%);
 }
-.hero-content {
-  position: relative; z-index: 1; max-width: 900px; margin: 0 auto; text-align: center;
-}
+.hero-content{position:relative;z-index:1;max-width:900px;margin:0 auto;text-align:center}
 
 /* Animated gradient text */
-.hero-title {
-  font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 800;
-  line-height: 1.05; margin-bottom: 28px; letter-spacing: -.04em;
+.hero-title{
+  font-size:clamp(3rem,7vw,5.5rem);font-weight:800;line-height:1.05;
+  margin-bottom:28px;letter-spacing:-.04em;
 }
-.hero-title .gradient-text {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 40%, var(--copilot) 70%, var(--nvidia) 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientShift 6s ease infinite;
+.hero-title .gradient-text{
+  background:linear-gradient(135deg,var(--accent)0%,var(--accent2)40%,var(--copilot)70%,var(--nvidia)100%);
+  background-size:300%300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:gradientShift 6s ease infinite;
 }
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+@keyframes gradientShift{0%{background-position:0%50%}50%{background-position:100%50%}100%{background-position:0%50%}}
 
 /* Floating badge */
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 10px 20px; border-radius: 999px; font-size: 13px; font-weight: 600;
-  background: rgba(237,243,74,.06); border: 1px solid rgba(237,243,74,.15);
-  color: var(--accent); margin-bottom: 36px;
-  animation: fadeInDown .8s ease;
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;
+  font-size:13px;font-weight:600;background:rgba(237,243,74,.06);
+  border:1px solid rgba(237,243,74,.15);color:var(--accent);margin-bottom:36px;
+  animation:fadeInDown .8s ease;
 }
-.hero-badge .live-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #26de81; animation: pulse 2s infinite;
+.hero-badge .live-dot{
+  width:8px;height:8px;border-radius:50%;background:#26de81;animation:pulse 2s infinite;
 }
-@keyframes pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(38,222,129,.4); } 50% { opacity: .7; box-shadow: 0 0 0 8px rgba(38,222,129,0); } }
-@keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-
-.hero-desc {
-  font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--muted);
-  max-width: 700px; margin: 0 auto 44px; line-height: 1.75;
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(38,222,129,.4)}50%{opacity:.7;box-shadow:0 0 0 8px rgba(38,222,129,0)}}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+.hero-desc{
+  font-size:clamp(1.1rem,2vw,1.3rem);color:var(--muted);max-width:700px;
+  margin:0 auto 44px;line-height:1.75;
 }
 
 /* CTA buttons */
-.hero-actions {
-  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px;
+.hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:56px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:16px 32px;border-radius:999px;
+  font-weight:700;font-size:16px;border:none;cursor:pointer;transition:all .35s cubic-bezier(.16,1,.3,1);
+  font-family:var(--font);
 }
-.btn {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 16px 32px; border-radius: 999px;
-  font-weight: 700; font-size: 16px; border: none;
-  cursor: pointer; transition: all .35s cubic-bezier(.16,1,.3,1);
-  font-family: var(--font);
+.btn-primary{
+  background:var(--accent);color:var(--bg);
+  box-shadow:0 0 30px rgba(237,243,74,.2),0 4px 20px rgba(0,0,0,.3);
 }
-.btn-primary {
-  background: var(--accent); color: var(--bg);
-  box-shadow: 0 0 30px rgba(237,243,74,.2), 0 4px 20px rgba(0,0,0,.3);
+.btn-primary:hover{
+  transform:translateY(-3px);box-shadow:0 0 50px rgba(237,243,74,.35),0 8px 30px rgba(0,0,0,.4);
 }
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 50px rgba(237,243,74,.35), 0 8px 30px rgba(0,0,0,.4);
+.btn-ghost{
+  background:transparent;color:var(--text);border:1.5px solid var(--line2);
 }
-.btn-ghost {
-  background: transparent; color: var(--text);
-  border: 1.5px solid var(--line2);
-}
-.btn-ghost:hover {
-  border-color: var(--accent); color: var(--accent);
-  transform: translateY(-3px);
-}
-.btn svg { width: 18px; height: 18px; }
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+.btn svg{width:18px;height:18px}
 
 /* Redirect bar */
-.redirect-bar {
-  display: inline-flex; align-items: center; gap: 14px;
-  padding: 14px 28px; border-radius: 999px;
-  background: var(--surface); border: 1px solid var(--line);
-  font-size: 14px; color: var(--muted); margin-top: 8px;
-  animation: fadeInDown .8s .4s ease both;
+.redirect-bar{
+  display:inline-flex;align-items:center;gap:14px;padding:14px 28px;border-radius:999px;
+  background:var(--surface);border:1px solid var(--line);font-size:14px;color:var(--muted);
+  margin-top:8px;animation:fadeInDown .8s .4s ease both;
 }
-.redirect-bar .count {
-  color: var(--accent); font-weight: 700; font-family: var(--mono);
-  font-size: 18px; min-width: 24px; text-align: center;
-}
-.redirect-bar a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.redirect-bar .count{color:var(--accent);font-weight:700;font-family:var(--mono);font-size:18px;min-width:24px;text-align:center}
+.redirect-bar a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
 
-/* Live stats bar */
-.hero-stats {
-  display: flex; gap: 56px; justify-content: center; flex-wrap: wrap;
-  animation: fadeInDown .8s .6s ease both;
-}
-.hero-stat { text-align: center; }
-.hero-stat .num {
-  font-size: 2.4rem; font-weight: 800; color: var(--accent);
-  font-family: var(--mono); line-height: 1;
-}
-.hero-stat .label { font-size: 13px; color: var(--muted); margin-top: 6px; }
+/* Live stats */
+.hero-stats{display:flex;gap:56px;justify-content:center;flex-wrap:wrap;animation:fadeInDown .8s .6s ease both}
+.hero-stat{text-align:center}
+.hero-stat .num{font-size:2.4rem;font-weight:800;color:var(--accent);font-family:var(--mono);line-height:1}
+.hero-stat .label{font-size:13px;color:var(--muted);margin-top:6px}
 
 /* ═══ SECTION TITLES ═══ */
-.section { padding: 120px 32px; position: relative; z-index: 1; }
-.section-label {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-size: 12px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 3px; color: var(--accent); margin-bottom: 16px;
+.section{padding:120px 32px;position:relative;z-index:1}
+.section-label{
+  display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;
+  text-transform:uppercase;letter-spacing:3px;color:var(--accent);margin-bottom:16px;
 }
-.section-label::before {
-  content: ''; width: 24px; height: 1px; background: var(--accent);
+.section-label::before{content:'';width:24px;height:1px;background:var(--accent)}
+.section-title{
+  font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:800;line-height:1.1;margin-bottom:16px;
+  letter-spacing:-.03em;max-width:700px;
 }
-.section-title {
-  font-size: clamp(2.2rem, 4.5vw, 3.5rem); font-weight: 800;
-  line-height: 1.1; margin-bottom: 16px; letter-spacing: -.03em;
-  max-width: 700px;
-}
-.section-desc {
-  font-size: 17px; color: var(--muted); max-width: 600px;
-  line-height: 1.7; margin-bottom: 64px;
-}
+.section-desc{font-size:17px;color:var(--muted);max-width:600px;line-height:1.7;margin-bottom:64px}
 
-/* ═══ FLOATING CARDS ROW ═══ */
-.float-row {
-  display: flex; gap: 20px; overflow-x: auto; padding: 40px 0;
-  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+/* ═══ FLOATING TOOL CARDS ═══ */
+.float-row{
+  display:flex;gap:20px;overflow-x:auto;padding:40px 0;scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
 }
-.float-row::-webkit-scrollbar { display: none; }
-.float-card {
-  flex: 0 0 280px; scroll-snap-align: start;
-  padding: 32px 24px; background: rgba(18,21,18,.7);
-  border: 1px solid var(--line); border-radius: var(--radius);
-  backdrop-filter: blur(12px); transition: all .4s cubic-bezier(.16,1,.3,1);
-  position: relative; overflow: hidden;
+.float-row::-webkit-scrollbar{display:none}
+.float-card{
+  flex:0 0 280px;scroll-snap-align:start;padding:36px 24px;
+  background:rgba(18,21,18,.7);border:1px solid var(--line);border-radius:var(--radius);
+  backdrop-filter:blur(12px);transition:all .4s cubic-bezier(.16,1,.3,1);
+  position:relative;overflow:hidden;cursor:pointer;
 }
-.float-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0;
-  height: 3px; background: var(--card-ac, var(--accent)); opacity: .5;
-  transition: opacity .3s;
+.float-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--card-ac,var(--accent));opacity:.5;transition:opacity .3s;
 }
-.float-card:hover::before { opacity: 1; }
-.float-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--card-ac, var(--accent));
-  box-shadow: 0 20px 60px rgba(0,0,0,.4), 0 0 30px color-mix(in srgb, var(--card-ac, var(--accent)) .15);
+.float-card:hover::before{opacity:1}
+.float-card:hover{
+  transform:translateY(-8px);border-color:var(--card-ac,var(--accent));
+  box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 30px color-mix(in srgb,var(--card-ac,var(--accent)).15);
 }
-.float-card .icon {
-  width: 52px; height: 52px; border-radius: 14px;
-  display: grid; place-items: center; font-size: 24px;
-  background: color-mix(in srgb, var(--card-ac, var(--accent)) .1, transparent);
-  color: var(--card-ac, var(--accent)); margin-bottom: 20px;
+.float-card .icon{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:24px;
+  background:color-mix(in srgb,var(--card-ac,var(--accent)).1,transparent);color:var(--card-ac,var(--accent));
+  margin-bottom:20px;}
+.float-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.float-card .ar{font-size:14px;color:var(--muted);margin-bottom:12px}
+.float-card p{font-size:14px;color:var(--muted);line-height:1.7}
+.float-card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.float-card .tag{
+  padding:4px 10px;border-radius:999px;font-size:11px;background:var(--surface2);color:var(--muted);
+  border:1px solid var(--line);
 }
-.float-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-.float-card .ar { font-size: 14px; color: var(--muted); margin-bottom: 12px; }
-.float-card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
-.float-card .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
-.float-card .tag {
-  padding: 4px 10px; border-radius: 999px; font-size: 11px;
-  background: var(--surface2); color: var(--muted);
-  border: 1px solid var(--line);
+.float-card .status{
+  position:absolute;top:16px;right:16px;padding:4px 10px;border-radius:999px;font-size:10px;
+  font-weight:700;text-transform:uppercase;letter-spacing:.08em;
 }
-.float-card .status {
-  position: absolute; top: 16px; right: 16px;
-  padding: 4px 10px; border-radius: 999px; font-size: 10px;
-  font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+.float-card .status.live{background:rgba(38,222,129,.1);color:#26de81;border:1px solid rgba(38,222,129,.2)}
+.float-card .status.ongoing{background:rgba(249,115,22,.08);color:var(--brev);border:1px dashed rgba(249,115,22,.25)}
+.float-card .status.planned{background:rgba(90,107,93,.1);color:var(--muted);border:1px dashed var(--line)}
+
+/* Hover glow */
+.float-card:hover{
+  background:radial-gradient(600px circle at 50% 50%,rgba(237,243,74,.06),rgba(18,21,18,.7)40%);
 }
-.float-card .status.live { background: rgba(38,222,129,.1); color: #26de81; border: 1px solid rgba(38,222,129,.2); }
-.float-card .status.ongoing { background: rgba(249,115,22,.08); color: var(--brev); border: 1px dashed rgba(249,115,22,.25); }
-.float-card .status.planned { background: rgba(90,107,93,.1); color: var(--muted); border: 1px dashed var(--line); }
 
 /* ═══ ARCHITECTURE NETWORK ═══ */
-.arch-section {
-  background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 50%, var(--bg) 100%);
-  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+.arch-section{
+  background:linear-gradient(180deg,var(--bg)0%,var(--bg2)50%,var(--bg)100%);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
 }
-.arch-canvas-wrap {
-  max-width: 900px; margin: 0 auto; position: relative;
+.arch-canvas-wrap{max-width:900px;margin:0 auto;position:relative}
+.arch-svg{width:100%;height:auto}
+.arch-svg .node{transition:all .3s;cursor:pointer}
+.arch-svg .node:hover{filter:brightness(1.3)}
+.arch-svg .node rect{rx:12}
+.arch-svg .data-flow{
+  stroke-dasharray:8 4;animation:flowDash 2s linear infinite;
 }
-.arch-svg { width: 100%; height: auto; }
-.arch-svg .node {
-  transition: all .3s; cursor: pointer;
-}
-.arch-svg .node:hover { filter: brightness(1.3); }
-.arch-svg .node rect { rx: 12; }
-.arch-svg .data-flow {
-  stroke-dasharray: 8 4;
-  animation: flowDash 2s linear infinite;
-}
-@keyframes flowDash { to { stroke-dashoffset: -24; } }
+@keyframes flowDash{to{stroke-dashoffset:-24}}
 
 /* ═══ LIVE DASHBOARD ═══ */
-.dashboard {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
-  background: var(--line); border: 1px solid var(--line); border-radius: var(--radius);
-  overflow: hidden;
+.dashboard{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:2px;
+  background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
 }
-.dash-cell {
-  padding: 28px 24px; background: var(--surface); text-align: center;
-  transition: background .3s;
-}
-.dash-cell:hover { background: var(--surface2); }
-.dash-cell .num {
-  font-size: 2.2rem; font-weight: 800; color: var(--accent);
-  font-family: var(--mono); line-height: 1;
-}
-.dash-cell .label {
-  font-size: 13px; color: var(--muted); margin-top: 8px;
-}
-.dash-cell .sub {
-  font-size: 11px; color: var(--muted2); font-family: var(--mono);
-  margin-top: 4px;
-}
+.dash-cell{padding:28px 24px;background:var(--surface);text-align:center;transition:background .3s}
+.dash-cell:hover{background:var(--surface2)}
+.dash-cell .num{font-size:2.2rem;font-weight:800;color:var(--accent);font-family:var(--mono);line-height:1}
+.dash-cell .label{font-size:13px;color:var(--muted);margin-top:8px}
+.dash-cell .sub{font-size:11px;color:var(--muted2);font-family:var(--mono);margin-top:4px}
 
 /* ═══ TERMINAL ═══ */
-.terminal-wrap {
-  max-width: 800px; margin: 0 auto;
+.terminal-wrap{max-width:800px;margin:0 auto}
+.terminal{
+  background:#0c0e0c;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  font-family:var(--mono);
 }
-.terminal {
-  background: #0c0e0c; border: 1px solid var(--line); border-radius: var(--radius);
-  overflow: hidden; font-family: var(--mono);
+.terminal-bar{
+  display:flex;align-items:center;gap:8px;padding:14px 18px;background:var(--surface2);border-bottom:1px solid var(--line);
 }
-.terminal-bar {
-  display: flex; align-items: center; gap: 8px; padding: 14px 18px;
-  background: var(--surface2); border-bottom: 1px solid var(--line);
+.terminal-dot{width:12px;height:12px;border-radius:50%}
+.terminal-dot:nth-child(1){background:#ff5f57}
+.terminal-dot:nth-child(2){background:#febc2e}
+.terminal-dot:nth-child(3){background:#28c840}
+.terminal-url{
+  flex:1;padding:6px 14px;background:var(--bg);border:1px solid var(--line);border-radius:6px;
+  font-size:12px;color:var(--muted);margin-left:12px;
 }
-.terminal-dot {
-  width: 12px; height: 12px; border-radius: 50%;
-}
-.terminal-dot:nth-child(1) { background: #ff5f57; }
-.terminal-dot:nth-child(2) { background: #febc2e; }
-.terminal-dot:nth-child(3) { background: #28c840; }
-.terminal-url {
-  flex: 1; padding: 6px 14px; background: var(--bg);
-  border: 1px solid var(--line); border-radius: 6px;
-  font-size: 12px; color: var(--muted); margin-left: 12px;
-}
-.terminal-body {
-  padding: 24px; font-size: 13px; line-height: 1.8;
-  min-height: 300px; color: var(--text); white-space: pre-wrap;
-  overflow-x: auto;
-}
-.terminal-body .prompt { color: var(--accent); }
-.terminal-body .comment { color: var(--muted2); }
-.terminal-body .string { color: #a5d6ff; }
-.terminal-body .key { color: var(--accent2); }
-.terminal-body .number { color: #ff9f43; }
-.terminal-body .bool { color: #ff3b5c; }
+.terminal-body{padding:24px;font-size:13px;line-height:1.8;min-height:300px;color:var(--text);white-space:pre-wrap;overflow-x:auto}
+.terminal-body .prompt{color:var(--accent)}
+.terminal-body .comment{color:var(--muted2)}
+.terminal-body .string{color:#a5d6ff}
+.terminal-body .key{color:var(--accent2)}
+.terminal-body .number{color:#ff9f43}
+.terminal-body .bool{color:#ff3b5c}
 
 /* ═══ CREDENTIAL WIDGET ═══ */
-.cred-widget {
-  max-width: 600px; margin: 0 auto;
-  padding: 32px; background: var(--surface); border: 1px solid var(--line);
-  border-radius: var(--radius);
+.cred-widget{max-width:600px;margin:0 auto;padding:32px;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--radius);}
+.cred-header{display:flex;align-items:center;gap:16px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.cred-avatar{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:grid;place-items:center;font-weight:800;font-size:18px;color:var(--bg);}
+.cred-info h3{font-size:18px;font-weight:700}
+.cred-info p{font-size:13px;color:var(--muted)}
+.cred-fields{display:grid;gap:12px}
+.cred-field{
+  display:flex;justify-content:space-between;align-items:center;padding:12px 16px;
+  background:var(--bg);border-radius:var(--radius-sm);
 }
-.cred-header {
-  display: flex; align-items: center; gap: 16px; margin-bottom: 24px;
-  padding-bottom: 20px; border-bottom: 1px solid var(--line);
+.cred-field .field-label{font-size:13px;color:var(--muted)}
+.cred-field .field-value{font-family:var(--mono);font-size:13px;color:var(--accent)}
+.cred-field .field-value.ok{color:#26de81}
+.cred-verify-btn{
+  width:100%;margin-top:20px;padding:14px;border-radius:var(--radius-sm);background:var(--accent);
+  color:var(--bg);font-weight:700;font-size:14px;border:none;cursor:pointer;transition:all .3s;
+  font-family:var(--font);
 }
-.cred-avatar {
-  width: 56px; height: 56px; border-radius: 14px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  display: grid; place-items: center; font-weight: 800;
-  font-size: 18px; color: var(--bg);
-}
-.cred-info h3 { font-size: 18px; font-weight: 700; }
-.cred-info p { font-size: 13px; color: var(--muted); }
-.cred-fields { display: grid; gap: 12px; }
-.cred-field {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 12px 16px; background: var(--bg); border-radius: var(--radius-sm);
-}
-.cred-field .field-label { font-size: 13px; color: var(--muted); }
-.cred-field .field-value { font-family: var(--mono); font-size: 13px; color: var(--accent); }
-.cred-field .field-value.ok { color: #26de81; }
-.cred-verify-btn {
-  width: 100%; margin-top: 20px; padding: 14px; border-radius: var(--radius-sm);
-  background: var(--accent); color: var(--bg); font-weight: 700;
-  font-size: 14px; border: none; cursor: pointer; transition: all .3s;
-  font-family: var(--font);
-}
-.cred-verify-btn:hover { box-shadow: 0 0 30px rgba(237,243,74,.3); transform: translateY(-2px); }
+.cred-verify-btn:hover{box-shadow:0 0 30px rgba(237,243,74,.3);transform:translateY(-2px)}
 
 /* ═══ CODE PREVIEW ═══ */
-.code-preview {
-  max-width: 900px; margin: 0 auto;
-  background: #0c0e0c; border: 1px solid var(--line); border-radius: var(--radius);
-  overflow: hidden;
+.code-preview{max-width:900px;margin:0 auto;background:#0c0e0c;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.code-tab-bar{display:flex;gap:0;border-bottom:1px solid var(--line);background:var(--surface2)}
+.code-tab{
+  padding:12px 20px;font-size:13px;font-family:var(--mono);color:var(--muted);border:none;background:none;
+  cursor:pointer;transition:all .2s;border-bottom:2px solid transparent;
 }
-.code-tab-bar {
-  display: flex; gap: 0; border-bottom: 1px solid var(--line);
-  background: var(--surface2);
-}
-.code-tab {
-  padding: 12px 20px; font-size: 13px; font-family: var(--mono);
-  color: var(--muted); border: none; background: none; cursor: pointer;
-  transition: all .2s; border-bottom: 2px solid transparent;
-}
-.code-tab.active { color: var(--accent); border-bottom-color: var(--accent); background: var(--surface); }
-.code-tab:hover { color: var(--text); }
-.code-block { padding: 24px; font-size: 13px; line-height: 1.8; overflow-x: auto; }
+.code-tab.active{color:var(--accent);border-bottom-color:var(--accent);background:var(--surface)}
+.code-tab:hover{color:var(--text)}
+.code-block{padding:24px;font-size:13px;line-height:1.8;overflow-x:auto}
 
 /* ═══ CTA ═══ */
-.cta-section { text-align: center; }
-.cta-box {
-  padding: 80px 48px;
-  background: linear-gradient(135deg, rgba(237,243,74,.04) 0%, rgba(100,216,197,.03) 100%);
-  border: 1px solid var(--line2); border-radius: 24px;
-  max-width: 800px; margin: 0 auto; position: relative; overflow: hidden;
+.cta-section{text-align:center}
+.cta-box{
+  padding:80px 48px;background:linear-gradient(135deg,rgba(237,243,74,.04)0%,rgba(100,216,197,.03)100%);
+  border:1px solid var(--line2);border-radius:24px;max-width:800px;margin:0 auto;position:relative;overflow:hidden;
 }
-.cta-box::before {
-  content: ''; position: absolute; top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: radial-gradient(circle at 30% 30%, rgba(237,243,74,.03) 0%, transparent 50%),
-              radial-gradient(circle at 70% 70%, rgba(100,216,197,.03) 0%, transparent 50%);
-  animation: rotate 30s linear infinite;
+.cta-box::before{
+  content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:radial-gradient(circle at 30%30%,rgba(237,243,74,.03)0%,transparent 50%),
+            radial-gradient(circle at 70%70%,rgba(100,216,197,.03)0%,transparent 50%);
+  animation:rotate 30s linear infinite;
 }
-@keyframes rotate { to { transform: rotate(360deg); } }
-.cta-box > * { position: relative; z-index: 1; }
-.cta-box h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 16px; letter-spacing: -.03em; }
-.cta-box p { color: var(--muted); font-size: 18px; max-width: 500px; margin: 0 auto 36px; line-height: 1.7; }
+@keyframes rotate{to{transform:rotate(360deg)}}
+.cta-box > *{position:relative;z-index:1}
+.cta-box h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:16px;letter-spacing:-.03em}
+.cta-box p{color:var(--muted);font-size:18px;max-width:500px;margin:0 auto 36px;line-height:1.7}
 
 /* ═══ FOOTER ═══ */
-.footer {
-  padding: 60px 32px 40px; border-top: 1px solid var(--line);
-  text-align: center; color: var(--muted); font-size: 14px;
-  position: relative; z-index: 1;
-}
-.footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
-.footer-links a { color: var(--muted); font-size: 13px; }
-.footer-links a:hover { color: var(--accent); }
-.footer-copy { font-size: 12px; color: var(--muted2); }
-.footer-tech {
-  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
-  margin-top: 16px; font-size: 11px; font-family: var(--mono); color: var(--muted2);
+.footer{padding:60px 32px 40px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:14px;position:relative;z-index:1}
+.footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.footer-links a{color:var(--muted);font-size:13px}
+.footer-links a:hover{color:var(--accent)}
+.footer-copy{font-size:12px;color:var(--muted2)}
+.footer-tech{
+  display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:16px;
+  font-size:11px;font-family:var(--mono);color:var(--muted2);
 }
 
 /* ═══ SCROLL REVEAL ═══ */
-.reveal {
-  opacity: 0; transform: translateY(50px);
-  transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: .1s; }
-.reveal-delay-2 { transition-delay: .2s; }
-.reveal-delay-3 { transition-delay: .3s; }
-.reveal-delay-4 { transition-delay: .4s; }
+.reveal{opacity:0;transform:translateY(50px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
 
 /* ═══ MOBILE ═══ */
-@media (max-width: 1024px) {
-  .dashboard { grid-template-columns: repeat(2, 1fr); }
-  .float-card { flex: 0 0 260px; }
+@media(max-width:1024px){.dashboard{grid-template-columns:repeat(2,1fr)}.float-card{flex:0 0 260px}}
+@media(max-width:768px){
+  .nav-menu{display:none}.nav-lang{display:none}.nav-hamburger{display:flex}.nav-cta{display:none}
+  .dashboard{grid-template-columns:1fr 1fr}.hero-stats{gap:32px}.hero{padding:100px 20px 60px}
+  .section{padding:80px 20px}.cta-box{padding:48px 24px}.float-card{flex:0 0 240px}
+  .mega-grid{grid-template-columns:repeat(2,1fr)}
 }
-@media (max-width: 768px) {
-  .nav-menu { display: none; }
-  .nav-lang { display: none; }
-  .nav-hamburger { display: flex; }
-  .nav-cta { display: none; }
-  .dashboard { grid-template-columns: 1fr 1fr; }
-  .hero-stats { gap: 32px; }
-  .hero { padding: 100px 20px 60px; }
-  .section { padding: 80px 20px; }
-  .cta-box { padding: 48px 24px; }
-  .float-card { flex: 0 0 240px; }
-  .mega-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 480px) {
-  .mega-grid { grid-template-columns: 1fr; }
-}
+@media(max-width:480px){.mega-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -607,93 +427,32 @@ img { max-width: 100%; height: auto; }
 <!-- ═══════ Particle Canvas ═══════ -->
 <canvas id="particle-canvas"></canvas>
 
-<!-- ═══════ Mega Menu Navigation ═══════ -->
+<!-- ═══════ Navigation ═══════ -->
 <nav class="nav" id="navbar">
   <div class="nav-inner">
     <a class="nav-brand" href="/">
-      <span class="nav-brand-icon">EF</span>
-      <span>BrainSAIT</span>
+      <span class="nav-brand-icon">EF</span><span>BrainSAIT</span>
     </a>
-
     <div class="nav-menu" id="navMenu">
-      <!-- Platform dropdown -->
       <div class="nav-item has-dropdown">
-        <button class="nav-link" onclick="toggleDrop(this)">
-          Platform
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-        </button>
-        <div class="nav-dropdown mega">
-          <div class="mega-grid">
-            <a href="/bpr/" class="mega-card">
-              <span class="mega-icon">🪪</span>
-              <span class="mega-title">Provider Registry</span>
-              <span class="mega-desc">SPID · OID · W3C VC · Ed25519</span>
-            </a>
-            <a href="/bpr/workspace/" class="mega-card">
-              <span class="mega-icon">🏥</span>
-              <span class="mega-title">OpenEMR Workspace</span>
-              <span class="mega-desc">Private EMR · Copilot · Voice</span>
-            </a>
-            <a href="/bpr/nphies/" class="mega-card">
-              <span class="mega-icon">📋</span>
-              <span class="mega-title">NPHIES Desk</span>
-              <span class="mega-desc">Codes · Pre-check · Readiness</span>
-            </a>
-            <a href="/bpr/providers/" class="mega-card">
-              <span class="mega-icon">👥</span>
-              <span class="mega-title">Provider Directory</span>
-              <span class="mega-desc">Browse providers by SPID</span>
-            </a>
-            <a href="/bpr/verify/" class="mega-card">
-              <span class="mega-icon">🔐</span>
-              <span class="mega-title">Verify Credential</span>
-              <span class="mega-desc">Check any SPID on your device</span>
-            </a>
-            <a href="/bpr/ledger/" class="mega-card">
-              <span class="mega-icon">🔗</span>
-              <span class="mega-title">Transparency Log</span>
-              <span class="mega-desc">Append-only hash chain</span>
-            </a>
-            <a href="/bpr/research/" class="mega-card">
-              <span class="mega-icon">🔬</span>
-              <span class="mega-title">Research Footprint</span>
-              <span class="mega-desc">ORCID × Zenodo × HuggingFace</span>
-            </a>
-            <a href="/bpr/developers/" class="mega-card">
-              <span class="mega-icon">🧩</span>
-              <span class="mega-title">FHIR R4 & API</span>
-              <span class="mega-desc">Public JSON · SMART launch</span>
-            </a>
-            <a href="/bpr/status/" class="mega-card">
-              <span class="mega-icon">📊</span>
-              <span class="mega-title">Platform Status</span>
-              <span class="mega-desc">Live health & metrics</span>
-            </a>
-            <a href="/bpr/join/" class="mega-card">
-              <span class="mega-icon">🚀</span>
-              <span class="mega-title">Join BPR</span>
-              <span class="mega-desc">Get your provider identity</span>
-            </a>
-            <a href="/bpr/record/" class="mega-card">
-              <span class="mega-icon">📄</span>
-              <span class="mega-title">Identity Record</span>
-              <span class="mega-desc">Download your BPR identity</span>
-            </a>
-            <a href="/bpr/saudi/" class="mega-card">
-              <span class="mega-icon">🇸🇦</span>
-              <span class="mega-title">Saudi Hub</span>
-              <span class="mega-desc">Kingdom healthcare ecosystem</span>
-            </a>
-          </div>
-        </div>
+        <button class="nav-link" onclick="toggleDrop(this)">Platform<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="nav-dropdown mega"><div class="mega-grid">
+          <a href="/bpr/" class="mega-card"><span class="mega-icon">🪪</span><span class="mega-title">Provider Registry</span><span class="mega-desc">SPID · OID · W3C VC · Ed25519</span></a>
+          <a href="/bpr/workspace/" class="mega-card"><span class="mega-icon">🏥</span><span class="mega-title">OpenEMR Workspace</span><span class="mega-desc">Private EMR · Copilot · Voice</span></a>
+          <a href="/bpr/nphies/" class="mega-card"><span class="mega-icon">📋</span><span class="mega-title">NPHIES Desk</span><span class="mega-desc">Codes · Pre-check · Readiness</span></a>
+          <a href="/bpr/providers/" class="mega-card"><span class="mega-icon">👥</span><span class="mega-title">Provider Directory</span><span class="mega-desc">Browse by SPID</span></a>
+          <a href="/bpr/verify/" class="mega-card"><span class="mega-icon">🔐</span><span class="mega-title">Verify Credential</span><span class="mega-desc">Check any SPID on-device</span></a>
+          <a href="/bpr/ledger/" class="mega-card"><span class="mega-icon">🔗</span><span class="mega-title">Transparency Log</span><span class="mega-desc">Append-only hash chain</span></a>
+          <a href="/bpr/research/" class="mega-card"><span class="mega-icon">🔬</span><span class="mega-title">Research Footprint</span><span class="mega-desc">ORCID × Zenodo × HuggingFace</span></a>
+          <a href="/bpr/developers/" class="mega-card"><span class="mega-icon">🧩</span><span class="mega-title">FHIR R4 & API</span><span class="mega-desc">Public JSON · SMART launch</span></a>
+          <a href="/bpr/status/" class="mega-card"><span class="mega-icon">📊</span><span class="mega-title">Platform Status</span><span class="mega-desc">Live health & metrics</span></a>
+          <a href="/bpr/join/" class="mega-card"><span class="mega-icon">🚀</span><span class="mega-title">Join BPR</span><span class="mega-desc">Get provider identity</span></a>
+          <a href="/bpr/record/" class="mega-card"><span class="mega-icon">📄</span><span class="mega-title">Identity Record</span><span class="mega-desc">Download BPR identity</span></a>
+          <a href="/bpr/saudi/" class="mega-card"><span class="mega-icon">🇸🇦</span><span class="mega-title">Saudi Hub</span><span class="mega-desc">Kingdom healthcare ecosystem</span></a>
+        </div></div>
       </div>
-
-      <!-- Tools dropdown -->
       <div class="nav-item has-dropdown">
-        <button class="nav-link" onclick="toggleDrop(this)">
-          Tools
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-        </button>
+        <button class="nav-link" onclick="toggleDrop(this)">Tools<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="nav-dropdown">
           <a href="/cv/" class="nav-dd-item">📋 CV</a>
           <a href="/card/" class="nav-dd-item">🪪 Business Card</a>
@@ -703,13 +462,8 @@ img { max-width: 100%; height: auto; }
           <a href="/account/" class="nav-dd-item">⚙️ Account</a>
         </div>
       </div>
-
-      <!-- Learn dropdown -->
       <div class="nav-item has-dropdown">
-        <button class="nav-link" onclick="toggleDrop(this)">
-          Learn
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-        </button>
+        <button class="nav-link" onclick="toggleDrop(this)">Learn<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="nav-dropdown">
           <a href="/learn/" class="nav-dd-item">🎓 Learn Hub</a>
           <a href="/benefits/" class="nav-dd-item">✨ Benefits</a>
@@ -718,13 +472,8 @@ img { max-width: 100%; height: auto; }
           <a href="/templates/" class="nav-dd-item">📝 Templates</a>
         </div>
       </div>
-
-      <!-- Build dropdown -->
       <div class="nav-item has-dropdown">
-        <button class="nav-link" onclick="toggleDrop(this)">
-          Build
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-        </button>
+        <button class="nav-link" onclick="toggleDrop(this)">Build<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="nav-dropdown">
           <a href="/build/" class="nav-dd-item">🔨 Build Hub</a>
           <a href="/sprint/" class="nav-dd-item">🏃 Sprint</a>
@@ -732,241 +481,139 @@ img { max-width: 100%; height: auto; }
           <a href="/support/" class="nav-dd-item">🛟 Support</a>
         </div>
       </div>
-
-      <!-- Direct links -->
       <a href="/contact/" class="nav-link">Contact</a>
     </div>
-
-    <!-- Language switcher -->
-    <a href="/ar/" class="nav-lang" title="العربية" onclick="event.stopPropagation()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
-      AR
-    </a>
-
-    <a href="/bpr/" class="nav-cta">
-      Open BPR
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-    </a>
-
-    <!-- Mobile hamburger -->
-    <button class="nav-hamburger" id="navHamburger" onclick="toggleMobile()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <a href="/ar/" class="nav-lang" title="العربية" onclick="event.stopPropagation()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>AR</a>
+    <a href="/bpr/" class="nav-cta">Open BPR<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <button class="nav-hamburger" id="navHamburger" onclick="toggleMobile()" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
-
-<!-- Mobile menu overlay -->
 <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobile()"></div>
 <div class="mobile-menu" id="mobileMenu">
-  <div class="mobile-section">
-    <div class="mobile-section-title">Platform</div>
-    <a href="/bpr/">Provider Registry</a>
-    <a href="/bpr/workspace/">OpenEMR Workspace</a>
-    <a href="/bpr/nphies/">NPHIES Desk</a>
-    <a href="/bpr/providers/">Provider Directory</a>
-    <a href="/bpr/verify/">Verify Credential</a>
-    <a href="/bpr/ledger/">Transparency Log</a>
-    <a href="/bpr/research/">Research</a>
-    <a href="/bpr/developers/">FHIR R4 API</a>
-    <a href="/bpr/status/">Status</a>
-    <a href="/bpr/join/">Join BPR</a>
+  <div class="mobile-section"><div class="mobile-section-title">Platform</div>
+    <a href="/bpr/">Provider Registry</a><a href="/bpr/workspace/">OpenEMR Workspace</a><a href="/bpr/nphies/">NPHIES Desk</a>
+    <a href="/bpr/providers/">Provider Directory</a><a href="/bpr/verify/">Verify Credential</a><a href="/bpr/ledger/">Transparency Log</a>
+    <a href="/bpr/research/">Research</a><a href="/bpr/developers/">FHIR R4 API</a><a href="/bpr/status/">Status</a><a href="/bpr/join/">Join BPR</a>
   </div>
-  <div class="mobile-section">
-    <div class="mobile-section-title">Tools</div>
-    <a href="/cv/">CV</a>
-    <a href="/card/">Business Card</a>
-    <a href="/slots/">Hospital Slots</a>
-    <a href="/store/">Store</a>
-    <a href="/catalogue/">Catalogue</a>
+  <div class="mobile-section"><div class="mobile-section-title">Tools</div>
+    <a href="/cv/">CV</a><a href="/card/">Business Card</a><a href="/slots/">Hospital Slots</a><a href="/store/">Store</a><a href="/catalogue/">Catalogue</a>
   </div>
-  <div class="mobile-section">
-    <div class="mobile-section-title">Learn</div>
-    <a href="/learn/">Learn Hub</a>
-    <a href="/benefits/">Benefits</a>
-    <a href="/solutions/">Solutions</a>
-    <a href="/faq/">FAQ</a>
-    <a href="/templates/">Templates</a>
+  <div class="mobile-section"><div class="mobile-section-title">Learn</div>
+    <a href="/learn/">Learn Hub</a><a href="/benefits/">Benefits</a><a href="/solutions/">Solutions</a><a href="/faq/">FAQ</a><a href="/templates/">Templates</a>
   </div>
-  <div class="mobile-section">
-    <div class="mobile-section-title">Build</div>
-    <a href="/build/">Build Hub</a>
-    <a href="/sprint/">Sprint</a>
-    <a href="/track/">Track</a>
-    <a href="/support/">Support</a>
-    <a href="/contact/">Contact</a>
-    <a href="/terms/">Terms</a>
+  <div class="mobile-section"><div class="mobile-section-title">Build</div>
+    <a href="/build/">Build Hub</a><a href="/sprint/">Sprint</a><a href="/track/">Track</a><a href="/support/">Support</a><a href="/contact/">Contact</a><a href="/terms/">Terms</a>
   </div>
-  <div class="mobile-section">
-    <a href="/ar/" class="mobile-lang">🌐 العربية</a>
-  </div>
+  <div class="mobile-section"><a href="/" class="mobile-lang">🌐 English</a></div>
 </div>
 
 <script>
-function toggleDrop(btn) {
-  const item = btn.closest('.nav-item');
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.nav-item.open').forEach(i => i.classList.remove('open'));
-  if (!isOpen) item.classList.add('open');
-}
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.nav-item')) {
-    document.querySelectorAll('.nav-item.open').forEach(i => i.classList.remove('open'));
-  }
-});
-
-function toggleMobile() {
-  const overlay = document.getElementById('mobileOverlay');
-  const menu = document.getElementById('mobileMenu');
-  const hamburger = document.getElementById('navHamburger');
-  const open = menu.classList.toggle('open');
-  overlay.classList.toggle('open', open);
-  hamburger.classList.toggle('active', open);
-  document.body.style.overflow = open ? 'hidden' : '';
-}
+function toggleDrop(btn){const item=btn.closest('.nav-item');const isOpen=item.classList.contains('open');document.querySelectorAll('.nav-item.open').forEach(i=>i.classList.remove('open'));if(!isOpen)item.classList.add('open')}
+document.addEventListener('click',(e)=>{if(!e.target.closest('.nav-item')){document.querySelectorAll('.nav-item.open').forEach(i=>i.classList.remove('open'))}})
+function toggleMobile(){const overlay=document.getElementById('mobileOverlay');const menu=document.getElementById('mobileMenu');const hamburger=document.getElementById('navHamburger');const open=menu.classList.toggle('open');overlay.classList.toggle('open',open);hamburger.classList.toggle('active',open);document.body.style.overflow=open?'hidden':''}
 </script>
 
 <!-- ═══════ Hero ═══════ -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <div class="hero-badge">
-      <span class="live-dot"></span>
-      Healthcare AI Platform · Riyadh, KSA
-    </div>
+    <div class="hero-badge"><span class="live-dot"></span>Healthcare AI Platform · Riyadh, KSA</div>
 
     <h1 class="hero-title">
-      <span class="gradient-text">Healthcare AI</span><br />
-      built by clinicians,<br />
-      for clinicians.
+      <span class="gradient-text">Healthcare AI</span><br/>built by clinicians,<br/>for clinicians.
     </h1>
 
     <p class="hero-desc">
-      Your BPR identity unlocks a complete ecosystem: custom OpenEMR, clinical copilot with Arabic voice, NVIDIA AI models trained on NPHIES, Brev HQ agent platform — all connected and verifiable.
+      Your BPR identity unlocks a complete ecosystem: custom OpenEMR, clinical copilot with Arabic voice,
+      NVIDIA AI models trained on NPHIES, Brev HQ agent platform — all connected and verifiable.
     </p>
 
     <div class="hero-actions">
-      <a href="/bpr/" class="btn btn-primary">
-        Enter BPR Workspace
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </a>
-      <a href="#architecture" class="btn btn-ghost">
-        See Architecture
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
-      </a>
+      <a href="/bpr/" class="btn btn-primary">Enter BPR Workspace<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="#architecture" class="btn btn-ghost">See Architecture<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
     </div>
 
     <div class="redirect-bar">
-      <span>Auto-redirect to BPR in</span>
-      <span class="count" id="redirectCount">15</span>
-      <span>sec — <a href="/bpr/" id="cancelRedirect">stay</a></span>
+      <span>Auto-redirect to BPR in</span><span class="count" id="redirectCount">15</span><span>sec — <a href="/bpr/" id="cancelRedirect">stay</a></span>
     </div>
 
     <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="num" data-count="10">0</div>
-        <div class="label">Connected Tools</div>
-      </div>
-      <div class="hero-stat">
-        <div class="num">R4</div>
-        <div class="label">FHIR Interoperability</div>
-      </div>
-      <div class="hero-stat">
-        <div class="num">2x</div>
-        <div class="label">Bilingual (AR/EN)</div>
-      </div>
-      <div class="hero-stat">
-        <div class="num">0</div>
-        <div class="label">Data Uploaded</div>
-      </div>
+      <div class="hero-stat"><div class="num" data-count="10">0</div><div class="label">Connected Tools</div></div>
+      <div class="hero-stat"><div class="num">R4</div><div class="label">FHIR Interoperability</div></div>
+      <div class="hero-stat"><div class="num">2x</div><div class="label">Bilingual (AR/EN)</div></div>
+      <div class="hero-stat"><div class="num">0</div><div class="label">Data Uploaded</div></div>
     </div>
   </div>
 </section>
 
 <!-- ═══════ Tools ═══════ -->
 <section class="section" id="tools">
-  <div class="container" style="max-width:1280px;margin:0 auto">
+  <div style="max-width:1280px;margin:0 auto">
     <div class="section-label reveal">Ecosystem</div>
-    <h2 class="section-title reveal reveal-delay-1">Every tool a clinician needs.<br />One connected platform.</h2>
+    <h2 class="section-title reveal reveal-delay-1">Every tool a clinician needs.<br/>One connected platform.</h2>
     <p class="section-desc reveal reveal-delay-2">From your private EMR to AI-powered claims — every component is signed, verified, and interoperable via FHIR R4.</p>
 
     <div class="float-row">
-      <div class="float-card" style="--card-ac:var(--emr);border-color:rgba(59,130,246,.15)">
+      <div class="float-card" style="--card-ac:var(--emr)">
         <span class="status live">● Live</span>
         <div class="icon">🏥</div>
-        <h3>Your OpenEMR</h3>
-        <div class="ar">OpenEMR مخصص لك</div>
+        <h3>Your OpenEMR</h3><div class="ar">OpenEMR مخصص لك</div>
         <p>Isolated OpenEMR 7 with own subdomain, database, TLS, encrypted backups. BrainSAIT themed with accessible contrast.</p>
         <div class="tags"><span class="tag">SMART-on-FHIR</span><span class="tag">Copilot</span><span class="tag">Members</span></div>
       </div>
-
-      <div class="float-card" style="--card-ac:var(--copilot);border-color:rgba(139,92,246,.15)">
+      <div class="float-card" style="--card-ac:var(--copilot)">
         <span class="status live">● Live</span>
         <div class="icon">🤖</div>
-        <h3>Clinical Copilot</h3>
-        <div class="ar">المساعد السريري</div>
+        <h3>Clinical Copilot</h3><div class="ar">المساعد السريري</div>
         <p>14 bilingual skills: SOAP drafting, file classification, lab extraction, radiology structuring, medication reconciliation.</p>
         <div class="tags"><span class="tag">14 Skills</span><span class="tag">Draft Only</span><span class="tag">On-Server</span></div>
       </div>
-
-      <div class="float-card" style="--card-ac:var(--nvidia);border-color:rgba(118,185,0,.15)">
+      <div class="float-card" style="--card-ac:var(--nvidia)">
         <span class="status ongoing">◌ Ongoing</span>
         <div class="icon">🟢</div>
-        <h3>NVIDIA Health AI</h3>
-        <div class="ar">نماذج NVIDIA على نفيس</div>
-        <p>Foundation models fine-tuned on NPHIES claims data. Clinical reasoning for eligibility, pre-auth, and adjudication patterns.</p>
+        <h3>NVIDIA Health AI</h3><div class="ar">نماذج NVIDIA على نفيس</div>
+        <p>Foundation models fine-tuned on NPHIES claims data. Clinical reasoning for eligibility, pre-auth, adjudication patterns.</p>
         <div class="tags"><span class="tag">NeMo</span><span class="tag">NPHIES Trained</span><span class="tag">FHIR Native</span></div>
       </div>
-
-      <div class="float-card" style="--card-ac:var(--brev);border-color:rgba(249,115,22,.15)">
+      <div class="float-card" style="--card-ac:var(--brev)">
         <span class="status ongoing">◌ Ongoing</span>
         <div class="icon">⚡</div>
-        <h3>Brev HQ Agents</h3>
-        <div class="ar">منصة الوكلاء البرمجية</div>
+        <h3>Brev HQ Agents</h3><div class="ar">منصة الوكلاء البرمجية</div>
         <p>Multi-agent orchestration for healthcare workflows. A2A protocols between agents — intake, docs, claims, peer review.</p>
         <div class="tags"><span class="tag">Multi-Agent</span><span class="tag">Tailscale</span><span class="tag">A2A</span></div>
       </div>
-
-      <div class="float-card" style="--card-ac:var(--nphies);border-color:rgba(6,182,212,.15)">
+      <div class="float-card" style="--card-ac:var(--nphies)">
         <span class="status live">● Live</span>
         <div class="icon">📋</div>
-        <h3>NPHIES Desk</h3>
-        <div class="ar">مكتب نفيس</div>
+        <h3>NPHIES Desk</h3><div class="ar">مكتب نفيس</div>
         <p>Every rejection code in Arabic + English. On-device pre-check. Readiness plans by facility type. Reference only.</p>
         <div class="tags"><span class="tag">Codes</span><span class="tag">Pre-Check</span><span class="tag">Readiness</span></div>
       </div>
-
-      <div class="float-card" style="--card-ac:var(--bpr);border-color:rgba(237,243,74,.15)">
+      <div class="float-card" style="--card-ac:var(--bpr)">
         <span class="status live">● Live</span>
         <div class="icon">🪪</div>
-        <h3>Provider Registry</h3>
-        <div class="ar">سجل مقدمي الرعاية</div>
+        <h3>Provider Registry</h3><div class="ar">سجل مقدمي الرعاية</div>
         <p>Signed identity: SPID, OID, W3C VC 2.0, Ed25519. Transparency log. Public on-device verification. Zero account needed.</p>
         <div class="tags"><span class="tag">SPID</span><span class="tag">OID</span><span class="tag">W3C VC</span></div>
       </div>
-
-      <div class="float-card" style="--card-ac:var(--fhir);border-color:rgba(16,185,129,.15)">
+      <div class="float-card" style="--card-ac:var(--fhir)">
         <span class="status live">● Live</span>
         <div class="icon">🔗</div>
-        <h3>FHIR R4 API</h3>
-        <div class="ar">واجهة FHIR R4</div>
+        <h3>FHIR R4 API</h3><div class="ar">واجهة FHIR R4</div>
         <p>Practitioner, PractitionerRole, Organization resources. SMART launch from EMR. Public JSON API.</p>
         <div class="tags"><span class="tag">R4</span><span class="tag">SMART</span><span class="tag">Public</span></div>
       </div>
-
-      <div class="float-card" style="--card-ac:var(--voice);border-color:rgba(236,72,153,.15)">
+      <div class="float-card" style="--card-ac:var(--voice)">
         <span class="status live">● Live</span>
         <div class="icon">🎙️</div>
-        <h3>Arabic Voice</h3>
-        <div class="ar">تحويل الصوت العربي</div>
+        <h3>Arabic Voice</h3><div class="ar">تحويل الصوت العربي</div>
         <p>Whisper large-v3-turbo on-premise. Dictate in Arabic → SOAP. Fidelity guard flags drug/dose mismatches.</p>
         <div class="tags"><span class="tag">Whisper</span><span class="tag">On-Premise</span><span class="tag">SOAP</span></div>
       </div>
-
-      <div class="float-card" style="--card-ac:var(--sentinel);border-color:rgba(239,68,68,.15)">
+      <div class="float-card" style="--card-ac:var(--sentinel)">
         <span class="status live">● Live</span>
         <div class="icon">🛡️</div>
-        <h3>Sentinel Rules</h3>
-        <div class="ar">قواعد السلامة</div>
+        <h3>Sentinel Rules</h3><div class="ar">قواعد السلامة</div>
         <p>16 deterministic checks: metformin vs eGFR, hyperkalaemia on RAAS, NSAID triple whammy, allergy cross-reactivity.</p>
         <div class="tags"><span class="tag">16 Rules</span><span class="tag">Deterministic</span><span class="tag">Source Traced</span></div>
       </div>
@@ -980,28 +627,11 @@ function toggleMobile() {
     <div class="section-label reveal">Live Status</div>
     <h2 class="section-title reveal reveal-delay-1">Platform running now.</h2>
     <p class="section-desc reveal reveal-delay-2">Real-time verification of the BrainSAIT infrastructure health and operational status.</p>
-
     <div class="dashboard reveal reveal-delay-3">
-      <div class="dash-cell">
-        <div class="num" id="dash-tools">10</div>
-        <div class="label">Connected Tools</div>
-        <div class="sub">Live today</div>
-      </div>
-      <div class="dash-cell">
-        <div class="num" id="dash-providers">—</div>
-        <div class="label">Providers</div>
-        <div class="sub">BPR Directory</div>
-      </div>
-      <div class="dash-cell">
-        <div class="num" id="dash-ops">—</div>
-        <div class="label">Operations</div>
-        <div class="sub" id="dash-ops-label">Checking…</div>
-      </div>
-      <div class="dash-cell">
-        <div class="num" id="dash-cert">OK</div>
-        <div class="label">TLS Certificates</div>
-        <div class="sub">All valid</div>
-      </div>
+      <div class="dash-cell"><div class="num" id="dash-tools">10</div><div class="label">Connected Tools</div><div class="sub">Live today</div></div>
+      <div class="dash-cell"><div class="num" id="dash-providers">—</div><div class="label">Providers</div><div class="sub" id="dash-providers-label">BPR Directory</div></div>
+      <div class="dash-cell"><div class="num" id="dash-ops">—</div><div class="label">Operations</div><div class="sub" id="dash-ops-label">Checking…</div></div>
+      <div class="dash-cell"><div class="num" id="dash-cert">OK</div><div class="label">TLS Certificates</div><div class="sub">All valid</div></div>
     </div>
   </div>
 </section>
@@ -1012,87 +642,51 @@ function toggleMobile() {
     <div class="section-label reveal" style="text-align:center;display:block;margin-bottom:16px">Architecture</div>
     <h2 class="section-title reveal reveal-delay-1" style="text-align:center;margin:0 auto 16px">How everything <span style="color:var(--accent)">connects.</span></h2>
     <p class="section-desc reveal reveal-delay-2" style="text-align:center;margin:0 auto 64px">From provider identity to AI-powered clinical tools — trust preserved at every step.</p>
-
     <div class="arch-canvas-wrap reveal reveal-delay-3">
       <svg class="arch-svg" viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.6"/>
-            <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.6"/>
-          </linearGradient>
-          <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.6"/>
-            <stop offset="100%" style="stop-color:#76b900;stop-opacity:0.6"/>
-          </linearGradient>
-          <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#76b900;stop-opacity:0.6"/>
-            <stop offset="100%" style="stop-color:#f97316;stop-opacity:0.6"/>
-          </linearGradient>
-          <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#f97316;stop-opacity:0.6"/>
-            <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.6"/>
-          </linearGradient>
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
+          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.6"/><stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.6"/></linearGradient>
+          <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.6"/><stop offset="100%" style="stop-color:#76b900;stop-opacity:0.6"/></linearGradient>
+          <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#76b900;stop-opacity:0.6"/><stop offset="100%" style="stop-color:#f97316;stop-opacity:0.6"/></linearGradient>
+          <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f97316;stop-opacity:0.6"/><stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.6"/></linearGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
         </defs>
-
-        <!-- Nodes -->
         <g class="node" filter="url(#glow)">
           <rect x="30" y="200" width="130" height="80" fill="#121512" stroke="#3b82f6" stroke-width="1.5"/>
-          <text x="95" y="235" text-anchor="middle" fill="#3b82f6" font-size="14" font-weight="700">🩺 Provider</text>
-          <text x="95" y="258" text-anchor="middle" fill="#8a998d" font-size="10" font-family="monospace">SPID · ORCID</text>
+          <text x="95" y="235" text-anchor="middle" fill="#3b82f6" font-size="14" font-weight="700">🩺 Provider</text><text x="95" y="258" text-anchor="middle" fill="#8a998d" font-size="10" font-family="monospace">SPID · ORCID</text>
         </g>
-
         <g class="node" filter="url(#glow)">
           <rect x="220" y="200" width="130" height="80" fill="#121512" stroke="#8b5cf6" stroke-width="1.5"/>
-          <text x="285" y="235" text-anchor="middle" fill="#8b5cf6" font-size="14" font-weight="700">🔐 Credential</text>
-          <text x="285" y="258" text-anchor="middle" fill="#8a998d" font-size="10" font-family="monospace">Ed25519 · did:web</text>
+          <text x="285" y="235" text-anchor="middle" fill="#8b5cf6" font-size="14" font-weight="700">🔐 Credential</text><text x="285" y="258" text-anchor="middle" fill="#8a998d" font-size="10" font-family="monospace">Ed25519 · did:web</text>
         </g>
-
         <g class="node" filter="url(#glow)">
           <rect x="410" y="80" width="130" height="80" fill="#121512" stroke="#3b82f6" stroke-width="1.5"/>
-          <text x="475" y="115" text-anchor="middle" fill="#3b82f6" font-size="14" font-weight="700">🏥 OpenEMR</text>
-          <text x="475" y="138" text-anchor="middle" fill="#8a998d" font-size="10" font-family="monospace">EMR · Copilot · Voice</text>
+          <text x="475" y="115" text-anchor="middle" fill="#3b82f6" font-size="14" font-weight="700">🏥 OpenEMR</text><text x="475" y="138" text-anchor="middle" fill="#8a998d" font-size="10" font-family="monospace">EMR · Copilot · Voice</text>
         </g>
-
         <g class="node" filter="url(#glow)">
           <rect x="410" y="340" width="130" height="80" fill="#121512" stroke="#64d8c5" stroke-width="1.5"/>
-          <text x="475" y="375" text-anchor="middle" fill="#64d8c5" font-size="14" font-weight="700">🔗 FHIR R4</text>
-          <text x="475" y="398" text-anchor="middle" fill="#8a998d" font-size="10" font-family="monospace">SMART · API</text>
+          <text x="475" y="375" text-anchor="middle" fill="#64d8c5" font-size="14" font-weight="700">🔗 FHIR R4</text><text x="475" y="398" text-anchor="middle" fill="#8a998d" font-size="10" font-family="monospace">SMART · API</text>
         </g>
-
         <g class="node" filter="url(#glow)">
           <rect x="600" y="80" width="130" height="80" fill="#121512" stroke="#76b900" stroke-width="1.5"/>
-          <text x="665" y="115" text-anchor="middle" fill="#76b900" font-size="14" font-weight="700">🟢 NVIDIA AI</text>
-          <text x="665" y="138" text-anchor="middle" fill="#8a998d" font-size="10" font-family="monospace">NPHIES Trained</text>
+          <text x="665" y="115" text-anchor="middle" fill="#76b900" font-size="14" font-weight="700">🟢 NVIDIA AI</text><text x="665" y="138" text-anchor="middle" fill="#8a998d" font-size="10" font-family="monospace">NPHIES Trained</text>
         </g>
-
         <g class="node" filter="url(#glow)">
           <rect x="600" y="340" width="130" height="80" fill="#121512" stroke="#f97316" stroke-width="1.5"/>
-          <text x="665" y="375" text-anchor="middle" fill="#f97316" font-size="14" font-weight="700">⚡ Brev HQ</text>
-          <text x="665" y="398" text-anchor="middle" fill="#8a998d" font-size="10" font-family="monospace">Multi-Agent</text>
+          <text x="665" y="375" text-anchor="middle" fill="#f97316" font-size="14" font-weight="700">⚡ Brev HQ</text><text x="665" y="398" text-anchor="middle" fill="#8a998d" font-size="10" font-family="monospace">Multi-Agent</text>
         </g>
-
         <g class="node" filter="url(#glow)">
           <rect x="790" y="200" width="100" height="80" fill="#121512" stroke="#06b6d4" stroke-width="1.5"/>
-          <text x="840" y="235" text-anchor="middle" fill="#06b6d4" font-size="14" font-weight="700">📋 NPHIES</text>
-          <text x="840" y="258" text-anchor="middle" fill="#8a998d" font-size="10" font-family="monospace">Claims</text>
+          <text x="840" y="235" text-anchor="middle" fill="#06b6d4" font-size="14" font-weight="700">📋 NPHIES</text><text x="840" y="258" text-anchor="middle" fill="#8a998d" font-size="10" font-family="monospace">Claims</text>
         </g>
-
-        <!-- Animated connections -->
-        <line x1="160" y1="240" x2="220" y2="240" stroke="url(#grad1)" stroke-width="1.5" class="data-flow" />
-        <line x1="350" y1="240" x2="410" y2="120" stroke="url(#grad1)" stroke-width="1.5" class="data-flow" style="animation-delay: -.5s" />
-        <line x1="350" y1="240" x2="410" y2="380" stroke="url(#grad1)" stroke-width="1.5" class="data-flow" style="animation-delay: -1s" />
-        <line x1="540" y1="120" x2="600" y2="120" stroke="url(#grad2)" stroke-width="1.5" class="data-flow" style="animation-delay: -1.5s" />
-        <line x1="540" y1="380" x2="600" y2="380" stroke="url(#grad3)" stroke-width="1.5" class="data-flow" style="animation-delay: -2s" />
-        <line x1="730" y1="120" x2="790" y2="240" stroke="url(#grad4)" stroke-width="1.5" class="data-flow" style="animation-delay: -2.5s" />
-        <line x1="730" y1="380" x2="790" y2="240" stroke="url(#grad4)" stroke-width="1.5" class="data-flow" style="animation-delay: -3s" />
-
-        <!-- Cross connections -->
-        <line x1="540" y1="120" x2="540" y2="380" stroke="rgba(139,92,246,.2)" stroke-width="1" class="data-flow" style="animation-direction:reverse;animation-delay:-1s" />
-        <line x1="160" y1="240" x2="220" y2="120" stroke="rgba(59,130,246,.1)" stroke-width=".5" stroke-dasharray="4 4" />
+        <line x1="160" y1="240" x2="220" y2="240" stroke="url(#grad1)" stroke-width="1.5" class="data-flow"/>
+        <line x1="350" y1="240" x2="410" y2="120" stroke="url(#grad1)" stroke-width="1.5" class="data-flow" style="animation-delay:-.5s"/>
+        <line x1="350" y1="240" x2="410" y2="380" stroke="url(#grad1)" stroke-width="1.5" class="data-flow" style="animation-delay:-1s"/>
+        <line x1="540" y1="120" x2="600" y2="120" stroke="url(#grad2)" stroke-width="1.5" class="data-flow" style="animation-delay:-1.5s"/>
+        <line x1="540" y1="380" x2="600" y2="380" stroke="url(#grad3)" stroke-width="1.5" class="data-flow" style="animation-delay:-2s"/>
+        <line x1="730" y1="120" x2="790" y2="240" stroke="url(#grad4)" stroke-width="1.5" class="data-flow" style="animation-delay:-2.5s"/>
+        <line x1="730" y1="380" x2="790" y2="240" stroke="url(#grad4)" stroke-width="1.5" class="data-flow" style="animation-delay:-3s"/>
+        <line x1="540" y1="120" x2="540" y2="380" stroke="rgba(139,92,246,.2)" stroke-width="1" class="data-flow" style="animation-direction:reverse;animation-delay:-1s"/>
       </svg>
     </div>
   </div>
@@ -1102,42 +696,21 @@ function toggleMobile() {
 <section class="section" id="verification">
   <div style="max-width:1280px;margin:0 auto">
     <div class="section-label reveal">Verification</div>
-    <h2 class="section-title reveal reveal-delay-1">Check any credential.<br /><span style="color:var(--accent)">On your device.</span></h2>
+    <h2 class="section-title reveal reveal-delay-1">Check any credential.<br/><span style="color:var(--accent)">On your device.</span></h2>
     <p class="section-desc reveal reveal-delay-2">No account, nothing uploaded. This page verifies itself against the registry in real time.</p>
-
     <div class="cred-widget reveal reveal-delay-3" id="credWidget">
       <div class="cred-header">
         <div class="cred-avatar">EF</div>
-        <div class="cred-info">
-          <h3>Dr. Mohamed El Fadil</h3>
-          <p>SA-PHY-000003 · Consultant Neurosurgery</p>
-        </div>
+        <div class="cred-info"><h3>Dr. Mohamed El Fadil</h3><p>SA-PHY-000003 · Consultant Neurosurgery</p></div>
       </div>
       <div class="cred-fields">
-        <div class="cred-field">
-          <span class="field-label">SPID</span>
-          <span class="field-value">SA-PHY-000003</span>
-        </div>
-        <div class="cred-field">
-          <span class="field-label">Status</span>
-          <span class="field-value ok" id="credStatus">● Active</span>
-        </div>
-        <div class="cred-field">
-          <span class="field-label">Issuer</span>
-          <span class="field-value">did:web:registry.brainsait.de</span>
-        </div>
-        <div class="cred-field">
-          <span class="field-label">Algorithm</span>
-          <span class="field-value">Ed25519 · W3C VC 2.0</span>
-        </div>
-        <div class="cred-field">
-          <span class="field-label">Valid Until</span>
-          <span class="field-value" id="credExpiry">Loading…</span>
-        </div>
+        <div class="cred-field"><span class="field-label">SPID</span><span class="field-value">SA-PHY-000003</span></div>
+        <div class="cred-field"><span class="field-label">Status</span><span class="field-value ok" id="credStatus">● Active</span></div>
+        <div class="cred-field"><span class="field-label">Issuer</span><span class="field-value">did:web:registry.brainsait.de</span></div>
+        <div class="cred-field"><span class="field-label">Algorithm</span><span class="field-value">Ed25519 · W3C VC 2.0</span></div>
+        <div class="cred-field"><span class="field-label">Valid Until</span><span class="field-value" id="credExpiry">Loading…</span></div>
       </div>
-      <button class="cred-verify-btn" id="verifyBtn" onclick="verifyCredential()">
-        ↻ Verify Credential Now
-      </button>
+      <button class="cred-verify-btn" id="verifyBtn" onclick="verifyCredential()">↻ Verify Credential Now</button>
       <pre id="verifyResult" style="margin-top:16px;font-size:11px;font-family:var(--mono);color:var(--muted);white-space:pre-wrap;max-height:200px;overflow:auto;display:none"></pre>
     </div>
   </div>
@@ -1149,7 +722,6 @@ function toggleMobile() {
     <div class="section-label reveal">Developer</div>
     <h2 class="section-title reveal reveal-delay-1">FHIR &amp; <span style="color:var(--accent)">REST API</span></h2>
     <p class="section-desc reveal reveal-delay-2">Public endpoints for Practitioner, PractitionerRole, Organization — plus a transparency ledger and NPHIES knowledge base.</p>
-
     <div class="code-preview reveal reveal-delay-3">
       <div class="code-tab-bar">
         <button class="code-tab active" onclick="switchTab(0)">FHIR · Practitioner</button>
@@ -1165,13 +737,10 @@ function toggleMobile() {
 <section class="section cta-section">
   <div style="max-width:1280px;margin:0 auto">
     <div class="cta-box reveal">
-      <h2>Your identity. Your workspace.<br /><span style="color:var(--accent)">Your tools. Connected.</span></h2>
+      <h2>Your identity. Your workspace.<br/><span style="color:var(--accent)">Your tools. Connected.</span></h2>
       <p>Join BPR and get your own OpenEMR, Copilot, Arabic voice, specialty tools — all signed, verified, and connected to the healthcare ecosystem.</p>
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1">
-        <a href="/bpr/join" class="btn btn-primary">
-          Join BPR
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
+        <a href="/bpr/join" class="btn btn-primary">Join BPR<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
         <a href="/bpr/workspace" class="btn btn-ghost">Workspace</a>
         <a href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" class="btn btn-ghost">Book Demo</a>
       </div>
@@ -1182,358 +751,98 @@ function toggleMobile() {
 <!-- ═══════ Footer ═══════ -->
 <footer class="footer">
   <div class="footer-links">
-    <a href="/">Home</a>
-    <a href="/bpr/">BPR Workspace</a>
-    <a href="/bpr/nphies">NPHIES Desk</a>
-    <a href="/bpr/workspace">OpenEMR</a>
-    <a href="/bpr/workspace">Copilot</a>
-    <a href="/bpr/providers">Directory</a>
-    <a href="/bpr/join">Join</a>
-    <a href="https://brainsait.de" target="_blank">brainsait.de</a>
+    <a href="/">Home</a><a href="/bpr/">BPR Workspace</a><a href="/bpr/nphies">NPHIES Desk</a><a href="/bpr/workspace">OpenEMR</a><a href="/bpr/workspace">Copilot</a><a href="/bpr/providers">Directory</a><a href="/bpr/join">Join</a><a href="https://brainsait.de" target="_blank">brainsait.de</a>
   </div>
-  <p class="footer-tech">
-    OpenEMR · Copilot · NVIDIA AI · Brev HQ · FHIR R4 · W3C VC 2.0 · Ed25519 · SMART-on-FHIR
-  </p>
+  <p class="footer-tech">OpenEMR · Copilot · NVIDIA AI · Brev HQ · FHIR R4 · W3C VC 2.0 · Ed25519 · SMART-on-FHIR</p>
   <p class="footer-copy" style="margin-top:16px">© 2026 BrainSAIT · Riyadh, KSA · All rights reserved</p>
 </footer>
 
-<!-- ═══════ Scripts ═══════ -->
 <script>
-// ═══ Particle Network Background ═══
-(function() {
-  const canvas = document.getElementById('particle-canvas');
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-  let mouse = { x: -1000, y: -1000 };
-  const PARTICLE_COUNT = 80;
-  const CONNECTION_DIST = 150;
-  const MOUSE_RADIUS = 200;
-
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-  document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-
-  for (let i = 0; i < PARTICLE_COUNT; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      r: Math.random() * 1.8 + 0.8,
-      baseOpacity: Math.random() * 0.4 + 0.1
+/* ═══ Particle Network Background ═══ */
+(function(){
+  const canvas=document.getElementById('particle-canvas');const ctx=canvas.getContext('2d');let particles=[];let mouse={x:-1000,y:-1000};
+  const PARTICLE_COUNT=80;const CONNECTION_DIST=150;const MOUSE_RADIUS=200;
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  resize();window.addEventListener('resize',resize);document.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+  for(let i=0;i<PARTICLE_COUNT;i++)particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,r:Math.random()*1.8+0.8,baseOpacity:Math.random()*0.4+0.1});
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      const dx=mouse.x-p.x,dy=mouse.y-p.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<MOUSE_RADIUS){p.x-=dx*0.01;p.y-=dy*0.01;}
+      p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;
+      const opacity=p.baseOpacity*(1-Math.min(dist/MOUSE_RADIUS,1)*0.5);
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(237,243,74,${opacity})`;ctx.fill();
     });
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    particles.forEach(p => {
-      // Mouse interaction
-      const dx = mouse.x - p.x, dy = mouse.y - p.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < MOUSE_RADIUS) {
-        p.x -= dx * 0.01;
-        p.y -= dy * 0.01;
+    for(let i=0;i<particles.length;i++){for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<CONNECTION_DIST){
+        ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);
+        ctx.strokeStyle=`rgba(237,243,74,${0.06*(1-dist/CONNECTION_DIST)})`;ctx.lineWidth=0.5;ctx.stroke();
       }
-
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0) p.x = canvas.width;
-      if (p.x > canvas.width) p.x = 0;
-      if (p.y < 0) p.y = canvas.height;
-      if (p.y > canvas.height) p.y = 0;
-
-      // Draw particle
-      const opacity = p.baseOpacity * (1 - Math.min(dist / MOUSE_RADIUS, 1) * 0.5);
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(237, 243, 74, ${opacity})`;
-      ctx.fill();
-    });
-
-    // Draw connections
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < CONNECTION_DIST) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          const alpha = 0.06 * (1 - dist / CONNECTION_DIST);
-          ctx.strokeStyle = `rgba(237, 243, 74, ${alpha})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
-      }
-    }
+    }}
     requestAnimationFrame(draw);
-  }
-  draw();
+  }draw();
 })();
 
-// ═══ Navbar Scroll ═══
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 60);
-}, { passive: true });
+/* Navbar scroll */
+const navbar=document.getElementById('navbar');window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>60);},{passive:true});
 
-// ═══ Scroll Reveal ═══
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+/* Scroll reveal */
+const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}}});{threshold:0.08,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-// ═══ Counter Animation ═══
-function animateCounter(el, target, suffix = '') {
-  let current = 0;
-  const step = Math.max(1, Math.floor(target / 40));
-  const timer = setInterval(() => {
-    current += step;
-    if (current >= target) { current = target; clearInterval(timer); }
-    el.textContent = current + suffix;
-  }, 30);
-}
-const counterObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const el = entry.target;
-      const val = parseInt(el.dataset.count);
-      if (val) animateCounter(el, val);
-      counterObserver.unobserve(el);
-    }
-  });
-}, { threshold: 0.5 });
-document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+/* Counter animation */
+function animateCounter(el,target,suffix=''){let current=0;const step=Math.max(1,Math.floor(target/40));const timer=setInterval(()=>{current+=step;if(current>=target){current=target;clearInterval(timer);}el.textContent=current+suffix;},30);}
+const counterObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){const el=entry.target;const val=parseInt(el.dataset.count);if(val)animateCounter(el,val);counterObserver.unobserve(el);}}});{threshold:0.5});document.querySelectorAll('[data-count]').forEach(el=>counterObserver.observe(el));
 
-// ═══ Redirect Countdown ═══
-let countdown = 15;
-const countEl = document.getElementById('redirectCount');
-const cancelEl = document.getElementById('cancelRedirect');
-const timer = setInterval(() => {
-  countdown--;
-  if (countEl) countEl.textContent = countdown;
-  if (countdown <= 0) {
-    clearInterval(timer);
-    window.location.href = '/bpr/';
-  }
-}, 1000);
-cancelEl.addEventListener('click', (e) => {
-  e.preventDefault();
-  clearInterval(timer);
-  countEl.parentElement.style.display = 'none';
+/* Redirect countdown */
+let countdown=15;const countEl=document.getElementById('redirectCount');const cancelEl=document.getElementById('cancelRedirect');
+const timer=setInterval(()=>{countdown--;if(countEl)countEl.textContent=countdown;if(countdown<=0){clearInterval(timer);window.location.href='/bpr/';}},1000);
+cancelEl.addEventListener('click',(e)=>{e.preventDefault();clearInterval(timer);countEl.parentElement.style.display='none';});
+
+/* Smooth scroll */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',(e)=>{const target=document.querySelector(a.getAttribute('href'));if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}});});
+
+/* Float card glow */
+document.querySelectorAll('.float-card').forEach(card=>{
+  card.addEventListener('mousemove',(e)=>{const rect=card.getBoundingClientRect();card.style.background=`radial-gradient(600px circle at ${e.clientX-rect.left}px ${e.clientY-rect.top}px,rgba(237,243,74,0.04),rgba(18,21,18,.7)40%)`;});
+  card.addEventListener('mouseleave',()=>{card.style.background='';});
 });
 
-// ═══ Smooth Scroll ═══
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', (e) => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  });
-});
-
-// ═══ Floating card glow ═══
-document.querySelectorAll('.float-card').forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left, y = e.clientY - rect.top;
-    card.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(237,243,74,0.04), rgba(18,21,18,.7) 40%)`;
-  });
-  card.addEventListener('mouseleave', () => { card.style.background = ''; });
-});
-
-// ═══ Dashboard: Fetch live status ═══
-async function loadDashboard() {
-  try {
-    const r = await fetch('https://registry.brainsait.de/api/status', { signal: AbortSignal.timeout(5000) });
-    if (!r.ok) throw new Error(String(r.status));
-    const data = await r.json();
-    const ops = data.operations;
-    const checks = ops?.checks || {};
-    const okCount = Object.values(checks).filter(v => v === 'ok').length;
-    const total = Object.keys(checks).length;
-    const verdict = ops.verdict || 'unknown';
-
-    document.getElementById('dash-ops').textContent = verdict === 'ok' ? 'OK' : verdict;
-    document.getElementById('dash-ops').style.color = verdict === 'ok' ? 'var(--accent)' : '#ff9f43';
-    document.getElementById('dash-ops-label').textContent = `${okCount}/${total} checks passed`;
-    document.getElementById('dash-cert').textContent = 'OK';
-  } catch {
-    document.getElementById('dash-ops').textContent = '—';
-    document.getElementById('dash-ops-label').textContent = 'Registry unreachable';
-  }
-
-  try {
-    const r = await fetch('https://registry.brainsait.de/api/providers.json', { signal: AbortSignal.timeout(5000) });
-    if (!r.ok) throw new Error(String(r.status));
-    const data = await r.json();
-    document.getElementById('dash-providers').textContent = data.items?.length || '—';
-  } catch {
-    document.getElementById('dash-providers').textContent = '—';
-  }
+/* Dashboard live status */
+async function loadDashboard(){
+  try{
+    const r=await fetch('https://registry.brainsait.de/api/status',{signal:AbortSignal.timeout(5000)});if(!r.ok)throw new Error(String(r.status));
+    const data=await r.json();const ops=data.operations||{};const checks=ops.checks||{};const okCount=Object.values(checks).filter(v=>v==='ok').length;const total=Object.keys(checks).length;const verdict=ops.verdict||'unknown';
+    document.getElementById('dash-ops').textContent=verdict==='ok'?'OK':verdict;document.getElementById('dash-ops').style.color=verdict==='ok'?'var(--accent)':'#ff9f43';document.getElementById('dash-ops-label').textContent=`${okCount}/${total} checks passed`;document.getElementById('dash-cert').textContent='OK';
+  }catch{document.getElementById('dash-ops').textContent='—';document.getElementById('dash-ops-label').textContent='Registry unreachable';}
+  try{const r=await fetch('https://registry.brainsait.de/api/providers.json',{signal:AbortSignal.timeout(5000)});if(!r.ok)throw new Error(String(r.status));const data=await r.json();document.getElementById('dash-providers').textContent=data.items?.length||'—';}catch{document.getElementById('dash-providers').textContent='—';}
 }
 loadDashboard();
 
-// ═══ Credential Verification ═══
-async function verifyCredential() {
-  const btn = document.getElementById('verifyBtn');
-  const result = document.getElementById('verifyResult');
-  const statusEl = document.getElementById('credStatus');
-  const expiryEl = document.getElementById('credExpiry');
-
-  btn.disabled = true;
-  btn.textContent = '⏳ Verifying…';
-  result.style.display = 'none';
-
-  try {
-    const r = await fetch('https://registry.brainsait.de/api/verify/SA-PHY-000003', {
-      signal: AbortSignal.timeout(10000)
-    });
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-
-    const data = await r.json();
-    statusEl.textContent = '● Verified';
-    statusEl.style.color = '#26de81';
-
-    const expiry = data.claims?.validUntil;
-    if (expiry) expiryEl.textContent = expiry.slice(0, 10);
-
-    result.textContent = JSON.stringify(data, null, 2);
-    result.style.display = 'block';
-    result.style.color = '#26de81';
-  } catch (e) {
-    statusEl.textContent = '⚠ Verification pending';
-    statusEl.style.color = '#ff9f43';
-    result.textContent = `Registry not reachable: ${e.message}\n\nShowing saved credential metadata:`;
-    result.style.display = 'block';
-    result.style.color = '#ff9f43';
-
-    // Show saved data
-    const saved = {
-      spid: 'SA-PHY-000003',
-      name: 'Dr. Mohamed El Fadil',
-      issuer: 'did:web:registry.brainsait.de',
-      algorithm: 'Ed25519',
-      note: 'Live verification requires registry.brainsait.de to be reachable'
-    };
-    result.textContent += '\n\n' + JSON.stringify(saved, null, 2);
-  }
-
-  btn.disabled = false;
-  btn.textContent = '↻ Verify Credential Now';
+/* Credential verification */
+async function verifyCredential(){
+  const btn=document.getElementById('verifyBtn');const result=document.getElementById('verifyResult');const statusEl=document.getElementById('credStatus');const expiryEl=document.getElementById('credExpiry');
+  btn.disabled=true;btn.textContent='⏳ Verifying…';result.style.display='none';
+  try{const r=await fetch('https://registry.brainsait.de/api/verify/SA-PHY-000003',{signal:AbortSignal.timeout(10000)});if(!r.ok)throw new Error(`HTTP ${r.status}`);const data=await r.json();statusEl.textContent='● Verified';statusEl.style.color='#26de81';const expiry=data.claims?.validUntil;if(expiry)expiryEl.textContent=expiry.slice(0,10);result.textContent=JSON.stringify(data,null,2);result.style.display='block';result.style.color='#26de81';}catch(e){statusEl.textContent='⚠ Verification pending';statusEl.style.color='#ff9f43';result.textContent=`Registry not reachable: ${e.message}\n\nShowing saved credential metadata:`;result.style.display='block';result.style.color='#ff9f43';const saved={spid:'SA-PHY-000003',name:'Dr. Mohamed El Fadil',issuer:'did:web:registry.brainsait.de',algorithm:'Ed25519',note:'Live verification requires registry.brainsait.de to be reachable'};result.textContent+='\n\n'+JSON.stringify(saved,null,2);}btn.disabled=false;btn.textContent='↻ Verify Credential Now';
 }
 
-// ═══ Code Tabs ═══
-const codeSnippets = [
-`// GET /api/fhir/Practitioner/SA-PHY-000003
-// Returns FHIR R4 Practitioner resource
-
+/* Code tabs */
+const codeSnippets=[`// GET /api/fhir/Practitioner/SA-PHY-000003
 {
   "resourceType": "Practitioner",
   "id": "SA-PHY-000003",
-  "meta": {
-    "versionId": "1",
-    "lastUpdated": "2026-11-02T22:00:00Z",
-    "profile": ["https://brainsait.de/fhir/Practitioner"]
-  },
-  "identifier": [
-    {
-      "system": "https://brainsait.de/id/spid",
-      "value": "SA-PHY-000003"
-    }
-  ],
-  "name": [
-    {
-      "family": "El Fadil",
-      "given": ["Mohamed"],
-      "prefix": ["Dr."]
-    }
-  ],
   "active": true,
-  "communication": [
-    { "coding": [{ "system": "urn:ietf:bcp:47", "code": "ar-SA" }] },
-    { "coding": [{ "system": "urn:ietf:bcp:47", "code": "en" }] }
-  ]
-}`,
-
-`// POST /bpr/nphies/check
-// On-device NPHIES message pre-check
-
-$ curl -X POST https://registry.brainsait.de/api/nphies/check \\
-  -H "Content-Type: application/json" \\
-  -d '{
-    "resourceType": "Bundle",
-    "type": "message",
-    "entry": [{
-      "resource": {
-        "resourceType": "Claim",
-        "status": "active",
-        "patient": { "reference": "Patient/123" }
-      }
-    }]
-  }'
-
-// Response:
+  "name": [{ "family": "El Fadil", "given": ["Mohamed"], "prefix": ["Dr."] }]
+}`,`// POST /bpr/nphies/check
+$ curl -X POST https://registry.brainsait.de/api/nphies/check -H "Content-Type: application/json" -d '{"resourceType":"Bundle","type":"message"}'
 {
-  "ok": true,
-  "findings": [],
-  "checked": 24,
-  "profile": "NPHIES-Clinician-v5.4.2"
-}`,
-
-`// GET /api/ledger
-// Transparency log — append-only hash chain
-
+  "ok": true, "findings": [], "checked": 24, "profile": "NPHIES-Clinician-v5.4.2"
+}`,`// GET /api/ledger
 {
-  "head": {
-    "hash": "a3f8c2...e7d1",
-    "prev": "b1e4d5...f2a9",
-    "size": 142,
-    "timestamp": "2026-11-02T22:10:00Z",
-    "signature": "ed25519:signature...verified"
-  },
-  "entries": [
-    {
-      "idx": 142,
-      "event": "credential_renewed",
-      "spid": "SA-PHY-000003",
-      "timestamp": "2026-11-02T22:10:00Z",
-      "prev": "b1e4d5...f2a9"
-    }
-  ]
-}`
-];
-
-function switchTab(idx) {
-  document.querySelectorAll('.code-tab').forEach((t, i) => {
-    t.classList.toggle('active', i === idx);
-  });
-  const block = document.getElementById('codeBlock');
-  const code = codeSnippets[idx];
-  // Syntax highlight
-  const highlighted = code
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    .replace(/(\/\/.*)/g, '<span style="color:#5a6b5d">$1</span>')
-    .replace(/("(?:[^"\\]|\\.)*")/g, '<span style="color:#a5d6ff">$1</span>')
-    .replace(/\b(\d+)\b/g, '<span style="color:#ff9f43">$1</span>')
-    .replace(/\b(true|false|null)\b/g, '<span style="color:#ff3b5c">$1</span>')
-    .replace(/\b(\/\/\/\s*\n[^\n]*|"[a-zA-Z_][a-zA-Z0-9_]*")\b/g, (m) => {
-      if (m.startsWith('"') && m.endsWith('"')) return `<span style="color:#64d8c5">${m}</span>`;
-      return m;
-    });
-  block.innerHTML = highlighted;
-}
+  "head": { "hash": "a3f8c2...e7d1", "size": 142, "timestamp": "2026-11-02T22:10:00Z" },
+  "entries": [{ "idx": 142, "event": "credential_renewed", "spid": "SA-PHY-000003" }]
+}`];
+function switchTab(idx){document.querySelectorAll('.code-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));const block=document.getElementById('codeBlock');const code=codeSnippets[idx].replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/(\/\/.*)/g,'<span style="color:#5a6b5d">$1</span>').replace(/("(?:[^"\\]|\\.)*")/g,'<span style="color:#a5d6ff">$1</span>').replace(/\b(\d+)\b/g,'<span style="color:#ff9f43">$1</span>').replace(/\b(true|false|null)\b/g,'<span style="color:#ff3b5c">$1</span>');block.innerHTML=code;}
 switchTab(0);
 </script>
-
 </body>
 </html>
