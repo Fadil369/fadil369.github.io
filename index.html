@@ -607,25 +607,223 @@ img { max-width: 100%; height: auto; }
 <!-- ═══════ Particle Canvas ═══════ -->
 <canvas id="particle-canvas"></canvas>
 
-<!-- ═══════ Navigation ═══════ -->
+<!-- ═══════ Mega Menu Navigation ═══════ -->
 <nav class="nav" id="navbar">
   <div class="nav-inner">
     <a class="nav-brand" href="/">
       <span class="nav-brand-icon">EF</span>
       <span>BrainSAIT</span>
     </a>
-    <div class="nav-links">
-      <a href="#tools">Tools</a>
-      <a href="#architecture">Architecture</a>
-      <a href="#verification">Verification</a>
-      <a href="#api">API</a>
+
+    <div class="nav-menu" id="navMenu">
+      <!-- Platform dropdown -->
+      <div class="nav-item has-dropdown">
+        <button class="nav-link" onclick="toggleDrop(this)">
+          Platform
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dropdown mega">
+          <div class="mega-grid">
+            <a href="/bpr/" class="mega-card">
+              <span class="mega-icon">🪪</span>
+              <span class="mega-title">Provider Registry</span>
+              <span class="mega-desc">SPID · OID · W3C VC · Ed25519</span>
+            </a>
+            <a href="/bpr/workspace/" class="mega-card">
+              <span class="mega-icon">🏥</span>
+              <span class="mega-title">OpenEMR Workspace</span>
+              <span class="mega-desc">Private EMR · Copilot · Voice</span>
+            </a>
+            <a href="/bpr/nphies/" class="mega-card">
+              <span class="mega-icon">📋</span>
+              <span class="mega-title">NPHIES Desk</span>
+              <span class="mega-desc">Codes · Pre-check · Readiness</span>
+            </a>
+            <a href="/bpr/providers/" class="mega-card">
+              <span class="mega-icon">👥</span>
+              <span class="mega-title">Provider Directory</span>
+              <span class="mega-desc">Browse providers by SPID</span>
+            </a>
+            <a href="/bpr/verify/" class="mega-card">
+              <span class="mega-icon">🔐</span>
+              <span class="mega-title">Verify Credential</span>
+              <span class="mega-desc">Check any SPID on your device</span>
+            </a>
+            <a href="/bpr/ledger/" class="mega-card">
+              <span class="mega-icon">🔗</span>
+              <span class="mega-title">Transparency Log</span>
+              <span class="mega-desc">Append-only hash chain</span>
+            </a>
+            <a href="/bpr/research/" class="mega-card">
+              <span class="mega-icon">🔬</span>
+              <span class="mega-title">Research Footprint</span>
+              <span class="mega-desc">ORCID × Zenodo × HuggingFace</span>
+            </a>
+            <a href="/bpr/developers/" class="mega-card">
+              <span class="mega-icon">🧩</span>
+              <span class="mega-title">FHIR R4 & API</span>
+              <span class="mega-desc">Public JSON · SMART launch</span>
+            </a>
+            <a href="/bpr/status/" class="mega-card">
+              <span class="mega-icon">📊</span>
+              <span class="mega-title">Platform Status</span>
+              <span class="mega-desc">Live health & metrics</span>
+            </a>
+            <a href="/bpr/join/" class="mega-card">
+              <span class="mega-icon">🚀</span>
+              <span class="mega-title">Join BPR</span>
+              <span class="mega-desc">Get your provider identity</span>
+            </a>
+            <a href="/bpr/record/" class="mega-card">
+              <span class="mega-icon">📄</span>
+              <span class="mega-title">Identity Record</span>
+              <span class="mega-desc">Download your BPR identity</span>
+            </a>
+            <a href="/bpr/saudi/" class="mega-card">
+              <span class="mega-icon">🇸🇦</span>
+              <span class="mega-title">Saudi Hub</span>
+              <span class="mega-desc">Kingdom healthcare ecosystem</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools dropdown -->
+      <div class="nav-item has-dropdown">
+        <button class="nav-link" onclick="toggleDrop(this)">
+          Tools
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dropdown">
+          <a href="/cv/" class="nav-dd-item">📋 CV</a>
+          <a href="/card/" class="nav-dd-item">🪪 Business Card</a>
+          <a href="/slots/" class="nav-dd-item">📅 Hospital Slots</a>
+          <a href="/store/" class="nav-dd-item">🛒 Store</a>
+          <a href="/catalogue/" class="nav-dd-item">📚 Catalogue</a>
+          <a href="/account/" class="nav-dd-item">⚙️ Account</a>
+        </div>
+      </div>
+
+      <!-- Learn dropdown -->
+      <div class="nav-item has-dropdown">
+        <button class="nav-link" onclick="toggleDrop(this)">
+          Learn
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dropdown">
+          <a href="/learn/" class="nav-dd-item">🎓 Learn Hub</a>
+          <a href="/benefits/" class="nav-dd-item">✨ Benefits</a>
+          <a href="/solutions/" class="nav-dd-item">🧩 Solutions</a>
+          <a href="/faq/" class="nav-dd-item">❓ FAQ</a>
+          <a href="/templates/" class="nav-dd-item">📝 Templates</a>
+        </div>
+      </div>
+
+      <!-- Build dropdown -->
+      <div class="nav-item has-dropdown">
+        <button class="nav-link" onclick="toggleDrop(this)">
+          Build
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dropdown">
+          <a href="/build/" class="nav-dd-item">🔨 Build Hub</a>
+          <a href="/sprint/" class="nav-dd-item">🏃 Sprint</a>
+          <a href="/track/" class="nav-dd-item">📈 Track</a>
+          <a href="/support/" class="nav-dd-item">🛟 Support</a>
+        </div>
+      </div>
+
+      <!-- Direct links -->
+      <a href="/contact/" class="nav-link">Contact</a>
     </div>
+
+    <!-- Language switcher -->
+    <a href="/ar/" class="nav-lang" title="العربية" onclick="event.stopPropagation()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
+      AR
+    </a>
+
     <a href="/bpr/" class="nav-cta">
       Open BPR
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
     </a>
+
+    <!-- Mobile hamburger -->
+    <button class="nav-hamburger" id="navHamburger" onclick="toggleMobile()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobile()"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-section">
+    <div class="mobile-section-title">Platform</div>
+    <a href="/bpr/">Provider Registry</a>
+    <a href="/bpr/workspace/">OpenEMR Workspace</a>
+    <a href="/bpr/nphies/">NPHIES Desk</a>
+    <a href="/bpr/providers/">Provider Directory</a>
+    <a href="/bpr/verify/">Verify Credential</a>
+    <a href="/bpr/ledger/">Transparency Log</a>
+    <a href="/bpr/research/">Research</a>
+    <a href="/bpr/developers/">FHIR R4 API</a>
+    <a href="/bpr/status/">Status</a>
+    <a href="/bpr/join/">Join BPR</a>
+  </div>
+  <div class="mobile-section">
+    <div class="mobile-section-title">Tools</div>
+    <a href="/cv/">CV</a>
+    <a href="/card/">Business Card</a>
+    <a href="/slots/">Hospital Slots</a>
+    <a href="/store/">Store</a>
+    <a href="/catalogue/">Catalogue</a>
+  </div>
+  <div class="mobile-section">
+    <div class="mobile-section-title">Learn</div>
+    <a href="/learn/">Learn Hub</a>
+    <a href="/benefits/">Benefits</a>
+    <a href="/solutions/">Solutions</a>
+    <a href="/faq/">FAQ</a>
+    <a href="/templates/">Templates</a>
+  </div>
+  <div class="mobile-section">
+    <div class="mobile-section-title">Build</div>
+    <a href="/build/">Build Hub</a>
+    <a href="/sprint/">Sprint</a>
+    <a href="/track/">Track</a>
+    <a href="/support/">Support</a>
+    <a href="/contact/">Contact</a>
+    <a href="/terms/">Terms</a>
+  </div>
+  <div class="mobile-section">
+    <a href="/ar/" class="mobile-lang">🌐 العربية</a>
+  </div>
+</div>
+
+<script>
+function toggleDrop(btn) {
+  const item = btn.closest('.nav-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.nav-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.nav-item')) {
+    document.querySelectorAll('.nav-item.open').forEach(i => i.classList.remove('open'));
+  }
+});
+
+function toggleMobile() {
+  const overlay = document.getElementById('mobileOverlay');
+  const menu = document.getElementById('mobileMenu');
+  const hamburger = document.getElementById('navHamburger');
+  const open = menu.classList.toggle('open');
+  overlay.classList.toggle('open', open);
+  hamburger.classList.toggle('active', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+</script>
 
 <!-- ═══════ Hero ═══════ -->
 <section class="hero">
