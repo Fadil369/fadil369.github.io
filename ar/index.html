@@ -45,6 +45,42 @@
       .nav-links a:hover{color:var(--text)}
       .nav-cta{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:999px;background:var(--accent);color:var(--bg);font-weight:700;font-size:14px;border:none;cursor:pointer;transition:all .25s}
       .nav-cta:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(237,243,74,.3)}
+      /* ═══ MEGA MENU ═══ */
+      .nav-menu{display:flex;align-items:center;gap:4px}
+      .nav-item{position:relative}
+      .nav-link{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:999px;font-size:14px;font-weight:500;color:var(--muted);background:none;border:none;cursor:pointer;font-family:var(--font);transition:all .25s;text-decoration:none}
+      .nav-link:hover,.nav-item.open>.nav-link{color:var(--text);background:rgba(255,255,255,.04)}
+      .nav-link svg{transition:transform .3s}
+      .nav-item.open .nav-link svg{transform:rotate(180deg)}
+      .nav-dropdown{position:absolute;top:calc(100% + 12px);left:0;min-width:240px;padding:12px;background:rgba(18,21,18,.95);backdrop-filter:blur(24px);border:1px solid var(--line);border-radius:12px;opacity:0;visibility:hidden;transform:translateY(8px);transition:all .3s cubic-bezier(.16,1,.3,1);z-index:200;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+      .nav-item.open .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+      .nav-dropdown.mega{left:50%;transform:translateX(-50%) translateY(8px);min-width:800px;padding:20px}
+      .nav-item.open .nav-dropdown.mega{transform:translateX(-50%) translateY(0)}
+      .mega-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+      .mega-card{display:flex;flex-direction:column;gap:4px;padding:16px;border-radius:8px;background:transparent;transition:all .25s;text-decoration:none}
+      .mega-card:hover{background:rgba(237,243,74,.06);transform:translateY(-2px)}
+      .mega-icon{font-size:20px;margin-bottom:4px}
+      .mega-title{font-size:14px;font-weight:600;color:var(--text)}
+      .mega-desc{font-size:11px;color:var(--muted);font-family:var(--mono)}
+      .nav-dd-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;font-size:14px;color:var(--muted);transition:all .2s;text-decoration:none}
+      .nav-dd-item:hover{background:rgba(237,243,74,.06);color:var(--text)}
+      .nav-lang{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--muted);transition:all .25s;text-decoration:none;font-family:var(--mono)}
+      .nav-lang:hover{border-color:var(--accent);color:var(--accent)}
+      .nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+      .nav-hamburger span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+      .nav-hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+      .nav-hamburger.active span:nth-child(2){opacity:0}
+      .nav-hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+      .mobile-overlay{position:fixed;inset:0;z-index:190;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:all .3s}
+      .mobile-overlay.open{opacity:1;visibility:visible}
+      .mobile-menu{position:fixed;top:0;right:-320px;bottom:0;width:320px;z-index:195;background:var(--bg2);border-left:1px solid var(--line);overflow-y:auto;padding:80px 24px 40px;transition:right .4s cubic-bezier(.16,1,.3,1)}
+      .mobile-menu.open{right:0}
+      .mobile-section{margin-bottom:32px}
+      .mobile-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px}
+      .mobile-section a{display:block;padding:10px 16px;border-radius:8px;font-size:14px;color:var(--muted);transition:all .2s;text-decoration:none;margin-bottom:2px}
+      .mobile-section a:hover{background:rgba(237,243,74,.06);color:var(--text)}
+      .mobile-lang{font-size:16px !important;text-align:center;border:1px solid var(--line) !important;margin-top:16px !important}
+
       .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:80px}
       .hero-bg{position:absolute;inset:0;z-index:0}
       .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(237,243,74,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(237,243,74,.02) 1px,transparent 1px);background-size:80px 80px;animation:gridPulse 6s ease-in-out infinite}
@@ -91,7 +127,8 @@
       .cta-box h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:16px}
       .cta-box p{color:var(--muted);font-size:17px;max-width:500px;margin:0 auto 32px}
       .footer{padding:48px 0;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:14px}
-      @media(max-width:768px){.eco-grid{grid-template-columns:1fr}.hero-stats{gap:24px;flex-wrap:wrap}.nav-links{display:none}}
+      @media(max-width:768px){.eco-grid{grid-template-columns:1fr}.hero-stats{gap:24px;flex-wrap:wrap}.nav-menu{display:none}.nav-lang{display:none}.nav-hamburger{display:flex}.nav-cta{display:none}.mega-grid{grid-template-columns:repeat(2,1fr)}}
+      @media(max-width:480px){.mega-grid{grid-template-columns:1fr}}
       #particles{position:absolute;inset:0;z-index:0;pointer-events:none}
     </style>
   </head>
@@ -99,16 +136,211 @@
     <nav class="nav" id="navbar">
       <div class="container nav-inner">
         <a class="nav-logo" href="/ar/"><span class="nav-logo-icon">EF</span><span>برينسايت</span></a>
-        <div class="nav-links">
-          <a href="#platform">المنصة</a>
-          <a href="#tools">الأدوات</a>
+
+        <div class="nav-menu" id="navMenu">
+          <!-- Platform -->
+          <div class="nav-item has-dropdown">
+            <button class="nav-link" onclick="toggleDrop(this)">
+              المنصة
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="nav-dropdown mega">
+              <div class="mega-grid">
+                <a href="/ar/bpr/" class="mega-card">
+                  <span class="mega-icon">🪪</span>
+                  <span class="mega-title">سجل مقدمي الرعاية</span>
+                  <span class="mega-desc">SPID · OID · W3C VC · Ed25519</span>
+                </a>
+                <a href="/ar/bpr/workspace/" class="mega-card">
+                  <span class="mega-icon">🏥</span>
+                  <span class="mega-title">مساحة OpenEMR</span>
+                  <span class="mega-desc">EMR خاص · مساعد · صوت</span>
+                </a>
+                <a href="/ar/bpr/nphies/" class="mega-card">
+                  <span class="mega-icon">📋</span>
+                  <span class="mega-title">مكتب نفيس</span>
+                  <span class="mega-desc">رموز · فحص · جاهزية</span>
+                </a>
+                <a href="/ar/bpr/providers/" class="mega-card">
+                  <span class="mega-icon">👥</span>
+                  <span class="mega-title">دليل مقدمي الرعاية</span>
+                  <span class="mega-desc">تصفح حسب SPID</span>
+                </a>
+                <a href="/ar/bpr/verify/" class="mega-card">
+                  <span class="mega-icon">🔐</span>
+                  <span class="mega-title">التحقق من الشهادة</span>
+                  <span class="mega-desc">تحقق على جهازك</span>
+                </a>
+                <a href="/ar/bpr/ledger/" class="mega-card">
+                  <span class="mega-icon">🔗</span>
+                  <span class="mega-title">السجل الشفاف</span>
+                  <span class="mega-desc">سلسلة تجزئة عامة</span>
+                </a>
+                <a href="/ar/bpr/research/" class="mega-card">
+                  <span class="mega-icon">🔬</span>
+                  <span class="mega-title">البصمة البحثية</span>
+                  <span class="mega-desc">ORCID × Zenodo × HuggingFace</span>
+                </a>
+                <a href="/ar/bpr/developers/" class="mega-card">
+                  <span class="mega-icon">🧩</span>
+                  <span class="mega-title">FHIR R4 API</span>
+                  <span class="mega-desc">JSON عام · SMART</span>
+                </a>
+                <a href="/ar/bpr/status/" class="mega-card">
+                  <span class="mega-icon">📊</span>
+                  <span class="mega-title">حالة المنصة</span>
+                  <span class="mega-desc">مؤشرات مباشرة</span>
+                </a>
+                <a href="/ar/bpr/join/" class="mega-card">
+                  <span class="mega-icon">🚀</span>
+                  <span class="mega-title">انضم إلى BPR</span>
+                  <span class="mega-desc">احصل على هويتك</span>
+                </a>
+                <a href="/ar/bpr/record/" class="mega-card">
+                  <span class="mega-icon">📄</span>
+                  <span class="mega-title">سجل الهوية</span>
+                  <span class="mega-desc">تحميل هويتك</span>
+                </a>
+                <a href="/ar/bpr/saudi/" class="mega-card">
+                  <span class="mega-icon">🇸🇦</span>
+                  <span class="mega-title">المركز السعودي</span>
+                  <span class="mega-desc">منظومة الرعاية</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tools -->
+          <div class="nav-item has-dropdown">
+            <button class="nav-link" onclick="toggleDrop(this)">
+              الأدوات
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="nav-dropdown">
+              <a href="/ar/cv/" class="nav-dd-item">📋 السيرة الذاتية</a>
+              <a href="/ar/card/" class="nav-dd-item">🪪 البطاقة</a>
+              <a href="/ar/slots/" class="nav-dd-item">📅 شواغر المستشفيات</a>
+              <a href="/store/" class="nav-dd-item">🛒 المتجر</a>
+              <a href="/catalogue/" class="nav-dd-item">📚 الكتالوج</a>
+              <a href="/account/" class="nav-dd-item">⚙️ الحساب</a>
+            </div>
+          </div>
+
+          <!-- Learn -->
+          <div class="nav-item has-dropdown">
+            <button class="nav-link" onclick="toggleDrop(this)">
+              تعلّم
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="nav-dropdown">
+              <a href="/learn/" class="nav-dd-item">🎓 مركز التعلم</a>
+              <a href="/benefits/" class="nav-dd-item">✨ المزايا</a>
+              <a href="/solutions/" class="nav-dd-item">🧩 الحلول</a>
+              <a href="/faq/" class="nav-dd-item">❓ الأسئلة الشائعة</a>
+              <a href="/templates/" class="nav-dd-item">📝 القوالب</a>
+            </div>
+          </div>
+
+          <!-- Build -->
+          <div class="nav-item has-dropdown">
+            <button class="nav-link" onclick="toggleDrop(this)">
+              ابنِ
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="nav-dropdown">
+              <a href="/build/" class="nav-dd-item">🔨 مركز البناء</a>
+              <a href="/sprint/" class="nav-dd-item">🏃 السبرنت</a>
+              <a href="/track/" class="nav-dd-item">📈 التتبع</a>
+              <a href="/support/" class="nav-dd-item">🛟 الدعم</a>
+            </div>
+          </div>
+
+          <a href="/contact/" class="nav-link">تواصل</a>
         </div>
+
+        <a href="/" class="nav-lang" title="English" onclick="event.stopPropagation()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
+          EN
+        </a>
+
         <a href="/ar/bpr/" class="nav-cta">
-          افتح مساحة BPR
+          افتح BPR
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
         </a>
+
+        <button class="nav-hamburger" id="navHamburger" onclick="toggleMobile()" aria-label="القائمة">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </nav>
+
+    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobile()"></div>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-section">
+        <div class="mobile-section-title">المنصة</div>
+        <a href="/ar/bpr/">سجل مقدمي الرعاية</a>
+        <a href="/ar/bpr/workspace/">مساحة OpenEMR</a>
+        <a href="/ar/bpr/nphies/">مكتب نفيس</a>
+        <a href="/ar/bpr/providers/">دليل مقدمي الرعاية</a>
+        <a href="/ar/bpr/verify/">التحقق</a>
+        <a href="/ar/bpr/ledger/">السجل الشفاف</a>
+        <a href="/ar/bpr/research/">البحث</a>
+        <a href="/ar/bpr/developers/">FHIR R4 API</a>
+        <a href="/ar/bpr/status/">الحالة</a>
+        <a href="/ar/bpr/join/">انضم</a>
+      </div>
+      <div class="mobile-section">
+        <div class="mobile-section-title">الأدوات</div>
+        <a href="/ar/cv/">السيرة الذاتية</a>
+        <a href="/ar/card/">البطاقة</a>
+        <a href="/ar/slots/">الشواغر</a>
+        <a href="/store/">المتجر</a>
+        <a href="/catalogue/">الكتالوج</a>
+      </div>
+      <div class="mobile-section">
+        <div class="mobile-section-title">تعلّم</div>
+        <a href="/learn/">مركز التعلم</a>
+        <a href="/benefits/">المزايا</a>
+        <a href="/solutions/">الحلول</a>
+        <a href="/faq/">الأسئلة الشائعة</a>
+        <a href="/templates/">القوالب</a>
+      </div>
+      <div class="mobile-section">
+        <div class="mobile-section-title">ابنِ</div>
+        <a href="/build/">مركز البناء</a>
+        <a href="/sprint/">السبرنت</a>
+        <a href="/track/">التتبع</a>
+        <a href="/support/">الدعم</a>
+        <a href="/contact/">تواصل</a>
+        <a href="/terms/">الشروط</a>
+      </div>
+      <div class="mobile-section">
+        <a href="/" class="mobile-lang">🌐 English</a>
+      </div>
+    </div>
+
+    <script>
+    function toggleDrop(btn) {
+      const item = btn.closest('.nav-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.nav-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav-item')) {
+        document.querySelectorAll('.nav-item.open').forEach(i => i.classList.remove('open'));
+      }
+    });
+    function toggleMobile() {
+      const overlay = document.getElementById('mobileOverlay');
+      const menu = document.getElementById('mobileMenu');
+      const hamburger = document.getElementById('navHamburger');
+      const open = menu.classList.toggle('open');
+      overlay.classList.toggle('open', open);
+      hamburger.classList.toggle('active', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    </script>
 
     <section class="hero">
       <div class="hero-bg">
