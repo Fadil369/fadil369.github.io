@@ -20,7 +20,9 @@ if (!existsSync(indexFile)) {
 
 const index = readFileSync(indexFile, 'utf8');
 writeFileSync(join(root, '404.html'), index); // SPA fallback for hard refresh
-writeFileSync(join(root, 'index.html'), index);
+// Note: the repo-root index.html (and ar/index.html) are hand-crafted landing
+// pages and must NOT be overwritten by the build output.
+// Only copy to SPA fallback routes (cv, card, bpr/*, slots) that need the shell.
 
 for (const route of ['cv', 'card', 'slots',
   'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi', 'bpr/nphies']) {
