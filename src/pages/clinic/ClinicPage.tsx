@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight, ArrowUpRight, CalendarDays, CalendarClock, Check, CheckCircle2,
   CheckCheck, Clock3, Copy, FileText, Headphones, HeartPulse, LogOut, MapPin,
-  MessageCircle, MessageSquare, Monitor, Plus, RefreshCw, RotateCcw, Search, Send,
+  MessageCircle, MessageSquare, Monitor, Plus, RefreshCw, RotateCcw, Search, Send, Volume2,
   Settings2, ShieldCheck, Stethoscope, Users, UsersRound, X, House,
 } from 'lucide-react';
 import { localized } from '../../lib/locale';
@@ -66,6 +66,7 @@ const STR: Record<'ar' | 'en', Record<string, string>> = {
     location: 'Location',
     insurance: 'Insurance',
     greeting: 'Hello! I can help with clinic hours, location and insurance information. Please use fictional questions only; this demonstration does not provide medical advice.',
+    readAloud: 'Read answer aloud',
     approved: 'Clinic-approved answer',
     handoff: 'Staff assistance needed',
     urgent: 'Seek immediate help',
@@ -202,6 +203,7 @@ const STR: Record<'ar' | 'en', Record<string, string>> = {
     location: 'الموقع',
     insurance: 'التأمين',
     greeting: 'مرحبًا! يمكنني مساعدتك بمعلومات ساعات العمل والموقع والتأمين. استخدم أسئلة وهمية فقط؛ لا تقدم هذه التجربة نصائح طبية.',
+    readAloud: 'استمع إلى الإجابة',
     approved: 'إجابة العيادة المعتمدة',
     handoff: 'يلزم التواصل مع موظف',
     urgent: 'اطلب المساعدة الفورية',
@@ -394,6 +396,14 @@ function ReceptionChat({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, strin
     return { kind: 'handoff', answer: ar ? 'لا توجد إجابة معتمدة لهذا السؤال. يمكنك إنشاء طلب تواصل تجريبي ليجيبك فريق الاستقبال.' : 'There is no approved answer for this question. Create a demo callback request for the reception team.' };
   }
 
+  function readAloud(text: string) {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang === 'ar' ? 'ar-SA' : 'en-SA';
+    window.speechSynthesis.speak(utterance);
+  }
+
   async function ask(msg: string) {
     if (!msg.trim() || asking) return;
     setQuestion('');
@@ -421,6 +431,9 @@ function ReceptionChat({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, strin
             <div>
               {m.kind && <strong className="clinic-answer-kind">{t[m.kind === 'approved' ? 'approved' : m.kind === 'urgent' ? 'urgent' : 'handoff']}</strong>}
               <p dir="auto">{m.text}</p>
+              {m.role === 'assistant' && 'speechSynthesis' in window && (
+                <button type="button" className="clinic-speak" onClick={() => readAloud(m.text)}><Volume2 size={14}/>{t.readAloud}</button>
+              )}
               {m.kind === 'handoff' && <p className="clinic-hint">{lang === 'ar' ? 'هذه تجربة ولا يوجد موظف يتابع هذه المحادثة. تواصل مع عيادتك عبر قنواتها الرسمية.' : 'This is a pilot; no staff member monitors this chat. Contact your clinic through its official channels.'}</p>}
             </div>
           </div>
@@ -807,13 +820,13 @@ function ClinicStatus({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string
         </div>
         <div className="clinic-status-item">
           <div className="clinic-status-label">Model gateway</div>
-          <span className={`clinic-status-badge ${status.nvidia === 'live' ? 'clinic-status-live' : 'clinic-status-down'}`}>
+          <span className={`clinic-status-badge ${status.nvidia === 'configured' ? 'clinic-status-reference' : 'clinic-status-down'}`}>
             {status.nvidia === 'configured' ? (lang === 'ar' ? 'مُعدّ · لم يُختبر الاستدلال' : 'Configured · inference not checked') : t.clinicPending}
           </span>
         </div>
         <div className="clinic-status-item">
           <div className="clinic-status-label">OpenEMR</div>
-          <span className={`clinic-status-badge ${status.emr === 'live' ? 'clinic-status-live' : 'clinic-status-down'}`}>
+          <span className={`clinic-status-badge ${status.emr === 'reported' ? 'clinic-status-reference' : 'clinic-status-down'}`}>
             {status.emr === 'reported' ? (lang === 'ar' ? 'تقرير المراقبة: متاح' : 'Monitoring reports reachable') : t.clinicPending}
           </span>
         </div>
@@ -822,13 +835,45 @@ function ClinicStatus({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string
           <span className="clinic-status-badge clinic-status-reference">{t.nphiesReference}</span>
         </div>
         <div className="clinic-status-item">
-          <div className="clinic-status-label">Brev HQ</div>
-          <span className="clinic-status-badge clinic-status-down">{t.brevDisconnected}</span>
+          <div className="clinic-status-label">Reception AI</div>
+          <span className="clinic-status-badge clinic-status-reference">{lang === 'ar' ? 'إجابات معتمدة محليًا' : 'Local approved answers'}</span>
         </div>
         <div className="clinic-status-item">
           <div className="clinic-status-label">Clinic</div>
           <span className="clinic-status-badge clinic-status-reference">{lang === 'ar' ? 'سير عمل تجريبي' : 'Pilot workflow'}</span>
         </div>
+      </div>
+      <div className="clinic-ops-grid">
+        <article className="clinic-ops-card">
+          <div className="clinic-ops-icon"><MessageCircle size={18}/></div>
+          <h3>{lang === 'ar' ? 'استقبال آمن' : 'Reception, with guardrails'}</h3>
+          <p>{lang === 'ar' ? 'إجابات إدارية معتمدة وتحويل للموظف عند الحاجة. لا تشخيص ولا استدعاء لنموذج.' : 'Approved administrative answers with staff handoff. No diagnosis and no model calls.'}</p>
+          <span>{lang === 'ar' ? 'البيانات التجريبية تبقى في هذا المتصفح' : 'Demo entries stay in this browser'}</span>
+        </article>
+        <article className="clinic-ops-card">
+          <div className="clinic-ops-icon"><Headphones size={18}/></div>
+          <h3>{lang === 'ar' ? 'وكيل الاستقبال الصوتي' : 'Reception voice agent'}</h3>
+          <p>{lang === 'ar' ? 'الإدخال الصوتي غير مفعّل. يمكن للجهاز قراءة الإجابات المعتمدة بصوت مسموع؛ لا نطلب الميكروفون ولا نرسل تسجيلات.' : 'Voice input is not enabled. Your device can read approved replies aloud; this page does not request microphone access or send recordings.'}</p>
+          <span>{lang === 'ar' ? 'تعمل القراءة عند الضغط على زر الاستماع في الإجابة' : 'Use Read answer aloud on an assistant reply'}</span>
+        </article>
+        <article className="clinic-ops-card">
+          <div className="clinic-ops-icon"><Monitor size={18}/></div>
+          <h3>OpenEMR</h3>
+          <p>{lang === 'ar' ? 'افتح نسخة العرض ببيانات مصطنعة. لا يوجد ربط أو حفظ مواعيد من هذه الصفحة.' : 'Open the synthetic-data demo. This page has no EMR connection or appointment write-back.'}</p>
+          <a href="https://demo.emr.brainsait.de/" target="_blank" rel="noreferrer">{lang === 'ar' ? 'فتح عرض OpenEMR' : 'Open the OpenEMR demo'} <ArrowUpRight size={14}/></a>
+        </article>
+        <article className="clinic-ops-card">
+          <div className="clinic-ops-icon"><HeartPulse size={18}/></div>
+          <h3>{lang === 'ar' ? 'المساعد والنماذج' : 'Copilot and models'}</h3>
+          <p>{lang === 'ar' ? 'فحوص الخدمة أو جرد النماذج لا يثبتان نجاح الاستدلال. الموقع العام لا يرسل بيانات سريرية للنماذج.' : 'Service checks and model inventory do not prove inference. This public site sends no clinical data to models.'}</p>
+          <a href={localized('/bpr/ai/')}>{lang === 'ar' ? 'عرض حالة بوابة النماذج' : 'Review model gateway status'} <ArrowRight size={14}/></a>
+        </article>
+        <article className="clinic-ops-card">
+          <div className="clinic-ops-icon"><FileText size={18}/></div>
+          <h3>{lang === 'ar' ? 'مكتب نفيس' : 'NPHIES desk'}</h3>
+          <p>{lang === 'ar' ? 'مرجع وفحص أولي محلي للرسائل؛ لا أهلية ولا موافقات ولا مطالبات تُرسل إلى نفيس.' : 'Reference material and an on-device message pre-check; no eligibility, authorisation, or claims are sent to NPHIES.'}</p>
+          <a href={localized('/bpr/nphies/')}>{lang === 'ar' ? 'فتح مكتب نفيس' : 'Open NPHIES desk'} <ArrowRight size={14}/></a>
+        </article>
       </div>
     </section>
   );
@@ -841,7 +886,6 @@ export default function ClinicPage() {
   const lang: 'ar' | 'en' = ar ? 'ar' : 'en';
   const t = STR[lang];
   const [config, setConfig] = useState(loadProfile());
-  const [voiceAvailable, setVoiceAvailable] = useState(false);
   const [activeRoute, setActiveRoute] = useState<'overview' | 'requests' | 'setup' | 'reception'>('overview');
   const [loading, setLoading] = useState(true);
 
@@ -853,13 +897,6 @@ export default function ClinicPage() {
 
   useEffect(() => {
     async function init() {
-      try {
-        const r = await fetch(`${REGISTRY}/api/health`, { signal: AbortSignal.timeout(5000) });
-        if (r.ok) {
-          const data = await r.json();
-          setVoiceAvailable(data.ai === 'configured_unverified');
-        }
-      } catch {}
       setLoading(false);
     }
     init();
