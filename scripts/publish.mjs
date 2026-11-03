@@ -125,6 +125,7 @@ const ROUTE_META = {
   'bpr/status': ['Operations status — BPR', 'The registry’s own health verdict, failures included.'],
   'bpr/join': ['Join BPR', 'From ORCID sign-in to a signed credential.'],
   'bpr/nphies': ['NPHIES desk: rejection codes, pre-check and readiness — BPR', 'Every official NPHIES rejection code in plain Arabic and English, a message pre-check that runs on your device, and a readiness plan by facility type.'],
+  'bpr/clinic': ['Clinic Reception — BPR', 'Manage appointment requests and give patients approved answers. Integrated with BPR provider registry, NPHIES desk, and NVIDIA voice.'],
   'bpr/saudi': ['BPR across the Saudi health system', 'Where the BrainSAIT Provider Registry could serve Saudi health organisations — proposals, with what runs today and what each depends on.'],
   'bpr/record': ['Dr. Mohamed El Fadil · BPR record SA-PHY-000003', 'A signed provider record, checked live in your browser: signature, validity, status, transparency log and research footprint.', '/assets/og/SA-PHY-000003.png'],
 };
@@ -161,6 +162,7 @@ const AR_META = {
   'bpr/status': ['حالة التشغيل — BPR', 'حكم السجل على صحته، بما في ذلك الإخفاقات.'],
   'bpr/join': ['انضم إلى BPR', 'من تسجيل الدخول عبر ORCID إلى اعتماد موقّع.'],
   'bpr/nphies': ['مكتب نفيس: رموز الرفض والفحص والجاهزية — BPR', 'كل رموز رفض نفيس الرسمية بعربية وإنجليزية واضحتين، وفحص أولي للرسائل يعمل على جهازك، وخطة جاهزية حسب نوع المنشأة.'],
+  'bpr/clinic': ['استقبال العيادات — BPR', 'إدارة طلبات المواعيد وتقديم إجابات معتمدة للمرضى. متكامل مع سجل مقدمي الرعاية (BPR) ومكتب نفيس وصوت NVIDIA.'],
   'bpr/saudi': ['BPR في المنظومة الصحية السعودية', 'أين يمكن أن يخدم سجل برينسايت الجهات الصحية السعودية — مقترحات، مع بيان ما يعمل اليوم وما يعتمد عليه كل تكامل.'],
   'bpr/record': ['د. محمد الفاضل · سجل BPR SA-PHY-000003', 'سجل مقدم رعاية موقّع يُتحقق منه مباشرة في متصفحك: التوقيع والصلاحية والحالة والسجل الشفاف والبصمة البحثية.'],
 };
@@ -176,7 +178,7 @@ const toArabic = (html, route, meta) => {
   return out;
 };
 let arWritten = 0;
-const arPages = [['', join(root, 'index.html')], ...['cv', 'card', 'slots', 'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi', 'bpr/nphies'].map((r) => [r, join(root, r, 'index.html')])];
+const arPages = [['', join(root, 'index.html')], ...['cv', 'card', 'slots', 'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi', 'bpr/nphies', 'bpr/clinic'].map((r) => [r, join(root, r, 'index.html')])];
 if (existsSync(snapList)) {
   for (const p of JSON.parse(readFileSync(snapList, 'utf8')).items || []) {
     if (!/^SA-[A-Z]{2,4}-\d{6}$/.test(p.spid)) continue;
