@@ -24,7 +24,7 @@ writeFileSync(join(root, '404.html'), index); // SPA fallback for hard refresh
 // pages and must NOT be overwritten by the build output.
 // Only copy to SPA fallback routes (cv, card, bpr/*, slots) that need the shell.
 
-for (const route of ['profile', 'cv', 'card', 'slots',
+for (const route of ['profile', 'cv', 'card', 'slots', 'intake',
   'bpr', 'bpr/ai', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi', 'bpr/nphies', 'bpr/clinic']) {
   const routeDir = join(root, route);
   mkdirSync(routeDir, { recursive: true });
@@ -152,6 +152,7 @@ for (const f of ['assets']) {
 const AR_META = {
   '': ['د. محمد الفاضل — طبيب ومؤسس BrainSAIT', 'طبيب ومؤسس BrainSAIT في الرياض. أبني هوية صحية قابلة للتحقق وأدوات مترابطة للممارسين عبر FHIR ونفيس والذكاء الاصطناعي.'],
   profile: ['د. محمد الفاضل — طبيب ومؤسس BrainSAIT', 'طبيب ومؤسس BrainSAIT في الرياض، يبني هوية صحية قابلة للتحقق وأدوات سريرية مترابطة.'],
+  intake: ['تقييم جاهزية نفيس للمنشآت الصحية — BrainSAIT', 'اطلب تقييمًا لتكامل نفيس للعيادات والمستشفيات. لا ترسل بيانات مرضى أو بيانات اعتماد.'],
   cv: ['السيرة الذاتية — د. محمد الفاضل', 'طبيب ومؤسس BrainSAIT ومستشار تحسين ذكي للرعاية الصحية ودورة الإيرادات. سيرة ذاتية بصفحة A4 واحدة مع رمز تحقق BPR مباشر.'],
   card: ['بطاقة الأعمال — د. محمد الفاضل', 'بطاقة أعمال سوداء وليمونية برمز QR على شكل دماغ. ملف PDF جاهز للطباعة.'],
   slots: ['شواغر المستشفيات — BPR', 'سوق شواغر المستشفيات في BPR: تنشر المستشفيات فتراتها، ويطلبها مقدمو الرعاية الموثّقون بمعرّف BPR. ينطلق قريبًا.'],
@@ -183,7 +184,7 @@ const toArabic = (html, route, meta) => {
   return out;
 };
 let arWritten = 0;
-const arPages = ['profile', 'cv', 'card', 'slots', 'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi', 'bpr/nphies', 'bpr/clinic'].map((r) => [r, join(root, r, 'index.html')]);
+const arPages = ['profile', 'cv', 'card', 'slots', 'intake', 'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi', 'bpr/nphies', 'bpr/clinic'].map((r) => [r, join(root, r, 'index.html')]);
 if (existsSync(snapList)) {
   for (const p of JSON.parse(readFileSync(snapList, 'utf8')).items || []) {
     if (!/^SA-[A-Z]{2,4}-\d{6}$/.test(p.spid)) continue;

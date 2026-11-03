@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { AlertCircle, Clock } from 'lucide-react';
 import { useI18n } from '../i18n';
+import { useSearchParams } from 'react-router-dom';
+import { usePageMeta } from '../hooks/usePageMeta';
 
 const WEBHOOK_URL = 'https://lead-capture.brainsait-fadil.workers.dev/intake';
 const STORE = 'https://store.brainsait.de';
@@ -17,12 +19,14 @@ const OFFERS: Record<string, Offer> = {
   build: { name: 'BUILD Ticket — Incubation Pass', nameAr: 'تذكرة BUILD — برنامج الاحتضان', price: '9,630 SAR', url: `${STORE}/products/build-full-program-ticket` },
   bpr_pro: { name: 'BPR AI Professional', nameAr: 'BPR AI مهني', price: '4,900-9,900 SAR/yr', url: `${STORE}/products/provider-registry` },
   bpr_elite: { name: 'BPR AI Elite', nameAr: 'BPR AI نخبة', price: '19,900 SAR/yr', url: `${STORE}/products/provider-registry` },
-  solutions_ready: { name: 'Solutions Ready / BPR Organization', nameAr: 'حلول جاهزة / سجل المؤسسة', price: '24,000 SAR', url: `${STORE}/collections/solutions-ready` }
+  solutions_ready: { name: 'Solutions Ready / BPR Organization', nameAr: 'حلول جاهزة / سجل المؤسسة', price: '24,000 SAR', url: `${STORE}/collections/solutions-ready` },
+  nphies_discovery: { name: 'NPHIES facility readiness & integration scoping', nameAr: 'تقييم جاهزية المنشأة ونطاق تكامل نفيس', price: 'Scope and proposal after discovery', url: 'https://calendar.app.google/BrainSAIT48hSprint' }
 };
 
 type OfferKey = keyof typeof OFFERS;
 
 function getLocalRouting(data: FormData): OfferKey[] {
+  if (data.main_interest === 'nphies_fhir') return ['nphies_discovery'];
   if (data.main_interest === 'build_sprint' || data.customer_type === 'founder' || data.customer_type === 'student') {
     return ['build', 'strategy'];
   }
@@ -122,11 +126,19 @@ interface FormData {
 
 export default function IntakeForm() {
   const { ar } = useI18n();
+  const [searchParams] = useSearchParams();
+  const nphiesInquiry = searchParams.get('nphies') === '1';
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     name: '', email: '', phone: '', country: '',
-    customer_type: '', main_interest: '', budget: '', urgency: '',
+    customer_type: '', main_interest: nphiesInquiry ? 'nphies_fhir' : '', budget: '', urgency: '',
     message: ''
+  });
+  const isNphiesInterest = nphiesInquiry || formData.main_interest === 'nphies_fhir';
+  usePageMeta({
+    title: ar ? (isNphiesInterest ? 'تقييم جاهزية نفيس للمنشآت الصحية — BrainSAIT' : 'تواصل مع BrainSAIT') : (isNphiesInterest ? 'NPHIES facility readiness — BrainSAIT' : 'Contact BrainSAIT'),
+    description: ar ? 'اطلب تقييمًا لتكامل نفيس للعيادات والمستشفيات. لا ترسل بيانات مرضى أو بيانات اعتماد.' : 'Request an authorized NPHIES integration readiness assessment for a clinic or hospital. Do not submit patient data or credentials.',
+    url: '/intake', type: 'website',
   });
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<{ ok: boolean; routing?: OfferKey[] } | null>(null);
@@ -135,7 +147,6 @@ export default function IntakeForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    const fallbackRouting = getLocalRouting(formData);
     try {
       const res = await fetch(WEBHOOK_URL, {
         method: 'POST',
@@ -144,19 +155,16 @@ export default function IntakeForm() {
       });
       const data = await res.json().catch(() => null);
       if (res.ok && data?.status === 'processed') {
-        const routing = (data.routing || []).map((r: string) => r as OfferKey);
+        const isNphies = nphiesInquiry || formData.main_interest === 'nphies_fhir';
+        const routing = isNphies ? ['nphies_discovery'] as OfferKey[] : (data.routing || []).map((r: string) => r as OfferKey);
         setResult({ ok: true, routing });
-        setThankYouData({ name: formData.name || 'Friend', routing: routing.length ? routing : fallbackRouting });
+        setThankYouData({ name: formData.name || 'Friend', routing: routing.length ? routing : getLocalRouting(formData) });
         setStep(3);
       } else {
-        setResult({ ok: true, routing: fallbackRouting });
-        setThankYouData({ name: formData.name || 'Friend', routing: fallbackRouting });
-        setStep(3);
+        setResult({ ok: false });
       }
     } catch {
-      setResult({ ok: true, routing: fallbackRouting });
-      setThankYouData({ name: formData.name || 'Friend', routing: fallbackRouting });
-      setStep(3);
+      setResult({ ok: false });
     }
     setSubmitting(false);
   };
@@ -177,13 +185,13 @@ export default function IntakeForm() {
           </div>
           <h1 style={{ fontSize: '2rem', color: '#fff', marginBottom: 8, lineHeight: 1.3 }}>
             {ar
-              ? 'ساعدنا في فهم احتياجاتك الصحية'
-              : 'Help Us Understand Your Healthcare AI Needs'}
+              ? isNphiesInterest ? 'تقييم جاهزية نفيس لمنشأتك' : 'ساعدنا في فهم احتياجاتك الصحية'
+              : isNphiesInterest ? 'NPHIES readiness for your facility' : 'Help Us Understand Your Healthcare AI Needs'}
           </h1>
           <p style={{ color: '#94a3b8', lineHeight: 1.6, maxWidth: 500, margin: '0 auto' }}>
             {ar
-              ? 'املأ هذا النموذج السريع وسنرشدك إلى أسرع طريقة للبدء مع BrainSAIT — جلسة استراتيجية، BUILD، BPR، أو حلول جاهزة.'
-              : 'Fill this quick form and we will guide you to the fastest way to start with BrainSAIT.'}
+              ? isNphiesInterest ? 'شارك احتياج منشأتك لتحديد نطاق تكامل نفيس المصرح به. لا تدخل بيانات مرضى أو بيانات اعتماد.' : 'املأ هذا النموذج السريع وسنرشدك إلى أسرع طريقة للبدء مع BrainSAIT — جلسة استراتيجية، BUILD، BPR، أو حلول جاهزة.'
+              : isNphiesInterest ? 'Share your facility and workflow needs to scope an authorized NPHIES integration. Do not enter patient information or credentials.' : 'Fill this quick form and we will guide you to the fastest way to start with BrainSAIT.'}
           </p>
         </div>
 
@@ -272,7 +280,7 @@ export default function IntakeForm() {
               </select>
             </div>
 
-            <div>
+            {!isNphiesInterest && <div>
               <label style={{ color: '#94a3b8', fontSize: '0.9rem', display: 'block', marginBottom: 8 }}>
                 {ar ? 'الاستعداد للميزانية *' : 'Budget Readiness *'}
               </label>
@@ -282,7 +290,8 @@ export default function IntakeForm() {
                 <option value="">{ar ? 'اختر...' : 'Select...'}</option>
                 {BUDGET_RANGES.map(b => <option key={b.value} value={b.value}>{ar ? b.ar : b.en}</option>)}
               </select>
-            </div>
+            </div>}
+            {isNphiesInterest && <p style={{ color: '#94a3b8', margin: 0 }}>{ar ? 'يُحدد نطاق السعر بعد فهم الأنظمة وسير العمل ومتطلبات الربط.' : 'Pricing is scoped after reviewing your systems, workflows and connectivity requirements.'}</p>}
 
             <div>
               <label style={{ color: '#94a3b8', fontSize: '0.9rem', display: 'block', marginBottom: 8 }}>
@@ -300,7 +309,7 @@ export default function IntakeForm() {
               <label style={{ color: '#94a3b8', fontSize: '0.9rem', display: 'block', marginBottom: 8 }}>
                 {ar ? 'وصف مشكلتك أو احتياجك' : 'Describe Your Problem or Need'}
               </label>
-              <textarea rows={4} placeholder={ar ? 'اكتب هنا...' : 'Write here...'} value={formData.message}
+              <textarea rows={4} placeholder={ar ? isNphiesInterest ? 'حجم المنشأة ونظام السجلات ومسارات المطالبات وحالة الوصول أو البيئة التجريبية — دون بيانات مرضى أو اعتماد.' : 'اكتب هنا...' : isNphiesInterest ? 'Facility size, EHR, claim workflows, current access or sandbox status — no patient information or credentials.' : 'Write here...'} value={formData.message}
                 onChange={e => setFormData({...formData, message: e.target.value})}
                 style={{ padding: '14px 16px', borderRadius: 10, border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '1rem', width: '100%', resize: 'vertical', outline: 'none' }}
                 onFocus={e => e.target.style.borderColor = '#0ea5e9'}
@@ -329,7 +338,7 @@ export default function IntakeForm() {
         {result && !result.ok && (
           <div style={{ marginTop: 24, padding: 16, background: '#7f1d1d', borderRadius: 10, color: '#fca5a5', display: 'flex', alignItems: 'center', gap: 8 }}>
             <AlertCircle size={18} />
-            {ar ? 'حدث خطأ. يرجى المحاولة مرة أخرى.' : 'Something went wrong. Please try again.'}
+            <span>{ar ? 'تعذر تأكيد استلام الطلب. أعد المحاولة أو أرسل تفاصيل جهة الاتصال فقط عبر ' : 'We could not confirm receipt. Retry, or email your contact details only to '}<a href={`mailto:hello@brainsait.de?subject=${encodeURIComponent(isNphiesInterest ? 'NPHIES facility readiness inquiry' : 'BrainSAIT inquiry')}`} style={{ color: '#fff', textDecoration: 'underline' }}>hello@brainsait.de</a>. {ar ? 'لا ترسل بيانات مرضى أو كلمات مرور.' : 'Do not email patient data or passwords.'}</span>
           </div>
         )}
       </div>

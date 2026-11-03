@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { AlertTriangle, ArrowRight, ArrowUpRight, CheckCircle2, ClipboardCheck, FileSearch, Info, Lock, Printer, Search, ShieldCheck, Stethoscope, UploadCloud, XCircle } from 'lucide-react';
+import { AlertTriangle, ArrowRight, ArrowUpRight, CheckCircle2, ClipboardCheck, FileSearch, Info, Lock, Printer, Search, ShieldCheck, Stethoscope, UploadCloud, XCircle, Building2, Workflow, PlugZap } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout, Failed, Loading } from '../../components/BprKit';
@@ -45,8 +45,46 @@ const TABS = [
   { id: 'clinician', icon: Stethoscope, en: 'Clinician data', ar: 'بيانات الممارس' },
   { id: 'changes', icon: Info, en: 'What changed', ar: 'ما الذي تغيّر' },
   { id: 'api', icon: ArrowUpRight, en: 'Docs API', ar: 'واجهة الوثائق' },
+  { id: 'service', icon: Building2, en: 'For clinics & hospitals', ar: 'للعيادات والمستشفيات' },
 ] as const;
 type TabId = (typeof TABS)[number]['id'];
+
+function ServiceOffer() {
+  const { ar } = useI18n();
+  const title = ar ? 'نفيس كخدمة لمنشأتك الصحية' : 'NPHIES as a service for your facility';
+  return <section className="bpr-panel nph-service" aria-labelledby="nph-service-title">
+    <h2 id="nph-service-title">{title}</h2>
+    <p className="nph-lead">{ar
+      ? 'مسار تنفيذ مؤسسي يربط سير عمل المنشأة بأنظمة نفيس عبر تكامل معتمد ومصرح به. نبدأ بتقييم جاهزية قابل للتنفيذ، ثم نبني التكامل وفق بيئة المنشأة وموافقاتها.'
+      : 'An implementation pathway connecting your facility workflows to NPHIES through authorized, approved connectivity. Start with an actionable readiness assessment, then scope the integration around your systems and approvals.'}</p>
+    <div className="nph-service-grid">
+      <article><FileSearch size={20}/><h3>{ar ? '١. تقييم الجاهزية' : '1. Readiness assessment'}</h3><p>{ar ? 'تحديد أنواع المطالبات، تدفقات الأهلية والموافقات، خرائط البيانات، فجوات الترميز، ومتطلبات التشغيل والأمن.' : 'Map claim types, eligibility and authorization workflows, data fields, coding gaps, and operational and security requirements.'}</p></article>
+      <article><PlugZap size={20}/><h3>{ar ? '٢. تجربة تكامل' : '2. Integration pilot'}</h3><p>{ar ? 'موصلات FHIR وأنظمة المنشأة، طوابير معاملات قابلة للتتبع، إعادة المحاولة الآمنة، وفحوص قبل الإرسال؛ مع اختبار في بيئة مصرح بها.' : 'FHIR and facility-system adapters, traceable transaction queues, safe retries, and pre-send checks, exercised in an authorized environment.'}</p></article>
+      <article><Workflow size={20}/><h3>{ar ? '٣. تشغيل مُدار' : '3. Managed operations'}</h3><p>{ar ? 'مراقبة المعاملات، توجيه الرفض، تقارير دورة الإيرادات، إدارة الإصدارات، ودعم الفرق ضمن اتفاقية تشغيل متفق عليها.' : 'Transaction monitoring, rejection routing, revenue-cycle reporting, release management, and team support under an agreed operating plan.'}</p></article>
+    </div>
+    <h3 className="nph-sub">{ar ? 'نطاق الخدمة بحسب المنشأة' : 'Service scope by facility'}</h3>
+    <div className="nph-table-wrap"><table className="nph-table"><thead><tr><th>{ar ? 'المنشأة' : 'Facility'}</th><th>{ar ? 'مسارات العمل التي تُحدد في التقييم' : 'Workflows scoped during assessment'}</th></tr></thead><tbody>
+      <tr><th>{ar ? 'العيادات والمراكز' : 'Clinics & medical centres'}</th><td>{ar ? 'الأهلية، الموافقات المسبقة، المطالبات المهنية، الإحالات، متابعة الردود والرفض.' : 'Eligibility, prior authorization, professional claims, referrals, response and rejection follow-up.'}</td></tr>
+      <tr><th>{ar ? 'المستشفيات' : 'Hospitals'}</th><td>{ar ? 'المطالبات المؤسسية والمهنية، DRG والفوترة الموازية، الموافقات، التنويم، المطالبات المصححة وتسوية الرفض.' : 'Institutional and professional claims, DRG and shadow billing, authorization, admissions, corrected claims, and rejection reconciliation.'}</td></tr>
+      <tr><th>{ar ? 'الصيدليات والتخصصات' : 'Pharmacies & specialties'}</th><td>{ar ? 'مسارات الصيدلة والأسنان والبصريات عند الحاجة، بعد مطابقة ملف المنشأة وقوائم الرموز الفعلية.' : 'Pharmacy, dental, and optical workflows where needed, after validating facility profiles and current code sets.'}</td></tr>
+    </tbody></table></div>
+    <h3 className="nph-sub">{ar ? 'موارد التنفيذ والاعتماد الرسمية' : 'Official implementation and onboarding resources'}</h3>
+    <div className="nph-resource-grid">
+      <a href="https://portal.nphies.sa/ig/" target="_blank" rel="noopener noreferrer"><strong>{ar ? 'دليل التنفيذ الفني' : 'Implementation guide'}</strong><span>{ar ? 'ملفات FHIR وتدفقات العمل ومواصفات الرسائل المنشورة عبر بوابة نفيس.' : 'FHIR profiles, workflow exchanges and message specifications published through the NPHIES portal.'}</span></a>
+      <a href="https://portal.nphies.sa/ig/CapabilityStatement-Provider.html" target="_blank" rel="noopener noreferrer"><strong>{ar ? 'قدرات مقدم الخدمة' : 'Provider capability statement'}</strong><span>{ar ? 'مرجع لقدرات وتفاعلات مقدم الخدمة المنشورة في الدليل.' : 'Published provider capabilities and interactions in the implementation guide.'}</span></a>
+      <a href="https://chi.gov.sa/en/Uniplat/Pages/default3.aspx" target="_blank" rel="noopener noreferrer"><strong>{ar ? 'اعتماد الموردين ومسار الانضمام' : 'Vendor certification and onboarding'}</strong><span>{ar ? 'التدريب الفني والاختبارات المرجعية ومتطلبات التأهيل لدى مجلس الضمان الصحي.' : 'CHI vendor qualification, technical training, reference testing and onboarding information.'}</span></a>
+    </div>
+    <div className="nph-service-note"><Lock size={16}/><p>{ar
+      ? 'نفيس-Linc معروض كخدمة تنفيذ وتصميم تكامل، وليس بوابة معاملات متصلة حاليًا. تفعيل الإرسال يتطلب اعتماد المنشأة، صلاحيات وبيانات ربط رسمية، وثائق نافذة، واختبارات قبول وتصديق بحسب ما تطلبه نفيس. لا ترسلوا بيانات مرضى في نموذج الاستفسار.'
+      : 'NPHIES-Linc is offered as an integration implementation service; it is not currently a connected transaction gateway. Live submission requires facility approval, official access credentials, current specifications, and the acceptance or certification steps required by NPHIES. Do not include patient data in the inquiry form.'}</p></div>
+    <div className="profile-actions">
+      <Link className="profile-button primary" to="/intake?nphies=1">{ar ? 'اطلب تقييم جاهزية لمنشأتك' : 'Request a facility readiness assessment'}<ArrowRight size={16}/></Link>
+      <Link className="profile-button secondary" to="/bpr/clinic">{ar ? 'استكشف أتمتة الاستقبال' : 'Explore reception automation'}</Link>
+      <Link className="profile-button secondary" to="/bpr/ai">{ar ? 'استكشف مساعد التوثيق' : 'Explore the clinical copilot'}</Link>
+    </div>
+    <p className="nph-note">{ar ? 'يشمل نطاق الاستكشاف موصل OpenEMR أو نظام المنشأة، مع تكامل الصوت والذكاء الاصطناعي كمسارات اختيارية مستقلة تخضع للمراجعة والموافقة. لا تُستخدم النماذج لاتخاذ قرار مطالبة آلي.' : 'Discovery can include an OpenEMR or facility-system adapter. Voice and AI are optional, separately reviewed workflows. Models do not make automated claim decisions.'}</p>
+  </section>;
+}
 
 function reasonLink(code: string) { return `/bpr/nphies?tab=decode&code=${encodeURIComponent(code)}`; }
 
@@ -364,8 +402,8 @@ export default function Nphies() {
       lead={ar ? 'مرجع ثنائي اللغة مبني على وثائق نفيس المصنفة عامة: كل رمز رفض بلغة واضحة، وفحص أولي على جهازك، وخطة حسب نوع منشأتك.' : 'A bilingual reference built from NPHIES documents labelled public: every rejection code in plain language, a pre-check that runs on your device, and a plan for your type of facility.'}>
       <div className="nph-status" role="note">
         <span className="ws-status live">{ar ? 'يعمل اليوم' : 'Live today'}</span><span>{ar ? 'هذا المكتب المرجعي' : 'This reference desk'}</span>
-        <span className="ws-status awaiting">{ar ? 'تكامل جارٍ' : 'Ongoing integration'}</span><span>{ar ? 'إرسال المعاملات إلى نفيس' : 'Sending transactions to NPHIES'}</span>
-        <small>{ar ? 'عرض توضيحي: الشروح والخطوات إرشادات من برينسايت وما زالت قيد المراجعة، فلا تعتمد عليها في قرار مطالبة فعلية. وهو مرجع مستقل، غير متصل بنفيس وغير معتمد منه، ولا يصدر عن مجلس الضمان الصحي.' : 'Demonstration: the explanations and steps are BrainSAIT guidance still under review, so do not rely on them for a live claim decision. Independent reference. Not connected to or certified by NPHIES, and not issued by the Council of Health Insurance.'}</small>
+        <span className="ws-status awaiting">{ar ? 'غير متصل' : 'Not connected'}</span><span>{ar ? 'بوابة معاملات نفيس' : 'NPHIES transaction gateway'}</span>
+    <small>{ar ? 'هذا مرجع مستقل وفحوص أولية، وليس خدمة إرسال معاملات متصلة أو معتمدة من نفيس أو مجلس الضمان الصحي. يلزم التحقق من الإرشادات قبل الاستخدام التشغيلي.' : 'This is an independent reference and preliminary checker, not a connected transaction service or a service certified by NPHIES or the Council of Health Insurance. Verify guidance before operational use.'}</small>
       </div>
       <nav className="nph-tabs" aria-label={ar ? 'أقسام مكتب نفيس' : 'NPHIES desk sections'}>
         {TABS.map((t) => (
@@ -380,6 +418,7 @@ export default function Nphies() {
       {tab === 'clinician' && <Clinician />}
       {tab === 'changes' && <Changes />}
       {tab === 'api' && <Api />}
+      {tab === 'service' && <ServiceOffer />}
     </BprLayout>
   );
 }
