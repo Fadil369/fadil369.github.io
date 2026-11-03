@@ -802,3 +802,10 @@
 
 .clinic-search input{color:var(--profile-text);min-width:0;width:100%;min-height:44px}
 .clinic-search input::placeholder{color:var(--profile-muted);opacity:1}
+
+.bpr-api-response { margin-inline-start: 26px; }
+.bpr-api-response-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 10px 12px; border: 1px solid var(--profile-line); border-bottom: 0; color: var(--profile-muted); font: 11px 'IBM Plex Mono', monospace; }
+.bpr-api-response-head > span:first-child { color: var(--profile-text); font-weight: 700; }
+.bpr-api-response-head button { margin-inline-start: auto; border: 1px solid var(--profile-line); padding: 4px 9px; background: transparent; color: var(--profile-text); cursor: pointer; }
+.bpr-api-response .bpr-out { margin: 0; }
+@media (max-width: 640px) { .bpr-api-response { margin-inline-start: 0; } }

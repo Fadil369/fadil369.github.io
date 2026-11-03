@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Copy, Play } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
@@ -32,8 +32,11 @@ export default function Developers() {
   const { ar } = useI18n();
   const cap = useLoad<FhirCapability>('/fhir/metadata', 'fhir/metadata.json');
   const [open, setOpen] = useState<string | null>(null);
-  const [out, setOut] = useState<Record<string, string>>({});
+  const [out, setOut] = useState<Record<string, { body: string; status?: number; elapsed?: number; contentType?: string; truncated?: boolean; loading?: boolean }>>({});
   const [copied, setCopied] = useState('');
+  const activeRequest = useRef<AbortController | null>(null);
+  const requestId = useRef(0);
+  useEffect(() => () => activeRequest.current?.abort(), []);
   usePageMeta({
     title: ar ? 'FHIR والواجهة العامة — BPR' : 'FHIR R4 & public API — BPR',
     description: ar ? 'موارد FHIR R4 وواجهة JSON عامة ونقاط التحقق لسجل برينسايت.' : 'FHIR R4 resources, the public JSON API and verification endpoints of the BrainSAIT Provider Registry.',
@@ -41,21 +44,39 @@ export default function Developers() {
   });
 
   const tryIt = async (path: string) => {
+    activeRequest.current?.abort();
+    const controller = new AbortController();
+    activeRequest.current = controller;
+    const id = ++requestId.current;
+    const started = performance.now();
+    const timeout = window.setTimeout(() => controller.abort(), 10000);
     setOpen(path);
-    setOut((o) => ({ ...o, [path]: '…' }));
+    setOut((o) => ({ ...o, [path]: { body: ar ? 'جارٍ تنفيذ الطلب…' : 'Requesting…', loading: true } }));
     try {
-      const r = await fetch(REGISTRY + path, { cache: 'no-store' });
-      const t = await r.text();
-      let body = t;
-      try { body = JSON.stringify(JSON.parse(t), null, 2); } catch { /* not JSON */ }
-      setOut((o) => ({ ...o, [path]: `HTTP ${r.status}\n\n${body.slice(0, 6000)}${body.length > 6000 ? '\n…' : ''}` }));
-    } catch {
-      setOut((o) => ({ ...o, [path]: ar
-        ? 'تعذّر الوصول إلى السجل من هذا المتصفح. جرّب curl.'
-        : 'The registry could not be reached from this browser. Try curl.' }));
+      const r = await fetch(REGISTRY + path, { cache: 'no-store', signal: controller.signal, headers: { Accept: path.startsWith('/fhir/') ? 'application/fhir+json, application/json' : 'application/json' } });
+      const raw = await r.text();
+      const elapsed = Math.round(performance.now() - started);
+      const truncated = raw.length > 12000;
+      const excerpt = raw.slice(0, 12000);
+      let body = excerpt;
+      try { body = JSON.stringify(JSON.parse(excerpt), null, 2); } catch { /* show non-JSON responses as text */ }
+      if (id === requestId.current) setOut((o) => ({ ...o, [path]: { body, status: r.status, elapsed, contentType: r.headers.get('content-type') || 'unknown', truncated } }));
+    } catch (error) {
+      if (id !== requestId.current) return;
+      const timedOut = controller.signal.aborted;
+      setOut((o) => ({ ...o, [path]: { body: timedOut
+        ? (ar ? 'انتهت مهلة الطلب بعد 10 ثوانٍ. أعد المحاولة أو استخدم curl.' : 'Request timed out after 10 seconds. Retry or use curl.')
+        : (ar ? 'تعذّر الوصول إلى السجل من هذا المتصفح. افحص اتصال الشبكة أو استخدم curl.' : 'The registry could not be reached from this browser. Check network access or try curl.'), elapsed: Math.round(performance.now() - started) } }));
+    } finally {
+      window.clearTimeout(timeout);
+      if (id === requestId.current) activeRequest.current = null;
     }
   };
-  const copy = (path: string) => navigator.clipboard?.writeText(`curl -s '${REGISTRY}${path}'`).then(() => { setCopied(path); setTimeout(() => setCopied(''), 1600); }, () => {});
+  const cancelRequest = () => { requestId.current += 1; activeRequest.current?.abort(); activeRequest.current = null; };
+  const copy = async (path: string) => {
+    try { await navigator.clipboard.writeText(`curl -i -H 'Accept: application/json' '${REGISTRY}${path}'`); setCopied(path); window.setTimeout(() => setCopied(''), 1800); }
+    catch { setCopied(''); }
+  };
 
   return (
     <BprLayout kicker={ar ? 'للمطورين' : 'For developers'}
@@ -78,7 +99,7 @@ export default function Developers() {
 
       <section className="bpr-panel">
         <h2>{ar ? 'نقاط الوصول العامة' : 'Public endpoints'}</h2>
-        <p className="bpr-note">{ar ? 'الأساس' : 'Base'}: <code dir="ltr">{REGISTRY}</code>. {ar ? 'كل المسارات العامة تقبل الطلبات من أي متصفح (CORS) — للقراءة فقط، دون ملفات تعريف الارتباط.' : 'Every public route accepts requests from any browser (CORS) — read-only, no cookies.'}</p>
+        <p className="bpr-note">{ar ? 'الأساس' : 'Base'}: <code dir="ltr">{REGISTRY}</code>. {ar ? 'مسارات القراءة العامة متاحة للمتصفح (CORS) ولا تحتاج إلى ملفات تعريف ارتباط. تستعمل هذه الأداة GET فقط ولا ترسل عمليات كتابة.' : 'Public read routes are browser-accessible (CORS) and require no cookies. This explorer uses GET only; it never sends writes.'}</p>
         <ul className="bpr-endpoints">
           {ENDPOINTS.map((e) => (
             <li key={e.path}>
@@ -91,7 +112,15 @@ export default function Developers() {
                   <button onClick={() => copy(e.path)} aria-label={`${ar ? 'انسخ curl' : 'Copy curl'} ${e.path}`}><Copy size={13} />{copied === e.path ? (ar ? 'نُسخ' : 'Copied') : 'curl'}</button>
                 </div>
               </div>
-              {open === e.path && out[e.path] && <pre className="bpr-out" dir="ltr">{out[e.path]}</pre>}
+              {open === e.path && out[e.path] && <div className="bpr-api-response">
+                <div className="bpr-api-response-head" aria-live="polite">
+                  <span>{out[e.path].loading ? (ar ? 'جارٍ الاتصال…' : 'Connecting…') : out[e.path].status ? `HTTP ${out[e.path].status}` : (ar ? 'تعذّر الاتصال' : 'Connection error')}</span>
+                  {Number.isFinite(out[e.path].elapsed) && <span>{out[e.path].elapsed} ms</span>}
+                  {out[e.path].contentType && <span>{out[e.path].contentType}</span>}
+                  {out[e.path].loading && <button type="button" onClick={cancelRequest}>{ar ? 'إيقاف' : 'Cancel'}</button>}
+                </div>
+                <pre className="bpr-out" dir="ltr">{out[e.path].body}{out[e.path].truncated ? '\n\n… response preview capped at 12,000 characters' : ''}</pre>
+              </div>}
             </li>
           ))}
         </ul>
