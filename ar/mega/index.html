@@ -137,6 +137,23 @@ img{max-width:100%;height:auto}
 
 /* ═══ REDUCED MOTION ═══ */
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+
+/* ═══ ACCESSIBILITY: focus-visible everywhere ═══ */
+*:focus-visible{outline:2px solid var(--accent2,#64d8c5);outline-offset:3px;border-radius:4px}
+.nav-link:focus-visible,.nav-cta:focus-visible,.btn:focus-visible,.intent-link:focus-visible,.nav-lang:focus-visible{background:rgba(237,243,74,.1)!important;outline-offset:2px;box-shadow:0 0 20px rgba(237,243,74,.2)}
+.skip-link:focus{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:9999;padding:16px 28px;background:var(--accent,#edf34a);color:var(--bg,#090a08);border-radius:12px;font-weight:700;box-shadow:0 12px 40px rgba(0,0,0,.5)}
+a:focus-visible{outline-offset:2px}
+section[id]{scroll-margin-top:80px}
+@media(pointer:coarse){.nav-link,.nav-cta,.btn,.intent-link{min-height:44px}}
+::selection{background:rgba(237,243,74,.3);color:inherit}
+
+/* ═══ MICRO-INTERACTIONS ═══ */
+.intent-card,.intent-link,.btn{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease}
+.intent-card:hover{transform:translateY(-4px)!important;box-shadow:0 20px 40px rgba(0,0,0,.4)!important}
+.btn:hover{transform:translateY(-2px)!important}
+.directory tr{transition:background .15s ease}
+.final-cta{transition:box-shadow .3s ease}
+.final-cta:hover{box-shadow:inset 0 0 60px rgba(237,243,74,.05)}
 </style>
 </head>
 <body>

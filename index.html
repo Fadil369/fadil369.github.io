@@ -423,6 +423,22 @@ img{max-width:100%;height:auto}
   .mega-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:480px){.mega-grid{grid-template-columns:1fr}}
+
+/* ═══ ACCESSIBILITY: focus-visible + micro-interactions ═══ */
+*:focus-visible{outline:2px solid var(--accent2,#64d8c5)!important;outline-offset:3px;border-radius:4px!important}
+.nav-link:focus-visible,.mega-card:focus-visible,.btn-primary:focus-visible,.btn:focus-visible,.nav-cta:focus-visible,.nav-dd-item:focus-visible{background:rgba(237,243,74,.12)!important;box-shadow:0 0 20px rgba(237,243,74,.2)!important;outline-offset:2px!important}
+.skip-link:focus{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:9999;padding:16px 28px;background:var(--accent,#edf34a);color:var(--bg,#090a08);border-radius:12px;font-weight:700;font-size:15px;box-shadow:0 12px 40px rgba(0,0,0,.5);width:auto;height:auto;clip:auto;overflow:visible;margin:0}
+section[id]{scroll-margin-top:100px}
+@media(pointer:coarse){.nav-link,.nav-cta,.btn-primary,.btn,.mega-card,.mobile-section a{min-height:44px}}
+::selection{background:rgba(237,243,74,.3);color:inherit}
+
+/* ═══ Micro-interactions ═══ */
+.float-card,.cred-widget,.btn-primary,.btn{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease}
+.float-card:hover,.cred-widget:hover{transform:translateY(-3px)!important;box-shadow:0 12px 24px rgba(0,0,0,.35)!important}
+.btn-primary:hover,.btn:hover{transform:translateY(-2px)!important}
+.mega-card:hover{transform:translateY(-2px)!important}
+.arch-canvas-wrap{transition:opacity .3s ease}
+.arch-canvas-wrap canvas{transition:opacity .3s ease}
 </style>
 <link rel="stylesheet" href="/assets/landing-accessibility.css" />
 <script src="/assets/landing-accessibility.js" defer></script>
