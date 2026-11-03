@@ -124,7 +124,7 @@ function AppShell() {
           <Route path="/bpr/record" element={<Record />} />
           <Route path="/bpr/saudi" element={<Saudi />} />
           <Route path="/bpr/nphies" element={<Nphies />} />
-          <Route path="/bpr/clinic" element={<Clinic />} />
+          <Route path="/bpr/clinic*" element={<Clinic />} />
           <Route path="/slots" element={<Slots />} />
           <Route path="/id" element={<Navigate to="/bpr/record" replace />} />
           <Route path="/doctors/:spid" element={<SpidRedirect />} />

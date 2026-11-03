@@ -102,8 +102,13 @@ for (const [path, graph, , lang] of ALL) {
   try {
     await tab.goto(server.base + path, { waitUntil: 'networkidle', timeout: 30000 });
     await tab.waitForFunction(() => !document.querySelector('.bpr-check.pending, .bpr-state[role="status"]'), null, { timeout: 12000 }).catch(() => {});
-    // Wait for React to hydrate #root (some routes take longer)
-    await tab.waitForFunction(() => document.getElementById('root') !== null, null, { timeout: 15000 }).catch(() => {});
+    // Wait for React to hydrate #root - wait for meaningful content to appear
+    await tab.waitForFunction(() => {
+      const root = document.getElementById('root');
+      return root && root.innerText && root.innerText.trim().length > 10;
+    }, null, { timeout: 20000 }).catch(() => {});
+    // Small additional wait for any remaining async renders
+    await tab.waitForTimeout(1000).catch(() => {});
     const got = await tab.evaluate(() => {
       const root = document.getElementById('root');
       if (!root) return { html: '', title: document.title, description: '', text: 0 };
