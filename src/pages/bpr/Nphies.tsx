@@ -75,7 +75,7 @@ function ServiceOffer() {
       <a href="https://chi.gov.sa/en/Uniplat/Pages/default3.aspx" target="_blank" rel="noopener noreferrer"><strong>{ar ? 'اعتماد الموردين ومسار الانضمام' : 'Vendor certification and onboarding'}</strong><span>{ar ? 'التدريب الفني والاختبارات المرجعية ومتطلبات التأهيل لدى مجلس الضمان الصحي.' : 'CHI vendor qualification, technical training, reference testing and onboarding information.'}</span></a>
     </div>
     <div className="nph-service-note"><Lock size={16}/><p>{ar
-      ? 'نفيس-Linc معروض كخدمة تنفيذ وتصميم تكامل، وليس بوابة معاملات متصلة حاليًا. تفعيل الإرسال يتطلب اعتماد المنشأة، صلاحيات وبيانات ربط رسمية، وثائق نافذة، واختبارات قبول وتصديق بحسب ما تطلبه نفيس. لا ترسلوا بيانات مرضى في نموذج الاستفسار.'
+      ? 'NPHIES-Linc معروض كخدمة تنفيذ وتصميم تكامل، وليس بوابة معاملات متصلة حاليًا. تفعيل الإرسال يتطلب اعتماد المنشأة، صلاحيات وبيانات ربط رسمية، وثائق نافذة، واختبارات قبول وتصديق بحسب ما تطلبه نفيس. لا ترسلوا بيانات مرضى في نموذج الاستفسار.'
       : 'NPHIES-Linc is offered as an integration implementation service; it is not currently a connected transaction gateway. Live submission requires facility approval, official access credentials, current specifications, and the acceptance or certification steps required by NPHIES. Do not include patient data in the inquiry form.'}</p></div>
     <div className="profile-actions">
       <Link className="profile-button primary" to="/intake?nphies=1">{ar ? 'اطلب تقييم جاهزية لمنشأتك' : 'Request a facility readiness assessment'}<ArrowRight size={16}/></Link>
