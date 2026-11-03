@@ -41,7 +41,6 @@
   -webkit-text-fill-color: var(--text);
 }
 [data-theme="light"] .btn-primary,
-[data-theme="light"] .nav-cta,
 [data-theme="light"] .cred-verify-btn {
   color: #fff;
 }

@@ -17,6 +17,8 @@
 <meta property="og:locale" content="en_US" />
 <meta property="og:locale:alternate" content="ar_SA" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23090a08'/%3E%3Crect x='8' y='8' width='84' height='84' rx='18' fill='%23edf34a'/%3E%3Ctext x='50' y='64' font-family='Arial,sans-serif' font-weight='bold' font-size='38' fill='%23090a08' text-anchor='middle'%3EEF%3C/text%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
 <link rel="canonical" href="https://fadil369.github.io/mega/" />
 <link rel="alternate" hreflang="en" href="https://fadil369.github.io/mega/" />
 <link rel="alternate" hreflang="ar" href="https://fadil369.github.io/ar/mega/" />
@@ -31,7 +33,7 @@
 :root {
   --bg:#090a08; --surface:#121512; --surface2:#1a1f1a;
   --line:#2a3229; --line2:#35413b;
-  --text:#f2f6f3; --muted:#8a998d; --muted2:#5a6b5d;
+  --text:#f2f6f3; --muted:#8a998d; --muted2:#708275;
   --accent:#edf34a; --accent2:#64d8c5; --accent3:#c4a030;
   --emr:#3b82f6; --copilot:#8b5cf6; --nvidia:#76b900;
   --brev:#f97316; --nphies:#06b6d4; --bpr:#edf34a;
@@ -69,6 +71,19 @@ img{max-width:100%;height:auto}
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(237,243,74,.35)}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
 .nav-hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+
+/* Mobile overlay & menu */
+.mobile-overlay{position:fixed;inset:0;z-index:190;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:all .3s}
+.mobile-overlay.open{opacity:1;visibility:visible}
+.mobile-menu{position:fixed;top:0;right:-320px;bottom:0;width:320px;max-width:85vw;z-index:195;background:var(--surface);border-left:1px solid var(--line);overflow-y:auto;padding:80px 24px 40px;transition:right .4s cubic-bezier(.16,1,.3,1)}
+[dir='rtl'] .mobile-menu{right:auto;left:-320px;border-left:none;border-right:1px solid var(--line);transition:left .4s cubic-bezier(.16,1,.3,1)}
+.mobile-menu.open{right:0}
+[dir='rtl'] .mobile-menu.open{left:0;right:auto}
+.mobile-section{margin-bottom:32px}
+.mobile-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px}
+.mobile-section a{display:block;padding:10px 16px;border-radius:var(--radius-sm);font-size:14px;color:var(--muted);transition:all .2s;text-decoration:none;margin-bottom:2px}
+.mobile-section a:hover{background:rgba(237,243,74,.06);color:var(--text)}
+.mobile-lang{font-size:16px!important;text-align:center;border:1px solid var(--line)!important;margin-top:16px!important}
 .nav-lang{color:var(--muted);font-size:13px;font-weight:600;margin-left:16px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;transition:all .25s}
 .nav-lang:hover{color:var(--accent);border-color:var(--accent)}
 
@@ -134,8 +149,15 @@ img{max-width:100%;height:auto}
   .final-cta{padding:36px 20px}
 }
 
+/* ═══ SCROLL REVEAL ═══ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
 /* ═══ REDUCED MOTION ═══ */
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms !important;transition-duration:.01ms !important}.reveal{opacity:1;transform:none;transition:none}}
 
 /* ═══ ACCESSIBILITY: focus-visible everywhere ═══ */
 *:focus-visible{outline:2px solid var(--accent2,#64d8c5);outline-offset:3px;border-radius:4px}
@@ -409,6 +431,7 @@ section[id]{scroll-margin-top:80px}
 <script>
 function toggleMobile(){const overlay=document.getElementById('mobileOverlay');const menu=document.getElementById('mobileMenu');const hamburger=document.getElementById('navHamburger');const open=menu.classList.toggle('open');overlay.classList.toggle('open',open);hamburger.classList.toggle('active',open);document.body.style.overflow=open?'hidden':'';menu.inert=!open;hamburger.setAttribute('aria-expanded',String(open));if(open)menu.querySelector('a').focus();else hamburger.focus()}
 window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>40)})
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){}else{const revealEls=document.querySelectorAll('.section-header,.intent-card,.final-cta,.directory');revealEls.forEach((el,i)=>{el.classList.add('reveal');if(el.classList.contains('intent-card'))el.classList.add('reveal-delay-'+(i%3+1))});const revealObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});revealEls.forEach(el=>revealObs.observe(el))}
 </script>
 </body>
 </html>

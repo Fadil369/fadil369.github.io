@@ -17,6 +17,8 @@
 <meta property="og:locale" content="ar_SA" />
 <meta property="og:locale:alternate" content="en_US" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23090a08'/%3E%3Crect x='8' y='8' width='84' height='84' rx='18' fill='%23edf34a'/%3E%3Ctext x='50' y='64' font-family='Arial,sans-serif' font-weight='bold' font-size='38' fill='%23090a08' text-anchor='middle'%3EEF%3C/text%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
 <link rel="canonical" href="https://fadil369.github.io/ar/" />
 <link rel="alternate" hreflang="en" href="https://fadil369.github.io/" />
 <link rel="alternate" hreflang="ar" href="https://fadil369.github.io/ar/" />
@@ -31,7 +33,7 @@
 :root {
   --bg:#090a08; --bg2:#0c0e0c; --surface:#121512; --surface2:#1a1f1a;
   --line:#2a3229; --line2:#35413b;
-  --text:#f2f6f3; --muted:#8a998d; --muted2:#5a6b5d;
+  --text:#f2f6f3; --muted:#8a998d; --muted2:#708275;
   --accent:#edf34a; --accent2:#64d8c5; --accent3:#c4a030;
   --emr:#3b82f6; --copilot:#8b5cf6; --nvidia:#76b900;
   --brev:#f97316; --nphies:#06b6d4; --bpr:#edf34a;
@@ -122,6 +124,13 @@ img{max-width:100%;height:auto}
   transition:all .25s;text-decoration:none;font-family:var(--mono);
 }
 .nav-lang:hover{border-color:var(--accent);color:var(--accent)}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:999px;
+  background:var(--accent);color:var(--bg);font-weight:700;font-size:14px;text-decoration:none;
+  box-shadow:var(--glow);transition:all .25s;
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(237,243,74,.35);color:var(--bg)}
+.nav-cta svg{width:16px;height:16px}
 .nav-hamburger{
   display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;
 }
@@ -177,7 +186,7 @@ img{max-width:100%;height:auto}
   margin-bottom:28px;letter-spacing:-.04em;
 }
 .hero-title .gradient-text{
-  background:linear-gradient(135deg,var(--accent)0%,var(--accent2)40%,var(--copilot)70%,var(--nvidia)100%);
+  background:linear-gradient(135deg,var(--accent)0%,var(--accent2)55%,var(--copilot)100%);
   background-size:300%300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   animation:gradientShift 6s ease infinite;
 }
@@ -546,11 +555,11 @@ function toggleMobile(){const overlay=document.getElementById('mobileOverlay');c
   <div class="hero-content">
     <div class="hero-badge"><span class="live-dot"></span>Healthcare AI Platform · Riyadh, KSA</div>
 
-    <h1 class="hero-title">
+    <h1 class="hero-title" dir="ltr">
       <span class="gradient-text">Healthcare AI</span><br/>built by clinicians,<br/>for clinicians.
     </h1>
 
-    <p class="hero-desc">
+    <p class="hero-desc" dir="ltr">
       Your BPR identity unlocks a complete ecosystem: custom OpenEMR, clinical copilot with Arabic voice,
       NVIDIA AI models trained on NPHIES, Brev HQ agent platform — all connected and verifiable.
     </p>
