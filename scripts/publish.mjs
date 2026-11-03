@@ -142,8 +142,23 @@ for (const f of ['manifest.webmanifest', 'llms.txt']) {
 }
 for (const f of ['assets']) {
   const src = join(dist, f), dst = join(root, f);
+  // Backup hand-crafted assets that must not be overwritten by Vite build
+  const PRESERVE = ['landing-accessibility.css', 'landing-accessibility.js', 'profile-og.png', 'dr-mohamed-el-fadil-front.png'];
+  const bakDir = join(root, 'assets_bak');
+  const saved = {};
+  for (const name of PRESERVE) {
+    if (existsSync(join(dst, name))) {
+      saved[name] = readFileSync(join(dst, name));
+      rmSync(join(dst, name), { force: true });
+    }
+  }
+  // Clean old Vite assets and copy new ones
   if (existsSync(dst)) rmSync(dst, { recursive: true, force: true });
   cpSync(src, dst, { recursive: true });
+  // Restore hand-crafted assets
+  for (const [name, content] of Object.entries(saved)) {
+    writeFileSync(join(dst, name), content);
+  }
 }
 // ── Arabic twins (/ar/...) ──────────────────────────────────────────────────
 // Every page also exists under /ar with lang="ar" dir="rtl" in the HTML itself and Arabic share
