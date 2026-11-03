@@ -440,6 +440,7 @@ img{max-width:100%;height:auto}
           <a href="/bpr/" class="mega-card"><span class="mega-icon">🪪</span><span class="mega-title">Provider Registry</span><span class="mega-desc">SPID · OID · W3C VC · Ed25519</span></a>
           <a href="/bpr/workspace/" class="mega-card"><span class="mega-icon">🏥</span><span class="mega-title">OpenEMR Workspace</span><span class="mega-desc">Private EMR · Copilot · Voice</span></a>
           <a href="/bpr/nphies/" class="mega-card"><span class="mega-icon">📋</span><span class="mega-title">NPHIES Desk</span><span class="mega-desc">Codes · Pre-check · Readiness</span></a>
+          <a href="/bpr/nvidia/" class="mega-card"><span class="mega-icon">🟢</span><span class="mega-title">NVIDIA Health AI</span><span class="mega-desc">Nemotron · NPHIES trained</span></a>
           <a href="/bpr/providers/" class="mega-card"><span class="mega-icon">👥</span><span class="mega-title">Provider Directory</span><span class="mega-desc">Browse by SPID</span></a>
           <a href="/bpr/verify/" class="mega-card"><span class="mega-icon">🔐</span><span class="mega-title">Verify Credential</span><span class="mega-desc">Check any SPID on-device</span></a>
           <a href="/bpr/ledger/" class="mega-card"><span class="mega-icon">🔗</span><span class="mega-title">Transparency Log</span><span class="mega-desc">Append-only hash chain</span></a>
@@ -491,7 +492,7 @@ img{max-width:100%;height:auto}
 <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobile()"></div>
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-section"><div class="mobile-section-title">Platform</div>
-    <a href="/bpr/">Provider Registry</a><a href="/bpr/workspace/">OpenEMR Workspace</a><a href="/bpr/nphies/">NPHIES Desk</a>
+    <a href="/bpr/">Provider Registry</a><a href="/bpr/workspace/">OpenEMR Workspace</a><a href="/bpr/nphies/">NPHIES Desk</a><a href="/bpr/nvidia/">NVIDIA Health AI</a>
     <a href="/bpr/providers/">Provider Directory</a><a href="/bpr/verify/">Verify Credential</a><a href="/bpr/ledger/">Transparency Log</a>
     <a href="/bpr/research/">Research</a><a href="/bpr/developers/">FHIR R4 API</a><a href="/bpr/status/">Status</a><a href="/bpr/join/">Join BPR</a>
   </div>
@@ -568,13 +569,15 @@ function toggleMobile(){const overlay=document.getElementById('mobileOverlay');c
         <p>14 bilingual skills: SOAP drafting, file classification, lab extraction, radiology structuring, medication reconciliation.</p>
         <div class="tags"><span class="tag">14 Skills</span><span class="tag">Draft Only</span><span class="tag">On-Server</span></div>
       </div>
-      <div class="float-card" style="--card-ac:var(--nvidia)">
-        <span class="status ongoing">◌ Ongoing</span>
-        <div class="icon">🟢</div>
-        <h3>NVIDIA Health AI</h3><div class="ar">نماذج NVIDIA على نفيس</div>
-        <p>Foundation models fine-tuned on NPHIES claims data. Clinical reasoning for eligibility, pre-auth, adjudication patterns.</p>
-        <div class="tags"><span class="tag">NeMo</span><span class="tag">NPHIES Trained</span><span class="tag">FHIR Native</span></div>
-      </div>
+      <a href="/bpr/nvidia/" class="float-card-link" style="--card-ac:var(--nvidia);text-decoration:none">
+        <div class="float-card" style="--card-ac:var(--nvidia)">
+          <span class="status live">● Live</span>
+          <div class="icon">🟢</div>
+          <h3>NVIDIA Health AI</h3><div class="ar">نماذج NVIDIA على نفيس</div>
+          <p>Nemotron models trained on NPHIES claims data. Clinical reasoning for eligibility, pre-authorisation, claims adjudication. Live demo available.</p>
+          <div class="tags"><span class="tag">Nemotron</span><span class="tag">NPHIES Trained</span><span class="tag">Live Demo</span></div>
+        </div>
+      </a>
       <div class="float-card" style="--card-ac:var(--brev)">
         <span class="status ongoing">◌ Ongoing</span>
         <div class="icon">⚡</div>
