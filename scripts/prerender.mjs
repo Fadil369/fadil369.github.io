@@ -99,36 +99,42 @@ for (const [path, graph, , lang] of ALL) {
   const tab = tabs[lang];
   const file = join(root, path, 'index.html');
   if (!existsSync(file)) { failures.push(`${path}: no file`); continue; }
-  await tab.goto(server.base + path, { waitUntil: 'networkidle' });
-  // let live checks settle (they stay "pending" only while a request is in flight)
-  await tab.waitForFunction(() => !document.querySelector('.bpr-check.pending, .bpr-state[role="status"]'), null, { timeout: 12000 }).catch(() => {});
-  const got = await tab.evaluate(() => {
-    const root = document.getElementById('root');
-    const clone = root.cloneNode(true);
-    clone.querySelectorAll('script, iframe, video, .palette-backdrop, .offline-banner, .skip-to-content-link').forEach((n) => n.remove());
-    clone.querySelectorAll('[id]').forEach((n) => n.setAttribute('id', 'pr-' + n.id)); // keep ids unique alongside the live app
-    return {
-      html: clone.innerHTML,
-      title: document.title,
-      description: document.querySelector('meta[name="description"]')?.getAttribute('content') || '',
-      text: (root.innerText || '').length,
-    };
-  });
-  if (got.text < 200) { failures.push(`${path}: only ${got.text} chars rendered`); continue; }
-  let html = readFileSync(file, 'utf8');
-  html = html.replace(/<noscript data-prerendered>[\s\S]*?<\/noscript>/, '');
-  html = html.replace(/<script type="application\/ld\+json"( data-route)?>[\s\S]*?<\/script>/g, '');
-  html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(got.title)}</title>`);
-  html = html.replace(/<meta name="description" content="[^"]*"\s*\/?>/, `<meta name="description" content="${esc(got.description)}" />`);
-  html = html.replace(/<link rel="canonical"[^>]*>\s*/g, '').replace(/<link rel="alternate" hreflang="[^"]*"[^>]*>\s*/g, '');
-  const en = path.startsWith('/ar/') ? twin(path) : path, ar = path.startsWith('/ar/') ? path : twin(path);
-  html = html.replace('</head>', `    <link rel="alternate" hreflang="en" href="${ORIGIN}${en}" />\n    <link rel="alternate" hreflang="ar" href="${ORIGIN}${ar}" />\n    <link rel="alternate" hreflang="x-default" href="${ORIGIN}${en}" />\n  </head>`);
-  const ld = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
-  html = html.replace('</head>', `    <link rel="canonical" href="${ORIGIN}${path}" />\n    <script type="application/ld+json" data-route>${ld}</script>\n  </head>`);
-  html = html.replace('<div id="root"></div>', `<div id="root"></div><noscript data-prerendered>${got.html}</noscript>`);
-  writeFileSync(file, html);
-  if (path === '/') writeFileSync(join(root, 'index.html'), html);
-  written += 1;
+  try {
+    await tab.goto(server.base + path, { waitUntil: 'networkidle', timeout: 30000 });
+    await tab.waitForFunction(() => !document.querySelector('.bpr-check.pending, .bpr-state[role="status"]'), null, { timeout: 12000 }).catch(() => {});
+    // Wait for React to hydrate #root (some routes take longer)
+    await tab.waitForFunction(() => document.getElementById('root') !== null, null, { timeout: 15000 }).catch(() => {});
+    const got = await tab.evaluate(() => {
+      const root = document.getElementById('root');
+      if (!root) return { html: '', title: document.title, description: '', text: 0 };
+      const clone = root.cloneNode(true);
+      clone.querySelectorAll('script, iframe, video, .palette-backdrop, .offline-banner, .skip-to-content-link').forEach((n) => n.remove());
+      clone.querySelectorAll('[id]').forEach((n) => n.setAttribute('id', 'pr-' + n.id));
+      return {
+        html: clone.innerHTML,
+        title: document.title,
+        description: document.querySelector('meta[name="description"]')?.getAttribute('content') || '',
+        text: (root.innerText || '').length,
+      };
+    });
+    if (got.text < 200) { failures.push(`${path}: only ${got.text} chars rendered`); continue; }
+    let html = readFileSync(file, 'utf8');
+    html = html.replace(/<noscript data-prerendered>[\s\S]*?<\/noscript>/, '');
+    html = html.replace(/<script type="application\/ld\+json"( data-route)?>[\s\S]*?<\/script>/g, '');
+    html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(got.title)}</title>`);
+    html = html.replace(/<meta name="description" content="[^"]*"\s*\/?>/, `<meta name="description" content="${esc(got.description)}" />`);
+    html = html.replace(/<link rel="canonical"[^>]*>\s*/g, '').replace(/<link rel="alternate" hreflang="[^"]*"[^>]*>\s*/g, '');
+    const en = path.startsWith('/ar/') ? twin(path) : path, ar = path.startsWith('/ar/') ? path : twin(path);
+    html = html.replace('</head>', `    <link rel="alternate" hreflang="en" href="${ORIGIN}${en}" />\n    <link rel="alternate" hreflang="ar" href="${ORIGIN}${ar}" />\n    <link rel="alternate" hreflang="x-default" href="${ORIGIN}${en}" />\n  </head>`);
+    const ld = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
+    html = html.replace('</head>', `    <link rel="canonical" href="${ORIGIN}${path}" />\n    <script type="application/ld+json" data-route>${ld}</script>\n  </head>`);
+    html = html.replace('<div id="root"></div>', `<div id="root"></div><noscript data-prerendered>${got.html}</noscript>`);
+    writeFileSync(file, html);
+    if (path === '/') writeFileSync(join(root, 'index.html'), html);
+    written += 1;
+  } catch (e) {
+    failures.push(`${path}: ${e.message}`);
+  }
 }
 await browser.close();
 server.close();
