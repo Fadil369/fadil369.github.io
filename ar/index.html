@@ -14,9 +14,12 @@
 <meta property="og:image" content="https://fadil369.github.io/assets/profile-og.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:locale" content="en_US" />
-<meta property="og:locale:alternate" content="ar_SA" />
+<meta property="og:locale" content="ar_SA" />
+<meta property="og:locale:alternate" content="en_US" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://fadil369.github.io/ar/" />
+<link rel="alternate" hreflang="en" href="https://fadil369.github.io/" />
+<link rel="alternate" hreflang="ar" href="https://fadil369.github.io/ar/" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -267,7 +270,7 @@ img{max-width:100%;height:auto}
   box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 30px color-mix(in srgb,var(--card-ac,var(--accent)).15);
 }
 .float-card .icon{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:24px;
-  background:color-mix(in srgb,var(--card-ac,var(--accent)).1,transparent);color:var(--card-ac,var(--accent));
+  background:color-mix(in srgb,var(--card-ac,var(--accent)) 10%,transparent);color:var(--card-ac,var(--accent));
   margin-bottom:20px;}
 .float-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
 .float-card .ar{font-size:14px;color:var(--muted);margin-bottom:12px}
@@ -404,7 +407,7 @@ img{max-width:100%;height:auto}
 }
 
 /* ═══ SCROLL REVEAL ═══ */
-.reveal{opacity:0;transform:translateY(50px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal{opacity:1;transform:none;transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 .reveal-delay-1{transition-delay:.1s}
 .reveal-delay-2{transition-delay:.2s}
@@ -421,11 +424,14 @@ img{max-width:100%;height:auto}
 }
 @media(max-width:480px){.mega-grid{grid-template-columns:1fr}}
 </style>
+<link rel="stylesheet" href="/assets/landing-accessibility.css" />
+<script src="/assets/landing-accessibility.js" defer></script>
 </head>
 <body>
+<a class="skip-link" href="#main">انتقل إلى المحتوى</a>
 
 <!-- ═══════ Particle Canvas ═══════ -->
-<canvas id="particle-canvas"></canvas>
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
 
 <!-- ═══════ Navigation ═══════ -->
 <nav class="nav" id="navbar">
@@ -485,13 +491,14 @@ img{max-width:100%;height:auto}
       </div>
       <a href="/contact/" class="nav-link">Contact</a>
     </div>
+    <button class="nav-lang theme-toggle" type="button" aria-label="تغيير المظهر">◐</button>
     <a href="/ar/" class="nav-lang" title="العربية" onclick="event.stopPropagation()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>AR</a>
     <a href="/bpr/" class="nav-cta">Open BPR<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-    <button class="nav-hamburger" id="navHamburger" onclick="toggleMobile()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="nav-hamburger" id="navHamburger" onclick="toggleMobile()" aria-label="القائمة" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobile()"></div>
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" inert>
   <div class="mobile-section"><div class="mobile-section-title">Platform</div>
     <a href="/bpr/">Provider Registry</a><a href="/bpr/workspace/">OpenEMR Workspace</a><a href="/bpr/nphies/">NPHIES Desk</a><a href="/bpr/nvidia/">NVIDIA Health AI</a><a href="/bpr/clinic/">Clinic Reception</a>
     <a href="/bpr/providers/">Provider Directory</a><a href="/bpr/verify/">Verify Credential</a><a href="/bpr/ledger/">Transparency Log</a>
@@ -512,10 +519,11 @@ img{max-width:100%;height:auto}
 <script>
 function toggleDrop(btn){const item=btn.closest('.nav-item');const isOpen=item.classList.contains('open');document.querySelectorAll('.nav-item.open').forEach(i=>i.classList.remove('open'));if(!isOpen)item.classList.add('open')}
 document.addEventListener('click',(e)=>{if(!e.target.closest('.nav-item')){document.querySelectorAll('.nav-item.open').forEach(i=>i.classList.remove('open'))}})
-function toggleMobile(){const overlay=document.getElementById('mobileOverlay');const menu=document.getElementById('mobileMenu');const hamburger=document.getElementById('navHamburger');const open=menu.classList.toggle('open');overlay.classList.toggle('open',open);hamburger.classList.toggle('active',open);document.body.style.overflow=open?'hidden':''}
+function toggleMobile(){const overlay=document.getElementById('mobileOverlay');const menu=document.getElementById('mobileMenu');const hamburger=document.getElementById('navHamburger');const open=menu.classList.toggle('open');overlay.classList.toggle('open',open);hamburger.classList.toggle('active',open);document.body.style.overflow=open?'hidden':'';menu.inert=!open;hamburger.setAttribute('aria-expanded',String(open));if(open)menu.querySelector('a').focus();else hamburger.focus()}
 </script>
 
 <!-- ═══════ Hero ═══════ -->
+<main id="main" tabindex="-1">
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
@@ -535,9 +543,7 @@ function toggleMobile(){const overlay=document.getElementById('mobileOverlay');c
       <a href="#architecture" class="btn btn-ghost">See Architecture<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
     </div>
 
-    <div class="redirect-bar">
-      <span>Auto-redirect to BPR in</span><span class="count" id="redirectCount">15</span><span>sec — <a href="/bpr/" id="cancelRedirect">stay</a></span>
-    </div>
+    <p class="redirect-bar">استكشف المنصة بالوتيرة التي تناسبك.</p>
 
     <div class="hero-stats">
       <div class="hero-stat"><div class="num" data-count="10">0</div><div class="label">Connected Tools</div></div>
@@ -635,7 +641,7 @@ function toggleMobile(){const overlay=document.getElementById('mobileOverlay');c
       <div class="dash-cell"><div class="num" id="dash-tools">10</div><div class="label">Connected Tools</div><div class="sub">Live today</div></div>
       <div class="dash-cell"><div class="num" id="dash-providers">—</div><div class="label">Providers</div><div class="sub" id="dash-providers-label">BPR Directory</div></div>
       <div class="dash-cell"><div class="num" id="dash-ops">—</div><div class="label">Operations</div><div class="sub" id="dash-ops-label">Checking…</div></div>
-      <div class="dash-cell"><div class="num" id="dash-cert">OK</div><div class="label">TLS Certificates</div><div class="sub">All valid</div></div>
+      <div class="dash-cell"><div class="num" id="dash-cert">—</div><div class="label">Connection</div><div class="sub" id="dash-cert-label">Not checked</div></div>
     </div>
   </div>
 </section>
@@ -701,20 +707,20 @@ function toggleMobile(){const overlay=document.getElementById('mobileOverlay');c
   <div style="max-width:1280px;margin:0 auto">
     <div class="section-label reveal">Verification</div>
     <h2 class="section-title reveal reveal-delay-1">Check any credential.<br/><span style="color:var(--accent)">On your device.</span></h2>
-    <p class="section-desc reveal reveal-delay-2">No account, nothing uploaded. This page verifies itself against the registry in real time.</p>
+    <p class="section-desc reveal reveal-delay-2">No account, nothing uploaded. Open the verifier to check the signature, validity and live registry status.</p>
     <div class="cred-widget reveal reveal-delay-3" id="credWidget">
       <div class="cred-header">
         <div class="cred-avatar">EF</div>
-        <div class="cred-info"><h3>Dr. Mohamed El Fadil</h3><p>SA-PHY-000003 · Consultant Neurosurgery</p></div>
+        <div class="cred-info"><h3>Dr. Mohamed El Fadil</h3><p>SA-PHY-000003 · Physician &amp; BrainSAIT founder</p></div>
       </div>
       <div class="cred-fields">
         <div class="cred-field"><span class="field-label">SPID</span><span class="field-value">SA-PHY-000003</span></div>
-        <div class="cred-field"><span class="field-label">Status</span><span class="field-value ok" id="credStatus">● Active</span></div>
+        <div class="cred-field"><span class="field-label">Status</span><span class="field-value" id="credStatus">Not checked</span></div>
         <div class="cred-field"><span class="field-label">Issuer</span><span class="field-value">did:web:registry.brainsait.de</span></div>
         <div class="cred-field"><span class="field-label">Algorithm</span><span class="field-value">Ed25519 · W3C VC 2.0</span></div>
-        <div class="cred-field"><span class="field-label">Valid Until</span><span class="field-value" id="credExpiry">Loading…</span></div>
+        <div class="cred-field"><span class="field-label">Valid Until</span><span class="field-value" id="credExpiry">See signed credential</span></div>
       </div>
-      <button class="cred-verify-btn" id="verifyBtn" onclick="verifyCredential()">↻ Verify Credential Now</button>
+      <a class="cred-verify-btn" style="display:block;text-align:center" href="/ar/bpr/verify/?spid=SA-PHY-000003">تحقق من التوقيع على جهازك →</a>
       <pre id="verifyResult" style="margin-top:16px;font-size:11px;font-family:var(--mono);color:var(--muted);white-space:pre-wrap;max-height:200px;overflow:auto;display:none"></pre>
     </div>
   </div>
@@ -746,16 +752,17 @@ function toggleMobile(){const overlay=document.getElementById('mobileOverlay');c
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1">
         <a href="/bpr/join" class="btn btn-primary">Join BPR<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
         <a href="/bpr/workspace" class="btn btn-ghost">Workspace</a>
-        <a href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" class="btn btn-ghost">Book Demo</a>
+        <a href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Book Demo</a>
       </div>
     </div>
   </div>
 </section>
 
+</main>
 <!-- ═══════ Footer ═══════ -->
 <footer class="footer">
   <div class="footer-links">
-    <a href="/">Home</a><a href="/bpr/">BPR Workspace</a><a href="/bpr/nphies">NPHIES Desk</a><a href="/bpr/workspace">OpenEMR</a><a href="/bpr/workspace">Copilot</a><a href="/bpr/providers">Directory</a><a href="/bpr/join">Join</a><a href="https://brainsait.de" target="_blank">brainsait.de</a>
+    <a href="/">Home</a><a href="/bpr/">BPR Workspace</a><a href="/bpr/nphies">NPHIES Desk</a><a href="/bpr/workspace">OpenEMR</a><a href="/bpr/workspace">Copilot</a><a href="/bpr/providers">Directory</a><a href="/bpr/join">Join</a><a href="https://brainsait.de" target="_blank" rel="noopener noreferrer">brainsait.de</a>
   </div>
   <p class="footer-tech">OpenEMR · Copilot · NVIDIA AI · Brev HQ · FHIR R4 · W3C VC 2.0 · Ed25519 · SMART-on-FHIR</p>
   <p class="footer-copy" style="margin-top:16px">© 2026 BrainSAIT · Riyadh, KSA · All rights reserved</p>
@@ -764,6 +771,7 @@ function toggleMobile(){const overlay=document.getElementById('mobileOverlay');c
 <script>
 /* ═══ Particle Network Background ═══ */
 (function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   const canvas=document.getElementById('particle-canvas');const ctx=canvas.getContext('2d');let particles=[];let mouse={x:-1000,y:-1000};
   const PARTICLE_COUNT=80;const CONNECTION_DIST=150;const MOUSE_RADIUS=200;
   function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
@@ -791,16 +799,11 @@ function toggleMobile(){const overlay=document.getElementById('mobileOverlay');c
 const navbar=document.getElementById('navbar');window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>60);},{passive:true});
 
 /* Scroll reveal */
-const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}}});{threshold:0.08,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
 /* Counter animation */
 function animateCounter(el,target,suffix=''){let current=0;const step=Math.max(1,Math.floor(target/40));const timer=setInterval(()=>{current+=step;if(current>=target){current=target;clearInterval(timer);}el.textContent=current+suffix;},30);}
-const counterObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){const el=entry.target;const val=parseInt(el.dataset.count);if(val)animateCounter(el,val);counterObserver.unobserve(el);}}});{threshold:0.5});document.querySelectorAll('[data-count]').forEach(el=>counterObserver.observe(el));
-
-/* Redirect countdown */
-let countdown=15;const countEl=document.getElementById('redirectCount');const cancelEl=document.getElementById('cancelRedirect');
-const timer=setInterval(()=>{countdown--;if(countEl)countEl.textContent=countdown;if(countdown<=0){clearInterval(timer);window.location.href='/bpr/';}},1000);
-cancelEl.addEventListener('click',(e)=>{e.preventDefault();clearInterval(timer);countEl.parentElement.style.display='none';});
+const counterObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){const el=entry.target;const val=parseInt(el.dataset.count);if(val)animateCounter(el,val);counterObserver.unobserve(el);}});},{threshold:0.5});document.querySelectorAll('[data-count]').forEach(el=>counterObserver.observe(el));
 
 /* Smooth scroll */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',(e)=>{const target=document.querySelector(a.getAttribute('href'));if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}});});
@@ -816,18 +819,11 @@ async function loadDashboard(){
   try{
     const r=await fetch('https://registry.brainsait.de/api/status',{signal:AbortSignal.timeout(5000)});if(!r.ok)throw new Error(String(r.status));
     const data=await r.json();const ops=data.operations||{};const checks=ops.checks||{};const okCount=Object.values(checks).filter(v=>v==='ok').length;const total=Object.keys(checks).length;const verdict=ops.verdict||'unknown';
-    document.getElementById('dash-ops').textContent=verdict==='ok'?'OK':verdict;document.getElementById('dash-ops').style.color=verdict==='ok'?'var(--accent)':'#ff9f43';document.getElementById('dash-ops-label').textContent=`${okCount}/${total} checks passed`;document.getElementById('dash-cert').textContent='OK';
-  }catch{document.getElementById('dash-ops').textContent='—';document.getElementById('dash-ops-label').textContent='Registry unreachable';}
-  try{const r=await fetch('https://registry.brainsait.de/api/providers.json',{signal:AbortSignal.timeout(5000)});if(!r.ok)throw new Error(String(r.status));const data=await r.json();document.getElementById('dash-providers').textContent=data.items?.length||'—';}catch{document.getElementById('dash-providers').textContent='—';}
+    document.getElementById('dash-ops').textContent=verdict==='ok'?'OK':verdict;document.getElementById('dash-ops').style.color=verdict==='ok'?'var(--accent)':'#ff9f43';document.getElementById('dash-ops-label').textContent=`${okCount}/${total} checks passed`;document.getElementById('dash-cert').textContent='HTTPS';document.getElementById('dash-cert-label').textContent='Registry response received';
+  }catch{document.getElementById('dash-ops').textContent='—';document.getElementById('dash-ops-label').textContent='Registry unreachable';document.getElementById('dash-cert').textContent='—';document.getElementById('dash-cert-label').textContent='Not verified';}
+  try{const r=await fetch('https://registry.brainsait.de/api/providers.json',{signal:AbortSignal.timeout(5000)});if(!r.ok)throw new Error(String(r.status));const data=await r.json();document.getElementById('dash-providers').textContent=data.items?.length??'—';}catch{document.getElementById('dash-providers').textContent='—';}
 }
 loadDashboard();
-
-/* Credential verification */
-async function verifyCredential(){
-  const btn=document.getElementById('verifyBtn');const result=document.getElementById('verifyResult');const statusEl=document.getElementById('credStatus');const expiryEl=document.getElementById('credExpiry');
-  btn.disabled=true;btn.textContent='⏳ Verifying…';result.style.display='none';
-  try{const r=await fetch('https://registry.brainsait.de/api/verify/SA-PHY-000003',{signal:AbortSignal.timeout(10000)});if(!r.ok)throw new Error(`HTTP ${r.status}`);const data=await r.json();statusEl.textContent='● Verified';statusEl.style.color='#26de81';const expiry=data.claims?.validUntil;if(expiry)expiryEl.textContent=expiry.slice(0,10);result.textContent=JSON.stringify(data,null,2);result.style.display='block';result.style.color='#26de81';}catch(e){statusEl.textContent='⚠ Verification pending';statusEl.style.color='#ff9f43';result.textContent=`Registry not reachable: ${e.message}\n\nShowing saved credential metadata:`;result.style.display='block';result.style.color='#ff9f43';const saved={spid:'SA-PHY-000003',name:'Dr. Mohamed El Fadil',issuer:'did:web:registry.brainsait.de',algorithm:'Ed25519',note:'Live verification requires registry.brainsait.de to be reachable'};result.textContent+='\n\n'+JSON.stringify(saved,null,2);}btn.disabled=false;btn.textContent='↻ Verify Credential Now';
-}
 
 /* Code tabs */
 const codeSnippets=[`// GET /api/fhir/Practitioner/SA-PHY-000003
@@ -845,7 +841,7 @@ $ curl -X POST https://registry.brainsait.de/api/nphies/check -H "Content-Type: 
   "head": { "hash": "a3f8c2...e7d1", "size": 142, "timestamp": "2026-11-02T22:10:00Z" },
   "entries": [{ "idx": 142, "event": "credential_renewed", "spid": "SA-PHY-000003" }]
 }`];
-function switchTab(idx){document.querySelectorAll('.code-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));const block=document.getElementById('codeBlock');const code=codeSnippets[idx].replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/(\/\/.*)/g,'<span style="color:#5a6b5d">$1</span>').replace(/("(?:[^"\\]|\\.)*")/g,'<span style="color:#a5d6ff">$1</span>').replace(/\b(\d+)\b/g,'<span style="color:#ff9f43">$1</span>').replace(/\b(true|false|null)\b/g,'<span style="color:#ff3b5c">$1</span>');block.innerHTML=code;}
+function switchTab(idx){document.querySelectorAll('.code-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));document.getElementById('codeBlock').textContent=codeSnippets[idx];}
 switchTab(0);
 </script>
 </body>
