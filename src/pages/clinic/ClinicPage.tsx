@@ -346,7 +346,7 @@ function loadProfile() {
     return { ...DEFAULT_PROFILE, ...JSON.parse(raw) };
   } catch { return DEFAULT_PROFILE; }
 }
-function saveProfile(profile: any) {
+function persistProfile(profile: any) {
   try { localStorage.setItem('brainsait_clinic_profile', JSON.stringify(profile)); } catch {}
 }
 
@@ -367,7 +367,7 @@ function statusLabel(key: string, ar: boolean) {
 
 // ── Components ─────────────────────────────────────────────────────────────
 
-function ReceptionChat({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string> }) {
+function ReceptionChat({ lang, t, profile }: { lang: 'ar' | 'en'; t: Record<string, string>; profile: any }) {
   const [messages, setMessages] = useState<{ role: 'user' | 'assistant'; text: string; kind?: string }[]>([]);
   const [question, setQuestion] = useState('');
   const [asking, setAsking] = useState(false);
@@ -411,7 +411,7 @@ function ReceptionChat({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, strin
     setError('');
     setMessages((m) => [...m, { role: 'user', text: msg }]);
     try {
-      const reply = replyTo(msg, lang, DEFAULT_PROFILE);
+      const reply = replyTo(msg, lang, profile);
       setMessages((m) => [...m, { role: 'assistant', text: reply.answer, kind: reply.kind }]);
     } catch { setError(t.error); } finally { setAsking(false); }
   }
@@ -648,14 +648,14 @@ function Dashboard({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string> }
   );
 }
 
-function Setup({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string> }) {
+function Setup({ lang, t, onSaved }: { lang: 'ar' | 'en'; t: Record<string, string>; onSaved: (profile: any) => void }) {
   const [profile, setProfile] = useState(loadProfile());
   const [draft, setDraft] = useState(profile);
   const [dirty, setDirty] = useState(false);
   useEffect(() => { if (!dirty) setDraft(profile); }, [profile, dirty]);
 
   async function saveProfile() {
-    try { saveProfile(draft); setProfile(draft); setDirty(false); } catch {}
+    try { persistProfile(draft); setProfile(draft); setDirty(false); onSaved(draft); } catch {}
   }
 
   return (
@@ -676,7 +676,7 @@ function Setup({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string> }) {
           ))}
         </div>
         <p className="clinic-hint">{t.faqHint}</p>
-        <button className="clinic-btn primary" disabled={!dirty} onClick={saveProfile}>{t.saveProfile}</button>
+        <button type="submit" className="clinic-btn primary" disabled={!dirty}>{t.saveProfile}</button>
       </form>
     </section>
   );
@@ -960,11 +960,11 @@ export default function ClinicPage() {
 
               {activeRoute === 'reception' && (
                 <>
-                  <ReceptionChat lang={lang} t={t} />
+                  <ReceptionChat lang={lang} t={t} profile={config} />
                   <SlotBooking lang={lang} t={t} />
                 </>
               )}
-              {activeRoute === 'setup' && <Setup lang={lang} t={t} />}
+              {activeRoute === 'setup' && <Setup lang={lang} t={t} onSaved={setConfig} />}
               {(activeRoute === 'overview' || activeRoute === 'requests') && (
                 <>
                   <ClinicStatus lang={lang} t={t} />
