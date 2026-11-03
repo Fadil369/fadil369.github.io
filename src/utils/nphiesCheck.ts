@@ -38,6 +38,7 @@ const EXT = 'http://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/';
 const ICD_AM = 'http://hl7.org/fhir/sid/icd-10-am';
 const PRACTITIONER_LICENSE = 'http://nphies.sa/license/practitioner-license';
 const PRACTICE_CODES = 'http://nphies.sa/terminology/CodeSystem/practice-codes';
+const CLAIM_INFO_CATEGORY = 'http://nphies.sa/terminology/CodeSystem/claim-information-category';
 const MAX_BYTES = 10 * 1024 * 1024;
 // Provider-side messages only. Response and task profiles are written by payers and the platform.
 const CHECKED_PROFILES = new Set(['bundle', 'message-header', 'institutional-claim', 'professional-claim', 'pharmacy-claim', 'oral-claim', 'vision-claim',
@@ -160,6 +161,19 @@ function checkClaim(claim: Json, resolve: Resolve, spec: Spec, add: (f: Finding)
   const dx = seqCheck(arr(claim.diagnosis), 'diagnosis');
   const info = seqCheck(arr(claim.supportingInfo), 'supportingInfo');
 
+  // CR162 profile mapping: expected delivery date is a Claim.supportingInfo timingDate.
+  arr(claim.supportingInfo).forEach((entry: Json, i: number) => {
+    const isExpectedDeliveryDate = arr(entry.category?.coding).some((coding: Json) =>
+      coding.system === CLAIM_INFO_CATEGORY && coding.code === 'expected-delivery-date');
+    if (!isExpectedDeliveryDate) return;
+    count();
+    if (!validDay(entry.timingDate)) {
+      add({ id: 'expected-delivery-date', severity: 'error', where: `Claim.supportingInfo[${i}].timingDate`,
+        en: 'CR162 maps expected-delivery-date to timingDate. Provide a valid FHIR date here; this category does not use value[x].',
+        ar: 'يربط CR162 فئة expected-delivery-date بالحقل timingDate. أدخل تاريخ FHIR صالحًا هنا؛ هذه الفئة لا تستخدم value[x].' });
+    }
+  });
+
   // Diagnosis: one principal, and the Saudi edition of ICD-10.
   const diagnoses: Json[] = arr(claim.diagnosis);
   const typeOf = (d: Json) => arr(d.type).flatMap((t) => arr(t.coding)).map((c) => c.code);
@@ -247,6 +261,11 @@ function checkClaim(claim: Json, resolve: Resolve, spec: Spec, add: (f: Finding)
   const dates = items.flatMap(serviceDates).sort();
   const firstService = dates[0];
   const birth = day(patient?.birthDate);
+  if (patient && patient.active !== true) {
+    add({ id: 'patient-active', severity: 'warn', where: 'Patient.active', rule: 'BV-00339',
+      en: 'The server validation workbook says Patient.active must be true (Jan_hotfix). Check the target environment’s activation date.',
+      ar: 'ينص ملف قواعد التحقق على أن Patient.active يجب أن تكون true (Jan_hotfix). تحقّق من تاريخ التفعيل في بيئة الإرسال.' });
+  }
   if (validDay(birth)) {
     count();
     if (Number(birth.slice(0, 4)) < 1500) {
