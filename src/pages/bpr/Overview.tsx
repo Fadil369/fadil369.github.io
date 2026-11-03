@@ -125,7 +125,7 @@ export default function Overview() {
           </CheckRow>
           <form className="bpr-inline-form" onSubmit={go}>
             <label className="sr-only" htmlFor="ov-spid">SPID</label>
-            <input id="ov-spid" dir="ltr" value={spid} onChange={(e) => setSpid(e.target.value)} placeholder="SA-PHY-000003" />
+            <input id="ov-spid" dir="ltr" value={spid} onChange={(e) => setSpid(e.target.value)} placeholder="SA-PHY-000003" aria-label={ar ? 'تحقق من معرّف مقدم الرعاية' : 'Provider SPID'} />
             <button type="submit"><Search size={15} />{ar ? 'تحقق من معرّف' : 'Verify an SPID'}</button>
           </form>
         </div>
