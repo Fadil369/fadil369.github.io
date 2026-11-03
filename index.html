@@ -325,6 +325,9 @@ img{max-width:100%;height:auto}
 .dash-cell{padding:28px 24px;background:var(--surface);text-align:center;transition:background .3s}
 .dash-cell:hover{background:var(--surface2)}
 .dash-cell .num{font-size:2.2rem;font-weight:800;color:var(--accent);font-family:var(--mono);line-height:1}
+.dash-meta{margin-top:16px;font-size:12px;font-family:var(--mono);color:var(--muted2);text-align:center}
+.dash-meta a{color:var(--accent2);text-decoration:none}
+.dash-meta a:hover{text-decoration:underline}
 .dash-cell .label{font-size:13px;color:var(--muted);margin-top:8px}
 .dash-cell .sub{font-size:11px;color:var(--muted2);font-family:var(--mono);margin-top:4px}
 
@@ -451,6 +454,7 @@ section[id]{scroll-margin-top:100px}
 </style>
 <link rel="stylesheet" href="/assets/landing-accessibility.css" />
 <script src="/assets/landing-accessibility.js" defer></script>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -576,7 +580,7 @@ function toggleMobile(){const overlay=document.getElementById('mobileOverlay');c
       <div class="hero-stat"><div class="num" data-count="10">0</div><div class="label">Connected Tools</div></div>
       <div class="hero-stat"><div class="num">R4</div><div class="label">FHIR Interoperability</div></div>
       <div class="hero-stat"><div class="num">2x</div><div class="label">Bilingual (AR/EN)</div></div>
-      <div class="hero-stat"><div class="num">0</div><div class="label">Data Uploaded</div></div>
+      <div class="hero-stat"><div class="num">0</div><div class="label">Uploads for Verification</div></div>
     </div>
   </div>
 </section>
@@ -670,6 +674,7 @@ function toggleMobile(){const overlay=document.getElementById('mobileOverlay');c
       <div class="dash-cell"><div class="num" id="dash-ops">—</div><div class="label">Operations</div><div class="sub" id="dash-ops-label">Checking…</div></div>
       <div class="dash-cell"><div class="num" id="dash-cert">—</div><div class="label">Connection</div><div class="sub" id="dash-cert-label">Not checked</div></div>
     </div>
+    <div class="dash-meta">Last check: <span id="dash-checked">…</span> · <a href="/bpr/status/">Full status →</a></div>
   </div>
 </section>
 
@@ -847,8 +852,9 @@ async function loadDashboard(){
     const r=await fetch('https://registry.brainsait.de/api/status',{signal:AbortSignal.timeout(5000)});if(!r.ok)throw new Error(String(r.status));
     const data=await r.json();const ops=data.operations||{};const checks=ops.checks||{};const okCount=Object.values(checks).filter(v=>v==='ok').length;const total=Object.keys(checks).length;const verdict=ops.verdict||'unknown';
     document.getElementById('dash-ops').textContent=verdict==='ok'?'OK':verdict;document.getElementById('dash-ops').style.color=verdict==='ok'?'var(--accent)':'#ff9f43';document.getElementById('dash-ops-label').textContent=`${okCount}/${total} checks passed`;document.getElementById('dash-cert').textContent='HTTPS';document.getElementById('dash-cert-label').textContent='Registry response received';
-  }catch{document.getElementById('dash-ops').textContent='—';document.getElementById('dash-ops-label').textContent='Registry unreachable';document.getElementById('dash-cert').textContent='—';document.getElementById('dash-cert-label').textContent='Not verified';}
-  try{const r=await fetch('https://registry.brainsait.de/api/providers.json',{signal:AbortSignal.timeout(5000)});if(!r.ok)throw new Error(String(r.status));const data=await r.json();document.getElementById('dash-providers').textContent=data.items?.length??'—';}catch{document.getElementById('dash-providers').textContent='—';}
+    const t=new Date(ops.checked_at||data.checked_at);document.getElementById('dash-checked').textContent=isNaN(t)?'just now':'at '+t.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'UTC'})+' UTC · live from registry.brainsait.de';
+  }catch{document.getElementById('dash-ops').textContent='—';document.getElementById('dash-ops-label').textContent='Registry unreachable';document.getElementById('dash-cert').textContent='—';document.getElementById('dash-cert-label').textContent='Not verified';document.getElementById('dash-checked').textContent='unavailable';}
+  try{const r=await fetch('https://registry.brainsait.de/api/providers',{signal:AbortSignal.timeout(5000)});if(!r.ok)throw new Error(String(r.status));const data=await r.json();document.getElementById('dash-providers').textContent=data.items?.length??'—';}catch{document.getElementById('dash-providers').textContent='—';}
 }
 loadDashboard();
 

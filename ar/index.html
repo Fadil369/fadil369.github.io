@@ -325,6 +325,9 @@ img{max-width:100%;height:auto}
 .dash-cell{padding:28px 24px;background:var(--surface);text-align:center;transition:background .3s}
 .dash-cell:hover{background:var(--surface2)}
 .dash-cell .num{font-size:2.2rem;font-weight:800;color:var(--accent);font-family:var(--mono);line-height:1}
+.dash-meta{margin-top:16px;font-size:12px;font-family:var(--mono);color:var(--muted2);text-align:center}
+.dash-meta a{color:var(--accent2);text-decoration:none}
+.dash-meta a:hover{text-decoration:underline}
 .dash-cell .label{font-size:13px;color:var(--muted);margin-top:8px}
 .dash-cell .sub{font-size:11px;color:var(--muted2);font-family:var(--mono);margin-top:4px}
 
@@ -451,6 +454,7 @@ section[id]{scroll-margin-top:100px}
 </style>
 <link rel="stylesheet" href="/assets/landing-accessibility.css" />
 <script src="/assets/landing-accessibility.js" defer></script>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 <a class="skip-link" href="#main">انتقل إلى المحتوى</a>
@@ -466,78 +470,78 @@ section[id]{scroll-margin-top:100px}
     </a>
     <div class="nav-menu" id="navMenu">
       <div class="nav-item has-dropdown">
-        <button class="nav-link" onclick="toggleDrop(this)">Mega Hub<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <button class="nav-link" onclick="toggleDrop(this)">المحور الضخم<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="nav-dropdown mega"><div class="mega-grid">
           <a href="/ar/mega/" class="mega-card mega-featured"><span class="mega-icon">🧭</span><span class="mega-title">المحور الضخم</span><span class="mega-desc">كل المسارات حسب الدور · EN/AR</span></a>
-          <a href="/bpr/" class="mega-card"><span class="mega-icon">🪪</span><span class="mega-title">Provider Registry</span><span class="mega-desc">SPID · OID · W3C VC · Ed25519</span></a>
-          <a href="/bpr/workspace/" class="mega-card"><span class="mega-icon">🏥</span><span class="mega-title">OpenEMR Workspace</span><span class="mega-desc">Private EMR · Copilot · Voice</span></a>
-          <a href="/bpr/nphies/" class="mega-card"><span class="mega-icon">📋</span><span class="mega-title">NPHIES Desk</span><span class="mega-desc">Codes · Pre-check · Readiness</span></a>
-          <a href="/bpr/nvidia/" class="mega-card"><span class="mega-icon">🟢</span><span class="mega-title">NVIDIA Health AI</span><span class="mega-desc">Nemotron · NPHIES trained</span></a>
-          <a href="/bpr/clinic/" class="mega-card"><span class="mega-icon">🏥</span><span class="mega-title">Clinic Reception</span><span class="mega-desc">Appointments · Voice · Staff</span></a>
-          <a href="/bpr/providers/" class="mega-card"><span class="mega-icon">👥</span><span class="mega-title">Provider Directory</span><span class="mega-desc">Browse by SPID</span></a>
-          <a href="/bpr/verify/" class="mega-card"><span class="mega-icon">🔐</span><span class="mega-title">Verify Credential</span><span class="mega-desc">Check any SPID on-device</span></a>
-          <a href="/bpr/ledger/" class="mega-card"><span class="mega-icon">🔗</span><span class="mega-title">Transparency Log</span><span class="mega-desc">Append-only hash chain</span></a>
-          <a href="/bpr/research/" class="mega-card"><span class="mega-icon">🔬</span><span class="mega-title">Research Footprint</span><span class="mega-desc">ORCID × Zenodo × HuggingFace</span></a>
-          <a href="/bpr/developers/" class="mega-card"><span class="mega-icon">🧩</span><span class="mega-title">FHIR R4 & API</span><span class="mega-desc">Public JSON · SMART launch</span></a>
-          <a href="/bpr/status/" class="mega-card"><span class="mega-icon">📊</span><span class="mega-title">Platform Status</span><span class="mega-desc">Live health & metrics</span></a>
-          <a href="/bpr/join/" class="mega-card"><span class="mega-icon">🚀</span><span class="mega-title">Join BPR</span><span class="mega-desc">Get provider identity</span></a>
-          <a href="/bpr/record/" class="mega-card"><span class="mega-icon">📄</span><span class="mega-title">Identity Record</span><span class="mega-desc">Download BPR identity</span></a>
-          <a href="/bpr/saudi/" class="mega-card"><span class="mega-icon">🇸🇦</span><span class="mega-title">Saudi Hub</span><span class="mega-desc">Kingdom healthcare ecosystem</span></a>
+          <a href="/bpr/" class="mega-card"><span class="mega-icon">🪪</span><span class="mega-title">سجل مقدمي الرعاية</span><span class="mega-desc">SPID · OID · W3C VC · Ed25519</span></a>
+          <a href="/bpr/workspace/" class="mega-card"><span class="mega-icon">🏥</span><span class="mega-title">مساحة عمل OpenEMR</span><span class="mega-desc">سجلات خاصة · مساعد · صوت</span></a>
+          <a href="/bpr/nphies/" class="mega-card"><span class="mega-icon">📋</span><span class="mega-title">مكتب NPHIES</span><span class="mega-desc">أكواد · فحص مسبق · جاهزية</span></a>
+          <a href="/bpr/nvidia/" class="mega-card"><span class="mega-icon">🟢</span><span class="mega-title">ذكاء NVIDIA الصحي</span><span class="mega-desc">Nemotron · مدربة على NPHIES</span></a>
+          <a href="/bpr/clinic/" class="mega-card"><span class="mega-icon">🏥</span><span class="mega-title">استقبال العيادة</span><span class="mega-desc">مواعيد · صوت · فريق</span></a>
+          <a href="/bpr/providers/" class="mega-card"><span class="mega-icon">👥</span><span class="mega-title">دليل مقدمي الرعاية</span><span class="mega-desc">تصفح عبر SPID</span></a>
+          <a href="/bpr/verify/" class="mega-card"><span class="mega-icon">🔐</span><span class="mega-title">التحقق من الاعتماد</span><span class="mega-desc">تحقق من أي SPID على جهازك</span></a>
+          <a href="/bpr/ledger/" class="mega-card"><span class="mega-icon">🔗</span><span class="mega-title">سجل الشفافية</span><span class="mega-desc">سلسلة تجزئة إضافة فقط</span></a>
+          <a href="/bpr/research/" class="mega-card"><span class="mega-icon">🔬</span><span class="mega-title">البصمة البحثية</span><span class="mega-desc">ORCID × Zenodo × HuggingFace</span></a>
+          <a href="/bpr/developers/" class="mega-card"><span class="mega-icon">🧩</span><span class="mega-title">FHIR R4 والواجهة</span><span class="mega-desc">JSON عام · انطلاق SMART</span></a>
+          <a href="/bpr/status/" class="mega-card"><span class="mega-icon">📊</span><span class="mega-title">حالة المنصة</span><span class="mega-desc">صحة وأداء مباشر</span></a>
+          <a href="/bpr/join/" class="mega-card"><span class="mega-icon">🚀</span><span class="mega-title">انضم إلى BPR</span><span class="mega-desc">احصل على هوية مقدم الرعاية</span></a>
+          <a href="/bpr/record/" class="mega-card"><span class="mega-icon">📄</span><span class="mega-title">سجل الهوية</span><span class="mega-desc">حمّل هوية BPR</span></a>
+          <a href="/bpr/saudi/" class="mega-card"><span class="mega-icon">🇸🇦</span><span class="mega-title">المحور السعودي</span><span class="mega-desc">منظومة الرعاية الصحية بالمملكة</span></a>
         </div></div>
       </div>
       <div class="nav-item has-dropdown">
-        <button class="nav-link" onclick="toggleDrop(this)">Tools<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <button class="nav-link" onclick="toggleDrop(this)">الأدوات<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="nav-dropdown">
-          <a href="/cv/" class="nav-dd-item">📋 CV</a>
-          <a href="/card/" class="nav-dd-item">🪪 Business Card</a>
-          <a href="/slots/" class="nav-dd-item">📅 Hospital Slots</a>
-          <a href="/store/" class="nav-dd-item">🛒 Store</a>
-          <a href="/catalogue/" class="nav-dd-item">📚 Catalogue</a>
-          <a href="/account/" class="nav-dd-item">⚙️ Account</a>
+          <a href="/cv/" class="nav-dd-item">📋 السيرة الذاتية</a>
+          <a href="/card/" class="nav-dd-item">🪪 بطاقة العمل</a>
+          <a href="/slots/" class="nav-dd-item">📅 مواعيد المستشفيات</a>
+          <a href="/store/" class="nav-dd-item">🛒 المتجر</a>
+          <a href="/catalogue/" class="nav-dd-item">📚 الفهرس</a>
+          <a href="/account/" class="nav-dd-item">⚙️ الحساب</a>
         </div>
       </div>
       <div class="nav-item has-dropdown">
-        <button class="nav-link" onclick="toggleDrop(this)">Learn<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <button class="nav-link" onclick="toggleDrop(this)">تعلّم<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="nav-dropdown">
-          <a href="/learn/" class="nav-dd-item">🎓 Learn Hub</a>
-          <a href="/benefits/" class="nav-dd-item">✨ Benefits</a>
-          <a href="/solutions/" class="nav-dd-item">🧩 Solutions</a>
-          <a href="/faq/" class="nav-dd-item">❓ FAQ</a>
-          <a href="/templates/" class="nav-dd-item">📝 Templates</a>
+          <a href="/learn/" class="nav-dd-item">🎓 محور التعلّم</a>
+          <a href="/benefits/" class="nav-dd-item">✨ الفوائد</a>
+          <a href="/solutions/" class="nav-dd-item">🧩 الحلول</a>
+          <a href="/faq/" class="nav-dd-item">❓ الأسئلة الشائعة</a>
+          <a href="/templates/" class="nav-dd-item">📝 القوالب</a>
         </div>
       </div>
       <div class="nav-item has-dropdown">
-        <button class="nav-link" onclick="toggleDrop(this)">Build<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <button class="nav-link" onclick="toggleDrop(this)">ابنِ<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="nav-dropdown">
-          <a href="/build/" class="nav-dd-item">🔨 Build Hub</a>
-          <a href="/sprint/" class="nav-dd-item">🏃 Sprint</a>
-          <a href="/track/" class="nav-dd-item">📈 Track</a>
-          <a href="/support/" class="nav-dd-item">🛟 Support</a>
+          <a href="/build/" class="nav-dd-item">🔨 محور البناء</a>
+          <a href="/sprint/" class="nav-dd-item">🏃 سبرنت</a>
+          <a href="/track/" class="nav-dd-item">📈 التتبع</a>
+          <a href="/support/" class="nav-dd-item">🛟 الدعم</a>
         </div>
       </div>
-      <a href="/contact/" class="nav-link">Contact</a>
+      <a href="/contact/" class="nav-link">تواصل</a>
     </div>
     <button class="nav-lang theme-toggle" type="button" aria-label="تغيير المظهر">◐</button>
     <a href="/ar/" class="nav-lang" title="العربية" onclick="event.stopPropagation()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>AR</a>
-    <a href="/bpr/" class="nav-cta">Open BPR<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="/bpr/" class="nav-cta">افتح BPR<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     <button class="nav-hamburger" id="navHamburger" onclick="toggleMobile()" aria-label="القائمة" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobile()"></div>
 <div class="mobile-menu" id="mobileMenu" inert>
-  <div class="mobile-section"><div class="mobile-section-title">Platform</div>
-    <a href="/ar/mega/">المحور الضخم</a><a href="/bpr/">Provider Registry</a><a href="/bpr/workspace/">OpenEMR Workspace</a><a href="/bpr/nphies/">NPHIES Desk</a><a href="/bpr/nvidia/">NVIDIA Health AI</a><a href="/bpr/clinic/">Clinic Reception</a>
-    <a href="/bpr/providers/">Provider Directory</a><a href="/bpr/verify/">Verify Credential</a><a href="/bpr/ledger/">Transparency Log</a>
-    <a href="/bpr/research/">Research</a><a href="/bpr/developers/">FHIR R4 API</a><a href="/bpr/status/">Status</a><a href="/bpr/join/">Join BPR</a>
+  <div class="mobile-section"><div class="mobile-section-title">المنصة</div>
+    <a href="/ar/mega/">المحور الضخم</a><a href="/bpr/">سجل مقدمي الرعاية</a><a href="/bpr/workspace/">مساحة عمل OpenEMR</a><a href="/bpr/nphies/">مكتب NPHIES</a><a href="/bpr/nvidia/">ذكاء NVIDIA الصحي</a><a href="/bpr/clinic/">استقبال العيادة</a>
+    <a href="/bpr/providers/">دليل مقدمي الرعاية</a><a href="/bpr/verify/">التحقق من الاعتماد</a><a href="/bpr/ledger/">سجل الشفافية</a>
+    <a href="/bpr/research/">البصمة البحثية</a><a href="/bpr/developers/">واجهة FHIR R4</a><a href="/bpr/status/">حالة المنصة</a><a href="/bpr/join/">انضم إلى BPR</a>
   </div>
-  <div class="mobile-section"><div class="mobile-section-title">Tools</div>
-    <a href="/cv/">CV</a><a href="/card/">Business Card</a><a href="/slots/">Hospital Slots</a><a href="/store/">Store</a><a href="/catalogue/">Catalogue</a>
+  <div class="mobile-section"><div class="mobile-section-title">الأدوات</div>
+    <a href="/cv/">السيرة الذاتية</a><a href="/card/">بطاقة العمل</a><a href="/slots/">مواعيد المستشفيات</a><a href="/store/">المتجر</a><a href="/catalogue/">الفهرس</a>
   </div>
-  <div class="mobile-section"><div class="mobile-section-title">Learn</div>
-    <a href="/learn/">Learn Hub</a><a href="/benefits/">Benefits</a><a href="/solutions/">Solutions</a><a href="/faq/">FAQ</a><a href="/templates/">Templates</a>
+  <div class="mobile-section"><div class="mobile-section-title">تعلّم</div>
+    <a href="/learn/">محور التعلّم</a><a href="/benefits/">الفوائد</a><a href="/solutions/">الحلول</a><a href="/faq/">الأسئلة الشائعة</a><a href="/templates/">القوالب</a>
   </div>
-  <div class="mobile-section"><div class="mobile-section-title">Build</div>
-    <a href="/build/">Build Hub</a><a href="/sprint/">Sprint</a><a href="/track/">Track</a><a href="/support/">Support</a><a href="/contact/">Contact</a><a href="/terms/">Terms</a>
+  <div class="mobile-section"><div class="mobile-section-title">ابنِ</div>
+    <a href="/build/">محور البناء</a><a href="/sprint/">سبرنت</a><a href="/track/">التتبع</a><a href="/support/">الدعم</a><a href="/contact/">تواصل</a><a href="/terms/">الشروط</a>
   </div>
   <div class="mobile-section"><a href="/" class="mobile-lang">🌐 English</a></div>
 </div>
@@ -553,29 +557,29 @@ function toggleMobile(){const overlay=document.getElementById('mobileOverlay');c
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <div class="hero-badge"><span class="live-dot"></span>Healthcare AI Platform · Riyadh, KSA</div>
+    <div class="hero-badge"><span class="live-dot"></span>منصة ذكاء اصطناعي للرعاية الصحية · الرياض، السعودية</div>
 
     <h1 class="hero-title" dir="ltr">
       <span class="gradient-text">Healthcare AI</span><br/>built by clinicians,<br/>for clinicians.
     </h1>
 
-    <p class="hero-desc" dir="ltr">
-      Your BPR identity unlocks a complete ecosystem: custom OpenEMR, clinical copilot with Arabic voice,
-      NVIDIA AI models trained on NPHIES, Brev HQ agent platform — all connected and verifiable.
+    <p class="hero-desc">
+      هوية BPR تفتح لك منظومة متكاملة: OpenEMR مخصص لك، مساعد سريري بصوت عربي،
+      نماذج ذكاء اصطناعي من NVIDIA مدربة على NPHIES، ومنصة وكلاء Brev HQ — كلها مترابطة وقابلة للتحقق.
     </p>
 
     <div class="hero-actions">
-      <a href="/bpr/" class="btn btn-primary">Enter BPR Workspace<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-      <a href="#architecture" class="btn btn-ghost">See Architecture<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
+      <a href="/bpr/" class="btn btn-primary">ادخل مساحة BPR<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="#architecture" class="btn btn-ghost">شاهد البنية<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
     </div>
 
     <p class="redirect-bar">استكشف المنصة بالوتيرة التي تناسبك.</p>
 
     <div class="hero-stats">
-      <div class="hero-stat"><div class="num" data-count="10">0</div><div class="label">Connected Tools</div></div>
-      <div class="hero-stat"><div class="num">R4</div><div class="label">FHIR Interoperability</div></div>
-      <div class="hero-stat"><div class="num">2x</div><div class="label">Bilingual (AR/EN)</div></div>
-      <div class="hero-stat"><div class="num">0</div><div class="label">Data Uploaded</div></div>
+      <div class="hero-stat"><div class="num" data-count="10">0</div><div class="label">أدوات مترابطة</div></div>
+      <div class="hero-stat"><div class="num">R4</div><div class="label">توافق FHIR</div></div>
+      <div class="hero-stat"><div class="num">2x</div><div class="label">ثنائي اللغة (ع/إن)</div></div>
+      <div class="hero-stat"><div class="num">0</div><div class="label">مرفوعات للتحقق</div></div>
     </div>
   </div>
 </section>
@@ -583,75 +587,75 @@ function toggleMobile(){const overlay=document.getElementById('mobileOverlay');c
 <!-- ═══════ Tools ═══════ -->
 <section class="section" id="tools">
   <div style="max-width:1280px;margin:0 auto">
-    <div class="section-label reveal">Ecosystem</div>
-    <h2 class="section-title reveal reveal-delay-1">Every tool a clinician needs.<br/>One connected platform.</h2>
-    <p class="section-desc reveal reveal-delay-2">From your private EMR to AI-powered claims — every component is signed, verified, and interoperable via FHIR R4.</p>
+    <div class="section-label reveal">المنظومة</div>
+    <h2 class="section-title reveal reveal-delay-1">كل أداة يحتاجها الطبيب.<br/>منصة واحدة مترابطة.</h2>
+    <p class="section-desc reveal reveal-delay-2">من سجلك الطبي الخاص إلى المطالبات المدعومة بالذكاء الاصطناعي — كل مكوّن موقّع ومحقق ومتوافق عبر FHIR R4.</p>
 
     <div class="float-row">
       <div class="float-card" style="--card-ac:var(--emr)">
-        <span class="status live">● Live</span>
+        <span class="status live">● مباشر</span>
         <div class="icon">🏥</div>
         <h3>Your OpenEMR</h3><div class="ar">OpenEMR مخصص لك</div>
-        <p>Isolated OpenEMR 7 with own subdomain, database, TLS, encrypted backups. BrainSAIT themed with accessible contrast.</p>
-        <div class="tags"><span class="tag">SMART-on-FHIR</span><span class="tag">Copilot</span><span class="tag">Members</span></div>
+        <p>نسخة معزولة من OpenEMR 7 بنطاق فرعي وقاعدة بيانات خاصين، TLS، ونسخ احتياطية مشفرة. بثيم BrainSAIT وتباين مقروء.</p>
+        <div class="tags"><span class="tag">SMART-on-FHIR</span><span class="tag">Copilot</span><span class="tag">أعضاء</span></div>
       </div>
       <div class="float-card" style="--card-ac:var(--copilot)">
-        <span class="status live">● Live</span>
+        <span class="status live">● مباشر</span>
         <div class="icon">🤖</div>
         <h3>Clinical Copilot</h3><div class="ar">المساعد السريري</div>
-        <p>14 bilingual skills: SOAP drafting, file classification, lab extraction, radiology structuring, medication reconciliation.</p>
-        <div class="tags"><span class="tag">14 Skills</span><span class="tag">Draft Only</span><span class="tag">On-Server</span></div>
+        <p>14 مهارة ثنائية اللغة: صياغة SOAP، تصنيف الملفات، استخراج نتائج المختبر، تهيئة الأشعة، ومراجعة الأدوية.</p>
+        <div class="tags"><span class="tag">14 مهارة</span><span class="tag">مسودة فقط</span><span class="tag">على الخادم</span></div>
       </div>
       <a href="/bpr/nvidia/" class="float-card-link" style="--card-ac:var(--nvidia);text-decoration:none">
         <div class="float-card" style="--card-ac:var(--nvidia)">
-          <span class="status live">● Live</span>
+          <span class="status live">● مباشر</span>
           <div class="icon">🟢</div>
           <h3>NVIDIA Health AI</h3><div class="ar">نماذج NVIDIA على نفيس</div>
-          <p>Nemotron models trained on NPHIES claims data. Clinical reasoning for eligibility, pre-authorisation, claims adjudication. Live demo available.</p>
-          <div class="tags"><span class="tag">Nemotron</span><span class="tag">NPHIES Trained</span><span class="tag">Live Demo</span></div>
+          <p>نماذج Nemotron مدربة على بيانات مطالبات NPHIES. استدلال سريري للتغطية المسبقة والتسوية والمراجعة. عرض مباشر متاح.</p>
+          <div class="tags"><span class="tag">Nemotron</span><span class="tag">مدربة على NPHIES</span><span class="tag">عرض مباشر</span></div>
         </div>
       </a>
       <div class="float-card" style="--card-ac:var(--brev)">
-        <span class="status ongoing">◌ Ongoing</span>
+        <span class="status ongoing">◌ جارٍ</span>
         <div class="icon">⚡</div>
         <h3>Brev HQ Agents</h3><div class="ar">منصة الوكلاء البرمجية</div>
-        <p>Multi-agent orchestration for healthcare workflows. A2A protocols between agents — intake, docs, claims, peer review.</p>
+        <p>تنسيق متعدد الوكلاء لعمليات الرعاية الصحية. بروتوكولات A2A بين الوكلاء — استقبال، توثيق، مطالبات، مراجعة الأقران.</p>
         <div class="tags"><span class="tag">Multi-Agent</span><span class="tag">Tailscale</span><span class="tag">A2A</span></div>
       </div>
       <div class="float-card" style="--card-ac:var(--nphies)">
-        <span class="status live">● Live</span>
+        <span class="status live">● مباشر</span>
         <div class="icon">📋</div>
         <h3>NPHIES Desk</h3><div class="ar">مكتب نفيس</div>
-        <p>Every rejection code in Arabic + English. On-device pre-check. Readiness plans by facility type. Reference only.</p>
-        <div class="tags"><span class="tag">Codes</span><span class="tag">Pre-Check</span><span class="tag">Readiness</span></div>
+        <p>كل رمز رفض بالعربية والإنجليزية. فحص مسبق على جهازك. خطط جاهزية حسب نوع المنشأة. للاسترشاد فقط.</p>
+        <div class="tags"><span class="tag">أكواد</span><span class="tag">فحص مسبق</span><span class="tag">جاهزية</span></div>
       </div>
       <div class="float-card" style="--card-ac:var(--bpr)">
-        <span class="status live">● Live</span>
+        <span class="status live">● مباشر</span>
         <div class="icon">🪪</div>
         <h3>Provider Registry</h3><div class="ar">سجل مقدمي الرعاية</div>
-        <p>Signed identity: SPID, OID, W3C VC 2.0, Ed25519. Transparency log. Public on-device verification. Zero account needed.</p>
+        <p>هوية موقّعة: SPID، OID، W3C VC 2.0، Ed25519. سجل شفافية. تحقق عام على جهازك. بدون حساب إطلاقاً.</p>
         <div class="tags"><span class="tag">SPID</span><span class="tag">OID</span><span class="tag">W3C VC</span></div>
       </div>
       <div class="float-card" style="--card-ac:var(--fhir)">
-        <span class="status live">● Live</span>
+        <span class="status live">● مباشر</span>
         <div class="icon">🔗</div>
         <h3>FHIR R4 API</h3><div class="ar">واجهة FHIR R4</div>
-        <p>Practitioner, PractitionerRole, Organization resources. SMART launch from EMR. Public JSON API.</p>
-        <div class="tags"><span class="tag">R4</span><span class="tag">SMART</span><span class="tag">Public</span></div>
+        <p>موارد Practitioner وPractitionerRole وOrganization. انطلاق SMART من النظام. واجهة JSON عامة.</p>
+        <div class="tags"><span class="tag">R4</span><span class="tag">SMART</span><span class="tag">عام</span></div>
       </div>
       <div class="float-card" style="--card-ac:var(--voice)">
-        <span class="status live">● Live</span>
+        <span class="status live">● مباشر</span>
         <div class="icon">🎙️</div>
         <h3>Arabic Voice</h3><div class="ar">تحويل الصوت العربي</div>
-        <p>Whisper large-v3-turbo on-premise. Dictate in Arabic → SOAP. Fidelity guard flags drug/dose mismatches.</p>
-        <div class="tags"><span class="tag">Whisper</span><span class="tag">On-Premise</span><span class="tag">SOAP</span></div>
+        <p>Whisper large-v3-turbo على خوادمنا. إملاء بالعربية → SOAP. حارس دقة يرصد أخطاء الدواء والجرعة.</p>
+        <div class="tags"><span class="tag">Whisper</span><span class="tag">على الموقع</span><span class="tag">SOAP</span></div>
       </div>
       <div class="float-card" style="--card-ac:var(--sentinel)">
-        <span class="status live">● Live</span>
+        <span class="status live">● مباشر</span>
         <div class="icon">🛡️</div>
         <h3>Sentinel Rules</h3><div class="ar">قواعد السلامة</div>
-        <p>16 deterministic checks: metformin vs eGFR, hyperkalaemia on RAAS, NSAID triple whammy, allergy cross-reactivity.</p>
-        <div class="tags"><span class="tag">16 Rules</span><span class="tag">Deterministic</span><span class="tag">Source Traced</span></div>
+        <p>16 فحصاً حتمياً: الميتفورمين مقابل eGFR، فرط البوتاسيوم على RAAS، التثلث الخطير للمضادات، والتفاعل التحويلي للحساسية.</p>
+        <div class="tags"><span class="tag">16 قاعدة</span><span class="tag">حتمية</span><span class="tag">مصدر موثّق</span></div>
       </div>
     </div>
   </div>
@@ -660,24 +664,25 @@ function toggleMobile(){const overlay=document.getElementById('mobileOverlay');c
 <!-- ═══════ Live Dashboard ═══════ -->
 <section class="section" id="dashboard">
   <div style="max-width:1280px;margin:0 auto">
-    <div class="section-label reveal">Live Status</div>
-    <h2 class="section-title reveal reveal-delay-1">Platform running now.</h2>
-    <p class="section-desc reveal reveal-delay-2">Real-time verification of the BrainSAIT infrastructure health and operational status.</p>
+    <div class="section-label reveal">الحالة المباشرة</div>
+    <h2 class="section-title reveal reveal-delay-1">المنصة تعمل الآن.</h2>
+    <p class="section-desc reveal reveal-delay-2">تحقق لحظي من صحة بنية BrainSAIT التحتية وحالتها التشغيلية.</p>
     <div class="dashboard reveal reveal-delay-3">
-      <div class="dash-cell"><div class="num" id="dash-tools">10</div><div class="label">Connected Tools</div><div class="sub">Live today</div></div>
-      <div class="dash-cell"><div class="num" id="dash-providers">—</div><div class="label">Providers</div><div class="sub" id="dash-providers-label">BPR Directory</div></div>
-      <div class="dash-cell"><div class="num" id="dash-ops">—</div><div class="label">Operations</div><div class="sub" id="dash-ops-label">Checking…</div></div>
-      <div class="dash-cell"><div class="num" id="dash-cert">—</div><div class="label">Connection</div><div class="sub" id="dash-cert-label">Not checked</div></div>
+      <div class="dash-cell"><div class="num" id="dash-tools">10</div><div class="label">أدوات مترابطة</div><div class="sub">مباشرة اليوم</div></div>
+      <div class="dash-cell"><div class="num" id="dash-providers">—</div><div class="label">مقدمو الرعاية</div><div class="sub" id="dash-providers-label">دليل BPR</div></div>
+      <div class="dash-cell"><div class="num" id="dash-ops">—</div><div class="label">العمليات</div><div class="sub" id="dash-ops-label">جارٍ الفحص…</div></div>
+      <div class="dash-cell"><div class="num" id="dash-cert">—</div><div class="label">الاتصال</div><div class="sub" id="dash-cert-label">لم يُفحص</div></div>
     </div>
+    <div class="dash-meta">آخر فحص: <span id="dash-checked">…</span> · <a href="/bpr/status/">الحالة الكاملة ←</a></div>
   </div>
 </section>
 
 <!-- ═══════ Architecture ═══════ -->
 <section class="section arch-section" id="architecture">
   <div style="max-width:1280px;margin:0 auto">
-    <div class="section-label reveal" style="text-align:center;display:block;margin-bottom:16px">Architecture</div>
-    <h2 class="section-title reveal reveal-delay-1" style="text-align:center;margin:0 auto 16px">How everything <span style="color:var(--accent)">connects.</span></h2>
-    <p class="section-desc reveal reveal-delay-2" style="text-align:center;margin:0 auto 64px">From provider identity to AI-powered clinical tools — trust preserved at every step.</p>
+    <div class="section-label reveal" style="text-align:center;display:block;margin-bottom:16px">البنية</div>
+    <h2 class="section-title reveal reveal-delay-1" style="text-align:center;margin:0 auto 16px">كيف يتّصل <span style="color:var(--accent)">الكل.</span></h2>
+    <p class="section-desc reveal reveal-delay-2" style="text-align:center;margin:0 auto 64px">من هوية مقدم الرعاية إلى الأدوات السريرية المدعومة بالذكاء الاصطناعي — الثقة محفوظة في كل خطوة.</p>
     <div class="arch-canvas-wrap reveal reveal-delay-3">
       <svg class="arch-svg" viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -731,22 +736,22 @@ function toggleMobile(){const overlay=document.getElementById('mobileOverlay');c
 <!-- ═══════ Credential Verification ═══════ -->
 <section class="section" id="verification">
   <div style="max-width:1280px;margin:0 auto">
-    <div class="section-label reveal">Verification</div>
-    <h2 class="section-title reveal reveal-delay-1">Check any credential.<br/><span style="color:var(--accent)">On your device.</span></h2>
-    <p class="section-desc reveal reveal-delay-2">No account, nothing uploaded. Open the verifier to check the signature, validity and live registry status.</p>
+    <div class="section-label reveal">التحقق</div>
+    <h2 class="section-title reveal reveal-delay-1">تحقق من أي اعتماد.<br/><span style="color:var(--accent)">على جهازك.</span></h2>
+    <p class="section-desc reveal reveal-delay-2">بدون حساب، وبدون رفع أي شيء. افتح المحقّق للتحقق من التوقيع والصلاحية وحالة السجل المباشرة.</p>
     <div class="cred-widget reveal reveal-delay-3" id="credWidget">
       <div class="cred-header">
         <div class="cred-avatar">EF</div>
-        <div class="cred-info"><h3>Dr. Mohamed El Fadil</h3><p>SA-PHY-000003 · Physician &amp; BrainSAIT founder</p></div>
+        <div class="cred-info"><h3>د. محمد الفاضل</h3><p>SA-PHY-000003 · طبيب ومؤسس BrainSAIT</p></div>
       </div>
       <div class="cred-fields">
         <div class="cred-field"><span class="field-label">SPID</span><span class="field-value">SA-PHY-000003</span></div>
-        <div class="cred-field"><span class="field-label">Status</span><span class="field-value" id="credStatus">Not checked</span></div>
-        <div class="cred-field"><span class="field-label">Issuer</span><span class="field-value">did:web:registry.brainsait.de</span></div>
-        <div class="cred-field"><span class="field-label">Algorithm</span><span class="field-value">Ed25519 · W3C VC 2.0</span></div>
-        <div class="cred-field"><span class="field-label">Valid Until</span><span class="field-value" id="credExpiry">See signed credential</span></div>
+        <div class="cred-field"><span class="field-label">الحالة</span><span class="field-value" id="credStatus">لم يُتحقق</span></div>
+        <div class="cred-field"><span class="field-label">الصادر</span><span class="field-value">did:web:registry.brainsait.de</span></div>
+        <div class="cred-field"><span class="field-label">الخوارزمية</span><span class="field-value">Ed25519 · W3C VC 2.0</span></div>
+        <div class="cred-field"><span class="field-label">صالح حتى</span><span class="field-value" id="credExpiry">راجع الاعتماد الموقّع</span></div>
       </div>
-      <a class="cred-verify-btn" style="display:block;text-align:center" href="/ar/bpr/verify/?spid=SA-PHY-000003">تحقق من التوقيع على جهازك →</a>
+      <a class="cred-verify-btn" style="display:block;text-align:center" href="/ar/bpr/verify/?spid=SA-PHY-000003">تحقق من التوقيع على جهازك ←</a>
       <pre id="verifyResult" style="margin-top:16px;font-size:11px;font-family:var(--mono);color:var(--muted);white-space:pre-wrap;max-height:200px;overflow:auto;display:none"></pre>
     </div>
   </div>
@@ -755,14 +760,14 @@ function toggleMobile(){const overlay=document.getElementById('mobileOverlay');c
 <!-- ═══════ API Preview ═══════ -->
 <section class="section" id="api">
   <div style="max-width:1280px;margin:0 auto">
-    <div class="section-label reveal">Developer</div>
+    <div class="section-label reveal">المطوّرون</div>
     <h2 class="section-title reveal reveal-delay-1">FHIR &amp; <span style="color:var(--accent)">REST API</span></h2>
-    <p class="section-desc reveal reveal-delay-2">Public endpoints for Practitioner, PractitionerRole, Organization — plus a transparency ledger and NPHIES knowledge base.</p>
+    <p class="section-desc reveal reveal-delay-2">نقاط نهاية عامة لـ Practitioner وPractitionerRole وOrganization — بالإضافة إلى سجل الشفافية وقاعدة معرفة NPHIES.</p>
     <div class="code-preview reveal reveal-delay-3">
       <div class="code-tab-bar">
         <button class="code-tab active" onclick="switchTab(0)">FHIR · Practitioner</button>
-        <button class="code-tab" onclick="switchTab(1)">NPHIES · Pre-check</button>
-        <button class="code-tab" onclick="switchTab(2)">Ledger · Transparency</button>
+        <button class="code-tab" onclick="switchTab(1)">NPHIES · فحص مسبق</button>
+        <button class="code-tab" onclick="switchTab(2)">السجل · الشفافية</button>
       </div>
       <div class="code-block" id="codeBlock"></div>
     </div>
@@ -773,12 +778,12 @@ function toggleMobile(){const overlay=document.getElementById('mobileOverlay');c
 <section class="section cta-section">
   <div style="max-width:1280px;margin:0 auto">
     <div class="cta-box reveal">
-      <h2>Your identity. Your workspace.<br/><span style="color:var(--accent)">Your tools. Connected.</span></h2>
-      <p>Join BPR and get your own OpenEMR, Copilot, Arabic voice, specialty tools — all signed, verified, and connected to the healthcare ecosystem.</p>
+      <h2>هويتك. مساحتك.<br/><span style="color:var(--accent)">أدواتك. مترابطة.</span></h2>
+      <p>انضم إلى BPR واحصل على OpenEMR خاص بك، ومساعد Copilot، وصوت عربي، وأدوات تخصصية — كلها موقّعة ومُتحقَّق منها ومترابطة مع منظومة الرعاية الصحية.</p>
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1">
-        <a href="/bpr/join" class="btn btn-primary">Join BPR<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-        <a href="/bpr/workspace" class="btn btn-ghost">Workspace</a>
-        <a href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Book Demo</a>
+        <a href="/bpr/join" class="btn btn-primary">انضم إلى BPR<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <a href="/bpr/workspace" class="btn btn-ghost">المساحة</a>
+        <a href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">احجز عرضا</a>
       </div>
     </div>
   </div>
@@ -788,10 +793,10 @@ function toggleMobile(){const overlay=document.getElementById('mobileOverlay');c
 <!-- ═══════ Footer ═══════ -->
 <footer class="footer">
   <div class="footer-links">
-    <a href="/">Home</a><a href="/bpr/">BPR Workspace</a><a href="/bpr/nphies">NPHIES Desk</a><a href="/bpr/workspace">OpenEMR</a><a href="/bpr/workspace">Copilot</a><a href="/bpr/providers">Directory</a><a href="/bpr/join">Join</a><a href="https://brainsait.de" target="_blank" rel="noopener noreferrer">brainsait.de</a>
+    <a href="/ar/">الرئيسية</a><a href="/bpr/">مساحة BPR</a><a href="/bpr/nphies">مكتب NPHIES</a><a href="/bpr/workspace">OpenEMR</a><a href="/bpr/workspace">Copilot</a><a href="/bpr/providers">الدليل</a><a href="/bpr/join">انضم</a><a href="https://brainsait.de" target="_blank" rel="noopener noreferrer">brainsait.de</a>
   </div>
   <p class="footer-tech">OpenEMR · Copilot · NVIDIA AI · Brev HQ · FHIR R4 · W3C VC 2.0 · Ed25519 · SMART-on-FHIR</p>
-  <p class="footer-copy" style="margin-top:16px">© 2026 BrainSAIT · Riyadh, KSA · All rights reserved</p>
+  <p class="footer-copy" style="margin-top:16px">© 2026 BrainSAIT · الرياض، السعودية · جميع الحقوق محفوظة</p>
 </footer>
 
 <script>
@@ -845,9 +850,10 @@ async function loadDashboard(){
   try{
     const r=await fetch('https://registry.brainsait.de/api/status',{signal:AbortSignal.timeout(5000)});if(!r.ok)throw new Error(String(r.status));
     const data=await r.json();const ops=data.operations||{};const checks=ops.checks||{};const okCount=Object.values(checks).filter(v=>v==='ok').length;const total=Object.keys(checks).length;const verdict=ops.verdict||'unknown';
-    document.getElementById('dash-ops').textContent=verdict==='ok'?'OK':verdict;document.getElementById('dash-ops').style.color=verdict==='ok'?'var(--accent)':'#ff9f43';document.getElementById('dash-ops-label').textContent=`${okCount}/${total} checks passed`;document.getElementById('dash-cert').textContent='HTTPS';document.getElementById('dash-cert-label').textContent='Registry response received';
-  }catch{document.getElementById('dash-ops').textContent='—';document.getElementById('dash-ops-label').textContent='Registry unreachable';document.getElementById('dash-cert').textContent='—';document.getElementById('dash-cert-label').textContent='Not verified';}
-  try{const r=await fetch('https://registry.brainsait.de/api/providers.json',{signal:AbortSignal.timeout(5000)});if(!r.ok)throw new Error(String(r.status));const data=await r.json();document.getElementById('dash-providers').textContent=data.items?.length??'—';}catch{document.getElementById('dash-providers').textContent='—';}
+    document.getElementById('dash-ops').textContent=verdict==='ok'?'OK':verdict;document.getElementById('dash-ops').style.color=verdict==='ok'?'var(--accent)':'#ff9f43';document.getElementById('dash-ops-label').textContent=`${okCount}/${total} فحص ناجح`;document.getElementById('dash-cert').textContent='HTTPS';document.getElementById('dash-cert-label').textContent='وصل السجل بنجاح';
+    const t=new Date(ops.checked_at||data.checked_at);document.getElementById('dash-checked').textContent=isNaN(t)?'الآن':'في '+t.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'UTC'})+' UTC · مباشر من registry.brainsait.de';
+  }catch{document.getElementById('dash-ops').textContent='—';document.getElementById('dash-ops-label').textContent='السجل غير متاح';document.getElementById('dash-cert').textContent='—';document.getElementById('dash-cert-label').textContent='لم يُتحقق';document.getElementById('dash-checked').textContent='غير متاح';}
+  try{const r=await fetch('https://registry.brainsait.de/api/providers',{signal:AbortSignal.timeout(5000)});if(!r.ok)throw new Error(String(r.status));const data=await r.json();document.getElementById('dash-providers').textContent=data.items?.length??'—';}catch{document.getElementById('dash-providers').textContent='—';}
 }
 loadDashboard();
 

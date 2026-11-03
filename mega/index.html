@@ -431,7 +431,7 @@ section[id]{scroll-margin-top:80px}
 <script>
 function toggleMobile(){const overlay=document.getElementById('mobileOverlay');const menu=document.getElementById('mobileMenu');const hamburger=document.getElementById('navHamburger');const open=menu.classList.toggle('open');overlay.classList.toggle('open',open);hamburger.classList.toggle('active',open);document.body.style.overflow=open?'hidden':'';menu.inert=!open;hamburger.setAttribute('aria-expanded',String(open));if(open)menu.querySelector('a').focus();else hamburger.focus()}
 window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>40)})
-if(matchMedia('(prefers-reduced-motion: reduce)').matches){}else{const revealEls=document.querySelectorAll('.section-header,.intent-card,.final-cta,.directory');revealEls.forEach((el,i)=>{el.classList.add('reveal');if(el.classList.contains('intent-card'))el.classList.add('reveal-delay-'+(i%3+1))});const revealObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});revealEls.forEach(el=>revealObs.observe(el))}
+if('IntersectionObserver' in window){const revealEls=document.querySelectorAll('.section-header,.intent-card,.final-cta,.directory');revealEls.forEach((el,i)=>{el.classList.add('reveal');if(el.classList.contains('intent-card'))el.classList.add('reveal-delay-'+(i%3+1))});const revealObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});revealEls.forEach(el=>revealObs.observe(el))}
 </script>
 </body>
 </html>
