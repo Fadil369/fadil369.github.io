@@ -1,0 +1,122 @@
+/* ════════════════════════════════════════════════════════════
+   BrainSAIT — Unified Design System (2026-11-03)
+   Single source of truth: 12 colors, 3 fonts, 1 scale
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── DESIGN TOKENS ────────────────────────────────────────── */
+:root {
+  /* Color palette — 12 core colors */
+  --bs-black:        #090a08;
+  --bs-surface:      #121512;
+  --bs-surface-hover:#1a1f1a;
+  --bs-line:         #2a3229;
+  --bs-line-soft:    #1e2520;
+  --bs-muted:        #8a998d;
+  --bs-muted-deep:   #5a6b5d;
+  --bs-text:         #f2f6f3;
+  --bs-accent:       #edf34a;
+  --bs-accent-dim:   rgba(237,243,74,.15);
+  --bs-white:        #ffffff;
+  --bs-success:      #64d8c5;
+
+  /* Semantic colors */
+  --bs-ok:           #9fe870;
+  --bs-fail:         #ff7a6b;
+  --bs-warn:         #f5c97a;
+  --bs-info:         #3b82f6;
+
+  /* Functional */
+  --bs-brand:        #edf34a;
+  --bs-emr:          #3b82f6;
+  --bs-copilot:      #8b5cf6;
+  --bs-nvidia:       #76b900;
+  --bs-nphies:       #06b6d4;
+  --bs-fhir:         #10b981;
+
+  /* Typography scale — 8 stops */
+  --bs-txs:          11px;
+  --bs-tsm:          13px;
+  --bs-tbase:        15px;
+  --bs-tlg:          18px;
+  --bs-txl:          24px;
+  --bs-txxl:         32px;
+  --bs-th1:          clamp(32px, 4.5vw, 56px);
+  --bs-h2:           clamp(26px, 3.5vw, 40px);
+  --bs-h3:           clamp(20px, 2.5vw, 28px);
+
+  /* Font families — 3 max */
+  --bs-font-display: 'Playfair Display', Georgia, serif;
+  --bs-font-body:    'Manrope', system-ui, sans-serif;
+  --bs-font-mono:    'IBM Plex Mono', 'Fira Code', monospace;
+
+  /* Spacing scale — 8 steps × 4px base */
+  --bs-sp-1:  4px;
+  --bs-sp-2:  8px;
+  --bs-sp-3:  12px;
+  --bs-sp-4:  16px;
+  --bs-sp-5:  20px;
+  --bs-sp-6:  24px;
+  --bs-sp-8:  32px;
+  --bs-sp-10: 40px;
+  --bs-sp-12: 48px;
+  --bs-sp-16: 64px;
+  --bs-sp-20: 80px;
+  --bs-sp-24: 96px;
+  --bs-sp-32: 128px;
+
+  /* Border radius — 5 values */
+  --bs-r0: 0;
+  --bs-r-sm: 4px;
+  --bs-r-md: 8px;
+  --bs-r-lg: 12px;
+  --bs-r-xl: 16px;
+  --bs-r-full: 999px;
+
+  /* Shadows — 3 levels */
+  --bs-shadow-sm:  0 1px 2px rgba(0,0,0,.25);
+  --bs-shadow-md:  0 4px 12px rgba(0,0,0,.3);
+  --bs-shadow-lg:  0 12px 32px rgba(0,0,0,.4);
+  --bs-shadow-glow:0 0 40px rgba(237,243,74,.15);
+
+  /* Transitions — 3 speeds */
+  --bs-fast:  .15s ease;
+  --bs-normal:.25s ease;
+  --bs-slow:  .4s cubic-bezier(.16,1,.3,1);
+
+  /* Z-index scale */
+  --bs-z-dropdown:  100;
+  --bs-z-sticky:    200;
+  --bs-z-overlay:   300;
+  --bs-z-modal:     400;
+  --bs-z-toast:     500;
+
+  /* Layout */
+  --bs-maxw: 1240px;
+  --bs-gutter: 32px;
+  --bs-mobile-gutter: 20px;
+}
+
+/* ── Light theme (automatic inversion) ────────────────────── */
+[data-theme='light'] {
+  --bs-black:        #f2f1e8;
+  --bs-surface:      #ffffff;
+  --bs-surface-hover:#f5f4ec;
+  --bs-line:         rgba(9,10,8,.14);
+  --bs-line-soft:    rgba(9,10,8,.08);
+  --bs-muted:        #626256;
+  --bs-muted-deep:   #8a998d;
+  --bs-text:         #13140f;
+  --bs-accent:       #626800;
+  --bs-accent-dim:   rgba(98,104,0,.1);
+  --bs-brand:        #626800;
+  --bs-shadow-sm:  0 1px 2px rgba(0,0,0,.08);
+  --bs-shadow-md:  0 4px 12px rgba(0,0,0,.1);
+  --bs-shadow-lg:  0 12px 32px rgba(0,0,0,.15);
+  --bs-shadow-glow:0 0 30px rgba(98,104,0,.2);
+}
+
+/* ── RTL overrides ────────────────────────────────────────── */
+[dir='rtl'] {
+  --bs-font-display: 'Amiri', Georgia, serif;
+  --bs-font-body:    'Almarai', system-ui, sans-serif;
+}

@@ -121,6 +121,10 @@
 .bpr-module:hover { background: var(--profile-surface); }
 .bpr-module-top { display: flex; justify-content: space-between; align-items: center; color: var(--profile-accent); }
 .bpr-module-top small { color: var(--profile-muted); font: 10px 'IBM Plex Mono', monospace; letter-spacing: .06em; }
+.bpr-check-list { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; }
+.bpr-check-list li { display: flex; align-items: flex-start; gap: 9px; color: var(--profile-muted); font-size: 13px; line-height: 1.6; }
+.bpr-check-list li svg { flex: none; margin-top: 3px; color: var(--profile-accent); }
+.bpr-check-list li a { color: var(--profile-text); }
 .bpr-module h3 { margin: 8px 0 0; font-size: 19px; }
 .bpr-module p { margin: 0; color: var(--profile-muted); font-size: 13px; }
 .bpr-module strong { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 13px; color: var(--profile-accent); }

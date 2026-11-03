@@ -210,6 +210,12 @@ for (const [route, to] of Object.entries(LEGACY)) {
 <meta name="robots" content="noindex, follow"><link rel="canonical" href="${ORIGIN}${to}"><meta http-equiv="refresh" content="0; url=${to}">
 </head><body><p>This page moved to <a href="${to}">${ORIGIN}${to}</a>.</p></body></html>
 `);
+  if (route === 'bpr/nvidia') {
+    const arDir = join(root, 'ar', route);
+    mkdirSync(arDir, { recursive: true });
+    const arTarget = '/ar' + to;
+    writeFileSync(join(arDir, 'index.html'), `<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="robots" content="noindex, follow"><title>تم نقل الصفحة</title><link rel="canonical" href="${ORIGIN}${arTarget}"><meta http-equiv="refresh" content="0; url=${arTarget}"></head><body><p>نُقلت هذه الصفحة إلى <a href="${arTarget}">${arTarget}</a>.</p></body></html>\n`);
+  }
 }
 // Old storefront product pages pointed at bundles that no longer exist (they rendered blank).
 const productsDir = join(root, 'products');

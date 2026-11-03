@@ -1,0 +1,94 @@
+/* ════════════════════════════════════════════════════════════
+   BrainSAIT — Accessible Interactive Elements
+   Adds :focus-visible everywhere missing it
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Global focus-visible ring ───────────────────────────── */
+*:focus-visible {
+  outline: 2px solid var(--bs-accent, #edf34a);
+  outline-offset: 2px;
+  border-radius: var(--bs-r-sm, 2px);
+}
+
+/* ── Nav links ───────────────────────────────────────────── */
+a.nav-link:focus-visible,
+a.nav-dd-item:focus-visible,
+a.nav-link:focus-visible {
+  outline-offset: 2px;
+  border-radius: var(--bs-r-full, 999px);
+  background: rgba(237,243,74,.1);
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+button:focus-visible,
+.profile-button:focus-visible,
+.btn:focus-visible,
+.intent-link:focus-visible {
+  outline-offset: 3px;
+}
+
+/* ── Form inputs ─────────────────────────────────────────── */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--bs-accent, #edf34a);
+  outline-offset: 2px;
+}
+
+/* ── Skip link (always visible on focus) ────────────────── */
+.skip-link:focus,
+.skip-link:focus-visible {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  padding: 12px 24px;
+  background: var(--bs-accent, #edf34a);
+  color: var(--bs-black, #090a08);
+  font-weight: 700;
+  font-size: 16px;
+  border-radius: var(--bs-r-md, 8px);
+  box-shadow: var(--bs-shadow-lg, 0 12px 32px rgba(0,0,0,.4));
+  text-decoration: none;
+  width: auto;
+  height: auto;
+  clip: auto;
+  overflow: visible;
+  margin: 0;
+}
+
+/* ── Scroll margin for anchored sections ─────────────────── */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+/* ── Touch target minimum (WCAG 2.5.8) ──────────────────── */
+@media (pointer: coarse) {
+  a.nav-link,
+  button,
+  .profile-button,
+  .btn,
+  .intent-link,
+  a.nav-dd-item,
+  .bpr-provider,
+  .intent-card {
+    min-height: 44px;
+  }
+}
+
+/* ── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Selection color ────────────────────────────────────── */
+::selection {
+  background: rgba(237,243,74,.3);
+  color: inherit;
+}

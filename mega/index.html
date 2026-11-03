@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mega Hub — All BrainSAIT Routes by Intent</title>
+<meta name="description" content="The BrainSAIT mega hub: every platform route organized by user intent — clinicians, developers, researchers, hospitals, and organizations. One intelligent entry point to OpenEMR, NVIDIA AI, NPHIES, BPR, FHIR R4, and Brev HQ agents." />
+<meta name="theme-color" content="#090a08" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="BrainSAIT" />
+<meta property="og:title" content="Mega Hub — All BrainSAIT Routes by Intent" />
+<meta property="og:description" content="Every BrainSAIT route organized by user intent — clinicians, developers, researchers, hospitals, and organizations." />
+<meta property="og:url" content="https://fadil369.github.io/mega/" />
+<meta property="og:image" content="https://fadil369.github.io/assets/profile-og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="ar_SA" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23090a08'/%3E%3Crect x='8' y='8' width='84' height='84' rx='18' fill='%23edf34a'/%3E%3Ctext x='50' y='64' font-family='Arial,sans-serif' font-weight='bold' font-size='38' fill='%23090a08' text-anchor='middle'%3EEF%3C/text%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+<link rel="canonical" href="https://fadil369.github.io/mega/" />
+<link rel="alternate" hreflang="en" href="https://fadil369.github.io/mega/" />
+<link rel="alternate" hreflang="ar" href="https://fadil369.github.io/ar/mega/" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ════════════════════════════════════════════════════════════
+   BrainSAIT — Mega Hub (intelligent route directory)
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --bg:#090a08; --surface:#121512; --surface2:#1a1f1a;
+  --line:#2a3229; --line2:#35413b;
+  --text:#f2f6f3; --muted:#8a998d; --muted2:#708275;
+  --accent:#edf34a; --accent2:#64d8c5; --accent3:#c4a030;
+  --emr:#3b82f6; --copilot:#8b5cf6; --nvidia:#76b900;
+  --brev:#f97316; --nphies:#06b6d4; --bpr:#edf34a;
+  --fhir:#10b981; --voice:#ec4899; --sentinel:#ef4444;
+  --radius:18px; --radius-sm:12px; --radius-xs:8px;
+  --mono:'IBM Plex Mono','Fira Code',monospace;
+  --font:'Manrope',system-ui,-apple-system,sans-serif;
+  --glow:0 0 40px rgba(237,243,74,.15);
+  --transition:all .4s cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:var(--font);line-height:1.7;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none;transition:color .25s}
+a:hover{color:var(--accent)}
+img{max-width:100%;height:auto}
+
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:-1}
+.skip-link:focus{left:1rem;top:1rem;width:auto;height:auto;padding:0.5rem 1rem;background:var(--accent);color:var(--bg);z-index:10000;font-weight:700}
+
+/* ═══ NAV ═══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;transition:all .4s}
+.nav.scrolled{background:rgba(9,10,8,.94);backdrop-filter:blur(28px)saturate(1.6);border-bottom:1px solid rgba(42,50,41,.5)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:14px;font-weight:800;font-size:20px;letter-spacing:-.02em}
+.nav-brand-icon{width:40px;height:40px;background:var(--accent);border-radius:10px;display:grid;place-items:center;color:var(--bg);font-weight:800;font-size:14px;font-family:var(--mono);box-shadow:var(--glow)}
+.nav-menu{display:flex;align-items:center;gap:4px}
+.nav-link{color:var(--muted);font-size:14px;font-weight:600;padding:8px 14px;border-radius:999px;transition:all .25s;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.nav-link:hover{color:var(--accent);background:rgba(237,243,74,.08)}
+.nav-link svg{width:12px;height:12px}
+.nav-cta{background:var(--accent);color:var(--bg);font-weight:800;font-size:14px;padding:10px 20px;border-radius:999px;box-shadow:var(--glow)}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(237,243,74,.35)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+.nav-hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+
+/* Mobile overlay & menu */
+.mobile-overlay{position:fixed;inset:0;z-index:190;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:all .3s}
+.mobile-overlay.open{opacity:1;visibility:visible}
+.mobile-menu{position:fixed;top:0;right:-320px;bottom:0;width:320px;max-width:85vw;z-index:195;background:var(--surface);border-left:1px solid var(--line);overflow-y:auto;padding:80px 24px 40px;transition:right .4s cubic-bezier(.16,1,.3,1)}
+[dir='rtl'] .mobile-menu{right:auto;left:-320px;border-left:none;border-right:1px solid var(--line);transition:left .4s cubic-bezier(.16,1,.3,1)}
+.mobile-menu.open{right:0}
+[dir='rtl'] .mobile-menu.open{left:0;right:auto}
+.mobile-section{margin-bottom:32px}
+.mobile-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px}
+.mobile-section a{display:block;padding:10px 16px;border-radius:var(--radius-sm);font-size:14px;color:var(--muted);transition:all .2s;text-decoration:none;margin-bottom:2px}
+.mobile-section a:hover{background:rgba(237,243,74,.06);color:var(--text)}
+.mobile-lang{font-size:16px!important;text-align:center;border:1px solid var(--line)!important;margin-top:16px!important}
+.nav-lang{color:var(--muted);font-size:13px;font-weight:600;margin-left:16px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;transition:all .25s}
+.nav-lang:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ═══ HERO ═══ */
+.hero{min-height:calc(100vh - 60px);display:flex;align-items:center;padding:60px 32px 40px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(circle at 30% 20%, rgba(237,243,74,.08), transparent 40%),radial-gradient(circle at 80% 80%, rgba(100,216,197,.06), transparent 40%);z-index:0}
+.hero-content{position:relative;z-index:1;max-width:1280px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(237,243,74,.12);border:1px solid rgba(237,243,74,.35);color:var(--accent);font-size:11px;font-weight:800;font-family:var(--mono);border-radius:999px;letter-spacing:.1em;margin-bottom:24px}
+.live-dot{width:7px;height:7px;background:var(--accent2);border-radius:50%;box-shadow:0 0 12px var(--accent2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-size:clamp(34px,5vw,56px);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:16px;max-width:700px}
+.hero p{font-size:17px;color:var(--muted);line-height:1.7;max-width:560px;margin-bottom:32px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--text);font-size:14px;font-weight:700;transition:all .25s;cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(237,243,74,.08)}
+.btn.primary{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:var(--glow)}
+.btn svg{width:16px;height:16px}
+
+/* ═══ INTENT CARDS ═══ */
+.section{padding:72px 32px;border-top:1px solid var(--line)}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;max-width:1280px;margin-left:auto;margin-right:auto}
+.section-number{font-family:var(--mono);font-size:11px;font-weight:800;color:var(--accent);letter-spacing:.2em}
+.section h2{font-size:clamp(26px,4vw,36px);font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.section p{color:var(--muted);font-size:15px;max-width:600px}
+.intent-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;max-width:1280px;margin:0 auto}
+.intent-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:all .3s}
+.intent-card:hover{border-color:var(--accent2);background:var(--surface2);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.intent-card h3{font-size:19px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.intent-card h3 .tag{font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;background:rgba(237,243,74,.12);color:var(--accent);font-family:var(--mono);margin-left:auto}
+.intent-card p{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:16px;max-width:none}
+.intent-links{display:flex;flex-direction:column;gap:8px}
+.intent-link{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1px solid var(--line2);border-radius:var(--radius-sm);background:transparent;color:var(--muted);font-size:13px;font-weight:600;font-family:var(--mono);transition:all .2s}
+.intent-link:hover{border-color:var(--accent);color:var(--text);background:rgba(237,243,74,.08)}
+.intent-link svg{width:14px;height:14px;flex:none;color:var(--muted2)}
+
+/* ═══ FULL DIRECTORY ═══ */
+.directory{max-width:1280px;margin:0 auto;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.directory table{width:100%;min-width:340px;border-collapse:separate;border-spacing:0 10px}
+.directory th{text-align:left;padding:14px 20px;font-family:var(--mono);font-size:11px;font-weight:800;color:var(--muted2);letter-spacing:.1em;border-bottom:1px solid var(--line)}
+.directory td{padding:14px 20px;border-bottom:1px solid var(--line);font-size:14px}
+.directory tr:hover td{background:rgba(237,243,74,.06)}
+.directory .route{font-family:var(--mono);font-size:12px;color:var(--accent2);font-weight:600}
+.directory .desc{color:var(--muted);font-size:13px}
+.directory .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--line);border-radius:999px;font-size:11px;font-weight:700;font-family:var(--mono);color:var(--muted2)}
+.directory .badge.ar{color:var(--accent3);border-color:rgba(196,160,48,.35)}
+.directory .badge.en{color:var(--accent2);border-color:rgba(100,216,197,.35)}
+
+/* ═══ CTA ═══ */
+.final-cta{background:linear-gradient(135deg,rgba(237,243,74,.12),rgba(100,216,197,.06));border:1px solid rgba(237,243,74,.25);border-radius:var(--radius);padding:48px 32px;text-align:center;margin-top:72px}
+.final-cta h2{font-size:clamp(28px,4vw,38px);font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+.final-cta p{color:var(--muted);font-size:16px;line-height:1.7;max-width:600px;margin:0 auto 28px}
+.final-cta .btn{margin:0 8px}
+
+/* ═══ MOBILE ═══ */
+@media(max-width:768px){
+  .nav-menu{display:none}
+  .nav-hamburger{display:flex}
+  .nav-inner{padding:0 20px}
+  .hero{padding:48px 20px 32px}
+  .section{padding:52px 20px}
+  .intent-grid{grid-template-columns:1fr}
+  .final-cta{padding:36px 20px}
+}
+
+/* ═══ SCROLL REVEAL ═══ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* ═══ REDUCED MOTION ═══ */
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms !important;transition-duration:.01ms !important}.reveal{opacity:1;transform:none;transition:none}}
+
+/* ═══ ACCESSIBILITY: focus-visible everywhere ═══ */
+*:focus-visible{outline:2px solid var(--accent2,#64d8c5);outline-offset:3px;border-radius:4px}
+.nav-link:focus-visible,.nav-cta:focus-visible,.btn:focus-visible,.intent-link:focus-visible,.nav-lang:focus-visible{background:rgba(237,243,74,.1)!important;outline-offset:2px;box-shadow:0 0 20px rgba(237,243,74,.2)}
+.skip-link:focus{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:9999;padding:16px 28px;background:var(--accent,#edf34a);color:var(--bg,#090a08);border-radius:12px;font-weight:700;box-shadow:0 12px 40px rgba(0,0,0,.5)}
+a:focus-visible{outline-offset:2px}
+section[id]{scroll-margin-top:80px}
+@media(pointer:coarse){.nav-link,.nav-cta,.btn,.intent-link{min-height:44px}}
+::selection{background:rgba(237,243,74,.3);color:inherit}
+
+/* ═══ MICRO-INTERACTIONS ═══ */
+.intent-card,.intent-link,.btn{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease}
+.intent-card:hover{transform:translateY(-4px)!important;box-shadow:0 20px 40px rgba(0,0,0,.4)!important}
+.btn:hover{transform:translateY(-2px)!important}
+.intent-link:hover{transform:translateX(-2px)!important}
+[dir='rtl'] .intent-link:hover{transform:translateX(2px)!important}
+.directory tr{transition:background .15s ease}
+.final-cta{transition:box-shadow .3s ease}
+.final-cta:hover{box-shadow:inset 0 0 60px rgba(237,243,74,.05)}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#mega-content">Skip to mega hub content</a>
+
+<nav class="nav" id="navbar">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/">
+      <span class="nav-brand-icon">EF</span><span>BrainSAIT</span>
+    </a>
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-item"><a href="/bpr/" class="nav-link">Platform</a></div>
+      <div class="nav-item"><a href="/bpr/nvidia/" class="nav-link">NVIDIA AI</a></div>
+      <div class="nav-item"><a href="/bpr/nphies/" class="nav-link">NPHIES</a></div>
+      <div class="nav-item"><a href="/bpr/clinic/" class="nav-link">Clinic</a></div>
+      <div class="nav-item"><a href="/bpr/verify/" class="nav-link">Verify</a></div>
+      <div class="nav-item"><a href="/bpr/developers/" class="nav-link">FHIR API</a></div>
+      <div class="nav-item"><a href="/bpr/status/" class="nav-link">Status</a></div>
+    </div>
+    <a href="/ar/mega/" class="nav-lang" title="العربية" onclick="event.stopPropagation()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>AR</a>
+    <a href="/" class="nav-cta">← Landing</a>
+    <button class="nav-hamburger" id="navHamburger" onclick="toggleMobile()" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobile()"></div>
+<div class="mobile-menu" id="mobileMenu" inert>
+  <div class="mobile-section"><div class="mobile-section-title">Platform</div>
+    <a href="/mega/">Mega Hub</a><a href="/bpr/">Provider Registry</a><a href="/bpr/workspace/">OpenEMR Workspace</a><a href="/bpr/nphies/">NPHIES Desk</a><a href="/bpr/nvidia/">NVIDIA Health AI</a><a href="/bpr/clinic/">Clinic Reception</a>
+    <a href="/bpr/providers/">Provider Directory</a><a href="/bpr/verify/">Verify Credential</a><a href="/bpr/ledger/">Transparency Log</a>
+    <a href="/bpr/research/">Research</a><a href="/bpr/developers/">FHIR R4 API</a><a href="/bpr/status/">Status</a><a href="/bpr/join/">Join BPR</a>
+  </div>
+  <div class="mobile-section"><div class="mobile-section-title">Tools</div>
+    <a href="/cv/">CV</a><a href="/card/">Business Card</a><a href="/slots/">Hospital Slots</a><a href="/store/">Store</a><a href="/catalogue/">Catalogue</a>
+  </div>
+  <div class="mobile-section"><div class="mobile-section-title">Learn</div>
+    <a href="/learn/">Learn Hub</a><a href="/benefits/">Benefits</a><a href="/solutions/">Solutions</a><a href="/faq/">FAQ</a><a href="/templates/">Templates</a>
+  </div>
+  <div class="mobile-section"><div class="mobile-section-title">Build</div>
+    <a href="/build/">Build Hub</a><a href="/sprint/">Sprint</a><a href="/track/">Track</a><a href="/support/">Support</a><a href="/contact/">Contact</a><a href="/terms/">Terms</a>
+  </div>
+  <div class="mobile-section"><a href="/ar/mega/" class="mobile-lang" lang="ar">🌐 العربية</a></div>
+</div>
+
+<main id="mega-content" tabindex="-1">
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="live-dot"></span>Mega Hub · Intelligent Route Directory</div>
+    <h1>Every BrainSAIT route, organized by who you are.</h1>
+    <p>Choose your role below. Each path leads to the tools, data, and AI infrastructure built for it — OpenEMR, NVIDIA Nemotron on NPHIES, BPR signed identity, FHIR R4, transparency log, and Brev HQ agents.</p>
+    <div class="hero-actions">
+      <a href="#clinicians" class="btn primary">I'm a Clinician<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="#developers" class="btn">I'm a Developer<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="#directory" class="btn">Full Directory<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section id="clinicians" class="section">
+  <div class="section-header">
+    <div><span class="section-number">01</span><h2>For Clinicians &amp; Practitioners</h2><p>Start here: your identity, your EMR, your copilot, your patients.</p></div>
+    <a href="/bpr/join/" class="btn primary">Join BPR →</a>
+  </div>
+  <div class="intent-grid">
+    <div class="intent-card">
+      <h3>Provider Identity <span class="tag">BPR</span></h3>
+      <p>Get a signed SPID provider identity — W3C VC, Ed25519, did:web. Verified on-device, trusted everywhere.</p>
+      <div class="intent-links">
+        <a href="/bpr/join/" class="intent-link">Join BPR<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <a href="/bpr/record/" class="intent-link">Download Identity Record<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <a href="/bpr/verify/" class="intent-link">Verify Your Credential<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>OpenEMR Workspace <span class="tag">EMR · Copilot · Voice</span></h3>
+      <p>Your own private OpenEMR with AI copilot, Arabic voice dictation, FHIR R4, and specialty tools — all under your signed SPID.</p>
+      <div class="intent-links">
+        <a href="/bpr/workspace/" class="intent-link">Open Workspace<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <a href="/bpr/nvidia/" class="intent-link">NVIDIA Health AI<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>Clinic Reception <span class="tag">Appointments · Staff</span></h3>
+      <p>Bilingual clinic reception pilot: appointments, triage, voice notes, and staff handoff — connected to your provider identity.</p>
+      <div class="intent-links">
+        <a href="/bpr/clinic/" class="intent-link">Open Clinic<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>NPHIES Desk <span class="tag">Codes · Pre-check</span></h3>
+      <p>Every NPHIES rejection code in plain Arabic and English, on-device pre-check, and a readiness plan for your facility.</p>
+      <div class="intent-links">
+        <a href="/bpr/nphies/" class="intent-link">Open NPHIES Desk<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="developers" class="section">
+  <div class="section-header">
+    <div><span class="section-number">02</span><h2>For Developers &amp; Integrators</h2><p>FHIR R4, public JSON API, transparency log, and platform status — all documented and live.</p></div>
+    <a href="/bpr/developers/" class="btn primary">FHIR R4 &amp; API →</a>
+  </div>
+  <div class="intent-grid">
+    <div class="intent-card">
+      <h3>FHIR R4 &amp; Public API <span class="tag">SMART · JSON</span></h3>
+      <p>Practitioner, PractitionerRole, Organization over FHIR R4. Public JSON endpoints with SMART-on-FHIR launch support.</p>
+      <div class="intent-links">
+        <a href="/bpr/developers/" class="intent-link">Read API Docs<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>Transparency Log <span class="tag">Append-only</span></h3>
+      <p>Every issue, renewal, and revocation is a line in a public hash chain. Replay it locally or verify on-chain.</p>
+      <div class="intent-links">
+        <a href="/bpr/ledger/" class="intent-link">View Ledger<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>Provider Directory <span class="tag">SPID · OID</span></h3>
+      <p>Browse all registered providers by SPID. Each trust dimension shown separately — never one blended badge.</p>
+      <div class="intent-links">
+        <a href="/bpr/providers/" class="intent-link">Browse Directory<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>Platform Status <span class="tag">Live · Metrics</span></h3>
+      <p>Real-time health of all BrainSAIT services, monitored sites, backup integrity, and AI copilot status.</p>
+      <div class="intent-links">
+        <a href="/bpr/status/" class="intent-link">Check Status<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="researchers" class="section">
+  <div class="section-header">
+    <div><span class="section-number">03</span><h2>For Researchers &amp; Academics</h2><p>Research footprint matched by DOI across ORCID, Zenodo, and Hugging Face — plus the full provider registry.</p></div>
+    <a href="/bpr/research/" class="btn primary">Research Footprint →</a>
+  </div>
+  <div class="intent-grid">
+    <div class="intent-card">
+      <h3>Research Footprint <span class="tag">ORCID · Zenodo · HF</span></h3>
+      <p>Works matched by DOI across three sources, counted only when the publisher names the author. Signed provenance heads.</p>
+      <div class="intent-links">
+        <a href="/bpr/research/" class="intent-link">Explore Research<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>Provider Registry <span class="tag">All 30+ pages</span></h3>
+      <p>The complete BrainSAIT Provider Registry — every page, every route, every tool in one connected platform.</p>
+      <div class="intent-links">
+        <a href="/bpr/" class="intent-link">Open Registry<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hospitals" class="section">
+  <div class="section-header">
+    <div><span class="section-number">04</span><h2>For Hospitals, Payers &amp; Organizations</h2><p>Saudi healthcare ecosystem, hospital appointment marketplace, and organization-level tools.</p></div>
+    <a href="/bpr/saudi/" class="btn primary">Saudi Hub →</a>
+  </div>
+  <div class="intent-grid">
+    <div class="intent-card">
+      <h3>Saudi Hub <span class="tag">Kingdom · Ecosystem</span></h3>
+      <p>Kingdom healthcare ecosystem integration — SCFHS, NUPCO, and Saudi regulatory alignment.</p>
+      <div class="intent-links">
+        <a href="/bpr/saudi/" class="intent-link">Open Saudi Hub<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>Hospital Slots <span class="tag">Marketplace</span></h3>
+      <p>Hospitals publish appointment openings; providers request them with their signed SPID. Transparent, fair, auditable.</p>
+      <div class="intent-links">
+        <a href="/slots/" class="intent-link">View Slots<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ai-infra" class="section">
+  <div class="section-header">
+    <div><span class="section-number">05</span><h2>AI &amp; Infrastructure</span></div>
+    <a href="/bpr/nvidia/" class="btn primary">NVIDIA Health AI →</a>
+  </div>
+  <div class="intent-grid">
+    <div class="intent-card">
+      <h3>NVIDIA Nemotron <span class="tag">NPHIES-trained</span></h3>
+      <p>Nemotron Super VL, Lightning, and on-premise Qwen3-VL-4B fallback — trained on NPHIES claims data for eligibility, pre-authorisation, and adjudication.</p>
+      <div class="intent-links">
+        <a href="/bpr/nvidia/" class="intent-link">Explore AI<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>Brev HQ Agents <span class="tag">Orchestration</span></h3>
+      <p>Intake, documentation, and claims agents orchestrated across the clinical workflow — every action recorded against a signed SPID.</p>
+      <div class="intent-links">
+        <a href="/bpr/workspace/" class="intent-link">Open Workspace<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="directory" class="section">
+  <div class="section-header">
+    <div><span class="section-number">06</span><h2>Full Route Directory</h2><p>Every public route on fadil369.github.io, with language tags.</p></div>
+    <a href="/" class="btn">← Back to Landing</a>
+  </div>
+  <div class="directory">
+    <table>
+      <thead>
+        <tr><th>Route</th><th>Purpose</th><th>Language</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="route">/</td><td class="desc">Landing page — Healthcare AI platform overview</td><td><span class="badge en">EN</span><span class="badge ar">AR</span></td></tr>
+        <tr><td class="route">/bpr/</td><td class="desc">Provider Registry — BPR overview and navigation</td><td><span class="badge en">EN</span><span class="badge ar">AR</span></td></tr>
+        <tr><td class="route">/bpr/workspace/</td><td class="desc">OpenEMR Workspace — private EMR with copilot and voice</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/nphies/</td><td class="desc">NPHIES Desk — codes, pre-check, readiness</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/nvidia/</td><td class="desc">NVIDIA Health AI — Nemotron models on NPHIES</td><td><span class="badge en">EN</span><span class="badge ar">AR</span></td></tr>
+        <tr><td class="route">/bpr/clinic/</td><td class="desc">Clinic Reception — appointments, voice, staff</td><td><span class="badge en">EN</span><span class="badge ar">AR</span></td></tr>
+        <tr><td class="route">/bpr/providers/</td><td class="desc">Provider Directory — browse by SPID</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/verify/</td><td class="desc">Verify Credential — check any SPID on-device</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/ledger/</td><td class="desc">Transparency Log — append-only hash chain</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/research/</td><td class="desc">Research Footprint — ORCID × Zenodo × HuggingFace</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/developers/</td><td class="desc">FHIR R4 &amp; Public API — SMART-on-FHIR launch</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/status/</td><td class="desc">Platform Status — live health and metrics</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/join/</td><td class="desc">Join BPR — get provider identity</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/record/</td><td class="desc">Identity Record — download BPR identity</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/saudi/</td><td class="desc">Saudi Hub — Kingdom healthcare ecosystem</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/slots/</td><td class="desc">Hospital Slots — appointment marketplace</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/cv/</td><td class="desc">CV — professional curriculum vitae</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/card/</td><td class="desc">Business Card — BPR branded card</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/contact/</td><td class="desc">Contact — reach Dr. Mohamed El Fadil</td><td><span class="badge en">EN</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="final-cta">
+  <h2>One identity. Every tool. Connected.</h2>
+  <p>Get a signed BPR provider identity and access the full platform — OpenEMR, NVIDIA Nemotron on NPHIES, Arabic voice copilot, FHIR R4, transparency log, and Brev HQ agents.</p>
+  <div class="hero-actions" style="justify-content:center">
+    <a href="/bpr/join/" class="btn primary">Join BPR<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="/" class="btn">Back to Landing<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </div>
+</section>
+</main>
+
+<script>
+function toggleMobile(){const overlay=document.getElementById('mobileOverlay');const menu=document.getElementById('mobileMenu');const hamburger=document.getElementById('navHamburger');const open=menu.classList.toggle('open');overlay.classList.toggle('open',open);hamburger.classList.toggle('active',open);document.body.style.overflow=open?'hidden':'';menu.inert=!open;hamburger.setAttribute('aria-expanded',String(open));if(open)menu.querySelector('a').focus();else hamburger.focus()}
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>40)})
+if('IntersectionObserver' in window){const revealEls=document.querySelectorAll('.section-header,.intent-card,.final-cta,.directory');revealEls.forEach((el,i)=>{el.classList.add('reveal');if(el.classList.contains('intent-card'))el.classList.add('reveal-delay-'+(i%3+1))});const revealObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});revealEls.forEach(el=>revealObs.observe(el))}
+</script>
+</body>
+</html>

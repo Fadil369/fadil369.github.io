@@ -21,6 +21,8 @@ try{
   await page.goto(base+prefix+'/',{waitUntil:'domcontentloaded'});
   await page.waitForSelector('#finder:not([hidden])');
   assert.equal(await page.locator('.tool-card:visible').count(),9);
+  const desktopCard=await page.locator('.tool-card').first().boundingBox();
+  assert.ok(desktopCard.width>=300&&desktopCard.height>=285,`${prefix}: toolkit cards have readable desktop sizing`);
   await page.keyboard.press('Control+k');assert.equal(await page.locator('#tool-search').evaluate(el=>document.activeElement===el),true);
   await page.locator('#tool-search').fill('FHIR');assert.equal(await page.locator('.tool-card:visible').count(),2);
   await page.locator('#tool-search').fill('SA-PHY-000003');assert.equal(await page.locator('#spid-result').getAttribute('href'),prefix+'/bpr/verify/?spid=SA-PHY-000003');
@@ -34,7 +36,11 @@ try{
   }
   await page.locator('#theme-toggle').click();const theme=await page.locator('html').getAttribute('data-theme');await page.reload({waitUntil:'domcontentloaded'});await page.waitForSelector('#finder:not([hidden])');assert.equal(await page.locator('html').getAttribute('data-theme'),theme);
   await page.waitForFunction(()=>document.getElementById('signal-summary').dataset.source);assert.equal(await page.locator('#signal-summary').getAttribute('data-source'),'snapshot');
-  await page.setViewportSize({width:390,height:844});await page.locator('#menu-toggle').click();assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'true');await page.keyboard.press('Escape');assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'false');
+  await page.setViewportSize({width:768,height:900});
+  assert.equal(await page.locator('.tool-grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length),2,`${prefix}: tablet card grid`);
+  await page.setViewportSize({width:390,height:844});
+  assert.equal(await page.locator('.tool-grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length),1,`${prefix}: phone card grid`);
+  await page.locator('#menu-toggle').click();assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'true');await page.keyboard.press('Escape');assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'false');
   for(const route of ['/','/profile/','/cv/','/card/','/bpr/','/bpr/providers/','/bpr/verify/','/bpr/ledger/','/bpr/research/','/bpr/developers/','/bpr/status/','/bpr/workspace/','/bpr/clinic/','/bpr/nphies/','/bpr/join/','/bpr/record/','/bpr/saudi/','/slots/']){
    const response=await page.goto(base+prefix+route,{waitUntil:'domcontentloaded'});assert.equal(response.status(),200,route);
    await page.waitForSelector('h1');await page.waitForTimeout(200);

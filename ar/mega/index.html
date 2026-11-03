@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>المحور الضخم — كل مسارات BrainSAIT حسب الغاية</title>
+<meta name="description" content="محور Mega لـ BrainSAIT: كل مسارات المنصة منظمة حسب الغاية — الممارسون، المطورون، الباحثون، المستشفيات، والمنظمات. مدخل ذكي واحد إلى OpenEMR، وNVIDIA AI، ونفيس، وBPR، وFHIR R4، ووكلاء Brev HQ." />
+<meta name="theme-color" content="#090a08" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="BrainSAIT" />
+<meta property="og:title" content="مega Hub — كل مسارات BrainSAIT حسب الغاية" />
+<meta property="og:description" content="كل مسارات BrainSAIT منظمة حسب الغاية — الممارسون، المطورون، الباحثون، المستشفيات، والمنظمات." />
+<meta property="og:url" content="https://fadil369.github.io/ar/mega/" />
+<meta property="og:image" content="https://fadil369.github.io/assets/profile-og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="ar_SA" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23090a08'/%3E%3Crect x='8' y='8' width='84' height='84' rx='18' fill='%23edf34a'/%3E%3Ctext x='50' y='64' font-family='Arial,sans-serif' font-weight='bold' font-size='38' fill='%23090a08' text-anchor='middle'%3EEF%3C/text%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+<link rel="canonical" href="https://fadil369.github.io/ar/mega/" />
+<link rel="alternate" hreflang="ar" href="https://fadil369.github.io/ar/mega/" />
+<link rel="alternate" hreflang="en" href="https://fadil369.github.io/mega/" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ════════════════════════════════════════════════════════════
+   BrainSAIT — Mega Hub (AR) — الدليل الذكي للمسارات
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --bg:#090a08; --surface:#121512; --surface2:#1a1f1a;
+  --line:#2a3229; --line2:#35413b;
+  --text:#f2f6f3; --muted:#8a998d; --muted2:#708275;
+  --accent:#edf34a; --accent2:#64d8c5; --accent3:#c4a030;
+  --emr:#3b82f6; --copilot:#8b5cf6; --nvidia:#76b900;
+  --brev:#f97316; --nphies:#06b6d4; --bpr:#edf34a;
+  --fhir:#10b981; --voice:#ec4899; --sentinel:#ef4444;
+  --radius:18px; --radius-sm:12px; --radius-xs:8px;
+  --mono:'IBM Plex Mono','Fira Code',monospace;
+  --font:'Manrope',system-ui,-apple-system,sans-serif;
+  --glow:0 0 40px rgba(237,243,74,.15);
+  --transition:all .4s cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:var(--font);line-height:1.9;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none;transition:color .25s}
+a:hover{color:var(--accent)}
+img{max-width:100%;height:auto}
+
+.skip-link{position:absolute;right:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:-1}
+.skip-link:focus{right:1rem;top:1rem;width:auto;height:auto;padding:0.5rem 1rem;background:var(--accent);color:var(--bg);z-index:10000;font-weight:700}
+
+/* ═══ NAV ═══ */
+.nav{position:fixed;top:0;right:0;left:0;z-index:100;padding:16px 0;transition:all .4s}
+.nav.scrolled{background:rgba(9,10,8,.94);backdrop-filter:blur(28px)saturate(1.6);border-bottom:1px solid rgba(42,50,41,.5)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:14px;font-weight:800;font-size:20px;letter-spacing:-.02em}
+.nav-brand-icon{width:40px;height:40px;background:var(--accent);border-radius:10px;display:grid;place-items:center;color:var(--bg);font-weight:800;font-size:14px;font-family:var(--mono);box-shadow:var(--glow)}
+.nav-menu{display:flex;align-items:center;gap:4px}
+.nav-link{color:var(--muted);font-size:14px;font-weight:600;padding:8px 14px;border-radius:999px;transition:all .25s;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.nav-link:hover{color:var(--accent);background:rgba(237,243,74,.08)}
+.nav-link svg{width:12px;height:12px}
+.nav-cta{background:var(--accent);color:var(--bg);font-weight:800;font-size:14px;padding:10px 20px;border-radius:999px;box-shadow:var(--glow)}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(237,243,74,.35)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+.nav-hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+
+/* Mobile overlay & menu */
+.mobile-overlay{position:fixed;inset:0;z-index:190;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:all .3s}
+.mobile-overlay.open{opacity:1;visibility:visible}
+.mobile-menu{position:fixed;top:0;right:-320px;bottom:0;width:320px;max-width:85vw;z-index:195;background:var(--surface);border-left:1px solid var(--line);overflow-y:auto;padding:80px 24px 40px;transition:right .4s cubic-bezier(.16,1,.3,1)}
+[dir='rtl'] .mobile-menu{right:auto;left:-320px;border-left:none;border-right:1px solid var(--line);transition:left .4s cubic-bezier(.16,1,.3,1)}
+.mobile-menu.open{right:0}
+[dir='rtl'] .mobile-menu.open{left:0;right:auto}
+.mobile-section{margin-bottom:32px}
+.mobile-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px}
+.mobile-section a{display:block;padding:10px 16px;border-radius:var(--radius-sm);font-size:14px;color:var(--muted);transition:all .2s;text-decoration:none;margin-bottom:2px}
+.mobile-section a:hover{background:rgba(237,243,74,.06);color:var(--text)}
+.mobile-lang{font-size:16px!important;text-align:center;border:1px solid var(--line)!important;margin-top:16px!important}
+.nav-lang{color:var(--muted);font-size:13px;font-weight:600;margin-right:16px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;transition:all .25s}
+.nav-lang:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ═══ HERO ═══ */
+.hero{min-height:calc(100vh - 60px);display:flex;align-items:center;padding:60px 32px 40px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(circle at 70% 20%, rgba(237,243,74,.08), transparent 40%),radial-gradient(circle at 20% 80%, rgba(100,216,197,.06), transparent 40%);z-index:0}
+.hero-content{position:relative;z-index:1;max-width:1280px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(237,243,74,.12);border:1px solid rgba(237,243,74,.35);color:var(--accent);font-size:11px;font-weight:800;font-family:var(--mono);border-radius:999px;letter-spacing:.1em;margin-bottom:24px}
+.live-dot{width:7px;height:7px;background:var(--accent2);border-radius:50%;box-shadow:0 0 12px var(--accent2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-size:clamp(34px,5vw,56px);font-weight:800;line-height:1.4;letter-spacing:-.02em;margin-bottom:16px;max-width:700px}
+.hero p{font-size:17px;color:var(--muted);line-height:2;max-width:560px;margin-bottom:32px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-start}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--text);font-size:14px;font-weight:700;transition:all .25s;cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(237,243,74,.08)}
+.btn.primary{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:var(--glow)}
+.btn svg{width:16px;height:16px}
+
+/* ═══ INTENT CARDS ═══ */
+.section{padding:72px 32px;border-top:1px solid var(--line)}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;max-width:1280px;margin-left:auto;margin-right:auto}
+.section-number{font-family:var(--mono);font-size:11px;font-weight:800;color:var(--accent);letter-spacing:.2em}
+.section h2{font-size:clamp(26px,4vw,36px);font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.section p{color:var(--muted);font-size:15px;max-width:600px}
+.intent-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;max-width:1280px;margin:0 auto}
+.intent-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:all .3s}
+.intent-card:hover{border-color:var(--accent2);background:var(--surface2);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.intent-card h3{font-size:19px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.intent-card h3 .tag{font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;background:rgba(237,243,74,.12);color:var(--accent);font-family:var(--mono);margin-right:auto}
+.intent-card p{color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:16px;max-width:none}
+.intent-links{display:flex;flex-direction:column;gap:8px}
+.intent-link{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1px solid var(--line2);border-radius:var(--radius-sm);background:transparent;color:var(--muted);font-size:13px;font-weight:600;font-family:var(--mono);transition:all .2s}
+.intent-link:hover{border-color:var(--accent);color:var(--text);background:rgba(237,243,74,.08)}
+.intent-link svg{width:14px;height:14px;flex:none;color:var(--muted2);transform:scaleX(-1)}
+
+/* ═══ FULL DIRECTORY ═══ */
+.directory{max-width:1280px;margin:0 auto;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.directory table{width:100%;min-width:340px;border-collapse:separate;border-spacing:0 10px}
+.directory th{text-align:right;padding:14px 20px;font-family:var(--mono);font-size:11px;font-weight:800;color:var(--muted2);letter-spacing:.1em;border-bottom:1px solid var(--line)}
+.directory td{padding:14px 20px;border-bottom:1px solid var(--line);font-size:14px}
+.directory tr:hover td{background:rgba(237,243,74,.06)}
+.directory .route{font-family:var(--mono);font-size:12px;color:var(--accent2);font-weight:600;direction:ltr;text-align:left}
+.directory .desc{color:var(--muted);font-size:13px}
+.directory .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--line);border-radius:999px;font-size:11px;font-weight:700;font-family:var(--mono);color:var(--muted2)}
+.directory .badge.ar{color:var(--accent3);border-color:rgba(196,160,48,.35)}
+.directory .badge.en{color:var(--accent2);border-color:rgba(100,216,197,.35)}
+
+/* ═══ CTA ═══ */
+.final-cta{background:linear-gradient(135deg,rgba(237,243,74,.12),rgba(100,216,197,.06));border:1px solid rgba(237,243,74,.25);border-radius:var(--radius);padding:48px 32px;text-align:center;margin-top:72px}
+.final-cta h2{font-size:clamp(28px,4vw,38px);font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+.final-cta p{color:var(--muted);font-size:16px;line-height:2;max-width:600px;margin:0 auto 28px}
+.final-cta .btn{margin:0 8px}
+
+/* ═══ MOBILE ═══ */
+@media(max-width:768px){
+  .nav-menu{display:none}
+  .nav-hamburger{display:flex}
+  .nav-inner{padding:0 20px}
+  .hero{padding:48px 20px 32px}
+  .section{padding:52px 20px}
+  .intent-grid{grid-template-columns:1fr}
+  .final-cta{padding:36px 20px}
+  .hero-actions{justify-content:flex-start}
+}
+
+/* ═══ SCROLL REVEAL ═══ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* ═══ REDUCED MOTION ═══ */
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms !important;transition-duration:.01ms !important}.reveal{opacity:1;transform:none;transition:none}}
+
+/* ═══ ACCESSIBILITY: focus-visible everywhere ═══ */
+*:focus-visible{outline:2px solid var(--accent2,#64d8c5);outline-offset:3px;border-radius:4px}
+.nav-link:focus-visible,.nav-cta:focus-visible,.btn:focus-visible,.intent-link:focus-visible,.nav-lang:focus-visible{background:rgba(237,243,74,.1)!important;outline-offset:2px;box-shadow:0 0 20px rgba(237,243,74,.2)}
+.skip-link:focus{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:9999;padding:16px 28px;background:var(--accent,#edf34a);color:var(--bg,#090a08);border-radius:12px;font-weight:700;box-shadow:0 12px 40px rgba(0,0,0,.5)}
+a:focus-visible{outline-offset:2px}
+section[id]{scroll-margin-top:80px}
+@media(pointer:coarse){.nav-link,.nav-cta,.btn,.intent-link{min-height:44px}}
+::selection{background:rgba(237,243,74,.3);color:inherit}
+
+/* ═══ MICRO-INTERACTIONS ═══ */
+.intent-card,.intent-link,.btn{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease}
+.intent-card:hover{transform:translateY(-4px)!important;box-shadow:0 20px 40px rgba(0,0,0,.4)!important}
+.btn:hover{transform:translateY(-2px)!important}
+.directory tr{transition:background .15s ease}
+.final-cta{transition:box-shadow .3s ease}
+.final-cta:hover{box-shadow:inset 0 0 60px rgba(237,243,74,.05)}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#mega-content">تخطَّ إلى محتوى المحور الضخم</a>
+
+<nav class="nav" id="navbar">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/ar/">
+      <span class="nav-brand-icon">EF</span><span>BrainSAIT</span>
+    </a>
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-item"><a href="/bpr/" class="nav-link">المنصة</a></div>
+      <div class="nav-item"><a href="/bpr/nvidia/" class="nav-link">NVIDIA AI</a></div>
+      <div class="nav-item"><a href="/bpr/nphies/" class="nav-link">نفيس</a></div>
+      <div class="nav-item"><a href="/bpr/clinic/" class="nav-link">العيادة</a></div>
+      <div class="nav-item"><a href="/bpr/verify/" class="nav-link">التحقق</a></div>
+      <div class="nav-item"><a href="/bpr/developers/" class="nav-link">FHIR API</a></div>
+      <div class="nav-item"><a href="/bpr/status/" class="nav-link">الحالة</a></div>
+    </div>
+    <a href="/mega/" class="nav-lang" title="English" onclick="event.stopPropagation()">EN</a>
+    <a href="/ar/" class="nav-cta">← الرئيسية</a>
+    <button class="nav-hamburger" id="navHamburger" onclick="toggleMobile()" aria-label="القائمة" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobile()"></div>
+<div class="mobile-menu" id="mobileMenu" inert>
+  <div class="mobile-section"><div class="mobile-section-title">المنصة</div>
+    <a href="/ar/mega/">المحور الضخم</a><a href="/bpr/">سجل مقدّمي الرعاية</a><a href="/bpr/workspace/">مساحة OpenEMR</a><a href="/bpr/nphies/">مكتب نفيس</a><a href="/bpr/nvidia/">ذكاء NVIDIA الصحي</a><a href="/bpr/clinic/">استقبال العيادة</a>
+    <a href="/bpr/providers/">الدليل</a><a href="/bpr/verify/">تحقّق من اعتماد</a><a href="/bpr/ledger/">سجل الشفافية</a>
+    <a href="/bpr/research/">البحث</a><a href="/bpr/developers/">FHIR وAPI</a><a href="/bpr/status/">الحالة</a><a href="/bpr/join/">انضم إلى BPR</a>
+  </div>
+  <div class="mobile-section"><div class="mobile-section-title">الأدوات</div>
+    <a href="/cv/">السيرة</a><a href="/card/">بطاقة العمل</a><a href="/slots/">شواغر المستشفيات</a><a href="/store/">المتجر</a><a href="/catalogue/">الفهرس</a>
+  </div>
+  <div class="mobile-section"><div class="mobile-section-title">التعلم</div>
+    <a href="/learn/">محور التعلم</a><a href="/benefits/">المزايا</a><a href="/solutions/">الحلول</a><a href="/faq/">الأسئلة الشائعة</a><a href="/templates/">القوالب</a>
+  </div>
+  <div class="mobile-section"><div class="mobile-section-title">البناء</div>
+    <a href="/build/">محور البناء</a><a href="/sprint/">السباق</a><a href="/track/">التتبع</a><a href="/support/">الدعم</a><a href="/contact/">تواصل</a><a href="/terms/">الشروط</a>
+  </div>
+  <div class="mobile-section"><a href="/mega/" class="mobile-lang" lang="en">🌐 English</a></div>
+</div>
+
+<main id="mega-content" tabindex="-1">
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="live-dot"></span>المحور الضخم · دليل المسارات الذكي</div>
+    <h1>كل مسارات BrainSAIT، منظمة حسب هويتك.</h1>
+    <p>اختر دورك أدناه. كل طريق يؤدِّي إلى الأدوات والبيانات والبنية التحتية للذكاء الاصطناعي المبنية من أجله — OpenEMR، ونماذج NVIDIA Nemotron على نفيس، والمساعد الصوتي العربي، وFHIR R4، وسجل الشفافية، ووكلاء Brev HQ.</p>
+    <div class="hero-actions">
+      <a href="#clinicians" class="btn primary">أنا ممارس<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="#developers" class="btn">أنا مطوّر<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="#directory" class="btn">الدليل الكامل<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section id="clinicians" class="section">
+  <div class="section-header">
+    <div><span class="section-number">01</span><h2>للممارسين وأطباء العيادات</h2><p>ابدأ هنا: هويتك، سجلك الطبي، مساعدك، مرضاك.</p></div>
+    <a href="/bpr/join/" class="btn primary">انضم إلى BPR →</a>
+  </div>
+  <div class="intent-grid">
+    <div class="intent-card">
+      <h3>هوية مقدّم الرعاية <span class="tag">BPR</span></h3>
+      <p>احصل على هوية مقدّم موقّعة SPID — W3C VC، Ed25519، did:web. تتحقّق على جهازك، موثوقة في كل مكان.</p>
+      <div class="intent-links">
+        <a href="/bpr/join/" class="intent-link">انضم إلى BPR<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <a href="/bpr/record/" class="intent-link">تحميل سجل الهوية<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <a href="/bpr/verify/" class="intent-link">تحقّق من اعتمادك<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>مساحة OpenEMR <span class="tag">سجل طبي · مساعد · صوت</span></h3>
+      <p>مساحة OpenEMR خاصة بك مع مساعد ذكاء اصطناعي، وإملاء صوتي عربي، وFHIR R4، وأدوات التخصص — كلها تحت هويتك الموقّعة SPID.</p>
+      <div class="intent-links">
+        <a href="/bpr/workspace/" class="intent-link">افتح المساحة<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <a href="/bpr/nvidia/" class="intent-link">ذكاء NVIDIA الصحي<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>استقبال العيادة <span class="tag">مواعيد · موظفين</span></h3>
+      <p>تجربة استقبال عيادة ثنائية اللغة: مواعيد، فرز، ملاحظات صوتية، وتسليم موظفين — مرتبطة بهويتك الموقّعة.</p>
+      <div class="intent-links">
+        <a href="/bpr/clinic/" class="intent-link">افتح العيادة<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>مكتب نفيس <span class="tag">رموز · فحص أولي</span></h3>
+      <p>كل رمز رفض نفيس بالعربية والإنجليزية بوضوح، وفحص أولي على جهازك، وخطة جاهزية لمنشأتك.</p>
+      <div class="intent-links">
+        <a href="/bpr/nphies/" class="intent-link">افتح مكتب نفيس<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="developers" class="section">
+  <div class="section-header">
+    <div><span class="section-number">02</span><h2>للمطورين والمتكاملين</h2><p>FHIR R4، وواجهة JSON عامة، وسجل الشفافية، وحالة المنصة — كلها موثقة ومباشرة.</p></div>
+    <a href="/bpr/developers/" class="btn primary">FHIR R4 وAPI →</a>
+  </div>
+  <div class="intent-grid">
+    <div class="intent-card">
+      <h3>FHIR R4 وواجهة عامة <span class="tag">SMART · JSON</span></h3>
+      <p>Practitioner، وPractitionerRole، وOrganization عبر FHIR R4. واجهات JSON عامة مع دعم إطلاق SMART-on-FHIR.</p>
+      <div class="intent-links">
+        <a href="/bpr/developers/" class="intent-link">اقرأ وثائق API<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>سجل الشفافية <span class="tag">إضافة فقط</span></h3>
+      <p>كل إصدار وتجديد وإلغاء هو سطر في سلسلة تجزئة عامة. أعد تشغيلها محلياً أو تحقّق منها على السلسلة.</p>
+      <div class="intent-links">
+        <a href="/bpr/ledger/" class="intent-link">اعرض السجل<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>دليل مقدّمي الرعاية <span class="tag">SPID · OID</span></h3>
+      <p>تصفح جميع مقدّمي الرعاية المسجّلين حسب SPID. كل بُعد ثقة يُظهر بشكل منفصل — nunca شارة واحدة مدموجة.</p>
+      <div class="intent-links">
+        <a href="/bpr/providers/" class="intent-link">تصفح الدليل<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>حالة المنصة <span class="tag">مباشر · مقاييس</span></h3>
+      <p>حالة مباشرة لجميع خدمات BrainSAIT، والمراقَبة على المواقع، وسلامة النسخ الاحتياطي، وحالة مساعد الذكاء الاصطناعي.</p>
+      <div class="intent-links">
+        <a href="/bpr/status/" class="intent-link">تحقّق من الحالة<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="researchers" class="section">
+  <div class="section-header">
+    <div><span class="section-number">03</span><h2>للباحثين والأكاديميين</h2><p>بصمة بحثية مطابقة عبر DOI في ORCID، Zenodo، وHugging Face — بالإضافة إلى السجل الكامل لمقدّمي الرعاية.</p></div>
+    <a href="/bpr/research/" class="btn primary">البصمة البحثية →</a>
+  </div>
+  <div class="intent-grid">
+    <div class="intent-card">
+      <h3>البصمة البحثية <span class="tag">ORCID · Zenodo · HF</span></h3>
+      <p>أعمال مطابقة عبر DOI في ثلاثة مصادر، تُحتسب فقط عندما يذكر الناشر المؤلف. رؤوس أصول موقّعة.</p>
+      <div class="intent-links">
+        <a href="/bpr/research/" class="intent-link">استكشف البحث<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>سجل مقدّمي الرعاية <span class="tag">كل 30+ صفحة</span></h3>
+      <p>سجل BrainSAIT الكامل لمقدّمي الرعاية — كل صفحة، وكل مسار، وكل أداة في منصة واحدة متصلة.</p>
+      <div class="intent-links">
+        <a href="/bpr/" class="intent-link">افتح السجل<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hospitals" class="section">
+  <div class="section-header">
+    <div><span class="section-number">04</span><h2>للمستشفيات ومؤسسات الدفع والمنظمات</h2><p>نظام الرعاية الصحية السعودي، وسوق مواعيد المستشفيات، وأدوات على مستوى المنظمة.</p></div>
+    <a href="/bpr/saudi/" class="btn primary">المحور السعودي →</a>
+  </div>
+  <div class="intent-grid">
+    <div class="intent-card">
+      <h3>المحور السعودي <span class="tag">المملكة · نظام بيئي</span></h3>
+      <p>نظام الرعاية الصحي السعودي — 통합 مع SCFHS، NUPCO، والمحاذاة التنظيمية السعودية.</p>
+      <div class="intent-links">
+        <a href="/bpr/saudi/" class="intent-link">افتح المحور السعودي<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>شواغر المستشفيات <span class="tag">سوق</span></h3>
+      <p>تستطيع المستشفيات نشر فتحات المواعيد؛ ويطلبها مقدّمو الرعاية باستخدام SPID الموقّع. شفاف، عادل، قابل للمراجعة.</p>
+      <div class="intent-links">
+        <a href="/slots/" class="intent-link">عرض الشواغر<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ai-infra" class="section">
+  <div class="section-header">
+    <div><span class="section-number">05</span><h2>الذكاء الاصطناعي والبنية التحتية</span></div>
+    <a href="/bpr/nvidia/" class="btn primary">ذكاء NVIDIA الصحي →</a>
+  </div>
+  <div class="intent-grid">
+    <div class="intent-card">
+      <h3>NVIDIA Nemotron <span class="tag">مدرّب على نفيس</span></h3>
+      <p>نماذج Nemotron Super VL، Lightning، وبديل Qwen3-VL-4B داخل الموقع — مدرّبة على بيانات مطالبات نفيس للأهلية والموافقات المسبقة والتسوية.</p>
+      <div class="intent-links">
+        <a href="/bpr/nvidia/" class="intent-link">استكشف الذكاء الاصطناعي<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="intent-card">
+      <h3>وكلاء Brev HQ <span class="tag">تنظيم</span></h3>
+      <p>وكلاء الاستقبال، والتوثيق، والمطالبات منظمين عبر سير العمل السريري — كل إجراء يُسجَّل على SPID الموقّع.</p>
+      <div class="intent-links">
+        <a href="/bpr/workspace/" class="intent-link">افتح المساحة<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="directory" class="section">
+  <div class="section-header">
+    <div><span class="section-number">06</span><h2>الدليل الكامل للمسارات</h2><p>كل المسارات العامة على fadil369.github.io، مع علامات اللغة.</p></div>
+    <a href="/ar/" class="btn">← العودة إلى الرئيسية</a>
+  </div>
+  <div class="directory">
+    <table>
+      <thead>
+        <tr><th>المسار</th><th>الغرض</th><th>اللغة</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="route">/</td><td class="desc">الصفحة الرئيسية — نظرة عامة على منصة الذكاء الاصطناعي الصحي</td><td><span class="badge en">EN</span><span class="badge ar">AR</span></td></tr>
+        <tr><td class="route">/bpr/</td><td class="desc">سجل مقدّمي الرعاية — نظرة عامة على BPR والتنقل</td><td><span class="badge en">EN</span><span class="badge ar">AR</span></td></tr>
+        <tr><td class="route">/bpr/workspace/</td><td class="desc">مساحة OpenEMR — سجل طبي خاص مع مساعد وصوت</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/nphies/</td><td class="desc">مكتب نفيس — الرموز والفحص الأولي والجاهزية</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/nvidia/</td><td class="desc">ذكاء NVIDIA الصحي — نماذج Nemotron على نفيس</td><td><span class="badge en">EN</span><span class="badge ar">AR</span></td></tr>
+        <tr><td class="route">/bpr/clinic/</td><td class="desc">استقبال العيادة — المواعيد والصوت والموظفين</td><td><span class="badge en">EN</span><span class="badge ar">AR</span></td></tr>
+        <tr><td class="route">/bpr/providers/</td><td class="desc">دليل مقدّمي الرعاية — تصفح حسب SPID</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/verify/</td><td class="desc">تحقّق من اعتماد — تحقّق من أي SPID على جهازك</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/ledger/</td><td class="desc">سجل الشفافية — سلسلة تجزئة إضافية فقط</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/research/</td><td class="desc">البصمة البحثية — ORCID × Zenodo × HuggingFace</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/developers/</td><td class="desc">FHIR R4 وواجهة عامة — إطلاق SMART-on-FHIR</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/status/</td><td class="desc">حالة المنصة — صحة حيّة ومقاييس</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/join/</td><td class="desc">انضم إلى BPR — احصل على هوية مقدّم</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/record/</td><td class="desc">سجل هوية — تحميل هوية BPR</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/bpr/saudi/</td><td class="desc">المحور السعودي — نظام الرعاية الصحي السعودي</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/slots/</td><td class="desc">شواغر المستشفيات — سوق المواعيد</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/cv/</td><td class="desc">السيرة الذاتية — السيرة المهنية</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/card/</td><td class="desc">بطاقة عمل — بطاقة BPR تحمل العلامة التجارية</td><td><span class="badge en">EN</span></td></tr>
+        <tr><td class="route">/contact/</td><td class="desc">تواصل — تواصل مع د. محمد الفاضل</td><td><span class="badge en">EN</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="final-cta">
+  <h2>هوية واحدة. كل الأدوات. متصلة.</h2>
+  <p>احصل على هوية مقدّم موقّعة من BPR وواصل إلى المنصة الكاملة — OpenEMR، وNVIDIA Nemotron على نفيس، والمساعد الصوتي العربي، وFHIR R4، وسجل الشفافية، ووكلاء Brev HQ.</p>
+  <div class="hero-actions" style="justify-content:center">
+    <a href="/bpr/join/" class="btn primary">انضم إلى BPR<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="/ar/" class="btn">العودة إلى الرئيسية<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </div>
+</section>
+</main>
+
+<script>
+function toggleMobile(){const overlay=document.getElementById('mobileOverlay');const menu=document.getElementById('mobileMenu');const hamburger=document.getElementById('navHamburger');const open=menu.classList.toggle('open');overlay.classList.toggle('open',open);hamburger.classList.toggle('active',open);document.body.style.overflow=open?'hidden':'';menu.inert=!open;hamburger.setAttribute('aria-expanded',String(open));if(open)menu.querySelector('a').focus();else hamburger.focus()}
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>40)})
+if('IntersectionObserver' in window){const revealEls=document.querySelectorAll('.section-header,.intent-card,.final-cta,.directory');revealEls.forEach((el,i)=>{el.classList.add('reveal');if(el.classList.contains('intent-card'))el.classList.add('reveal-delay-'+(i%3+1))});const revealObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});revealEls.forEach(el=>revealObs.observe(el))}
+</script>
+</body>
+</html>
