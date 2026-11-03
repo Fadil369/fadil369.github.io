@@ -15,6 +15,7 @@
 [data-theme='light'] .bpr-subnav a.active { background: #d8df28; color: #111207; }
 
 .bpr-app-body { width: min(1240px, calc(100% - 64px)); margin: 0 auto; padding: 56px 0 90px; display: grid; gap: 28px; }
+.bpr-app-body > * { min-width: 0; }
 .bpr-app-head { max-width: 860px; }
 .bpr-app-head h1 { margin: 0 0 18px; font-size: clamp(34px, 4.4vw, 58px); line-height: 1.06; letter-spacing: -.03em; font-weight: 500; }
 .bpr-app-head p { margin: 0; color: var(--profile-muted); font-size: 17px; max-width: 760px; }
@@ -786,7 +787,9 @@
   .clinic-dialog { width: min(460px, 95vw); }
 }
 @media (max-width: 640px) {
-  .clinic-app-shell { flex-direction: column; min-height: 0; }
+  .clinic-app-shell { flex-direction: column; min-height: 0; width: 100%; min-width: 0; }
+  .clinic-sidebar, .clinic-main-content { min-width: 0; max-width: 100%; box-sizing: border-box; }
+  .clinic-sidebar nav { min-width: 0; max-width: 100%; }
   .clinic-sidebar { display: block; position: static; width: 100%; flex: none; height: auto; padding: 12px 0; border-inline-end: 0; border-bottom: 1px solid var(--profile-line); }
   .clinic-brand, .clinic-sidebar-bottom { display: none; }
   .clinic-sidebar nav { flex-direction: row; gap: 8px; overflow-x: auto; padding: 4px; margin: 0; }
