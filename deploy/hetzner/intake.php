@@ -147,7 +147,9 @@ $headers = [
     'Content-Type: text/plain; charset=UTF-8',
     'X-Mailer: BrainSAIT Intake',
 ];
-if (!mail('hello@brainsait.de', $subject, $body, implode("\r\n", $headers))) {
+// PHP's configured default msmtp account is Mailpit by design. Select the
+// existing live konsoleH account so this request reaches the team inbox.
+if (!mail('hello@brainsait.de', $subject, $body, implode("\r\n", $headers), '-a konsoleh')) {
     error_log('intake email delivery failed');
     intakeReply(503, ['status' => 'rejected', 'error' => 'delivery_failed']);
 }
