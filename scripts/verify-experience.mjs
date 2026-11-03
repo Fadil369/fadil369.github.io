@@ -20,7 +20,7 @@ try{
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(base+prefix+'/',{waitUntil:'domcontentloaded'});
   await page.waitForSelector('#finder:not([hidden])');
-  assert.equal(await page.locator('.tool-card:visible').count(),9);
+  assert.equal(await page.locator('.tool-card:visible').count(),11);
   const desktopCard=await page.locator('.tool-card').first().boundingBox();
   assert.ok(desktopCard.width>=300&&desktopCard.height>=285,`${prefix}: toolkit cards have readable desktop sizing`);
   await page.keyboard.press('Control+k');assert.equal(await page.locator('#tool-search').evaluate(el=>document.activeElement===el),true);
@@ -41,7 +41,7 @@ try{
   await page.setViewportSize({width:390,height:844});
   assert.equal(await page.locator('.tool-grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length),1,`${prefix}: phone card grid`);
   await page.locator('#menu-toggle').click();assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'true');await page.keyboard.press('Escape');assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'false');
-  for(const route of ['/','/profile/','/cv/','/card/','/bpr/','/bpr/providers/','/bpr/verify/','/bpr/ledger/','/bpr/research/','/bpr/developers/','/bpr/status/','/bpr/workspace/','/bpr/clinic/','/bpr/nphies/','/bpr/join/','/bpr/record/','/bpr/saudi/','/slots/']){
+  for(const route of ['/','/profile/','/cv/','/card/','/bpr/','/bpr/ai/','/bpr/providers/','/bpr/verify/','/bpr/ledger/','/bpr/research/','/bpr/developers/','/bpr/status/','/bpr/workspace/','/bpr/clinic/','/bpr/nphies/','/bpr/join/','/bpr/record/','/bpr/saudi/','/slots/']){
    const response=await page.goto(base+prefix+route,{waitUntil:'domcontentloaded'});assert.equal(response.status(),200,route);
    await page.waitForSelector('h1');await page.waitForTimeout(200);
    assert.equal(await page.locator('h1').count(),1,`${prefix}${route}: one main heading`);
@@ -56,10 +56,10 @@ try{
   assert.deepEqual(clinicViolations,[],`${prefix}: clinic accessibility`);
   // No form is submitted. The pilot must never produce a real booking from a smoke check.
   assert.deepEqual(errors,[],`${prefix}: runtime errors`);
-  summary.push(`${ar?'Arabic':'English'}: search, SPID handoff, saved tools, themes, snapshot fallback, keyboard/menu, WCAG A/AA and 18 mobile routes passed`);
+  summary.push(`${ar?'Arabic':'English'}: search, SPID handoff, saved tools, themes, snapshot fallback, keyboard/menu, WCAG A/AA and 19 mobile routes passed`);
   await context.close();
  }
- const nojs=await browser.newContext({javaScriptEnabled:false});const page=await nojs.newPage();await page.goto(base+'/ar/');assert.equal(await page.locator('.tool-card:visible').count(),9);await nojs.close();summary.push('Arabic toolkit readable without JavaScript');
+ const nojs=await browser.newContext({javaScriptEnabled:false});const page=await nojs.newPage();await page.goto(base+'/ar/');assert.equal(await page.locator('.tool-card:visible').count(),11);await nojs.close();summary.push('Arabic toolkit readable without JavaScript');
  const offline=await browser.newContext({viewport:{width:390,height:844}});
  const offlinePage=await offline.newPage();await offlinePage.goto(base+'/',{waitUntil:'load'});
  await offlinePage.evaluate(()=>navigator.serviceWorker.ready);

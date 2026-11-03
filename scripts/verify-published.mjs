@@ -6,7 +6,7 @@ import { Script } from 'node:vm';
 import assert from 'node:assert/strict';
 const root=dirname(dirname(fileURLToPath(import.meta.url)));
 const errors=[];
-const routes=['/','/profile/','/cv/','/card/','/slots/','/bpr/','/bpr/providers/','/bpr/verify/','/bpr/workspace/','/bpr/clinic/','/bpr/ledger/','/bpr/research/','/bpr/developers/','/bpr/status/','/bpr/join/','/bpr/record/','/bpr/nphies/','/bpr/saudi/'];
+const routes=['/','/profile/','/cv/','/card/','/slots/','/bpr/','/bpr/ai/','/bpr/providers/','/bpr/verify/','/bpr/workspace/','/bpr/clinic/','/bpr/ledger/','/bpr/research/','/bpr/developers/','/bpr/status/','/bpr/join/','/bpr/record/','/bpr/nphies/','/bpr/saudi/'];
 for(const path of [...routes,...routes.map(p=>'/ar'+p)]){
  const file=join(root,path,'index.html');
  if(!existsSync(file)){errors.push(`${path}: missing document`);continue;}
@@ -34,6 +34,6 @@ for(const file of ['assets/launchpad/landing.js','sw.js']){
 const worker=readFileSync(join(root,'sw.js'),'utf8');
 const precache=JSON.parse(worker.match(/const PRECACHE = (\[[^;]+\]);/)[1]);
 for(const path of precache){const file=join(root,path);if(!existsSync(file)||(statSync(file).isDirectory()&&!existsSync(join(file,'index.html'))))errors.push(`precache: missing ${path}`);}
-for(const path of ['/assets/launchpad/landing.js','/assets/launchpad/landing.css','/bpr/clinic/','/ar/bpr/clinic/'])if(!precache.includes(path))errors.push(`precache: absent ${path}`);
+for(const path of ['/assets/launchpad/landing.js','/assets/launchpad/landing.css','/bpr/clinic/','/ar/bpr/clinic/','/bpr/ai/','/ar/bpr/ai/'])if(!precache.includes(path))errors.push(`precache: absent ${path}`);
 if(errors.length){console.error([...new Set(errors)].join('\n'));process.exit(1);}
 console.log(`PASS: ${routes.length*2} routes, local links/assets, inline JS, both landing pages and ${precache.length} offline entries.`);

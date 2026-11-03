@@ -13,7 +13,7 @@ const NAV = [
   { to: '/bpr/providers', en: 'Directory', ar: 'الدليل' },
   { to: '/slots', en: 'Hospital slots', ar: 'شواغر المستشفيات' },
   { to: '/bpr/nphies', en: 'NPHIES desk', ar: 'مكتب نفيس' },
-  { to: '/bpr/nvidia', en: 'NVIDIA AI', ar: 'ذكاء NVIDIA' },
+  { to: '/bpr/ai', en: 'AI & models', ar: 'الذكاء والنماذج' },
   { to: '/bpr/clinic', en: 'Clinic reception', ar: 'استقبال العيادات' },
   { to: '/bpr/saudi', en: 'For organizations', ar: 'للمؤسسات' },
   { to: '/bpr/verify', en: 'Verify', ar: 'التحقق' },

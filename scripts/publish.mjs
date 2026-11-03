@@ -25,7 +25,7 @@ writeFileSync(join(root, '404.html'), index); // SPA fallback for hard refresh
 // Only copy to SPA fallback routes (cv, card, bpr/*, slots) that need the shell.
 
 for (const route of ['profile', 'cv', 'card', 'slots',
-  'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi', 'bpr/nphies', 'bpr/clinic']) {
+  'bpr', 'bpr/ai', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi', 'bpr/nphies', 'bpr/clinic']) {
   const routeDir = join(root, route);
   mkdirSync(routeDir, { recursive: true });
   writeFileSync(join(routeDir, 'index.html'), index);
@@ -117,6 +117,7 @@ const ROUTE_META = {
   card: ['Business card — Dr. Mohamed El Fadil', 'Black and lemon business card with a brain-framed QR code. Print-ready PDF.', '/assets/card/dr-mohamed-el-fadil-front.png'],
   slots: ['Hospital slots — BPR', 'The BPR hospital slots marketplace: hospitals publish openings and verified providers request them with a BPR ID. Launching soon.'],
   bpr: ['BPR — BrainSAIT Provider Registry', 'Signed identity for every clinician: directory, on-device verification, transparency log, research footprint and FHIR R4.'],
+  'bpr/ai': ['AI and model gateway — BPR', 'Copilot service checks, a dated private model catalog snapshot and explicit connection boundaries.'],
   'bpr/workspace': ['Provider workspace — BPR', 'Own OpenEMR, a clinical copilot with Arabic dictation, FHIR, specialty tools and research — live and planned features stated per card.'],
   'bpr/providers': ['Provider directory — BPR', 'Listed providers with every trust dimension shown separately.'],
   'bpr/verify': ['Verify a provider — BPR', 'Check a BPR signed credential on your device: signature, validity window and live status.'],
@@ -155,6 +156,7 @@ const AR_META = {
   card: ['بطاقة الأعمال — د. محمد الفاضل', 'بطاقة أعمال سوداء وليمونية برمز QR على شكل دماغ. ملف PDF جاهز للطباعة.'],
   slots: ['شواغر المستشفيات — BPR', 'سوق شواغر المستشفيات في BPR: تنشر المستشفيات فتراتها، ويطلبها مقدمو الرعاية الموثّقون بمعرّف BPR. ينطلق قريبًا.'],
   bpr: ['BPR — سجل برينسايت لمقدمي الرعاية', 'هوية موقّعة لكل ممارس صحي: دليل، تحقق على الجهاز، سجل شفاف، بصمة بحثية وFHIR R4.'],
+  'bpr/ai': ['الذكاء الاصطناعي وبوابة النماذج — BPR', 'فحوص خدمة المساعد ولقطة مؤرخة لفهرس النماذج الخاص وحدود اتصال واضحة.'],
   'bpr/workspace': ['مساحة عمل مقدم الرعاية — BPR', 'OpenEMR خاص، مساعد سريري بإملاء عربي، FHIR، أدوات التخصص والبحث — مع بيان ما يعمل وما هو مخطط لكل ميزة.'],
   'bpr/providers': ['دليل مقدمي الرعاية — BPR', 'مقدمو الرعاية المدرجون مع عرض كل بُعد للثقة بشكل منفصل.'],
   'bpr/verify': ['التحقق من مقدم رعاية — BPR', 'تحقق من اعتماد BPR الموقّع على جهازك: التوقيع والصلاحية والحالة المباشرة.'],
@@ -201,7 +203,7 @@ console.log(`Wrote ${arWritten} Arabic page(s) under /ar/.`);
 
 // ── legacy store routes → static redirect stubs ────────────────────────────
 // Old storefront URLs keep working for people with bookmarks, but are not indexable duplicates.
-const LEGACY = { 'bpr/nvidia': '/bpr/workspace/', id: '/bpr/record/', learn: '/bpr/', build: '/bpr/', solutions: '/bpr/', templates: '/bpr/', oid: '/bpr/', catalogue: '/bpr/', store: '/bpr/', 'products/bpr': '/bpr/',
+const LEGACY = { 'bpr/nvidia': '/bpr/ai/', id: '/bpr/record/', learn: '/bpr/', build: '/bpr/', solutions: '/bpr/', templates: '/bpr/', oid: '/bpr/', catalogue: '/bpr/', store: '/bpr/', 'products/bpr': '/bpr/',
   doctors: '/bpr/providers/', sprint: '/bpr/workspace/', benefits: '/bpr/join/', account: '/', track: '/', faq: '/', terms: '/', support: '/#contact', contact: '/#contact' };
 for (const [route, to] of Object.entries(LEGACY)) {
   const dir = join(root, route);
@@ -261,7 +263,7 @@ console.log(`Wrote ${Object.keys(LEGACY).length} legacy redirect stub(s) and ${p
   const chunks = readdirSync(join(dist, 'assets')).filter((f) => /\.(js|css)$/.test(f)).map((f) => '/assets/' + f);
   // The NPHIES tables load on demand and are cached at runtime, so a first visit stays light.
   const data = walk(join(dist, 'assets', 'bpr-data')).map((f) => '/' + relative(dist, f).split(sep).join('/')).filter((u) => !u.startsWith('/assets/bpr-data/nphies/'));
-  const enPages = ['/', '/profile/', '/bpr/clinic/', '/cv/', '/card/', '/slots/', '/bpr/', '/bpr/verify/', '/bpr/workspace/', '/bpr/providers/', '/bpr/ledger/', '/bpr/research/', '/bpr/developers/', '/bpr/status/', '/bpr/join/', '/bpr/record/', '/bpr/saudi/', '/bpr/nphies/'];
+  const enPages = ['/', '/profile/', '/bpr/clinic/', '/cv/', '/card/', '/slots/', '/bpr/', '/bpr/verify/', '/bpr/workspace/', '/bpr/ai/', '/bpr/providers/', '/bpr/ledger/', '/bpr/research/', '/bpr/developers/', '/bpr/status/', '/bpr/join/', '/bpr/record/', '/bpr/saudi/', '/bpr/nphies/'];
   const pages = [...enPages, ...enPages.map((p) => '/ar' + p)];
   const precache = [...new Set([...pages, '/' + entry, ...css, ...chunks, ...data, '/assets/launchpad/landing.css', '/assets/launchpad/landing.js', '/assets/img/prof_pic.jpg', '/manifest.webmanifest', '/assets/icons/icon-192.png'])];
   const sw = `// generated by scripts/publish.mjs — do not edit

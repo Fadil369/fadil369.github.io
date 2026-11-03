@@ -1,16 +1,9 @@
 /**
- * BrainSAIT Clinic Reception — Integrated with BPR, NPHIES, NVIDIA AI, OpenEMR
+ * BrainSAIT Clinic Reception — synthetic-data pilot with explicit integration status
  *
- * Clinic reception pilot integrated into the BrainSAIT Provider Registry.
- * Connects to:
- *   - BPR Provider Registry (registry.brainsait.de) - Identity, credentials, FHIR R4
- *   - OpenEMR EMR (demo.emr.brainsait.de) - Clinical records
- *   - BrainSAIT Copilot (NVIDIA Nemotron models) - Clinical assistant
- *   - NPHIES Desk - Eligibility, claims, pre-authorisation
- *   - Brev HQ Agents - Multi-agent orchestration (when reconnected)
- *
- * Bilingual Arabic/English. Synthetic demo data for local storage;
- * live identity and credential verification from the registry.
+ * Bilingual synthetic-data reception pilot. FAQ answers and appointment simulation run
+ * locally in this browser; only provider identity/status checks use public registry APIs.
+ * No patient data, booking request, or chat prompt is sent to a model or backend.
  */
 // @ts-nocheck
 import { useEffect, useRef, useState } from 'react';
@@ -85,9 +78,9 @@ const STR: Record<'ar' | 'en', Record<string, string>> = {
     consent: 'I am using synthetic details only. This is not a real appointment.',
     submit: 'Submit demo request',
     submitting: 'Submitting…',
-    requestReceived: 'Request received',
+    requestReceived: 'Demo request saved on this device',
     reference: 'Your demo reference',
-    successBody: 'The request is now in the staff queue. This demonstration does not send notifications.',
+    successBody: 'This synthetic request is saved only in this browser. No staff receives it.',
     another: 'Create another request',
     clearChat: 'Clear conversation',
     profileTitle: 'Make reception feel like your clinic.',
@@ -124,10 +117,10 @@ const STR: Record<'ar' | 'en', Record<string, string>> = {
     slots: 'Available times',
     chooseDate: 'Choose a date to see available times.',
     noSlots: 'No times available for this date. Please choose another date.',
-    loadingSlots: 'Checking available times…',
+    loadingSlots: 'Preparing sample times…',
     review: 'Review demo booking',
     reviewTitle: 'Review your demo booking',
-    reviewNotice: 'This review does not hold the time. Availability is checked again when you confirm.',
+    reviewNotice: 'Local simulation only. No clinic schedule is queried and no appointment is created.',
     confirm: 'Confirm demo reservation',
     confirmConsent: 'I have reviewed these details and confirm this demo reservation.',
     edit: 'Change details',
@@ -152,7 +145,7 @@ const STR: Record<'ar' | 'en', Record<string, string>> = {
     emrConnected: 'EMR Connected',
     emrDisconnected: 'EMR Not Connected',
     copilot: 'Clinical Copilot',
-    copilotPoweredBy: 'Powered by NVIDIA Nemotron',
+    copilotPoweredBy: 'Approved-answer demo · local rules · no model calls',
     nphies: 'NPHIES Integration',
     nphiesLive: 'NPHIES Connected',
     nphiesReference: 'NPHIES Reference Only',
@@ -221,9 +214,9 @@ const STR: Record<'ar' | 'en', Record<string, string>> = {
     consent: 'أستخدم بيانات وهمية فقط. هذا ليس موعدًا فعليًا.',
     submit: 'إرسال الطلب التجريبي',
     submitting: 'جارٍ الإرسال…',
-    requestReceived: 'تم استلام الطلب',
+    requestReceived: 'حُفظ الطلب التجريبي على هذا الجهاز',
     reference: 'مرجع طلبك التجريبي',
-    successBody: 'ظهر الطلب الآن في قائمة الموظفين. لا ترسل هذه التجربة إشعارات.',
+    successBody: 'حُفظ هذا الطلب الوهمي في هذا المتصفح فقط. لا يصل إلى أي موظف.',
     another: 'إنشاء طلب آخر',
     clearChat: 'مسح المحادثة',
     profileTitle: 'استقبال يعكس هوية عيادتك.',
@@ -260,10 +253,10 @@ const STR: Record<'ar' | 'en', Record<string, string>> = {
     slots: 'الأوقات المتاحة',
     chooseDate: 'اختر تاريخًا لعرض الأوقات المتاحة.',
     noSlots: 'لا توجد أوقات متاحة في هذا التاريخ. اختر تاريخًا آخر.',
-    loadingSlots: 'جارٍ التحقق من الأوقات…',
+    loadingSlots: 'جارٍ تجهيز أوقات تجريبية…',
     review: 'مراجعة الحجز التجريبي',
     reviewTitle: 'راجع حجزك التجريبي',
-    reviewNotice: 'المراجعة لا تحجز الوقت مؤقتًا. يُتحقّق من التوفر مجددًا عند التأكيد.',
+    reviewNotice: 'محاكاة محلية فقط. لا يُستعلم عن جدول عيادة ولا يُنشأ موعد فعلي.',
     confirm: 'تأكيد الحجز التجريبي',
     confirmConsent: 'راجعت هذه التفاصيل وأؤكد هذا الحجز التجريبي.',
     edit: 'تعديل التفاصيل',
@@ -288,7 +281,7 @@ const STR: Record<'ar' | 'en', Record<string, string>> = {
     emrConnected: 'المسجل الطبي متصل',
     emrDisconnected: 'المسجل الطبي غير متصل',
     copilot: 'المساعد السريري',
-    copilotPoweredBy: 'مدعوم من NVIDIA Nemotron',
+    copilotPoweredBy: 'إجابات معتمدة تجريبية · قواعد محلية · دون استدعاء نموذج',
     nphies: 'التكامل مع نفيس',
     nphiesLive: 'نفيس متصل',
     nphiesReference: 'نفيس مرجع فقط',
@@ -368,20 +361,6 @@ function formatDate(date: string, lang: 'ar' | 'en') {
 function statusLabel(key: string, ar: boolean) {
   const [en, a] = STATUS_LABELS[key] ?? [key, key];
   return ar ? a : en;
-}
-
-// ── Clinic API helpers (proxy to registry.brainsait.de) ────────────────────
-async function clinicApi(path: string, options: any = {}) {
-  const response = await fetch(`${REGISTRY}${path}`, {
-    ...options,
-    credentials: 'same-origin',
-    headers: { 'Content-Type': 'application/json', ...options.headers },
-    body: options.body === undefined ? undefined : JSON.stringify(options.body),
-  });
-  const data = await response.json();
-  if (!response.ok)
-    throw Object.assign(new Error(data.error || 'Request failed'), { status: response.status });
-  return data;
 }
 
 // ── Components ─────────────────────────────────────────────────────────────
@@ -481,37 +460,35 @@ function SlotBooking({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string>
     setDraft(null); setConsent(false); setError('');
   };
 
-  async function loadSlots() {
+  function loadSlots() {
     if (!form.date) { setSlots([]); return; }
     setLoading(true);
-    try {
-      const r = await fetch(`${REGISTRY}/api/availability?service=${form.service}&date=${encodeURIComponent(form.date)}`, { signal: AbortSignal.timeout(8000) });
-      if (!r.ok) throw new Error(String(r.status));
-      const data = await r.json();
-      setSlots(data.slots ?? []);
-      setForm((f) => ({ ...f, time: data.slots?.includes(f.time) ? f.time : '' }));
-    } catch { setSlots([]); } finally { setLoading(false); }
+    // Stable local-only sample schedule; weekdays only, Riyadh time.
+    const day = new Date(`${form.date}T12:00:00+03:00`).getDay();
+    const times = day === 5 || day === 6 ? [] : Array.from({ length: 17 }, (_, i) => {
+      const minutes = 9 * 60 + i * 30;
+      return `${String(Math.floor(minutes / 60)).padStart(2, '0')}:${String(minutes % 60).padStart(2, '0')}`;
+    });
+    setSlots(times);
+    setForm((f) => ({ ...f, time: times.includes(f.time) ? f.time : '' }));
+    setLoading(false);
   }
 
   useEffect(() => { loadSlots(); }, [form.date, form.service, revision]);
 
-  async function createDraft() {
-    setBusy(true); setError('');
-    try {
-      const r = await clinicApi('/api/booking-drafts', { method: 'POST', body: { ...form, lang } });
-      setDraft(r);
-      setConsent(false);
-    } catch (e: any) { setError(e.message); } finally { setBusy(false); }
+  function createDraft() {
+    if (!form.patient || !form.time || !form.date) return;
+    setDraft({ ...form, reference: `DEMO-${Date.now().toString(36).toUpperCase()}` });
+    setConsent(false);
   }
 
-  async function confirmBooking() {
-    if (busy || !consent || !draft) return;
-    setBusy(true); setError('');
-    try {
-      const reservation = await clinicApi('/api/bookings', { method: 'POST', body: { draftToken: draft.draftToken, consent: true } });
-      setResult(reservation);
-      setDraft(null);
-    } catch (e: any) { setError(e.message); } finally { setBusy(false); }
+  function confirmBooking() {
+    if (!consent || !draft) return;
+    const reservation = { ...draft, id: draft.reference, status: 'pending', type: 'appointment', createdAt: new Date().toISOString() };
+    const requests = [reservation, ...loadRequests()].slice(0, 100);
+    saveRequests(requests);
+    setDraft(null);
+    setResult(reservation);
   }
 
   if (result) {
@@ -534,10 +511,10 @@ function SlotBooking({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string>
         <form onSubmit={(e) => { e.preventDefault(); confirmBooking(); }} className="clinic-booking-review">
           <h2>{t.reviewTitle}</h2>
           <dl>
-            <div><dt>{t.patientLabel}</dt><dd dir="auto">{draft.summary?.patient ?? draft.patient ?? form.patient}</dd></div>
-            <div><dt>{t.service}</dt><dd>{t[draft.summary?.service ?? form.service]}</dd></div>
-            <div><dt>{t.date}</dt><dd>{formatDate(draft.summary?.date ?? form.date, lang)}</dd></div>
-            <div><dt>{t.time}</dt><dd dir="ltr">{draft.summary?.time ?? form.time} (UTC+03:00)</dd></div>
+            <div><dt>{t.patientLabel}</dt><dd dir="auto">{draft.patient}</dd></div>
+            <div><dt>{t.service}</dt><dd>{t[draft.service]}</dd></div>
+            <div><dt>{t.date}</dt><dd>{formatDate(draft.date, lang)}</dd></div>
+            <div><dt>{t.time}</dt><dd dir="ltr">{draft.time} (UTC+03:00)</dd></div>
           </dl>
           <p className="clinic-hint">{t.reviewNotice}</p>
           <label className="clinic-checkbox-label"><input type="checkbox" required checked={consent} onChange={(e) => setConsent(e.target.checked)} /><span>{t.confirmConsent}</span></label>
@@ -590,8 +567,10 @@ function Dashboard({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string> }
   async function saveStatus() {
     if (!selected) return;
     const updated = { ...selected, status };
-    setRequests((reqs: any[]) => reqs.map((r: any) => r.id === selected.id ? updated : r));
-    saveRequests((reqs: any[]) => reqs.map((r: any) => r.id === selected.id ? updated : r));
+    if (!updated.id) updated.id = updated.reference;
+    const next = requests.map((r: any) => r.id === selected.id ? updated : r);
+    setRequests(next);
+    saveRequests(next);
     setSelected(null);
   }
 
@@ -827,7 +806,7 @@ function ClinicStatus({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string
           </span>
         </div>
         <div className="clinic-status-item">
-          <div className="clinic-status-label">NVIDIA AI</div>
+          <div className="clinic-status-label">Model gateway</div>
           <span className={`clinic-status-badge ${status.nvidia === 'live' ? 'clinic-status-live' : 'clinic-status-down'}`}>
             {status.nvidia === 'configured' ? (lang === 'ar' ? 'مُعدّ · لم يُختبر الاستدلال' : 'Configured · inference not checked') : t.clinicPending}
           </span>

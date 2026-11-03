@@ -46,6 +46,7 @@ const ROUTES = [
   ['/slots/', [page('WebPage', '/slots/', 'Hospital slots — BPR', { about: { '@id': `${ORIGIN}/bpr#registry` } }), crumbs([['BPR', '/bpr/'], ['Hospital slots', '/slots/']])], 0.8],
   ['/bpr/', [page('WebPage', '/bpr/', 'BPR — BrainSAIT Provider Registry', { about: { '@id': `${ORIGIN}/bpr#registry` } }), registryOrg], 0.9],
   ['/bpr/record/', [page('ProfilePage', '/bpr/record/', 'BPR record · Dr. Mohamed El Fadil', { mainEntity: { '@id': `${ORIGIN}/#person` } }), person, crumbs([['BPR', '/bpr/'], ['Record', '/bpr/record/']])], 0.9],
+  ['/bpr/ai/', [page('WebPage', '/bpr/ai/', 'AI and model gateway — BPR'), crumbs([['BPR', '/bpr/'], ['AI and models', '/bpr/ai/']])], 0.7],
   ['/bpr/nphies/', [page('WebPage', '/bpr/nphies/', 'NPHIES desk: rejection codes, pre-check and readiness'), crumbs([['BPR', '/bpr/'], ['NPHIES desk', '/bpr/nphies/']])], 0.8],
   ['/bpr/clinic/', [page('WebPage', '/bpr/clinic/', 'Clinic Reception — BPR'), { mainEntity: { '@id': `${ORIGIN}/bpr#registry` } }, crumbs([['BPR', '/bpr/'], ['Clinic reception', '/bpr/clinic/']])], 0.8],
   ['/bpr/saudi/', [page('WebPage', '/bpr/saudi/', 'BPR across the Saudi health system'), crumbs([['BPR', '/bpr/'], ['Saudi', '/bpr/saudi/']])], 0.7],
