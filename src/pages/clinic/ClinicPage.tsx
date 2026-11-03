@@ -17,7 +17,7 @@ import { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight, ArrowUpRight, CalendarDays, CalendarClock, Check, CheckCircle2,
   CheckCheck, Clock3, Copy, FileText, Headphones, HeartPulse, LogOut, MapPin,
-  MessageCircle, MessageSquare, Monitor, Plus, RefreshCw, RotateCcw, Send,
+  MessageCircle, MessageSquare, Monitor, Plus, RefreshCw, RotateCcw, Search, Send,
   Settings2, ShieldCheck, Stethoscope, Users, UsersRound, X, House,
 } from 'lucide-react';
 import { useI18n } from '../../i18n';
@@ -810,18 +810,27 @@ function ClinicStatus({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string
           const data = await r.json();
           setStatus(prev => ({
             ...prev,
-            registry: data.status === 'ok' ? 'live' : 'down',
-            nvidia: data.ai === 'configured_unverified' ? 'live' : 'down',
+            registry: data.ok ? 'live' : 'down',
           }));
         }
       } catch {}
 
+      // The copilot and EMR services are measured by the registry's own operations
+      // checks (copilot_ai, emr) — the same source the status page shows. The demo
+      // OpenEMR sends no CORS headers, so a direct browser probe only produced a
+      // false "disconnected" badge.
       try {
-        const r = await fetch('https://demo.emr.brainsait.de/fhir/metadata', { signal: AbortSignal.timeout(5000) });
-        setStatus(prev => ({ ...prev, emr: r.ok ? 'live' : 'down' }));
-      } catch {
-        setStatus(prev => ({ ...prev, emr: 'down' }));
-      }
+        const r = await fetch(`${REGISTRY}/api/status`, { signal: AbortSignal.timeout(8000) });
+        if (r.ok) {
+          const data = await r.json();
+          const checks = data.operations?.checks || {};
+          setStatus(prev => ({
+            ...prev,
+            nvidia: checks.copilot_ai === 'ok' ? 'live' : 'down',
+            emr: checks.emr === 'ok' ? 'live' : 'down',
+          }));
+        }
+      } catch {}
     }
     loadStatus();
   }, []);
