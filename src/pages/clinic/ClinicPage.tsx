@@ -17,9 +17,10 @@ import { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight, ArrowUpRight, CalendarDays, CalendarClock, Check, CheckCircle2,
   CheckCheck, Clock3, Copy, FileText, Headphones, HeartPulse, LogOut, MapPin,
-  MessageCircle, MessageSquare, Monitor, Plus, RefreshCw, RotateCcw, Send,
+  MessageCircle, MessageSquare, Monitor, Plus, RefreshCw, RotateCcw, Search, Send,
   Settings2, ShieldCheck, Stethoscope, Users, UsersRound, X, House,
 } from 'lucide-react';
+import { localized } from '../../lib/locale';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout } from '../../components/BprKit';
@@ -27,7 +28,6 @@ import { REGISTRY, checkCredential, checkAiLedger, short } from '../../lib/bpr';
 
 const SPID = 'SA-PHY-000003';
 const OID = '1.3.6.1.4.1.61026';
-const CLINIC_API = 'http://127.0.0.1:3002'; // Local clinic API backend
 
 // ── Bilingual strings ──────────────────────────────────────────────────────
 const STR: Record<'ar' | 'en', Record<string, string>> = {
@@ -148,7 +148,6 @@ const STR: Record<'ar' | 'en', Record<string, string>> = {
     oid: 'OID Namespace',
     credential: 'Signed Credential',
     verified: 'Verified',
-    pending: 'Pending',
     emr: 'OpenEMR Workspace',
     emrConnected: 'EMR Connected',
     emrDisconnected: 'EMR Not Connected',
@@ -285,7 +284,6 @@ const STR: Record<'ar' | 'en', Record<string, string>> = {
     oid: 'مساحة المعرّف OID',
     credential: 'الشهادة الموقّعة',
     verified: 'مُتحقّق منه',
-    pending: 'قيد الانتظار',
     emr: 'مساحة OpenEMR',
     emrConnected: 'المسجل الطبي متصل',
     emrDisconnected: 'المسجل الطبي غير متصل',
@@ -302,7 +300,7 @@ const STR: Record<'ar' | 'en', Record<string, string>> = {
     clinicPending: 'العيادة قيد الانتظار',
     activelyRunning: 'تعمل بنشاط',
     yourClinic: 'عيادتك',
-    providerName: 'د. محمد الفadil',
+    providerName: 'د. محمد الفاضل',
     providerNameAr: 'اسم مقدم الرعاية · العربية',
   },
 };
@@ -401,7 +399,10 @@ function ReceptionChat({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, strin
 
   function replyTo(message: string, l: 'ar' | 'en', profile: any) {
     const ar = l === 'ar';
-    if (/cannot breathe|can't breathe|chest pain|unconscious|severe bleeding|suicid|لا أستطيع التنفس|صعوبة.*تنفس|ألم.*صدر|فاقد.*وعي|نزيف شديد|انتحار/i.test(message)) {
+    if (new RegExp([
+      "cannot breathe|can't breathe|chest pain|unconscious|severe bleeding|suicid",
+      'لا أستطيع التنفس|صعوبة.*تنفس|ألم.*صدر|فاقد.*وعي|نزيف شديد|انتحار',
+    ].join('|'), 'i').test(message)) {
       return { kind: 'urgent', answer: ar ? 'هذه الخدمة ليست للطوارئ ولا تقيّم حالتك. اطلب المساعدة الطبية الفورية من خدمات الطوارئ المحلية أو توجّه إلى أقرب قسم طوارئ. لا تنتظر رد العيادة هنا.' : 'This service is not for emergencies and cannot assess your condition. Seek immediate help from local emergency services or the nearest emergency department. Do not wait for a clinic reply here.' };
     }
     if (/medicat|diagnos|symptom|treatment|pain|dose|prescri|علاج|تشخيص|ألم|دواء|جرعة|أعراض/i.test(message)) {
@@ -441,7 +442,7 @@ function ReceptionChat({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, strin
             <div>
               {m.kind && <strong className="clinic-answer-kind">{t[m.kind === 'approved' ? 'approved' : m.kind === 'urgent' ? 'urgent' : 'handoff']}</strong>}
               <p dir="auto">{m.text}</p>
-              {m.kind === 'handoff' && <button className="clinic-btn outline small" onClick={() => {}}>{t.staffHelp}</button>}
+              {m.kind === 'handoff' && <p className="clinic-hint">{lang === 'ar' ? 'هذه تجربة ولا يوجد موظف يتابع هذه المحادثة. تواصل مع عيادتك عبر قنواتها الرسمية.' : 'This is a pilot; no staff member monitors this chat. Contact your clinic through its official channels.'}</p>}
             </div>
           </div>
         ))}
@@ -553,7 +554,7 @@ function SlotBooking({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string>
       <form onSubmit={(e) => { e.preventDefault(); createDraft(); }} className="clinic-slot-form">
         <div className="clinic-panel-head"><h2>{t.bookTitle}</h2><CalendarDays size={22} /></div>
         <p className="clinic-hint">{t.schedule}</p>
-        <label>{t.patientLabel}<input required pattern="(Patient|مريض) [0-9٠-٩]{3}" maxLength="40" dir="auto" placeholder="Patient 007" value={form.patient} onChange={(e) => update('patient', e.target.value)} /><small>{t.patientHint}</small></label>
+        <label>{t.patientLabel}<input required pattern={['(?:Patient', 'مريض) [0-9٠-٩]{3}'].join('|')} maxLength="40" dir="auto" placeholder="Patient 007" value={form.patient} onChange={(e) => update('patient', e.target.value)} /><small>{t.patientHint}</small></label>
         <label>{t.service}<select value={form.service} onChange={(e) => update('service', e.target.value)}>{SERVICES.map((s) => <option key={s.id} value={s.id}>{t[s.id]}</option>)}</select></label>
         <label>{t.date}<input required type="date" min={saudiToday()} max={new Date(Date.now() + 30 * 86400000).toLocaleDateString('en-CA', { timeZone: 'Asia/Riyadh' })} value={form.date} onChange={(e) => update('date', e.target.value)} /></label>
         <fieldset className="clinic-time-slots"><legend>{t.slots}</legend>
@@ -605,7 +606,7 @@ function Dashboard({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string> }
       <section className="clinic-panel">
         <div className="clinic-panel-head">
           <h2>{t.queue}</h2>
-          <div className="clinic-search"><Search size={18} /><input placeholder={t.search} value={search} onChange={(e) => setSearch(e.target.value)} /></div>
+          <div className="clinic-search"><Search size={18} /><input aria-label={t.search} placeholder={t.search} value={search} onChange={(e) => setSearch(e.target.value)} /></div>
         </div>
         <div className="clinic-filters">
           {['all', 'pending', 'needs_staff', 'completed'].map((s) => (
@@ -633,7 +634,7 @@ function Dashboard({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string> }
 
       <dialog ref={dialog} className="clinic-dialog" onCancel={() => setSelected(null)}>
         <div className="clinic-dialog-content">
-          <div className="clinic-panel-head"><h2>{t.details}</h2><button className="clinic-icon-button" onClick={() => setSelected(null)}><X size={20} /></button></div>
+          <div className="clinic-panel-head"><h2>{t.details}</h2><button className="clinic-icon-button" aria-label={t.close} onClick={() => setSelected(null)}><X size={20} /></button></div>
           {selected && (
             <>
               <p className="clinic-reference" dir="ltr">{selected.reference}</p>
@@ -697,39 +698,24 @@ function ProviderIdentity({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, st
   const [verified, setVerified] = useState(false);
 
   useEffect(() => {
+    let alive = true;
     async function loadCredential() {
       try {
-        // Check credential signature on the registry
-        const r = await fetch(`${REGISTRY}/vc/${SPID}`, { signal: AbortSignal.timeout(8000) });
-        if (r.ok) {
-          const vc = await r.json();
-          setCredential(vc);
-          setVerified(true);
-        } else {
-          // Try provider endpoint
-          const pr = await fetch(`${REGISTRY}/api/providers/${SPID}`, { signal: AbortSignal.timeout(8000) });
-          if (pr.ok) {
-            const provider = await pr.json();
-            setCredential(provider);
-            setVerified(provider.verification?.credentials === 'current' || provider.verification?.signature === 'current');
-          }
-        }
+        const result = await checkCredential(SPID);
+        if (!alive) return;
+        const subject = result.claims.credentialSubject;
+        setCredential({ ...subject, issuer: result.claims.issuer.id });
+        setVerified(result.signature.state === 'ok' && result.expiry.state === 'ok' && result.status.state === 'ok');
       } catch {
-        // Fallback to known provider data
-        setCredential({
-          spid: SPID,
-          oid: OID,
-          name: t.providerName,
-          nameAr: t.providerNameAr,
-          specialization: 'Consultant Neurosurgery and Spine Surgery',
-          location: 'Riyadh, Saudi Arabia',
-          verified: false,
-        });
+        if (!alive) return;
+        setCredential(null);
+        setVerified(false);
       } finally {
-        setLoading(false);
+        if (alive) setLoading(false);
       }
     }
     loadCredential();
+    return () => { alive = false; };
   }, []);
 
   return (
@@ -753,7 +739,7 @@ function ProviderIdentity({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, st
             </div>
             <div className="clinic-identity-field">
               <label>{t.credential}</label>
-              <div className="clinic-identity-value" dir="ltr">{credential?.issuer || 'did:web:registry.brainsait.de'}</div>
+              <div className="clinic-identity-value" dir="ltr">{credential?.issuer || (lang === 'ar' ? 'لم يُتحقّق منه' : 'Not checked')}</div>
             </div>
             <div className="clinic-identity-field">
               <label>{t.providerName}</label>
@@ -761,11 +747,11 @@ function ProviderIdentity({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, st
             </div>
             <div className="clinic-identity-field">
               <label>{t.providerNameAr}</label>
-              <div className="clinic-identity-value" dir="rtl">{credential?.nameAr || credential?.name_ar || t.providerNameAr}</div>
+              <div className="clinic-identity-value" dir="rtl">{credential?.nameAr || credential?.name_ar || 'د. محمد الفاضل'}</div>
             </div>
             <div className="clinic-identity-field">
               <label>{t.emr}</label>
-              <div className="clinic-identity-value">{t.emrConnected}</div>
+              <div className="clinic-identity-value">{lang === 'ar' ? 'وصول خاص · لم يُتحقّق منه هنا' : 'Private access · not checked here'}</div>
             </div>
             <div className="clinic-identity-field">
               <label>{t.copilot}</label>
@@ -781,7 +767,7 @@ function ProviderIdentity({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, st
             </div>
           </div>
           <div className="clinic-identity-actions">
-            <a href="/bpr/verify" className="clinic-btn primary">{t.refresh}</a>
+            <a href={localized(`/bpr/verify/?spid=${SPID}`)} className="clinic-btn primary">{t.refresh}</a>
             <a href="https://demo.emr.brainsait.de/" target="_blank" rel="noreferrer" className="clinic-btn outline">{t.emr}</a>
           </div>
         </>
@@ -811,14 +797,18 @@ function ClinicStatus({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string
           setStatus(prev => ({
             ...prev,
             registry: data.status === 'ok' ? 'live' : 'down',
-            nvidia: data.ai === 'configured_unverified' ? 'live' : 'down',
+            nvidia: data.ai === 'configured_unverified' ? 'configured' : 'unknown',
           }));
         }
       } catch {}
 
       try {
-        const r = await fetch('https://demo.emr.brainsait.de/fhir/metadata', { signal: AbortSignal.timeout(5000) });
-        setStatus(prev => ({ ...prev, emr: r.ok ? 'live' : 'down' }));
+        const r = await fetch(`${REGISTRY}/api/status`, { signal: AbortSignal.timeout(5000) });
+        if (!r.ok) throw new Error('status unavailable');
+        const report = await r.json();
+        const site = report.sites?.['https://sa-phy-000003.emr.brainsait.de/'];
+        const fresh = Date.now() - Date.parse(report.checked_at) < 900000;
+        setStatus(prev => ({ ...prev, emr: fresh && site === 'ok' ? 'reported' : 'unknown' }));
       } catch {
         setStatus(prev => ({ ...prev, emr: 'down' }));
       }
@@ -839,13 +829,13 @@ function ClinicStatus({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string
         <div className="clinic-status-item">
           <div className="clinic-status-label">NVIDIA AI</div>
           <span className={`clinic-status-badge ${status.nvidia === 'live' ? 'clinic-status-live' : 'clinic-status-down'}`}>
-            {status.nvidia === 'live' ? t.copilotPoweredBy : t.clinicPending}
+            {status.nvidia === 'configured' ? (lang === 'ar' ? 'مُعدّ · لم يُختبر الاستدلال' : 'Configured · inference not checked') : t.clinicPending}
           </span>
         </div>
         <div className="clinic-status-item">
           <div className="clinic-status-label">OpenEMR</div>
           <span className={`clinic-status-badge ${status.emr === 'live' ? 'clinic-status-live' : 'clinic-status-down'}`}>
-            {status.emr === 'live' ? t.emrConnected : t.emrDisconnected}
+            {status.emr === 'reported' ? (lang === 'ar' ? 'تقرير المراقبة: متاح' : 'Monitoring reports reachable') : t.clinicPending}
           </span>
         </div>
         <div className="clinic-status-item">
@@ -858,7 +848,7 @@ function ClinicStatus({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string
         </div>
         <div className="clinic-status-item">
           <div className="clinic-status-label">Clinic</div>
-          <span className="clinic-status-badge clinic-status-live">{t.activelyRunning}</span>
+          <span className="clinic-status-badge clinic-status-reference">{lang === 'ar' ? 'سير عمل تجريبي' : 'Pilot workflow'}</span>
         </div>
       </div>
     </section>
@@ -878,7 +868,7 @@ export default function ClinicPage() {
 
   usePageMeta({
     title: ar ? 'استقبال العيادات — BPR' : 'Clinic Reception — BPR',
-    description: ar ? 'استقبال عيادات ذكي مع مواعيد ونماذج NPHIES وصوت NVIDIA.' : 'Smart clinic reception with appointments, NPHIES validation, and NVIDIA voice.',
+    description: ar ? 'تجربة استقبال ببيانات اصطناعية، مع تحقق مستقل من هوية BPR وحالة التكامل.' : 'A synthetic-data reception pilot with separate BPR credential checks and integration status.',
     url: '/bpr/clinic', type: 'website',
   });
 
@@ -907,10 +897,10 @@ export default function ClinicPage() {
     <BprLayout
       kicker={ar ? 'استقبال العيادات' : 'Clinic Reception'}
       title={ar ? 'استقبال ذكي للعيادة التجريبية' : 'Smart clinic reception'}
-      lead={ar ? 'إدارة طلبات المواعيد وتقديم إجابات معتمدة للمرضى. متكامل مع سجل مقدمي الرعاية (BPR) ومكتب نفيس وصوت NVIDIA.' : 'Manage appointment requests and give patients approved answers. Integrated with BPR provider registry, NPHIES desk, and NVIDIA voice.'}
+      lead={ar ? 'جرّب الاستقبال ببيانات اصطناعية. تُعرض هوية BPR وحالة التكامل بفحوص مستقلة؛ إعداد الذكاء الاصطناعي لا يثبت جاهزية الصوت.' : 'Explore reception with synthetic data. BPR identity and integration status have separate checks; AI configuration does not establish voice readiness.'}
       actions={<>
         <button className="profile-button primary" onClick={() => setActiveRoute('reception')}>{t.open}<ArrowRight size={16} /></button>
-        <a href="/bpr/nphies/" className="profile-button secondary">{t.nphiesDesk}</a>
+        <a href={localized('/bpr/nphies/')} className="profile-button secondary">{t.nphiesDesk}</a>
       </>}
     >
       <div className="clinic-app-shell">
@@ -919,7 +909,7 @@ export default function ClinicPage() {
             <span className="clinic-brand-name" dir="ltr">BrainSAIT<span className="clinic-brand-dot">.</span></span>
             <span>{t.product}</span>
           </div>
-          <nav aria-label={ar ? 'القائمة الرئيسية' : 'Main navigation'}>
+          <nav aria-label={ar ? 'التنقل في العيادة' : 'Clinic navigation'}>
             {navigation.map(({ key, Icon, label }) => (
               <button key={key} className={`clinic-nav-item ${activeRoute === key ? 'active' : ''}`} onClick={() => setActiveRoute(key)} aria-current={activeRoute === key ? 'page' : undefined}>
                 <Icon size={21} /><span>{label}</span>
@@ -928,14 +918,14 @@ export default function ClinicPage() {
           </nav>
           <div className="clinic-sidebar-bottom">
             <div><Monitor size={20} /><span>{t.demo}</span></div>
-            <button className="clinic-leave" onClick={() => {}}>{t.logout}</button>
+            <a className="clinic-leave" href={localized('/bpr/')}>{t.logout}</a>
           </div>
         </aside>
-        <main id="clinic-main-content" tabIndex={-1}>
+        <div className="clinic-main-content" id="clinic-main-content" tabIndex={-1}>
           <header className="clinic-page-header">
             <div>
               <div className="clinic-title-line">
-                <h1>{activeRoute === 'overview' ? t.title : t[activeRoute]}</h1>
+                <h2>{activeRoute === 'overview' ? t.title : t[activeRoute]}</h2>
                 <span className="clinic-sample-label">{t.sample}</span>
               </div>
               <p>{activeRoute === 'overview' ? t.subtitle : config?.[lang === 'ar' ? 'nameAr' : 'nameEn'] || t.product}</p>
@@ -971,7 +961,7 @@ export default function ClinicPage() {
             <span>{t.managed}</span>
             <span>{t.demoNote}</span>
           </footer>
-        </main>
+        </div>
       </div>
     </BprLayout>
   );

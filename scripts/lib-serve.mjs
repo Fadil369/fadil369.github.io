@@ -1,19 +1,22 @@
-// Tiny static server over the published repo root, for the post-publish scripts (prerender, CV PDF).
-// Unknown paths get 404.html, the same SPA fallback GitHub Pages serves.
+// Local preview with the same missing-route status as GitHub Pages.
 import { createServer } from 'node:http';
 import { readFileSync, existsSync, statSync } from 'node:fs';
-import { join, extname } from 'node:path';
-
-const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.pdf': 'application/pdf', '.webmanifest': 'application/manifest+json', '.txt': 'text/plain' };
-
-export async function serve(root) {
-  const server = createServer((req, res) => {
-    let f = join(root, decodeURIComponent(new URL(req.url, 'http://x').pathname));
-    if (!f.startsWith(root)) { res.writeHead(403).end(); return; }
-    if (existsSync(f) && statSync(f).isDirectory()) f = join(f, 'index.html');
-    if (!existsSync(f)) f = join(root, '404.html');
-    res.writeHead(200, { 'content-type': TYPES[extname(f)] || 'application/octet-stream' }).end(readFileSync(f));
-  }).listen(0, '127.0.0.1');
-  await new Promise((r) => server.once('listening', r));
-  return { base: `http://127.0.0.1:${server.address().port}`, close: () => server.close() };
+import { join, extname, resolve, relative } from 'node:path';
+const TYPES={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml','.pdf':'application/pdf','.webmanifest':'application/manifest+json','.txt':'text/plain; charset=utf-8'};
+export async function serve(root){
+ root=resolve(root);
+ const server=createServer((req,res)=>{
+  if(!['GET','HEAD'].includes(req.method)){res.writeHead(405,{Allow:'GET, HEAD'}).end();return;}
+  let file;
+  try{file=resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));}catch{res.writeHead(400).end();return;}
+  const rel=relative(root,file);
+  if(rel==='..'||rel.startsWith('../')){res.writeHead(403).end();return;}
+  if(existsSync(file)&&statSync(file).isDirectory())file=join(file,'index.html');
+  let status=200;
+  if(!existsSync(file)||!statSync(file).isFile()){status=404;file=join(root,'404.html');}
+  const body=existsSync(file)?readFileSync(file):Buffer.from('Not found');
+  res.writeHead(status,{'content-type':TYPES[extname(file)]||'application/octet-stream','cache-control':'no-store'}).end(req.method==='HEAD'?undefined:body);
+ }).listen(0,'127.0.0.1');
+ await new Promise((yes,no)=>{server.once('listening',yes);server.once('error',no);});
+ return {base:`http://127.0.0.1:${server.address().port}`,close:()=>server.close()};
 }

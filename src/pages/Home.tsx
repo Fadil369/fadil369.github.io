@@ -89,7 +89,7 @@ export default function Home() {
     description: ar
       ? 'طبيب ومؤسس BrainSAIT في الرياض. أبني هوية صحية قابلة للتحقق وأدوات مترابطة للممارسين عبر FHIR والذكاء الاصطناعي؛ والتكامل مع نفيس جارٍ.'
       : 'Physician and BrainSAIT founder in Riyadh, building verifiable provider identity and interoperable clinical tools with FHIR and AI. NPHIES integration is ongoing.',
-    url: '/',
+    url: '/profile',
     type: 'profile',
   });
   useEffect(() => {

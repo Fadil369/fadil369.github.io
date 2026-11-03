@@ -74,8 +74,8 @@ function OfflineBanner() {
   }, []);
   if (!offline) return null;
   return <div className="offline-banner" role="status">{ar
-    ? 'أنت غير متصل. تُعرض النسخة المحفوظة؛ تعمل فحوص التوقيع على اللقطة المحفوظة.'
-    : 'You are offline. Showing the saved copy; signature checks run against the saved snapshot.'}</div>;
+    ? 'أنت غير متصل. قد تكون البيانات المحفوظة قديمة؛ فحص التوقيع المحفوظ لا يثبت الحالة الحالية في السجل.'
+    : 'You are offline. Saved data may be outdated. A cached signature check cannot establish current registry status.'}</div>;
 }
 
 function AppShell() {
@@ -86,7 +86,8 @@ function AppShell() {
   // Route change: jump to the top instantly. Hash link (/#work): scroll to that section, also when
   // the hash changes on the same page — pushState navigation never does this by itself.
   useEffect(() => {
-    const id = decodeURIComponent(location.hash.slice(1));
+    let id = location.hash.slice(1);
+    try { id = decodeURIComponent(id); } catch { /* Treat malformed escapes as literal IDs. */ }
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const go = () => {
       const el = id ? document.getElementById(id) : null;
@@ -102,9 +103,10 @@ function AppShell() {
       <OfflineBanner />
       <main id="main-content">
         <RouteBoundary ar={document.documentElement.lang === 'ar'} path={location.pathname}>
-        <Suspense fallback={<div className="profile-page" style={{ minHeight: '100vh' }} />}>
+        <Suspense fallback={<div className="profile-page" role="status" style={{ minHeight: '60vh', padding: 40 }}>{document.documentElement.lang === 'ar' ? 'جارٍ تحميل الصفحة…' : 'Loading page…'}</div>}>
         <Routes>
-          <Route path="/" element={<Navigate to="/bpr" replace />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Home />} />
           {/* Redirect /ar/* to /bpr with Arabic language preserved */}
           <Route path="/ar" element={<Navigate to="/bpr?lang=ar" replace />} />
           <Route path="/cv" element={<ProfessionalCv />} />
@@ -124,7 +126,8 @@ function AppShell() {
           <Route path="/bpr/record" element={<Record />} />
           <Route path="/bpr/saudi" element={<Saudi />} />
           <Route path="/bpr/nphies" element={<Nphies />} />
-          <Route path="/bpr/clinic*" element={<Clinic />} />
+          <Route path="/bpr/clinic/*" element={<Clinic />} />
+          <Route path="/bpr/nvidia" element={<Navigate to="/bpr/workspace" replace />} />
           <Route path="/slots" element={<Slots />} />
           <Route path="/id" element={<Navigate to="/bpr/record" replace />} />
           <Route path="/doctors/:spid" element={<SpidRedirect />} />

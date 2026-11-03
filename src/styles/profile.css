@@ -34,7 +34,7 @@
   --profile-muted: #626256;
   --profile-line: rgba(19, 20, 15, .17);
   --profile-accent: #626800;
-  --profile-accent-ink: #111207;
+  --profile-accent-ink: #fff;
   --profile-warm: #626800;
   background: linear-gradient(rgba(19,20,15,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(19,20,15,.035) 1px, transparent 1px), var(--profile-bg);
   background-size: 72px 72px;
@@ -59,11 +59,11 @@
 .profile-head nav a, .profile-socials a, .profile-footer a { transition: color .2s ease; }
 .profile-head nav a:hover, .profile-socials a:hover, .profile-footer a:hover { color: var(--profile-accent); }
 .profile-controls { display: flex; gap: 8px; }
-.profile-controls button {
+.profile-controls button, .profile-controls > a {
   min-width: 39px; height: 39px; padding: 0 11px; display: flex; align-items: center; justify-content: center; gap: 6px;
   border-radius: 99px; border: 1px solid var(--profile-line); background: transparent; color: var(--profile-text); cursor: pointer;
 }
-.profile-controls button:hover { border-color: var(--profile-accent); color: var(--profile-accent); }
+.profile-controls button:hover, .profile-controls > a:hover { border-color: var(--profile-accent); color: var(--profile-accent); }
 .profile-hero {
   width: min(1240px, calc(100% - 64px)); min-height: 690px; margin: auto; padding: 74px 0 88px;
   display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(340px, .85fr); align-items: center; gap: 9%;

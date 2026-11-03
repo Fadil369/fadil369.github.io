@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Command, Languages, Menu, Moon, Sun, X } from 'lucide-react';
 import { useI18n } from '../i18n';
+import { localized } from '../lib/locale';
 import { openPalette, setTheme } from './CommandPalette';
 
 // One header for every page. Items depend on where you are: on the profile, in-page sections;
@@ -25,14 +26,14 @@ export function ProfileHeader() {
     return () => window.removeEventListener('keydown', onKey);
   }, [open]);
 
-  const home = loc.pathname === '/';
+  const home = loc.pathname === '/' || loc.pathname === '/profile';
   const items = home
-    ? [['/#work', 'Work', 'الأعمال'], ['/#journey', 'Journey', 'المسار'], ['/#research', 'Research', 'البحث'], ['/cv', 'CV', 'السيرة'], ['/bpr', 'BPR', 'BPR'], ['/card', 'Card', 'البطاقة']]
-    : [['/', 'Profile', 'الملف'], ['/cv', 'CV', 'السيرة'], ['/card', 'Card', 'البطاقة'], ['/bpr', 'BPR', 'BPR']];
+    ? [['/profile#work', 'Work', 'الأعمال'], ['/profile#journey', 'Journey', 'المسار'], ['/profile#research', 'Research', 'البحث'], ['/cv', 'CV', 'السيرة'], ['/bpr', 'BPR', 'BPR'], ['/card', 'Card', 'البطاقة']]
+    : [['/profile', 'Profile', 'الملف'], ['/cv', 'CV', 'السيرة'], ['/card', 'Card', 'البطاقة'], ['/bpr', 'BPR', 'BPR']];
 
   return (
     <header className="profile-head">
-      <Link className="profile-brand" to="/" aria-label="Dr. Mohamed El Fadil">
+      <Link className="profile-brand" to="/profile" aria-label="Dr. Mohamed El Fadil">
         <span>EF</span><strong>{ar ? 'د. محمد الفاضل' : 'Dr. El Fadil'}</strong>
       </Link>
       <nav id="profile-nav" data-open={open} aria-label={ar ? 'التنقل الرئيسي' : 'Main navigation'}>
@@ -41,6 +42,7 @@ export function ProfileHeader() {
           : <NavLink key={to} to={to} end={to === '/'}>{ar ? a : en}</NavLink>)}
       </nav>
       <div className="profile-controls">
+        <a href={localized('/')} aria-label={ar ? 'بوابة BrainSAIT' : 'BrainSAIT platform'} title={ar ? 'بوابة BrainSAIT' : 'BrainSAIT platform'}>↗</a>
         <button className="profile-cmdk" onClick={openPalette} aria-label={ar ? 'لوحة الأوامر (Ctrl+K)' : 'Command palette (Ctrl+K)'} aria-keyshortcuts="Control+K Meta+K">
           <Command size={15} /><span>K</span>
         </button>

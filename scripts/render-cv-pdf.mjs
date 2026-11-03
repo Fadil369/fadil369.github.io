@@ -13,7 +13,7 @@ const server = await serve(root);
 const base = server.base;
 
 const OUT = [['en', 'Dr_Mohamed_El_Fadil_CV_2026_Redesigned.pdf'], ['ar', 'Dr_Mohamed_El_Fadil_CV_2026_AR.pdf']];
-const browser = await chromium.launch();
+const browser = await chromium.launch(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {});
 let failed = false;
 for (const [lang, file] of OUT) {
   const ctx = await browser.newContext({ viewport: { width: 794, height: 1123 } });

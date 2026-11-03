@@ -29,7 +29,7 @@ background-image:linear-gradient(rgba(237,243,74,.04) 1px,transparent 1px),linea
 .foot{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;font:500 15px 'IBM Plex Mono',monospace;color:#aaa99d}
 </style></head><body><div class="bar"></div><div class="wrap">${body}</div></body></html>`;
 
-const browser = await chromium.launch();
+const browser = await chromium.launch(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {});
 const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
 const render = async (html, file) => {
   await page.setContent(html, { waitUntil: 'networkidle' });

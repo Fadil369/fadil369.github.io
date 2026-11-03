@@ -1,6 +1,70 @@
 {
  "source": "https://registry.brainsait.de",
- "snapshotAt": "2026-11-02T13:57:28.208Z",
+ "snapshotAt": "2026-11-03T12:14:13.776Z",
+ "attemptedAt": "2026-11-03T12:14:13.776Z",
+ "complete": true,
+ "files": {
+  "providers.json": {
+   "fetchedAt": "2026-11-03T12:14:14.434Z",
+   "refreshed": true
+  },
+  "did.json": {
+   "fetchedAt": "2026-11-03T12:14:14.570Z",
+   "refreshed": true
+  },
+  "transparency/log.json": {
+   "fetchedAt": "2026-11-03T12:14:14.572Z",
+   "refreshed": true
+  },
+  "fhir/metadata.json": {
+   "fetchedAt": "2026-11-03T12:14:14.758Z",
+   "refreshed": true
+  },
+  "status.json": {
+   "fetchedAt": "2026-11-03T12:14:14.762Z",
+   "refreshed": true
+  },
+  "organizations.json": {
+   "fetchedAt": "2026-11-03T12:14:14.763Z",
+   "refreshed": true
+  },
+  "specialties.json": {
+   "fetchedAt": "2026-11-03T12:14:14.764Z",
+   "refreshed": true
+  },
+  "providers/SA-PHY-000001.json": {
+   "fetchedAt": "2026-11-03T12:14:15.085Z",
+   "refreshed": true
+  },
+  "fhir/Practitioner/SA-PHY-000001.json": {
+   "fetchedAt": "2026-11-03T12:14:15.422Z",
+   "refreshed": true
+  },
+  "providers/SA-PHY-000002.json": {
+   "fetchedAt": "2026-11-03T12:14:15.744Z",
+   "refreshed": true
+  },
+  "fhir/Practitioner/SA-PHY-000002.json": {
+   "fetchedAt": "2026-11-03T12:14:16.063Z",
+   "refreshed": true
+  },
+  "providers/SA-PHY-000003.json": {
+   "fetchedAt": "2026-11-03T12:14:16.478Z",
+   "refreshed": true
+  },
+  "fhir/Practitioner/SA-PHY-000003.json": {
+   "fetchedAt": "2026-11-03T12:14:16.792Z",
+   "refreshed": true
+  },
+  "research/SA-PHY-000003.json": {
+   "fetchedAt": "2026-11-03T12:14:17.309Z",
+   "refreshed": true
+  },
+  "vc/SA-PHY-000003.json": {
+   "fetchedAt": "2026-11-03T12:14:17.526Z",
+   "refreshed": true
+  }
+ },
  "spids": [
   "SA-PHY-000001",
   "SA-PHY-000002",

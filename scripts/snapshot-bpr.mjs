@@ -17,6 +17,9 @@ const SPID_RE = /^SA-[A-Z]{2,4}-\d{6}$/;
 
 let ok = 0;
 let kept = 0;
+const previousManifest = existsSync(join(out, 'manifest.json')) ? JSON.parse(readFileSync(join(out, 'manifest.json'), 'utf8')) : {};
+const files = { ...(previousManifest.files || {}) };
+const attemptedAt = new Date().toISOString();
 
 async function get(path) {
   const r = await fetch(REGISTRY + path, { headers: { accept: 'application/json' }, signal: AbortSignal.timeout(20000) });
@@ -30,9 +33,11 @@ async function save(file, path) {
     const data = await get(path);
     mkdirSync(dirname(dest), { recursive: true });
     writeFileSync(dest, JSON.stringify(data, null, 1) + '\n');
+    files[file] = { fetchedAt: new Date().toISOString(), refreshed: true };
     ok += 1;
     return data;
   } catch (e) {
+    files[file] = { ...files[file], refreshed: false };
     kept += 1;
     console.warn(`snapshot: kept previous ${file} (${e.message})`);
     return existsSync(dest) ? JSON.parse(readFileSync(dest, 'utf8')) : null;
@@ -57,7 +62,8 @@ for (const spid of spids) {
   if (p?.trust?.signature === 'current') await save(`vc/${spid}.json`, `/vc/${spid}`);
 }
 
-const manifest = { source: REGISTRY, snapshotAt: new Date().toISOString(), spids };
+// A partial refresh must not give retained data a new freshness timestamp.
+const manifest = { source: REGISTRY, snapshotAt: kept === 0 ? attemptedAt : (previousManifest.snapshotAt || null), attemptedAt, complete: kept === 0, files, spids };
 mkdirSync(out, { recursive: true });
 writeFileSync(join(out, 'manifest.json'), JSON.stringify(manifest, null, 1) + '\n');
 console.log(`snapshot: ${ok} file(s) refreshed, ${kept} kept, ${spids.length} provider(s) → public/assets/bpr-data/`);

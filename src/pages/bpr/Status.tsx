@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout, Failed, fmtDate, Loading, SourceBadge } from '../../components/BprKit';
@@ -10,7 +11,8 @@ const rank = (v: string) => (GOOD.has(v) ? 3 : v === 'off' ? 2 : v === 'warn' ? 
 
 export default function Status() {
   const { ar } = useI18n();
-  const s = useLoad<OpsStatus>('/api/status', 'status.json');
+  const [revision, setRevision] = useState(0);
+  const s = useLoad<OpsStatus>('/api/status', 'status.json', { refreshMs: 60000, revision });
   usePageMeta({
     title: ar ? 'حالة التشغيل — BPR' : 'Operations status — BPR',
     description: ar ? 'حكم سجل برينسايت على صحته: المواقع والنسخ الاحتياطية والمفاتيح والسجل الشفاف.' : 'The BrainSAIT Provider Registry’s own health verdict: sites, backups, keys and the transparency log.',
@@ -22,10 +24,12 @@ export default function Status() {
   return (
     <BprLayout kicker={ar ? 'الحالة' : 'Status'}
       title={ar ? 'صحة السجل كما يرصدها بنفسه.' : 'Registry health, as the registry reports it.'}
+      actions={<button className="profile-button secondary" onClick={() => setRevision(n => n + 1)} disabled={s.state === 'loading'}>{ar ? 'تحديث الفحوص' : 'Refresh checks'}</button>}
       lead={ar ? 'نتائج مباشرة من نظام المراقبة في السجل، تُعرض كما هي دون تعديل، بما فيها أي إخفاق قائم.' : 'Live results from the registry’s own monitoring, shown unedited — including anything that is failing right now.'}>
       {s.state === 'loading' && <Loading />}
       {s.state === 'error' && <Failed />}
       {d && <>
+        {(src === 'snapshot' || !Number.isFinite(Date.parse(ops?.checked_at || d.checked_at)) || Date.now() - Date.parse(ops?.checked_at || d.checked_at) > 900000) && <p className="bpr-note" role="status">{ar ? 'هذا تقرير محفوظ أو قديم. راجع وقت الفحص قبل الاعتماد على الحالة.' : 'This is a saved or stale report. Check its timestamp before relying on the status.'}</p>}
         <section className={`bpr-verdict ${ops?.verdict === 'ok' || ops?.verdict === 'passing' ? 'ok' : 'fail'}`}>
           <span>{ar ? 'الحكم العام' : 'Overall verdict'}</span>
           <strong>{ops?.verdict || '—'}</strong>

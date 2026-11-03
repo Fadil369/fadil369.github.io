@@ -5,7 +5,7 @@ import { PNG } from 'pngjs';
 
 const base = process.env.SITE_URL || 'http://127.0.0.1:4173';
 await mkdir('.artifacts/design', { recursive: true });
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({ headless: true, ...(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {}) });
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1, serviceWorkers: 'block' });
 const errors = [];
 page.on('pageerror', error => errors.push(error.message));

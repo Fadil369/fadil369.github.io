@@ -65,6 +65,7 @@ export function applyPageMeta(meta: PageMeta) {
     setOrCreate('property', 'og:type', type);
     setOrCreate('property', 'og:locale', AR_URL ? 'ar_SA' : 'en_US');
 
+    setOrCreate('name', 'description', meta.description);
     setOrCreate('name', 'twitter:title', meta.title);
     setOrCreate('name', 'twitter:description', meta.description);
     setOrCreate('name', 'twitter:image', image);

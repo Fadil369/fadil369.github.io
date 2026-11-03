@@ -40,6 +40,7 @@ const page = (type, path, name, extra = {}) => ({ '@type': type, '@id': `${ORIGI
 // path, JSON-LD graph, sitemap priority
 const ROUTES = [
   ['/', [page('ProfilePage', '/', 'Dr. Mohamed El Fadil', { mainEntity: { '@id': `${ORIGIN}/#person` } }), person], 1.0],
+  ['/profile/', [page('ProfilePage', '/profile/', 'Dr. Mohamed El Fadil', { mainEntity: { '@id': `${ORIGIN}/#person` } }), person], 0.9],
   ['/cv/', [page('ProfilePage', '/cv/', 'Professional CV — Dr. Mohamed El Fadil', { mainEntity: { '@id': `${ORIGIN}/#person` } }), person], 0.9],
   ['/card/', [page('WebPage', '/card/', 'Business card — Dr. Mohamed El Fadil', { about: { '@id': `${ORIGIN}/#person` } })], 0.5],
   ['/slots/', [page('WebPage', '/slots/', 'Hospital slots — BPR', { about: { '@id': `${ORIGIN}/bpr#registry` } }), crumbs([['BPR', '/bpr/'], ['Hospital slots', '/slots/']])], 0.8],
@@ -83,11 +84,13 @@ const ALL = [...ROUTES.map(([p, g, pr]) => [p, g.map((x) => (PAGE_TYPES.has(x['@
 const twin = (path) => (path.startsWith('/ar/') ? path.slice(3) : '/ar' + path);
 
 const server = await serve(root);
-const browser = await chromium.launch();
+const browser = await chromium.launch(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {});
 // One context per language: the stored preference would otherwise redirect the other version.
 const tabs = {};
 for (const lang of ['en', 'ar']) {
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, locale: lang === 'ar' ? 'ar-SA' : 'en-GB' });
+  // Static HTML is a dated snapshot. The interactive app independently rechecks live.
+  await ctx.route(REGISTRY + '/**', (r) => r.abort());
   await ctx.route(/googletagmanager|google-analytics|facebook\.net|facebook\.com/, (r) => r.abort());
   await ctx.addInitScript((l) => { try { localStorage.setItem('bs-lang', l); localStorage.setItem('bs-theme', 'dark'); } catch { /* */ } }, lang);
   tabs[lang] = await ctx.newPage();
@@ -96,6 +99,8 @@ let written = 0;
 const failures = [];
 
 for (const [path, graph, , lang] of ALL) {
+  // The landing pages are already complete static HTML, generated independently.
+  if (path === '/' || path === '/ar/') { written += 1; continue; }
   const tab = tabs[lang];
   const file = join(root, path, 'index.html');
   if (!existsSync(file)) { failures.push(`${path}: no file`); continue; }
@@ -133,10 +138,12 @@ for (const [path, graph, , lang] of ALL) {
     html = html.replace('</head>', `    <link rel="alternate" hreflang="en" href="${ORIGIN}${en}" />\n    <link rel="alternate" hreflang="ar" href="${ORIGIN}${ar}" />\n    <link rel="alternate" hreflang="x-default" href="${ORIGIN}${en}" />\n  </head>`);
     const ld = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
     html = html.replace('</head>', `    <link rel="canonical" href="${ORIGIN}${path}" />\n    <script type="application/ld+json" data-route>${ld}</script>\n  </head>`);
-    html = html.replace('<div id="root"></div>', `<div id="root"></div><noscript data-prerendered>${got.html}</noscript>`);
+    const snapshotNote = lang === 'ar' ? 'نسخة ثابتة من لقطة البناء. فعّل JavaScript لإجراء فحص مستقل ومباشر على جهازك.' : 'Static build snapshot. Enable JavaScript to run independent, current checks on your device.';
+    html = html.replace('<div id="root"></div>', `<div id="root"></div><noscript data-prerendered><p style="padding:16px;margin:0;background:#11120e;color:#f4f3e9">${snapshotNote}</p>${got.html}</noscript>`);
     writeFileSync(file, html);
     if (path === '/') writeFileSync(join(root, 'index.html'), html);
     written += 1;
+    console.log(`prerendered ${path}`);
   } catch (e) {
     failures.push(`${path}: ${e.message}`);
   }

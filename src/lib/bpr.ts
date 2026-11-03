@@ -19,6 +19,7 @@ export type Source = 'live' | 'snapshot';
 export interface Loaded<T> { data: T; source: Source }
 
 const cache = new Map<string, Promise<Loaded<unknown>>>();
+const cacheUntil = new Map<string, number>();
 
 // A hung registry must not hang the page: give up after 8 s and let the snapshot answer.
 const TIMEOUT_MS = 8000;
@@ -36,7 +37,9 @@ async function json<T>(url: string): Promise<T> {
 /** Live registry first, build-time snapshot second. */
 export function load<T>(livePath: string, snapshotFile: string): Promise<Loaded<T>> {
   const key = livePath + '|' + snapshotFile;
+  if ((cacheUntil.get(key) || 0) < Date.now()) cache.delete(key);
   if (!cache.has(key)) {
+    cacheUntil.set(key, Date.now() + 60000);
     const p = json<T>(REGISTRY + livePath)
       .then((data) => ({ data, source: 'live' as const }))
       .catch(() => json<T>(`${SNAPSHOT}/${snapshotFile}`).then((data) => ({ data, source: 'snapshot' as const })));
@@ -48,18 +51,36 @@ export function load<T>(livePath: string, snapshotFile: string): Promise<Loaded<
 
 export type Async<T> = { state: 'loading' } | { state: 'error'; error: string } | ({ state: 'ready' } & Loaded<T>);
 
-export function useLoad<T>(livePath: string | null, snapshotFile: string): Async<T> {
+export function useLoad<T>(livePath: string | null, snapshotFile: string, options: { refreshMs?: number; revision?: number } = {}): Async<T> {
   const [v, setV] = useState<Async<T>>({ state: 'loading' });
   useEffect(() => {
     if (!livePath) { setV({ state: 'error', error: 'invalid' }); return; }
-    let alive = true;
+    let alive = true, pending = false;
     setV({ state: 'loading' });
-    load<T>(livePath, snapshotFile).then(
-      (r) => alive && setV({ state: 'ready', ...r }),
-      (e) => alive && setV({ state: 'error', error: String(e?.message || e) }),
-    );
-    return () => { alive = false; };
-  }, [livePath, snapshotFile]);
+    const refresh = (force = false) => {
+      if (pending) return;
+      pending = true;
+      if (force) cache.delete(livePath + '|' + snapshotFile);
+      load<T>(livePath, snapshotFile).then(
+        (r) => alive && setV({ state: 'ready', ...r }),
+        (e) => alive && setV({ state: 'error', error: String(e?.message || e) }),
+      ).finally(() => { pending = false; });
+    };
+    refresh(options.revision !== undefined);
+    const onVisible = () => { if (!document.hidden) refresh(true); };
+    const onOnline = () => refresh(true);
+    const timer = options.refreshMs ? window.setInterval(onVisible, options.refreshMs) : undefined;
+    if (options.refreshMs) {
+      document.addEventListener('visibilitychange', onVisible);
+      window.addEventListener('online', onOnline);
+    }
+    return () => {
+      alive = false;
+      window.clearInterval(timer);
+      document.removeEventListener('visibilitychange', onVisible);
+      window.removeEventListener('online', onOnline);
+    };
+  }, [livePath, snapshotFile, options.refreshMs, options.revision]);
   return v;
 }
 
@@ -178,6 +199,7 @@ export async function verifyJwt(jwt: string, jwks: Jwk[]): Promise<Check> {
   if (parts.length !== 3) return { state: 'fail', detail: 'not a JWS (expected three dot-separated parts)' };
   let header: { alg: string; kid: string };
   try { header = decodeHeader(jwt.trim()); } catch { return { state: 'fail', detail: 'unreadable header' }; }
+  if (header.alg !== 'EdDSA') return { state: 'fail', detail: 'unsupported signature algorithm' };
   const jwk = jwks.find((k) => k.kid === header.kid);
   if (!jwk) return { state: 'fail', detail: `unknown key ${header.kid}` };
   try {
@@ -185,8 +207,9 @@ export async function verifyJwt(jwt: string, jwks: Jwk[]): Promise<Check> {
     return ok ? { state: 'ok', how: 'device' } : { state: 'fail', detail: 'signature does not match', how: 'device' };
   } catch {
     try {
-      const r = await (await fetch(`${REGISTRY}/vc/verify`, { method: 'POST', body: jwt.trim(), signal: timeoutSignal(TIMEOUT_MS) })).json();
-      return r.ok ? { state: 'ok', how: 'server' } : { state: 'fail', detail: (r.reasons || []).join('; ') || 'rejected', how: 'server' };
+      const response = await fetch(`${REGISTRY}/vc/verify`, { method: 'POST', body: jwt.trim(), signal: timeoutSignal(TIMEOUT_MS) });
+      const r = await response.json();
+      return response.ok && r.ok === true ? { state: 'ok', how: 'server' } : { state: 'fail', detail: (r.reasons || []).join('; ') || 'rejected', how: 'server' };
     } catch {
       return { state: 'unavailable', detail: 'no Ed25519 in this browser and the registry is unreachable' };
     }
@@ -214,6 +237,8 @@ export function bindingProblem(claims: CredentialClaims, spid?: string): string 
 /** validFrom ≤ now ≤ validUntil (5 min clock skew allowed). */
 export function validityWindow(claims: CredentialClaims): Check {
   const now = Date.now();
+  const from = Date.parse(claims.validFrom), until = Date.parse(claims.validUntil);
+  if (!Number.isFinite(from) || !Number.isFinite(until) || from >= until) return { state: 'fail', detail: 'invalid validity window' };
   if (Date.parse(claims.validFrom) - SKEW_MS > now) return { state: 'fail', detail: `not valid until ${claims.validFrom}` };
   if (!(Date.parse(claims.validUntil) + SKEW_MS > now)) return { state: 'fail', detail: `expired ${claims.validUntil}` };
   return { state: 'ok', detail: claims.validUntil };

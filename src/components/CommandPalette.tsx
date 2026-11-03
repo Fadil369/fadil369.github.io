@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { CornerDownLeft, Search } from 'lucide-react';
 import { useI18n } from '../i18n';
 import { providers, Provider, SPID_RE } from '../lib/bpr';
+import { localized } from '../lib/locale';
 import { buildVCard, OWNER } from '../utils/identity';
 import '../styles/palette.css';
 
@@ -63,7 +64,10 @@ export default function CommandPalette() {
   const items = useMemo<Item[]>(() => {
     const P = ar ? 'الصفحات' : 'Pages', B = 'BPR', A = ar ? 'إجراءات' : 'Actions', D = ar ? 'مقدمو الرعاية' : 'Providers';
     const base: Item[] = [
-      { id: 'home', group: P, label: ar ? 'الملف المهني' : 'Professional profile', hint: '/', run: go('/') },
+      { id: 'platform', group: P, label: ar ? 'بوابة BrainSAIT والأدوات' : 'BrainSAIT platform & tools', run: () => window.location.assign(localized('/')) },
+      { id: 'clinic', group: B, label: ar ? 'استقبال العيادات' : 'Clinic reception', hint: '/bpr/clinic', run: go('/bpr/clinic') },
+      { id: 'status', group: B, label: ar ? 'حالة التشغيل' : 'Operations status', hint: '/bpr/status', run: go('/bpr/status') },
+      { id: 'home', group: P, label: ar ? 'الملف المهني' : 'Professional profile', hint: '/profile', run: go('/profile') },
       { id: 'cv', group: P, label: ar ? 'السيرة الذاتية' : 'CV', hint: '/cv', run: go('/cv') },
       { id: 'card', group: P, label: ar ? 'بطاقة الأعمال' : 'Business card', hint: '/card', run: go('/card') },
       { id: 'bpr', group: B, label: ar ? 'نظرة عامة على BPR' : 'BPR overview', hint: '/bpr', run: go('/bpr') },
@@ -93,11 +97,12 @@ export default function CommandPalette() {
   }, [q, list, ar]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => { setActive(0); }, [q]);
+  useEffect(() => { if (open) document.querySelector('[role="option"][aria-selected="true"]')?.scrollIntoView({ block: 'nearest' }); }, [active, open]);
   if (!open) return null;
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') { e.preventDefault(); setOpen(false); }
-    else if (e.key === 'ArrowDown') { e.preventDefault(); setActive((a) => Math.min(items.length - 1, a + 1)); }
+    else if (e.key === 'ArrowDown') { e.preventDefault(); setActive((a) => Math.max(0, Math.min(items.length - 1, a + 1))); }
     else if (e.key === 'ArrowUp') { e.preventDefault(); setActive((a) => Math.max(0, a - 1)); }
     else if (e.key === 'Enter') { e.preventDefault(); items[active]?.run(); }
     else if (e.key === 'Tab') e.preventDefault();
@@ -109,7 +114,7 @@ export default function CommandPalette() {
       <div className="palette" role="dialog" aria-modal="true" aria-label={ar ? 'لوحة الأوامر' : 'Command palette'} onKeyDown={onKeyDown}>
         <div className="palette-input">
           <Search size={17} aria-hidden="true" />
-          <input ref={input} value={q} onChange={(e) => setQ(e.target.value)} role="combobox" aria-expanded="true" aria-controls="palette-list"
+          <input aria-label={ar ? 'ابحث في الصفحات ومقدمي الرعاية' : 'Search pages and providers'} ref={input} value={q} onChange={(e) => setQ(e.target.value)} role="combobox" aria-expanded="true" aria-controls="palette-list"
             aria-activedescendant={items[active] ? `pal-${items[active].id}` : undefined} aria-autocomplete="list"
             placeholder={ar ? 'ابحث عن صفحة أو مقدم رعاية أو أدخل SPID…' : 'Search pages, providers, or type an SPID…'} />
           <kbd>Esc</kbd>
