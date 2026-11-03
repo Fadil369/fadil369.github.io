@@ -57,6 +57,8 @@ $allowed = [
     'main_interest' => ['bpr_registry', 'clinical_ai_chatbot', 'build_sprint', 'nphies_fhir', 'clinic_automation', 'solutions_ready', 'partnership'],
     'budget' => ['under_2390', '2390', '4900_9900', '9630', '19900', '24000_plus'],
     'urgency' => ['today', 'this_week', 'this_month', 'exploring'],
+    'facility_type' => ['clinic', 'hospital', 'pharmacy', 'dental', 'optical', 'other'],
+    'nphies_status' => ['unknown', 'not_started', 'onboarding', 'sandbox', 'production'],
 ];
 $clean = static function (mixed $value, int $max): string {
     if (!is_string($value)) return '';
@@ -72,11 +74,33 @@ if ($name === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 $fields = [];
 foreach ($allowed as $key => $values) {
-    $value = $clean($input[$key] ?? null, 40);
+    $value = $clean($input[$key] ?? ($key === 'nphies_status' ? 'unknown' : null), 40);
+    if ($key === 'nphies_status' && $value === '') $value = 'unknown';
+    if ($key === 'facility_type' && $value === '' && ($input['main_interest'] ?? '') !== 'nphies_fhir') continue;
+    if ($key === 'budget' && $value === '' && ($input['main_interest'] ?? '') === 'nphies_fhir') continue;
     if (!in_array($value, $values, true)) {
         intakeReply(422, ['status' => 'rejected', 'error' => 'invalid_' . $key]);
     }
     $fields[$key] = $value;
+}
+$facilityName = $clean($input['facility_name'] ?? null, 120);
+$ehrSystem = $clean($input['ehr_system'] ?? null, 120);
+$isNphies = $fields['main_interest'] === 'nphies_fhir';
+if ($isNphies && ($facilityName === '' || empty($fields['facility_type']))) {
+    intakeReply(422, ['status' => 'rejected', 'error' => 'facility_name_and_type_required']);
+}
+$workflowLabels = [
+    'eligibility' => 'Eligibility', 'authorization' => 'Prior authorization',
+    'claims' => 'Claims', 'rejections' => 'Responses / rejections',
+];
+$workflows = $input['workflows'] ?? [];
+if (!is_array($workflows) || count($workflows) > count($workflowLabels)) {
+    intakeReply(422, ['status' => 'rejected', 'error' => 'invalid_workflows']);
+}
+foreach ($workflows as $workflow) {
+    if (!is_string($workflow) || !isset($workflowLabels[$workflow])) {
+        intakeReply(422, ['status' => 'rejected', 'error' => 'invalid_workflows']);
+    }
 }
 
 // Rate-limit by a one-way hash of the client address. The file contains only
@@ -136,8 +160,15 @@ $body = implode("\n", [
     'City / country: ' . ($country !== '' ? $country : '(not provided)'),
     'Customer type: ' . $fields['customer_type'],
     'Interest: ' . ($interestLabels[$fields['main_interest']] ?? $fields['main_interest']),
-    'Budget range: ' . $fields['budget'],
+    'Budget range: ' . ($fields['budget'] ?? '(scoped after discovery)'),
     'Urgency: ' . $fields['urgency'],
+    ...($isNphies ? [
+        'Facility: ' . $facilityName,
+        'Facility type: ' . $fields['facility_type'],
+        'NPHIES onboarding: ' . $fields['nphies_status'],
+        'EHR / claims system: ' . ($ehrSystem !== '' ? $ehrSystem : '(not provided)'),
+        'Priority workflows: ' . (count($workflows) ? implode(', ', array_map(static fn($workflow) => $workflowLabels[$workflow], $workflows)) : '(not selected)'),
+    ] : []),
     '',
     'Free-text message was intentionally omitted. Do not request or send patient data or passwords.',
 ]);

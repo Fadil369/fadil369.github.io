@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { AlertCircle, Clock } from 'lucide-react';
+import { AlertCircle, ArrowLeft, ArrowRight, Building2, CheckCircle2, Clock3, LockKeyhole, ShieldCheck } from 'lucide-react';
 import { useI18n } from '../i18n';
 import { useSearchParams } from 'react-router-dom';
 import { usePageMeta } from '../hooks/usePageMeta';
+import '../styles/intake.css';
 
 const WEBHOOK_URL = 'https://api.brainsait.de/intake';
 const STORE = 'https://store.brainsait.de';
@@ -86,32 +87,32 @@ function ThankYouPage({ data }: { data: { name: string; routing: OfferKey[]; rec
   const recs = data.routing.map((r: OfferKey) => OFFERS[r]).filter(Boolean);
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-      <div style={{ textAlign: 'center', maxWidth: 700 }}>
-        <div style={{ fontSize: 64, marginBottom: 16 }}>🎉</div>
-        <h1 style={{ fontSize: '2rem', marginBottom: 16 }}>
+    <main className="intake-page">
+      <section className="intake-success" aria-labelledby="intake-success-title">
+        <span className="intake-success-icon" aria-hidden="true"><CheckCircle2 size={34} /></span>
+        <h1 id="intake-success-title">
           {ar ? `شكراً ${data.name}!` : `Thank You, ${data.name}!`}
         </h1>
-        <p style={{ color: '#64748b', marginBottom: 32, fontSize: '1.1rem', lineHeight: 1.6 }}>
+        <p className="intake-success-copy">
           {ar
-            ? 'تلقت BrainSAIT طلبك. سنراجع احتياجاتك ونرشدك إلى أسرع خطوة تالية. إذا كنت جاهزاً الآن، ابدأ بالجلسة الاستراتيجية.'
-            : 'BrainSAIT received your request. We will review your needs and guide you to the fastest next step. If you are ready now, start with the Private Strategy Session.'}
+            ? 'تم استلام طلبك. سيراجع فريق BrainSAIT معلومات المنشأة ومسارات العمل التي اخترتها، ثم يتواصل معك عبر البريد الإلكتروني.'
+            : 'Your request was received. The BrainSAIT team will review your facility and selected workflows, then follow up by email.'}
         </p>
-        <p style={{ color: '#94a3b8', margin: '-1rem 0 1.5rem', fontSize: '0.85rem' }}>
+        <p className="intake-receipt">
           {ar ? 'رقم التأكيد' : 'Confirmation ID'}: <code>{data.receiptId}</code>
         </p>
         {recs.map((offer, i) => (
           <a key={i} href={offer.url} target="_blank" rel="noopener noreferrer"
-             style={{ display: 'block', margin: '0.75rem auto', padding: '1rem 1.5rem', background: '#0f172a', color: '#fff', textDecoration: 'none', borderRadius: 12, fontWeight: 600, border: '2px solid #0ea5e9', maxWidth: 500, cursor: 'pointer' }}>
+             className="intake-offer-link">
             <div>{ar ? offer.nameAr : offer.name}</div>
-            <div style={{ fontSize: '0.85rem', fontWeight: 400, color: '#94a3b8' }}>{offer.price}</div>
+            <div className="intake-offer-price">{offer.price}</div>
           </a>
         ))}
-        <p style={{ marginTop: 32, color: '#94a3b8', fontSize: '0.85rem' }}>
+        <p className="intake-footnote">
           BrainSAIT OID Root: 1.3.6.1.4.1.61026 · SCFHS remains the official licensing authority
         </p>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
 
@@ -124,7 +125,11 @@ interface FormData {
   main_interest: string;
   budget: string;
   urgency: string;
-  message: string;
+  facility_name: string;
+  facility_type: string;
+  ehr_system: string;
+  nphies_status: string;
+  workflows: string[];
 }
 
 export default function IntakeForm() {
@@ -135,7 +140,7 @@ export default function IntakeForm() {
   const [formData, setFormData] = useState<FormData>({
     name: '', email: '', phone: '', country: '',
     customer_type: '', main_interest: nphiesInquiry ? 'nphies_fhir' : '', budget: '', urgency: '',
-    message: ''
+    facility_name: '', facility_type: '', ehr_system: '', nphies_status: 'unknown', workflows: []
   });
   const isNphiesInterest = nphiesInquiry || formData.main_interest === 'nphies_fhir';
   usePageMeta({
@@ -178,164 +183,176 @@ export default function IntakeForm() {
   }
 
   return (
-    <main style={{ minHeight: '100vh', padding: '3rem 1.5rem', background: 'linear-gradient(180deg, #0f172a 0%, #1e293b 100%)' }}>
-      <div style={{ maxWidth: 600, margin: '0 auto' }}>
-
-        {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: 32 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#1e40af', color: '#fff', padding: '6px 16px', borderRadius: 20, fontSize: '0.85rem', marginBottom: 16 }}>
-            <Clock size={14} />
-            {ar ? 'سباق 48 ساعة — تقدم الآن' : '48-Hour Sprint — Apply Now'}
-          </div>
-          <h1 style={{ fontSize: '2rem', color: '#fff', marginBottom: 8, lineHeight: 1.3 }}>
+    <main className={`intake-page${isNphiesInterest ? ' intake-page--nphies' : ''}`} dir={ar ? 'rtl' : 'ltr'}>
+      <div className="intake-wrap">
+        <header className="intake-hero">
+          <div className="intake-hero-copy">
+          {!isNphiesInterest && <p className="intake-kicker"><Clock3 size={15} />{ar ? 'ابدأ بخطوة واضحة' : 'A clear first step'}</p>}
+          <h1>
             {ar
               ? isNphiesInterest ? 'تقييم جاهزية نفيس لمنشأتك' : 'ساعدنا في فهم احتياجاتك الصحية'
               : isNphiesInterest ? 'NPHIES readiness for your facility' : 'Help Us Understand Your Healthcare AI Needs'}
           </h1>
-          <p style={{ color: '#94a3b8', lineHeight: 1.6, maxWidth: 500, margin: '0 auto' }}>
+          <p className="intake-hero-lead">
             {ar
               ? isNphiesInterest ? 'شارك احتياج منشأتك لتحديد نطاق تكامل نفيس المصرح به. لا تدخل بيانات مرضى أو بيانات اعتماد.' : 'املأ هذا النموذج السريع وسنرشدك إلى أسرع طريقة للبدء مع BrainSAIT — جلسة استراتيجية، BUILD، BPR، أو حلول جاهزة.'
               : isNphiesInterest ? 'Share your facility and workflow needs to scope an authorized NPHIES integration. Do not enter patient information or credentials.' : 'Fill this quick form and we will guide you to the fastest way to start with BrainSAIT.'}
           </p>
-        </div>
+          {isNphiesInterest && <div className="intake-trust-row">
+            <span><ShieldCheck size={16}/>{ar ? 'دون بيانات مرضى' : 'No patient data'}</span>
+            <span><LockKeyhole size={16}/>{ar ? 'متابعة عبر البريد' : 'Email follow-up'}</span>
+          </div>}
+          </div>
+          {isNphiesInterest && <aside className="intake-process" aria-label={ar ? 'خطوات التقييم' : 'Assessment steps'}>
+            <h2>{ar ? 'ما الذي ستشاركه؟' : 'What you’ll share'}</h2>
+            <ol>
+              <li><span>01</span>{ar ? 'جهة التواصل والمنشأة' : 'Your contact and facility'}</li>
+              <li><span>02</span>{ar ? 'النظام ومسارات العمل' : 'Your system and workflows'}</li>
+              <li><span>03</span>{ar ? 'تأكيد ورقم متابعة' : 'Receipt and reference ID'}</li>
+            </ol>
+            <p><Building2 size={15}/>{ar ? 'لا نطلب سجلات مرضى أو بيانات دخول' : 'No patient records or credentials requested'}</p>
+          </aside>}
+        </header>
 
-        {/* Progress bar */}
-        <div style={{ display: 'flex', gap: 8, marginBottom: 32 }}>
-          {[1, 2].map(s => (
-            <div key={s} style={{
-              flex: 1, height: 4, borderRadius: 2,
-              background: s <= step ? '#0ea5e9' : '#334155'
-            }} />
-          ))}
-        </div>
+        <nav className="intake-stepper" aria-label={ar ? 'خطوات النموذج' : 'Form steps'}>
+          {[1, 2].map((s) => <div key={s} className={`intake-step${step === s ? ' is-current' : step > s ? ' is-complete' : ''}`} aria-current={step === s ? 'step' : undefined}>
+            <span className="intake-step-number">{step > s ? <CheckCircle2 size={17}/> : `0${s}`}</span>
+            <span>{s === 1 ? (ar ? 'بيانات التواصل' : 'Contact details') : (ar ? 'جاهزية المنشأة' : 'Facility readiness')}</span>
+          </div>)}
+        </nav>
 
         {/* Step 1: Basic Info */}
         {step === 1 && (
-          <form onSubmit={(e) => { e.preventDefault(); setStep(2); }} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            <h2 style={{ color: '#fff', fontSize: '1.2rem', marginBottom: 4 }}>
-              {ar ? '📋 المعلومات الأساسية' : '📋 Basic Information'}
-            </h2>
-
-            <input required placeholder={ar ? 'الاسم الكامل *' : 'Full Name *'} value={formData.name}
+          <form className="intake-card" onSubmit={(e) => { e.preventDefault(); setStep(2); }}>
+            <div className="intake-section-heading"><span>01</span><div><h2>{ar ? 'بيانات التواصل' : 'Contact details'}</h2><p>{ar ? 'أخبرنا بمن نتواصل معه وبأي منشأة.' : 'Tell us who to contact and which facility this is for.'}</p></div></div>
+            <div className="intake-fields">
+            <div className="intake-field"><label htmlFor="intake-name">{ar ? 'الاسم الكامل *' : 'Full name *'}</label>
+            <input id="intake-name" autoComplete="name" required placeholder={ar ? 'الاسم الكامل' : 'Full name'} value={formData.name}
               onChange={e => setFormData({...formData, name: e.target.value})}
-              style={{ padding: '14px 16px', borderRadius: 10, border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '1rem', outline: 'none' }}
-              onFocus={e => e.target.style.borderColor = '#0ea5e9'}
-              onBlur={e => e.target.style.borderColor = '#334155'}
             />
-
-            <input required type="email" placeholder={ar ? 'البريد الإلكتروني *' : 'Email Address *'} value={formData.email}
+            </div>
+            <div className="intake-field"><label htmlFor="intake-email">{ar ? 'البريد الإلكتروني *' : 'Work email *'}</label>
+            <input id="intake-email" autoComplete="email" required type="email" placeholder="name@facility.org" value={formData.email}
               onChange={e => setFormData({...formData, email: e.target.value})}
-              style={{ padding: '14px 16px', borderRadius: 10, border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '1rem', outline: 'none' }}
-              onFocus={e => e.target.style.borderColor = '#0ea5e9'}
-              onBlur={e => e.target.style.borderColor = '#334155'}
             />
-
-            <input placeholder={ar ? 'رقم الهاتف / واتساب' : 'Phone / WhatsApp (optional)'} value={formData.phone}
+            </div>
+            <div className="intake-field"><label htmlFor="intake-phone">{ar ? 'الهاتف / واتساب (اختياري)' : 'Phone / WhatsApp (optional)'}</label>
+            <input id="intake-phone" autoComplete="tel" type="tel" placeholder="+966…" value={formData.phone}
               onChange={e => setFormData({...formData, phone: e.target.value})}
-              style={{ padding: '14px 16px', borderRadius: 10, border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '1rem', outline: 'none' }}
-              onFocus={e => e.target.style.borderColor = '#0ea5e9'}
-              onBlur={e => e.target.style.borderColor = '#334155'}
             />
-
-            <input placeholder={ar ? 'المدينة / الدولة' : 'City / Country (optional)'} value={formData.country}
+            </div>
+            <div className="intake-field"><label htmlFor="intake-country">{ar ? 'المدينة / الدولة (اختياري)' : 'City / country (optional)'}</label>
+            <input id="intake-country" autoComplete="country-name" placeholder={ar ? 'الرياض، السعودية' : 'Riyadh, Saudi Arabia'} value={formData.country}
               onChange={e => setFormData({...formData, country: e.target.value})}
-              style={{ padding: '14px 16px', borderRadius: 10, border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '1rem', outline: 'none' }}
-              onFocus={e => e.target.style.borderColor = '#0ea5e9'}
-              onBlur={e => e.target.style.borderColor = '#334155'}
             />
-
-            <button type="submit" style={{
-              padding: '14px', borderRadius: 10, border: 'none', background: '#0ea5e9',
-              color: '#fff', fontSize: '1rem', fontWeight: 600, cursor: 'pointer', marginTop: 8
-            }}>
-              {ar ? 'التالي →' : 'Next →'}
-            </button>
+            </div>
+            </div>
+            {isNphiesInterest && <div className="intake-notice" role="note"><ShieldCheck size={18}/><p>{ar ? 'نستخدم هذه المعلومات لتقييم متطلبات التكامل فقط. لا تدخل بيانات مرضى أو كلمات مرور أو أرقام هويات.' : 'These details are used to scope the integration only. Do not enter patient data, passwords, or identity numbers.'}</p></div>}
+            <div className="intake-actions intake-actions--end">
+              <button type="submit" className="intake-button primary">{ar ? 'متابعة إلى الجاهزية' : 'Continue to readiness'}<ArrowRight size={17}/></button>
+            </div>
           </form>
         )}
 
         {/* Step 2: Qualification */}
         {step === 2 && (
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            <h2 style={{ color: '#fff', fontSize: '1.2rem', marginBottom: 4 }}>
-              {ar ? '🎯 معلومات التأهيل' : '🎯 Qualification Details'}
-            </h2>
+          <form className="intake-card" onSubmit={handleSubmit}>
+            <div className="intake-section-heading"><span>02</span><div><h2>{ar ? 'جاهزية المنشأة' : 'Facility readiness'}</h2><p>{ar ? 'اختر أقرب وصف لوضع المنشأة الحالي.' : 'Choose the closest match for your facility today.'}</p></div></div>
+            <div className="intake-fields">
 
             <div>
-              <label style={{ color: '#94a3b8', fontSize: '0.9rem', display: 'block', marginBottom: 8 }}>
+              <label className="intake-label" htmlFor="intake-customer-type">
                 {ar ? 'نوع العميل *' : 'Customer Type *'}
               </label>
-              <select required value={formData.customer_type}
+              <select id="intake-customer-type" className="intake-control" required value={formData.customer_type}
                 onChange={e => setFormData({...formData, customer_type: e.target.value})}
-                style={{ padding: '14px 16px', borderRadius: 10, border: '1px solid #334155', background: '#1e293b', color: formData.customer_type ? '#fff' : '#94a3b8', fontSize: '1rem', width: '100%' }}>
+              >
                 <option value="">{ar ? 'اختر...' : 'Select...'}</option>
                 {CUSTOMER_TYPES.map(t => <option key={t.value} value={t.value}>{ar ? t.ar : t.en}</option>)}
               </select>
             </div>
 
-            <div>
-              <label style={{ color: '#94a3b8', fontSize: '0.9rem', display: 'block', marginBottom: 8 }}>
+            {nphiesInquiry ? <div className="intake-field">
+              <span className="intake-label">{ar ? 'مسار التكامل' : 'Integration focus'}</span>
+              <span className="intake-fixed-value"><ShieldCheck size={16}/>NPHIES / FHIR</span>
+            </div> : <div>
+              <label className="intake-label" htmlFor="intake-main-interest">
                 {ar ? 'الاهتمام الرئيسي *' : 'Main Interest *'}
               </label>
-              <select required value={formData.main_interest}
+              <select id="intake-main-interest" className="intake-control" required value={formData.main_interest}
                 onChange={e => setFormData({...formData, main_interest: e.target.value})}
-                style={{ padding: '14px 16px', borderRadius: 10, border: '1px solid #334155', background: '#1e293b', color: formData.main_interest ? '#fff' : '#94a3b8', fontSize: '1rem', width: '100%' }}>
+              >
                 <option value="">{ar ? 'اختر...' : 'Select...'}</option>
                 {MAIN_INTERESTS.map(i => <option key={i.value} value={i.value}>{ar ? i.ar : i.en}</option>)}
               </select>
-            </div>
+            </div>}
 
             {!isNphiesInterest && <div>
-              <label style={{ color: '#94a3b8', fontSize: '0.9rem', display: 'block', marginBottom: 8 }}>
+              <label className="intake-label" htmlFor="intake-budget">
                 {ar ? 'الاستعداد للميزانية *' : 'Budget Readiness *'}
               </label>
-              <select required value={formData.budget}
+              <select id="intake-budget" className="intake-control" required value={formData.budget}
                 onChange={e => setFormData({...formData, budget: e.target.value})}
-                style={{ padding: '14px 16px', borderRadius: 10, border: '1px solid #334155', background: '#1e293b', color: formData.budget ? '#fff' : '#94a3b8', fontSize: '1rem', width: '100%' }}>
+              >
                 <option value="">{ar ? 'اختر...' : 'Select...'}</option>
                 {BUDGET_RANGES.map(b => <option key={b.value} value={b.value}>{ar ? b.ar : b.en}</option>)}
               </select>
             </div>}
-            {isNphiesInterest && <p style={{ color: '#94a3b8', margin: 0 }}>{ar ? 'يُحدد نطاق السعر بعد فهم الأنظمة وسير العمل ومتطلبات الربط.' : 'Pricing is scoped after reviewing your systems, workflows and connectivity requirements.'}</p>}
+            {isNphiesInterest && <div className="intake-field intake-field--wide">
+              <label className="intake-label" htmlFor="intake-facility-name">{ar ? 'اسم المنشأة *' : 'Facility name *'}</label>
+              <input id="intake-facility-name" className="intake-control" required maxLength={120} autoComplete="organization" placeholder={ar ? 'اسم المنشأة أو المجموعة' : 'Facility or group name'} value={formData.facility_name} onChange={e => setFormData({...formData, facility_name: e.target.value})}/>
+            </div>}
+            {isNphiesInterest && <div className="intake-field">
+              <label className="intake-label" htmlFor="intake-facility-type">{ar ? 'نوع المنشأة *' : 'Facility type *'}</label>
+              <select id="intake-facility-type" className="intake-control" required value={formData.facility_type} onChange={e => setFormData({...formData, facility_type: e.target.value})}>
+                <option value="">{ar ? 'اختر نوع المنشأة' : 'Select facility type'}</option>
+                {[['clinic','Clinic / medical centre','عيادة / مركز طبي'],['hospital','Hospital','مستشفى'],['pharmacy','Pharmacy','صيدلية'],['dental','Dental','أسنان'],['optical','Optical','بصريات'],['other','Other','أخرى']].map(([value,en,arLabel]) => <option key={value} value={value}>{ar ? arLabel : en}</option>)}
+              </select>
+            </div>}
+            {isNphiesInterest && <div className="intake-field">
+              <label className="intake-label" htmlFor="intake-nphies-status">{ar ? 'حالة الانضمام إلى نفيس' : 'NPHIES onboarding status'}</label>
+              <select id="intake-nphies-status" className="intake-control" value={formData.nphies_status} onChange={e => setFormData({...formData, nphies_status: e.target.value})}>
+                <option value="unknown">{ar ? 'غير معروف / أحتاج إلى إرشاد' : 'Unknown / need guidance'}</option>
+                <option value="not_started">{ar ? 'لم يبدأ' : 'Not started'}</option>
+                <option value="onboarding">{ar ? 'قيد الانضمام' : 'Onboarding in progress'}</option>
+                <option value="sandbox">{ar ? 'لدي وصول إلى بيئة اختبار' : 'Sandbox access available'}</option>
+                <option value="production">{ar ? 'لدي وصول إنتاجي' : 'Production access available'}</option>
+              </select>
+            </div>}
+            {isNphiesInterest && <div className="intake-field intake-field--wide">
+              <label className="intake-label" htmlFor="intake-ehr">{ar ? 'نظام السجلات / المطالبات (اختياري)' : 'EHR / claims system (optional)'}</label>
+              <input id="intake-ehr" className="intake-control" maxLength={120} placeholder={ar ? 'مثال: OpenEMR أو نظام المنشأة' : 'e.g. OpenEMR or facility system'} value={formData.ehr_system} onChange={e => setFormData({...formData, ehr_system: e.target.value})}/>
+              <small className="intake-help">{ar ? 'اسم النظام فقط؛ لا تدخل بيانات دخول أو بيانات مرضى.' : 'System name only; never enter credentials or patient information.'}</small>
+            </div>}
+            {isNphiesInterest && <fieldset className="intake-workflows intake-field--wide">
+              <legend>{ar ? 'مسارات العمل ذات الأولوية (اختياري)' : 'Priority workflows (optional)'}</legend>
+              <div className="intake-workflow-options">
+                {[
+                  ['eligibility', 'Eligibility', 'الأهلية'], ['authorization', 'Prior authorization', 'الموافقات المسبقة'],
+                  ['claims', 'Claims', 'المطالبات'], ['rejections', 'Responses / rejections', 'الردود / الرفض'],
+                ].map(([value,en,arLabel]) => <label key={value} className="intake-choice"><input type="checkbox" checked={formData.workflows.includes(value)} onChange={e => setFormData({...formData, workflows: e.target.checked ? [...formData.workflows, value] : formData.workflows.filter(w => w !== value)})}/><span>{ar ? arLabel : en}</span></label>)}
+              </div>
+            </fieldset>}
 
             <div>
-              <label style={{ color: '#94a3b8', fontSize: '0.9rem', display: 'block', marginBottom: 8 }}>
+              <label className="intake-label" htmlFor="intake-urgency">
                 {ar ? 'مستوى الاستعجال *' : 'Urgency *'}
               </label>
-              <select required value={formData.urgency}
+              <select id="intake-urgency" className="intake-control" required value={formData.urgency}
                 onChange={e => setFormData({...formData, urgency: e.target.value})}
-                style={{ padding: '14px 16px', borderRadius: 10, border: '1px solid #334155', background: '#1e293b', color: formData.urgency ? '#fff' : '#94a3b8', fontSize: '1rem', width: '100%' }}>
+              >
                 <option value="">{ar ? 'اختر...' : 'Select...'}</option>
                 {URGENCIES.map(u => <option key={u.value} value={u.value}>{ar ? u.ar : u.en}</option>)}
               </select>
             </div>
-
-            <div>
-              <label style={{ color: '#94a3b8', fontSize: '0.9rem', display: 'block', marginBottom: 8 }}>
-                {ar ? 'ملاحظة اختيارية (لا تُرسل)' : 'Optional note (not submitted)'}
-              </label>
-              <p style={{ color: '#fbbf24', fontSize: '0.82rem', lineHeight: 1.5, margin: '0 0 8px' }}>
-                {ar ? 'هذا الحقل لا يُرسل ولا يُحفظ. استخدم الخيارات أعلاه لوصف احتياج المنشأة بشكل عام. لا تُدخل بيانات مرضى أو كلمات مرور.' : 'This note is not sent or stored. Use the selections above to describe the facility need. Do not enter patient data or passwords.'}
-              </p>
-              <textarea rows={4} placeholder={ar ? isNphiesInterest ? 'حجم المنشأة ونظام السجلات ومسارات المطالبات وحالة الوصول أو البيئة التجريبية — دون بيانات مرضى أو اعتماد.' : 'اكتب هنا...' : isNphiesInterest ? 'Facility size, EHR, claim workflows, current access or sandbox status — no patient information or credentials.' : 'Write here...'} value={formData.message}
-                onChange={e => setFormData({...formData, message: e.target.value})}
-                style={{ padding: '14px 16px', borderRadius: 10, border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '1rem', width: '100%', resize: 'vertical', outline: 'none' }}
-                onFocus={e => e.target.style.borderColor = '#0ea5e9'}
-                onBlur={e => e.target.style.borderColor = '#334155'}
-              />
             </div>
 
-            <div style={{ display: 'flex', gap: 12, marginTop: 8 }}>
-              <button type="button" onClick={() => setStep(1)}
-                style={{ padding: '14px 24px', borderRadius: 10, border: '1px solid #334155', background: 'transparent', color: '#94a3b8', cursor: 'pointer', fontSize: '1rem', flex: 1 }}>
-                {ar ? '↩ رجوع' : '↩ Back'}
-              </button>
-              <button type="submit" disabled={submitting}
-                style={{
-                  padding: '14px 32px', borderRadius: 10, border: 'none',
-                  background: submitting ? '#64748b' : '#0ea5e9', color: '#fff',
-                  fontSize: '1rem', fontWeight: 600, cursor: 'pointer', flex: 2
-                }}>
-                {submitting ? (ar ? 'جاري الإرسال...' : 'Submitting...') : (ar ? 'إرسال الطلب ✓' : 'Submit Request ✓')}
+            {!isNphiesInterest && <div className="intake-field intake-field--wide"><p className="intake-help">{ar ? 'يرسل فريق BrainSAIT رسالة متابعة إلى بريد التواصل بعد مراجعة اختياراتك.' : 'The BrainSAIT team will follow up at your contact email after reviewing your selections.'}</p></div>}
+            {isNphiesInterest && <div className="intake-notice" role="note"><LockKeyhole size={18}/><p>{ar ? 'يرسل النموذج بيانات التواصل وخيارات المنشأة فقط إلى فريق BrainSAIT عبر البريد. لا تُرفق ملفات، ولا تدخل بيانات مرضى أو كلمات مرور.' : 'This form sends contact details and facility selections only to the BrainSAIT team by email. No files are uploaded. Do not enter patient information or passwords.'}</p></div>}
+            <div className="intake-actions">
+              <button type="button" className="intake-button secondary" onClick={() => { setStep(1); setResult(null); }}><ArrowLeft size={17}/>{ar ? 'رجوع' : 'Back'}</button>
+              <button type="submit" className="intake-button primary" disabled={submitting}>
+                {submitting ? <><span className="intake-spinner" aria-hidden="true"/>{ar ? 'جارٍ الإرسال…' : 'Sending…'}</> : <>{ar ? 'إرسال طلب التقييم' : 'Send readiness request'}<ArrowRight size={17}/></>}
               </button>
             </div>
           </form>
@@ -343,7 +360,7 @@ export default function IntakeForm() {
 
         {/* Error */}
         {result && !result.ok && (
-          <div style={{ marginTop: 24, padding: 16, background: '#7f1d1d', borderRadius: 10, color: '#fca5a5', display: 'flex', alignItems: 'center', gap: 8 }}>
+          <div className="intake-error" role="alert">
             <AlertCircle size={18} />
             <span>{ar ? 'تعذر تأكيد استلام الطلب. أعد المحاولة أو أرسل تفاصيل جهة الاتصال فقط عبر ' : 'We could not confirm receipt. Retry, or email your contact details only to '}<a href={`mailto:hello@brainsait.de?subject=${encodeURIComponent(isNphiesInterest ? 'NPHIES facility readiness inquiry' : 'BrainSAIT inquiry')}`} style={{ color: '#fff', textDecoration: 'underline' }}>hello@brainsait.de</a>. {ar ? 'لا ترسل بيانات مرضى أو كلمات مرور.' : 'Do not email patient data or passwords.'}</span>
           </div>
