@@ -4,7 +4,7 @@ import { useI18n } from '../i18n';
 import { useSearchParams } from 'react-router-dom';
 import { usePageMeta } from '../hooks/usePageMeta';
 
-const WEBHOOK_URL = 'https://lead-capture.brainsait-fadil.workers.dev/intake';
+const WEBHOOK_URL = 'https://api.brainsait.de/intake';
 const STORE = 'https://store.brainsait.de';
 
 interface Offer {
@@ -81,7 +81,7 @@ const URGENCIES = [
   { value: 'exploring', en: 'Just Exploring', ar: 'أستكشف فقط' }
 ];
 
-function ThankYouPage({ data }: { data: { name: string; routing: OfferKey[] } }) {
+function ThankYouPage({ data }: { data: { name: string; routing: OfferKey[]; receiptId: string } }) {
   const { ar } = useI18n();
   const recs = data.routing.map((r: OfferKey) => OFFERS[r]).filter(Boolean);
 
@@ -96,6 +96,9 @@ function ThankYouPage({ data }: { data: { name: string; routing: OfferKey[] } })
           {ar
             ? 'تلقت BrainSAIT طلبك. سنراجع احتياجاتك ونرشدك إلى أسرع خطوة تالية. إذا كنت جاهزاً الآن، ابدأ بالجلسة الاستراتيجية.'
             : 'BrainSAIT received your request. We will review your needs and guide you to the fastest next step. If you are ready now, start with the Private Strategy Session.'}
+        </p>
+        <p style={{ color: '#94a3b8', margin: '-1rem 0 1.5rem', fontSize: '0.85rem' }}>
+          {ar ? 'رقم التأكيد' : 'Confirmation ID'}: <code>{data.receiptId}</code>
         </p>
         {recs.map((offer, i) => (
           <a key={i} href={offer.url} target="_blank" rel="noopener noreferrer"
@@ -142,10 +145,11 @@ export default function IntakeForm() {
   });
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<{ ok: boolean; routing?: OfferKey[] } | null>(null);
-  const [thankYouData, setThankYouData] = useState<{ name: string; routing: OfferKey[] } | null>(null);
+  const [thankYouData, setThankYouData] = useState<{ name: string; routing: OfferKey[]; receiptId: string } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setResult(null);
     setSubmitting(true);
     try {
       const res = await fetch(WEBHOOK_URL, {
@@ -154,11 +158,11 @@ export default function IntakeForm() {
         body: JSON.stringify(formData)
       });
       const data = await res.json().catch(() => null);
-      if (res.ok && data?.status === 'processed') {
+      if (res.ok && data?.status === 'processed' && typeof data?.receipt_id === 'string') {
         const isNphies = nphiesInquiry || formData.main_interest === 'nphies_fhir';
         const routing = isNphies ? ['nphies_discovery'] as OfferKey[] : (data.routing || []).map((r: string) => r as OfferKey);
         setResult({ ok: true, routing });
-        setThankYouData({ name: formData.name || 'Friend', routing: routing.length ? routing : getLocalRouting(formData) });
+        setThankYouData({ name: formData.name || 'Friend', routing: routing.length ? routing : getLocalRouting(formData), receiptId: data.receipt_id });
         setStep(3);
       } else {
         setResult({ ok: false });
@@ -307,8 +311,11 @@ export default function IntakeForm() {
 
             <div>
               <label style={{ color: '#94a3b8', fontSize: '0.9rem', display: 'block', marginBottom: 8 }}>
-                {ar ? 'وصف مشكلتك أو احتياجك' : 'Describe Your Problem or Need'}
+                {ar ? 'ملاحظة اختيارية (لا تُرسل)' : 'Optional note (not submitted)'}
               </label>
+              <p style={{ color: '#fbbf24', fontSize: '0.82rem', lineHeight: 1.5, margin: '0 0 8px' }}>
+                {ar ? 'هذا الحقل لا يُرسل ولا يُحفظ. استخدم الخيارات أعلاه لوصف احتياج المنشأة بشكل عام. لا تُدخل بيانات مرضى أو كلمات مرور.' : 'This note is not sent or stored. Use the selections above to describe the facility need. Do not enter patient data or passwords.'}
+              </p>
               <textarea rows={4} placeholder={ar ? isNphiesInterest ? 'حجم المنشأة ونظام السجلات ومسارات المطالبات وحالة الوصول أو البيئة التجريبية — دون بيانات مرضى أو اعتماد.' : 'اكتب هنا...' : isNphiesInterest ? 'Facility size, EHR, claim workflows, current access or sandbox status — no patient information or credentials.' : 'Write here...'} value={formData.message}
                 onChange={e => setFormData({...formData, message: e.target.value})}
                 style={{ padding: '14px 16px', borderRadius: 10, border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '1rem', width: '100%', resize: 'vertical', outline: 'none' }}
