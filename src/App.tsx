@@ -23,6 +23,7 @@ const Record = lazy(() => import('./pages/bpr/Record'));
 const Saudi = lazy(() => import('./pages/bpr/Saudi'));
 const Nphies = lazy(() => import('./pages/bpr/Nphies'));
 const Slots = lazy(() => import('./pages/Slots'));
+const Clinic = lazy(() => import('./pages/clinic/ClinicPage'));
 
 function SkipLink() {
   const { ar } = useI18n();
@@ -123,6 +124,7 @@ function AppShell() {
           <Route path="/bpr/record" element={<Record />} />
           <Route path="/bpr/saudi" element={<Saudi />} />
           <Route path="/bpr/nphies" element={<Nphies />} />
+          <Route path="/bpr/clinic" element={<Clinic />} />
           <Route path="/slots" element={<Slots />} />
           <Route path="/id" element={<Navigate to="/bpr/record" replace />} />
           <Route path="/doctors/:spid" element={<SpidRedirect />} />

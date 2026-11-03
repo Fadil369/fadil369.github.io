@@ -25,7 +25,7 @@ writeFileSync(join(root, '404.html'), index); // SPA fallback for hard refresh
 // Only copy to SPA fallback routes (cv, card, bpr/*, slots) that need the shell.
 
 for (const route of ['cv', 'card', 'slots',
-  'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi', 'bpr/nphies']) {
+  'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi', 'bpr/nphies', 'bpr/clinic']) {
   const routeDir = join(root, route);
   mkdirSync(routeDir, { recursive: true });
   writeFileSync(join(routeDir, 'index.html'), index);
