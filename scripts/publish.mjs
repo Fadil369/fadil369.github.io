@@ -25,7 +25,7 @@ writeFileSync(join(root, '404.html'), index); // SPA fallback for hard refresh
 // Only copy to SPA fallback routes (cv, card, bpr/*, slots) that need the shell.
 
 for (const route of ['cv', 'card', 'slots',
-  'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi', 'bpr/nphies', 'bpr/clinic']) {
+  'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi', 'bpr/nphies', 'bpr/nvidia', 'bpr/clinic']) {
   const routeDir = join(root, route);
   mkdirSync(routeDir, { recursive: true });
   writeFileSync(join(routeDir, 'index.html'), index);
@@ -125,6 +125,7 @@ const ROUTE_META = {
   'bpr/status': ['Operations status — BPR', 'The registry’s own health verdict, failures included.'],
   'bpr/join': ['Join BPR', 'From ORCID sign-in to a signed credential.'],
   'bpr/nphies': ['NPHIES desk: rejection codes, pre-check and readiness — BPR', 'Every official NPHIES rejection code in plain Arabic and English, a message pre-check that runs on your device, and a readiness plan by facility type.'],
+  'bpr/nvidia': ['NVIDIA Health AI — NPHIES-trained models on BrainSAIT', 'The AI layer running on this platform: NVIDIA Nemotron models behind an OpenAI-compatible backend, an on-premise fallback, and embeddings fine-tuned on NPHIES data.'],
   'bpr/clinic': ['Clinic Reception — BPR', 'Manage appointment requests and give patients approved answers. Integrated with BPR provider registry, NPHIES desk, and NVIDIA voice.'],
   'bpr/saudi': ['BPR across the Saudi health system', 'Where the BrainSAIT Provider Registry could serve Saudi health organisations — proposals, with what runs today and what each depends on.'],
   'bpr/record': ['Dr. Mohamed El Fadil · BPR record SA-PHY-000003', 'A signed provider record, checked live in your browser: signature, validity, status, transparency log and research footprint.', '/assets/og/SA-PHY-000003.png'],
@@ -162,6 +163,7 @@ const AR_META = {
   'bpr/status': ['حالة التشغيل — BPR', 'حكم السجل على صحته، بما في ذلك الإخفاقات.'],
   'bpr/join': ['انضم إلى BPR', 'من تسجيل الدخول عبر ORCID إلى اعتماد موقّع.'],
   'bpr/nphies': ['مكتب نفيس: رموز الرفض والفحص والجاهزية — BPR', 'كل رموز رفض نفيس الرسمية بعربية وإنجليزية واضحتين، وفحص أولي للرسائل يعمل على جهازك، وخطة جاهزية حسب نوع المنشأة.'],
+  'bpr/nvidia': ['ذكاء NVIDIA الصحي — نماذج مدرّبة على نفيس — BrainSAIT', 'طبقة الذكاء الاصطناعي التي تعمل على هذه المنصة: نماذج NVIDIA Nemotron خلف واجهة متوافقة مع OpenAI، وبديل محلي داخل الموقع، وتضميرات مدرّبة على بيانات نفيس.'],
   'bpr/clinic': ['استقبال العيادات — BPR', 'إدارة طلبات المواعيد وتقديم إجابات معتمدة للمرضى. متكامل مع سجل مقدمي الرعاية (BPR) ومكتب نفيس وصوت NVIDIA.'],
   'bpr/saudi': ['BPR في المنظومة الصحية السعودية', 'أين يمكن أن يخدم سجل برينسايت الجهات الصحية السعودية — مقترحات، مع بيان ما يعمل اليوم وما يعتمد عليه كل تكامل.'],
   'bpr/record': ['د. محمد الفاضل · سجل BPR SA-PHY-000003', 'سجل مقدم رعاية موقّع يُتحقق منه مباشرة في متصفحك: التوقيع والصلاحية والحالة والسجل الشفاف والبصمة البحثية.'],
@@ -178,7 +180,10 @@ const toArabic = (html, route, meta) => {
   return out;
 };
 let arWritten = 0;
-const arPages = [['', join(root, 'index.html')], ...['cv', 'card', 'slots', 'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi', 'bpr/nphies', 'bpr/clinic'].map((r) => [r, join(root, r, 'index.html')])];
+// The AR root (ar/index.html) is a hand-crafted RTL landing, like the root
+// index.html above — it must not be generated from the EN page, so route '' is
+// intentionally absent here.
+const arPages = ['cv', 'card', 'slots', 'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi', 'bpr/nphies', 'bpr/nvidia', 'bpr/clinic'].map((r) => [r, join(root, r, 'index.html')]);
 if (existsSync(snapList)) {
   for (const p of JSON.parse(readFileSync(snapList, 'utf8')).items || []) {
     if (!/^SA-[A-Z]{2,4}-\d{6}$/.test(p.spid)) continue;
@@ -227,7 +232,7 @@ console.log(`Wrote ${Object.keys(LEGACY).length} legacy redirect stub(s) and ${p
   const { createHash } = await import('node:crypto');
   const hashes = [...index.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((m) => `'sha256-${createHash('sha256').update(m[1]).digest('base64')}'`);
   const csp = ["default-src 'self'", `script-src 'self' ${hashes.join(' ')}`, "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com", "font-src 'self' https://fonts.gstatic.com",
-    "img-src 'self' data: blob:", "connect-src 'self' https://registry.brainsait.de", "frame-src 'self'", "worker-src 'self'", "manifest-src 'self'", "object-src 'none'", "base-uri 'self'", "form-action 'self'"].join('; ');
+    "img-src 'self' data: blob:", "connect-src 'self' https://registry.brainsait.de https://demo.emr.brainsait.de", "frame-src 'self'", "worker-src 'self'", "manifest-src 'self'", "object-src 'none'", "base-uri 'self'", "form-action 'self'"].join('; ');
   const walkHtml = (dir) => existsSync(dir) ? readdirSync(dir, { withFileTypes: true }).flatMap((d) => d.isDirectory() ? walkHtml(join(dir, d.name)) : d.name === 'index.html' ? [join(dir, d.name)] : []) : [];
   let n = 0;
   for (const f of [...walkHtml(join(root, 'bpr')), ...walkHtml(join(root, 'ar', 'bpr'))]) {
