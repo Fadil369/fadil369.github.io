@@ -1,0 +1,25 @@
+{
+  "generated": "2026-11-03",
+  "policy": "Only Public-labeled source workbooks are represented. This curated overlay adds the CR162 claim-information-category code and does not republish restricted validation rules.",
+  "sources": [
+    {
+      "document": "nphies profiles_OBA_3NOV 2026.xlsx",
+      "version": "CR162 · 3 Nov 2026 snapshot",
+      "label": "Public",
+      "sha256": "6ec0b3f931615ca9c6f0e638bf6bdcbf1b5b621f05d83002dec59704d832f60d",
+      "scope": "Claim.supportingInfo expected-delivery-date uses timingDate"
+    },
+    {
+      "document": "Nphies Codeable Concept_OBA_3NOV 2026.xlsx",
+      "version": "CR162 · 3 Nov 2026 snapshot",
+      "label": "Public",
+      "sha256": "850bc2845183944a02473ccc416dc8052bd799540706ace30e78078af6ec6b5c",
+      "scope": "Expected Delivery Date code in claim-information-category"
+    }
+  ],
+  "codeSystems": {
+    "http://nphies.sa/terminology/CodeSystem/claim-information-category": {
+      "expected-delivery-date": "Expected Delivery Date"
+    }
+  }
+}

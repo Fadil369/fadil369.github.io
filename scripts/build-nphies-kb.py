@@ -28,6 +28,7 @@ warnings.filterwarnings("ignore")
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "public", "assets", "bpr-data", "nphies", "v1")
 ADVICE = os.path.join(ROOT, "scripts", "data", "nphies-advice.json")
+PUBLIC_OVERLAY = os.path.join(ROOT, "scripts", "data", "nphies-public-overlays.json")
 
 SOURCES = {
     "profiles": "nphies -profiles v5.4.2_DRG Release_OBA_25 June 2026.xlsx",
@@ -205,6 +206,21 @@ def build_public(src):
     cs_new = code_systems(wb_c, defects)
     cs_old = code_systems(wb_cp, [])
     vs_new = value_sets(wb_c)
+    overlay = json.load(open(PUBLIC_OVERLAY, encoding="utf-8"))
+    for source in overlay.get("sources", []):
+        if source.get("label") != "Public":
+            fail(f"refusing non-public overlay source: {source.get('document', 'unknown')}")
+        source_path = os.path.join(src, source["document"])
+        if not os.path.isfile(source_path):
+            fail(f"missing public overlay source: {source_path}")
+        if sensitivity_label(source_path) != "Public":
+            fail(f"refusing overlay source with non-public sensitivity label: {source['document']}")
+        if sha256(source_path) != source.get("sha256"):
+            fail(f"public overlay source changed since review: {source['document']}")
+    for url, codes in overlay.get("codeSystems", {}).items():
+        if url not in cs_new:
+            fail(f"public overlay code system is absent from the current source: {url}")
+        cs_new[url]["codes"].update(codes)
 
     reasons = table(rows_of(wb_c, "Appendix=rejection-reason"), 4)
     advice = json.load(open(ADVICE, encoding="utf-8"))
@@ -271,7 +287,9 @@ def build_public(src):
         "publisher": "BrainSAIT", "status": "Independent reference. Not issued or endorsed by CHI or NPHIES.",
         "guidance": "Fields named official carry the source wording. Plain-language and action fields are BrainSAIT guidance.",
         "sources": [src_entry("profiles", path_p, label_p), src_entry("profiles_prev", path_pp, label_pp),
-                    src_entry("codes", path_c, label_c), src_entry("codes_prev", path_cp, label_cp)],
+                    src_entry("codes", path_c, label_c), src_entry("codes_prev", path_cp, label_cp)] +
+                   [{key: source[key] for key in ("document", "version", "label", "sha256", "scope")}
+                    for source in overlay.get("sources", [])],
         "excluded": "SBS, ICD-10-AM, AR-DRG, GMDN, LOINC and validation-rule text are not republished here.",
         "counts": {"rejectionReasons": len(rejection), "adjudicationErrors": len(errors), "practiceCodes": len(practice),
                    "clinicSpecialties": len(clinic), "adjustmentReasons": len(adjust), "codeSystems": len(systems),

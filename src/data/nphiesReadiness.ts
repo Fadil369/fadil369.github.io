@@ -68,18 +68,16 @@ export const STEPS: Step[] = [
 
 export interface Release { id: string; en: string; ar: string; when: string; docs: string; who: [string, string]; pointsEn: string[]; pointsAr: string[] }
 export const RELEASES: Release[] = [
-  { id: 'cr162', en: 'CR162 and 3 Nov server snapshot', ar: 'CR162 ونسخة الخادم بتاريخ 3 نوفمبر', when: '3 Nov 2026 · local document snapshot', docs: 'nphies profiles_OBA_3NOV 2026 · Nphies Codeable Concept_OBA_3NOV 2026 · nphies-ValidationErrorCodes_OBA_3NOV 2026', who: ['Clinics, claims teams and integration engineers', 'العيادات وفرق المطالبات ومهندسو التكامل'],
+  { id: 'cr162', en: 'CR162 profile and code-set update', ar: 'تحديث ملفات التعريف ومجموعات الرموز CR162', when: '3 Nov 2026 · Public-labeled source snapshot', docs: 'nphies profiles_OBA_3NOV 2026 · Nphies Codeable Concept_OBA_3NOV 2026', who: ['Clinics, claims teams and integration engineers', 'العيادات وفرق المطالبات ومهندسو التكامل'],
     pointsEn: [
       'CR162 adds Claim.supportingInfo category expected-delivery-date. The profile sheet maps it to timingDate; the local pre-check now flags a missing or malformed FHIR date.',
       'The code-set change log shows the expected-delivery-date-absence-reason value set and code system were added, then removed. Do not send an absence-reason code based on this snapshot without confirming the current NPHIES package.',
-      'The validation workbook records Patient.active as fixed true (BV-00339), Task poll count as a positive integer below a configured limit (DT-01301), and a configured maximum number of claims in PaymentReconciliation.detail (BV-01259). The latter limits are facility/system configuration; this desk cannot infer them.',
-      'These files were found on the BrainSAIT server on 3 Nov 2026. Their filename is not proof of a NPHIES production go-live date; confirm effective dates with the portal before sending live transactions.',
+      'These Public-labeled workbook copies were found on the BrainSAIT server on 3 Nov 2026. Their filenames are not proof of a NPHIES production go-live date; confirm effective dates with the portal before sending live transactions.',
     ],
     pointsAr: [
       'يضيف CR162 الفئة expected-delivery-date إلى Claim.supportingInfo. ويربطها ملف التعريف بالحقل timingDate؛ ويفحص المكتب الآن وجود تاريخ FHIR صالح.',
       'يسجل سجل تغييرات الرموز إضافة مجموعة القيم والنظام expected-delivery-date-absence-reason ثم إزالتهما. لا ترسل رمز سبب غياب بناءً على هذه النسخة قبل التحقق من حزمة نفيس الحالية.',
-      'يسجل ملف التحقق أن Patient.active ثابتة على true (BV-00339)، وأن عدد طلبات Task poll عدد صحيح موجب دون حد مضبوط (DT-01301)، وأن PaymentReconciliation.detail لا يتجاوز عدد المطالبات المضبوط لكل دفعة (BV-01259). الحدود الأخيرة إعدادات للمنشأة أو النظام ولا يمكن استنتاجها هنا.',
-      'عُثر على هذه الملفات في خادم BrainSAIT بتاريخ 3 نوفمبر 2026. اسم الملف لا يثبت تاريخ بدء التطبيق في بيئة نفيس الإنتاجية؛ تحقّق من تاريخ السريان عبر البوابة قبل إرسال معاملات فعلية.',
+      'عُثر على نسخ المصنفات المصنفة عامة في خادم BrainSAIT بتاريخ 3 نوفمبر 2026. اسم الملف لا يثبت تاريخ بدء التطبيق في بيئة نفيس الإنتاجية؛ تحقّق من تاريخ السريان عبر البوابة قبل إرسال معاملات فعلية.',
     ] },
   { id: 'drg', en: 'DRG release', ar: 'إصدار DRG', when: 'June 2026', docs: 'Profiles 5.4.2 · Code sets 5.5.2 · Portal Manual, DRG Release', who: ['Hospitals, coders, claims teams', 'المستشفيات والمرمّزون وفرق المطالبات'],
     pointsEn: ['DRG joins institutional billing as its own code system, on the first item of admitted-care requests.', 'Actual and shadow billing follow different money rules, and enforcement in shadow billing is configurable.', 'The old diagnosisRelatedGroup extension is gone from authorisation and claim profiles. Payers now return a DRG on the response item, with a recalculatedDRG category and an adjustment reason.', 'New tables: adjustment reasons, ICU room codes, maternity diagnoses and tooth-specific codes.', 'Item details gain a factor, and last menstrual period gains an absence reason.'],

@@ -261,11 +261,6 @@ function checkClaim(claim: Json, resolve: Resolve, spec: Spec, add: (f: Finding)
   const dates = items.flatMap(serviceDates).sort();
   const firstService = dates[0];
   const birth = day(patient?.birthDate);
-  if (patient && patient.active !== true) {
-    add({ id: 'patient-active', severity: 'warn', where: 'Patient.active', rule: 'BV-00339',
-      en: 'The server validation workbook says Patient.active must be true (Jan_hotfix). Check the target environment’s activation date.',
-      ar: 'ينص ملف قواعد التحقق على أن Patient.active يجب أن تكون true (Jan_hotfix). تحقّق من تاريخ التفعيل في بيئة الإرسال.' });
-  }
   if (validDay(birth)) {
     count();
     if (Number(birth.slice(0, 4)) < 1500) {
