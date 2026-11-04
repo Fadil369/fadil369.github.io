@@ -277,7 +277,7 @@ export default function Home() {
               </a>
               <div className="profile-actions" style={{ marginTop: 20 }}>
                 <a className="profile-button secondary" href="https://doi.org/10.5281/zenodo.23964465" target="_blank" rel="noreferrer">{ar ? 'اقرأ المعاينة المجانية' : 'Read the free preview'}<ArrowUpRight size={17} /></a>
-                <a className="profile-button primary" href="https://buy.stripe.com/3cI4gz5c40Q09X310IefC0b" target="_blank" rel="noreferrer"><CreditCard size={16} />{ar ? 'الرواية كاملة — ١٣٦ ر.س' : 'Full novel — 136 SAR'}</a>
+                <a className="profile-button primary" href="https://buy.stripe.com/3cI4gz5c40Q09X310IefC0b" target="_blank" rel="noreferrer"><CreditCard size={16} />{ar ? 'الرواية كاملة — 136 ر.س' : 'Full novel — 136 SAR'}</a>
               </div>
             </div>
             <div className="profile-writing">
