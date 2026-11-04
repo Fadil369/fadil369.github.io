@@ -264,6 +264,32 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="profile-section" id="novel">
+          <div className="profile-section-label">{ar ? 'رواية' : 'Fiction'} · {ar ? 'الاخدر الليموني' : 'Dark and Lemon'}</div>
+          <div className="profile-section-heading"><h2>{ar ? 'الاخدر الليموني — رواية من السودان.' : 'Dark and Lemon — a novel of Sudan.'}</h2></div>
+          <div className="profile-research-grid">
+            <div className="profile-paper">
+              <BookOpen size={28} /><span className="profile-paper-meta">{ar ? 'خمسة أصوات · مئتا عام · ثلاث وخمسون فصلاً' : 'FIVE VOICES · TWO CENTURIES · 53 CHAPTERS'}</span>
+              <h2>{ar ? 'الاخدر الليموني' : 'Dark and Lemon'}</h2>
+              <p>{ar ? 'أربع كلمات سودانية — اخدر، مسيخ، شين، دشن — وشجرة ليمون تتوارثها أسرة الطيب. عربي وإنجليزي في إصدار واحد. المعاينة المجانية: الفصول الثلاثة الأولى.' : 'Four Sudanese words — akhdar, maseekh, sheen, dashan — and a lemon tree passed down the al-Tayeb family. Arabic and English editions. Free preview: the first three chapters.'}</p>
+              <a href="https://doi.org/10.5281/zenodo.23964465" target="_blank" rel="noreferrer" aria-label="DOI 10.5281/zenodo.23964465">
+                <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23964465.svg" alt="DOI 10.5281/zenodo.23964465" height={20} />
+              </a>
+              <div className="profile-actions" style={{ marginTop: 20 }}>
+                <a className="profile-button secondary" href="https://doi.org/10.5281/zenodo.23964465" target="_blank" rel="noreferrer">{ar ? 'اقرأ المعاينة المجانية' : 'Read the free preview'}<ArrowUpRight size={17} /></a>
+                <a className="profile-button primary" href="https://buy.stripe.com/3cI4gz5c40Q09X310IefC0b" target="_blank" rel="noreferrer"><CreditCard size={16} />{ar ? 'الرواية كاملة — ١٣٦ ر.س' : 'Full novel — 136 SAR'}</a>
+              </div>
+            </div>
+            <div className="profile-writing">
+              <h3>{ar ? 'ما تتضمنه النسخة الكاملة' : 'The full edition includes'}</h3>
+              <span><strong>{ar ? 'النسختان' : 'Both languages'}</strong><small>{ar ? 'العربية والإنجليزية' : 'Arabic and English'}</small></span>
+              <span><strong>PDF · EPUB · DOCX</strong><small>{ar ? 'تنزيل رقمي فوري' : 'Instant digital download'}</small></span>
+              <span><strong>{ar ? 'القصيدة والمسرد' : 'The poem and glossary'}</strong><small>{ar ? 'شين ودشن، ودلوكة الأفراح' : 'Sheen wa Dashan, and the dalooka wedding songs'}</small></span>
+              <a href="https://doi.org/10.5281/zenodo.23961838" target="_blank" rel="noreferrer"><span><strong>Zenodo</strong><small>{ar ? 'كل الإصدارات (DOI 23961838)' : 'All versions (DOI 23961838)'}</small></span><ArrowUpRight size={17} /></a>
+            </div>
+          </div>
+        </section>
+
         <section className="profile-contact" id="contact">
           <div><div className="profile-section-label">05 · {ar ? 'لنتحدث' : 'Start a conversation'}</div><h2>{ar ? 'تبني شيئًا مع الممارسين الصحيين؟ دعنا نبنيه معًا.' : 'Building with clinicians? Let’s build it together.'}</h2></div>
           <p>{ar ? 'أعمل مع المستشفيات وفرق التقنية الصحية والمستثمرين في السعودية والخليج وأفريقيا — لبناء أدوات صحية يمكن التحقق منها فعليًا، وتعيد القرار إلى يد الطبيب.' : 'I work with hospitals, health-tech teams and investors across Saudi Arabia, the Gulf and Africa—building healthcare tools you can actually verify, and that put control back in the physician’s hands.'}</p>
