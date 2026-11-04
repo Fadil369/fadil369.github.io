@@ -165,6 +165,7 @@
 .profile-writing h3 { margin: 0 0 17px; font-size: 14px; }
 .profile-writing > a { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 17px 0; border-top: 1px solid var(--profile-line); }
 .profile-writing > a span { display: grid; gap: 3px; }
+.profile-writing > span { display: grid; gap: 3px; padding: 17px 0; border-top: 1px solid var(--profile-line); }
 .profile-writing strong { font-size: 12px; }
 .profile-writing small { color: var(--profile-muted); font-size: 10px; }
 .profile-writing svg { color: var(--profile-accent); }
