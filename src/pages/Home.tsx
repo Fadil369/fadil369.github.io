@@ -266,7 +266,7 @@ export default function Home() {
 
         <section className="profile-section" id="novel">
           <div className="profile-section-label">{ar ? 'رواية' : 'Fiction'} · {ar ? 'الاخدر الليموني' : 'Dark and Lemon'}</div>
-          <div className="profile-section-heading"><h2>{ar ? 'الاخدر الليموني — رواية من السودان.' : 'Dark and Lemon — a novel of Sudan.'}</h2></div>
+          <div className="profile-section-heading"><h2>{ar ? 'الاخدر الليموني — رواية أمّةٍ عظيمة نسيها العالم.' : 'Dark and Lemon — a novel of a forgotten great nation.'}</h2></div>
           <div className="profile-research-grid">
             <div className="profile-paper">
               <BookOpen size={28} /><span className="profile-paper-meta">{ar ? 'خمسة أصوات · مئتا عام · ثلاث وخمسون فصلاً' : 'FIVE VOICES · TWO CENTURIES · 53 CHAPTERS'}</span>
