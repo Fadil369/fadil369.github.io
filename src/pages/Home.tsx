@@ -283,7 +283,7 @@ export default function Home() {
             <div className="profile-writing">
               <h3>{ar ? 'ما تتضمنه النسخة الكاملة' : 'The full edition includes'}</h3>
               <span><strong>{ar ? 'النسختان' : 'Both languages'}</strong><small>{ar ? 'العربية والإنجليزية' : 'Arabic and English'}</small></span>
-              <span><strong>PDF · EPUB · DOCX</strong><small>{ar ? 'تنزيل رقمي فوري' : 'Instant digital download'}</small></span>
+              <span><strong>{ar ? 'ملفات PDF' : 'PDF editions'}</strong><small>{ar ? 'تنزيل رقمي فوري' : 'Instant digital download'}</small></span>
               <span><strong>{ar ? 'القصيدة والمسرد' : 'The poem and glossary'}</strong><small>{ar ? 'شين ودشن، ودلوكة الأفراح' : 'Sheen wa Dashan, and the dalooka wedding songs'}</small></span>
               <a href="https://doi.org/10.5281/zenodo.23961838" target="_blank" rel="noreferrer"><span><strong>Zenodo</strong><small>{ar ? 'كل الإصدارات (DOI 23961838)' : 'All versions (DOI 23961838)'}</small></span><ArrowUpRight size={17} /></a>
             </div>
