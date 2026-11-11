@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+ <key>PayloadType</key><string>Configuration</string>
+ <key>PayloadVersion</key><integer>1</integer>
+ <key>PayloadIdentifier</key><string>org.brainsait.bpr.trust</string>
+ <key>PayloadUUID</key><string>16184F8F-EAAD-4DCC-8A4E-FE426F5B8EB0</string>
+ <key>PayloadDisplayName</key><string>BrainSAIT Provider Registry — Root Trust</string>
+ <key>PayloadContent</key><array><dict>
+  <key>PayloadType</key><string>com.apple.security.root</string>
+  <key>PayloadVersion</key><integer>1</integer>
+  <key>PayloadIdentifier</key><string>org.brainsait.bpr.trust.root</string>
+  <key>PayloadUUID</key><string>54876E6F-5FBA-4793-84B4-C1C7ED83C333</string>
+  <key>PayloadDisplayName</key><string>BPR Root CA</string>
+  <key>PayloadContent</key><data>MIICYzCCAeqgAwIBAgIURQOi6TeF0pUzg31sCGb8o7540IkwCgYIKoZIzj0EAwMwUzELMAkGA1UEBhMCU0ExEjAQBgNVBAoMCUJyYWluU0FJVDEaMBgGA1UECwwRUHJvdmlkZXIgUmVnaXN0cnkxFDASBgNVBAMMC0JQUiBSb290IENBMB4XDTI2MTExMTIyNTU0NVoXDTQ2MTEwNjIyNTU0NVowUzELMAkGA1UEBhMCU0ExEjAQBgNVBAoMCUJyYWluU0FJVDEaMBgGA1UECwwRUHJvdmlkZXIgUmVnaXN0cnkxFDASBgNVBAMMC0JQUiBSb290IENBMHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEGqpvF+EGlze50pTUaiZ9z+sHUsbVu6NkLsOP+Ym7LrumKLuYHLnfqIHE4IQCiF2tVFFk0e66R1GvkjLE4lA8c3bt+oFZahi07WVuaTnACg1RZceuDY36/UddVhC4pTt2o38wfTAfBgNVHSMEGDAWgBRyGD9ZXdXbskZB2VtO+BYaSNR8pjASBgNVHRMBAf8ECDAGAQH/AgEBMA4GA1UdDwEB/wQEAwIBBjAdBgNVHQ4EFgQUchg/WV3V27JGQdlbTvgWGkjUfKYwFwYDVR0gBBAwDjAMBgorBgEEAYPcYgEBMAoGCCqGSM49BAMDA2cAMGQCMBhpTltjopEvFM4wkE4nhe5IKQcxjfjjiqKfmO+ZxOME8WYOlG6PL19iRmriOC/JyQIwBlhNOkqm3a4RRgNzAPWNxnnVtH/+QSjwnNfuiBZrGAXLwgh28jMKldhXMTP3i+sX</data>
+ </dict></array>
+</dict></plist>

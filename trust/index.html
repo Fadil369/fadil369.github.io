@@ -1,0 +1,19 @@
+<!doctype html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BPR Trust — BrainSAIT Provider Registry</title>
+<style>:root{color-scheme:light dark;--bg:#fff;--fg:#14202e;--mut:#5b6b7c;--line:#d8e0e8;--acc:#0b6bcb}
+@media(prefers-color-scheme:dark){:root{--bg:#0d141c;--fg:#e6edf3;--mut:#93a4b5;--line:#25323f;--acc:#58a6ff}}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,sans-serif}main{max-width:44rem;margin:0 auto;padding:2rem 1rem}
+code{font:13px ui-monospace,monospace;word-break:break-all}.fp{border:1px solid var(--line);border-radius:10px;padding:.8rem 1rem;margin:.8rem 0}
+a{color:var(--acc)}small{color:var(--mut)}li{margin:.3rem 0}</style></head><body><main>
+<h1>BPR Trust <span lang="ar" dir="rtl">· الثقة</span></h1>
+<p>Verify certificates issued under the BrainSAIT Provider Registry (IANA PEN 61026). Compare fingerprints out-of-band before trusting.</p>
+<div class="fp"><strong>BPR Root CA</strong> SHA-256<br><code>5C:1D:64:37:58:15:D2:FA:93:E0:AC:1F:10:86:DF:05:B3:E7:E1:96:E6:5D:39:65:14:59:C0:38:CD:F5:55:A5</code></div>
+<div class="fp"><strong>BPR Provider Issuing CA</strong> SHA-256<br><code>98:45:2C:10:BD:52:C7:28:CC:B6:81:B8:47:BA:75:19:0A:57:29:6F:F7:DB:E2:99:5F:C5:A9:49:25:88:23:88</code></div>
+<h2>Download</h2><ul>
+<li><a href="bpr-root.cer">bpr-root.cer</a> (DER) · <a href="bpr-root.pem">bpr-root.pem</a></li>
+<li><a href="bpr-chain.pem">bpr-chain.pem</a> (issuing + root)</li>
+<li><a href="bpr-root.mobileconfig">bpr-root.mobileconfig</a> — one-click trust profile for macOS/iOS</li></ul>
+<h2>Verify a provider certificate</h2>
+<p><code>openssl verify -CAfile bpr-chain.pem -purpose sslclient provider.crt</code></p>
+<p>Provider identity is in the subject <code>serialNumber</code> (SPID) and the SAN URI <code>https://registry.brainsait.de/spid/&lt;SPID&gt;</code>; policy OID <code>1.3.6.1.4.1.61026.1.1</code>.</p>
+<p><small>Public material only. BrainSAIT never asks for private keys.</small></p></main></body></html>
