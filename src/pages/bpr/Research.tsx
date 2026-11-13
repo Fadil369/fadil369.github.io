@@ -4,6 +4,7 @@ import { ArrowRight, FileDown } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout, ExtLink, Failed, fmtDate, Loading, SourceBadge } from '../../components/BprKit';
+import { PublicEvidence } from '../../components/BprExternalEvidence';
 import { ProviderList, Research as ResearchT, ResearchWork, safeUrl, SPID_RE, useLoad } from '../../lib/bpr';
 
 export default function Research() {
@@ -24,8 +25,8 @@ function ResearchIndex() {
     <BprLayout kicker={ar ? 'البحث' : 'Research'}
       title={ar ? 'أبحاث ثابتة النسبة إلى أصحابها.' : 'Research that can be traced to its author.'}
       lead={ar
-        ? 'لا يُحتسب العمل إلا إذا ذكر سجل الناشر نفسه (Crossref أو DataCite) معرّف ORCID الخاص بالممارس، فيكون كل ما يظهر هنا منسوبًا إليه فعلًا.'
-        : 'A work is counted only when the publisher’s own record (Crossref or DataCite) names the professional’s ORCID iD — so everything shown here is genuinely theirs.'}
+        ? 'يُحتسب العمل من التأليف المؤكد عندما يذكر سجل الناشر في Crossref أو DataCite معرّف ORCID الخاص بالممارس. تظل مطابقة السجلات خاضعة لبيانات المصدر.'
+        : 'A work counts as confirmed when the Crossref or DataCite publisher record names the professional’s ORCID iD. Matching remains dependent on the source records.'}
       actions={<ExtLink href="https://zenodo.org/communities/bpr-doctors/">{ar ? 'مجتمع BPR على Zenodo' : 'BPR community on Zenodo'}</ExtLink>}>
       {list.state === 'loading' && <Loading />}
       {list.state === 'error' && <Failed />}
@@ -38,6 +39,7 @@ function ResearchIndex() {
             <strong className="bpr-provider-go">{ar ? 'افتح البصمة البحثية' : 'Open research footprint'}<ArrowRight size={14} /></strong>
           </Link>))}</div>
         : <div className="bpr-state">{ar ? 'لا يوجد مقدم رعاية بسجل بحثي مرتبط بعد.' : 'No provider has a linked research record yet.'}</div>)}
+      <PublicEvidence />
     </BprLayout>
   );
 }
@@ -131,7 +133,8 @@ function Footprint({ spid }: { spid: string }) {
       </ol>
 
       {data.authorship_rule && <p className="bpr-note">{ar ? 'يُحتسب العمل من تأليف مقدم الرعاية فقط عندما يذكر سجل الناشر (Crossref/DataCite) معرّف ORCID الخاص به. لا تُعرض الأعمال التي ينسبها الناشر إلى معرّف ORCID آخر.' : data.authorship_rule}</p>}
-      {data.runs && <p className="bpr-note">{(ar ? 'آخر تحديث: ' : 'Last refreshed: ') + Object.entries(data.runs).map(([k, v]) => `${SOURCE[k] || k} ${v.note.replace(/\D+/g, '')}`).join(' · ') + ' · ' + fmtDate(Object.values(data.runs)[0]?.at, ar, true)}</p>}
+      {data.runs && <p className="bpr-note">{ar ? 'آخر تحديث حسب المصدر: ' : 'Last refreshed by source: '}{Object.entries(data.runs).map(([k, v]) => `${SOURCE[k] || k}: ${fmtDate(v.at, ar, true)}`).join(' · ')}</p>}
+      <p className="bpr-note">{ar ? 'لتصحيح بيانات البحث، راجع سجل المصدر المرتبط أو تواصل مع السجل.' : 'To correct research information, review the linked source record or contact the registry.'} <Link className="profile-text-link" to="/support">{ar ? 'الدعم' : 'Support'}<ArrowRight size={13} /></Link></p>
     </BprLayout>
   );
 }

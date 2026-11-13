@@ -10,8 +10,8 @@ import { REGISTRY } from '../../lib/bpr';
 const STEPS = [
   { icon: LogIn, en: 'Sign in with ORCID', ar: 'سجّل الدخول عبر ORCID', enText: 'Your ORCID iD links you to the registry; ownership is confirmed by ORCID itself.', arText: 'يربطك معرّف ORCID بالسجل، وتؤكد ORCID ملكيته بنفسها.' },
   { icon: UserPlus, en: 'Answer one question per slide', ar: 'سؤال واحد في كل شريحة', enText: 'A bilingual, Arabic-first wizard collects your public profile.', arText: 'معالج ثنائي اللغة يبدأ بالعربية يجمع ملفك العام.' },
-  { icon: FileCheck2, en: 'Upload credential documents', ar: 'ارفع مستندات الاعتماد', enText: 'Stored privately, reviewed by a person, and turned into verified qualifications.', arText: 'تُحفظ بشكل خاص وتُراجع يدويًا ثم تصبح مؤهلات موثّقة.' },
-  { icon: KeyRound, en: 'Receive your signed credential', ar: 'استلم اعتمادك الموقّع', enText: 'A W3C credential anyone can verify, logged in the public transparency chain.', arText: 'اعتماد W3C يمكن لأي شخص التحقق منه، مسجّل في السلسلة الشفافة العامة.' },
+  { icon: FileCheck2, en: 'Submit credential documents', ar: 'قدّم مستندات الاعتماد', enText: 'Documents are submitted privately for review; a signature alone does not establish licensure.', arText: 'تُقدّم المستندات بصورة خاصة للمراجعة؛ ولا يثبت التوقيع وحده الترخيص المهني.' },
+  { icon: KeyRound, en: 'Receive a signed credential', ar: 'استلم اعتمادًا موقّعًا', enText: 'When issued, a W3C credential can be checked against the public transparency chain.', arText: 'عند إصدار اعتماد W3C يمكن التحقق منه مقابل السجل الشفاف العام.' },
   { icon: IdCard, en: 'Profile, card and directory', ar: 'الملف والبطاقة والدليل', enText: 'Public profile, QR member card and a listing in the directory.', arText: 'ملف عام وبطاقة عضوية برمز QR وإدراج في الدليل.' },
 ];
 
@@ -29,7 +29,7 @@ export default function Join() {
         ? 'يتم الانضمام عبر منصة السجل مباشرة، حيث تبقى بياناتك الشخصية ومستنداتك محمية. إليك ما يحدث خطوة بخطوة.'
         : 'Joining takes place on the registry itself, where your personal details and documents stay private. Here is what happens, step by step.'}
       actions={<>
-        <a className="profile-button primary" href={`${REGISTRY}/join.php`} target="_blank" rel="noreferrer">{ar ? 'ابدأ الانضمام' : 'Start joining'}<ArrowUpRight size={16} /></a>
+        <a className="profile-button primary" href={`${REGISTRY}/join.php`} target="_blank" rel="noreferrer">{ar ? 'ابدأ الانضمام على السجل (نافذة جديدة)' : 'Start joining on the registry (new tab)'}<ArrowUpRight size={16} /></a>
         <a className="profile-button secondary" href={`${REGISTRY}/scfhs.php`} target="_blank" rel="noreferrer">{ar ? 'دليل تصنيف الهيئة' : 'SCFHS classification guide'}<ArrowUpRight size={16} /></a>
       </>}>
       <ol className="bpr-steps">
@@ -37,6 +37,11 @@ export default function Join() {
           <li key={s.en}><span>{String(i + 1).padStart(2, '0')}</span><Icon size={22} /><div><h3>{ar ? s.ar : s.en}</h3><p>{ar ? s.arText : s.enText}</p></div></li>
         ))}
       </ol>
+      <section className="bpr-panel">
+        <h2>{ar ? 'قبل أن تبدأ' : 'Before you start'}</h2>
+        <p>{ar ? 'ستحتاج إلى تسجيل الدخول عبر ORCID وإعداد مستندات الاعتماد للمراجعة. يجمع معالج السجل بيانات ملفك العام؛ وتُقدّم المستندات بصورة خاصة. راجع تفاصيل الخصوصية والبيانات المطلوبة على السجل قبل الإرسال.' : 'You will need an ORCID sign-in and credential documents for review. The registry wizard collects your public profile; documents are submitted privately. Review the registry’s privacy information and requested fields before submitting.'}</p>
+        <p className="bpr-note">{ar ? 'مدة المراجعة غير محددة هنا، ولا يضمن تقديم الطلب إصدار اعتماد.' : 'Review timing is not specified here, and submitting an application does not guarantee a credential.'}</p>
+      </section>
       <WorkspaceBand />
       <section className="bpr-section">
         <div className="profile-section-label">{ar ? 'للأعضاء' : 'For members'}</div>
@@ -48,9 +53,9 @@ export default function Join() {
             <strong>{ar ? 'على السجل' : 'On the registry'}<ArrowUpRight size={14} /></strong>
           </a>
           <Link className="bpr-module members" to="/bpr/workspace">
-            <div className="bpr-module-top"><Server size={24} /><small>OpenEMR · {ar ? 'خاص بالأعضاء' : 'Private to members'}</small></div>
-            <h3>{ar ? 'مساحة سريرية خاصة' : 'Private clinical workspace'}</h3>
-            <p>{ar ? 'نسخة OpenEMR معزولة لكل مقدم رعاية بنطاق فرعي وقاعدة بيانات خاصة، تُجهَّز بعد الانضمام.' : 'An isolated OpenEMR instance per provider, with its own subdomain and database, provisioned after joining.'}</p>
+            <div className="bpr-module-top"><Server size={24} /><small>OpenEMR · {ar ? 'عرض تجريبي' : 'Demo'}</small></div>
+            <h3>{ar ? 'عرض مساحة العمل' : 'Workspace demo'}</h3>
+            <p>{ar ? 'يتوفر عرض ببيانات مصطنعة. لم يتم التحقق من تجهيز مساحة للأعضاء بعد الانضمام.' : 'A synthetic-data demo is available. Member provisioning after joining has not been verified here.'}</p>
             <strong>{ar ? 'استكشف المساحة' : 'Explore the workspace'}<ArrowRight size={14} /></strong>
           </Link>
         </div>

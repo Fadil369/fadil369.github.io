@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { bindingProblem, validityWindow, verifyJwt, type CredentialClaims } from './bpr.ts';
+import { bindingProblem, checkCredential, CredentialNotFoundError, credentialStatus, validityWindow, verifyJwt, type CredentialClaims } from './bpr.ts';
 const now=Date.now();
 const claims={ issuer:{id:'did:web:registry.brainsait.de'}, credentialSubject:{spid:'SA-PHY-000003'}, validFrom:new Date(now-60000).toISOString(),validUntil:new Date(now+3600000).toISOString() } as CredentialClaims;
 test('validity window rejects missing, malformed and reversed dates',()=>{
@@ -23,4 +23,29 @@ test('signature check accepts authentic Ed25519 and rejects tampering and alg su
  assert.equal((await verifyJwt(header+'.'+enc(JSON.stringify({...claims,id:'tampered'}))+'.'+signature,[jwk] as never)).state,'fail');
  const invalid=enc(JSON.stringify({alg:'none',kid:'test-key'}))+'.'+payload+'.'+signature;
  assert.equal((await verifyJwt(invalid,[jwk] as never)).state,'fail');
+});
+
+test('credential absence is only reported when both registry and snapshot return 404', async () => {
+ const originalFetch = globalThis.fetch;
+ try {
+  globalThis.fetch = async () => new Response(null, {status:404});
+  await assert.rejects(checkCredential('SA-PHY-900001'), CredentialNotFoundError);
+  globalThis.fetch = async (input) => {
+   if (String(input).startsWith('https://registry.brainsait.de')) throw new TypeError('network unavailable');
+   return new Response(null, {status:404});
+  };
+  await assert.rejects(checkCredential('SA-PHY-900002'), (error: unknown) => error instanceof Error && !(error instanceof CredentialNotFoundError));
+  globalThis.fetch = async (input) => {
+   if (String(input).startsWith('https://registry.brainsait.de')) return new Response(null, {status:404});
+   throw new TypeError('snapshot unavailable');
+  };
+  await assert.rejects(checkCredential('SA-PHY-900003'), (error: unknown) => error instanceof Error && !(error instanceof CredentialNotFoundError));
+ } finally { globalThis.fetch = originalFetch; }
+});
+
+test('unknown credential status remains unavailable rather than a failure or pass', () => {
+ assert.equal(credentialStatus('current').state, 'ok');
+ assert.equal(credentialStatus('revoked').state, 'fail');
+ assert.equal(credentialStatus(undefined).state, 'unavailable');
+ assert.equal(credentialStatus('unexpected').state, 'unavailable');
 });

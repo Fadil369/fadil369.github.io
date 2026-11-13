@@ -118,7 +118,7 @@ const ROUTE_META = {
   slots: ['Hospital slots — BPR', 'The BPR hospital slots marketplace: hospitals publish openings and verified providers request them with a BPR ID. Launching soon.'],
   bpr: ['BPR — BrainSAIT Provider Registry', 'Signed identity for every clinician: directory, on-device verification, transparency log, research footprint and FHIR R4.'],
   'bpr/ai': ['AI and model gateway — BPR', 'Copilot service checks, a dated private model catalog snapshot and explicit connection boundaries.'],
-  'bpr/workspace': ['Provider workspace — BPR', 'Own OpenEMR, a clinical copilot with Arabic dictation, FHIR, specialty tools and research — live and planned features stated per card.'],
+  'bpr/workspace': ['Provider workspace — BPR', 'Explore a synthetic-data EMR demo, FHIR and research, with each capability marked by status.'],
   'bpr/providers': ['Provider directory — BPR', 'Listed providers with every trust dimension shown separately.'],
   'bpr/verify': ['Verify a provider — BPR', 'Check a BPR signed credential on your device: signature, validity window and live status.'],
   'bpr/ledger': ['Transparency log — BPR', 'Every credential issue, renewal and revocation in a public hash chain your browser replays.'],
@@ -239,7 +239,7 @@ console.log(`Wrote ${Object.keys(LEGACY).length} legacy redirect stub(s) and ${p
   const { createHash } = await import('node:crypto');
   const hashes = [...index.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((m) => `'sha256-${createHash('sha256').update(m[1]).digest('base64')}'`);
   const csp = ["default-src 'self'", `script-src 'self' ${hashes.join(' ')}`, "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com", "font-src 'self' https://fonts.gstatic.com",
-    "img-src 'self' data: blob:", "connect-src 'self' https://registry.brainsait.de https://api.brainsait.de", "frame-src 'self'", "worker-src 'self'", "manifest-src 'self'", "object-src 'none'", "base-uri 'self'", "form-action 'self'"].join('; ');
+    "img-src 'self' data: blob:", "connect-src 'self' https://registry.brainsait.de https://api.brainsait.de https://api.kfmc.med.sa https://open.data.gov.sa", "frame-src 'self'", "worker-src 'self'", "manifest-src 'self'", "object-src 'none'", "base-uri 'self'", "form-action 'self'"].join('; ');
   const walkHtml = (dir) => existsSync(dir) ? readdirSync(dir, { withFileTypes: true }).flatMap((d) => d.isDirectory() ? walkHtml(join(dir, d.name)) : d.name === 'index.html' ? [join(dir, d.name)] : []) : [];
   let n = 0;
   for (const f of [...walkHtml(join(root, 'bpr')), ...walkHtml(join(root, 'ar', 'bpr'))]) {

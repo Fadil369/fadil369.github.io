@@ -19,7 +19,8 @@
     "sync:shopify:dry": "python3 scripts/sync-catalog-from-shopify.py",
     "landing": "node scripts/render-landing.mjs",
     "verify:published": "node scripts/verify-published.mjs",
-    "verify:experience": "node scripts/verify-experience.mjs"
+    "verify:experience": "node scripts/verify-experience.mjs",
+    "verify:bpr-ux": "node scripts/verify-bpr-ux.mjs"
   },
   "dependencies": {
     "jsqr": "^1.4.0",
