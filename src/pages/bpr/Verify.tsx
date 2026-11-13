@@ -5,7 +5,7 @@ import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout, CheckRow, Failed, fmtDate, Loading, ScfhsPending, SourceBadge, valueLabel } from '../../components/BprKit';
 import { localized } from '../../lib/locale';
-import { bindingProblem, Check, checkCredential, CredentialClaims, validityWindow, CredentialResult, decodeClaims, forgeName, REGISTRY, registryKeys, replayLedger, SPID_RE, verifyJwt } from '../../lib/bpr';
+import { bindingProblem, Check, checkCredential, CredentialClaims, CredentialNotFoundError, validityWindow, CredentialResult, decodeClaims, forgeName, REGISTRY, registryKeys, replayLedger, SPID_RE, verifyJwt } from '../../lib/bpr';
 
 const QrScanner = lazy(() => import('../../components/QrScanner'));
 
@@ -39,7 +39,11 @@ export default function Verify() {
     setBusy(true); setResult(null); setError(''); setForged(null);
     if (!SPID_RE.test(id)) { setError(ar ? 'صيغة المعرّف غير صحيحة (مثال SA-PHY-000003).' : 'That is not a valid SPID (e.g. SA-PHY-000003).'); setBusy(false); return; }
     try { setResult(await checkCredential(id)); setTimeout(() => resultHead.current?.focus(), 0); }
-    catch { setError(ar ? `لا يوجد اعتماد موقّع منشور للمعرّف ${id}. قد يكون مدرجًا دون اعتماد — راجع ملفه.` : `No signed credential is published for ${id}. The provider may be listed without one — see their profile.`); }
+    catch (e) {
+      setError(e instanceof CredentialNotFoundError
+        ? (ar ? `لم يُعثر على اعتماد منشور للمعرّف ${id} في السجل أو اللقطة. قد يكون الممارس مدرجًا دون اعتماد — راجع ملفه.` : `No published credential was found for ${id} in the registry or snapshot. The provider may be listed without one — see their profile.`)
+        : (ar ? `تعذّر تحميل الاعتماد أو التحقق منه للمُعرّف ${id}. قد يكون المصدر غير متاح؛ أعد المحاولة عند عودة الاتصال.` : `The credential for ${id} could not be loaded or checked. A source may be unavailable; try again when connected.`));
+    }
     setBusy(false);
   };
   useEffect(() => { if (initial) run(initial); }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -122,10 +126,10 @@ export default function Verify() {
         </div>}
         {scanning && <Suspense fallback={<Loading />}><QrScanner onSpid={onScan} onClose={() => setScanning(false)} /></Suspense>}
         {busy && <Loading label={ar ? 'جارٍ التحقق…' : 'Verifying…'} />}
-        {error && <Failed>{error} {SPID_RE.test(spid.trim().toUpperCase()) && <Link className="profile-text-link" to={`/bpr/p/${spid.trim().toUpperCase()}`}>{ar ? 'الملف' : 'Profile'}<ArrowRight size={13} /></Link>}</Failed>}
+        {error && <Failed>{error} {SPID_RE.test(spid.trim().toUpperCase()) && <><button type="button" className="profile-text-link" onClick={() => run(spid.trim().toUpperCase())}>{ar ? 'أعد المحاولة' : 'Try again'}</button><Link className="profile-text-link" to={`/bpr/p/${spid.trim().toUpperCase()}`}>{ar ? 'الملف' : 'Profile'}<ArrowRight size={13} /></Link></>}</Failed>}
         {result && <div className="bpr-profile-grid" aria-live="polite">
           <section className="bpr-panel">
-            <div className="bpr-panel-head"><h2 ref={resultHead} tabIndex={-1}>{ar ? 'النتيجة' : 'Result'} · <code dir="ltr">{result.claims.credentialSubject.spid}</code></h2><SourceBadge source={result.source} /></div>
+            <div className="bpr-panel-head"><h2 ref={resultHead} tabIndex={-1}>{ar ? 'النتيجة' : 'Result'} · <code dir="ltr">{result.claims.credentialSubject.spid}</code></h2><div><SourceBadge source={result.source} label={ar ? 'الاعتماد' : 'Credential'} /><SourceBadge source={result.keySource} label={ar ? 'مفتاح التحقق' : 'Verification key'} /></div></div>
             <CheckRow label={ar ? 'التوقيع' : 'Signature'} check={result.signature} />
             <CheckRow label={ar ? 'فترة الصلاحية' : 'Validity window'} check={result.expiry} okText={ar ? 'سارية' : 'In date'} />
             <CheckRow label={ar ? 'الحالة المباشرة' : 'Live status'} check={result.status} okText={valueLabel(result.status.value, ar)} />

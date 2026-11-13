@@ -4,6 +4,7 @@ import { ArrowRight, FileDown } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout, ExtLink, Failed, fmtDate, Loading, SourceBadge } from '../../components/BprKit';
+import { PublicEvidence } from '../../components/BprExternalEvidence';
 import { ProviderList, Research as ResearchT, ResearchWork, safeUrl, SPID_RE, useLoad } from '../../lib/bpr';
 
 export default function Research() {
@@ -38,6 +39,7 @@ function ResearchIndex() {
             <strong className="bpr-provider-go">{ar ? 'افتح البصمة البحثية' : 'Open research footprint'}<ArrowRight size={14} /></strong>
           </Link>))}</div>
         : <div className="bpr-state">{ar ? 'لا يوجد مقدم رعاية بسجل بحثي مرتبط بعد.' : 'No provider has a linked research record yet.'}</div>)}
+      <PublicEvidence />
     </BprLayout>
   );
 }

@@ -234,12 +234,12 @@ if (existsSync(productsDir)) for (const slug of readdirSync(productsDir)) {
 console.log(`Wrote ${Object.keys(LEGACY).length} legacy redirect stub(s) and ${productStubs} product stub(s).`);
 
 // ── Content Security Policy for the BPR pages (no analytics there) ──────────
-// Inline scripts are pinned by hash; links can only open http(s); only the registry is reachable.
+// Inline scripts are pinned by hash; links can only open http(s); only the registry and public data publishers are reachable.
 {
   const { createHash } = await import('node:crypto');
   const hashes = [...index.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((m) => `'sha256-${createHash('sha256').update(m[1]).digest('base64')}'`);
   const csp = ["default-src 'self'", `script-src 'self' ${hashes.join(' ')}`, "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com", "font-src 'self' https://fonts.gstatic.com",
-    "img-src 'self' data: blob:", "connect-src 'self' https://registry.brainsait.de https://api.brainsait.de", "frame-src 'self'", "worker-src 'self'", "manifest-src 'self'", "object-src 'none'", "base-uri 'self'", "form-action 'self'"].join('; ');
+    "img-src 'self' data: blob:", "connect-src 'self' https://registry.brainsait.de https://api.brainsait.de https://api.kfmc.med.sa https://open.data.gov.sa", "frame-src 'self'", "worker-src 'self'", "manifest-src 'self'", "object-src 'none'", "base-uri 'self'", "form-action 'self'"].join('; ');
   const walkHtml = (dir) => existsSync(dir) ? readdirSync(dir, { withFileTypes: true }).flatMap((d) => d.isDirectory() ? walkHtml(join(dir, d.name)) : d.name === 'index.html' ? [join(dir, d.name)] : []) : [];
   let n = 0;
   for (const f of [...walkHtml(join(root, 'bpr')), ...walkHtml(join(root, 'ar', 'bpr'))]) {

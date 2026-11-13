@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight, Building2, FileCheck2, Landmark, Network, Pac
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout } from '../../components/BprKit';
+import { NationalAddressNotice } from '../../components/BprExternalEvidence';
 
 // Public overview: where BPR could fit in the Saudi health system. Proposals only — no meetings,
 // statuses, notes or pipeline data (those live in the owner's private roadshow tool).
@@ -49,9 +50,10 @@ export default function Saudi() {
         : 'How BPR gives every Saudi health organisation trusted professional identity for its workforce — and what each integration unlocks.'}
       actions={<><Link className="profile-button primary" to="/bpr/developers">{ar ? 'استكشف واجهات التكامل' : 'Explore integration APIs'}<ArrowRight size={16} /></Link><a className="profile-button secondary" href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">{ar ? 'احجز عرضًا توضيحيًا مباشرًا' : 'Book a live demo'}<ArrowUpRight size={16} /></a></>}>
       <section className="ksa-today">
-        <div><span className="ws-status live">{ar ? 'يعمل اليوم' : 'Live today'}</span><p>{ar ? 'اعتماد W3C موقّع يُتحقق منه من أي هاتف · سجل شفاف عام · واجهة FHIR R4 · مساحة OpenEMR خاصة لكل مقدم رعاية' : 'Signed W3C credential verifiable on any phone · public transparency log · FHIR R4 API · private per-provider OpenEMR workspace'}</p></div>
+        <div><span className="ws-status live">{ar ? 'يعمل اليوم' : 'Live today'}</span><p>{ar ? 'اعتماد W3C موقّع يُتحقق منه من أي هاتف · سجل شفاف عام · واجهة FHIR R4' : 'Signed W3C credential verifiable on any phone · public transparency log · FHIR R4 API'}</p></div>
         <div><span className="ws-status awaiting">{ar ? 'تكامل جارٍ' : 'Ongoing integration'}</span><p>{ar ? 'التحقق من اعتمادات الهيئة السعودية للتخصصات الصحية' : 'SCFHS credential verification'}</p></div>
         <div><span className="ws-status awaiting">{ar ? 'تكامل جارٍ' : 'Ongoing integration'}</span><p>{ar ? 'التكامل مع نفيس' : 'NPHIES integration'}</p></div>
+        <div><span className="ws-status planned">{ar ? 'قادمًا' : 'Coming next'}</span><p>{ar ? 'تجهيز مساحة OpenEMR خاصة لكل عضو غير متاح للتحقق بعد؛ العرض العام يستخدم بيانات مصطنعة.' : 'Private member OpenEMR provisioning is not verified; the public demo uses synthetic data.'}</p></div>
       </section>
       {GROUPS.map(({ icon: Icon, ...g }) => (
         <section key={g.en} className="bpr-section">
@@ -69,6 +71,7 @@ export default function Saudi() {
           </div>
         </section>
       ))}
+      <NationalAddressNotice />
       <p className="bpr-note">{ar ? 'مقترحات للنقاش مع كل جهة.' : 'Proposals for discussion with each organisation.'}</p>
     </BprLayout>
   );
