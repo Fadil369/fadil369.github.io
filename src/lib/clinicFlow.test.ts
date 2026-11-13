@@ -116,6 +116,8 @@ test('legacy requests migrate and junk is dropped', () => {
   assert.equal(normalizeVisit({ id: 'x' }), null);
   assert.equal(normalizeVisit(null), null);
   assert.equal(normalizeVisit({ id: 'a', patient: 'p', status: 'weird' })?.status, 'booked');
+  assert.equal(normalizeVisit({ id: 'a', patient: 'p', date: 'not-a-date' })?.date, '');
+  assert.equal(normalizeVisit({ id: 'a', patient: 'p', date: '2026-11-20' })?.date, '2026-11-20');
   assert.deepEqual(parseVisits('not json'), []);
   assert.deepEqual(parseVisits('{"a":1}'), []);
   assert.equal(parseVisits(JSON.stringify([{ id: 'a', patient: 'p', status: 'completed' }, 7])).length, 1);

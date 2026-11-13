@@ -140,6 +140,12 @@ try {
   await page.locator('.clinic-sidebar nav').getByRole('button', { name: 'غرفة الطبيب' }).click();
   assert.ok(await page.getByText('مكتمل اليوم').first().isVisible());
 
+  // 6. A stored visit with a damaged date must not crash the page (regression).
+  step = 'damaged storage'; await page.goto(`${BASE}/bpr/clinic`);
+  await page.evaluate(() => localStorage.setItem('brainsait_clinic_requests', JSON.stringify([{ id: 'X', patient: 'Patient 001', status: 'booked', date: 'not-a-date' }])));
+  await page.reload();
+  await nav('Overview'); await nav('Front desk'); await nav('Doctor room');
+
   assert.deepEqual(problems, [], 'no page errors or console errors');
   console.log('Clinic visit flow end-to-end check passed.');
 } catch (error) {

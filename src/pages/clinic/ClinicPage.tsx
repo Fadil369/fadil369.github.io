@@ -347,10 +347,13 @@ function saudiToday() {
   return new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Riyadh' });
 }
 function formatDate(date: string, lang: 'ar' | 'en') {
+  const d = new Date(date + 'T12:00:00+03:00');
+  // A stored visit with a missing or damaged date must not take the whole page down.
+  if (Number.isNaN(d.getTime())) return '\u2014';
   return new Intl.DateTimeFormat(
     lang === 'ar' ? 'ar-SA-u-ca-gregory' : 'en-GB',
     { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Riyadh' },
-  ).format(new Date(date + 'T12:00:00+03:00'));
+  ).format(d);
 }
 // ── Components ─────────────────────────────────────────────────────────────
 
