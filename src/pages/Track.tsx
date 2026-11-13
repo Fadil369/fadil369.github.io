@@ -373,10 +373,10 @@ export default function Track() {
 
       {/* Links */}
       <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-        <a className="button primary" href={`https://build-apply.brainsait.org/certificate/${encodeURIComponent(ref)}`} target="_blank" rel="noopener noreferrer">
+        <a className="button primary" href={`https://build-apply.brainsait.de/certificate/${encodeURIComponent(ref)}`} target="_blank" rel="noopener noreferrer">
           <Award size={16} /> {ar ? 'شهادتك' : 'Your certificate'}
         </a>
-        <a className="button secondary" href={`https://build-apply.brainsait.org/badge/${encodeURIComponent(ref)}`} target="_blank" rel="noopener noreferrer">
+        <a className="button secondary" href={`https://build-apply.brainsait.de/badge/${encodeURIComponent(ref)}`} target="_blank" rel="noopener noreferrer">
           <Trophy size={16} /> {ar ? 'شارتك الرقمية' : 'Your badge'}
         </a>
         {data.notionUrl && (

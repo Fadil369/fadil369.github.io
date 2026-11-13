@@ -14,7 +14,7 @@ interface CachedDiscovery {
 
 const DISCOVERY_TTL_MS = 24 * 60 * 60 * 1000;
 
-// Verified live against account.brainsait.org on 2026-08-20 — used only if
+// Verified live against the former account.brainsait.org host on 2026-08-20 — used only if
 // the discovery fetch itself fails (network blip), so the login button
 // doesn't silently break.
 const FALLBACK_OIDC: OidcConfig = {

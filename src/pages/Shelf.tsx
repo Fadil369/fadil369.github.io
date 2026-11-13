@@ -61,14 +61,14 @@ export default function Shelf({ stage }: { stage: Exclude<Stage, 'build'> }) {
             <h2>{ar ? `${stats.solutions} حلول جاهزة منشورة الآن` : `${stats.solutions} deployment-ready solutions are live now`}</h2>
             <p>{ar ? 'كل حل يقود إلى ديمو أو مسار دفع واضح: 1,999 ر.س شهرياً للاحتضان والتنفيذ، أو 24,000 ر.س للحل الجاهز حسب البطاقة.' : 'Each solution leads to a clear demo or payment path: 1,999 SAR/month for incubation and rollout, or 24,000 SAR for a ready-built solution depending on the card.'}</p>
             {/* Both Solutions plans include the code platform — say so up front, matching
-                what the backend actually provisions (reserved *.code.brainsait.org workspace). */}
+                what the backend actually provisions (reserved *.code.brainsait.de workspace). */}
             <p className="shelf-code-access">
               <span aria-hidden="true">💻</span>{' '}
               {ar ? 'كلا الخطتين تشملان ' : 'Both plans include '}
-              <a href="https://code.brainsait.org" target="_blank" rel="noopener noreferrer">
+              <a href="https://code.brainsait.de" target="_blank" rel="noopener noreferrer">
                 {ar ? 'منصة BrainSAIT Code' : 'BrainSAIT Code platform access'}
               </a>{' '}
-              {ar ? '— مساحة عمل محجوزة على code.brainsait.org مع بيئة البناء بالذكاء الاصطناعي.' : '— a reserved workspace on code.brainsait.org with the AI build environment.'}
+              {ar ? '— مساحة عمل محجوزة على code.brainsait.de مع بيئة البناء بالذكاء الاصطناعي.' : '— a reserved workspace on code.brainsait.de with the AI build environment.'}
             </p>
           </div>
         </section>

@@ -271,8 +271,8 @@ A = {
 
 # Confirmed demoUrl fixes (URLs that served the wrong product).
 URL_FIX = {
-    "ai-claims-reconciliation": "https://tawnia.brainsait.org",  # the real AI claims reconciliation demo
-    "ecareplus": "https://portals.brainsait.org",              # eCarePlus portal (was pointing to healthcare directory)
+    "ai-claims-reconciliation": "https://tawnia.brainsait.de",  # the real AI claims reconciliation demo
+    "ecareplus": "https://brainsait.de/portal/",              # eCarePlus portal (was pointing to healthcare directory)
 }
 
 

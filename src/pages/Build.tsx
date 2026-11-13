@@ -201,7 +201,7 @@ export default function Build() {
           <code>GitHub</code>
           <code>Shopify Partner API</code>
           <code>Notion</code>
-          <code>account.brainsait.org</code>
+          <code>account.brainsait.de</code>
         </div>
       </section>
 
@@ -210,8 +210,8 @@ export default function Build() {
         <h2>{ar ? 'سباق البناء — 16 يوماً' : 'Your build sprint — 16 days'}</h2>
         <p className="benefits-intro">
           {ar
-            ? 'منهج البرنامج مصمم على 16 يوماً: أسبوع للبناء والإطلاق، وأسبوع للتسويق والتسليم، ثم التخرج والشهادة. حساب account.brainsait.org وعقلك الثاني ووصولك لـ LEARN يبقون معك — بلا انتهاء صلاحية.'
-            : 'The curriculum is a focused 16-day sprint: one week to build & launch, one week for marketing & delivery, then graduation & certificate. Your account.brainsait.org access, Second Brain, and LEARN catalog stay with you — no expiry.'}
+            ? 'منهج البرنامج مصمم على 16 يوماً: أسبوع للبناء والإطلاق، وأسبوع للتسويق والتسليم، ثم التخرج والشهادة. حساب account.brainsait.de وعقلك الثاني ووصولك لـ LEARN يبقون معك — بلا انتهاء صلاحية.'
+            : 'The curriculum is a focused 16-day sprint: one week to build & launch, one week for marketing & delivery, then graduation & certificate. Your account.brainsait.de access, Second Brain, and LEARN catalog stay with you — no expiry.'}
         </p>
         <div className="lifecycle-track">
           <div className="lifecycle-phase wk1">
@@ -232,7 +232,7 @@ export default function Build() {
           <div className="lifecycle-phase exp">
             <span className="lc-flag">{ar ? 'بعد التخرج' : 'After graduation'}</span>
             <h3>{ar ? 'حسابك يبقى نشطاً' : 'Your account stays active'}</h3>
-            <p>{ar ? 'account.brainsait.org وعقلك الثاني ومستودع GitHub الخاص بك ووصول LEARN — كلها تبقى معك.' : 'account.brainsait.org, your Second Brain, your own GitHub repo, and LEARN access all stay with you.'}</p>
+            <p>{ar ? 'account.brainsait.de وعقلك الثاني ومستودع GitHub الخاص بك ووصول LEARN — كلها تبقى معك.' : 'account.brainsait.de, your Second Brain, your own GitHub repo, and LEARN access all stay with you.'}</p>
           </div>
         </div>
         <p className="lifecycle-timer">
@@ -291,7 +291,7 @@ export default function Build() {
             <span className="sb-num">1</span>
             <div>
               <h3>{ar ? 'حساب عميل دائم' : 'a permanent customer account'}</h3>
-              <p>{ar ? 'account.brainsait.org — تتبّع تقدمك، شهاداتك، وتنزيلاتك في مكان واحد، طوال الوقت.' : 'account.brainsait.org — track your progress, certificates, and downloads in one place, for good.'}</p>
+              <p>{ar ? 'account.brainsait.de — تتبّع تقدمك، شهاداتك، وتنزيلاتك في مكان واحد، طوال الوقت.' : 'account.brainsait.de — track your progress, certificates, and downloads in one place, for good.'}</p>
             </div>
           </div>
         </div>

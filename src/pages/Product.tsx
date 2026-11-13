@@ -176,7 +176,7 @@ export default function Product() {
                   <li>{ar ? `جاهز ${money(STAGE_PRICING.solutions.ready, true)} ر.س لمرة واحدة: رابط Google Calendar فوري لحجز جلسة + استبيان متطلبات آمن للبنية والمجال والاستضافة وتسليم الكود المصدري كحزمة` : `Pre-built ${money(STAGE_PRICING.solutions.ready, false)} SAR one-time: instant Google Calendar link to book a session + secure requirements intake for infra/domain/hosting & source code as packaged solution`}</li>
                   <li>
                     {ar ? 'وصول منصة الكود مضمون في الخطتين: ' : 'Code platform access is included in both plans: '}
-                    <a href="https://code.brainsait.org" target="_blank" rel="noopener noreferrer">code.brainsait.org</a>
+                    <a href="https://code.brainsait.de" target="_blank" rel="noopener noreferrer">code.brainsait.de</a>
                     {ar ? ' — مساحة عمل محجوزة باسمك لتجهيز ومراجعة وتسليم حلك.' : ' — a workspace reserved for packaging, reviewing and handing over your solution.'}
                   </li>
                   <li>{ar ? 'تكامل عالٍ: GitHub · Notion · Airtable · Canvas · Hermes · Lark — توفر وأتمتة عاليان' : 'High integration via: GitHub · Notion · Airtable · Canvas · Hermes · Lark — high availability & automation'}</li>

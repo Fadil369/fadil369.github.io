@@ -9,7 +9,7 @@ import { useI18n } from '../i18n';
    Mirrors the /slots page: nothing baked in, CORS open on both sources. */
 
 const REGISTRY = 'https://registry.brainsait.de';
-const IDENTITY = 'https://id.brainsait.org';
+const IDENTITY = 'https://id.brainsait.de';
 
 interface PartnerAggregate {
   spid: string;
