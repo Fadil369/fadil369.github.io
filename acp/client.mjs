@@ -37,13 +37,19 @@ export async function runPrompt({ prompt, plugin = 'clinical-copilot', onText = 
   }
   // Load only the selected clinical plugin; never auto-update the CLI or plugins; do not re-read login-shell state.
   Object.assign(env, { COPILOT_PLUGIN_DIR_ONLY: 'true', COPILOT_AUTO_UPDATE: 'false', COPILOT_DISABLE_LOGIN_SHELL_ENV: '1' });
-  const child = spawn(agent, args, { cwd, env, stdio: ['pipe', 'pipe', 'pipe'] });
+  // On POSIX the agent leads its own process group so cancelling or timing out also stops what it started
+  // (MCP servers, hook processes) instead of orphaning them.
+  const grouped = process.platform !== 'win32';
+  const child = spawn(agent, args, { cwd, env, stdio: ['pipe', 'pipe', 'pipe'], detached: grouped });
+  const kill = () => {
+    try { if (grouped && child.pid) process.kill(-child.pid, 'SIGKILL'); else child.kill('SIGKILL'); } catch { child.kill('SIGKILL'); }
+  };
   let stderr = '';
   child.stderr.setEncoding('utf8');
   child.stderr.on('data', chunk => { stderr = (stderr + chunk).slice(-4096); });
   let timedOut = false;
-  const timeout = setTimeout(() => { timedOut = true; child.kill('SIGKILL'); }, 120_000);
-  const abort = () => child.kill('SIGKILL');
+  const timeout = setTimeout(() => { timedOut = true; kill(); }, 120_000);
+  const abort = () => kill();
   signal?.addEventListener('abort', abort, { once: true });
   if (signal?.aborted) abort();
   try {
@@ -89,7 +95,7 @@ export async function runPrompt({ prompt, plugin = 'clinical-copilot', onText = 
   } finally {
     clearTimeout(timeout);
     signal?.removeEventListener('abort', abort);
-    child.kill('SIGKILL');
+    kill();
     await new Promise(resolveExit => {
       if (child.exitCode !== null || child.signalCode !== null) resolveExit();
       else child.once('close', resolveExit);

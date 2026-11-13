@@ -21,9 +21,10 @@
         <option value="clinical-training">Synthetic training</option>
       </select>
       <label for="prompt">Synthetic or public prompt</label>
-      <textarea id="prompt" required maxlength="8000" rows="8"></textarea>
+      <textarea id="prompt" required maxlength="8000" rows="8" autocomplete="off" spellcheck="false"></textarea>
       <label><input id="ack" type="checkbox" required> I confirm this contains no real or potentially real patient or participant data.</label>
       <button id="submit" type="submit">Run</button>
+      <button id="cancel" type="button" hidden>Cancel</button>
     </form>
     <p id="status" role="status"></p>
     <pre id="result"></pre>

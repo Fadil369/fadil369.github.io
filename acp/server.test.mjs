@@ -198,3 +198,26 @@ test('configuration reports clear errors and enforces an isolated agent environm
   assert.throws(() => assertIsolatedAgentEnv({ ...good, ACP_AGENT_HOME: '/home/svc' }), /differ/);
   assert.throws(() => assertIsolatedAgentEnv({ ...good, COPILOT_GITHUB_TOKEN: undefined }), /COPILOT_GITHUB_TOKEN/);
 });
+
+test('a client that disconnects cancels the agent, frees the slot, and is not logged as a failure', async t => {
+  let calls = 0, sawAbort = false;
+  const { api, config, session, logs, prompt } = await harness(t, {
+    promptAgent: ({ signal }) => {
+      if (++calls > 1) return Promise.resolve({ text: 'ok', stopReason: 'end_turn' });
+      return new Promise((_, reject) => signal.addEventListener('abort', () => { sawAbort = true; reject(new Error('Request cancelled.')); }));
+    },
+  });
+  const controller = new AbortController();
+  const pending = api('/api/prompt', {
+    method: 'POST', signal: controller.signal,
+    headers: { Cookie: session, Origin: config.origin, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt: 'fictional', plugin: 'clinical-training', synthetic: true }),
+  });
+  pending.catch(() => {});
+  while (calls === 0) await new Promise(resolve => setTimeout(resolve, 10));
+  controller.abort();
+  while (!sawAbort) await new Promise(resolve => setTimeout(resolve, 10));
+  assert.equal((await prompt()).status, 200);
+  assert.ok(logs.some(([event]) => event === 'prompt cancelled by client'));
+  assert.ok(!logs.some(([event]) => event === 'request failed'));
+});

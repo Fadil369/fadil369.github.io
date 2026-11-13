@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, readdir, rm } from 'node:fs/promises';
+import { mkdtemp, readdir, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { isAgentNotice, runPrompt } from './client.mjs';
@@ -68,5 +68,27 @@ test('the agent is launched isolated: one plugin, no custom instructions, no aut
   } finally {
     delete process.env.ACP_TEST_CANARY;
     await rm(home, { recursive: true, force: true });
+  }
+});
+
+const alive = pid => { try { process.kill(pid, 0); return true; } catch { return false; } };
+const until = async (check, ms = 5000) => { for (const end = Date.now() + ms; Date.now() < end;) { const value = await check(); if (value) return value; await new Promise(resolve => setTimeout(resolve, 25)); } return false; };
+
+test('cancelling kills the whole agent process tree, not just the agent', { skip: process.platform === 'win32' }, async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'acp-tree-'));
+  const pidFile = join(dir, 'grandchild.pid');
+  const controller = new AbortController();
+  const run = runPrompt({ prompt: `fictional GRANDCHILD ${pidFile}`, plugin: 'clinical-training', ...mock, signal: controller.signal });
+  run.catch(() => {});
+  let pid;
+  try {
+    pid = Number(await until(() => readFile(pidFile, 'utf8').catch(() => '')));
+    assert.ok(pid > 0 && alive(pid), 'grandchild should be running before cancel');
+    controller.abort();
+    await assert.rejects(run, /cancelled/);
+    assert.ok(await until(() => !alive(pid)), 'grandchild must not outlive a cancelled request');
+  } finally {
+    if (pid && alive(pid)) process.kill(pid, 'SIGKILL');
+    await rm(dir, { recursive: true, force: true });
   }
 });

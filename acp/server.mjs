@@ -176,6 +176,7 @@ export function createAcpServer(config, { request = fetch, promptAgent = runProm
       if (req.method === 'GET' && file) return send(res, 200, await readFile(join(webDir, file[0])), file[1]);
       return send(res, 404, '{"error":"Not found."}');
     } catch (error) {
+      if (error?.message === 'Request cancelled.') return log('prompt cancelled by client');
       log('request failed', error);
       if (!res.headersSent) send(res, 500, '{"error":"Request failed. Check service logs."}');
       else res.end();
