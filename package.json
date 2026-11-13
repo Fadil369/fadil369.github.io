@@ -25,7 +25,8 @@
     "acp:cli": "node acp/cli.mjs",
     "acp:desktop": "electron acp/desktop/main.mjs",
     "acp:server": "node acp/server.mjs",
-    "test:acp": "node --test acp/*.test.mjs"
+    "test:acp": "node --test acp/*.test.mjs",
+    "test:acp:e2e": "node acp/e2e.mjs"
   },
   "dependencies": {
     "@agentclientprotocol/sdk": "^2.6.0",

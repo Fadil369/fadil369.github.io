@@ -66,8 +66,8 @@ export function createAcpServer(config, { request = fetch, promptAgent = runProm
     'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=()',
   };
   const send = (res, status, body, type = 'application/json; charset=utf-8', extra = {}) => {
-    res.writeHead(status, { ...headers, 'Content-Type': type, ...extra });
-    res.end(body);
+    res.writeHead(status, { ...headers, 'Content-Type': type, 'Content-Length': Buffer.byteLength(body), ...extra });
+    res.end(res.req?.method === 'HEAD' ? undefined : body);
   };
   const redirect = (res, url, cookies = []) => send(res, 303, '', 'text/plain', { Location: url, 'Set-Cookie': cookies });
   const parseCookies = req => Object.fromEntries((req.headers.cookie || '').split(';').map(x => x.trim().split('=')).filter(x => x.length === 2));
@@ -96,7 +96,8 @@ export function createAcpServer(config, { request = fetch, promptAgent = runProm
       const url = new URL(req.url, config.origin);
       const cookies = parseCookies(req);
       const session = sessions.get(cookies['__Host-bpr-acp']);
-      if (req.method === 'GET' && url.pathname === '/healthz') return send(res, 200, '{"ok":true}');
+      const readOnly = req.method === 'GET' || req.method === 'HEAD'; // HEAD only for health and static files below
+      if (readOnly && url.pathname === '/healthz') return send(res, 200, '{"ok":true}');
       if (req.method === 'GET' && url.pathname === '/login') {
         if (oauth.size >= 1000) return send(res, 503, '{"error":"Too many login attempts."}');
         const state = token(), verifier = token();
@@ -129,6 +130,7 @@ export function createAcpServer(config, { request = fetch, promptAgent = runProm
         if (sessions.size >= 1000) return send(res, 503, '{"error":"Too many sessions."}');
         const id = token();
         sessions.set(id, { expires: Date.now() + 1_800_000, user: user.id });
+        log('signed in', `user ${user.id}`);
         return redirect(res, '/', [cookie('__Host-bpr-oauth', '', 0), cookie('__Host-bpr-acp', id, 1800)]);
       }
       if (req.method === 'GET' && url.pathname === '/api/session') return send(res, 200, JSON.stringify({ authenticated: Boolean(session) }));
@@ -156,6 +158,7 @@ export function createAcpServer(config, { request = fetch, promptAgent = runProm
             return send(res, 429, '{"error":"Hourly prompt limit reached. Try again later."}', undefined, { 'Retry-After': String(Math.ceil((recent[0] + HOUR - now) / 1000)) });
           }
           usage.set(session.user, [...recent, now]);
+          const started = Date.now();
           const abort = new AbortController();
           active = abort;
           res.on('close', () => { if (!res.writableEnded) abort.abort(); });
@@ -166,6 +169,8 @@ export function createAcpServer(config, { request = fetch, promptAgent = runProm
             log('empty agent response', output?.stopReason);
             return send(res, 502, '{"error":"The agent returned no draft. Check service logs."}');
           }
+          // Audit trail: who, which plugin, how big, how long. Never the prompt or the draft.
+          log('prompt ok', `user ${session.user} plugin ${input.plugin} chars ${text.length} stop ${output.stopReason} ${Date.now() - started}ms`);
           return send(res, 200, JSON.stringify({ text, stopReason: String(output.stopReason) }));
         } finally {
           active = null;
@@ -173,7 +178,7 @@ export function createAcpServer(config, { request = fetch, promptAgent = runProm
         }
       }
       const file = files.get(url.pathname);
-      if (req.method === 'GET' && file) return send(res, 200, await readFile(join(webDir, file[0])), file[1]);
+      if (readOnly && file) return send(res, 200, await readFile(join(webDir, file[0])), file[1]);
       return send(res, 404, '{"error":"Not found."}');
     } catch (error) {
       if (error?.message === 'Request cancelled.') return log('prompt cancelled by client');

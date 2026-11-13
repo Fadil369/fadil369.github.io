@@ -35,9 +35,37 @@ sudo journalctl -u bpr-acp -n 50 --no-pager       # no secrets, prompts or reque
 Then sign in at `https://acp.brainsait.de/` with an allow-listed account and run a synthetic prompt.
 Startup refuses to run (and says why) if `ACP_AGENT_HOME`, `COPILOT_GITHUB_TOKEN` or the OAuth settings are missing.
 
+### Smoke test
+
+`deploy/acp/smoke.sh` is a read-only black-box check (availability, one copy of each security header on success and error responses, OAuth parameters and cookie flags, access control, certificate lifetime). It never signs in or runs a prompt. Pass the env file to also validate the Copilot token and see its expiry:
+
+```sh
+deploy/acp/smoke.sh https://acp.brainsait.de ~/.secrets/bpr-acp.env
+```
+
+The exit status is the number of failed checks. `npm run test:acp:e2e` is the browser counterpart for the web UI (sign-in, CSP, Copy, sign-out) with GitHub and the agent mocked; set `ACP_E2E_CHROME` to an installed Chrome if Playwright's browser is not installed.
+
+## Operations
+
+**Logs.** `journalctl -u bpr-acp`. One line per event, never prompts, drafts, tokens or stack traces: `signed in: user <id>`, `prompt ok: user <id> plugin <name> chars <n> stop <reason> <ms>ms`, `denied sign-in`, `rate limited`, `empty agent response`, `request failed`. Apache logs method, path (no query string) and status only.
+
+**Token rotation.** `COPILOT_GITHUB_TOKEN` is a fine-grained PAT with only "Copilot Requests", and it expires (30 days by default). Check the date with the smoke test. To rotate: create the new token, replace the value in your local env file, copy it to the server and restart:
+
+```sh
+ssh brainsait 'sudo install -m 600 -o root -g root /dev/stdin /etc/bpr-acp.env' < ~/.secrets/bpr-acp.env
+ssh brainsait 'sudo systemctl restart bpr-acp'
+deploy/acp/smoke.sh https://acp.brainsait.de ~/.secrets/bpr-acp.env
+```
+
+Then delete the old token in GitHub. In-memory sessions are dropped by the restart; users simply sign in again.
+
+**Certificate.** The service uses the host's wildcard certificate (`/etc/letsencrypt/live/wildcard-brainsait.de`). It renews through `certbot renew` with DNS-01 manual hooks in `/etc/letsencrypt/brainsait-hooks/` and the Apache reload hook, so renewal depends on those hooks working. The smoke test fails when fewer than 14 days remain; run `sudo certbot renew --dry-run --cert-name wildcard-brainsait.de` well before the first renewal window to confirm.
+
+**Sandbox.** The unit runs as a throwaway user with no capabilities, a private `/proc` and user namespace, a system-call allow list, and a read-only filesystem. After changing the unit, test it with a real prompt, not just `systemctl start`: the agent is the part most likely to need something the sandbox removed.
+
 ## Update and roll back
 ```sh
-cd /opt/bpr-acp && sudo git pull --ff-only && sudo npm ci --omit=dev --ignore-scripts && sudo systemctl restart bpr-acp
+cd /opt/bpr-acp && sudo git -c safe.directory=/opt/bpr-acp pull --ff-only && sudo npm ci --omit=dev --ignore-scripts && sudo systemctl restart bpr-acp   # re-install deploy/acp/*.service and *.conf if they changed, then daemon-reload / reload apache2
 sudo systemctl disable --now bpr-acp && sudo a2dissite acp.brainsait.de && sudo systemctl reload apache2   # take it offline
 ```
 
