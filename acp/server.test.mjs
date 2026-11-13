@@ -221,3 +221,32 @@ test('a client that disconnects cancels the agent, frees the slot, and is not lo
   assert.ok(logs.some(([event]) => event === 'prompt cancelled by client'));
   assert.ok(!logs.some(([event]) => event === 'request failed'));
 });
+
+test('HEAD works for health and the web UI without a body; it never reaches side-effecting routes', async t => {
+  const { api } = await harness(t);
+  for (const path of ['/healthz', '/', '/app.js', '/style.css']) {
+    const head = await api(path, { method: 'HEAD' });
+    const get = await api(path);
+    assert.equal(head.status, 200, path);
+    assert.equal(await head.text(), '', path);
+    assert.equal(head.headers.get('content-length'), String(Buffer.byteLength(await get.text())), `${path} content-length matches GET`);
+    assert.equal(head.headers.get('content-type'), get.headers.get('content-type'), path);
+  }
+  assert.equal((await api('/login', { method: 'HEAD' })).status, 404);
+  assert.equal((await api('/api/session', { method: 'HEAD' })).status, 404);
+});
+
+test('sign-ins and successful prompts leave an audit line that never contains prompt or draft text', async t => {
+  const { prompt, logs } = await harness(t, { promptAgent: async () => ({ text: 'SECRET-DRAFT', stopReason: 'end_turn' }) });
+  assert.equal((await prompt({ prompt: 'SECRET-PROMPT', plugin: 'clinical-training', synthetic: true })).status, 200);
+  const lines = logs.map(([event, detail]) => `${event}: ${detail ?? ''}`).join('\n');
+  assert.match(lines, /signed in: user 123/);
+  assert.match(lines, /prompt ok: user 123 plugin clinical-training chars 12 stop end_turn \d+ms/);
+  assert.doesNotMatch(lines, /SECRET/);
+});
+
+test('failed prompts are not audited as successes', async t => {
+  const { prompt, logs } = await harness(t, { promptAgent: async () => ({ text: '', stopReason: 'refusal' }) });
+  assert.equal((await prompt()).status, 502);
+  assert.equal(logs.some(([event]) => event === 'prompt ok'), false);
+});

@@ -8,7 +8,7 @@ import vm from 'node:vm';
 const element = id => {
   const listeners = {};
   return {
-    id, hidden: false, disabled: false, textContent: '', value: '', checked: true,
+    id, hidden: false, disabled: false, textContent: '', className: '', value: '', checked: true,
     addEventListener: (type, fn) => (listeners[type] ||= []).push(fn),
     fire: async (type, event = { preventDefault() {} }) => { for (const fn of listeners[type] || []) await fn(event); },
   };
@@ -17,12 +17,13 @@ const settle = () => new Promise(resolve => setTimeout(resolve, 20));
 const json = (status, body) => ({ ok: status < 400, status, json: async () => body });
 const abortError = () => Object.assign(new Error('The operation was aborted.'), { name: 'AbortError' });
 
-async function boot(fetchImpl) {
-  const els = Object.fromEntries(['identity', 'form', 'status', 'result', 'submit', 'cancel', 'login', 'logout', 'prompt', 'plugin', 'ack'].map(id => [id, element(id)]));
+async function boot(fetchImpl, navigator = {}) {
+  const els = Object.fromEntries(['identity', 'form', 'status', 'result', 'submit', 'cancel', 'login', 'logout', 'prompt', 'plugin', 'ack', 'copy', 'count', 'hint'].map(id => [id, element(id)]));
   els.cancel.hidden = true;
+  els.copy.hidden = true;
   els.prompt.value = 'fictional';
   els.plugin.value = 'clinical-training';
-  vm.runInNewContext(await readFile(join(import.meta.dirname, 'web/app.js'), 'utf8'), { document: { getElementById: id => els[id] }, fetch: fetchImpl, AbortController, Error, JSON, Promise });
+  vm.runInNewContext(await readFile(join(import.meta.dirname, 'web/app.js'), 'utf8'), { document: { getElementById: id => els[id] }, fetch: fetchImpl, navigator, AbortController, Error, JSON, Promise });
   await settle();
   return els;
 }
@@ -80,4 +81,75 @@ test('server and proxy errors are reported readably, including non-JSON bodies',
   assert.equal(els.status.textContent, 'Request failed: The service is busy. Try again later.');
   await els.form.fire('submit');
   assert.equal(els.status.textContent, 'Request failed: Request failed (HTTP 502).');
+});
+
+test('the character counter tracks the prompt and the plugin hint follows the selection', async () => {
+  const els = await boot(async () => json(200, { authenticated: true }));
+  assert.equal(els.count.textContent, '9 / 8000');
+  assert.match(els.hint.textContent, /Fictional communication/);
+  els.prompt.value = 'x'.repeat(8001); // beyond the limit, e.g. set programmatically
+  await els.prompt.fire('input');
+  assert.equal(els.count.textContent, '8001 / 8000');
+  assert.equal(els.count.className, 'hint over');
+  assert.equal(els.submit.disabled, true);
+  els.prompt.value = 'short';
+  await els.prompt.fire('input');
+  assert.equal(els.submit.disabled, false);
+  els.plugin.value = 'healthcare-fhir';
+  await els.plugin.fire('change');
+  assert.match(els.hint.textContent, /FHIR R4/);
+});
+
+test('Copy appears with a draft, copies exactly the draft, and degrades without clipboard access', async () => {
+  const copied = [];
+  const ok = { clipboard: { writeText: async text => { copied.push(text); } } };
+  const els = await boot(async url => url === '/api/session' ? json(200, { authenticated: true }) : json(200, { text: 'the draft', stopReason: 'end_turn' }), ok);
+  assert.equal(els.copy.hidden, true);
+  await els.form.fire('submit');
+  assert.equal(els.copy.hidden, false);
+  await els.copy.fire('click');
+  assert.deepEqual(copied, ['the draft']);
+  assert.equal(els.status.textContent, 'Draft copied.');
+
+  const none = await boot(async url => url === '/api/session' ? json(200, { authenticated: true }) : json(200, { text: 'd', stopReason: 'end_turn' }), {});
+  await none.form.fire('submit');
+  await none.copy.fire('click');
+  assert.match(none.status.textContent, /Copy is not available/);
+});
+
+test('a failed or cancelled run hides Copy and leaves no stale draft', async () => {
+  let fail = false;
+  const els = await boot(async url => url === '/api/session' ? json(200, { authenticated: true }) : fail ? json(500, { error: 'boom' }) : json(200, { text: 'draft', stopReason: 'end_turn' }));
+  await els.form.fire('submit');
+  assert.equal(els.copy.hidden, false);
+  fail = true;
+  await els.form.fire('submit');
+  assert.equal(els.copy.hidden, true);
+  assert.equal(els.result.textContent, '');
+  assert.match(els.status.textContent, /boom/);
+});
+
+test('Sign out posts with fetch (so the real Origin is sent), clears the draft and returns to sign-in', async () => {
+  let authenticated = true;
+  const calls = [];
+  const els = await boot(async (url, options = {}) => {
+    calls.push([options.method || 'GET', url]);
+    if (url === '/logout') { authenticated = false; return json(200, {}); }
+    return url === '/api/session' ? json(200, { authenticated }) : json(200, { text: 'draft', stopReason: 'end_turn' });
+  });
+  await els.form.fire('submit');
+  assert.equal(els.result.textContent, 'draft');
+  await els.logout.fire('submit');
+  assert.ok(calls.some(([method, url]) => method === 'POST' && url === '/logout'));
+  assert.equal(els.result.textContent, '');
+  assert.equal(els.copy.hidden, true);
+  assert.equal(els.form.hidden, true);
+  assert.equal(els.login.hidden, false);
+});
+
+test('a failed sign-out request says so instead of pretending to succeed', async () => {
+  const els = await boot(async url => { if (url === '/logout') throw new Error('network'); return json(200, { authenticated: true }); });
+  await els.logout.fire('submit');
+  assert.match(els.status.textContent, /Sign-out failed/);
+  assert.equal(els.form.hidden, false);
 });

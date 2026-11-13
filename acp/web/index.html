@@ -22,13 +22,16 @@
         <option value="nphies-readiness">NPHIES readiness</option>
         <option value="clinical-training">Synthetic training</option>
       </select>
+      <p id="hint" class="hint"></p>
       <label for="prompt">Synthetic or public prompt</label>
-      <textarea id="prompt" required maxlength="8000" rows="8" autocomplete="off" spellcheck="false"></textarea>
+      <textarea id="prompt" required maxlength="8000" rows="8" autocomplete="off" spellcheck="false" aria-describedby="count"></textarea>
+      <p id="count" class="hint">0 / 8000</p>
       <label><input id="ack" type="checkbox" required> I confirm this contains no real or potentially real patient or participant data.</label>
       <button id="submit" type="submit">Run</button>
       <button id="cancel" type="button" hidden>Cancel</button>
     </form>
     <p id="status" role="status"></p>
+    <button id="copy" type="button" hidden>Copy draft</button>
     <pre id="result"></pre>
   </main>
   <script src="/app.js"></script>
