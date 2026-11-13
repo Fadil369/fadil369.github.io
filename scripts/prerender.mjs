@@ -161,6 +161,8 @@ ${live.map(([p, , pr]) => {
     return `  <url><loc>${ORIGIN}${p}</loc><lastmod>${today}</lastmod><priority>${pr.toFixed(1)}</priority>
     <xhtml:link rel="alternate" hreflang="en" href="${ORIGIN}${en}"/><xhtml:link rel="alternate" hreflang="ar" href="${ORIGIN}${ar}"/><xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}${en}"/></url>`;
   }).join('\n')}
+  <url><loc>${ORIGIN}/stripe-health/</loc><lastmod>${today}</lastmod><priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="${ORIGIN}/stripe-health/"/><xhtml:link rel="alternate" hreflang="ar" href="${ORIGIN}/ar/stripe-health/"/><xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}/stripe-health/"/></url>
   <url><loc>${ORIGIN}/trust/</loc><lastmod>${today}</lastmod><priority>0.6</priority></url>
 </urlset>
 `);
