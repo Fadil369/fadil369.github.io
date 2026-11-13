@@ -21,7 +21,7 @@ const TIER_ORDER: ModuleStatus[] = ['live', 'awaiting', 'planned'];
 // members-only tools stay on the registry, behind its sign-in.
 const MODULES = [
   { icon: LayoutGrid, to: '/bpr/workspace', status: 'live' as ModuleStatus, en: 'Provider workspace', ar: 'مساحة عمل مقدم الرعاية', tag: 'OpenEMR · Copilot · Arabic voice',
-    enText: 'Own EMR, a clinical copilot with Arabic dictation, FHIR, specialty tools and research — each feature marked live, ongoing or planned.', arText: 'سجل طبي خاص ومساعد سريري بإملاء عربي وFHIR وأدوات التخصص والبحث — مع بيان ما يعمل وما هو جارٍ وما هو قادم لكل ميزة.' },
+    enText: 'A capability-by-capability workspace overview. Public FHIR and research tools are live; private EMR provisioning and clinical Copilot are not yet verified.', arText: 'عرض لحالة كل ميزة في مساحة العمل. تعمل أدوات FHIR والبحث العامة؛ ولم يتم التحقق بعد من تجهيز سجل طبي خاص أو مساعد سريري.' },
   { icon: FileSearch, to: '/bpr/nphies', status: 'live' as ModuleStatus, en: 'NPHIES desk', ar: 'مكتب نفيس', tag: 'Rejection codes · Pre-check · Readiness',
     enText: 'Every official rejection code in plain Arabic and English, a pre-check that runs on your device, and a readiness plan by facility type.', arText: 'كل رموز الرفض الرسمية بعربية وإنجليزية واضحتين، وفحص أولي يعمل على جهازك، وخطة جاهزية حسب نوع المنشأة.' },
   { icon: KeyRound, to: '/bpr/verify', status: 'live' as ModuleStatus, en: 'Signed credentials', ar: 'شهادات موقّعة', tag: 'W3C VC 2.0 · Ed25519',
@@ -40,8 +40,8 @@ const MODULES = [
     enText: 'Arabic-first wizard, ORCID sign-in and reviewed documents that become verified qualifications.', arText: 'معالج عربي أولاً وتسجيل دخول عبر ORCID ومستندات تُراجع لتصبح مؤهلات موثّقة.' },
   { icon: Calculator, href: `${REGISTRY}/tools.php`, status: 'live' as ModuleStatus, en: 'Specialty toolkit', ar: 'أدوات التخصص', tag: 'Members',
     enText: 'Checklists, templates and clinical calculators matched to the specialty. Members only, on the registry.', arText: 'قوائم تحقق وقوالب وحاسبات سريرية حسب التخصص. للأعضاء فقط، على السجل.' },
-  { icon: Server, to: '/bpr/workspace', status: 'live' as ModuleStatus, en: 'Private clinical workspace', ar: 'مساحة سريرية خاصة', tag: 'Members · OpenEMR',
-    enText: 'A provisioned OpenEMR workspace per provider, with a separate subdomain, database and TLS. Access is for members; a public demo with synthetic patients runs at demo.emr.brainsait.de.', arText: 'مساحة OpenEMR مخصصة لكل مقدم رعاية بنطاق فرعي وقاعدة بيانات وشهادة TLS مستقلة. الوصول للأعضاء، وتتوفر نسخة تجريبية عامة ببيانات مصطنعة على demo.emr.brainsait.de.' },
+  { icon: Server, to: '/bpr/workspace', status: 'planned' as ModuleStatus, en: 'Private clinical workspace', ar: 'مساحة سريرية خاصة', tag: 'Provisioning not verified',
+    enText: 'Member-specific OpenEMR provisioning is not verified. A public demo with synthetic data is available; it is not a private member workspace.', arText: 'لم يتم التحقق من تجهيز OpenEMR لكل عضو. يتوفر عرض عام ببيانات مصطنعة، لكنه ليس مساحة خاصة بالأعضاء.' },
   { icon: Network, to: null as unknown as string, status: 'awaiting' as ModuleStatus, en: 'NPHIES integration', ar: 'التكامل مع نفيس', tag: 'Eligibility · claims · pre-authorisation',
     enText: 'NPHIES eligibility, pre-authorisation and claims from the workspace — integration is ongoing.', arText: 'الأهلية والموافقات المسبقة والمطالبات من مساحة العمل من خلال تكامل نفيس — والتكامل جارٍ.' },
   { icon: BookOpenCheck, to: null as unknown as string, status: 'awaiting' as ModuleStatus, en: 'SCFHS credential check', ar: 'التحقق من اعتماد الهيئة', tag: 'Licence · qualifications',
@@ -92,6 +92,17 @@ export default function Overview() {
       </>}
     >
       <WorkspaceBand />
+
+      <section className="bpr-section bpr-journey-section" aria-labelledby="bpr-journeys">
+        <div className="profile-section-label">00 · {ar ? 'ابدأ بما تريد إنجازه' : 'Start with your outcome'}</div>
+        <h2 className="bpr-h2" id="bpr-journeys">{ar ? 'ما الذي تريد فعله؟' : 'What would you like to do?'}</h2>
+        <div className="bpr-journey-grid">
+          <Link className="bpr-journey" to="/bpr/verify"><span>{ar ? 'للمستشفيات والمرضى' : 'For hospitals & patients'}</span><strong>{ar ? 'تحقق من اعتماد مقدم رعاية' : 'Check a provider credential'}<ArrowRight size={15} /></strong><small>{ar ? 'افحص التوقيع والصلاحية والحالة كلًّا على حدة.' : 'Check signature, validity and current status separately.'}</small></Link>
+          <Link className="bpr-journey" to="/bpr/join"><span>{ar ? 'للممارسين الصحيين' : 'For healthcare professionals'}</span><strong>{ar ? 'ابدأ ملفك المهني' : 'Start your provider profile'}<ArrowRight size={15} /></strong><small>{ar ? 'تعرّف على مسار ORCID والمراجعة والاعتماد.' : 'See the ORCID, review and credential steps.'}</small></Link>
+          <Link className="bpr-journey" to="/bpr/providers"><span>{ar ? 'لمن يبحث عن مقدم رعاية' : 'For people finding care'}</span><strong>{ar ? 'تصفح دليل مقدمي الرعاية' : 'Browse the provider directory'}<ArrowRight size={15} /></strong><small>{ar ? 'استعرض الهوية وكل بُعد من أبعاد الثقة.' : 'Explore identities and each trust dimension.'}</small></Link>
+          <Link className="bpr-journey" to="/bpr/developers"><span>{ar ? 'للفرق التقنية' : 'For technical teams'}</span><strong>{ar ? 'استكشف الواجهات والتكامل' : 'Explore APIs and integration'}<ArrowRight size={15} /></strong><small>{ar ? 'راجع موارد FHIR والبيانات العامة.' : 'Review FHIR resources and public data.'}</small></Link>
+        </div>
+      </section>
 
       <section className="bpr-live-strip" aria-label={ar ? 'مؤشرات مباشرة' : 'Live indicators'}>
         <div><span>{ar ? 'مقدمو رعاية مدرجون' : 'Listed providers'}</span><strong>{list.state === 'ready' ? items.length : '…'}</strong>{list.state === 'ready' && <SourceBadge source={list.source} />}</div>

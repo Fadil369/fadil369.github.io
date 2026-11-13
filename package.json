@@ -18,6 +18,7 @@
     "sync:shopify": "python3 scripts/sync-catalog-from-shopify.py --write",
     "sync:shopify:dry": "python3 scripts/sync-catalog-from-shopify.py",
     "landing": "node scripts/render-landing.mjs",
+    "verify:bpr-ux": "node scripts/verify-bpr-ux.mjs",
     "verify:published": "node scripts/verify-published.mjs",
     "verify:experience": "node scripts/verify-experience.mjs"
   },

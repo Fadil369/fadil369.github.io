@@ -50,7 +50,7 @@ export default function Join() {
           <Link className="bpr-module members" to="/bpr/workspace">
             <div className="bpr-module-top"><Server size={24} /><small>OpenEMR · {ar ? 'خاص بالأعضاء' : 'Private to members'}</small></div>
             <h3>{ar ? 'مساحة سريرية خاصة' : 'Private clinical workspace'}</h3>
-            <p>{ar ? 'نسخة OpenEMR معزولة لكل مقدم رعاية بنطاق فرعي وقاعدة بيانات خاصة، تُجهَّز بعد الانضمام.' : 'An isolated OpenEMR instance per provider, with its own subdomain and database, provisioned after joining.'}</p>
+            <p>{ar ? 'تجهيز مساحة OpenEMR خاصة لكل عضو لم يتم التحقق منه بعد. استكشف الحالة الحالية والعرض العام ببيانات مصطنعة.' : 'Private member OpenEMR provisioning is not verified yet. Review the current status and synthetic-data public demo.'}</p>
             <strong>{ar ? 'استكشف المساحة' : 'Explore the workspace'}<ArrowRight size={14} /></strong>
           </Link>
         </div>

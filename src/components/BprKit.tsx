@@ -78,13 +78,13 @@ export function fmtDate(iso: string | null | undefined, ar: boolean, time = fals
 }
 
 /** Says where the numbers on screen came from. */
-export function SourceBadge({ source }: { source: Source }) {
+export function SourceBadge({ source, label }: { source: Source; label?: string }) {
   const { ar } = useI18n();
   const m = useManifest();
   return source === 'live'
-    ? <span className="bpr-source live"><Radio size={12} />{ar ? 'مباشر من السجل' : 'Live from registry'}</span>
+    ? <span className="bpr-source live">{label && <span>{label}: </span>}<Radio size={12} />{ar ? 'مباشر من السجل' : 'Live from registry'}</span>
     : <span className="bpr-source snap" title={ar ? 'تعذّر الوصول إلى السجل؛ تُعرض لقطة البناء' : 'The registry could not be reached, so the build snapshot is shown'}>
-      <Database size={12} />{ar ? 'لقطة' : 'Snapshot'}{m ? ` · ${fmtDate(m.snapshotAt, ar, true)}` : ''}</span>;
+      {label && <span>{label}: </span>}<Database size={12} />{ar ? 'لقطة' : 'Snapshot'}{m ? ` · ${fmtDate(m.snapshotAt, ar, true)}` : ''}</span>;
 }
 
 const CHECK_ICON = { ok: Check, fail: X, pending: CircleDashed, unavailable: AlertTriangle };
@@ -196,14 +196,14 @@ export function ScfhsPending({ compact = false }: { compact?: boolean }) {
 /** Compact pointer to the provider workspace; live and planned capabilities stay visibly separate. */
 export function WorkspaceBand() {
   const { ar } = useI18n();
-  const live = ar ? ['مساحة OpenEMR خاصة', 'مساعد سريري بـ14 مهارة', 'إملاء صوتي عربي', 'FHIR R4', 'الحاسبات والنماذج', 'صفحة البحث'] : ['Private OpenEMR workspace', '14-skill Copilot', 'Arabic voice-to-text', 'FHIR R4', 'Calculators & forms', 'Research page'];
-  const ongoing = ar ? ['التحقق من اعتماد الهيئة', 'نفيس'] : ['SCFHS credential check', 'NPHIES'];
-  const planned = ar ? ['مراجعة الأقران', 'فريقك', 'الإرشاد والتدريب', 'مطابقة المناوبات'] : ['Peer review', 'Your team', 'Mentoring & training', 'Shift matching'];
+  const live = ar ? ['واجهة FHIR R4 العامة', 'صفحة البحث', 'مكتب نفيس المرجعي', 'الحاسبات والنماذج'] : ['Public FHIR R4 API', 'Research page', 'NPHIES reference desk', 'Calculators & forms'];
+  const ongoing = ar ? ['التحقق من اعتماد الهيئة', 'معاملات نفيس'] : ['SCFHS credential check', 'NPHIES transactions'];
+  const planned = ar ? ['تجهيز OpenEMR الخاص', 'المساعد السريري', 'الإملاء الصوتي العربي', 'مراجعة الأقران', 'فريقك'] : ['Private OpenEMR provisioning', 'Clinical Copilot', 'Arabic voice capture', 'Peer review', 'Your team'];
   return (
     <section className="ws-band" aria-label={ar ? 'مساحة عمل مقدم الرعاية' : 'Provider workspace'}>
       <LayoutGrid size={26} aria-hidden="true" />
       <div>
-        <h2>{ar ? 'لكل مقدم رعاية مساحة عمل ذكية متكاملة' : 'Every provider gets a complete, intelligent workspace'}</h2>
+        <h2>{ar ? 'استكشف مساحة العمل وحالة كل ميزة' : 'Explore workspace capabilities and their status'}</h2>
         <div className="ws-band-row"><span className="ws-status live">{ar ? 'يعمل اليوم' : 'Live today'}</span>{live.map((x) => <em key={x}>{x}</em>)}</div>
         <div className="ws-band-row"><span className="ws-status awaiting">{ar ? 'تكامل جارٍ' : 'Ongoing integration'}</span>{ongoing.map((x) => <em key={x} className="planned">{x}</em>)}</div>
         <div className="ws-band-row"><span className="ws-status planned">{ar ? 'قادمًا' : 'Coming next'}</span>{planned.map((x) => <em key={x} className="planned">{x}</em>)}</div>

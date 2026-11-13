@@ -95,7 +95,7 @@ const GROUPS: { en: string; ar: string; caps: Cap[] }[] = [
 
 // What every provider gets — one row per capability, in the order the owner listed them.
 const CHECKLIST: { status: Status; en: string; ar: string; enText: string; arText: string; to?: string; href?: string }[] = [
-  { status: 'live', en: 'A complete, intelligent workspace', ar: 'مساحة عمل ذكية متكاملة', enText: 'One BPR identity opens everything below.', arText: 'هوية BPR واحدة تفتح كل ما يلي.', to: '/bpr/p/SA-PHY-000003' },
+  { status: 'live', en: 'BPR provider identity', ar: 'هوية مقدم الرعاية في BPR', enText: 'The provider identity is distinct from workspace provisioning; each capability below has its own status.', arText: 'هوية مقدم الرعاية منفصلة عن تجهيز مساحة العمل؛ ولكل ميزة أدناه حالتها الخاصة.', to: '/bpr/p/SA-PHY-000003' },
   { status: 'planned', en: 'Member OpenEMR provisioning', ar: 'تجهيز OpenEMR للأعضاء', enText: 'A synthetic-data public demo is linked; member provisioning and clinic write-back need verification.', arText: 'يرتبط عرض عام ببيانات مصطنعة؛ يلزم التحقق من تجهيز الأعضاء وحفظ بيانات العيادة.' },
   { status: 'planned', en: 'Clinical Copilot', ar: 'المساعد السريري', enText: 'No clinical model inference is enabled in the public reception pilot.', arText: 'لم يتم تفعيل استدلال نموذج سريري في تجربة الاستقبال العامة.' },
   { status: 'planned', en: 'Reception voice agent', ar: 'وكيل الاستقبال الصوتي', enText: 'Voice processing is disabled until provider, hosting and retention are verified.', arText: 'معالجة الصوت معطّلة حتى التحقق من المزود والاستضافة والاحتفاظ.' },
@@ -152,7 +152,7 @@ export default function Workspace() {
         ? 'استكشف عرض OpenEMR ببيانات مصطنعة، وواجهة FHIR العامة، ومراجع نفيس. يميّز كل قسم بين ما يعمل في هذا الموقع وما يحتاج إلى تكامل موثّق.'
         : 'Explore the synthetic-data OpenEMR demo, public FHIR API and NPHIES references. Each section distinguishes what works on this site from integrations that still need verification.'}
       actions={<>
-        <Link className="profile-button primary" to="/bpr/join">{ar ? 'انضم واحصل على مساحتك' : 'Join and get your workspace'}<ArrowRight size={16} /></Link>
+        <Link className="profile-button primary" to="/bpr/join">{ar ? 'انضم لبدء التسجيل' : 'Join to start onboarding'}<ArrowRight size={16} /></Link>
         <a className="profile-button secondary" href="https://demo.emr.brainsait.de/" target="_blank" rel="noreferrer">{ar ? 'جرّب السجل التجريبي (بيانات مصطنعة)' : 'Try the demo EMR (synthetic data)'}<ArrowUpRight size={16} /></a>
         <a className="profile-button secondary" href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">{ar ? 'احجز عرضًا توضيحيًا مباشرًا' : 'Book a live workspace demo'}<ArrowRight size={16} /></a>
       </>}>
@@ -161,7 +161,7 @@ export default function Workspace() {
       </div>
 
       <section className="ws-checklist" aria-labelledby="ws-get">
-        <h2 id="ws-get">{ar ? 'ما يحصل عليه كل مقدم رعاية' : 'What every provider gets'}</h2>
+        <h2 id="ws-get">{ar ? 'العروض وحالة الوصول لكل ميزة' : 'Capabilities and access status'}</h2>
         <ol>
           {CHECKLIST.map((c) => {
             const body = <><span className={`ws-status ${c.status}`}>{c.status === 'awaiting' && <Hourglass size={11} />}{STATUS[c.status][ar ? 1 : 0]}</span><strong>{ar ? c.ar : c.en}</strong><small>{ar ? c.arText : c.enText}</small></>;
