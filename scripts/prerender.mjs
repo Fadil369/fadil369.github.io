@@ -178,7 +178,7 @@ Sitemap: ${ORIGIN}/sitemap.xml
 const provLines = providers.map((p) => `- [${p.name_en} (${p.spid})](${ORIGIN}/bpr/p/${p.spid}/): ${p.trust_summary}`).join('\n');
 writeFileSync(join(root, 'llms.txt'), `# Dr. Mohamed El Fadil · BrainSAIT Provider Registry (BPR)
 
-> Personal site of Dr. Mohamed El Fadil (physician, founder of BrainSAIT, Riyadh) and the public face of the BrainSAIT Provider Registry: signed provider identity, on-device credential verification, a transparency log, research footprints and FHIR R4. Bilingual: every page exists in English and in Arabic under /ar/ (e.g. ${ORIGIN}/ar/bpr/verify/), linked with hreflang. Every page is readable without JavaScript.
+> BrainSAIT: Saudi-first, verifiable health trust. The personal site of Dr. Mohamed El Fadil (physician, founder, Riyadh) and the public face of the BrainSAIT Provider Registry (BPR): signed provider identity you can verify on your own device, an independent NPHIES reference desk (not connected to or certified by NPHIES), a transparency log for insurers and auditors, research footprints and FHIR R4 APIs. Bilingual: every page exists in English and in Arabic under /ar/ (e.g. ${ORIGIN}/ar/bpr/verify/), linked with hreflang. Every page is readable without JavaScript.
 
 Facts for agents:
 - Trust states are separate and must not be merged into one "verified" claim: identity (ORCID ownership), signature (BrainSAIT-signed credential), membership (commercial), licence, qualifications, privileges.
