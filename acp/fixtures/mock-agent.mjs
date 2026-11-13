@@ -1,9 +1,12 @@
+import { spawn } from 'node:child_process';
+import { writeFileSync } from 'node:fs';
 import { createInterface } from 'node:readline';
 
 // Scenario is selected by keywords in the prompt:
 //   NOTICES   – emit startup notices as agent_message_chunk text first (as the real Copilot CLI does)
 //   LATE_INFO – a model answer whose later chunk legitimately starts with "Info: "
 //   ECHO      – answer with the argv/env the client launched this process with
+//   GRANDCHILD <file> – start a long-lived grandchild (like an MCP server), write its pid to <file>, then hang
 const send = message => process.stdout.write(`${JSON.stringify({ jsonrpc: '2.0', ...message })}\n`);
 const chunk = text => send({ method: 'session/update', params: { sessionId: 'mock-session', update: { sessionUpdate: 'agent_message_chunk', content: { type: 'text', text } } } });
 let promptId;
@@ -17,6 +20,11 @@ createInterface({ input: process.stdin }).on('line', line => {
   } else if (message.method === 'session/prompt') {
     promptId = message.id;
     prompt = (message.params.prompt || []).map(block => block.text || '').join('');
+    if (prompt.includes('GRANDCHILD ')) {
+      const grandchild = spawn(process.execPath, ['-e', 'setInterval(() => {}, 1000)'], { stdio: 'ignore' });
+      writeFileSync(prompt.split('GRANDCHILD ')[1].trim(), String(grandchild.pid));
+      return;
+    }
     send({ id: 99, method: 'session/request_permission', params: { sessionId: 'mock-session', toolCall: { toolCallId: 'tool', title: 'Run a command' }, options: [{ optionId: 'allow', name: 'Allow', kind: 'allow_once' }] } });
   } else if (message.id === 99) {
     if (message.result?.outcome?.outcome !== 'cancelled') process.exit(1);

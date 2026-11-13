@@ -27,6 +27,10 @@ npm run acp:cli -- clinical-training "Create a fictional communication exercise.
 
 With `ACP_AGENT_HOME` the agent sees only the selected plugin's skills (measured: exactly one) and starts roughly twice as fast. `COPILOT_PLUGIN_DIR_ONLY` is always set, but on its own it does **not** hide user skill directories; only the dedicated home does.
 
+### Cancelling and limits
+
+The desktop app and the website both have a **Cancel** button; a request also stops after 120 seconds. On macOS and Linux the agent leads its own process group, so cancelling, timing out or shutting the service down also kills anything the agent started (MCP servers, hook processes). On Windows only the agent process itself is killed. The website returns to the sign-in link if its 30-minute session expires. The desktop main process, not just the page, enforces the synthetic-data confirmation and a single running request, and the window denies navigation, new windows, webviews and permission prompts.
+
 ## Website service
 
 The static website cannot run an ACP agent. The separate Node service serves its own same-origin interface; BPR links to it when `VITE_ACP_SERVICE_URL` is set at website build time. An unset or invalid URL leaves the integration visibly unconfigured.

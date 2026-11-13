@@ -1,32 +1,26 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'node:path';
-import { runPrompt } from '../client.mjs';
+import { createDesktopHandlers } from './handler.mjs';
 
 let window;
-let running = false;
-let abort;
+const handlers = createDesktopHandlers({
+  isTrusted: event => Boolean(window) && event.sender === window.webContents && event.senderFrame === window.webContents.mainFrame,
+});
 
 app.whenReady().then(() => {
   window = new BrowserWindow({
     width: 900, height: 720,
     webPreferences: { preload: join(import.meta.dirname, 'preload.cjs'), contextIsolation: true, sandbox: true, nodeIntegration: false },
   });
+  // The window only ever shows the bundled local page: no new windows, navigation, webviews or device/permission prompts.
   window.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
   window.webContents.on('will-navigate', event => event.preventDefault());
+  window.webContents.on('will-attach-webview', event => event.preventDefault());
+  window.webContents.session.setPermissionRequestHandler((_contents, _permission, callback) => callback(false));
+  window.webContents.session.setPermissionCheckHandler(() => false);
   window.loadFile(join(import.meta.dirname, 'index.html'));
 });
 
-ipcMain.handle('prompt', async (event, input) => {
-  if (!window || event.sender !== window.webContents || event.senderFrame !== window.webContents.mainFrame) throw new Error('Invalid sender.');
-  if (running) throw new Error('A request is already running.');
-  running = true;
-  abort = new AbortController();
-  try {
-    return await runPrompt({ prompt: input?.prompt, plugin: input?.plugin, signal: abort.signal });
-  } finally {
-    running = false;
-    abort = undefined;
-  }
-});
-
-app.on('window-all-closed', () => { abort?.abort(); app.quit(); });
+ipcMain.handle('prompt', handlers.prompt);
+ipcMain.handle('cancel', handlers.cancel);
+app.on('window-all-closed', () => { handlers.shutdown(); app.quit(); });
