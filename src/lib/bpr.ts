@@ -283,15 +283,19 @@ export function credentialStatus(value: string | undefined): CredentialResult['s
 
 /** Full check of one provider's current credential: signature, validity window, live status. */
 export async function checkCredential(spid: string): Promise<CredentialResult> {
-  let vc: Loaded<{ jwt: string }>;
-  try {
-    vc = await load<{ jwt: string }>(`/vc/${spid}`, `vc/${spid}.json`);
-  } catch (error) {
+  const [vcResult, keysResult] = await Promise.allSettled([
+    load<{ jwt: string }>(`/vc/${spid}`, `vc/${spid}.json`),
+    registryKeys(),
+  ]);
+  if (vcResult.status === 'rejected') {
+    const error = vcResult.reason;
     if (error instanceof LoadError && error.liveError instanceof HttpError && error.liveError.status === 404
       && error.snapshotError instanceof HttpError && error.snapshotError.status === 404) throw new CredentialNotFoundError();
     throw error;
   }
-  const keys = await registryKeys();
+  if (keysResult.status === 'rejected') throw keysResult.reason;
+  const vc = vcResult.value;
+  const keys = keysResult.value;
   const jwt = vc.data.jwt;
   const claims = decodeClaims(jwt);
   // A valid signature is not enough: the credential must be about this SPID, from this issuer.

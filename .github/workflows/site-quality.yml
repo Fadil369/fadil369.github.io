@@ -25,5 +25,6 @@ jobs:
       - run: npm run build
       - run: npm run verify:published
       - run: npx playwright install --with-deps chromium
+      - run: npm run verify:bpr-ux
       - run: npm run verify:experience
       - run: npm audit --include=dev --audit-level=high

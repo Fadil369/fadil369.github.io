@@ -22,7 +22,7 @@ function isObject(value: unknown): value is Record<string, unknown> {
 }
 
 function readDataset(value: unknown): Dataset {
-  if (!isObject(value) || typeof value.id !== 'string') throw new Error('Invalid dataset response');
+  if (!isObject(value) || value.id !== DATASET) throw new Error('Invalid dataset response');
   const field = (name: string) => typeof value[name] === 'string' ? value[name] : undefined;
   return { titleEn: field('titleEn'), titleAr: field('titleAr'), descriptionEn: field('descriptionEn'), descriptionAr: field('descriptionAr'), providerNameEn: field('providerNameEn'), providerNameAr: field('providerNameAr'), updatedAt: field('updatedAt') };
 }
