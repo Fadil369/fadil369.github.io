@@ -23,6 +23,30 @@ const cacheUntil = new Map<string, number>();
 
 // A hung registry must not hang the page: give up after 8 s and let the snapshot answer.
 const TIMEOUT_MS = 8000;
+class HttpError extends Error {
+  readonly status: number;
+  constructor(status: number) {
+    super(`HTTP ${status}`);
+    this.status = status;
+  }
+}
+
+class LoadError extends Error {
+  readonly liveError: unknown;
+  readonly snapshotError: unknown;
+  constructor(liveError: unknown, snapshotError: unknown) {
+    super('Live and snapshot data could not be loaded');
+    this.liveError = liveError;
+    this.snapshotError = snapshotError;
+  }
+}
+
+export class CredentialNotFoundError extends Error {
+  constructor() {
+    super('No credential was found in the registry or snapshot');
+  }
+}
+
 export function timeoutSignal(ms: number): AbortSignal | undefined {
   const A = AbortSignal as typeof AbortSignal & { timeout?: (ms: number) => AbortSignal };
   return typeof A.timeout === 'function' ? A.timeout(ms) : undefined;
@@ -30,7 +54,7 @@ export function timeoutSignal(ms: number): AbortSignal | undefined {
 
 async function json<T>(url: string): Promise<T> {
   const r = await fetch(url, { cache: 'no-store', signal: timeoutSignal(TIMEOUT_MS) });
-  if (!r.ok) throw new Error(`${r.status}`);
+  if (!r.ok) throw new HttpError(r.status);
   return r.json() as Promise<T>;
 }
 
@@ -42,7 +66,9 @@ export function load<T>(livePath: string, snapshotFile: string): Promise<Loaded<
     cacheUntil.set(key, Date.now() + 60000);
     const p = json<T>(REGISTRY + livePath)
       .then((data) => ({ data, source: 'live' as const }))
-      .catch(() => json<T>(`${SNAPSHOT}/${snapshotFile}`).then((data) => ({ data, source: 'snapshot' as const })));
+      .catch((liveError: unknown) => json<T>(`${SNAPSHOT}/${snapshotFile}`)
+        .then((data) => ({ data, source: 'snapshot' as const }))
+        .catch((snapshotError: unknown) => { throw new LoadError(liveError, snapshotError); }));
     p.catch(() => cache.delete(key));
     cache.set(key, p as Promise<Loaded<unknown>>);
   }
@@ -249,9 +275,23 @@ export interface CredentialResult {
   signature: Check; expiry: Check; status: Check & { value?: string }; source: Source; keySource: Source;
 }
 
+export function credentialStatus(value: string | undefined): CredentialResult['status'] {
+  if (value === 'current') return { state: 'ok', value };
+  if (value === 'revoked' || value === 'expired' || value === 'superseded') return { state: 'fail', value };
+  return { state: 'unavailable', value, detail: 'credential status is unknown' };
+}
+
 /** Full check of one provider's current credential: signature, validity window, live status. */
 export async function checkCredential(spid: string): Promise<CredentialResult> {
-  const [keys, vc] = await Promise.all([registryKeys(), load<{ jwt: string }>(`/vc/${spid}`, `vc/${spid}.json`)]);
+  let vc: Loaded<{ jwt: string }>;
+  try {
+    vc = await load<{ jwt: string }>(`/vc/${spid}`, `vc/${spid}.json`);
+  } catch (error) {
+    if (error instanceof LoadError && error.liveError instanceof HttpError && error.liveError.status === 404
+      && error.snapshotError instanceof HttpError && error.snapshotError.status === 404) throw new CredentialNotFoundError();
+    throw error;
+  }
+  const keys = await registryKeys();
   const jwt = vc.data.jwt;
   const claims = decodeClaims(jwt);
   // A valid signature is not enough: the credential must be about this SPID, from this issuer.
@@ -261,8 +301,7 @@ export async function checkCredential(spid: string): Promise<CredentialResult> {
   let status: CredentialResult['status'];
   try {
     const st = await json<{ credential?: { state: string } }>(`${REGISTRY}/vc/status/${spid}?jti=${encodeURIComponent(claims.id)}`);
-    const value = st.credential?.state || 'unknown';
-    status = { state: value === 'current' ? 'ok' : 'fail', value };
+    status = credentialStatus(st.credential?.state);
   } catch {
     status = { state: 'unavailable', detail: 'registry unreachable' };
   }
