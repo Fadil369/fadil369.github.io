@@ -83,14 +83,25 @@ export default function Overview() {
       kicker="BrainSAIT Provider Registry"
       title={ar ? 'هوية مهنية واحدة موثوقة، يتحقق منها أي شخص.' : 'One trusted identity. Anyone can check it.'}
       lead={ar
-        ? 'يمنح BPR كل ممارس صحي معرّفًا دائمًا واعتمادًا موقّعًا رقميًا يتحقق منه أي مستشفى أو جهة دافعة أو مريض في ثوانٍ، من أي هاتف، دون حساب. لا تثق بكلامنا — هذه الصفحة تتحقق بنفسها أمامك.'
-        : 'BPR gives every healthcare professional a permanent ID and a digitally signed credential any hospital, payer or patient can check in seconds — on any phone, no account needed. Don’t take our word for it: this page verifies itself, live, in front of you.'}
+        ? 'استكشف دليل الممارسين وتحقق من الاعتمادات المنشورة دون حساب. يُعرض التوقيع والترخيص والعضوية كلٌّ على حدة؛ ولا يثبت التوقيع وحده الترخيص المهني.'
+        : 'Explore the provider directory and check published credentials without an account. Signature, licence and membership are shown separately; a signature alone does not establish licensure.'}
       actions={<>
-        <Link className="profile-button primary" to="/bpr/providers">{ar ? 'تصفح الدليل' : 'Browse the directory'}<ArrowRight size={16} /></Link>
-        <a className="profile-button secondary" href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">{ar ? 'احجز عرضًا توضيحيًا مباشرًا' : 'Book a live demo'}<ArrowRight size={16} /></a>
+        <Link className="profile-button primary" to="/bpr/verify">{ar ? 'تحقق من اعتماد' : 'Verify a credential'}<ArrowRight size={16} /></Link>
+        <Link className="profile-button secondary" to="/bpr/providers">{ar ? 'تصفح الدليل' : 'Browse the directory'}<ArrowRight size={16} /></Link>
         <Link className="profile-button secondary" to="/bpr/join">{ar ? 'انضم إلى BPR' : 'Join BPR'}<ArrowRight size={16} /></Link>
       </>}
     >
+      <section className="bpr-section" aria-labelledby="bpr-journeys">
+        <h2 className="bpr-h2" id="bpr-journeys">{ar ? 'ما الذي تريد إنجازه؟' : 'What would you like to do?'}</h2>
+        <div className="bpr-journeys">
+          {[
+            { to: '/bpr/verify', en: 'Verify a professional', ar: 'تحقق من ممارس', enText: 'Check a published credential and its status.', arText: 'افحص الاعتماد المنشور وحالته.' },
+            { to: '/bpr/join', en: 'Build my profile', ar: 'أنشئ ملفي', enText: 'See how professionals join the registry.', arText: 'تعرّف على خطوات الانضمام إلى السجل.' },
+            { to: '/bpr/saudi', en: 'For organizations', ar: 'للمؤسسات', enText: 'Explore BPR for healthcare organizations.', arText: 'استكشف BPR للمؤسسات الصحية.' },
+            { to: '/bpr/developers', en: 'Build with BPR', ar: 'طوّر باستخدام BPR', enText: 'Explore the public API and FHIR resources.', arText: 'استكشف الواجهة العامة وموارد FHIR.' },
+          ].map((journey) => <Link className="bpr-journey" key={journey.to} to={journey.to}><h3>{ar ? journey.ar : journey.en}<ArrowRight size={17} /></h3><p>{ar ? journey.arText : journey.enText}</p></Link>)}
+        </div>
+      </section>
       <WorkspaceBand />
 
       <section className="bpr-live-strip" aria-label={ar ? 'مؤشرات مباشرة' : 'Live indicators'}>
@@ -116,6 +127,7 @@ export default function Overview() {
         </div>
         <div className="bpr-panel">
           <h2>{ar ? 'فحص مباشر الآن' : 'Checked just now, in this tab'}</h2>
+          {cred && <p className="bpr-note">{ar ? 'مصدر الاعتماد' : 'Credential source'}: <SourceBadge source={cred.source} /> · {ar ? 'مصدر المفتاح' : 'Key source'}: <SourceBadge source={cred.keySource} /></p>}
           <CheckRow label={ar ? 'توقيع الشهادة' : 'Credential signature'} check={cred?.signature || (credErr ? NA : pending)} />
           <CheckRow label={ar ? 'فترة الصلاحية' : 'Validity window'} check={cred?.expiry || (credErr ? NA : pending)} okText={ar ? 'سارية' : 'In date'} />
           <CheckRow label={ar ? 'الحالة المباشرة' : 'Live status'} check={cred?.status || (credErr ? NA : pending)} okText={valueLabel(cred?.status.value, ar)} />
@@ -133,8 +145,10 @@ export default function Overview() {
 
       <section className="bpr-section">
         <div className="profile-section-label">01 · {ar ? 'أدوات BPR' : 'The BPR toolkit'}</div>
-        <h2 className="bpr-h2">{ar ? 'كل أداة يحتاجها مقدم الرعاية، في مكان واحد.' : 'Every tool a provider needs, in one place.'}</h2>
+        <h2 className="bpr-h2">{ar ? 'استكشف أدوات BPR وحالتها.' : 'Explore BPR tools and their status.'}</h2>
         <p className="bpr-lead-note">{ar ? 'مرتّبة بوضوح: ما يعمل اليوم، وما يجري تكامله، وما هو قادم.' : 'Sorted plainly: what runs today, what is being integrated, and what comes next.'}</p>
+        <details className="bpr-tool-details">
+          <summary>{ar ? 'عرض الأدوات حسب الحالة' : 'View tools by availability'}</summary>
         {TIER_ORDER.map((status) => {
           const tier = MODULES.filter((m) => m.status === status);
           if (!tier.length) return null;
@@ -160,6 +174,7 @@ export default function Overview() {
             </section>
           );
         })}
+        </details>
       </section>
 
       <section className="bpr-architecture">

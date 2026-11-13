@@ -5,7 +5,7 @@ import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout, CheckRow, Failed, fmtDate, Loading, ScfhsPending, SourceBadge, valueLabel } from '../../components/BprKit';
 import { localized } from '../../lib/locale';
-import { bindingProblem, Check, checkCredential, CredentialClaims, validityWindow, CredentialResult, decodeClaims, forgeName, REGISTRY, registryKeys, replayLedger, SPID_RE, verifyJwt } from '../../lib/bpr';
+import { bindingProblem, Check, checkCredential, CredentialClaims, CredentialNotFoundError, validityWindow, CredentialResult, decodeClaims, forgeName, REGISTRY, registryKeys, replayLedger, SPID_RE, verifyJwt } from '../../lib/bpr';
 
 const QrScanner = lazy(() => import('../../components/QrScanner'));
 
@@ -22,6 +22,8 @@ export default function Verify() {
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<CredentialResult | null>(null);
   const [error, setError] = useState('');
+  const [retryId, setRetryId] = useState('');
+  const [checkedAt, setCheckedAt] = useState('');
   const [jwt, setJwt] = useState('');
   const [paste, setPaste] = useState<PasteResult | null>(null);
   const [forged, setForged] = useState<Check | null>(null);
@@ -36,10 +38,17 @@ export default function Verify() {
   });
 
   const run = async (id: string) => {
-    setBusy(true); setResult(null); setError(''); setForged(null);
+    setBusy(true); setResult(null); setError(''); setRetryId(''); setCheckedAt(''); setForged(null);
     if (!SPID_RE.test(id)) { setError(ar ? 'صيغة المعرّف غير صحيحة (مثال SA-PHY-000003).' : 'That is not a valid SPID (e.g. SA-PHY-000003).'); setBusy(false); return; }
-    try { setResult(await checkCredential(id)); setTimeout(() => resultHead.current?.focus(), 0); }
-    catch { setError(ar ? `لا يوجد اعتماد موقّع منشور للمعرّف ${id}. قد يكون مدرجًا دون اعتماد — راجع ملفه.` : `No signed credential is published for ${id}. The provider may be listed without one — see their profile.`); }
+    try { setResult(await checkCredential(id)); setCheckedAt(new Date().toISOString()); setTimeout(() => resultHead.current?.focus(), 0); }
+    catch (err) {
+      if (err instanceof CredentialNotFoundError) {
+        setError(ar ? `لم يُعثر على اعتماد منشور للمعرّف ${id}. قد يكون الممارس مدرجًا دون اعتماد.` : `No published credential was found for ${id}. The provider may be listed without one.`);
+      } else {
+        setError(ar ? 'تعذّر تحميل الاعتماد أو التحقق منه. لا يمكن تحديد حالته الآن؛ حاول مرة أخرى.' : 'The credential could not be loaded or checked. Its status is unknown; please try again.');
+        setRetryId(id);
+      }
+    }
     setBusy(false);
   };
   useEffect(() => { if (initial) run(initial); }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -64,9 +73,9 @@ export default function Verify() {
   const shareUrl = () => `${window.location.origin}${localized('/bpr/verify')}?spid=${result!.claims.credentialSubject.spid}`;
   const shareText = () => {
     const id = result!.claims.credentialSubject.spid;
-    const when = new Date().toLocaleString(ar ? 'ar-SA-u-nu-latn-ca-gregory' : 'en-GB', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Asia/Riyadh' });
-    return ar ? `${id}: فُحص توقيع اعتماد BPR على جهازي بتاريخ ${when} (الرياض). أعد الفحص بنفسك: ${shareUrl()}`
-      : `${id}: BPR credential signature checked on my device ${when} (Riyadh). Re-check it yourself: ${shareUrl()}`;
+    const when = fmtDate(checkedAt, ar, true);
+    return ar ? `${id}: نتيجة فحص اعتماد BPR بتاريخ ${when} (الرياض). أعد الفحص بنفسك: ${shareUrl()}`
+      : `${id}: BPR credential check from ${when} (Riyadh). Re-check it yourself: ${shareUrl()}`;
   };
   const copyLink = () => {
     if (!result) return;
@@ -96,8 +105,8 @@ export default function Verify() {
     <BprLayout kicker={ar ? 'التحقق' : 'Verify'}
       title={ar ? 'تحقّق من الممارس الصحي على جهازك.' : 'Check a healthcare professional — on your own device.'}
       lead={ar
-        ? 'أدخل المعرّف أو الصق الاعتماد أو امسح رمز البطاقة. يُفحص التوقيع الرقمي داخل متصفحك باستخدام المفتاح العام الذي ينشره السجل. لا حاجة إلى حساب، ولا يغادر ما تلصقه أو تمسحه جهازك.'
-        : 'Enter an ID, paste a credential or scan a card. The digital signature is checked in your browser against the public key the registry publishes. No account needed, and what you paste or scan never leaves your device.'}>
+        ? 'أدخل المعرّف أو الصق الاعتماد أو امسح رمز البطاقة. يُفحص التوقيع على جهازك إن أمكن؛ وإلا يُرسل الاعتماد إلى السجل للتحقق. لا حاجة إلى حساب.'
+        : 'Enter an ID, paste a credential or scan a card. The signature is checked on your device when supported; otherwise the credential is sent to the registry for verification. No account needed.'}>
       <div className="bpr-tabs" role="group" aria-label={ar ? 'طريقة التحقق' : 'How to verify'}>
         <button aria-pressed={mode === 'spid'} onClick={() => setMode('spid')}><Search size={15} />{ar ? 'بالمعرّف' : 'By SPID'}</button>
         <button aria-pressed={mode === 'jwt'} onClick={() => setMode('jwt')}><FileKey2 size={15} />{ar ? 'لصق اعتماد' : 'Paste a credential'}</button>
@@ -122,13 +131,15 @@ export default function Verify() {
         </div>}
         {scanning && <Suspense fallback={<Loading />}><QrScanner onSpid={onScan} onClose={() => setScanning(false)} /></Suspense>}
         {busy && <Loading label={ar ? 'جارٍ التحقق…' : 'Verifying…'} />}
-        {error && <Failed>{error} {SPID_RE.test(spid.trim().toUpperCase()) && <Link className="profile-text-link" to={`/bpr/p/${spid.trim().toUpperCase()}`}>{ar ? 'الملف' : 'Profile'}<ArrowRight size={13} /></Link>}</Failed>}
+        {error && <Failed>{error} {retryId && <button className="profile-text-link" onClick={() => run(retryId)}>{ar ? 'أعد المحاولة' : 'Try again'}</button>} {SPID_RE.test(spid.trim().toUpperCase()) && <Link className="profile-text-link" to={`/bpr/p/${spid.trim().toUpperCase()}`}>{ar ? 'الملف' : 'Profile'}<ArrowRight size={13} /></Link>}</Failed>}
         {result && <div className="bpr-profile-grid" aria-live="polite">
           <section className="bpr-panel">
             <div className="bpr-panel-head"><h2 ref={resultHead} tabIndex={-1}>{ar ? 'النتيجة' : 'Result'} · <code dir="ltr">{result.claims.credentialSubject.spid}</code></h2><SourceBadge source={result.source} /></div>
             <CheckRow label={ar ? 'التوقيع' : 'Signature'} check={result.signature} />
             <CheckRow label={ar ? 'فترة الصلاحية' : 'Validity window'} check={result.expiry} okText={ar ? 'سارية' : 'In date'} />
             <CheckRow label={ar ? 'الحالة المباشرة' : 'Live status'} check={result.status} okText={valueLabel(result.status.value, ar)} />
+            <p className="bpr-note">{ar ? 'وقت الفحص' : 'Checked'}: {fmtDate(checkedAt, ar, true)} · {ar ? 'مصدر المفتاح' : 'Key source'}: <SourceBadge source={result.keySource} /></p>
+            <p className="bpr-note">{ar ? 'توقيع BPR لا يثبت الترخيص المهني أو الامتيازات السريرية.' : 'A BPR signature does not establish professional licensure or clinical privileges.'}</p>
             <div className="bpr-result-actions">
               <button className="profile-button secondary" onClick={copyLink}>{copied ? <CheckIcon size={15} /> : <Link2 size={15} />}{copied ? (ar ? 'نُسخ' : 'Copied') : (ar ? 'انسخ النتيجة والرابط' : 'Copy result & link')}</button>
               {typeof navigator !== 'undefined' && 'share' in navigator && <button className="profile-button secondary" onClick={share}><Share2 size={15} />{ar ? 'مشاركة' : 'Share'}</button>}

@@ -196,14 +196,14 @@ export function ScfhsPending({ compact = false }: { compact?: boolean }) {
 /** Compact pointer to the provider workspace; live and planned capabilities stay visibly separate. */
 export function WorkspaceBand() {
   const { ar } = useI18n();
-  const live = ar ? ['مساحة OpenEMR خاصة', 'مساعد سريري بـ14 مهارة', 'إملاء صوتي عربي', 'FHIR R4', 'الحاسبات والنماذج', 'صفحة البحث'] : ['Private OpenEMR workspace', '14-skill Copilot', 'Arabic voice-to-text', 'FHIR R4', 'Calculators & forms', 'Research page'];
+  const live = ar ? ['FHIR R4', 'الحاسبات والنماذج', 'صفحة البحث', 'مراجع نفيس'] : ['FHIR R4', 'Calculators & forms', 'Research page', 'NPHIES reference'];
   const ongoing = ar ? ['التحقق من اعتماد الهيئة', 'نفيس'] : ['SCFHS credential check', 'NPHIES'];
-  const planned = ar ? ['مراجعة الأقران', 'فريقك', 'الإرشاد والتدريب', 'مطابقة المناوبات'] : ['Peer review', 'Your team', 'Mentoring & training', 'Shift matching'];
+  const planned = ar ? ['تجهيز OpenEMR للأعضاء', 'المساعد السريري', 'الصوت العربي', 'مراجعة الأقران'] : ['Member OpenEMR provisioning', 'Clinical Copilot', 'Arabic voice', 'Peer review'];
   return (
     <section className="ws-band" aria-label={ar ? 'مساحة عمل مقدم الرعاية' : 'Provider workspace'}>
       <LayoutGrid size={26} aria-hidden="true" />
       <div>
-        <h2>{ar ? 'لكل مقدم رعاية مساحة عمل ذكية متكاملة' : 'Every provider gets a complete, intelligent workspace'}</h2>
+        <h2>{ar ? 'استكشف الأدوات وحالة كل تكامل' : 'Explore tools and integration status'}</h2>
         <div className="ws-band-row"><span className="ws-status live">{ar ? 'يعمل اليوم' : 'Live today'}</span>{live.map((x) => <em key={x}>{x}</em>)}</div>
         <div className="ws-band-row"><span className="ws-status awaiting">{ar ? 'تكامل جارٍ' : 'Ongoing integration'}</span>{ongoing.map((x) => <em key={x} className="planned">{x}</em>)}</div>
         <div className="ws-band-row"><span className="ws-status planned">{ar ? 'قادمًا' : 'Coming next'}</span>{planned.map((x) => <em key={x} className="planned">{x}</em>)}</div>

@@ -132,6 +132,21 @@
 .bpr-module.members strong { color: var(--profile-muted); }
 
 .bpr-lead-note { margin: -4px 0 18px; max-width: 70ch; color: var(--profile-muted); font-size: 15px; line-height: 1.7; }
+.bpr-journeys { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.bpr-journey { min-width: 0; padding: 20px; border: 1px solid var(--profile-line); background: var(--profile-surface); }
+.bpr-journey h3 { margin: 0; display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 15px; }
+.bpr-journey h3 svg { flex: none; color: var(--profile-accent); }
+.bpr-journey p { margin: 8px 0 0; color: var(--profile-muted); font-size: 13px; }
+.bpr-tool-details { display: grid; gap: 12px; }
+.bpr-tool-details > summary { width: fit-content; cursor: pointer; color: var(--profile-accent); font-size: 14px; }
+.bpr-tool-details:not([open]) > .bpr-tier { display: none; }
+.bpr-evidence-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.bpr-evidence-grid h3 { margin: 0 0 10px; font-size: 18px; }
+.bpr-evidence-grid h4 { margin: 16px 0 8px; }
+.bpr-evidence-grid > article > p { color: var(--profile-muted); font-size: 13px; }
+.bpr-evidence-grid ul { padding-inline-start: 20px; font-size: 13px; }
+.bpr-evidence-grid a { color: var(--profile-accent); }
+.bpr-evidence-error { color: var(--bpr-fail) !important; }
 
 /* Toolkit tiers on the BPR overview — live / ongoing integration / coming next */
 .bpr-tier { margin-top: 6px; }
@@ -237,6 +252,8 @@
 
 @media (max-width: 960px) {
   .bpr-live-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bpr-journeys { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bpr-evidence-grid { grid-template-columns: 1fr; }
   .bpr-live-strip > div:nth-child(2) { border-inline-end: 0; }
   .bpr-live-strip > div:nth-child(-n+2) { border-bottom: 1px solid var(--profile-line); }
   .bpr-split, .bpr-profile-grid, .bpr-app .bpr-verify { grid-template-columns: 1fr; }
@@ -251,6 +268,7 @@
   .bpr-subnav-mark { display: none; }
   .bpr-panel { padding: 18px; }
   .bpr-module-grid, .bpr-module-grid.two { grid-template-columns: 1fr; }
+  .bpr-journeys { grid-template-columns: 1fr; }
   .bpr-trust { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .bpr-live-strip strong { font-size: 30px; }
   .bpr-forge { grid-template-columns: 20px minmax(0, 1fr); }
