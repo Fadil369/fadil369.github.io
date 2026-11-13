@@ -5,6 +5,15 @@ import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout, Loading, SourceBadge, fmtDate, Failed } from '../../components/BprKit';
 import { OpsStatus, useLoad } from '../../lib/bpr';
 
+function acpServiceUrl() {
+  try {
+    const url = new URL(import.meta.env.VITE_ACP_SERVICE_URL);
+    return url.protocol === 'https:' && !url.username && !url.password && url.pathname === '/' && !url.search && !url.hash ? url.href : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 const GATEWAY_MODELS = [
   'claude-fable-5', 'claude-haiku-4-5', 'claude-haiku-4-5-20251001', 'claude-opus-4-7', 'claude-opus-4-8', 'claude-opus-5', 'claude-sonnet-4-6', 'claude-sonnet-5',
   'gpt-5.5', 'gpt-5.5-pro', 'gpt-5.6-luna', 'gpt-5.6-sol', 'gpt-5.6-terra',
@@ -22,11 +31,17 @@ export default function AI() {
   const d = status.state === 'ready' ? status.data : null;
   const checks = d?.operations?.checks;
   const source = status.state === 'ready' ? status.source : 'snapshot';
+  const acpUrl = acpServiceUrl();
   return <BprLayout kicker={ar ? 'الذكاء الاصطناعي' : 'AI gateway'}
     title={ar ? 'نماذج موصولة بضوابط واضحة.' : 'Models, connected with clear boundaries.'}
     lead={ar ? 'هذه الصفحة تعرض فحوص خدمة المساعد ولقطة لمعرّفات رُصدت عبر الشبكة الخاصة. الموقع العام لا يرسل أسئلة إلى النماذج.' : 'This page shows copilot service checks and a snapshot of model IDs observed on the private network. The public site sends no prompts to models.'}
     actions={<><Link className="profile-button primary" to="/bpr/join">{ar ? 'مسار الملف الموثق' : 'Authenticated profile flow'}</Link><a className="profile-button" href="https://registry.brainsait.de/certs.php" target="_blank" rel="noreferrer">{ar ? 'صياغة الملف بمساعدة الذكاء' : 'Assisted profile drafting'} <ArrowUpRight size={15}/></a></>}>
     {status.state === 'loading' && <Loading/>}{status.state === 'error' && <Failed/>}
+    <section className="bpr-panel"><h2>{ar ? 'مساعد ACP للتدريب' : 'Clinical ACP training assistant'}</h2>
+      <p>{ar ? 'للمواد الخيالية أو العامة فقط، دون أي بيانات مرضى أو مشاركين. المخرجات مسودات تتطلب مراجعة مختص.' : 'For fictional or public material only; never submit patient or participant data. Outputs are drafts requiring qualified review.'}</p>
+      {acpUrl ? <a className="profile-text-link" href={acpUrl}>{ar ? 'فتح المساعد وتسجيل الدخول عبر GitHub' : 'Open the assistant and sign in with GitHub'} <ArrowUpRight size={13}/></a>
+        : <p className="bpr-note">{ar ? 'الخدمة غير مهيأة على هذا الموقع.' : 'The service is not configured on this site.'}</p>}
+    </section>
     {d && <section className="bpr-panel"><div className="bpr-panel-head"><h2><Brain size={19}/> {ar ? 'فحوص الخدمة' : 'Service checks'}</h2><SourceBadge source={source}/></div>
       <ul className="bpr-status-grid" dir="ltr">
         {['copilot_ai','copilot_briefs'].map((k) => <li key={k} className={checks?.[k] === 'ok' ? 'ok' : 'fail'}><span>{k === 'copilot_ai' ? 'Copilot AI' : 'Copilot briefs'}</span><strong>{checks?.[k] || '—'}</strong></li>)}

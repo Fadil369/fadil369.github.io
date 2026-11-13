@@ -1,0 +1,14 @@
+scripts:
+  - name: Run website
+    command: npm run dev
+  - name: Preview website
+    command: npm run preview
+  - name: Run tests
+    command: npm test
+  - name: Test clinical ACP
+    command: npm run test:acp
+  - name: Run clinical ACP desktop
+    command: npm run acp:desktop
+
+server_ready_pattern: '(?i)Local:\s+(https?://\S+)'
+auto_open_in_browser: true

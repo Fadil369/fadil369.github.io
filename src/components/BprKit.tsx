@@ -34,7 +34,7 @@ export function BprLayout({ children, kicker, title, lead, actions }: { children
       <ProfileHeader />
       <nav className="bpr-subnav" aria-label={ar ? 'تطبيقات BPR' : 'BPR apps'}>
         <span className="bpr-subnav-mark" aria-hidden="true">BPR</span>
-        <div ref={strip}>{NAV.map((n) => <NavLink key={n.to} to={n.to} end={n.end}>{ar ? n.ar : n.en}</NavLink>)}</div>
+        <div ref={strip} tabIndex={0} aria-label={ar ? 'مرّر لعرض جميع التطبيقات' : 'Scroll to see all apps'}>{NAV.map((n) => <NavLink key={n.to} to={n.to} end={n.end}>{ar ? n.ar : n.en}</NavLink>)}</div>
       </nav>
       <div className="bpr-app-body">
         <header className="bpr-app-head">
@@ -56,7 +56,7 @@ function BprFooter() {
   return (
     <footer className="bpr-footer">
       <div className="bpr-footer-main">
-        <div className="bpr-footer-brand"><strong>BPR</strong><p>{ar ? 'هوية مهنية موقّعة، وأدوات سريرية مترابطة، ودليل عام يمكن التحقق منه — مصنوع للممارسين الصحيين.' : 'Signed professional identity, connected clinical tools and a public directory anyone can verify — built for healthcare professionals.'}</p></div>
+        <div className="bpr-footer-brand"><strong>BPR</strong><p>{ar ? 'هوية مهنية موقّعة ودليل عام وأدوات مع توضيح حالة كل تكامل.' : 'Signed professional identity, a public directory and tools with each integration status made clear.'}</p></div>
         <nav aria-label={ar ? 'روابط BPR في التذييل' : 'BPR footer navigation'}>
           <div><strong>{ar ? 'استكشف' : 'Explore'}</strong><Link to="/bpr/providers">{ar ? 'دليل مقدمي الرعاية' : 'Provider directory'}</Link><Link to="/slots">{ar ? 'شواغر المستشفيات' : 'Hospital slots'}</Link><Link to="/bpr/research">{ar ? 'البصمة البحثية' : 'Research footprint'}</Link></div>
           <div><strong>{ar ? 'ابنِ وتحقق' : 'Build & verify'}</strong><Link to="/bpr/verify">{ar ? 'التحقق العام' : 'Public verification'}</Link><a href="/trust/">{ar ? 'الثقة والشهادات' : 'Trust & certificates'}</a><Link to="/bpr/developers">FHIR & API</Link><Link to="/bpr/workspace">{ar ? 'مساحة العمل' : 'Provider workspace'}</Link></div>
@@ -196,14 +196,14 @@ export function ScfhsPending({ compact = false }: { compact?: boolean }) {
 /** Compact pointer to the provider workspace; live and planned capabilities stay visibly separate. */
 export function WorkspaceBand() {
   const { ar } = useI18n();
-  const live = ar ? ['مساحة OpenEMR خاصة', 'مساعد سريري بـ14 مهارة', 'إملاء صوتي عربي', 'FHIR R4', 'الحاسبات والنماذج', 'صفحة البحث'] : ['Private OpenEMR workspace', '14-skill Copilot', 'Arabic voice-to-text', 'FHIR R4', 'Calculators & forms', 'Research page'];
+  const live = ar ? ['FHIR R4', 'الحاسبات والنماذج', 'صفحة البحث', 'مراجع نفيس'] : ['FHIR R4', 'Calculators & forms', 'Research page', 'NPHIES reference'];
   const ongoing = ar ? ['التحقق من اعتماد الهيئة', 'نفيس'] : ['SCFHS credential check', 'NPHIES'];
-  const planned = ar ? ['مراجعة الأقران', 'فريقك', 'الإرشاد والتدريب', 'مطابقة المناوبات'] : ['Peer review', 'Your team', 'Mentoring & training', 'Shift matching'];
+  const planned = ar ? ['تجهيز OpenEMR للأعضاء', 'المساعد السريري', 'الصوت العربي', 'مراجعة الأقران'] : ['Member OpenEMR provisioning', 'Clinical Copilot', 'Arabic voice', 'Peer review'];
   return (
     <section className="ws-band" aria-label={ar ? 'مساحة عمل مقدم الرعاية' : 'Provider workspace'}>
       <LayoutGrid size={26} aria-hidden="true" />
       <div>
-        <h2>{ar ? 'لكل مقدم رعاية مساحة عمل ذكية متكاملة' : 'Every provider gets a complete, intelligent workspace'}</h2>
+        <h2>{ar ? 'استكشف الأدوات وحالة كل تكامل' : 'Explore tools and integration status'}</h2>
         <div className="ws-band-row"><span className="ws-status live">{ar ? 'يعمل اليوم' : 'Live today'}</span>{live.map((x) => <em key={x}>{x}</em>)}</div>
         <div className="ws-band-row"><span className="ws-status awaiting">{ar ? 'تكامل جارٍ' : 'Ongoing integration'}</span>{ongoing.map((x) => <em key={x} className="planned">{x}</em>)}</div>
         <div className="ws-band-row"><span className="ws-status planned">{ar ? 'قادمًا' : 'Coming next'}</span>{planned.map((x) => <em key={x} className="planned">{x}</em>)}</div>

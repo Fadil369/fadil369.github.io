@@ -1,0 +1,7 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "clinical-research",
+  "version": "0.1.0",
+  "description": "Draft research planning outlines using public or synthetic inputs.",
+  "repository": "https://github.com/Fadil369/fadil369.github.io"
+}
