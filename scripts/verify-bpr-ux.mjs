@@ -10,6 +10,7 @@ const browser = await chromium.launch();
 try {
   for (const ar of [false, true]) {
     const context = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
+    if (ar) await context.addInitScript(() => { Object.defineProperty(AbortSignal, 'timeout', { value: undefined, configurable: true }); });
     await context.route('https://registry.brainsait.de/**', (route) => {
       if (route.request().url().includes('SA-PHY-900001')) {
         return route.fulfill({ status: 404, headers: { 'access-control-allow-origin': '*' } });
@@ -54,6 +55,9 @@ try {
     await page.getByRole('button', { name: ar ? 'تحميل بيانات الأبحاث' : 'Load research data' }).click();
     await page.getByRole('alert').getByText(ar ? 'تعذّر الوصول إلى واجهة مدينة الملك فهد الطبية' : 'Could not access or read the KFMC API', { exact: false }).waitFor();
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+    await page.goto(`${server.base}${prefix}/bpr/research/SA-PHY-000003/`);
+    await page.getByRole('link', { name: ar ? 'الدعم' : 'Support', exact: true }).click();
+    await page.waitForURL(`${server.base}/#contact`);
     await page.goto(`${server.base}${prefix}/bpr/saudi/`);
     await page.getByText(ar ? 'تكامل العنوان الوطني غير متاح بعد' : 'National Address integration is not connected', { exact: false }).waitFor();
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useI18n } from '../i18n';
 import { ExtLink, fmtDate } from './BprKit';
-import { safeUrl } from '../lib/bpr';
+import { safeUrl, timeoutSignal } from '../lib/bpr';
 
 const KFMC = 'https://api.kfmc.med.sa/api/KFMCResearch/GetAll';
 const DATASET = '94676134-5b08-44f0-bb71-73acd9566158';
@@ -12,7 +12,7 @@ type Resource = { name?: string; descriptionEn?: string; descriptionAr?: string;
 type Insurance = { dataset: Dataset; resources: Resource[] };
 
 async function getJson(url: string): Promise<unknown> {
-  const response = await fetch(url, { credentials: 'omit', signal: AbortSignal.timeout(12000) });
+  const response = await fetch(url, { credentials: 'omit', signal: timeoutSignal(12000) });
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   return response.json();
 }

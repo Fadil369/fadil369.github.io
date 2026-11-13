@@ -134,7 +134,7 @@ function Footprint({ spid }: { spid: string }) {
 
       {data.authorship_rule && <p className="bpr-note">{ar ? 'يُحتسب العمل من تأليف مقدم الرعاية فقط عندما يذكر سجل الناشر (Crossref/DataCite) معرّف ORCID الخاص به. لا تُعرض الأعمال التي ينسبها الناشر إلى معرّف ORCID آخر.' : data.authorship_rule}</p>}
       {data.runs && <p className="bpr-note">{ar ? 'آخر تحديث حسب المصدر: ' : 'Last refreshed by source: '}{Object.entries(data.runs).map(([k, v]) => `${SOURCE[k] || k}: ${fmtDate(v.at, ar, true)}`).join(' · ')}</p>}
-      <p className="bpr-note">{ar ? 'لتصحيح بيانات البحث، راجع سجل المصدر المرتبط أو تواصل مع السجل.' : 'To correct research information, review the linked source record or contact the registry.'} <Link className="profile-text-link" to="/support">{ar ? 'الدعم' : 'Support'}<ArrowRight size={13} /></Link></p>
+      <p className="bpr-note">{ar ? 'لتصحيح بيانات البحث، راجع سجل المصدر المرتبط أو تواصل مع السجل.' : 'To correct research information, review the linked source record or contact the registry.'} <a className="profile-text-link" href="/support/">{ar ? 'الدعم' : 'Support'}<ArrowRight size={13} /></a></p>
     </BprLayout>
   );
 }
