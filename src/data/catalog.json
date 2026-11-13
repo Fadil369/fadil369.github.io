@@ -1883,7 +1883,7 @@
       "cartUrl": "https://shop.brainsait.de/cart/",
       "learnProductUrl": "https://fadil369.github.io/learn/",
       "products_json": "src/data/products.json",
-      "unified_registry": "https://registry.brainsait.de/onboard",
+      "unified_registry": "https://registry.brainsait.de/join.php",
       "learnSubscriptionNote": "No purchasable LEARN subscription product exists in the canonical WooCommerce store as of 2026-10-05; this CTA points at the LEARN shelf until one is created."
     },
     "product_count": {
