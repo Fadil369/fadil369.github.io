@@ -221,7 +221,7 @@ export function normalizeVisit(raw: unknown): Visit | null {
   const history = Array.isArray(r.history) ? (r.history as Visit['history']) : [{ status, at: createdAt }];
   const str = (k: string) => (typeof r[k] === 'string' ? (r[k] as string) : undefined);
   return {
-    id, reference: str('reference') ?? id, patient, service: str('service') ?? 'general', date: str('date') ?? '', time: str('time') ?? '',
+    id, reference: str('reference') ?? id, patient, service: str('service') ?? 'general', date: /^\d{4}-\d{2}-\d{2}$/.test(str('date') ?? '') ? (str('date') as string) : '', time: str('time') ?? '',
     status, priority: r.priority === 'urgent' ? 'urgent' : 'routine', needsStaff: r.status === 'needs_staff' || r.needsStaff === true || undefined,
     createdAt, checkedInAt: str('checkedInAt'), startedAt: str('startedAt'), completedAt: str('completedAt'),
     vitals: r.vitals && typeof r.vitals === 'object' ? (r.vitals as Vitals) : undefined,
