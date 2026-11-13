@@ -21,7 +21,7 @@ for s in d["solutions"]:
     u = s.get("demoUrl") or ""
     host = u.replace("https://", "").rstrip("/")
     if host in proxy_hosts:
-        s["demoUrl"] = "https://build-apply.brainsait.org/demo/" + s["slug"]
+        s["demoUrl"] = "https://build-apply.brainsait.de/demo/" + s["slug"]
         changed += 1
 json.dump(d, open(path, "w"), ensure_ascii=False, indent=2)
 print("updated", changed, "demo URLs to proxy")

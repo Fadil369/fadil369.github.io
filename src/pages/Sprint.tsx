@@ -7,7 +7,7 @@ import { useI18n } from '../i18n';
 const STORE = 'https://store.brainsait.de';
 const CALENDAR_BOOK = 'https://calendar.app.google/BrainSAIT48hSprint';
 // The 2,390 SAR strategy session is booked via calendar and invoiced through
-// Daftra (POST daftra.brainsait.org/api/sprint/invoice) — no Shopify product.
+// Daftra (POST daftra.brainsait.de/api/sprint/invoice) — no Shopify product.
 const STRATEGY_SESSION = CALENDAR_BOOK;
 const BUILD_TICKET = `${STORE}/products/build-full-program-ticket`;
 const BPR_PRO = `${STORE}/products/provider-registry`;

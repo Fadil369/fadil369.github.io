@@ -178,7 +178,7 @@ export default function ProductCard({ p }: { p: Product }) {
              )}
 
              {/* Daftra: Arabic Premium Store */}
-             <a className="button secondary sm" href={`https://daftra.brainsait.org/shop?tab=${p.stage || 'learn'}`}
+             <a className="button secondary sm" href={`https://daftra.brainsait.de/shop?tab=${p.stage || 'learn'}`}
                 target="_blank" rel="noopener noreferrer"
                 style={{ background: 'linear-gradient(135deg, #f59e0b, #d97706)', color: '#000', border: 'none' }}>
                {ar ? '🇸🇦 المتجر العربي' : '🇸🇦 Arabic Store'} <ExternalLink size={14} aria-hidden="true" />

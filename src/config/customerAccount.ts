@@ -7,7 +7,7 @@
  */
 
 export const CUSTOMER_ACCOUNT_DOMAIN =
-  import.meta.env.VITE_CUSTOMER_ACCOUNT_DOMAIN || 'https://account.brainsait.org';
+  import.meta.env.VITE_CUSTOMER_ACCOUNT_DOMAIN || 'https://account.brainsait.de';
 
 export const CUSTOMER_ACCOUNT_CLIENT_ID = import.meta.env.VITE_CUSTOMER_ACCOUNT_CLIENT_ID || '';
 

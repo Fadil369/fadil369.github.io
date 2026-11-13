@@ -210,7 +210,7 @@
   },
 
   "webhooks": {
-    "endpoint": "https://payments.brainsait.org/webhook/order",
+    "endpoint": "https://payments.brainsait.de/webhook/order",
     "topics": ["orders/paid", "orders/create", "orders/fulfilled"],
     "hmac_verify": true
   }

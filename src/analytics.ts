@@ -53,7 +53,7 @@ export function trackBeginCheckout(value: number, items: unknown[] = []): void {
  * (Lark ops cards + per-person journey ledger when an email is attached).
  * Fire-and-forget: keepalive so it survives the checkout navigation.
  */
-const JOURNEY_EVENTS_URL = 'https://build-apply.brainsait.org/events/';
+const JOURNEY_EVENTS_URL = 'https://build-apply.brainsait.de/events/';
 
 export function journeyEvent(stage: string, params: Record<string, unknown> = {}): void {
   try {
