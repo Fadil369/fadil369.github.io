@@ -184,7 +184,7 @@ const toArabic = (html, route, meta) => {
   return out;
 };
 let arWritten = 0;
-const arPages = ['profile', 'cv', 'card', 'slots', 'intake', 'bpr', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi', 'bpr/nphies', 'bpr/clinic'].map((r) => [r, join(root, r, 'index.html')]);
+const arPages = ['profile', 'cv', 'card', 'slots', 'intake', 'bpr', 'bpr/ai', 'bpr/providers', 'bpr/verify', 'bpr/ledger', 'bpr/research', 'bpr/developers', 'bpr/status', 'bpr/join', 'bpr/workspace', 'bpr/record', 'bpr/saudi', 'bpr/nphies', 'bpr/clinic'].map((r) => [r, join(root, r, 'index.html')]);
 if (existsSync(snapList)) {
   for (const p of JSON.parse(readFileSync(snapList, 'utf8')).items || []) {
     if (!/^SA-[A-Z]{2,4}-\d{6}$/.test(p.spid)) continue;

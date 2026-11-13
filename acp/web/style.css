@@ -1,0 +1,8 @@
+body { margin: 0; font: 16px system-ui, sans-serif; color: #172534; background: #f3f7f8; }
+main { max-width: 760px; margin: auto; padding: 2rem; }
+#form { display: grid; gap: .75rem; }
+#form[hidden] { display: none; }
+textarea, select, button { font: inherit; padding: .6rem; }
+textarea { resize: vertical; }
+button { justify-self: start; cursor: pointer; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; }

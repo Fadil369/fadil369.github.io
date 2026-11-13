@@ -1,0 +1,7 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "healthcare-fhir",
+  "version": "0.1.0",
+  "description": "Plan synthetic FHIR R4 mappings against supplied public specifications.",
+  "repository": "https://github.com/Fadil369/fadil369.github.io"
+}

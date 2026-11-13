@@ -1,0 +1,38 @@
+{
+  "name": "brainsait-clinical",
+  "owner": {
+    "name": "BrainSAIT"
+  },
+  "plugins": [
+    {
+      "name": "clinical-copilot",
+      "source": "./plugins/clinical-copilot",
+      "version": "0.1.0",
+      "description": "Synthetic clinical workflow drafting, evidence summaries, and administrative process support."
+    },
+    {
+      "name": "clinical-research",
+      "source": "./plugins/clinical-research",
+      "version": "0.1.0",
+      "description": "Draft research planning outlines using public or synthetic inputs."
+    },
+    {
+      "name": "healthcare-fhir",
+      "source": "./plugins/healthcare-fhir",
+      "version": "0.1.0",
+      "description": "Plan synthetic FHIR R4 mappings against supplied public specifications."
+    },
+    {
+      "name": "nphies-readiness",
+      "source": "./plugins/nphies-readiness",
+      "version": "0.1.0",
+      "description": "Draft NPHIES administrative readiness plans from public reference material."
+    },
+    {
+      "name": "clinical-training",
+      "source": "./plugins/clinical-training",
+      "version": "0.1.0",
+      "description": "Design fictional healthcare communication and operations training exercises."
+    }
+  ]
+}

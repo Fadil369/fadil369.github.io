@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self';">
+  <title>Clinical ACP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Clinical ACP</h1>
+    <p>Only fictional or public material. Never enter patient or participant information. Responses are drafts, not clinical advice; qualified review is required.</p>
+    <form id="form">
+      <label for="plugin">Plugin</label>
+      <select id="plugin">
+        <option value="clinical-copilot">Clinical copilot</option>
+        <option value="clinical-research">Clinical research</option>
+        <option value="healthcare-fhir">FHIR mapping</option>
+        <option value="nphies-readiness">NPHIES readiness</option>
+        <option value="clinical-training">Synthetic training</option>
+      </select>
+      <label for="prompt">Synthetic or public prompt</label>
+      <textarea id="prompt" required maxlength="8000" rows="8"></textarea>
+      <label><input id="ack" type="checkbox" required> I confirm this contains no real or potentially real patient or participant data.</label>
+      <button id="submit" type="submit">Run</button>
+    </form>
+    <p id="status" role="status"></p>
+    <pre id="result"></pre>
+  </main>
+  <script src="renderer.js"></script>
+</body>
+</html>

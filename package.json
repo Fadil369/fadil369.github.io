@@ -20,9 +20,15 @@
     "landing": "node scripts/render-landing.mjs",
     "verify:published": "node scripts/verify-published.mjs",
     "verify:experience": "node scripts/verify-experience.mjs",
-    "verify:bpr-ux": "node scripts/verify-bpr-ux.mjs"
+    "verify:bpr-ux": "node scripts/verify-bpr-ux.mjs",
+    "verify:clinical-marketplace": "node --test scripts/clinical-marketplace.test.mjs",
+    "acp:cli": "node acp/cli.mjs",
+    "acp:desktop": "electron acp/desktop/main.mjs",
+    "acp:server": "node acp/server.mjs",
+    "test:acp": "node --test acp/*.test.mjs"
   },
   "dependencies": {
+    "@agentclientprotocol/sdk": "^2.6.0",
     "jsqr": "^1.4.0",
     "lucide-react": "^0.468.0",
     "qrcode": "^1.5.4",
@@ -37,6 +43,7 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.7.0",
     "axe-core": "^4.10.3",
+    "electron": "^45.3.1",
     "playwright": "^1.64.1",
     "pngjs": "^7.0.0",
     "typescript": "^5.9.3",

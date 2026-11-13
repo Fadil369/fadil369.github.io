@@ -21,6 +21,8 @@ jobs:
           cache: npm
       - run: npm ci --include=dev
       - run: npm test
+      - run: npm run verify:clinical-marketplace
+      - run: npm run test:acp
       - run: npm run landing && git diff --exit-code -- index.html ar/index.html
       - run: npm run build
       - run: npm run verify:published

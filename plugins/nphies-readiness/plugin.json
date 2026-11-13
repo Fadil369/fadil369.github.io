@@ -1,0 +1,7 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "nphies-readiness",
+  "version": "0.1.0",
+  "description": "Draft NPHIES administrative readiness plans from public reference material.",
+  "repository": "https://github.com/Fadil369/fadil369.github.io"
+}
