@@ -873,3 +873,41 @@
 .bpr-api-response-head button { margin-inline-start: auto; border: 1px solid var(--profile-line); padding: 4px 9px; background: transparent; color: var(--profile-text); cursor: pointer; }
 .bpr-api-response .bpr-out { margin: 0; }
 @media (max-width: 640px) { .bpr-api-response { margin-inline-start: 0; } }
+
+/* Clinic pilot: front desk and doctor room (visit flow) */
+.clinic-notice-ok { background: color-mix(in srgb, var(--bpr-ok) 8%, transparent); border: 1px solid color-mix(in srgb, var(--bpr-ok) 35%, transparent); color: var(--bpr-ok); }
+.clinic-notice-info { background: var(--profile-surface); border: 1px solid var(--profile-line); color: var(--profile-muted); }
+.visit-metrics { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.visit-form-row, .visit-encounter { display: grid; gap: 14px; }
+.visit-form-row { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) auto auto; align-items: end; }
+.visit-form-row label, .visit-encounter label { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: var(--profile-text); }
+.visit-form-row label.clinic-checkbox-label { flex-direction: row; align-items: center; font-weight: 500; }
+.visit-form-row small { color: var(--profile-muted); font-weight: 400; }
+.visit-form-row input:not([type="checkbox"]), .visit-form-row select, .visit-encounter input, .visit-encounter textarea { padding: 11px 14px; border: 1px solid var(--profile-line); border-radius: var(--radius-sm); background: var(--profile-bg); color: var(--profile-text); font: inherit; width: 100%; box-sizing: border-box; }
+.visit-form-row input:focus-visible, .visit-form-row select:focus-visible, .visit-encounter input:focus-visible, .visit-encounter textarea:focus-visible { outline: 2px solid var(--profile-accent); outline-offset: 1px; }
+.visit-encounter fieldset { border: 1px solid var(--profile-line); border-radius: var(--radius-sm); padding: 14px; margin: 0; min-width: 0; }
+.visit-encounter legend { padding: 0 8px; font-size: 13px; font-weight: 600; color: var(--profile-muted); }
+.visit-vitals { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.visit-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.visit-patient-line { margin: 0 0 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.visit-queue { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 10px; }
+.visit-queue-item { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1px solid var(--profile-line); border-radius: var(--radius-sm); background: var(--profile-bg); }
+.visit-queue-item > div:nth-child(2) { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.visit-queue-item small, td small { color: var(--profile-muted); font-size: 12px; display: block; }
+.visit-queue-item.urgent { border-color: color-mix(in srgb, var(--bpr-warn) 55%, transparent); background: color-mix(in srgb, var(--bpr-warn) 7%, transparent); }
+.visit-queue-pos { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 13px; background: var(--profile-surface); border: 1px solid var(--profile-line); flex: none; }
+.visit-done { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.visit-done li { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 0; border-bottom: 1px solid var(--profile-line); }
+.visit-done small { color: var(--profile-muted); display: block; }
+.visit-timeline { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; font-size: 13px; }
+.clinic-status.visit-booked { color: var(--bpr-ok); border: 1px solid color-mix(in srgb, var(--bpr-ok) 35%, transparent); }
+.clinic-status.visit-checked_in { color: var(--bpr-warn); border: 1px solid color-mix(in srgb, var(--bpr-warn) 40%, transparent); }
+.clinic-status.visit-in_consult { color: var(--profile-accent); border: 1px solid color-mix(in srgb, var(--profile-accent) 45%, transparent); }
+.clinic-status.visit-completed, .clinic-status.visit-no_show, .clinic-status.visit-cancelled { color: var(--profile-muted); border: 1px solid color-mix(in srgb, var(--profile-muted) 25%, transparent); }
+.clinic-status.visit-no_show, .clinic-status.visit-cancelled { border-style: dashed; }
+@media (max-width: 900px) {
+  .visit-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .visit-form-row { grid-template-columns: minmax(0, 1fr); align-items: stretch; }
+  .visit-vitals { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .visit-queue-item { flex-wrap: wrap; }
+}

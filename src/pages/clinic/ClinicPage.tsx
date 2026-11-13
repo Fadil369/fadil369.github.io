@@ -18,6 +18,8 @@ import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout } from '../../components/BprKit';
 import { REGISTRY, checkCredential, checkAiLedger, short } from '../../lib/bpr';
+import { createBooking, STATUSES } from '../../lib/clinicFlow';
+import { DoctorRoom, FrontDesk, loadVisits, saveVisits, visitStatusLabel } from './VisitFlow';
 
 const SPID = 'SA-PHY-000003';
 const OID = '1.3.6.1.4.1.61026';
@@ -30,6 +32,8 @@ const STR: Record<'ar' | 'en', Record<string, string>> = {
     requests: 'Requests',
     setup: 'Clinic setup',
     reception: 'Patient reception',
+    desk: 'Front desk',
+    doctor: 'Doctor room',
     demo: 'Demo workspace',
     sample: 'Sample data',
     title: 'Reception overview',
@@ -167,6 +171,8 @@ const STR: Record<'ar' | 'en', Record<string, string>> = {
     requests: 'الطلبات',
     setup: 'إعداد العيادة',
     reception: 'استقبال المرضى',
+    desk: 'مكتب الاستقبال',
+    doctor: 'غرفة الطبيب',
     demo: 'مساحة تجريبية',
     sample: 'بيانات تجريبية',
     title: 'نظرة عامة على الاستقبال',
@@ -322,23 +328,9 @@ const DEFAULT_PROFILE = {
   insuranceEn: 'Coverage must be confirmed with clinic staff.',
 };
 
-const STATUS_LABELS: Record<string, [string, string]> = {
-  pending: ['Pending', 'قيد الانتظار'],
-  needs_staff: ['Needs staff', 'بحاجة لموظف'],
-  completed: ['Completed', 'مكتمل'],
-};
-
 // ── Local storage helpers ──────────────────────────────────────────────────
-function loadRequests(): any[] {
-  try {
-    const raw = localStorage.getItem('brainsait_clinic_requests');
-    if (!raw) return [];
-    return JSON.parse(raw);
-  } catch { return []; }
-}
-function saveRequests(reqs: any[]) {
-  try { localStorage.setItem('brainsait_clinic_requests', JSON.stringify(reqs)); } catch {}
-}
+const loadRequests = loadVisits;
+const saveRequests = saveVisits;
 function loadProfile() {
   try {
     const raw = localStorage.getItem('brainsait_clinic_profile');
@@ -360,11 +352,6 @@ function formatDate(date: string, lang: 'ar' | 'en') {
     { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Riyadh' },
   ).format(new Date(date + 'T12:00:00+03:00'));
 }
-function statusLabel(key: string, ar: boolean) {
-  const [en, a] = STATUS_LABELS[key] ?? [key, key];
-  return ar ? a : en;
-}
-
 // ── Components ─────────────────────────────────────────────────────────────
 
 function ReceptionChat({ lang, t, profile }: { lang: 'ar' | 'en'; t: Record<string, string>; profile: any }) {
@@ -497,7 +484,7 @@ function SlotBooking({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string>
 
   function confirmBooking() {
     if (!consent || !draft) return;
-    const reservation = { ...draft, id: draft.reference, status: 'pending', type: 'appointment', createdAt: new Date().toISOString() };
+    const reservation = createBooking({ reference: draft.reference, patient: draft.patient, service: draft.service, date: draft.date, time: draft.time }, new Date());
     const requests = [reservation, ...loadRequests()].slice(0, 100);
     saveRequests(requests);
     setDraft(null);
@@ -566,32 +553,27 @@ function Dashboard({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string> }
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
   const [selected, setSelected] = useState<any>(null);
-  const [status, setStatus] = useState('pending');
   const dialog = useRef<HTMLDialogElement>(null);
 
   const filtered = requests.filter((r) =>
     (filter === 'all' || r.status === filter) &&
     [r.reference, r.patient, t[r.service] || r.service].join(' ').toLowerCase().includes(search.toLowerCase())
   );
-  const counts = Object.fromEntries(
-    ['pending', 'needs_staff', 'completed'].map((s) => [s, requests.filter((r) => r.status === s).length])
-  );
+  const counts = Object.fromEntries(STATUSES.map((s) => [s, requests.filter((r) => r.status === s).length]));
 
-  async function saveStatus() {
-    if (!selected) return;
-    const updated = { ...selected, status };
-    if (!updated.id) updated.id = updated.reference;
-    const next = requests.map((r: any) => r.id === selected.id ? updated : r);
-    setRequests(next);
-    saveRequests(next);
-    setSelected(null);
-  }
+  // The details dialog is native: it has to be opened and closed explicitly.
+  useEffect(() => {
+    const d = dialog.current;
+    if (!d) return;
+    if (selected && !d.open) d.showModal();
+    if (!selected && d.open) d.close();
+  }, [selected]);
 
   return (
     <>
       <div className="clinic-metrics">
-        {[['pending', Clock3, t.pendingLabel], ['needs_staff', MessageSquare, t.needs_staff], ['completed', CheckCheck, t.completed]].map(([s, Icon, label]) => (
-          <div key={s} className="clinic-metric"><div><span>{label}</span><Icon size={19} /></div><strong>{counts[s]}</strong></div>
+        {[['booked', Clock3], ['checked_in', Users], ['in_consult', Stethoscope], ['completed', CheckCheck]].map(([s, Icon]) => (
+          <div key={s} className="clinic-metric"><div><span>{visitStatusLabel(lang, s)}</span><Icon size={19} /></div><strong>{counts[s]}</strong></div>
         ))}
       </div>
 
@@ -601,8 +583,8 @@ function Dashboard({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string> }
           <div className="clinic-search"><Search size={18} /><input aria-label={t.search} placeholder={t.search} value={search} onChange={(e) => setSearch(e.target.value)} /></div>
         </div>
         <div className="clinic-filters">
-          {['all', 'pending', 'needs_staff', 'completed'].map((s) => (
-            <button key={s} className={filter === s ? 'clinic-btn active' : 'clinic-btn outline'} aria-pressed={filter === s} onClick={() => setFilter(s)}>{t[s]} <span>{s === 'all' ? requests.length : counts[s]}</span></button>
+          {['all', ...STATUSES].map((s) => (
+            <button key={s} className={filter === s ? 'clinic-btn active' : 'clinic-btn outline'} aria-pressed={filter === s} onClick={() => setFilter(s)}>{s === 'all' ? t.all : visitStatusLabel(lang, s)} <span>{s === 'all' ? requests.length : counts[s]}</span></button>
           ))}
         </div>
         <div className="clinic-table-scroll">
@@ -614,7 +596,7 @@ function Dashboard({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string> }
                   <td><strong dir="ltr">{r.reference}</strong><small dir="auto">{r.patient}</small></td>
                   <td>{t[r.service] || r.service}</td>
                   <td>{formatDate(r.date, lang)}</td>
-                  <td><span className={`clinic-status ${r.status}`}>{statusLabel(r.status, lang === 'ar')}</span></td>
+                  <td><span className={`clinic-status visit-${r.status}`}>{visitStatusLabel(lang, r.status)}</span></td>
                   <td><button className="clinic-btn outline small" onClick={() => setSelected(r)}>{t.view}</button></td>
                 </tr>
               ))}
@@ -624,9 +606,9 @@ function Dashboard({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string> }
         {!filtered.length && <p className="clinic-empty">{t.empty}</p>}
       </section>
 
-      <dialog ref={dialog} className="clinic-dialog" onCancel={() => setSelected(null)}>
+      <dialog ref={dialog} className="clinic-dialog" onClose={() => setSelected(null)} aria-labelledby="clinic-dialog-title">
         <div className="clinic-dialog-content">
-          <div className="clinic-panel-head"><h2>{t.details}</h2><button className="clinic-icon-button" aria-label={t.close} onClick={() => setSelected(null)}><X size={20} /></button></div>
+          <div className="clinic-panel-head"><h2 id="clinic-dialog-title">{t.details}</h2><button className="clinic-icon-button" aria-label={t.close} onClick={() => setSelected(null)}><X size={20} /></button></div>
           {selected && (
             <>
               <p className="clinic-reference" dir="ltr">{selected.reference}</p>
@@ -634,12 +616,13 @@ function Dashboard({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string> }
                 <div><dt>{t.request}</dt><dd dir="auto">{selected.patient}</dd></div>
                 <div><dt>{t.service}</dt><dd>{t[selected.service] || selected.service}</dd></div>
                 <div><dt>{t.date}</dt><dd>{formatDate(selected.date, lang)} {selected.time && <b dir="ltr"> · {selected.time}</b>}</dd></div>
-                <div><dt>{t.type}</dt><dd>{t[selected.kind]}</dd></div>
+                <div><dt>{t.requestStatus}</dt><dd><span className={`clinic-status visit-${selected.status}`}>{visitStatusLabel(lang, selected.status)}</span></dd></div>
               </dl>
-              <form onSubmit={(e) => { e.preventDefault(); saveStatus(); }}>
-                <label>{t.requestStatus}<select value={status} onChange={(e) => setStatus(e.target.value)}>{['pending', 'needs_staff', 'completed'].map((s) => <option key={s} value={s}>{t[s]}</option>)}</select></label>
-                <button className="clinic-btn primary">{t.saveStatus}<Check size={18} /></button>
-              </form>
+              <ol className="visit-timeline" aria-label={lang === 'ar' ? 'السجل الزمني' : 'Timeline'}>
+                {selected.history.map((h: any, i: number) => (
+                  <li key={i}><span className={`clinic-status visit-${h.status}`}>{visitStatusLabel(lang, h.status)}</span> <time dir="ltr" dateTime={h.at}>{new Date(h.at).toLocaleString(lang === 'ar' ? 'ar-SA-u-ca-gregory' : 'en-GB', { timeZone: 'Asia/Riyadh', dateStyle: 'short', timeStyle: 'short' })}</time></li>
+                ))}
+              </ol>
             </>
           )}
         </div>
@@ -886,7 +869,7 @@ export default function ClinicPage() {
   const lang: 'ar' | 'en' = ar ? 'ar' : 'en';
   const t = STR[lang];
   const [config, setConfig] = useState(loadProfile());
-  const [activeRoute, setActiveRoute] = useState<'overview' | 'requests' | 'setup' | 'reception'>('overview');
+  const [activeRoute, setActiveRoute] = useState<'overview' | 'requests' | 'setup' | 'reception' | 'desk' | 'doctor'>('overview');
   const [loading, setLoading] = useState(true);
 
   usePageMeta({
@@ -907,6 +890,8 @@ export default function ClinicPage() {
     { key: 'requests', Icon: MessageSquare, label: t.requests },
     { key: 'setup', Icon: Settings2, label: t.setup },
     { key: 'reception', Icon: Users, label: t.reception },
+    { key: 'desk', Icon: CheckCheck, label: t.desk },
+    { key: 'doctor', Icon: Stethoscope, label: t.doctor },
   ];
 
   return (
@@ -964,6 +949,8 @@ export default function ClinicPage() {
                   <SlotBooking lang={lang} t={t} />
                 </>
               )}
+              {activeRoute === 'desk' && <FrontDesk lang={lang} t={t} />}
+              {activeRoute === 'doctor' && <DoctorRoom lang={lang} t={t} />}
               {activeRoute === 'setup' && <Setup lang={lang} t={t} onSaved={setConfig} />}
               {(activeRoute === 'overview' || activeRoute === 'requests') && (
                 <>
