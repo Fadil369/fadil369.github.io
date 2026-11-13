@@ -42,4 +42,4 @@ sudo systemctl disable --now bpr-acp && sudo a2dissite acp.brainsait.de && sudo 
 ```
 
 ## Show the link on the website
-Only after the service is verified, set `VITE_ACP_SERVICE_URL=https://acp.brainsait.de` in the local `.env`, run `npm run build`, and commit the rebuilt output. Until then `/bpr/ai` shows the integration as not configured.
+Only after the service is verified, build with `VITE_ACP_SERVICE_URL=https://acp.brainsait.de npm run build` (Vite's root is `src/`, so a repo-root `.env` is not read), then run `node scripts/publish.mjs` and `node scripts/prerender.mjs`, and commit the rebuilt output. Until then `/bpr/ai` shows the integration as not configured.
