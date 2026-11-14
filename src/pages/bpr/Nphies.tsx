@@ -168,7 +168,10 @@ function Check() {
     Promise.all([kb<any>('profiles'), kb<any>('code-systems'), kb<any>('practice-codes')])
       .then(([p, s, c]) => setSpec(makeSpec(p, s, c)), () => setFailed(true));
   }, []);
-  const run = (value: string) => { if (spec) setResult(checkBundle(value, spec)); };
+  // A file chosen before the rules finish loading is held and checked as soon as they arrive.
+  const [pending, setPending] = useState<string | null>(null);
+  useEffect(() => { if (spec && pending !== null) { setResult(checkBundle(pending, spec)); setPending(null); } }, [spec, pending]);
+  const run = (value: string) => { if (spec) setResult(checkBundle(value, spec)); else setPending(value); };
   const onFile = (e: ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files?.[0];
     if (!f) return;
@@ -183,7 +186,7 @@ function Check() {
       <h2 id="nph-check">{ar ? 'افحص رسالة نفيس قبل إرسالها' : 'Pre-check a NPHIES message before you send it'}</h2>
       <p className="nph-private"><Lock size={15} aria-hidden="true" /><span>{ar ? 'يتم الفحص بالكامل في متصفحك، ولا يُرفع النص ولا يُحفظ. استخدم بيانات مصطنعة أو منزوعة الهوية مع ذلك.' : 'The check runs entirely in your browser. Nothing is uploaded or stored. Even so, use synthetic or de-identified data.'}</span></p>
       <label className="nph-label" htmlFor="nph-bundle">{ar ? 'الصق حزمة FHIR بصيغة JSON' : 'Paste a FHIR Bundle as JSON'}</label>
-      <textarea id="nph-bundle" dir="ltr" rows={10} spellCheck={false} autoComplete="off" value={text} onChange={(e) => { setText(e.target.value); setResult(null); }} placeholder='{"resourceType":"Bundle","type":"message", ...}' />
+      <textarea id="nph-bundle" dir="ltr" rows={10} spellCheck={false} autoComplete="off" value={text} onChange={(e) => { setText(e.target.value); setResult(null); setPending(null); }} placeholder='{"resourceType":"Bundle","type":"message", ...}' />
       <div className="profile-actions">
         <button type="button" className="profile-button primary" disabled={!spec || !text.trim()} onClick={() => run(text)}>{ar ? 'افحص' : 'Run the check'}<ArrowRight size={16} /></button>
         <label className="profile-button secondary nph-file"><UploadCloud size={16} aria-hidden="true" />{ar ? 'اختر ملفًا' : 'Choose a file'}<input type="file" accept=".json,application/json,application/fhir+json" onChange={onFile} /></label>

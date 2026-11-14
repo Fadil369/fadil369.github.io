@@ -1,8 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  advance, canMove, createBooking, createWalkIn, FlowError, icd10Valid, identifierProblem, isSyntheticLabel, normalizeVisit, noteProblems,
-  parseVisits, queueOrder, saveEncounter, setPriority, summarize, toFhirEncounter, vitalsProblems, waitMinutes, type Visit,
+  advance, canMove, createBooking, createWalkIn, FlowError, followUpVisit, icd10Valid, identifierProblem, isSyntheticLabel, normalizeVisit, noteProblems,
+  ordersProblems, parseVisits, patientHistory, queueOrder, saveEncounter, setPriority, summarize, toFhirBundle, toFhirEncounter, vitalsProblems, waitMinutes,
+  type Visit,
 } from './clinicFlow.ts';
 
 const T0 = new Date('2026-11-13T09:00:00Z');
@@ -146,4 +147,101 @@ test('booking creates a booked visit and enforces the synthetic label', () => {
   assert.equal(b.status, 'booked');
   assert.equal(b.id, 'DEMO-77');
   throwsCode(() => createBooking({ reference: 'R', patient: 'Real Name', service: 'general', date: TODAY, time: '10:30' }, T0), 'patient_label');
+});
+
+test('plan lines: kind, text, count and identifiers are checked', () => {
+  assert.deepEqual(ordersProblems(undefined), []);
+  assert.deepEqual(ordersProblems([{ kind: 'lab', text: 'Synthetic CBC' }]), []);
+  assert.deepEqual(ordersProblems([{ kind: 'lab', text: '   ' }]), ['text']);
+  assert.deepEqual(ordersProblems([{ kind: 'lab', text: 'x'.repeat(201) }]), ['text']);
+  assert.deepEqual(ordersProblems([{ kind: 'surgery' as never, text: 'x' }]), ['kind']);
+  assert.deepEqual(ordersProblems([{ kind: 'advice', text: 'call 0551234567' }]), ['identifier']);
+  assert.deepEqual(ordersProblems(Array.from({ length: 11 }, () => ({ kind: 'advice' as const, text: 'Rest' }))), ['count']);
+});
+
+test('saving an encounter keeps plan lines and the follow-up interval, and refuses bad ones', () => {
+  const v = booked({ status: 'in_consult' });
+  const saved = saveEncounter(v, { heartRate: 72 }, note, { orders: [{ kind: 'lab', text: '  Synthetic CBC ' }], followUpDays: 14 });
+  assert.deepEqual(saved.orders, [{ kind: 'lab', text: 'Synthetic CBC' }]);
+  assert.equal(saved.followUpDays, 14);
+  const cleared = saveEncounter(saved, { heartRate: 72 }, note);
+  assert.equal(cleared.orders, undefined);
+  assert.equal(cleared.followUpDays, undefined);
+  throwsCode(() => saveEncounter(v, {}, note, { orders: [{ kind: 'lab', text: '' }] }), 'orders');
+  throwsCode(() => saveEncounter(v, {}, note, { orders: [{ kind: 'advice', text: 'mail me at a@b.co' }] }), 'identifier');
+  throwsCode(() => saveEncounter(v, {}, note, { followUpDays: 5 }), 'follow_up');
+  assert.equal(v.orders, undefined, 'input not mutated');
+});
+
+test('patient history: same synthetic patient, completed only, newest first, excluding the current visit', () => {
+  const done = (id: string, patient: string, at: string, status: Visit['status'] = 'completed') => booked({ id, reference: id, patient, status, completedAt: at });
+  const list = [done('A', 'Patient 001', '2026-10-01T09:00:00Z'), done('B', 'Patient 001', '2026-11-01T09:00:00Z'), done('C', 'Patient 002', '2026-11-02T09:00:00Z'),
+    done('D', 'Patient 001', '2026-11-05T09:00:00Z', 'cancelled'), done('E', 'Patient 001', '2026-11-09T09:00:00Z', 'in_consult'), done('F', 'Patient 001', '2026-11-10T09:00:00Z')];
+  assert.deepEqual(patientHistory(list, 'Patient 001').map((v) => v.id), ['F', 'B', 'A']);
+  assert.deepEqual(patientHistory(list, 'Patient 001', 'F').map((v) => v.id), ['B', 'A']);
+  assert.deepEqual(patientHistory(list, 'Patient 999'), []);
+});
+
+test('follow-up booking derives its id from the visit and links back to it', () => {
+  const done = booked({ id: 'DEMO-9', reference: 'DEMO-9', status: 'completed' });
+  const fu = followUpVisit(done, { date: '2026-11-22', time: '10:00' }, T0);
+  assert.equal(fu.id, 'DEMO-9-F');
+  assert.equal(fu.followUpOf, 'DEMO-9');
+  assert.equal(fu.status, 'booked');
+  assert.equal(fu.patient, done.patient);
+  assert.equal(fu.service, done.service);
+  assert.deepEqual([fu.date, fu.time], ['2026-11-22', '10:00']);
+});
+
+test('stored plan lines survive a reload; damaged ones are dropped, not fatal', () => {
+  const ok = normalizeVisit({ id: 'X', patient: 'Patient 001', status: 'completed', orders: [{ kind: 'lab', text: 'CBC' }], followUpDays: 14, followUpOf: 'DEMO-1' });
+  assert.deepEqual(ok?.orders, [{ kind: 'lab', text: 'CBC' }]);
+  assert.equal(ok?.followUpDays, 14);
+  assert.equal(ok?.followUpOf, 'DEMO-1');
+  const messy = normalizeVisit({ id: 'Y', patient: 'Patient 002', orders: [null, 5, { kind: 'nope', text: 'x' }, { kind: 'lab' }, { kind: 'advice', text: 'y'.repeat(500) }], followUpDays: 3 });
+  assert.equal(messy?.orders?.length, 1);
+  assert.equal(messy?.orders?.[0].text.length, 200);
+  assert.equal(messy?.followUpDays, undefined);
+  assert.equal(normalizeVisit({ id: 'Z', patient: 'Patient 003', orders: 'text' })?.orders, undefined);
+});
+
+test('FHIR bundle: Encounter, Condition, vital-sign Observations and draft plan requests, all synthetic and cross-referenced', () => {
+  const v = booked({
+    id: 'DEMO-ABC', reference: 'DEMO-ABC', status: 'completed', checkedInAt: min(5).toISOString(), startedAt: min(10).toISOString(), completedAt: min(30).toISOString(),
+    vitals: { temperatureC: 37.2, heartRate: 72, systolic: 120, diastolic: 80, spo2: 98 }, note,
+    orders: [{ kind: 'lab', text: 'Synthetic CBC' }, { kind: 'medication', text: 'Synthetic paracetamol' }, { kind: 'advice', text: 'Rest' }, { kind: 'referral', text: 'Synthetic ENT' }],
+  });
+  const b = toFhirBundle(v);
+  assert.equal(b.resourceType, 'Bundle');
+  assert.equal(b.type, 'collection');
+  assert.deepEqual(b.entry.map((e) => e.resource.resourceType),
+    ['Encounter', 'Condition', 'Observation', 'Observation', 'Observation', 'Observation', 'ServiceRequest', 'MedicationRequest', 'CommunicationRequest', 'ServiceRequest']);
+  for (const e of b.entry) {
+    assert.equal(e.fullUrl, `http://example.invalid/${e.resource.resourceType}/${e.resource.id}`);
+    assert.equal((e.resource as { meta: { tag: { code: string }[] } }).meta.tag[0].code, 'synthetic');
+    assert.match(String(e.resource.id), /^[A-Za-z0-9.-]{1,64}$/, 'valid FHIR id');
+  }
+  const byType = (t: string) => b.entry.filter((e) => e.resource.resourceType === t).map((e) => e.resource as Record<string, any>);
+  const enc = byType('Encounter')[0];
+  assert.deepEqual(enc.diagnosis, [{ condition: { reference: 'Condition/demo-abc-dx' } }]);
+  const [condition] = byType('Condition');
+  assert.deepEqual(condition.code.coding, [{ system: 'http://hl7.org/fhir/sid/icd-10', code: 'J06.9' }]);
+  assert.equal(condition.encounter.reference, 'Encounter/demo-abc');
+  const obs: Record<string, Record<string, any>> = Object.fromEntries(byType('Observation').map((o): [string, Record<string, any>] => [o.code.coding[0].code, o]));
+  assert.deepEqual(Object.keys(obs).sort(), ['59408-5', '8310-5', '85354-9', '8867-4']);
+  assert.deepEqual(obs['8310-5'].valueQuantity, { value: 37.2, unit: '°C', system: 'http://unitsofmeasure.org', code: 'Cel' });
+  assert.equal(obs['59408-5'].valueQuantity.value, 98);
+  assert.deepEqual(obs['85354-9'].component.map((c: any) => [c.code.coding[0].code, c.valueQuantity.value, c.valueQuantity.code]), [['8480-6', 120, 'mm[Hg]'], ['8462-4', 80, 'mm[Hg]']]);
+  for (const o of Object.values(obs)) { assert.equal(o.status, 'final'); assert.equal(o.effectiveDateTime, min(10).toISOString()); }
+  for (const r of [...byType('ServiceRequest'), ...byType('MedicationRequest')]) { assert.equal(r.status, 'draft'); assert.equal(r.intent, 'proposal'); }
+  assert.deepEqual(byType('ServiceRequest').map((r) => r.category[0].text), ['lab', 'referral']);
+  assert.equal(byType('CommunicationRequest')[0].payload[0].contentString, 'Rest');
+});
+
+test('FHIR bundle: leaves out what was not recorded', () => {
+  const bare = booked({ id: 'DEMO-B', reference: 'DEMO-B', status: 'completed', note: { chiefComplaint: 'Synthetic cough', assessment: 'Synthetic URTI', plan: '' } });
+  assert.deepEqual(toFhirBundle(bare).entry.map((e) => e.resource.resourceType), ['Encounter']);
+  const noPair = booked({ id: 'DEMO-C', reference: 'DEMO-C', status: 'completed', vitals: { systolic: 120 } });
+  assert.deepEqual(toFhirBundle(noPair).entry.map((e) => e.resource.resourceType), ['Encounter'], 'a lone systolic value is not a blood-pressure panel');
+  assert.equal(toFhirBundle(bare).entry[0].resource.diagnosis, undefined);
 });

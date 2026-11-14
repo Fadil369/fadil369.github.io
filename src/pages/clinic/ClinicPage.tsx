@@ -6,7 +6,7 @@
  * No patient data, booking request, or chat prompt is sent to a model or backend.
  */
 // @ts-nocheck
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   ArrowRight, ArrowUpRight, CalendarDays, CalendarClock, Check, CheckCircle2,
   CheckCheck, Clock3, Copy, FileText, Headphones, HeartPulse, LogOut, MapPin,
@@ -19,7 +19,8 @@ import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout } from '../../components/BprKit';
 import { REGISTRY, checkCredential, checkAiLedger, short } from '../../lib/bpr';
 import { createBooking, STATUSES } from '../../lib/clinicFlow';
-import { DoctorRoom, FrontDesk, loadVisits, saveVisits, visitStatusLabel } from './VisitFlow';
+import { DoctorRoom, FrontDesk, loadSchedule, loadVisits, SCHEDULE_KEY, saveVisits, visitStatusLabel } from './VisitFlow';
+import { DEFAULT_SCHEDULE, isSlotTaken, scheduleProblem, SLOT_LENGTHS, slotStates } from '../../lib/clinicSchedule';
 
 const SPID = 'SA-PHY-000003';
 const OID = '1.3.6.1.4.1.61026';
@@ -118,7 +119,13 @@ const STR: Record<'ar' | 'en', Record<string, string>> = {
     noActivity: 'Staff updates will appear here.',
     empty: 'No requests match your search.',
     bookTitle: 'Book a demo time',
-    schedule: 'Demo schedule: Sunday–Thursday, 09:00–21:00. All times are in Riyadh (UTC+03:00).',
+    schedule: 'Demo schedule: Sunday–Thursday, {open}–{close}, {minutes}-minute visits. All times are in Riyadh (UTC+03:00).',
+    slotTaken: 'taken', slotTakenNow: 'That time was just taken. Please choose another.',
+    scheduleTitle: 'Booking schedule', scheduleHint: 'Sets the times offered in Patient reception. Existing bookings are not changed. Working days are Sunday to Thursday.',
+    openTime: 'First visit starts', closeTime: 'Last visit ends', slotLength: 'Visit length', minutesUnit: 'minutes', saveSchedule: 'Save schedule', scheduleSaved: 'Schedule saved.',
+    'sched.time': 'Enter the times as hours and minutes.', 'sched.order': 'Closing time must be after the opening time.',
+    schedStorage: 'Could not save in this browser. Check that site storage is allowed.',
+    'sched.length': 'Choose one of the listed visit lengths.', 'sched.count': 'The schedule must give between 1 and 64 visits a day.',
     slots: 'Available times',
     chooseDate: 'Choose a date to see available times.',
     noSlots: 'No times available for this date. Please choose another date.',
@@ -257,7 +264,13 @@ const STR: Record<'ar' | 'en', Record<string, string>> = {
     noActivity: 'ستظهر تحديثات الموظفين هنا.',
     empty: 'لا توجد طلبات تطابق بحثك.',
     bookTitle: 'حجز وقت تجريبي',
-    schedule: 'الجدول التجريبي: الأحد إلى الخميس، ٩ صباحًا إلى ٩ مساءً. جميع الأوقات بتوقيت الرياض (UTC+03:00).',
+    schedule: 'الجدول التجريبي: الأحد إلى الخميس، من {open} إلى {close}، زيارات مدتها {minutes} دقيقة. جميع الأوقات بتوقيت الرياض (UTC+03:00).',
+    slotTaken: 'محجوز', slotTakenNow: 'تم حجز هذا الوقت للتو. اختر وقتًا آخر.',
+    scheduleTitle: 'جدول الحجز', scheduleHint: 'يحدد الأوقات المعروضة في استقبال المرضى. لا تتغير الحجوزات القائمة. أيام العمل من الأحد إلى الخميس.',
+    openTime: 'بداية أول زيارة', closeTime: 'نهاية آخر زيارة', slotLength: 'مدة الزيارة', minutesUnit: 'دقيقة', saveSchedule: 'حفظ الجدول', scheduleSaved: 'تم حفظ الجدول.',
+    'sched.time': 'أدخل الأوقات بالساعات والدقائق.', 'sched.order': 'يجب أن يكون وقت الإغلاق بعد وقت الفتح.',
+    schedStorage: 'تعذر الحفظ في هذا المتصفح. تأكد من السماح بتخزين الموقع.',
+    'sched.length': 'اختر مدة زيارة من القائمة.', 'sched.count': 'يجب أن يعطي الجدول من ١ إلى ٦٤ زيارة في اليوم.',
     slots: 'الأوقات المتاحة',
     chooseDate: 'اختر تاريخًا لعرض الأوقات المتاحة.',
     noSlots: 'لا توجد أوقات متاحة في هذا التاريخ. اختر تاريخًا آخر.',
@@ -448,8 +461,6 @@ function ReceptionChat({ lang, t, profile }: { lang: 'ar' | 'en'; t: Record<stri
 
 function SlotBooking({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string> }) {
   const [form, setForm] = useState({ patient: '', service: 'general', date: '', time: '', consent: false });
-  const [slots, setSlots] = useState<string[]>([]);
-  const [loading, setLoading] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [draft, setDraft] = useState<any>(null);
@@ -463,21 +474,23 @@ function SlotBooking({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string>
     setDraft(null); setConsent(false); setError('');
   };
 
-  function loadSlots() {
-    if (!form.date) { setSlots([]); return; }
-    setLoading(true);
-    // Stable local-only sample schedule; weekdays only, Riyadh time.
-    const day = new Date(`${form.date}T12:00:00+03:00`).getDay();
-    const times = day === 5 || day === 6 ? [] : Array.from({ length: 17 }, (_, i) => {
-      const minutes = 9 * 60 + i * 30;
-      return `${String(Math.floor(minutes / 60)).padStart(2, '0')}:${String(minutes % 60).padStart(2, '0')}`;
-    });
-    setSlots(times);
-    setForm((f) => ({ ...f, time: times.includes(f.time) ? f.time : '' }));
-    setLoading(false);
-  }
-
-  useEffect(() => { loadSlots(); }, [form.date, form.service, revision]);
+  // Slots come from the saved schedule and the visits in this browser. Another tab's booking and the passing time
+  // (a time that has started is no longer offered) both refresh them.
+  const [tick, setTick] = useState(0);
+  useEffect(() => {
+    const bump = () => setTick((n) => n + 1);
+    window.addEventListener('storage', bump);
+    const id = setInterval(bump, 30000);
+    return () => { window.removeEventListener('storage', bump); clearInterval(id); };
+  }, []);
+  const schedule = loadSchedule();
+  const slots = useMemo(
+    () => slotStates({ date: form.date, service: form.service, visits: loadRequests(), schedule: loadSchedule(), now: new Date() }),
+    [form.date, form.service, revision, tick],
+  );
+  useEffect(() => {
+    setForm((f) => (f.time && !slots.some((x) => x.time === f.time && x.state === 'free') ? { ...f, time: '' } : f));
+  }, [slots]);
 
   function createDraft() {
     if (!form.patient || !form.time || !form.date) return;
@@ -487,6 +500,10 @@ function SlotBooking({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string>
 
   function confirmBooking() {
     if (!consent || !draft) return;
+    if (isSlotTaken(loadRequests(), draft.date, draft.service, draft.time)) {
+      setDraft(null); setConsent(false); setForm((f) => ({ ...f, time: '' })); setError(t.slotTakenNow); setTick((n) => n + 1);
+      return;
+    }
     const reservation = createBooking({ reference: draft.reference, patient: draft.patient, service: draft.service, date: draft.date, time: draft.time }, new Date());
     const requests = [reservation, ...loadRequests()].slice(0, 100);
     saveRequests(requests);
@@ -533,18 +550,20 @@ function SlotBooking({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string>
       {error && <div className="clinic-notice clinic-notice-error">{error}</div>}
       <form onSubmit={(e) => { e.preventDefault(); createDraft(); }} className="clinic-slot-form">
         <div className="clinic-panel-head"><h2>{t.bookTitle}</h2><CalendarDays size={22} /></div>
-        <p className="clinic-hint">{t.schedule}</p>
+        <p className="clinic-hint">{t.schedule.replace('{open}', schedule.open).replace('{close}', schedule.close).replace('{minutes}', String(schedule.slotMinutes))}</p>
         <label>{t.patientLabel}<input required pattern={['(?:Patient', 'مريض) [0-9٠-٩]{3}'].join('|')} maxLength="40" dir="auto" placeholder="Patient 007" value={form.patient} onChange={(e) => update('patient', e.target.value)} /><small>{t.patientHint}</small></label>
         <label>{t.service}<select value={form.service} onChange={(e) => update('service', e.target.value)}>{SERVICES.map((s) => <option key={s.id} value={s.id}>{t[s.id]}</option>)}</select></label>
         <label>{t.date}<input required type="date" min={saudiToday()} max={new Date(Date.now() + 30 * 86400000).toLocaleDateString('en-CA', { timeZone: 'Asia/Riyadh' })} value={form.date} onChange={(e) => update('date', e.target.value)} /></label>
         <fieldset className="clinic-time-slots"><legend>{t.slots}</legend>
-          {loading ? <p className="clinic-hint">{t.loadingSlots}</p> : !form.date ? <p className="clinic-hint">{t.chooseDate}</p> : !slots.length ? <p className="clinic-hint">{t.noSlots}</p> : (
-            <div className="clinic-slot-grid">{slots.map((time) => (
+          {!form.date ? <p className="clinic-hint">{t.chooseDate}</p> : !slots.length ? <p className="clinic-hint">{t.noSlots}</p> : (
+            <div className="clinic-slot-grid">{slots.map(({ time, state }) => state === 'taken' ? (
+              <button key={time} type="button" className="clinic-slot taken" disabled dir="ltr">{time}<span className="sr-only"> ({t.slotTaken})</span></button>
+            ) : (
               <button key={time} type="button" className={form.time === time ? 'clinic-slot selected' : 'clinic-slot'} onClick={() => update('time', time)} aria-pressed={form.time === time} dir="ltr">{time}</button>
             ))}</div>
           )}
         </fieldset>
-        <button className="clinic-btn primary full" disabled={busy || loading || !form.time}>{busy ? t.saving : t.review}<ArrowRight size={18} /></button>
+        <button className="clinic-btn primary full" disabled={busy || !form.time}>{busy ? t.saving : t.review}<ArrowRight size={18} /></button>
         <p className="clinic-privacy">{t.waiting}</p>
       </form>
     </section>
@@ -634,6 +653,48 @@ function Dashboard({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string> }
   );
 }
 
+function ScheduleSettings({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string> }) {
+  const [saved, setSaved] = useState(loadSchedule());
+  const [form, setForm] = useState({ open: saved.open, close: saved.close, slotMinutes: String(saved.slotMinutes) });
+  const [error, setError] = useState('');
+  const [ok, setOk] = useState('');
+  const dirty = form.open !== saved.open || form.close !== saved.close || Number(form.slotMinutes) !== saved.slotMinutes;
+  function submit(e) {
+    e.preventDefault();
+    setOk('');
+    const next = { open: form.open, close: form.close, slotMinutes: Number(form.slotMinutes) };
+    const problem = scheduleProblem(next);
+    if (problem) { setError(t[`sched.${problem}`]); return; }
+    try { localStorage.setItem(SCHEDULE_KEY, JSON.stringify(next)); } catch { setError(t.schedStorage); return; }
+    setSaved(next);
+    setError('');
+    setOk(t.scheduleSaved);
+  }
+  const change = (key: string, value: string) => { setForm({ ...form, [key]: value }); setError(''); setOk(''); };
+  return (
+    <section className="clinic-panel">
+      <h2>{t.scheduleTitle}</h2>
+      <p className="clinic-hint">{t.scheduleHint}</p>
+      <form onSubmit={submit} className="clinic-profile-form">
+        <div className="clinic-form-grid">
+          <label>{t.openTime}<input type="time" required step="300" dir="ltr" value={form.open} onChange={(e) => change('open', e.target.value)} /></label>
+          <label>{t.closeTime}<input type="time" required step="300" dir="ltr" value={form.close} onChange={(e) => change('close', e.target.value)} /></label>
+          <label>{t.slotLength}
+            <select value={form.slotMinutes} onChange={(e) => change('slotMinutes', e.target.value)}>
+              {SLOT_LENGTHS.map((m) => <option key={m} value={m}>{m} {t.minutesUnit}</option>)}
+            </select>
+          </label>
+        </div>
+        <div role="status" aria-live="polite">
+          {error && <div className="clinic-notice clinic-notice-error">{error}</div>}
+          {ok && <div className="clinic-notice clinic-notice-ok">{ok}</div>}
+        </div>
+        <button type="submit" className="clinic-btn primary" disabled={!dirty}>{t.saveSchedule}</button>
+      </form>
+    </section>
+  );
+}
+
 function Setup({ lang, t, onSaved }: { lang: 'ar' | 'en'; t: Record<string, string>; onSaved: (profile: any) => void }) {
   const [profile, setProfile] = useState(loadProfile());
   const [draft, setDraft] = useState(profile);
@@ -645,6 +706,7 @@ function Setup({ lang, t, onSaved }: { lang: 'ar' | 'en'; t: Record<string, stri
   }
 
   return (
+    <>
     <section className="clinic-panel">
       <h2>{t.profileTitle}</h2>
       <p className="clinic-hint">{t.profileSubtitle}</p>
@@ -665,6 +727,8 @@ function Setup({ lang, t, onSaved }: { lang: 'ar' | 'en'; t: Record<string, stri
         <button type="submit" className="clinic-btn primary" disabled={!dirty}>{t.saveProfile}</button>
       </form>
     </section>
+    <ScheduleSettings lang={lang} t={t} />
+    </>
   );
 }
 
