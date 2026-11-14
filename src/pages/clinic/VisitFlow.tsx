@@ -38,10 +38,10 @@ interface Draft { vit: Record<string, string>; note: { chiefComplaint: string; a
 function loadDraft(id: string): Draft | null {
   try {
     const d = JSON.parse(sessionStorage.getItem(DRAFT_PREFIX + id) ?? 'null');
-    if (!d || typeof d !== 'object' || typeof d.vit !== 'object' || typeof d.note !== 'object') return null;
+    if (!d || typeof d !== 'object' || typeof d.note !== 'object' || !d.note) return null;
     const str = (x: unknown) => (typeof x === 'string' ? x : '');
     return {
-      vit: Object.fromEntries(['temperatureC', 'heartRate', 'systolic', 'diastolic', 'spo2'].map((k) => [k, str(d.vit?.[k])])),
+      vit: Object.fromEntries(['temperatureC', 'heartRate', 'systolic', 'diastolic', 'spo2'].map((k) => [k, ''])),
       note: { chiefComplaint: str(d.note.chiefComplaint), assessment: str(d.note.assessment), plan: str(d.note.plan), icd10: str(d.note.icd10) },
       orders: Array.isArray(d.orders) ? d.orders.filter((o: Order) => o && (ORDER_KINDS as readonly string[]).includes(o.kind) && typeof o.text === 'string').slice(0, MAX_ORDERS) : [],
       followUp: str(d.followUp),
