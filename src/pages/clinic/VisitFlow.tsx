@@ -37,7 +37,7 @@ function today() {
 interface Draft { vit: Record<string, string>; note: { chiefComplaint: string; assessment: string; plan: string; icd10: string }; orders: Order[]; followUp: string }
 function loadDraft(id: string): Draft | null {
   try {
-    const d = JSON.parse(localStorage.getItem(DRAFT_PREFIX + id) ?? 'null');
+    const d = JSON.parse(sessionStorage.getItem(DRAFT_PREFIX + id) ?? 'null');
     if (!d || typeof d !== 'object' || typeof d.vit !== 'object' || typeof d.note !== 'object') return null;
     const str = (x: unknown) => (typeof x === 'string' ? x : '');
     return {
@@ -51,19 +51,19 @@ function loadDraft(id: string): Draft | null {
 function storeDraft(id: string, d: Draft) {
   const texts = [d.note.chiefComplaint, d.note.assessment, d.note.plan, ...d.orders.map((o) => o.text)];
   if (texts.some((t) => identifierProblem(t))) return;
-  try { localStorage.setItem(DRAFT_PREFIX + id, JSON.stringify(d)); } catch { /* storage may be blocked */ }
+  try { sessionStorage.setItem(DRAFT_PREFIX + id, JSON.stringify(d)); } catch { /* storage may be blocked */ }
 }
 function clearDraft(id: string) {
-  try { localStorage.removeItem(DRAFT_PREFIX + id); } catch { /* ignore */ }
+  try { sessionStorage.removeItem(DRAFT_PREFIX + id); } catch { /* ignore */ }
 }
 /** Drops buffers of visits that are gone or no longer being seen. */
 function pruneDrafts(visits: Visit[]) {
   try {
-    for (let i = localStorage.length - 1; i >= 0; i--) {
-      const key = localStorage.key(i);
+    for (let i = sessionStorage.length - 1; i >= 0; i--) {
+      const key = sessionStorage.key(i);
       if (!key?.startsWith(DRAFT_PREFIX)) continue;
       const visit = visits.find((x) => x.id === key.slice(DRAFT_PREFIX.length));
-      if (!visit || (visit.status !== 'in_consult' && visit.status !== 'checked_in')) localStorage.removeItem(key);
+      if (!visit || (visit.status !== 'in_consult' && visit.status !== 'checked_in')) sessionStorage.removeItem(key);
     }
   } catch { /* ignore */ }
 }

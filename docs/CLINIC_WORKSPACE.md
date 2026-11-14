@@ -17,7 +17,7 @@
 
 ## Where the data lives
 
-Browser `localStorage` only: `brainsait_clinic_requests` (visits), `brainsait_clinic_schedule`, `brainsait_clinic_profile`, and `brainsait_clinic_draft_<visit id>` while a note is open. Clearing site data removes all of it. Nothing is shared between devices.
+Browser storage only: `brainsait_clinic_requests` (visits), `brainsait_clinic_schedule`, `brainsait_clinic_profile`, in `localStorage`, and `brainsait_clinic_draft_<visit id>` in `sessionStorage` while a note is open (a draft is lost when the tab closes). Clearing site data removes the rest. Nothing is shared between devices.
 
 ## Code
 

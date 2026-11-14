@@ -210,14 +210,14 @@ try {
   assert.equal(await page.locator('.visit-orders li').count(), 2, 'plan lines come back with the draft');
   await page.getByLabel('Chief complaint').fill('Cough, national id 1023456789');
   await page.waitForTimeout(900);
-  const stash = await page.evaluate(() => Object.keys(localStorage).filter((k) => k.startsWith('brainsait_clinic_draft_')).map((k) => localStorage.getItem(k)).join(' '));
+  const stash = await page.evaluate(() => Object.keys(sessionStorage).filter((k) => k.startsWith('brainsait_clinic_draft_')).map((k) => sessionStorage.getItem(k)).join(' '));
   assert.ok(!stash.includes('1023456789'), 'a note that trips the identifier check is not written to storage');
   await page.getByLabel('Chief complaint').fill('Synthetic headache, two days');
 
   await page.getByRole('button', { name: 'Sign and complete visit' }).click();
   const doneText = await page.locator('.clinic-notice-ok').textContent();
   assert.match(doneText, /Visit completed\. Follow-up booked: \d{4}-\d{2}-\d{2} \d{2}:\d{2}/);
-  assert.equal(await page.evaluate(() => Object.keys(localStorage).filter((k) => k.startsWith('brainsait_clinic_draft_')).length), 0, 'the draft is cleared once the visit is signed');
+  assert.equal(await page.evaluate(() => Object.keys(sessionStorage).filter((k) => k.startsWith('brainsait_clinic_draft_')).length), 0, 'the draft is cleared once the visit is signed');
   await nav('Front desk');
   const follow = page.locator('tbody tr', { hasText: 'Patient 043' }).filter({ hasText: 'Booked' });
   assert.equal(await follow.count(), 1, 'the follow-up booking is in the front desk list');
