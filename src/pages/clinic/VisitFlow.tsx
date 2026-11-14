@@ -51,7 +51,8 @@ function loadDraft(id: string): Draft | null {
 function storeDraft(id: string, d: Draft) {
   const texts = [d.note.chiefComplaint, d.note.assessment, d.note.plan, ...d.orders.map((o) => o.text)];
   if (texts.some((t) => identifierProblem(t))) return;
-  try { sessionStorage.setItem(DRAFT_PREFIX + id, JSON.stringify(d)); } catch { /* storage may be blocked */ }
+  // Vitals are deliberately not kept in the draft.
+  try { sessionStorage.setItem(DRAFT_PREFIX + id, JSON.stringify({ note: d.note, orders: d.orders, followUp: d.followUp })); } catch { /* storage may be blocked */ }
 }
 function clearDraft(id: string) {
   try { sessionStorage.removeItem(DRAFT_PREFIX + id); } catch { /* ignore */ }
