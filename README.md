@@ -10,6 +10,7 @@ Bilingual (English/Arabic) professional profile and the **BrainSAIT Provider Reg
 | `public/`, `scripts/` | Static assets and build, publish, prerender and verification scripts. |
 | `acp/` | Agent Client Protocol client, CLI, web service and Electron desktop shell for the clinical assistant. See [docs/ACP_CLIENT.md](docs/ACP_CLIENT.md). |
 | `plugins/`, `marketplace.json` | Five clinical Copilot plugins and their marketplace catalog. See [docs/CLINICAL_PLUGIN_MARKETPLACE.md](docs/CLINICAL_PLUGIN_MARKETPLACE.md). |
+| `src/pages/clinic/`, `src/lib/clinic*.ts` | Synthetic-data clinic reception and doctor workspace at `/bpr/clinic`. See [docs/CLINIC_WORKSPACE.md](docs/CLINIC_WORKSPACE.md). |
 | `deploy/acp/` | systemd unit, Apache vhost and runbook for hosting the ACP service. See [deploy/acp/README.md](deploy/acp/README.md). |
 | `docs/` | Operational notes: [BPR public data](docs/BPR_PUBLIC_DATA.md), [Shopify](docs/SHOPIFY_INTEGRATION.md), [commerce automation](docs/COMMERCE_AUTOMATION.md), [testing workflows](docs/TESTING_WORKFLOWS.md). |
 | Repo root HTML/route folders | **Committed build output.** GitHub Pages serves `main` directly, so rebuilt files are committed. Do not edit them by hand. |

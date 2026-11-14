@@ -22,6 +22,18 @@ export interface VisitNote {
   icd10?: string;
 }
 
+export const ORDER_KINDS = ['lab', 'imaging', 'medication', 'referral', 'advice'] as const;
+export type OrderKind = (typeof ORDER_KINDS)[number];
+/** One line of the plan: free synthetic text, not a coded order. */
+export interface Order {
+  kind: OrderKind;
+  text: string;
+}
+export const MAX_ORDERS = 10;
+export const MAX_ORDER_TEXT = 200;
+/** Follow-up intervals the doctor room offers, in days. */
+export const FOLLOW_UP_DAYS = [7, 14, 28, 90];
+
 export interface Visit {
   id: string;
   reference: string;
@@ -38,6 +50,11 @@ export interface Visit {
   completedAt?: string;
   vitals?: Vitals;
   note?: VisitNote;
+  orders?: Order[];
+  /** Follow-up the doctor asked for, in days; the booking is created when the visit is completed. */
+  followUpDays?: number;
+  /** Set on a follow-up booking: the id of the visit it follows. */
+  followUpOf?: string;
   history: { status: VisitStatus; at: string }[];
 }
 
@@ -174,13 +191,47 @@ export function setPriority(visit: Visit, priority: Priority): Visit {
   return { ...visit, priority };
 }
 
-export function saveEncounter(visit: Visit, vitals: Vitals, note: VisitNote): Visit {
+/** Problems with the plan lines: a kind outside the list, empty or long text, too many lines, or a real-looking identifier. */
+export function ordersProblems(orders: Order[] | undefined): string[] {
+  const bad: string[] = [];
+  const list = orders ?? [];
+  if (list.length > MAX_ORDERS) bad.push('count');
+  for (const o of list) {
+    if (!(ORDER_KINDS as readonly string[]).includes(o.kind)) bad.push('kind');
+    else if (!o.text.trim() || o.text.length > MAX_ORDER_TEXT) bad.push('text');
+    else if (identifierProblem(o.text)) bad.push('identifier');
+  }
+  return [...new Set(bad)];
+}
+
+export function saveEncounter(visit: Visit, vitals: Vitals, note: VisitNote, extras: { orders?: Order[]; followUpDays?: number } = {}): Visit {
   const bad = vitalsProblems(vitals);
   if (bad.length) throw new FlowError('vitals', `Check these vitals: ${bad.join(', ')}.`);
   for (const field of ['chiefComplaint', 'assessment', 'plan'] as const) {
     if (identifierProblem(note[field] ?? '')) throw new FlowError('identifier', 'The note looks like it contains a real identifier. Use synthetic text only.');
   }
-  return { ...visit, vitals, note };
+  const orders = (extras.orders ?? []).map((o) => ({ kind: o.kind, text: o.text.trim() }));
+  const orderBad = ordersProblems(orders);
+  if (orderBad.includes('identifier')) throw new FlowError('identifier', 'A plan line looks like it contains a real identifier. Use synthetic text only.');
+  if (orderBad.length) throw new FlowError('orders', `Check the plan lines: ${orderBad.join(', ')}.`);
+  const days = extras.followUpDays;
+  if (days !== undefined && !FOLLOW_UP_DAYS.includes(days)) throw new FlowError('follow_up', 'Choose one of the listed follow-up intervals.');
+  const next: Visit = { ...visit, vitals, note };
+  if (orders.length) next.orders = orders; else delete next.orders;
+  if (days !== undefined) next.followUpDays = days; else delete next.followUpDays;
+  return next;
+}
+
+/** Earlier completed visits of the same synthetic patient, newest first. */
+export function patientHistory(visits: Visit[], patient: string, excludeId?: string): Visit[] {
+  return visits
+    .filter((v) => v.patient === patient && v.status === 'completed' && v.id !== excludeId)
+    .sort((a, b) => (b.completedAt ?? '').localeCompare(a.completedAt ?? ''));
+}
+
+/** The follow-up booking for a completed visit, at a slot the schedule found. The id derives from the visit, so it is created once. */
+export function followUpVisit(from: Visit, slot: { date: string; time: string }, now: Date): Visit {
+  return { ...createBooking({ reference: `${from.id}-F`, patient: from.patient, service: from.service, date: slot.date, time: slot.time }, now), followUpOf: from.id };
 }
 
 /** Waiting patients: urgent first, then longest-waiting first. */
@@ -226,8 +277,21 @@ export function normalizeVisit(raw: unknown): Visit | null {
     createdAt, checkedInAt: str('checkedInAt'), startedAt: str('startedAt'), completedAt: str('completedAt'),
     vitals: r.vitals && typeof r.vitals === 'object' ? (r.vitals as Vitals) : undefined,
     note: r.note && typeof r.note === 'object' ? (r.note as VisitNote) : undefined,
+    orders: normalizeOrders(r.orders),
+    followUpDays: typeof r.followUpDays === 'number' && FOLLOW_UP_DAYS.includes(r.followUpDays) ? r.followUpDays : undefined,
+    followUpOf: str('followUpOf'),
     history,
   };
+}
+
+/** Stored plan lines, keeping only well-formed ones (a damaged entry must not crash the page). */
+function normalizeOrders(raw: unknown): Order[] | undefined {
+  if (!Array.isArray(raw)) return undefined;
+  const list = raw
+    .filter((o): o is Order => !!o && typeof o === 'object' && (ORDER_KINDS as readonly string[]).includes((o as Order).kind) && typeof (o as Order).text === 'string')
+    .map((o) => ({ kind: o.kind, text: o.text.slice(0, MAX_ORDER_TEXT) }))
+    .slice(0, MAX_ORDERS);
+  return list.length ? list : undefined;
 }
 
 export function parseVisits(raw: string | null): Visit[] {
@@ -254,5 +318,69 @@ export function toFhirEncounter(v: Visit) {
     subject: { display: v.patient },
     ...(start ? { period: { start, ...(v.completedAt ? { end: v.completedAt } : {}) } } : {}),
     ...(v.note?.chiefComplaint ? { reasonCode: [{ text: v.note.chiefComplaint }] } : {}),
+  };
+}
+
+const SYNTHETIC_TAG = { system: 'https://brainsait.de/CodeSystem/data-origin', code: 'synthetic', display: 'Synthetic demo data' };
+const BUNDLE_BASE = 'http://example.invalid/';
+const LOINC = 'http://loinc.org';
+const UCUM = 'http://unitsofmeasure.org';
+
+/**
+ * A FHIR R4 collection Bundle for a visit: the Encounter, an ICD-10 Condition when one was entered, vital-sign
+ * Observations (LOINC), and the plan lines as draft requests. Every resource is tagged synthetic and uses the
+ * reserved example.invalid base, so nothing here can be mistaken for, or resolved as, a real record.
+ * Not validated against a FHIR validator; for a future approved bridge, not a clinical record.
+ */
+export function toFhirBundle(v: Visit) {
+  const encounter = toFhirEncounter(v);
+  const eid = encounter.id;
+  const subject = { display: v.patient };
+  const enc = { reference: `Encounter/${eid}` };
+  const when = v.startedAt ?? v.checkedInAt ?? v.createdAt;
+  const meta = { tag: [SYNTHETIC_TAG] };
+  const resources: Record<string, unknown>[] = [];
+
+  if (v.note?.icd10) {
+    const code = v.note.icd10.trim().toUpperCase();
+    resources.push({
+      resourceType: 'Condition', id: `${eid}-dx`, meta,
+      category: [{ coding: [{ system: 'http://terminology.hl7.org/CodeSystem/condition-category', code: 'encounter-diagnosis' }] }],
+      code: { coding: [{ system: 'http://hl7.org/fhir/sid/icd-10', code }], ...(v.note.assessment ? { text: v.note.assessment } : {}) },
+      subject, encounter: enc,
+    });
+  }
+
+  const vitalSigns = [{ system: 'http://terminology.hl7.org/CodeSystem/observation-category', code: 'vital-signs', display: 'Vital Signs' }];
+  const observation = (key: string, code: string, display: string, extra: Record<string, unknown>) => resources.push({
+    resourceType: 'Observation', id: `${eid}-${key}`, meta, status: 'final', category: [{ coding: vitalSigns }],
+    code: { coding: [{ system: LOINC, code, display }] }, subject, encounter: enc, effectiveDateTime: when, ...extra,
+  });
+  const quantity = (value: number, unit: string, ucum: string) => ({ value, unit, system: UCUM, code: ucum });
+  const vit = v.vitals ?? {};
+  if (vit.temperatureC !== undefined) observation('temp', '8310-5', 'Body temperature', { valueQuantity: quantity(vit.temperatureC, '°C', 'Cel') });
+  if (vit.heartRate !== undefined) observation('hr', '8867-4', 'Heart rate', { valueQuantity: quantity(vit.heartRate, '/min', '/min') });
+  if (vit.spo2 !== undefined) observation('spo2', '59408-5', 'Oxygen saturation in Arterial blood by Pulse oximetry', { valueQuantity: quantity(vit.spo2, '%', '%') });
+  if (vit.systolic !== undefined && vit.diastolic !== undefined) {
+    observation('bp', '85354-9', 'Blood pressure panel with all children optional', {
+      component: [
+        { code: { coding: [{ system: LOINC, code: '8480-6', display: 'Systolic blood pressure' }] }, valueQuantity: quantity(vit.systolic, 'mmHg', 'mm[Hg]') },
+        { code: { coding: [{ system: LOINC, code: '8462-4', display: 'Diastolic blood pressure' }] }, valueQuantity: quantity(vit.diastolic, 'mmHg', 'mm[Hg]') },
+      ],
+    });
+  }
+
+  (v.orders ?? []).forEach((o, i) => {
+    const id = `${eid}-plan-${i + 1}`;
+    if (o.kind === 'medication') resources.push({ resourceType: 'MedicationRequest', id, meta, status: 'draft', intent: 'proposal', medicationCodeableConcept: { text: o.text }, subject, encounter: enc });
+    else if (o.kind === 'advice') resources.push({ resourceType: 'CommunicationRequest', id, meta, status: 'draft', subject, encounter: enc, payload: [{ contentString: o.text }] });
+    else resources.push({ resourceType: 'ServiceRequest', id, meta, status: 'draft', intent: 'proposal', category: [{ text: o.kind }], code: { text: o.text }, subject, encounter: enc });
+  });
+
+  const withDiagnosis = v.note?.icd10 ? { ...encounter, diagnosis: [{ condition: { reference: `Condition/${eid}-dx` } }] } : encounter;
+  const entries = [withDiagnosis as Record<string, unknown>, ...resources];
+  return {
+    resourceType: 'Bundle', id: `${eid}-bundle`, meta, type: 'collection', timestamp: v.completedAt ?? when,
+    entry: entries.map((resource) => ({ fullUrl: `${BUNDLE_BASE}${resource.resourceType}/${resource.id}`, resource })),
   };
 }
