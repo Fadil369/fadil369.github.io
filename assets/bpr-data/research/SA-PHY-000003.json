@@ -16,12 +16,12 @@
    "metrics": {
     "orcid": [],
     "zenodo": {
-     "views": 2,
-     "downloads": 7,
+     "views": 11,
+     "downloads": 27,
      "bpr_community": 1
     },
     "hf": {
-     "downloads": 75,
+     "downloads": 92,
      "likes": 0
     }
    },
@@ -43,8 +43,8 @@
    },
    "metrics": {
     "zenodo": {
-     "views": 3,
-     "downloads": 12,
+     "views": 7,
+     "downloads": 25,
      "bpr_community": 1
     }
    },
@@ -68,8 +68,8 @@
    "metrics": {
     "orcid": [],
     "zenodo": {
-     "views": 2,
-     "downloads": 58,
+     "views": 10,
+     "downloads": 97,
      "bpr_community": 1
     }
    },
@@ -91,8 +91,8 @@
    },
    "metrics": {
     "zenodo": {
-     "views": 9,
-     "downloads": 25,
+     "views": 34,
+     "downloads": 59,
      "bpr_community": 1
     }
    },
@@ -117,12 +117,12 @@
    "metrics": {
     "orcid": [],
     "zenodo": {
-     "views": 3,
-     "downloads": 2,
+     "views": 11,
+     "downloads": 4,
      "bpr_community": 1
     },
     "hf": {
-     "downloads": 56,
+     "downloads": 53,
      "likes": 0
     }
    },
@@ -147,12 +147,12 @@
    "metrics": {
     "orcid": [],
     "zenodo": {
-     "views": 3,
-     "downloads": 56,
+     "views": 13,
+     "downloads": 142,
      "bpr_community": 1
     },
     "hf": {
-     "downloads": 79,
+     "downloads": 119,
      "likes": 0
     }
    },
@@ -196,12 +196,12 @@
    "metrics": {
     "orcid": [],
     "zenodo": {
-     "views": 5,
-     "downloads": 3,
+     "views": 12,
+     "downloads": 9,
      "bpr_community": 1
     },
     "hf": {
-     "downloads": 52,
+     "downloads": 66,
      "likes": 0
     }
    },
@@ -226,12 +226,12 @@
    "metrics": {
     "orcid": [],
     "zenodo": {
-     "views": 4,
-     "downloads": 15,
+     "views": 12,
+     "downloads": 58,
      "bpr_community": 1
     },
     "hf": {
-     "downloads": 80,
+     "downloads": 82,
      "likes": 2
     }
    },
@@ -256,12 +256,12 @@
    "metrics": {
     "orcid": [],
     "zenodo": {
-     "views": 2,
-     "downloads": 5,
+     "views": 10,
+     "downloads": 10,
      "bpr_community": 1
     },
     "hf": {
-     "downloads": 65,
+     "downloads": 53,
      "likes": 1
     }
    },
@@ -283,8 +283,8 @@
    },
    "metrics": {
     "zenodo": {
-     "views": 2,
-     "downloads": 9,
+     "views": 9,
+     "downloads": 23,
      "bpr_community": 1
     }
    },
@@ -309,12 +309,12 @@
    "metrics": {
     "orcid": [],
     "zenodo": {
-     "views": 7,
-     "downloads": 14,
+     "views": 19,
+     "downloads": 49,
      "bpr_community": 1
     },
     "hf": {
-     "downloads": 163,
+     "downloads": 197,
      "likes": 0
     }
    },
@@ -339,12 +339,12 @@
    "metrics": {
     "orcid": [],
     "zenodo": {
-     "views": 2,
-     "downloads": 3,
+     "views": 10,
+     "downloads": 8,
      "bpr_community": 1
     },
     "hf": {
-     "downloads": 24,
+     "downloads": 35,
      "likes": 1
     }
    },
@@ -387,8 +387,8 @@
    "metrics": {
     "orcid": [],
     "zenodo": {
-     "views": 12,
-     "downloads": 9,
+     "views": 26,
+     "downloads": 26,
      "bpr_community": 1
     }
    },
@@ -471,9 +471,9 @@
  },
  "authorship_rule": "A work counts as authored only when the publisher record (Crossref/DataCite) names this ORCID iD. Works the publisher attributes to a different ORCID iD are not shown.",
  "metrics": {
-  "zenodo_views": 56,
-  "zenodo_downloads": 218,
-  "hf_downloads": 594
+  "zenodo_views": 184,
+  "zenodo_downloads": 537,
+  "hf_downloads": 697
  },
  "not_on_orcid": [
   "10.5281/zenodo.23609100",
@@ -484,17 +484,17 @@
   "orcid": {
    "ok": 1,
    "note": "21 items",
-   "at": "2026-11-03T05:15:02+00:00"
+   "at": "2026-11-16T07:00:12+00:00"
   },
   "zenodo": {
    "ok": 1,
    "note": "13 items",
-   "at": "2026-11-03T05:15:02+00:00"
+   "at": "2026-11-16T07:00:12+00:00"
   },
   "hf": {
    "ok": 1,
    "note": "8 items",
-   "at": "2026-11-03T05:15:02+00:00"
+   "at": "2026-11-16T07:00:12+00:00"
   }
  },
  "note": "Public ORCID, Zenodo and Hugging Face data matched by DOI. Hugging Face repos count only when their card cites this ORCID iD."

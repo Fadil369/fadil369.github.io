@@ -2,7 +2,8 @@
  * BrainSAIT Clinic Reception — synthetic-data pilot with explicit integration status
  *
  * Bilingual synthetic-data reception pilot. FAQ answers and appointment simulation run
- * locally in this browser; only provider identity/status checks use public registry APIs.
+ * locally in this browser; only provider identity/status checks use public registry APIs,
+ * plus a read-only fetch of the ClinicFlow relay's aggregate /reception/status feed (no PHI).
  * No patient data, booking request, or chat prompt is sent to a model or backend.
  */
 // @ts-nocheck
@@ -24,6 +25,8 @@ import { DEFAULT_SCHEDULE, isSlotTaken, scheduleProblem, SLOT_LENGTHS, slotState
 
 const SPID = 'SA-PHY-000003';
 const OID = '1.3.6.1.4.1.61026';
+// ClinicFlow WhatsApp relay — public aggregate counters only (no PHI); CORS is open on this route.
+const RELAY_STATUS_URL = 'https://fadil369-clinic-flow.hf.space/reception/status';
 
 // ── Bilingual strings ──────────────────────────────────────────────────────
 const STR: Record<'ar' | 'en', Record<string, string>> = {
@@ -829,9 +832,18 @@ function ClinicStatus({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string
     nphies: 'reference',
     brev: 'disconnected',
   });
+  const [relay, setRelay] = useState<{ state: 'checking' | 'live' | 'down'; counts?: Record<string, number>; since?: string }>({ state: 'checking' });
 
   useEffect(() => {
     async function loadStatus() {
+      try {
+        const r = await fetch(RELAY_STATUS_URL, { signal: AbortSignal.timeout(8000) });
+        if (!r.ok) throw new Error('relay unavailable');
+        const data = await r.json();
+        setRelay({ state: data.ok && data.ready ? 'live' : 'down', counts: data.counts, since: data.since });
+      } catch {
+        setRelay({ state: 'down' });
+      }
       try {
         const r = await fetch(`${REGISTRY}/api/health`, { signal: AbortSignal.timeout(8000) });
         if (r.ok) {
@@ -881,6 +893,12 @@ function ClinicStatus({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string
           </span>
         </div>
         <div className="clinic-status-item">
+          <div className="clinic-status-label">{lang === 'ar' ? 'مرحّل واتساب' : 'WhatsApp relay'}</div>
+          <span className={`clinic-status-badge ${relay.state === 'live' ? 'clinic-status-live' : relay.state === 'checking' ? 'clinic-status-reference' : 'clinic-status-down'}`}>
+            {relay.state === 'live' ? (lang === 'ar' ? 'مباشر' : 'Relay live') : relay.state === 'checking' ? (lang === 'ar' ? 'جارٍ الفحص…' : 'Checking…') : t.clinicPending}
+          </span>
+        </div>
+        <div className="clinic-status-item">
           <div className="clinic-status-label">NPHIES</div>
           <span className="clinic-status-badge clinic-status-reference">{t.nphiesReference}</span>
         </div>
@@ -900,6 +918,22 @@ function ClinicStatus({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string
           <p>{lang === 'ar' ? 'إجابات إدارية معتمدة وتحويل للموظف عند الحاجة. لا تشخيص ولا استدعاء لنموذج.' : 'Approved administrative answers with staff handoff. No diagnosis and no model calls.'}</p>
           <span>{lang === 'ar' ? 'البيانات التجريبية تبقى في هذا المتصفح' : 'Demo entries stay in this browser'}</span>
         </article>
+        {relay.state === 'live' && relay.counts && (
+          <article className="clinic-ops-card">
+            <div className="clinic-ops-icon"><Send size={18}/></div>
+            <h3>{lang === 'ar' ? 'مرحّل ClinicFlow — أرقام مجمّعة' : 'ClinicFlow relay — live aggregates'}</h3>
+            <p>
+              {lang === 'ar'
+                ? `رسائل واردة ${relay.counts.messages_in ?? 0} · ردود ${relay.counts.replies_sent ?? 0} · حجوزات ${relay.counts.bookings_created ?? 0} · مدفوعات مؤكدة ${relay.counts.payments_confirmed ?? 0}`
+                : `Messages in ${relay.counts.messages_in ?? 0} · Replies ${relay.counts.replies_sent ?? 0} · Bookings ${relay.counts.bookings_created ?? 0} · Payments confirmed ${relay.counts.payments_confirmed ?? 0}`}
+            </p>
+            <span>
+              {lang === 'ar'
+                ? `أرقام مجمّعة بلا بيانات مرضى، منذ ${relay.since ? new Date(relay.since).toLocaleString('ar-SA') : '—'} (تُصفّر عند إعادة التشغيل)`
+                : `Aggregate counters only, no patient data — since ${relay.since ? new Date(relay.since).toLocaleString('en-GB') : '—'} (reset on relay restart)`}
+            </span>
+          </article>
+        )}
         <article className="clinic-ops-card">
           <div className="clinic-ops-icon"><Headphones size={18}/></div>
           <h3>{lang === 'ar' ? 'وكيل الاستقبال الصوتي' : 'Reception voice agent'}</h3>
