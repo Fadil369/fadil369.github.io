@@ -13,7 +13,7 @@ for(const path of [...routes,...routes.map(p=>'/ar'+p)]){
  const html=readFileSync(file,'utf8');
  if(!/<title>[^<]+<\/title>/.test(html))errors.push(`${path}: missing title`);
  if(path.startsWith('/ar/')&&!/<html[^>]*lang="ar"[^>]*dir="rtl"/.test(html))errors.push(`${path}: Arabic language or direction missing`);
- for(const [tag,attrs,body] of [...html.matchAll(/(<script\b([^>]*)>)([\s\S]*?)<\/script>/g)].map(m=>[m[1],m[2],m[3]])){
+ for(const [tag,attrs,body] of [...html.matchAll(/(<script\b([^>]*)>)([\s\S]*?)<\/script\s*>/gi)].map(m=>[m[1],m[2],m[3]])){
   if(!body.trim()||/application\/ld\+json/.test(attrs))continue;
   try{new Script(body);}catch(e){errors.push(`${path}: invalid inline JavaScript: ${e.message}`);}
  }
