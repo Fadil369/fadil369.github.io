@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOS — BrainSAIT Back Office System</title>
+<meta name="description" content="BrainSAIT Back Office: provider directory, user management, audit log, settings. Bilingual EN/AR · BPR-integrated.">
+<style>
+  :root{--emerald:#10b981;--teal:#0d9488;--slate:#1e293b;--ink:#0f172a;--muted:#64748b;--bg:#f8fafc;--amber:#f59e0b;--rose:#f43f5e;--indigo:#4338ca;}
+  html[dir="rtl"] body{font-family:'Almarai','Amiri','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
+  html:not([dir="rtl"]) body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
+  body{background:var(--bg);color:var(--ink);line-height:1.7}
+  .wrap{max-width:1100px;margin:0 auto;padding:0}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:10}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand .dot{width:10px;height:10px;background:#fff;border-radius:50%;box-shadow:0 0 0 4px rgba(255,255,255,.35)}
+  .brand b{color:var(--teal);font-weight:800}
+  .brand small{color:var(--muted);font-size:12px}
+  .langbar{display:flex;gap:8px}
+  .langbtn{background:rgba(15,23,42,.05);color:var(--ink);border:1px solid #e2e8f0;border-radius:8px;padding:4px 10px;font-size:12px;cursor:pointer}
+  .langbtn.active{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+  .nav{display:flex;gap:14px}
+  .nav a{color:var(--slate);text-decoration:none;font-size:13px;font-weight:700;padding:6px 10px;border-radius:8px}
+  .nav a.active{background:#fff;color:var(--emerald);border:1px solid #e2e8f0;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .nav a:hover{background:#f1f5f9}
+  header{padding:32px 28px 12px}
+  header h1{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+  header p{color:var(--muted);font-size:14px}
+  .tabs{display:flex;gap:6px;padding:0 28px;border-bottom:1px solid #e2e8f0;margin-bottom:0}
+  .tab{padding:12px 16px;font-size:13px;font-weight:700;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer}
+  .tab.active{color:var(--emerald);border-bottom-color:var(--emerald)}
+  .tab:hover{color:var(--teal)}
+  .panel{padding:24px 28px;display:none}
+  .panel.active{display:block}
+  .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:24px}
+  .stat{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px}
+  .stat .s-val{font-size:26px;font-weight:800;color:var(--ink)}
+  .stat .s-lab{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:4px}
+  .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+  .search{padding:10px 14px;border:1px solid #e2e8f0;border-radius:10px;background:#fafbfc;font-size:14px;width:260px}
+  .btn{padding:9px 16px;border:none;border-radius:10px;font-size:13.5px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+  .btn--primary{background:linear-gradient(135deg,var(--emerald),var(--teal));color:#fff}
+  .btn--primary:hover{filter:brightness(1.08)}
+  .btn--outline{background:#fff;color:var(--slate);border:1px solid #e2e8f0}
+  .btn--outline:hover{background:#f8fafc}
+  .btn--danger{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
+  .btn--sm{padding:6px 10px;font-size:12px}
+  table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;margin-top:10px}
+  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid #e2e8f0;font-size:13.5px}
+  th{background:#f8fafc;color:var(--muted);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+  tr:last-child td{border-bottom:none}
+  tr:hover{background:#fcfdfe}
+  .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+  .bg-approved{background:#dcfce7;color:#166534}
+  .bg-pending{background:#fef3c7;color:#92400e}
+  .bg-declined{background:#fee2e2;color:#991b1b}
+  .bg-active{background:#dbeafe;color:#1e40af}
+  .bg-inactive{background:#f1f5f9;color:#475569}
+  .role-admin{background:#ede9fe;color:#4338ca}
+  .role-clinician{background:#ccfbf1;color:#047857}
+  .role-viewer{background:#f1f5f9;color:#475569}
+  .empty{padding:32px;color:var(--muted);text-align:center;font-size:14px}
+  .form-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:22px;margin-bottom:16px}
+  .form-card h3{font-size:14px;font-weight:800;color:var(--slate);margin-bottom:14px;text-transform:uppercase;letter-spacing:.04em}
+  .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  .form-group{display:flex;flex-direction:column;gap:6px}
+  label{font-size:11.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  input,select,textarea{width:100%;padding:10px 12px;border:1px solid #e2e8f0;border-radius:10px;font-size:14px;background:#fafbfc}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--emerald);background:#fff}
+  .actions{display:flex;gap:10px;margin-top:16px}
+  .flash{padding:10px 14px;border-radius:9px;font-size:13px;margin:14px 28px 0;display:none}
+  .flash--ok{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
+  .flash--err{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
+  .audit-item{padding:12px 16px;border-bottom:1px solid #e2e8f0;display:flex;justify-content:between;gap:12px;align-items:center}
+  .audit-item:last-child{border-bottom:none}
+  .audit-actor{font-weight:700;color:var(--ink)}
+  .audit-time{font-size:12px;color:var(--muted);font-family:ui-monospace,monospace}
+  .audit-act{color:var(--slate)}
+  .settings-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+  .help{font-size:12px;color:var(--muted);margin-top:4px}
+  footer{padding:26px 28px;border-top:1px solid #e2e8f0;color:var(--muted);font-size:11.5px}
+  .hidden{display:none}
+  @media (max-width:640px){.wrap{margin:0}.stat-row{grid-template-columns:1fr}.search{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand"><div class="dot"></div><b>BOS</b><small>· Back Office System</small></div>
+    <div class="langbar">
+      <button class="langbtn active" id="langEn" onclick="bos.setLang('en')">English</button>
+      <button class="langbtn" id="langAr" onclick="bos.setLang('ar')">العربية</button>
+    </div>
+  </div>
+  <header>
+    <h1 id="hTitle">Back Office System</h1>
+    <p id="hSub">Provider directory · user management · audit log · settings · BPR-integrated</p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" onclick="bos.openTab('directory')">Provider Directory</button>
+    <button class="tab" onclick="bos.openTab('users')">Users</button>
+    <button class="tab" onclick="bos.openTab('audit')">Audit Log</button>
+    <button class="tab" onclick="bos.openTab('settings')">Settings</button>
+  </div>
+
+  <!-- Directory -->
+  <div id="p-directory" class="panel active">
+    <div class="stat-row">
+      <div class="stat"><div class="s-val" id="statProviders">—</div><div class="s-lab">Providers</div></div>
+      <div class="stat"><div class="s-val" id="statApproved">—</div><div class="s-lab">BPR Verified</div></div>
+      <div class="stat"><div class="s-val" id="statPending">—</div><div class="s-lab">Pending Review</div></div>
+    </div>
+    <div class="toolbar">
+      <input type="text" class="search" id="dirSearch" placeholder="Search name, ORCID, profession…">
+      <button class="btn btn--primary btn--sm" onclick="bos.exportDirectory()">Export CSV</button>
+    </div>
+    <table id="dirTable">
+      <thead><tr><th>Provider</th><th>ORCID</th><th>Profession</th><th>License</th><th>Status</th><th>Credentials</th><th>Actions</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div id="dirEmpty" class="empty hidden">No providers match your search.</div>
+  </div>
+
+  <!-- Users -->
+  <div id="p-users" class="panel hidden">
+    <div class="toolbar">
+      <button class="btn btn--primary" onclick="bos.openUserModal()">+ Add User</button>
+    </div>
+    <table id="usersTable">
+      <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div id="usersEmpty" class="empty hidden">No users yet.</div>
+  </div>
+
+  <!-- Audit Log -->
+  <div id="p-audit" class="panel hidden">
+    <div class="toolbar">
+      <button class="btn btn--outline btn--sm" onclick="bos.clearAudit()">Clear log</button>
+      <span style="font-size:12px;color:var(--muted)">Admin actions are recorded here (demo: localStorage).</span>
+    </div>
+    <div id="auditList"></div>
+  </div>
+
+  <!-- Settings -->
+  <div id="p-settings" class="panel hidden">
+    <div class="form-card">
+      <h3>Clinic / Organization</h3>
+      <div class="form-grid">
+        <div class="form-group"><label>Clinic name</label><input type="text" id="sClinic" value="BrainSAIT Clinic"></div>
+        <div class="form-group"><label>NPHIES affiliation</label><input type="text" id="sNphies" value="Registered · NPHIES aligned"></div>
+        <div class="form-group"><label>Default language</label><select id="sLang"><option value="en">English</option><option value="ar">العربية</option></select></div>
+      </div>
+    </div>
+    <div class="form-card">
+      <h3>Data &amp; Privacy</h3>
+      <div class="form-grid">
+        <div class="form-group" style="grid-column:span 2"><label>Retain audit logs for</label><select id="sRetain"><option value="90">90 days</option><option value="365">1 year</option><option value="0">Indefinitely</option></select><p class="help">Demo: stored in browser localStorage only.</p></div>
+        <div class="form-group"><button class="btn btn--primary" onclick="bos.saveSettings()">Save settings</button></div>
+      </div>
+    </div>
+    <div class="form-card">
+      <h3>About</h3>
+      <p class="help">BOS v1.0 · Back Office System for BrainSAIT · BPR-integrated · Synthetic/demo data · localStorage persistence</p>
+    </div>
+  </div>
+
+  <div id="bosFlash" class="flash"></div>
+
+  <!-- User modal -->
+  <div id="userModal" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:50;align-items:center;justify-content:center;padding:24px">
+    <div class="form-card" style="max-width:460px;width:100;background:#fff">
+      <h3 id="mTitle">Add User</h3>
+      <div class="form-grid">
+        <div class="form-group"><label id="mLblName">Full name</label><input type="text" id="mName"></div>
+        <div class="form-group"><label id="mLblEmail">Email</label><input type="email" id="mEmail"></div>
+        <div class="form-group"><label id="mLblRole">Role</label><select id="mRole"><option value="clinician">Clinician</option><option value="admin">Administrator</option><option value="viewer">Viewer</option></select></div>
+        <div class="form-group"><label id="mLblStatus">Status</label><select id="mStatus"><option value="active">Active</option><option value="inactive">Inactive</option></select></div>
+      </div>
+      <div class="actions" style="justify-content:flex-end;margin-top:18px">
+        <button class="btn btn--outline" onclick="bos.closeUserModal()">Cancel</button>
+        <button class="btn btn--primary" onclick="bos.saveUser()">Save user</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>BOS v1.0 · Back Office System · BrainSAIT · Demo/localStorage · BPR-integrated</footer>
+</div>
+
+<script>
+const bos = {};
+bos.lang='en';
+bos.LANG={
+ en:{
+  hTitle:'Back Office System', hSub:'Provider directory · user management · audit log · settings · BPR-integrated',
+  tabDir:'Provider Directory', tabUsers:'Users', tabAudit:'Audit Log', tabSettings:'Settings',
+  statProviders:'Providers', statApproved:'BPR Verified', statPending:'Pending Review',
+  lblSearch:'Search name, ORCID, profession…', btnExport:'Export CSV',
+  thProvider:'Provider', thOrcid:'ORCID', thProfession:'Profession', thLicense:'License', thStatus:'Status', thCredentials:'Credentials', thActions:'Actions',
+  thName:'Name', thEmail:'Email', thRole:'Role', thStatusU:'Status', thJoined:'Joined',
+  btnAdd:'+ Add User', emptyUsers:'No users yet.', emptyDir:'No providers match your search.',
+  btnClear:'Clear log', auditNote:'Admin actions are recorded here (demo: localStorage).',
+  sClinic:'Clinic name', sNphies:'NPHIES affiliation', sLang:'Default language',
+  sRetain:'Retain audit logs for', btnSaveSettings:'Save settings',
+  mTitle:'Add User', mLblName:'Full name', mLblEmail:'Email', mLblRole:'Role', mLblStatus:'Status',
+  btnCancel:'Cancel', btnSave:'Save user',
+  roleAdmin:'Administrator', roleClinician:'Clinician', roleViewer:'Viewer',
+  statusActive:'Active', statusInactive:'Inactive',
+  statusApproved:'Approved', statusPending:'Pending', statusDeclined:'Declined',
+  credVerified:'verified', credReceived:'received',
+  flashUserAdded:'User added.', flashUserRemoved:'User removed.', flashSettingsSaved:'Settings saved.',
+  flashAuditCleared:'Audit log cleared.',
+  about:'BOS v1.0 · Back Office System · BrainSAIT · Demo/localStorage · BPR-integrated'
+ },
+ ar:{
+  hTitle:'النظام الخلفي (BOS)', hSub:'دليل مقدمي الرعاية · إدارة المستخدمين · سجل التدقيق · الإعدادات · متكامل مع BPR',
+  tabDir:'دليل مقدمي الرعاية', tabUsers:'المستخدمون', tabAudit:'سجل التدقيق', tabSettings:'الإعدادات',
+  statProviders:'مقدمو الرعاية', statApproved:'معتمد من BPR', statPending:'قيد المراجعة',
+  lblSearch:'البحث باسم أو معرف ORCID أو المهنة…', btnExport:'تصدير CSV',
+  thProvider:'مقدم الرعاية', thOrcid:'معرف ORCID', thProfession:'المهنة', thLicense:'الترخيص', thStatus:'الحالة', thCredentials:'الشهادات', thActions:'إجراءات',
+  thName:'الاسم', thEmail:'البريد الإلكتروني', thRole:'الدور', thStatusU:'الحالة', thJoined:'تاريخ الانضمام',
+  btnAdd:'+ إضافة مستخدم', emptyUsers:'لا يوجد مستخدمون بعد.', emptyDir:'لا توجد نتائج تطابق البحث.',
+  btnClear:'مسح السجل', auditNote:'تُسجل إجراءات المسؤول هنا (تجربة: localStorage).',
+  sClinic:'اسم العيادة', sNphies:'الانتماء لـ NPHIES', sLang:'اللغة الافتراضية',
+  sRetain:'احتفظ بسجلات التدقيق لـ', btnSaveSettings:'حفظ الإعدادات',
+  mTitle:'إضافة مستخدم', mLblName:'الاسم الكامل', mLblEmail:'البريد الإلكتروني', mLblRole:'الدور', mLblStatus:'الحالة',
+  btnCancel:'إلغاء', btnSave:'حفظ المستخدم',
+  roleAdmin:'مدير نظام', roleClinician:'طبيب/مختص', roleViewer:'مشاهد',
+  statusActive:'نشط', statusInactive:'غير نشط',
+  statusApproved:'معتمد', statusPending:'قيد الانتظار', statusDeclined:'مرفوض',
+  credVerified:'موثق', credReceived:'تم الاستلام',
+  flashUserAdded:'تمت إضافة المستخدم.', flashUserRemoved:'تم حذف المستخدم.', flashSettingsSaved:'تم حفظ الإعدادات.',
+  flashAuditCleared:'تم مسح سجل التدقيق.',
+  about:'نظام خلفي v1.0 · BOS · BrainSAIT · تجربة/تخزين محلي · متكامل مع BPR'
+ }
+};
+bos.t=function(k){return bos.LANG[bos.lang][k]||k;};
+bos.setLang=function(l){bos.lang=l;document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';document.getElementById('langEn').classList.toggle('active',l==='en');document.getElementById('langAr').classList.toggle('active',l==='ar');bos.applyLang();bos.renderCurrent();};
+bos.applyLang=function(){
+  document.getElementById('hTitle').textContent=bos.t('hTitle');
+  document.getElementById('hSub').textContent=bos.t('hSub');
+  document.getElementById('dirSearch').placeholder=bos.t('lblSearch');
+  document.getElementById('statProviders').nextElementSibling&&(document.getElementById('statProviders').nextElementSibling.textContent=bos.t('statProviders'));
+  document.getElementById('statApproved').nextElementSibling&&(document.getElementById('statApproved').nextElementSibling.textContent=bos.t('statApproved'));
+  document.getElementById('statPending').nextElementSibling&&(document.getElementById('statPending').nextElementSibling.textContent=bos.t('statPending'));
+  document.querySelectorAll('.tab')[0].textContent=bos.t('tabDir');
+  document.querySelectorAll('.tab')[1].textContent=bos.t('tabUsers');
+  document.querySelectorAll('.tab')[2].textContent=bos.t('tabAudit');
+  document.querySelectorAll('.tab')[3].textContent=bos.t('tabSettings');
+  bos.renderDirectory();
+  bos.renderUsers();
+  bos.renderAudit();
+  document.getElementById('sClinic').placeholder=bos.t('sClinic');
+  document.getElementById('sNphies').placeholder=bos.t('sNphies');
+  document.getElementById('mTitle').textContent=bos.t('mTitle');
+  document.getElementById('mLblName').textContent=bos.t('mLblName');
+  document.getElementById('mLblEmail').textContent=bos.t('mLblEmail');
+  document.getElementById('mLblRole').textContent=bos.t('mLblRole');
+  document.getElementById('mLblStatus').textContent=bos.t('mLblStatus');
+  document.getElementById('mRole').querySelector('option[value="clinician"]').textContent=bos.t('roleClinician');
+  document.getElementById('mRole').querySelector('option[value="admin"]').textContent=bos.t('roleAdmin');
+  document.getElementById('mRole').querySelector('option[value="viewer"]').textContent=bos.t('roleViewer');
+  document.getElementById('mStatus').querySelector('option[value="active"]').textContent=bos.t('statusActive');
+  document.getElementById('mStatus').querySelector('option[value="inactive"]').textContent=bos.t('statusInactive');
+};
+bos.renderCurrent=function(){
+  const t=document.querySelector('.tab.active');
+  if(t)bos.openTab(t.textContent.trim());
+};
+
+// seed data from BPR samples
+bos.BPR=[
+ {name:'Dr. Mohamed Elfadil',name_ar:'د. Mohamed Elfadil',orcid:'0009-0003-7485-3575',profession:'physician',licence:'SCFHS-123456',status:'approved',credentials:2},
+ {name:'Dr. Fatima Ali',name_ar:'د. فاطمة علي',orcid:'0000-0002-1234-5678',profession:'dentist',licence:'SCFHS-789012',status:'approved',credentials:2},
+ {name:'Nurse Layla Hassan',name_ar:'ممرضة ليلى حسن',orcid:'0000-0003-9999-8888',profession:'nurse',licence:'SCFHS-345678',status:'pending',credentials:1}
+];
+bos.users=[
+ {id:'u-1',name:'Dr. Mohamed Elfadil',email:'m.elfadil@brainsait.de',role:'admin',status:'active',joined:'2026-01-10'},
+ {id:'u-2',name:'Nurse Layla Hassan',email:'l.hassan@brainsait.de',role:'clinician',status:'active',joined:'2026-02-15'},
+ {id:'u-3',name:'Admin Viewer',email:'viewer@brainsait.de',role:'viewer',status:'inactive',joined:'2026-03-01'}
+];
+bos.audit=[
+ {actor:'system',action:'BOS initialized',time:new Date().toISOString()}
+];
+
+bos.openTab=function(name){
+  document.querySelectorAll('.tab').forEach(el=>el.classList.remove('active'));
+  event&&event.target&&event.target.classList.add('active');
+  document.querySelectorAll('.panel').forEach(el=>el.classList.remove('active'));
+  document.getElementById('p-'+name).classList.add('active');
+  if(name==='directory')bos.renderDirectory();
+  if(name==='users')bos.renderUsers();
+  if(name==='audit')bos.renderAudit();
+};
+
+bos.renderDirectory=function(){
+  const q=document.getElementById('dirSearch').value.toLowerCase();
+  const rows=bos.BPR.filter(p=>!q||p.name.toLowerCase().includes(q)||p.orcid.toLowerCase().includes(q)||p.profession.toLowerCase().includes(q));
+  document.getElementById('statProviders').textContent=bos.BPR.length;
+  document.getElementById('statApproved').textContent=bos.BPR.filter(p=>p.status==='approved').length;
+  document.getElementById('statPending').textContent=bos.BPR.filter(p=>p.status==='pending').length;
+  const tb=document.getElementById('dirTable').querySelector('tbody');
+  const empty=document.getElementById('dirEmpty');
+  tb.innerHTML='';
+  if(rows.length===0){empty.classList.remove('hidden');return;}
+  empty.classList.add('hidden');
+  rows.forEach(p=>{
+    const nm=bos.lang==='ar'&&p.name_ar?p.name+' ('+p.name_ar+')':p.name;
+    tb.innerHTML+=`<tr>
+      <td><b>${nm}</b></td>
+      <td>${p.orcid}</td>
+      <td>${bos.t('role'+p.profession)||p.profession}</td>
+      <td>${p.licence}</td>
+      <td><span class="badge bg-${p.status}">${bos.t('status'+p.status)}</span></td>
+      <td>${p.credentials} attached</td>
+      <td><button class="btn btn--sm btn--outline" onclick="bos.viewProvider('${p.orcid}')">View</button></td>
+    </tr>`;
+  });
+};
+bos.renderUsers=function(){
+  const tb=document.getElementById('usersTable').querySelector('tbody');
+  const empty=document.getElementById('usersEmpty');
+  tb.innerHTML='';
+  if(bos.users.length===0){empty.classList.remove('hidden');return;}
+  empty.classList.add('hidden');
+  bos.users.forEach(u=>{
+    tb.innerHTML+=`<tr>
+      <td>${u.name}</td>
+      <td>${u.email}</td>
+      <td><span class="badge role-${u.role}">${bos.t('role'+u.role)}</span></td>
+      <td><span class="badge bg-${u.status==='active'?'active':'inactive'}">${bos.t('status'+u.status)}</span></td>
+      <td>${u.joined}</td>
+      <td><button class="btn btn--sm btn--danger" onclick="bos.removeUser('${u.id}')">Remove</button></td>
+    </tr>`;
+  });
+};
+bos.renderAudit=function(){
+  const el=document.getElementById('auditList');
+  el.innerHTML=bos.audit.slice().reverse().map(a=>`
+    <div class="audit-item">
+      <div><div class="audit-actor">${a.actor}</div><div class="audit-act">${a.action}</div></div>
+      <div class="audit-time">${new Date(a.time).toLocaleString()}</div>
+    </div>`).join('')||'<div class="empty">No audit entries.</div>';
+};
+
+bos.viewProvider=function(orcid){ bos.showFlash('Provider '+(bos.lang==='ar'?'تفاصيل ':'')+orcid+' — view opens profile (demo).','ok'); };
+bos.exportDirectory=function(){
+  let csv='Provider,ORCID,Profession,License,Status,Credentials\n';
+  bos.BPR.forEach(p=>csv+=`"${p.name}","${p.orcid}","${p.profession}","${p.licence}","${p.status}","${p.credentials}"\n`);
+  const blob=new Blob([csv],{type:'text/csv'});const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='bos_provider_directory.csv';a.click();URL.revokeObjectURL(url);
+  bos.showFlash('Directory exported.','ok');
+};
+
+bos.openUserModal=function(){document.getElementById('userModal').style.display='flex';document.getElementById('mName').value='';document.getElementById('mEmail').value='';document.getElementById('mRole').value='clinician';document.getElementById('mStatus').value='active';};
+bos.closeUserModal=function(){document.getElementById('userModal').style.display='none';};
+bos.saveUser=function(){
+  const name=document.getElementById('mName').value.trim();const email=document.getElementById('mEmail').value.trim();
+  const role=document.getElementById('mRole').value;const status=document.getElementById('mStatus').value;
+  if(!name||!email){bos.showFlash('Name and email required.','err');return;}
+  bos.users.push({id:'u-'+Date.now(),name,email,role,status,joined:new Date().toISOString().slice(0,10)});
+  bos.audit.push({actor:'admin',action:'Added user '+name,time:new Date().toISOString()});
+  bos.closeUserModal();bos.renderUsers();bos.renderAudit();bos.showFlash(bos.t('flashUserAdded'),'ok');bos.saveAll();
+};
+bos.removeUser=function(id){
+  if(!confirm('Remove this user?'))return;
+  bos.users=bos.users.filter(u=>u.id!==id);
+  bos.audit.push({actor:'admin',action:'Removed user',time:new Date().toISOString()});
+  bos.renderUsers();bos.renderAudit();bos.showFlash(bos.t('flashUserRemoved'),'ok');bos.saveAll();
+};
+bos.clearAudit=function(){bos.audit=[{actor:'system',action:'Audit log cleared',time:new Date().toISOString()}];bos.renderAudit();bos.showFlash(bos.t('flashAuditCleared'),'ok');bos.saveAll();};
+bos.saveSettings=function(){
+  const s={clinic:document.getElementById('sClinic').value,nphies:document.getElementById('sNphies').value,lang:document.getElementById('sLang').value,retain:document.getElementById('sRetain').value};
+  try{localStorage.setItem('bos_settings_v1',JSON.stringify(s));}catch(e){}
+  bos.showFlash(bos.t('flashSettingsSaved'),'ok');bos.saveAll();
+};
+bos.showFlash=function(msg,type){const el=document.getElementById('bosFlash');el.textContent=msg;el.className='flash flash--'+type;el.style.display='block';setTimeout(()=>el.style.display='none',4000);};
+
+bos.saveAll=function(){try{localStorage.setItem('bos_users_v1',JSON.stringify(bos.users));localStorage.setItem('bos_audit_v1',JSON.stringify(bos.audit));}catch(e){}};
+bos.loadAll=function(){try{const u=localStorage.getItem('bos_users_v1');const a=localStorage.getItem('bos_audit_v1');const s=localStorage.getItem('bos_settings_v1');if(u)bos.users=JSON.parse(u);if(a)bos.audit=JSON.parse(a);if(s){document.getElementById('sClinic').value=s.clinic||'';document.getElementById('sNphies').value=s.nphies||'';document.getElementById('sLang').value=s.lang||'en';document.getElementById('sRetain').value=s.retain||'90';if(s.lang){bos.setLang(s.lang);}}}catch(e){}};
+
+// init
+(function(){
+  bos.loadAll();
+  // default to Arabic on /ar/ paths
+  if(/^\/ar(\/|$)/.test(location.pathname)){ bos.setLang('ar'); }
+  else bos.applyLang();
+})();
+</script>
+</body>
+</html>

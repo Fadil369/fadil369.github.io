@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BPR — BrainSAIT Provider Registry</title>
+<meta name="description" content="Unified healthcare worker credential & profile registry. NPHIES · FHIR R4 · GPT-2 enriched · Bilingual EN/AR">
+<style>
+  :root{--emerald:#10b981;--teal:#0d9488;--slate:#1e293b;--ink:#0f172a;--muted:#64748b;--bg:#f8fafc;--accent:#edf34a;--ring:2px solid var(--emerald);}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html[dir="rtl"] body{font-family:'Almarai','Amiri','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
+  html:not([dir="rtl"]) body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
+  body{background:var(--bg);color:var(--ink);line-height:1.7}
+  .wrap{max-width:740px;margin:0 auto;padding:0}
+  .header{background:linear-gradient(135deg,var(--emerald),var(--teal));color:#fff;padding:44px 28px}
+  .header .brand{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .brand .dot{width:10px;height:10px;background:#fff;border-radius:50%;box-shadow:0 0 0 4px rgba(255,255,255,.35)}
+  .header h1{font-size:26px;font-weight:800;letter-spacing:-.025em}
+  .header p{opacity:.92;font-size:14px;margin-top:6px}
+  .langbar{display:flex;justify-content:flex-end;padding:6px 28px;gap:8px}
+  .langbtn{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:4px 10px;font-size:12px;cursor:pointer}
+  .langbtn.active{background:#fff;color:#0d9488;font-weight:800}
+  /* Progress */
+  .progress{background:#fff;border-bottom:1px solid #e2e8f0;padding:14px 28px}
+  .pb{height:6px;background:#e2e8f0;border-radius:3px;overflow:hidden;margin-bottom:8px}
+  .pb-fill{height:100%;background:linear-gradient(90deg,var(--emerald),var(--teal));width:0%;transition:width .35s}
+  .ptxt{font-size:11.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  /* Card */
+  .card{background:#fff;padding:36px 28px;min-height:62vh}
+  .badge{display:inline-flex;align-items:center;gap:7px;background:#ecfdf5;color:var(--emerald);padding:5px 13px;border-radius:999px;font-size:11px;font-weight:800;margin-bottom:16px}
+  .step-title{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:7px}
+  .step-sub{color:var(--muted);font-size:14.5px;margin-bottom:22px}
+  .form-group{margin-bottom:18px}
+  label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em}
+  input[type=text],input[type=email],input[type=date],select,textarea{width:100%;padding:11px 13px;border:1px solid #e2e8f0;border-radius:10px;font-size:14px;background:#fafbfc}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--emerald);background:#fff}
+  textarea{min-height:88px;resize:vertical}
+  .checkbox{display:flex;align-items:flex-start;gap:9px;padding:11px 13px;border:1px solid #e2e8f0;border-radius:10px;background:#fafbfc;margin-bottom:8px}
+  .checkbox input{margin-top:3px}
+  .checkbox label{margin:0;font-weight:600;color:var(--ink);font-size:13.5px;cursor:pointer}
+  .actions{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+  .btn{flex:1;min-width:150px;padding:13px 18px;border:none;border-radius:11px;font-size:14.5px;font-weight:800;cursor:pointer}
+  .btn--next{background:linear-gradient(135deg,var(--emerald),var(--teal));color:#fff}
+  .btn--next:hover{filter:brightness(1.08)}
+  .btn--back{background:#f1f5f9;color:var(--slate)}
+  .btn--back:hover{background:#e2e8f0}
+  .btn--outline{background:#fff;color:var(--slate);border:1px solid #e2e8f0}
+  .btn--danger{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
+  .btn--save{background:var(--slate);color:#fff}
+  .nav{font-size:11.5px;color:var(--muted);margin-top:12px}
+  .nav a{color:var(--teal);text-decoration:none}
+  /* Credentials */
+  .cred-row{display:flex;gap:8px;align-items:center;padding:10px 14px;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:8px;background:#fafbfc}
+  .cred-kind{font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);min-width:110px}
+  .cred-remove{color:var(--muted);cursor:pointer;font-size:12px}
+  .missing{background:#fef3c7;border:1px solid #fde68a;border-radius:8px;padding:11px 15px;margin-top:14px;font-size:12.5px}
+  .missing b{color:#92400e}
+  /* Upload sim */
+  .upzone{border:2px dashed #cbd5e1;border-radius:10px;padding:18px;text-align:center;background:#fafbfc;margin-bottom:12px}
+  .upzone b{color:var(--slate);font-size:12px}
+  .upzone input{margin-top:8px}
+  .stat{font-size:11.5px;color:var(--muted);margin-top:6px}
+  /* GPT panel */
+  .gpt{border:1px solid #e2e8f0;border-radius:10px;background:#fafbfc;padding:16px;margin-top:18px}
+  .gpt h3{font-size:13px;font-weight:800;color:var(--slate);margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em}
+  .gpt .note{font-size:11px;color:var(--muted);margin-bottom:10px}
+  .stub{border:1px dashed #cbd5e1;background:#fff;border-radius:8px;padding:12px;font-size:12px;color:var(--muted);margin-top:8px}
+  /* Output */
+  .out{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:18px;margin-top:20px;display:none}
+  .out h3{font-size:13px;font-weight:800;color:var(--slate);margin-bottom:10px}
+  pre{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;font-size:11.5px;overflow:auto;max-height:260px}
+  .dlrow{display:flex;gap:8px;margin-top:14px}
+  .dln{flex:1}
+  .flash{padding:10px 14px;border-radius:9px;font-size:13px;margin-top:12px;display:none}
+  .flash--ok{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
+  .flash--err{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
+  .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;background:#e2e8f0;padding:1px 6px;border-radius:4px}
+  footer{padding:22px 28px;border-top:1px solid #e2e8f0;color:var(--muted);font-size:11.5px}
+  .clinic-bridge{background:#f0fdf4;border:1px dashed #86efac;border-radius:10px;padding:16px;margin-top:20px;display:none}
+  .clinic-bridge h4{font-size:13px;font-weight:800;color:#166534;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
+  @media (max-width:640px){.wrap{margin:0}.header{padding:32px 20px}.card{padding:26px 20px}.langbar{padding:6px 20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="langbar">
+    <button class="langbtn active" id="langEn" onclick="setLang('en')">English</button>
+    <button class="langbtn" id="langAr" onclick="setLang('ar')">العربية</button>
+  </div>
+  <div class="header">
+    <div class="brand"><div class="dot"></div><b id="brandText">BPR</b></div>
+    <h1 id="brandTitle">BrainSAIT Providers Registry</h1>
+    <p id="brandSub">One question · one slide · one page · NPHIES · FHIR R4 · GPT-2 enriched · <b>Private</b></p>
+  </div>
+  <div class="progress">
+    <div class="pb"><div class="pb-fill" id="pbFill"></div></div>
+    <div class="ptxt" id="pTxt">0% &middot; Step 1 of 7</div>
+  </div>
+  <div class="card">
+    <div id="stepBadge" class="badge">Step 1 — Identity</div>
+    <div id="stepTitle" class="step-title">What is your ORCID iD?</div>
+    <div id="stepSub" class="step-sub">Your permanent researcher identifier — your BPR primary key.</div>
+
+    <form id="wizardForm" novalidate>
+      <!-- Identity -->
+      <div id="s-orcid" class="step">
+        <div class="form-group"><label for="f-orcid">ORCID iD <span style="font-weight:normal">(required)</span></label><input type="text" id="f-orcid" name="orcid" placeholder="0000-0000-0000-0000" required autofocus><span class="stat" id="orcidHint"></span></div>
+      </div>
+      <!-- Name -->
+      <div id="s-name" class="step hidden">
+        <div class="form-group"><label for="f-name">Full name (English) <span style="font-weight:normal">(required)</span></label><input type="text" id="f-name" name="name" placeholder="e.g. Mohamed Elfadil" required></div>
+        <div class="form-group"><label for="f-name-ar">Full name (Arabic) <span style="font-weight:normal">(optional)</span></label><input type="text" id="f-name-ar" name="name_ar" placeholder="مثال: محمد Elfadil"></div>
+      </div>
+      <!-- Profession -->
+      <div id="s-profession" class="step hidden">
+        <div class="form-group"><label for="f-prof">Healthcare profession <span style="font-weight:normal">(required)</span></label><select id="f-prof" name="profession" required>
+          <option value="">Select profession…</option>
+          <option value="physician">Physician (طبيب)</option>
+          <option value="dentist">Dentist (طبيب أسنان)</option>
+          <option value="pharmacist">Pharmacist (صيدلي)</option>
+          <option value="nurse">Nurse (ممرض/ة)</option>
+          <option value="allied_health">Allied Health Professional (أخصائي صحي مساند)</option>
+          <option value="technician">Health Technician (فني صحي)</option>
+          <option value="assistant">Health Assistant (مساعد صحي)</option>
+        </select></div>
+      </div>
+      <!-- License -->
+      <div id="s-licence" class="step hidden">
+        <div class="form-group"><label for="f-issuer">License issuing body</label><input type="text" id="f-issuer" name="licence_issuer" placeholder="e.g. Saudi Commission for Health Specialties"></div>
+        <div class="form-group"><label for="f-licno">License / certificate number</label><input type="text" id="f-licno" name="licence_no" placeholder="e.g. SCFHS-123456"></div>
+        <div class="form-group"><label for="f-spid">Claimed SPID (if known)</label><input type="text" id="f-spid" name="claimed_spid" placeholder="BPR SPID"></div>
+      </div>
+      <!-- Contact -->
+      <div id="s-contact" class="step hidden">
+        <div class="form-group"><label for="f-email">Email <span style="font-weight:normal">(optional)</span></label><input type="email" id="f-email" name="email" placeholder="you@example.com"></div>
+        <div class="form-group"><label for="f-linkedin">LinkedIn URL <span style="font-weight:normal">(optional)</span></label><input type="text" id="f-linkedin" name="linkedin" placeholder="https://linkedin.com/in/..."></div>
+        <div class="form-group"><label for="f-bio">Professional bio <span style="font-weight:normal">(optional — GPT-2 can enrich this)</span></label><textarea id="f-bio" name="bio" placeholder="Short professional bio…"></textarea></div>
+        <div class="gpt">
+          <h3 id="gptH3">✨ GPT-2 Bio Enrichment</h3>
+          <div class="note" id="gptNote">Send your bio to <kbd>openai-community/gpt2</kbd> via the Hugging Face Inference API to expand/polish it. Requires an HF token.</div>
+          <div class="form-group" style="margin-bottom:8px"><label for="gpt-token">HF Token <span style="font-weight:normal">(session only, not stored)</span></label><input type="password" id="gpt-token" name="gpt_token" placeholder="hf_…"></div>
+          <div class="actions" style="margin-top:8px"><button class="btn btn--outline" type="button" onclick="enrichBio()" id="gptBtn">Enrich with GPT-2</button><span class="stat" id="gptStat"></span></div>
+          <div id="gptOut" class="stub">Demo: enter an HF token and click "Enrich with GPT-2" to see intelligent bio expansion.</div>
+        </div>
+        <div class="checkbox"><input type="checkbox" id="f-cd" name="consent_docs" value="1"><label for="f-cd" id="lblConsentDocs">I consent to store and review my credential documents.</label></div>
+        <div class="checkbox"><input type="checkbox" id="f-ca" name="consent_announce" value="1"><label for="f-ca" id="lblConsentAnnounce">I consent to BPR announcements.</label></div>
+      </div>
+      <!-- Credentials -->
+      <div id="s-credentials" class="step hidden">
+        <div class="form-group"><label id="lblAttach">Add credentials one at a time.</label></div>
+        <div class="upzone"><b id="lblCredFile">Attach credential</b><div class="stat" id="credFileStat">PDF · JPG · PNG · max 8 MB (simulated client-side)</div><input type="file" id="credFile" accept=".pdf,.jpg,.png,.jpeg"></div>
+        <div class="form-group"><label for="c-kind">Credential kind <span style="font-weight:normal">(required)</span></label><select id="c-kind" name="kind" required>
+          <option value="mbbs">MBBS / Medical Degree</option>
+          <option value="prometric">Prometric Exam (SCFHS)</option>
+          <option value="scfhs">SCFHS Professional Classification</option>
+          <option value="registration">Professional Registration License</option>
+          <option value="postgraduate">Post-Graduate / Fellowship</option>
+          <option value="experience">Experience Certificate</option>
+        </select></div>
+        <div class="form-group"><label for="c-title">Title</label><input type="text" id="c-title" name="title" placeholder="e.g. MBBS Certificate" required></div>
+        <div class="form-group"><label for="c-issuer">Issuer / Institution</label><input type="text" id="c-issuer" name="issuer" placeholder="e.g. King Saud University"></div>
+        <div class="form-group"><label for="c-number">Certificate / License Number</label><input type="text" id="c-number" name="number" placeholder="e.g. MBBS-001"></div>
+        <div class="form-group"><label for="c-issue">Issue Date</label><input type="date" id="c-issue" name="issue_date"></div>
+        <div class="form-group"><label for="c-expiry">Expiry Date</label><input type="date" id="c-expiry" name="expiry_date"></div>
+        <div class="actions" style="margin-top:6px"><button class="btn btn--next" type="button" onclick="attachCred()" id="btnAttach">Attach Credential →</button></div>
+        <div id="credStatus" class="stat"></div>
+        <div id="credList"></div>
+        <div id="credMissing" class="missing"></div>
+      </div>
+      <!-- Review -->
+      <div id="s-review" class="step hidden">
+        <div class="form-group"><label id="lblReview">Review your application before submitting.</label></div>
+        <div id="reviewSummary"></div>
+        <div class="checkbox"><input type="checkbox" id="f-final" name="final_consent" value="1" required><label for="final" id="lblFinal">I confirm my information is accurate and I want to submit for BPR review.</label></div>
+      </div>
+      <div class="actions">
+        <button class="btn btn--back" type="button" id="btnBack" onclick="goBack()">Back</button>
+        <button class="btn btn--next" type="button" id="btnNext" onclick="nextStep()">Next &rarr;</button>
+        <button class="btn btn--outline" type="button" id="btnSubmit" style="display:none" onclick="submitApp()">Finalize &amp; Submit</button>
+        <button class="btn btn--save" type="button" id="btnSave" style="display:none" onclick="saveDraft()">Save draft</button>
+      </div>
+      <div class="nav"><a href="#" onclick="location.reload()" style="color:var(--teal);text-decoration:none">← Start over</a> · <a href="#api" style="color:var(--teal);text-decoration:none">API / HF Space info</a></div>
+    </form>
+    <div id="flash" class="flash"></div>
+  </div>
+
+  <!-- Output section (fixed: was missing #outSection) -->
+  <div id="outSection" class="out">
+    <h3 id="outTitle">FHIR R4 Bundle &amp; Profile</h3>
+    <div id="clinicBridge" class="clinic-bridge">
+      <h4 id="clinicH4">Innovative bridge — seed a ClinicFlow encounter</h4>
+      <p id="clinicP">This BPR provider can now open a ClinicFlow reception encounter with pre-filled identity and credentials.</p>
+      <div class="actions" style="margin-top:10px"><button class="btn btn--next" type="button" onclick="openClinicFlow()">Open in ClinicFlow →</button></div>
+    </div>
+    <pre id="fhirPreview">{}</pre>
+    <div class="dlrow"><button class="btn btn--outline dln" onclick="downloadFHIR()">⬇ Download FHIR Bundle</button><button class="btn btn--outline dln" onclick="downloadProfile()">⬇ Download Profile HTML</button></div>
+  </div>
+  <footer>
+    BrainSAIT Provider Registry · BPR · v1.1 · NPHIES / FHIR R4 · Private profile — not indexed · Drafts auto-saved locally
+  </footer>
+</div>
+
+<section id="api" style="max-width:740px;margin:30px auto;padding:0 20px">
+  <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:24px;margin-bottom:30px">
+    <h2 style="font-size:17px;font-weight:800;color:var(--slate);margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em">🔌 Developer Integration</h2>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+      <span class="badge" style="background:#e2e8f0;color:#1f6feb">HF Dataset</span>
+      <span class="badge" style="background:#e2e8f0;color:#1f6feb">FHIR R4</span>
+      <span class="badge" style="background:#e2e8f0;color:#1f6feb">NPHIES</span>
+      <span class="badge" style="background:#e2e8f0;color:#1f6feb">Static Space</span>
+    </div>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:14px">Dataset: <b>Fadil369/bpr-providers-registry</b> — schema + sample workers + FHIR bundles. Load with <code class="kbd">load_dataset("Fadil369/bpr-providers-registry")</code>.</p>
+    <div class="form-group"><label>FHIR Bundle JSON (download after submitting)</label><pre id="fhirPreviewApi">{}</pre></div>
+    <p style="color:var(--muted);font-size:11.5px;margin-top:14px">GPT-2 integration: client-side fetch to <code class="kbd">https://api-inference.huggingface.co/models/openai-community/gpt2</code>. Enter your HF token above to enable real enrichment; otherwise runs in demo/stub mode.</p>
+  </div>
+</section>
+
+<script>
+const LANG = {
+  en: {
+    brandTitle:'BrainSAIT Providers Registry', brandSub:'One question · one slide · one page · NPHIES · FHIR R4 · GPT-2 enriched · Private',
+    stepTitles:{orcid:'What is your ORCID iD?',name:'What is your full name?',profession:'What is your healthcare profession?',licence:'What are your license details?',contact:'How can we reach you?',credentials:'Upload your certificates & credentials',review:'Review & Submit'},
+    stepSubs:{orcid:'Your permanent researcher identifier — your BPR primary key.',name:'Enter in English. Arabic name is optional.',profession:'Determines your NPHIES practitioner role and license tier.',licence:'Issuing body and license number.',contact:'Email and LinkedIn used for BPR announcements.',credentials:'MBBS, Prometric, SCFHS, Registration, Post-graduate, Experience.',review:'Confirm before finalizing. Status becomes pending for review.'},
+    lblOrcid:'ORCID iD', lblOrcidReq:'(required)', lblOrcidHint:'',
+    lblName:'Full name (English)', lblNameAr:'Full name (Arabic)', lblProf:'Healthcare profession', lblIssuer:'License issuing body', lblLicNo:'License / certificate number', lblSpid:'Claimed SPID (if known)',
+    lblEmail:'Email', lblLinkedIn:'LinkedIn URL', lblBio:'Professional bio', lblBioOpt:'(optional — GPT-2 can enrich this)',
+    lblAttach:'Add credentials one at a time.', lblCredFile:'Attach credential', lblCredFileStat:'PDF · JPG · PNG · max 8 MB (simulated client-side)',
+    lblKind:'Credential kind', lblKindReq:'(required)', lblTitle:'Title', lblIssuer2:'Issuer / Institution', lblNumber:'Certificate / License Number', lblIssue:'Issue Date', lblExpiry:'Expiry Date',
+    lblReview:'Review your application before submitting.', lblFinal:'I confirm my information is accurate and I want to submit for BPR review.',
+    lblConsentDocs:'I consent to store and review my credential documents.', lblConsentAnnounce:'I consent to BPR announcements.',
+    btnBack:'Back', btnNext:'Next &rarr;', btnSubmit:'Finalize &amp; Submit', btnSave:'Save draft', btnAttach:'Attach Credential →',
+    clinicH4:'Innovative bridge — seed a ClinicFlow encounter', clinicP:'This BPR provider can now open a ClinicFlow reception encounter with pre-filled identity and credentials.',
+    outTitle:'FHIR R4 Bundle &amp; Profile', dlFHIR:'⬇ Download FHIR Bundle', dlProfile:'⬇ Download Profile HTML',
+    flashSubmitted:'Application submitted! Status: pending review.', flashAttached:'Attached: {title} ({kind}) — status: received. Admin verifies next.', flashMissingCred:'Please select a file.', flashNoWorker:'No worker data.', flashGenFHIR:'Generate FHIR first (submit).',
+    missing:'Still missing: {kinds}', allCreds:'All credential kinds uploaded ✓',
+    navStart:'← Start over', navApi:'API / HF Space info',
+    gptH3:'✨ GPT-2 Bio Enrichment', gptNote:'Send your bio to openai-community/gpt2 via the Hugging Face Inference API to expand/polish it. Requires an HF token.',
+    gptBioFirst:'Enter a bio first.', gptDemo:'[Demo/stub mode] GPT-2 would expand your bio: "{bio} — A dedicated healthcare professional committed to excellence in patient care and continuous learning."\n\nEnter an HF token (hf_…) above for real generation.',
+    gptCalling:'Calling GPT-2…', gptDemoMode:'Demo mode (no token).', gptEnriched:'Enriched.', gptErr:'Error: {msg}',
+    orcidValid:'Valid ORCID format.', orcidInvalid:'Invalid ORCID format (use 0000-0000-0000-0000).',
+  },
+  ar: {
+    brandTitle:'سجل مقدمي الرعاية (BPR)', brandSub:'سؤال واحد · شريحة واحدة · صفحة واحدة · NPHIES · FHIR R4 · enrichment GPT-2 · خاص',
+    stepTitles:{orcid:'ما هو معرف ORCID الخاص بك؟',name:'ما هو اسمك الكامل؟',profession:'ما هي مهنتك الصحية؟',licence:'ما هي بيانات الترخيص الخاص بك؟',contact:'كيف يمكن التواصل معك؟',credentials:'ارفع شهاداتك واعتماداتك',review:'مراجعة وإرسال'},
+    stepSubs:{orcid:'معرف الباحث الدائم — مفتاحك الأساسي في BPR.',name:'اكتب بالإنجليزية. الاسم بالعربية اختياري.',profession:'يحدد دورك الممارس في NPHIES ومستوى الترخيص.',licence:'جهة الإصدار ورقم الترخيص.',contact:'البريد الإلكتروني ولينكد إن لإعلانات BPR.',credentials:'MBBS، Prometric، SCFHS، التسجيل، الدراسات العليا، الخبرة.',review:'تأكيد قبل الإتمام النهائي. الحالة تصبح قيد المراجعة.'},
+    lblOrcid:'معرف ORCID', lblOrcidReq:'(مطلوب)', lblOrcidHint:'',
+    lblName:'الاسم الكامل (بالإنجليزية)', lblNameAr:'الاسم الكامل (بالعربية)', lblProf:'المهنة الصحية', lblIssuer:'جهة إصدار الترخيص', lblLicNo:'رقم الترخيص / الشهادة', lblSpid:'رقم SPID المدعى (إذا كان معروفاً)',
+    lblEmail:'البريد الإلكتروني', lblLinkedIn:'رابط لينكد إن', lblBio:'السيرة المهنية', lblBioOpt:'(اختياري — يمكن enrichment عبر GPT-2)',
+    lblAttach:'أضف الاعتمادات واحداً تلو الآخر.', lblCredFile:'مرفق اعتماد', lblCredFileStat:'PDF · JPG · PNG · الحد الأقصى 8 ميغابايت (محاكاة من جانب العميل)',
+    lblKind:'نوع الاعتماد', lblKindReq:'(مطلوب)', lblTitle:'العنوان', lblIssuer2:'المؤسسة / المانح', lblNumber:'رقم الشهادة / الرخصة', lblIssue:'تاريخ الإصدار', lblExpiry:'تاريخ انتهاء الصلاحية',
+    lblReview:'راجع طلبك قبل الإرسال.', lblFinal:'أؤكد أن معلوماتي دقيقة وأريد إرسالها لمراجعة BPR.',
+    lblConsentDocs:'أوافق على تخزين ومراجعة مستندات اعتمادي.', lblConsentAnnounce:'أوافق على إعلانات BPR.',
+    btnBack:'الخلف', btnNext:'التالي &rarr;', btnSubmit:'إنهاء وإرسال', btnSave:'حفظ مسودة', btnAttach:'إرفاق اعتماد →',
+    clinicH4:'جسر مبتكر — زرع لقاء عيادة ClinicFlow', clinicP:'يمكن لهذا مقدم الرعاية في BPR الآن فتح لقاء استقبال في ClinicFlow مع بيانات هوية واعتمادات مسبقة التعبئة.',
+    outTitle:'حزمة FHIR R4 والملف الشخصي', dlFHIR:'⬇ تنزيل حزمة FHIR', dlProfile:'⬇ تنزيل ملف تعريف HTML',
+    flashSubmitted:'تم إرسال الطلب! الحالة: قيد المراجعة.', flashAttached:'تم الإرفاق: {title} ({kind}) — الحالة: تم الاستلام. administrador يتحقق بعد ذلك.', flashMissingCred:'الرجاء اختيار ملف.', flashNoWorker:'لا توجد بيانات.', flashGenFHIR:'أنشئ حزمة FHIR أولاً (أرسل).',
+    missing:'لا يزال ناقصًا: {kinds}', allCreds:'جميع أنواع الاعتمادات تم رفعها ✓',
+    navStart:'← ابدأ من جديد', navApi:'معلومات API / مساحة HF',
+    gptH3:'✨ enrichment بيولوجي GPT-2', gptNote:'أرسل سيرتك الذاتية إلى openai-community/gpt2 عبر واجهة برمجة تطبيقات الاستنتاج من Hugging Face لتوسيعها أو تحسينها. يتطلب رمز HF.',
+    gptBioFirst:'أدخل سيرة ذاتية أولاً.', gptDemo:'[وضع تجريبي/وهمي] سيقوم GPT-2 بتوسيع سيرتك الذاتية: "{bio} — متخصص الرعاية الصحية المخلص للتميز في رعاية المريض والتعلم المستمر."\n\nأدخل رمز HF (hf_…) أعلاه للتوليد الفعلي.',
+    gptCalling:'جاري الاتصال بـ GPT-2…', gptDemoMode:'وضع تجريبي (بدون رمز).', gptEnriched:'تم enrichment.', gptErr:'خطأ: {msg}',
+    orcidValid:'تنسيق ORCID صحيح.', orcidInvalid:'تنسيق ORCID غير صحيح (استخدم 0000-0000-0000-0000).',
+  }
+};
+let lang = 'en';
+function setLang(l){ lang=l; document.documentElement.lang=l; document.documentElement.dir = l==='ar'?'rtl':'ltr'; document.getElementById('langEn').classList.toggle('active', l==='en'); document.getElementById('langAr').classList.toggle('active', l==='ar'); applyLang(); if(cur!==undefined) show(cur); }
+function t(key){ return LANG[lang][key] || key; }
+function applyLang(){
+  document.getElementById('brandTitle').textContent=t('brandTitle');
+  document.getElementById('brandSub').textContent=t('brandSub');
+  const step=STEPS[cur];
+  document.getElementById('stepBadge').textContent = `Step ${cur+1} — ${(lang==='ar'?'خطوة ':'Step ')}${cur+1}`;
+  document.getElementById('stepTitle').textContent = t('stepTitles')[step];
+  document.getElementById('stepSub').textContent = t('stepSubs')[step];
+  document.getElementById('lblOrcid').textContent=t('lblOrcid')+' <span style="font-weight:normal">'+t('lblOrcidReq')+'</span>';
+  document.getElementById('f-orcid').placeholder='0000-0000-0000-0000';
+  document.getElementById('lblName').innerHTML=t('lblName')+' <span style="font-weight:normal">'+t('lblOrcidReq')+'</span>';
+  document.getElementById('lblNameAr').innerHTML=t('lblNameAr')+' <span style="font-weight:normal">(optional)</span>';
+  document.getElementById('f-name').placeholder=t==='ar'?'مثال: محمد Elfadil':'e.g. Mohamed Elfadil';
+  document.getElementById('f-name-ar').placeholder=t==='ar'?'مثال: محمد Elfadil':'مثال: محمد Elfadil';
+  document.getElementById('lblProf').innerHTML=t('lblProf')+' <span style="font-weight:normal">'+t('lblKindReq')+'</span>';
+  document.getElementById('lblIssuer').textContent=t('lblIssuer');
+  document.getElementById('lblLicNo').textContent=t('lblLicNo');
+  document.getElementById('lblSpid').textContent=t('lblSpid');
+  document.getElementById('lblEmail').textContent=t('lblEmail');
+  document.getElementById('lblLinkedIn').textContent=t('lblLinkedIn');
+  document.getElementById('lblBio').innerHTML=t('lblBio')+' <span style="font-weight:normal">'+t('lblBioOpt')+'</span>';
+  document.getElementById('lblAttach').textContent=t('lblAttach');
+  document.getElementById('lblCredFile').textContent=t('lblCredFile');
+  document.getElementById('lblKind').innerHTML=t('lblKind')+' <span style="font-weight:normal">'+t('lblKindReq')+'</span>';
+  document.getElementById('lblTitle').textContent=t('lblTitle');
+  document.getElementById('lblIssuer2').textContent=t('lblIssuer2');
+  document.getElementById('lblNumber').textContent=t('lblNumber');
+  document.getElementById('lblIssue').textContent=t('lblIssue');
+  document.getElementById('lblExpiry').textContent=t('lblExpiry');
+  document.getElementById('lblReview').textContent=t('lblReview');
+  document.getElementById('lblFinal').textContent=t('lblFinal');
+  document.getElementById('lblConsentDocs').textContent=t('lblConsentDocs');
+  document.getElementById('lblConsentAnnounce').textContent=t('lblConsentAnnounce');
+  document.getElementById('btnBack').textContent=t('btnBack');
+  document.getElementById('btnNext').innerHTML=t('btnNext');
+  document.getElementById('btnSubmit').innerHTML=t('btnSubmit');
+  document.getElementById('btnSave').textContent=t('btnSave');
+  document.getElementById('btnAttach').textContent=t('btnAttach');
+  document.getElementById('clinicH4').textContent=t('clinicH4');
+  document.getElementById('clinicP').textContent=t('clinicP');
+  document.getElementById('outTitle').innerHTML=t('outTitle');
+  document.getElementById('gptH3').textContent=t('gptH3');
+  document.getElementById('gptNote').innerHTML=t('gptNote');
+  document.getElementById('dlFHIR')&&(document.getElementById('dlFHIR').textContent=t('dlFHIR'));
+  renderCreds();
+  renderReview();
+}
+
+const KINDS = { mbbs:'MBBS / Medical Degree', prometric:'Prometric Exam (SCFHS)', scfhs:'SCFHS Professional Classification', registration:'Professional Registration License', postgraduate:'Post-Graduate / Fellowship', experience:'Experience Certificate' };
+const PROFS = {physician:'Physician', dentist:'Dentist', pharmacist:'Pharmacist', nurse:'Nurse', allied_health:'Allied Health Professional', technician:'Health Technician', assistant:'Health Assistant'};
+const STEPS = ['orcid','name','profession','licence','contact','credentials','review'];
+let cur = 0;
+const worker = {credentials:[]};
+let fhirBundle = null;
+
+// localStorage persistence
+const LS_KEY='bpr_draft_v1';
+function saveDraft(){ try{ localStorage.setItem(LS_KEY, JSON.stringify({worker, cur, lang})); showFlash('Draft saved locally.','ok'); }catch(e){ showFlash('Could not save draft.','err'); } }
+function loadDraft(){ try{ const raw=localStorage.getItem(LS_KEY); if(!raw) return; const d=JSON.parse(raw); if(d.worker) Object.assign(worker, d.worker); if(d.cur!==undefined) cur=d.cur; if(d.lang){ lang=d.lang; setLang(lang); } renderCreds(); renderReview(); show(cur); showFlash('Draft restored.','ok'); }catch(e){ /* ignore */ } }
+
+// ---- ORCID validation ----
+function validateOrcid(v){
+  const re=/^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$/i;
+  if(!v) return {ok:false,msg:''};
+  if(!re.test(v)) return {ok:false,msg:t('orcidInvalid')};
+  return {ok:true,msg:t('orcidValid')};
+}
+(function wireOrcid(){
+  const inp=document.getElementById('f-orcid'); const hint=document.getElementById('orcidHint');
+  inp.addEventListener('input',()=>{
+    const r=validateOrcid(inp.value);
+    hint.textContent=r.msg; hint.style.color = r.ok?'#166534':(inp.value?'#92400e':'#64748b');
+  });
+})();
+
+// ---- Navigation ----
+function show(i){
+  cur = Math.max(0, Math.min(i, STEPS.length-1));
+  STEPS.forEach((s,k)=>{ const el=document.getElementById('s-'+s); if(el) el.classList.toggle('hidden', k!==cur); });
+  const step=STEPS[cur];
+  document.getElementById('stepBadge').textContent = `Step ${cur+1} — ${step.charAt(0).toUpperCase()+step.slice(1)}`;
+  document.getElementById('stepTitle').textContent = t('stepTitles')[step];
+  document.getElementById('stepSub').textContent = t('stepSubs')[step];
+  const pct = Math.round((cur+1)/STEPS.length*100);
+  document.getElementById('pbFill').style.width = pct+'%';
+  document.getElementById('pTxt').textContent = `${pct}% &middot; Step ${cur+1} of ${STEPS.length}`;
+  document.getElementById('btnBack').style.display = cur===0?'none':'inline-block';
+  document.getElementById('btnNext').style.display = (step==='review')?'none':'inline-block';
+  document.getElementById('btnSubmit').style.display = (step==='review')?'inline-block':'none';
+  document.getElementById('btnSave').style.display = 'inline-block';
+  if(step==='review') renderReview();
+  if(step==='credentials') renderCreds();
+}
+function goBack(){ if(cur>0) show(cur-1); }
+function nextStep(){
+  const step=STEPS[cur];
+  const els = document.getElementById('s-'+step).querySelectorAll('input,select,textarea');
+  let valid=true;
+  els.forEach(el=>{
+    if(el.type==='checkbox') worker[el.name] = el.checked?'1':'0';
+    else if(el.value!=='') worker[el.name] = el.value;
+    if(el.required && !el.value){ el.focus(); valid=false; }
+  });
+  if(step==='orcid'){
+    const r=validateOrcid(worker.orcid||''); if(!r.ok){ showFlash(r.msg,'err'); document.getElementById('f-orcid').focus(); return; }
+  }
+  if(step==='contact'){ enrichPreview(); }
+  if(!valid) return;
+  show(cur+1);
+}
+function submitApp(){
+  const step=STEPS[cur];
+  if(step!=='review'){ showFlash('Please complete the review step first.','err'); return; }
+  if(!document.getElementById('f-final').checked){ showFlash('Please confirm final consent.','err'); return; }
+  worker.status='pending';
+  worker.updated_at = new Date().toISOString();
+  buildFHIR();
+  renderCreds();
+  document.getElementById('outSection').style.display='block';
+  document.getElementById('clinicBridge').style.display='block';
+  showFlash(t('flashSubmitted'),'ok');
+  setTimeout(()=>{ document.getElementById('outSection').scrollIntoView({behavior:'smooth'}); }, 100);
+}
+
+// ---- Credentials ----
+function attachCred(){
+  const file = document.getElementById('credFile').files[0];
+  if(!file){ showFlash(t('flashMissingCred'),'err'); return; }
+  const kind = document.getElementById('c-kind').value;
+  const title = document.getElementById('c-title').value || kind;
+  const issuer = document.getElementById('c-issuer').value;
+  const number = document.getElementById('c-number').value;
+  const issue = document.getElementById('c-issue').value;
+  const expiry = document.getElementById('c-expiry').value;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const cred = {kind, title, file_name: file.name, content_hash: 'sha256:'+btoa(String.fromCharCode.apply(null, new Uint8Array(e.target.result).slice(0,64))).replace(/\+/g,'-').replace(/\//g,'_'), issuer, number, issue_date: issue||null, expiry_date: expiry||null, status:'received', uploaded_at: new Date().toISOString()};
+    worker.credentials.push(cred);
+    document.getElementById('credFile').value='';
+    document.getElementById('c-title').value=''; document.getElementById('c-issuer').value=''; document.getElementById('c-number').value=''; document.getElementById('c-issue').value=''; document.getElementById('c-expiry').value='';
+    renderCreds();
+    showFlash(t('flashAttached').replace('{title}',title).replace('{kind}',KINDS[kind]),'ok');
+  };
+  reader.readAsArrayBuffer(file);
+}
+function renderCreds(){
+  const list = document.getElementById('credList');
+  list.innerHTML = worker.credentials.map((c,i)=>`
+    <div class="cred-row"><span class="cred-kind">${KINDS[c.kind]}</span><span>${c.title}</span><span style="flex:1"></span><span style="font-size:11px;color:var(--muted)">${c.issuer||'—'}</span><span style="font-size:11px;color:var(--muted)">${c.number||'—'}</span><span class="badge" style="background:${c.status==='verified'?'#dcfce7':c.status==='declined'?'#fee2e2':'#fef3c7'};color:${c.status==='verified'?'#166534':c.status==='declined'?'#991b1b':'#92400e'}">${c.status}</span><span class="cred-remove" onclick="removeCred(${i})">×</span></div>
+  `).join('');
+  const missing = Object.keys(KINDS).filter(k=>!worker.credentials.some(c=>c.kind===k));
+  document.getElementById('credMissing').innerHTML = missing.length? t('missing').replace('{kinds}',missing.map(m=>KINDS[m]).join(', ')) : t('allCreds');
+  document.getElementById('credStatus').textContent = `${worker.credentials.length} credential(s) attached.`;
+}
+function removeCred(i){ worker.credentials.splice(i,1); renderCreds(); }
+
+// ---- Review ----
+function renderReview(){
+  const s = document.getElementById('reviewSummary');
+  s.innerHTML = `
+    <div class="cred-row"><span class="cred-kind">ORCID</span><span style="flex:1">${worker.orcid||'—'}</span></div>
+    <div class="cred-row"><span class="cred-kind">Name</span><span style="flex:1">${worker.name||'—'}</span> ${worker.name_ar?`<span style="font-size:11px;color:var(--muted)">(${worker.name_ar})</span>`:''}</div>
+    <div class="cred-row"><span class="cred-kind">Profession</span><span style="flex:1">${PROFS[worker.profession]||'—'}</span></div>
+    <div class="cred-row"><span class="cred-kind">License</span><span style="flex:1">${worker.licence_no||'—'} (${worker.licence_issuer||'—'})</span></div>
+    <div class="cred-row"><span class="cred-kind">Contact</span><span style="flex:1">${worker.email||'—'}</span></div>
+    <div class="cred-row"><span class="cred-kind">Bio</span><span style="flex:1">${worker.bio||'—'}</span></div>
+    <div class="cred-row"><span class="cred-kind">Credentials</span><span style="flex:1">${worker.credentials.length} attached</span></div>
+    <div class="cred-row"><span class="cred-kind">Consent</span><span style="flex:1">docs:${worker.consent_docs==='1'?'✓':'✗'} announce:${worker.consent_announce==='1'?'✓':'✗'}</span></div>
+  `;
+}
+
+// ---- FHIR ----
+function buildFHIR(){
+  const wid = 'bpr-'+Math.random().toString(36).slice(2,8);
+  const qual = worker.credentials.filter(c=>c.status==='verified').map(c=>({
+    identifier:[{system:'https://nphies.sa/fhir/Id/credential',value:c.number||c.content_hash.slice(0,16)}],
+    code:{coding:[{system:'https://nphies.sa/fhir/CodeSystem/credential-kind',code:c.kind,display:KINDS[c.kind]}],text:c.title},
+    period: c.issue_date?{start:c.issue_date}:null
+  }));
+  const profCode = worker.profession;
+  fhirBundle = {
+    resourceType:'Bundle', identifier:{system:'urn:uuid:bpr-bundle',value:wid}, type:'collection', timestamp: new Date().toISOString(),
+    entry:[
+      {resource:{resourceType:'Practitioner',id:wid,active:worker.status==='approved',name:[{text:worker.name,use:'official'}],telecom: worker.email?[{system:'email',value:worker.email,use:'work'}]:[], qualification:qual}, fullUrl:`Practitioner/${wid}`},
+      {resource:{resourceType:'Organization',id:'bpr-org',active:true,name:'BrainSAIT Provider Registry',type:[{coding:[{system:'http://terminology.hl7.org/CodeSystem/organization-type',code:'prov',display:'Healthcare Provider'}]}]}, fullUrl:'Organization/bpr-org'},
+      {resource:{resourceType:'PractitionerRole',id:'role-'+wid,practitioner:{reference:`Practitioner/${wid}`},organization:{reference:'Organization/bpr-org'},code:[{coding:[{system:'http://terminology.hl7.org/CodeSystem/practitioner-role',code:profCode,display:PROFS[profCode]||profCode}]}],active:worker.status==='approved'}, fullUrl:`PractitionerRole/role-${wid}`}
+    ],
+    meta:{profile:['https://nphies.sa/fhir/StructureDefinition/bpr-practitioner-bundle'],source:'https://registry.brainsait.de'}
+  };
+  document.getElementById('fhirPreview').textContent = JSON.stringify(fhirBundle, null, 2);
+  document.getElementById('fhirPreviewApi').textContent = JSON.stringify(fhirBundle, null, 2);
+}
+function downloadFHIR(){
+  if(!fhirBundle){ showFlash(t('flashGenFHIR'),'err'); return; }
+  const blob = new Blob([JSON.stringify(fhirBundle,null,2)],{type:'application/fhir+json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href=url; a.download=`bpr_${(worker.orcid||'worker').replace(/[^a-z0-9]/gi,'_')}_fhir_bundle.json`; a.click();
+  URL.revokeObjectURL(url);
+}
+function downloadProfile(){
+  if(!worker.name){ showFlash(t('flashNoWorker'),'err'); return; }
+  const html = `<!DOCTYPE html><html lang="${lang}" dir="${lang==='ar'?'rtl':'ltr'}"><head><meta charset="UTF-8"><title>BPR Profile — ${worker.name}</title><style>body{font-family:system-ui,sans-serif;background:#f8fafc;color:#0f172a;padding:40px} .card{background:#fff;border-radius:16px;padding:32px;max-width:640px;margin:0 auto} h1{color:#0d9488} .badge{background:#ecfdf5;color:#10b981;padding:4px 10px;border-radius:20px;font-size:11px} table{width:100%;border-collapse:collapse;margin-top:16px} th,td{padding:8px;border-bottom:1px solid #e2e8f0;text-align:left} .muted{color:#64748b;font-size:12px}</style></head><body><div class="card"><h1>🏥 ${worker.name}</h1><div class="badge">ORCID ${worker.orcid}</div> <span class="badge" style="background:#fef3c7;color:#92400e">${worker.status.toUpperCase()}</span><table><tr><td><b>Profession</b></td><td>${PROFS[worker.profession]||worker.profession}</td></tr><tr><td><b>License</b></td><td>${worker.licence_no||'—'}</td></tr><tr><td><b>Credentials</b></td><td>${worker.credentials.length} attached</td></tr></table><p class="muted" style="margin-top:20px">${worker.bio||''}</p></div></body></html>`;
+  const blob = new Blob([html],{type:'text/html'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href=url; a.download=`bpr_${(worker.orcid||'worker').replace(/[^a-z0-9]/gi,'_')}_profile.html`; a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ---- GPT-2 ----
+async function enrichBio(){
+  const bio = document.getElementById('f-bio').value.trim();
+  const token = document.getElementById('gpt-token').value.trim();
+  const out = document.getElementById('gptOut');
+  const stat = document.getElementById('gptStat');
+  if(!bio){ out.textContent=t('gptBioFirst'); return; }
+  stat.textContent=t('gptCalling');
+  if(!token){
+    out.textContent = t('gptDemo').replace('{bio}',bio);
+    stat.textContent=t('gptDemoMode');
+    return;
+  }
+  try{
+    const r = await fetch('https://api-inference.huggingface.co/models/openai-community/gpt2', {
+      method:'POST', headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'},
+      body: JSON.stringify({inputs: bio, parameters:{max_new_tokens:60, temperature:0.7, return_full_text:false}})
+    });
+    if(!r.ok){ throw new Error('HF API '+r.status); }
+    const j = await r.json();
+    const gen = Array.isArray(j)? j[0]?.generated_text : j.generated_text;
+    out.textContent = gen || '(no output)';
+    stat.textContent=t('gptEnriched');
+  }catch(e){
+    out.textContent=t('gptErr').replace('{msg}',e.message);
+    stat.textContent='Failed.';
+  }
+}
+function enrichPreview(){ }
+
+// ---- Flash ----
+function showFlash(msg,type){
+  const el = document.getElementById('flash');
+  el.textContent = msg; el.className = 'flash flash--'+type; el.style.display='block';
+  setTimeout(()=>el.style.display='none',4000);
+}
+
+// ---- ClinicFlow bridge (innovative expansion) ----
+function openClinicFlow(){
+  if(!worker.orcid){ showFlash('No BPR provider identity.','err'); return; }
+  const cf = window.open('','_blank');
+  cf.document.write(`
+<!DOCTYPE html><html lang="${lang}" dir="${lang==='ar'?'rtl':'ltr'}"><head><meta charset="UTF-8"><title>ClinicFlow — Encounter for ${worker.name}</title>
+<style>body{font-family:system-ui,sans-serif;background:#f8fafc;color:#0f172a;padding:24px} .card{background:#fff;border-radius:16px;padding:28px;max-width:720px;margin:0 auto} h1{color:#0d9488;font-size:22px} .badge{background:#ecfdf5;color:#10b981;padding:4px 10px;border-radius:20px;font-size:11px;margin-right:6px} table{width:100%;border-collapse:collapse;margin-top:16px} th,td{padding:10px;border-bottom:1px solid #e2e8f0;text-align:left} .muted{color:#64748b;font-size:12px} .btn{background:#10b981;color:#fff;border:none;border-radius:10px;padding:10px 18px;cursor:pointer;font-weight:700} .btn:hover{filter:brightness(1.1)} .flow{margin-top:24px;background:#f0fdf4;border:1px dashed #86efac;border-radius:10px;padding:16px}</style></head>
+<body><div class="card"><h1>🏥 ClinicFlow Reception — Encounter</h1><div class="badge">BPR Verified</div><div class="badge">Pre-filled from BPR</div>
+<table><tr><td><b>Provider</b></td><td>${worker.name} ${worker.name_ar?'('+worker.name_ar+')':''}</td></tr><tr><td><b>ORCID</b></td><td>${worker.orcid}</td></tr><tr><td><b>Profession</b></td><td>${PROFS[worker.profession]||worker.profession}</td></tr><tr><td><b>License</b></td><td>${worker.licence_no||'—'}</td></tr><tr><td><b>BPR Status</b></td><td><span class="badge" style="background:${worker.status==='approved'?'#dcfce7':'#fef3c7'};color:${worker.status==='approved'?'#166534':'#92400e'}">${worker.status.toUpperCase()}</span></td></tr><tr><td><b>Credentials</b></td><td>${worker.credentials.length} attached</td></tr></table>
+<div class="flow"><h3 style="color:#166534;margin-bottom:8px">Encounter intake (seed from BPR)</h3>
+<table><tr><td><b>Visit type</b></td><td><select style="width:100%"><option>General consultation</option><option>Follow-up</option><option>Specialist referral</option><option>Telemedicine</option></select></td></tr><tr><td><b>Chief complaint</b></td><td><textarea style="width:100%" placeholder="Reason for visit…"></textarea></td></tr><tr><td><b>Provider verified</b></td><td><span class="badge" style="background:#dcfce7;color:#166534">Yes — BPR SPID claimed</span></td></tr></table>
+<button class="btn" style="margin-top:14px">Create encounter &amp; export FHIR R4</button></div>
+<p class="muted" style="margin-top:20px">Seed data pre-filled from your BPR registration. Real encounters write to the ClinicFlow reception pilot.</p></div></body></html>
+`);
+  cf.document.close();
+}
+
+// init
+loadDraft();
+show(0);
+</script>
+</body>
+</html>
