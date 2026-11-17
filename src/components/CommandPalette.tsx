@@ -65,12 +65,13 @@ export default function CommandPalette() {
     const P = ar ? 'الصفحات' : 'Pages', B = 'BPR', A = ar ? 'إجراءات' : 'Actions', D = ar ? 'مقدمو الرعاية' : 'Providers';
     const base: Item[] = [
       { id: 'platform', group: P, label: ar ? 'بوابة BrainSAIT والأدوات' : 'BrainSAIT platform & tools', run: () => window.location.assign(localized('/')) },
-      { id: 'clinic', group: B, label: ar ? 'استقبال العيادات' : 'Clinic reception', hint: '/bpr/clinic', run: go('/bpr/clinic') },
+      { id: 'bpr', group: B, label: ar ? 'الركيزة 01: نظرة عامة على BPR' : 'Flagship 01: BPR overview', hint: '/bpr', run: go('/bpr') },
+      { id: 'clinic', group: B, label: ar ? 'الركيزة 02: استقبال العيادات وClinicFlow وفحص الصوت' : 'Flagship 02: ClinicFlow & Voice Bot QA', hint: '/bpr/clinic', run: go('/bpr/clinic') },
+      { id: 'bos', group: B, label: ar ? 'الركيزة 03: BOS ومختبر حماية البيانات والحاسبات' : 'Flagship 03: BOS Sandbox & AI Gateway', hint: '/bpr/ai', run: go('/bpr/ai') },
       { id: 'status', group: B, label: ar ? 'حالة التشغيل' : 'Operations status', hint: '/bpr/status', run: go('/bpr/status') },
-      { id: 'home', group: P, label: ar ? 'الملف المهني' : 'Professional profile', hint: '/profile', run: go('/profile') },
+      { id: 'home', group: P, label: ar ? 'الملف المهني ومستشار CCIO' : 'Professional profile & CCIO', hint: '/profile', run: go('/profile') },
       { id: 'cv', group: P, label: ar ? 'السيرة الذاتية' : 'CV', hint: '/cv', run: go('/cv') },
       { id: 'card', group: P, label: ar ? 'بطاقة الأعمال' : 'Business card', hint: '/card', run: go('/card') },
-      { id: 'bpr', group: B, label: ar ? 'نظرة عامة على BPR' : 'BPR overview', hint: '/bpr', run: go('/bpr') },
       { id: 'rec', group: B, label: ar ? 'سجل BPR الخاص بي' : 'My BPR record', hint: '/bpr/record', run: go('/bpr/record') },
       { id: 'ksa', group: B, label: ar ? 'BPR في المنظومة الصحية السعودية' : 'BPR across the Saudi health system', hint: '/bpr/saudi', run: go('/bpr/saudi') },
       { id: 'nph', group: B, label: ar ? 'مكتب نفيس: رموز الرفض والفحص' : 'NPHIES desk: rejection codes and pre-check', hint: '/bpr/nphies', run: go('/bpr/nphies') },

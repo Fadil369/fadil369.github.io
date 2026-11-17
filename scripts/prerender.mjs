@@ -189,8 +189,11 @@ Facts for agents:
 - [Demo EMR](https://demo.emr.brainsait.de/): a public OpenEMR with 12 synthetic patients (Arabic-first, ICD-10-AM-compatible diagnoses, LOINC labs, CHI-style coverage, one inpatient episode with AR-DRG grouper input). Login demo / BrainSAIT-Demo-2026, non-admin; all data resets nightly.
 - Data on these pages comes live from ${REGISTRY}; a build snapshot (dated) is the fallback.
 
-## Person
-- [Profile](${ORIGIN}/): physician-founder profile, live BPR credential state, selected work, research
+## Person & Three Super Flagships (BPR · ClinicFlow · BOS)
+- [Profile](${ORIGIN}/profile/): physician-founder & CCIO advisor profile, live BPR credential state, selected work across BPR, ClinicFlow, BOS, and Patient Voice Bot QA
+- [Flagship 01 — BPR (Provider Registry)](${ORIGIN}/bpr/): signed W3C Ed25519 provider identity (SPID), hash-chained transparency log, ORCID/DOI research footprint, FHIR R4 API and NPHIES rejection desk
+- [Flagship 02 — ClinicFlow & Voice Bot QA](${ORIGIN}/bpr/clinic/): bilingual WhatsApp/Moyasar/ZATCA reception relay with live no-PHI telemetry, synthetic clinic workspace, and automated 15-scenario [Patient Voice Bot QA](https://github.com/Fadil369/patient-voice-bot-qa)
+- [Flagship 03 — BOS (BrainSAIT & Doctor OS)](${ORIGIN}/bpr/ai/): PHI-firewalled clinical copilot (15 exact calculators, PubMed/FDA/trials verification, encrypted doctor vault) & Level-3 Tiny Software Factory
 - [CV](${ORIGIN}/cv/): one-page CV; PDFs in [English](${ORIGIN}/assets/Dr_Mohamed_El_Fadil_CV_2026_Redesigned.pdf) and [Arabic](${ORIGIN}/assets/Dr_Mohamed_El_Fadil_CV_2026_AR.pdf)
 - [Business card](${ORIGIN}/card/)
 - ORCID: https://orcid.org/0009-0003-7485-3575 · BPR SPID: ${OWNER_SPID}

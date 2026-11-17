@@ -20,31 +20,48 @@ const projects = [
     name: 'BPR — Provider Registry',
     url: '/bpr',
     icon: Fingerprint,
-    en: 'Signed, portable provider identity connecting credentials, research and clinical tools — verified on any device.',
-    ar: 'هوية موقّعة وقابلة للنقل لمقدم الرعاية، تربط الاعتمادات والأبحاث والأدوات السريرية — تُتحقق من أي جهاز.',
-    tags: ['Ed25519', 'W3C VC', 'FHIR R4'],
+    en: 'Super Flagship 01: Signed W3C Ed25519 provider identity (SPID), hash-chained transparency log, ORCID/DOI research footprint, FHIR R4 API and NPHIES desk.',
+    ar: 'الركيزة الأولى: هوية موقّعة بمعيار W3C Ed25519 لمقدم الرعاية، سجل شفاف بسلسلة تجزئة، بصمة بحثية عبر ORCID وDOI، واجهة FHIR R4 ومكتب نفيس.',
+    tags: ['Flagship 01', 'Ed25519 · W3C VC', 'FHIR R4 · NPHIES'],
   },
   {
-    name: 'LINC FHIR',
-    url: 'https://github.com/Fadil369/brainsait-linc-fhir',
+    name: 'ClinicFlow — Smart Clinic & Voice Bot QA',
+    url: '/bpr/clinic',
+    icon: Stethoscope,
+    en: 'Super Flagship 02: Bilingual WhatsApp/Moyasar/ZATCA reception relay with live no-PHI telemetry, synthetic clinic workspace, and automated 15-scenario Patient Voice Bot QA.',
+    ar: 'الركيزة الثانية: مرحّل استقبال ثنائي اللغة (واتساب وميسر وزاتكا) مع مؤشرات مجمّعة بلا بيانات مرضى، ومساحة عيادة تجريبية، وفحص آلي للاستقبال الصوتي.',
+    tags: ['Flagship 02', 'WhatsApp · ZATCA', 'Voice Bot QA'],
+  },
+  {
+    name: 'BOS — BrainSAIT & Doctor OS',
+    url: '/bpr/ai',
+    icon: Boxes,
+    en: 'Super Flagship 03: PHI-firewalled clinical copilot (15 exact calculators, PubMed/FDA/trials checks, encrypted doctor vault) & Level-3 Tiny Software Factory.',
+    ar: 'الركيزة الثالثة: مساعد سريري بجدار حماية للبيانات الشخصية (15 حاسبة دقيقة، تحقق من الأدلة، خزنة مشفرة للطبيب) ومصنع البرمجيات الذكي.',
+    tags: ['Flagship 03', 'Doctor OS · PHI Firewall', 'Tiny Factory'],
+  },
+  {
+    name: 'Patient Voice Bot QA',
+    url: 'https://github.com/Fadil369/patient-voice-bot-qa',
     icon: Network,
-    en: 'Bilingual healthcare agents and FHIR integration for the InterSystems ecosystem.',
-    ar: 'وكلاء صحيون ثنائيو اللغة وتكامل FHIR ضمن منظومة InterSystems.',
-    tags: ['Agents', 'FHIR R4', 'InterSystems'],
+    en: 'Automated LiveKit SIP + Deepgram + OpenAI QA harness testing medical voice receptionists across 15 realistic clinical call scenarios.',
+    ar: 'منظومة فحص آلي عبر LiveKit SIP وDeepgram وOpenAI لاختبار وكلاء الاستقبال الصوتي الطبي عبر 15 سيناريو واقعيًا للمرضى.',
+    tags: ['LiveKit SIP', 'Deepgram · OpenAI', '15 QA Scenarios'],
   },
   {
-    name: 'BrainSAIT RCM',
+    name: 'BrainSAIT RCM & LINC FHIR',
     url: 'https://github.com/Fadil369/brainsait-rcm',
     icon: HeartPulse,
-    en: 'Saudi claims intelligence, rejection management and revenue-cycle automation — NPHIES integration ongoing.',
-    ar: 'ذكاء المطالبات السعودية وإدارة الرفض وأتمتة دورة الإيرادات — التكامل مع نفيس جارٍ.',
-    tags: ['NPHIES · ongoing', 'Claims', 'TypeScript'],
-  },  {
+    en: 'Saudi claims intelligence, rejection management, revenue-cycle automation and InterSystems FHIR R4 clinical agents — NPHIES integration ongoing.',
+    ar: 'ذكاء المطالبات السعودية وإدارة الرفض وأتمتة دورة الإيرادات ووكلاء FHIR R4 السريريون — التكامل مع نفيس جارٍ.',
+    tags: ['NPHIES · ongoing', 'Claims · RCM', 'FHIR R4'],
+  },
+  {
     name: 'Healthcare MCP',
     url: 'https://github.com/Fadil369/brainsait-mcp-dxt',
     icon: Braces,
-    en: 'Auditable healthcare connectors giving AI assistants controlled FHIR capabilities.',
-    ar: 'موصلات صحية قابلة للتدقيق تمنح المساعدات الذكية قدرات FHIR منضبطة.',
+    en: 'Auditable healthcare Model Context Protocol connectors giving AI assistants controlled, hash-logged FHIR R4 capabilities.',
+    ar: 'موصلات صحية قابلة للتدقيق تمنح المساعدات الذكية قدرات FHIR R4 منضبطة وموثقة بسجل تدقيق.',
     tags: ['MCP', 'Audit', 'FHIR R4'],
   },
 ];
@@ -112,12 +129,12 @@ export default function Home() {
       <div className="profile-content">
         <section className="profile-hero" aria-labelledby="profile-title">
           <div className="profile-hero-copy">
-            <div className="profile-eyebrow"><span />{ar ? 'طبيب · مؤسس · صانع حلول صحية' : 'Physician · Founder · Healthcare builder'}</div>
+            <div className="profile-eyebrow"><span />{ar ? 'طبيب · مؤسس BrainSAIT · مستشار حوكمة الذكاء السريري (CCIO)' : 'Physician · BrainSAIT Founder · Clinical AI & CCIO Advisor'}</div>
             <h1 id="profile-title">{ar ? 'تقنية صحية من يد الطبيب، لكل طبيب.' : 'Healthcare technology, built by a physician—for every physician.'}</h1>
             <p className="profile-lead">
               {ar
-                ? 'أنا د. محمد الفاضل، مؤسس BrainSAIT في الرياض. أحوّل خبرة الطوارئ والعناية المركزة والمطالبات إلى بنية تحتية صحية قابلة للتحقق — من هوية مقدم الرعاية إلى الذكاء الاصطناعي السريري — وكل أداة مصمَّمة لتعيد القرار إلى يد الطبيب.'
-                : 'I’m Dr. Mohamed El Fadil, founder of BrainSAIT in Riyadh. I turn emergency, critical-care and claims experience into verifiable healthcare infrastructure—from provider identity to clinical AI—every tool built to put the physician in control.'}
+                ? 'أنا د. محمد الفاضل، مؤسس BrainSAIT في الرياض ومستشار التحسين السريري وحوكمة الذكاء الصحي. أحوّل خبرة الطوارئ والعناية المركزة والمطالبات إلى ثلاث ركائز مترابطة وقابلة للتحقق — BPR وClinicFlow وBOS — كل أداة مصمَّمة لتعيد القرار إلى يد الطبيب.'
+                : 'I’m Dr. Mohamed El Fadil, founder of BrainSAIT in Riyadh and institutional advisor on clinical AI & RCM governance. I turn emergency, critical-care and claims experience into three verifiable flagships—BPR, ClinicFlow, and BOS—built to put the physician in control.'}
             </p>
             <div className="profile-actions">
               <Link className="profile-button primary" to="/cv"><FileText size={17} />{ar ? 'السيرة الذاتية' : 'Professional CV'}</Link>

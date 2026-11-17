@@ -936,9 +936,9 @@ function ClinicStatus({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string
         )}
         <article className="clinic-ops-card">
           <div className="clinic-ops-icon"><Headphones size={18}/></div>
-          <h3>{lang === 'ar' ? 'وكيل الاستقبال الصوتي' : 'Reception voice agent'}</h3>
-          <p>{lang === 'ar' ? 'الإدخال الصوتي غير مفعّل. يمكن للجهاز قراءة الإجابات المعتمدة بصوت مسموع؛ لا نطلب الميكروفون ولا نرسل تسجيلات.' : 'Voice input is not enabled. Your device can read approved replies aloud; this page does not request microphone access or send recordings.'}</p>
-          <span>{lang === 'ar' ? 'تعمل القراءة عند الضغط على زر الاستماع في الإجابة' : 'Use Read answer aloud on an assistant reply'}</span>
+          <h3>{lang === 'ar' ? 'وكيل الاستقبال الصوتي وفحص QA' : 'Reception voice agent & QA harness'}</h3>
+          <p>{lang === 'ar' ? 'الإدخال الصوتي غير مفعّل في المتصفح العام (تعمل القراءة الصوتية للإجابات المعتمدة محليًا). لفحص وكلاء الاستقبال الصوتي عبر الهاتف، نوفر منظومة Patient Voice Bot QA (LiveKit SIP + Deepgram + OpenAI) عبر 15 سيناريو للمرضى.' : 'Browser microphone capture is disabled on this public page (device read-aloud works locally). For phone-based reception testing, Patient Voice Bot QA runs 15 automated patient call scenarios via LiveKit SIP, Deepgram and OpenAI.'}</p>
+          <a href="https://github.com/Fadil369/patient-voice-bot-qa" target="_blank" rel="noreferrer">{lang === 'ar' ? 'استكشف منظومة Patient Voice Bot QA' : 'Inspect Patient Voice Bot QA on GitHub'} <ArrowUpRight size={14}/></a>
         </article>
         <article className="clinic-ops-card">
           <div className="clinic-ops-icon"><Monitor size={18}/></div>
@@ -959,6 +959,115 @@ function ClinicStatus({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string
           <a href={localized('/bpr/nphies/')}>{lang === 'ar' ? 'فتح مكتب نفيس' : 'Open NPHIES desk'} <ArrowRight size={14}/></a>
         </article>
       </div>
+    </section>
+  );
+}
+
+// ── ClinicFlow ROI & After-Hours Recovery Model + Voice QA Scenarios ───────
+
+const VOICE_QA_SCENARIOS = [
+  ['01', 'New dermatology appointment booking (Arabic White Dialect)', 'حجز موعد جلدية جديد (باللهجة البيضاء السعودية)'],
+  ['02', 'After-hours laser session pricing & Moyasar deposit link', 'استفسار بعد الدوام عن جلسة ليزر ورابط عربون ميسر'],
+  ['03', 'Urgent chest pain / dyspnea red-flag emergency deflection', 'تحويل فوري لحالة طوارئ (ألم صدر / ضيق تنفس) دون انتظار'],
+  ['04', 'Dental follow-up rescheduling & double-booking guard', 'إعادة جدولة متابعة أسنان ومنع تضارب المواعيد'],
+  ['05', 'NPHIES insurance coverage & pre-authorisation inquiry', 'استفسار عن تغطية التأمين والموافقة المسبقة عبر نفيس'],
+  ['06', 'Prescription refill request → safe clinician callback handoff', 'طلب تجديد وصفة طبية ← تحويل آمن لطبيب العيادة'],
+  ['07', 'ZATCA Phase-2 tax invoice & VAT receipt request', 'طلب فاتورة ضريبية متوافقة مع المرحلة الثانية لزاتكا'],
+  ['08', 'PDPL data privacy & recording consent inquiry', 'استفسار عن خصوصية البيانات ونظام حماية البيانات الشخصية'],
+  ['09', 'Pediatric vaccination schedule administrative FAQ', 'سؤال إداري عن مواعيد تطعيمات الأطفال'],
+  ['10', 'Lab results readiness check → authenticated portal routing', 'الاستعلام عن جاهزية نتائج المختبر وتوجيه للبوابة الموثقة'],
+  ['11', 'Bilingual caller code-switching (Arabic ↔ English mid-call)', 'التبديل التلقائي بين العربية والإنجليزية أثناء المكالمة'],
+  ['12', 'Noisy background / speech interruption recovery test', 'اختبار استعادة المحادثة عند المقاطعة أو الضوضاء'],
+  ['13', 'Prompt-injection / clinical diagnosis refusal guard test', 'اختبار رفض تقديم تشخيص طبي أو تجاوز صلاحيات الاستقبال'],
+  ['14', 'Same-day walk-in queue availability & clinic hours check', 'الاستعلام عن ساعات العمل وتوفر الانتظار في نفس اليوم'],
+  ['15', 'Cancellation & deposit refund policy escalation to staff', 'طلب إلغاء موعد وسياسة استرداد العربون وتحويل للموظف'],
+];
+
+function ClinicFlowRoiAndQa({ lang }: { lang: 'ar' | 'en' }) {
+  const ar = lang === 'ar';
+  const [leadsPerDay, setLeadsPerDay] = useState(60);
+  const [afterHoursPct, setAfterHoursPct] = useState(45);
+  const [convPct, setConvPct] = useState(30);
+  const [recoveryPct, setRecoveryPct] = useState(35);
+  const [ticketSar, setTicketSar] = useState(350);
+  const [feeSar, setFeeSar] = useState(2500);
+  const [setupSar, setSetupSar] = useState(12000);
+
+  const monthlyInquiries = leadsPerDay * 30;
+  const lostAfterHours = monthlyInquiries * (afterHoursPct / 100);
+  const lostBookings = lostAfterHours * (convPct / 100);
+  const forgoneSar = Math.round(lostBookings * ticketSar);
+  const recoveredSar = Math.round(lostBookings * (recoveryPct / 100) * ticketSar);
+  const netSar = recoveredSar - feeSar;
+  const paybackDays = netSar > 0 ? Math.max(1, Math.round((setupSar / netSar) * 30)) : null;
+
+  return (
+    <section className="clinic-panel">
+      <div className="clinic-panel-head">
+        <h2>{ar ? 'نموذج العائد المالي لـ ClinicFlow وفحص الاستقبال الصوتي (15 سيناريو)' : 'ClinicFlow Opportunity Model & 15-Scenario Voice Bot QA'}</h2>
+        <span className="clinic-badge clinic-badge-pending">{ar ? 'نموذج توضيحي · يُعاير ببيانات العيادة' : 'Illustrative model · calibrate with clinic logs'}</span>
+      </div>
+      <p className="clinic-hint">
+        {ar
+          ? 'حاسبة تفاعلية لتقدير الأثر المالي لاستعادة استفسارات ما بعد الدوام، مع قائمة السيناريوهات الخمسة عشر التي تفحصها منظومة Patient Voice Bot QA قبل الإطلاق.'
+          : 'Interactive calculator estimating the financial impact of recovering after-hours inquiries, paired with the 15 automated test scenarios executed by Patient Voice Bot QA.'}
+      </p>
+      <div className="clinic-form-grid">
+        <label>
+          {ar ? `الاستفسارات اليومية: ${leadsPerDay}` : `Inbound inquiries / day: ${leadsPerDay}`}
+          <input type="range" min={10} max={250} step={5} value={leadsPerDay} onChange={(e) => setLeadsPerDay(Number(e.target.value))} />
+        </label>
+        <label>
+          {ar ? `نسبة ما بعد الدوام: ${afterHoursPct}%` : `Share arriving after hours: ${afterHoursPct}%`}
+          <input type="range" min={10} max={80} step={5} value={afterHoursPct} onChange={(e) => setAfterHoursPct(Number(e.target.value))} />
+        </label>
+        <label>
+          {ar ? `تحويل الاستفسار إلى حجز: ${convPct}%` : `Inquiry → booking conversion: ${convPct}%`}
+          <input type="range" min={5} max={60} step={5} value={convPct} onChange={(e) => setConvPct(Number(e.target.value))} />
+        </label>
+        <label>
+          {ar ? `نسبة استعادة ClinicFlow: ${recoveryPct}%` : `ClinicFlow recovery of lost: ${recoveryPct}%`}
+          <input type="range" min={10} max={70} step={5} value={recoveryPct} onChange={(e) => setRecoveryPct(Number(e.target.value))} />
+        </label>
+        <label>
+          {ar ? 'متوسط قيمة الزيارة (ر.س)' : 'Avg. visit value (SAR)'}
+          <input type="number" min={50} max={5000} step={25} value={ticketSar} onChange={(e) => setTicketSar(Number(e.target.value) || 0)} />
+        </label>
+        <label>
+          {ar ? 'رسوم المنصة الشهرية (ر.س)' : 'Monthly platform fee (SAR)'}
+          <input type="number" min={0} max={25000} step={250} value={feeSar} onChange={(e) => setFeeSar(Number(e.target.value) || 0)} />
+        </label>
+      </div>
+
+      <div className="clinic-metrics" style={{ marginTop: 14 }}>
+        <div className="clinic-metric">
+          <div><span>{ar ? 'إيرادات فائتة شهريًا (تقديري)' : 'Forgone / month (modeled)'}</span></div>
+          <strong dir="ltr">SAR {forgoneSar.toLocaleString('en-US')}</strong>
+        </div>
+        <div className="clinic-metric">
+          <div><span>{ar ? 'الصافي المستعاد شهريًا' : 'Net recovered / month'}</span></div>
+          <strong dir="ltr">SAR {netSar.toLocaleString('en-US')}</strong>
+        </div>
+        <div className="clinic-metric">
+          <div><span>{ar ? 'فترة استرداد التأسيس' : 'Setup payback window'}</span></div>
+          <strong dir="ltr">{paybackDays ? `${paybackDays} ${ar ? 'يوم' : 'days'}` : '—'}</strong>
+        </div>
+      </div>
+
+      <details className="visit-history" style={{ marginTop: 14 }}>
+        <summary>
+          {ar
+            ? 'عرض مصفوفة السيناريوهات الـ15 لمنظومة Patient Voice Bot QA (LiveKit SIP + Deepgram + OpenAI)'
+            : 'Inspect the 15 Patient Voice Bot QA test scenarios (LiveKit SIP + Deepgram + OpenAI)'}
+        </summary>
+        <ul>
+          {VOICE_QA_SCENARIOS.map(([num, en, a]) => (
+            <li key={num}>
+              <strong dir="ltr">#{num}</strong> <span>{ar ? a : en}</span>
+            </li>
+          ))}
+        </ul>
+      </details>
     </section>
   );
 }
@@ -1056,6 +1165,7 @@ export default function ClinicPage() {
               {(activeRoute === 'overview' || activeRoute === 'requests') && (
                 <>
                   <ClinicStatus lang={lang} t={t} />
+                  {activeRoute === 'overview' && <ClinicFlowRoiAndQa lang={lang} />}
                   <Dashboard lang={lang} t={t} />
                 </>
               )}
