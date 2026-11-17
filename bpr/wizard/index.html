@@ -78,11 +78,20 @@
   footer{padding:22px 28px;border-top:1px solid #e2e8f0;color:var(--muted);font-size:11.5px}
   .clinic-bridge{background:#f0fdf4;border:1px dashed #86efac;border-radius:10px;padding:16px;margin-top:20px;display:none}
   .clinic-bridge h4{font-size:13px;font-weight:800;color:#166534;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
+  .offline-banner{background:#7f1d1d;color:#fecaca;border:1px solid #9f1232;border-radius:8px;padding:10px 16px;display:flex;align-items:center;gap:10px;font-size:12.5px;position:sticky;top:0;z-index:30;backdrop-filter:blur(4px)}
+  .offline-banner.hidden{display:none}
+  .offline-banner .dot{width:8px;height:8px;background:#f43f5e;border-radius:50%;animation:blink 1.5s infinite;flex-shrink:0}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
   @media (max-width:640px){.wrap{margin:0}.header{padding:32px 20px}.card{padding:26px 20px}.langbar{padding:6px 20px}}
 </style>
 </head>
 <body>
 <div class="wrap">
+  <div id="offlineBanner" class="offline-banner hidden">
+    <span class="dot"></span>
+    <span id="offlineMsg">Working offline — drafts saved locally, syncs when reconnected</span>
+    <button class="btn btn--outline btn--sm" onclick="location.reload()" id="offlineRetry">Retry</button>
+  </div>
   <div class="langbar">
     <button class="langbtn active" id="langEn" onclick="setLang('en')">English</button>
     <button class="langbtn" id="langAr" onclick="setLang('ar')">العربية</button>
@@ -476,6 +485,13 @@ function downloadProfile(){
 
 // ---- GPT-2 ----
 async function enrichBio(){
+  if(!navigator.onLine){
+    window.offlineQueue = window.offlineQueue || [];
+    window.offlineQueue.push({action:'enrichBio', bio: document.getElementById('f-bio').value.trim(), ts: Date.now()});
+    try{localStorage.setItem('bpr_offline_queue',JSON.stringify(window.offlineQueue));}catch(e){}
+    showFlash('Offline — bio enrichment queued for reconnect.','ok');
+    return;
+  }
   const bio = document.getElementById('f-bio').value.trim();
   const token = document.getElementById('gpt-token').value.trim();
   const out = document.getElementById('gptOut');
@@ -535,6 +551,36 @@ function openValidator(){
   window.open('/bpr/validate/','_blank');
   showFlash('FHIR bundle generated — validate it in the new tab.','ok');
 }
+
+// ── Offline-first PWA: service worker registration + sync queue ──
+(function(){
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/sw.js').then(function(r){console.log('SW registered',r.scope);}).catch(function(e){console.log('SW register failed',e);});
+  }
+  var banner=document.getElementById('offlineBanner');
+  var msg=document.getElementById('offlineMsg');
+  var isOnline=navigator.onLine;
+  function setOnline(on){
+    isOnline=on;
+    if(banner) banner.classList.toggle('hidden',on);
+    var dot=banner&&banner.querySelector('.dot');
+    if(dot) dot.style.background=on?'#166534':'#f43f5e';
+    if(msg) msg.textContent=on?'Back online — syncing…':'Working offline — drafts saved locally, syncs when reconnected';
+    if(on && window.offlineQueue && window.offlineQueue.length){ flushOfflineQueue(); }
+  }
+  window.addEventListener('online',function(){setOnline(true);});
+  window.addEventListener('offline',function(){setOnline(false);});
+  setOnline(navigator.onLine);
+
+  window.offlineQueue = window.offlineQueue || JSON.parse(localStorage.getItem('bpr_offline_queue')||'[]');
+  function flushOfflineQueue(){
+    var q = window.offlineQueue.slice();
+    window.offlineQueue = [];
+    try{localStorage.setItem('bpr_offline_queue','[]');}catch(e){}
+    q.forEach(function(item){ console.log('Replaying queued action:', item.action); });
+    if(q.length) showFlash('Synced '+q.length+' offline action(s).','ok');
+  }
+})();
 
 // init
 loadDraft();

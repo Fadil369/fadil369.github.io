@@ -39,6 +39,11 @@
   </head>
   <body>
     <div class="wrap">
+  <div id="offlineBanner" class="offline-banner hidden">
+    <span class="dot"></span>
+    <span id="offlineMsg">Working offline — data saved locally, syncs when reconnected</span>
+    <button class="btn btn--outline btn--sm" onclick="location.reload()" id="offlineRetry">Retry</button>
+  </div>
       <header>
         <h1>عرض منتجات BrainSAIT</h1>
         <p>منصة رعاية صحية بالذكاء الاصطناعي · عربي + إنجليزي · السوق السعودي · NPHIES · FHIR R4</p>
@@ -90,5 +95,27 @@
         د. محمد Elfadil · BrainSAIT · registry.brainsait.de · CC-BY-4.0
       </div>
     </div>
+  </div>
+  <script>
+  // خدمة العامل + لافتة عدم الاتصال
+  (function(){
+    if('serviceWorker' in navigator){
+      navigator.serviceWorker.register('/sw.js').then(function(r){console.log('SW registered',r.scope);}).catch(function(e){console.log('SW register failed',e);});
+    }
+    var banner=document.getElementById('offlineBanner');
+    var msg=document.getElementById('offlineMsg');
+    var isOnline=navigator.onLine;
+    function setOnline(on){
+      isOnline=on;
+      if(banner) banner.classList.toggle('hidden',on);
+      var dot=banner&&banner.querySelector('.dot');
+      if(dot) dot.style.background=on?'#166534':'#f43f5e';
+      if(msg) msg.textContent=on?'عاد الاتصال — جاهز.':'غير متصل — البيانات محفوظة محلياً، تتم المزامنة عند إعادة الاتصال.';
+    }
+    window.addEventListener('online',function(){setOnline(true);});
+    window.addEventListener('offline',function(){setOnline(false);});
+    setOnline(navigator.onLine);
+  })();
+  </script>
   </body>
 </html>

@@ -69,12 +69,21 @@
   .smart-triage h4{font-size:12px;font-weight:800;color:var(--slate);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
   .smart-triage p{font-size:13px;color:var(--muted);margin:0}
   footer{padding:22px 28px;border-top:1px solid #e2e8f0;color:var(--muted);font-size:11.5px}
+  .offline-banner{background:#7f1d1d;color:#fecaca;border:1px solid #9f1232;border-radius:8px;padding:10px 16px;display:flex;align-items:center;gap:10px;font-size:12.5px;position:sticky;top:0;z-index:30;backdrop-filter:blur(4px)}
+  .offline-banner.hidden{display:none}
+  .offline-banner .dot{width:8px;height:8px;background:#f43f5e;border-radius:50%;animation:blink 1.5s infinite;flex-shrink:0}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
   .hidden{display:none}
   @media (max-width:640px){.wrap{margin:0}.card{margin:20px;padding:18px}}
 </style>
 </head>
 <body>
 <div class="wrap">
+  <div id="offlineBanner" class="offline-banner hidden">
+    <span class="dot"></span>
+    <span id="offlineMsg">Working offline — encounter saved locally, exports when reconnected</span>
+    <button class="btn btn--outline btn--sm" onclick="location.reload()" id="offlineRetry">Retry</button>
+  </div>
   <div class="langbar">
     <button class="langbtn active" id="langEn" onclick="cf.setLang('en')">English</button>
     <button class="langbtn" id="langAr" onclick="cf.setLang('ar')">العربية</button>
@@ -397,6 +406,27 @@ cf.downloadSummary=function(){
 cf.saveDraft=function(){ try{ localStorage.setItem('clinicflow_draft_v1',JSON.stringify({provider:cf.provider,encounter:cf.encounter})); cf.showFlash(cf.t('flashSaved'),'ok'); }catch(e){ cf.showFlash('Could not save draft.','err'); } };
 cf.resetEncounter=function(){ cf.encounter={id:'cf-'+Math.random().toString(36).slice(2,8),medications:[],vitals:{},created_at:new Date().toISOString()}; document.getElementById('cfChief').value=''; document.getElementById('cfFindings').value=''; document.getElementById('cfAssessment').value=''; document.getElementById('cfPlan').value=''; document.getElementById('cfMed').value=''; document.getElementById('cfSig').value=''; cf.encounter.vitals={vTemp:'36.8',vHr:'72',vBp:'120',vSpo2:'98'}; ['vTemp','vHr','vBp','vSpo2'].forEach(id=>{document.getElementById(id).value=cf.encounter.vitals[id];}); cf.renderMeds(); cf.renderReview(); document.getElementById('cfOut').style.display='none'; cf.showFlash(cf.t('flashReset'),'ok'); };
 cf.showFlash=function(msg,type){ const el=document.getElementById('cfFlash'); el.textContent=msg; el.className='flash flash--'+type; el.style.display='block'; setTimeout(()=>el.style.display='none',4000); };
+
+// ── Offline-first PWA: service worker + offline banner ──
+(function(){
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/sw.js').then(function(r){console.log('SW registered',r.scope);}).catch(function(e){console.log('SW register failed',e);});
+  }
+  var banner=document.getElementById('offlineBanner');
+  var msg=document.getElementById('offlineMsg');
+  var isOnline=navigator.onLine;
+  function setOnline(on){
+    isOnline=on;
+    if(banner) banner.classList.toggle('hidden',on);
+    var dot=banner&&banner.querySelector('.dot');
+    if(dot) dot.style.background=on?'#166534':'#f43f5e';
+    if(msg) msg.textContent=on?'Back online — ready to export.':'Working offline — encounter saved locally, exports when reconnected.';
+  }
+  window.addEventListener('online',function(){setOnline(true);});
+  window.addEventListener('offline',function(){setOnline(false);});
+  setOnline(navigator.onLine);
+})();
+
 // init
 (function(){ const d=localStorage.getItem('clinicflow_draft_v1'); if(d){ try{ const j=JSON.parse(d); if(j.provider)cf.provider=j.provider; if(j.encounter)cf.encounter=j.encounter; if(cf.provider){ document.getElementById('cfPatientBar').classList.remove('hidden'); document.getElementById('cfPatientName').textContent=cf.provider.name; } }catch(e){} } cf.applyLang(); cf.renderReview(); cf.renderMeds(); })();
 </script>
