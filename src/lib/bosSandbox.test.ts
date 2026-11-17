@@ -6,6 +6,7 @@ import {
   calcCha2ds2Vasc,
   calcMeldNa,
   calcWellsPe,
+  buildNphiesAppealLetter,
 } from './bosSandbox.ts';
 
 test('BOS PHI firewall detects English and Arabic identifiers and allows clean clinical queries', () => {
@@ -58,4 +59,30 @@ test('BOS exact clinical calculators produce deterministic values', () => {
     malignancy: false,
   });
   assert.equal(wells.result, '6');
+
+  const appealEn = buildNphiesAppealLetter(
+    {
+      code: 'AD-1-8',
+      official: 'Practitioner licence invalid or expired',
+      en: 'The practitioner licence was not valid on the service date.',
+      doEn: 'Verify SCFHS licence status and effective dates.',
+    },
+    false,
+  );
+  assert.match(appealEn, /AD-1-8/);
+  assert.match(appealEn, /\{\{claim_ref\}\}/);
+  assert.match(appealEn, /Verify SCFHS licence status/);
+
+  const appealAr = buildNphiesAppealLetter(
+    {
+      code: 'AD-1-8',
+      official: 'Practitioner licence invalid or expired',
+      ar: 'ترخيص الممارس غير سارٍ في تاريخ الخدمة.',
+      doAr: 'تحقق من حالة ترخيص الهيئة.',
+    },
+    true,
+  );
+  assert.match(appealAr, /AD-1-8/);
+  assert.match(appealAr, /\{\{claim_ref\}\}/);
+  assert.match(appealAr, /تحقق من حالة ترخيص الهيئة/);
 });

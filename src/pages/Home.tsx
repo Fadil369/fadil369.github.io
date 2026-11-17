@@ -206,8 +206,16 @@ export default function Home() {
 
         <section className="profile-section" id="work">
           <div className="profile-section-heading">
-            <div><div className="profile-section-label">02 · {ar ? 'أعمال مختارة' : 'Selected work'}</div><h2>{ar ? 'من السرير إلى النظام. أدوات تستحق الثقة، ويمكن التحقق منها.' : 'From bedside to system. Every tool built to be trusted and verified.'}</h2></div>
+            <div><div className="profile-section-label">02 · {ar ? 'الثلاثية الرئيسية والأعمال المختارة' : 'Super Flagships & selected work'}</div><h2>{ar ? 'من السرير إلى النظام. أدوات تستحق الثقة، ويمكن التحقق منها.' : 'From bedside to system. Every tool built to be trusted and verified.'}</h2></div>
             <a href="https://github.com/Fadil369" target="_blank" rel="noreferrer">{ar ? 'كل المستودعات' : 'All repositories'}<ArrowUpRight size={16} /></a>
+          </div>
+          <div className="bpr-architecture" style={{ padding: '0 0 42px', width: '100%' }}>
+            <div className="bpr-flow">
+              <div><Fingerprint size={24} /><strong>{ar ? '01 · BPR' : '01 · BPR'}</strong><span>SPID · W3C VC · NPHIES Desk</span></div><i />
+              <div><Stethoscope size={24} /><strong>{ar ? '02 · ClinicFlow' : '02 · ClinicFlow'}</strong><span>WhatsApp · ZATCA · Voice QA</span></div><i />
+              <div><Boxes size={24} /><strong>{ar ? '03 · BOS' : '03 · BOS'}</strong><span>PHI Firewall · 15 Calculators</span></div><i />
+              <div><ShieldCheck size={24} /><strong>{ar ? 'حوكمة CCIO' : 'CCIO Governance'}</strong><span>Hash-Chained Audit · PDPL</span></div>
+            </div>
           </div>
           <div className="profile-projects">
             {projects.map(({ icon: Icon, ...project }) => {

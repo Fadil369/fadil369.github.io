@@ -276,3 +276,65 @@ export function calcWellsPe(params: {
     formula: 'Wells Criteria for Pulmonary Embolism (Two-Level)',
   };
 }
+
+// ── Deterministic NPHIES Rejection Appeal Letter Builder ───────────────────
+
+export interface AppealInput {
+  code: string;
+  official: string;
+  en?: string;
+  ar?: string;
+  doEn?: string;
+  doAr?: string;
+}
+
+export function buildNphiesAppealLetter(item: AppealInput, ar: boolean): string {
+  if (!item?.code || !item?.official) return '';
+  if (ar) {
+    const lines = [
+      'خطاب الاعتراض على رفض نفيس',
+      '',
+      'طلب إعادة النظر في المطالبة',
+      `رمز الرفض: ${item.code}    مرجع المطالبة: {{claim_ref}}`,
+      `السبب الذي ذكرته جهة التأمين: ${item.official}`,
+      'لماذا تعد المطالبة صحيحة: {{corrected_justification}}',
+      'الوقائع السريرية التي تدعم الخدمة (بمصطلحات عامة): {{clinical_facts}}',
+      'المستندات المرفقة: {{attachments}}',
+      'أطلب إعادة النظر في هذه المطالبة، ويسعدني التواصل للتوضيح.',
+      'الطبيب: {{doctor_name}}    ترخيص هيئة التخصصات الصحية: {{provider_licence}}    التوقيع: ____________',
+    ];
+    if (item.ar || item.doAr) {
+      lines.push('', '--- من مرجع BPR لنفيس (احذف هذه الفقرة قبل الإرسال) ---');
+      if (item.ar) lines.push(`المعنى: ${item.ar}`);
+      if (item.doAr) lines.push(`تحقق قبل الاعتراض: ${item.doAr}`);
+    }
+    lines.push(
+      '',
+      'نموذج إرشادي فقط. تحقق منه وفق سياسة منشأتك والأنظمة الحالية لهيئة التخصصات الصحية ووزارة الصحة ومجلس الضمان الصحي قبل الاستخدام.',
+    );
+    return lines.join('\n');
+  }
+  const lines = [
+    'NPHIES rejection appeal letter',
+    '',
+    'APPEAL FOR RECONSIDERATION',
+    `Rejection code: ${item.code}    Claim reference: {{claim_ref}}`,
+    `Reason given by the payer: ${item.official}`,
+    'Why the claim is correct: {{corrected_justification}}',
+    'Clinical facts that support the service (general terms): {{clinical_facts}}',
+    'Documents enclosed: {{attachments}}',
+    'I request reconsideration of this claim. Please contact me for any clarification.',
+    'Doctor: {{doctor_name}}    Licence (SCFHS): {{provider_licence}}    Signature: ____________',
+  ];
+  if (item.en || item.doEn) {
+    lines.push('', '--- Reference from the BPR NPHIES reference (delete this block before sending) ---');
+    if (item.en) lines.push(`Meaning: ${item.en}`);
+    if (item.doEn) lines.push(`Check before you appeal: ${item.doEn}`);
+  }
+  lines.push(
+    '',
+    'Template only. Check it against your facility policy and current SCFHS / MOH / CHI rules before use.',
+  );
+  return lines.join('\n');
+}
+
