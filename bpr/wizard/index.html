@@ -178,6 +178,7 @@
         <button class="btn btn--next" type="button" id="btnNext" onclick="nextStep()">Next &rarr;</button>
         <button class="btn btn--outline" type="button" id="btnSubmit" style="display:none" onclick="submitApp()">Finalize &amp; Submit</button>
         <button class="btn btn--save" type="button" id="btnSave" style="display:none" onclick="saveDraft()">Save draft</button>
+        <button class="btn btn--outline" type="button" id="btnValidateFhir" style="display:none" onclick="openValidator()">Validate FHIR Bundle →</button>
       </div>
       <div class="nav"><a href="#" onclick="location.reload()" style="color:var(--teal);text-decoration:none">← Start over</a> · <a href="#api" style="color:var(--teal);text-decoration:none">API / HF Space info</a></div>
     </form>
@@ -228,7 +229,7 @@ const LANG = {
     lblKind:'Credential kind', lblKindReq:'(required)', lblTitle:'Title', lblIssuer2:'Issuer / Institution', lblNumber:'Certificate / License Number', lblIssue:'Issue Date', lblExpiry:'Expiry Date',
     lblReview:'Review your application before submitting.', lblFinal:'I confirm my information is accurate and I want to submit for BPR review.',
     lblConsentDocs:'I consent to store and review my credential documents.', lblConsentAnnounce:'I consent to BPR announcements.',
-    btnBack:'Back', btnNext:'Next &rarr;', btnSubmit:'Finalize &amp; Submit', btnSave:'Save draft', btnAttach:'Attach Credential →',
+    btnBack:'Back', btnNext:'Next &rarr;', btnSubmit:'Finalize &amp; Submit', btnSave:'Save draft', btnValidateFhir:'Validate FHIR Bundle →', btnAttach:'Attach Credential →',
     clinicH4:'Innovative bridge — seed a ClinicFlow encounter', clinicP:'This BPR provider can now open a ClinicFlow reception encounter with pre-filled identity and credentials.',
     outTitle:'FHIR R4 Bundle &amp; Profile', dlFHIR:'⬇ Download FHIR Bundle', dlProfile:'⬇ Download Profile HTML',
     flashSubmitted:'Application submitted! Status: pending review.', flashAttached:'Attached: {title} ({kind}) — status: received. Admin verifies next.', flashMissingCred:'Please select a file.', flashNoWorker:'No worker data.', flashGenFHIR:'Generate FHIR first (submit).',
@@ -250,7 +251,7 @@ const LANG = {
     lblKind:'نوع الاعتماد', lblKindReq:'(مطلوب)', lblTitle:'العنوان', lblIssuer2:'المؤسسة / المانح', lblNumber:'رقم الشهادة / الرخصة', lblIssue:'تاريخ الإصدار', lblExpiry:'تاريخ انتهاء الصلاحية',
     lblReview:'راجع طلبك قبل الإرسال.', lblFinal:'أؤكد أن معلوماتي دقيقة وأريد إرسالها لمراجعة BPR.',
     lblConsentDocs:'أوافق على تخزين ومراجعة مستندات اعتمادي.', lblConsentAnnounce:'أوافق على إعلانات BPR.',
-    btnBack:'الخلف', btnNext:'التالي &rarr;', btnSubmit:'إنهاء وإرسال', btnSave:'حفظ مسودة', btnAttach:'إرفاق اعتماد →',
+    btnBack:'الخلف', btnNext:'التالي &rarr;', btnSubmit:'إنهاء وإرسال', btnSave:'حفظ مسودة', btnValidateFhir:'تحقق من حزمة FHIR →', btnAttach:'إرفاق اعتماد →',
     clinicH4:'جسر مبتكر — زرع لقاء عيادة ClinicFlow', clinicP:'يمكن لهذا مقدم الرعاية في BPR الآن فتح لقاء استقبال في ClinicFlow مع بيانات هوية واعتمادات مسبقة التعبئة.',
     outTitle:'حزمة FHIR R4 والملف الشخصي', dlFHIR:'⬇ تنزيل حزمة FHIR', dlProfile:'⬇ تنزيل ملف تعريف HTML',
     flashSubmitted:'تم إرسال الطلب! الحالة: قيد المراجعة.', flashAttached:'تم الإرفاق: {title} ({kind}) — الحالة: تم الاستلام. administrador يتحقق بعد ذلك.', flashMissingCred:'الرجاء اختيار ملف.', flashNoWorker:'لا توجد بيانات.', flashGenFHIR:'أنشئ حزمة FHIR أولاً (أرسل).',
@@ -354,6 +355,7 @@ function show(i){
   document.getElementById('btnNext').style.display = (step==='review')?'none':'inline-block';
   document.getElementById('btnSubmit').style.display = (step==='review')?'inline-block':'none';
   document.getElementById('btnSave').style.display = 'inline-block';
+  document.getElementById('btnValidateFhir').style.display = (step==='review')?'inline-block':'none';
   if(step==='review') renderReview();
   if(step==='credentials') renderCreds();
 }
@@ -524,6 +526,14 @@ function openClinicFlow(){
 <p class="muted" style="margin-top:20px">Seed data pre-filled from your BPR registration. Real encounters write to the ClinicFlow reception pilot.</p></div></body></html>
 `);
   cf.document.close();
+}
+
+function openValidator(){
+  buildFHIR();
+  document.getElementById('outSection').style.display='block';
+  document.getElementById('clinicBridge').style.display='block';
+  window.open('/bpr/validate/','_blank');
+  showFlash('FHIR bundle generated — validate it in the new tab.','ok');
 }
 
 // init
