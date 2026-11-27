@@ -21,7 +21,7 @@ jobs:
       issues: read
       id-token: write
       actions: read
-    uses: Fadil369/B.I.Lab/.github/workflows/claude-code.yml@c4fa07d0969927a0fe225b3b33d8ce807c0ab706 # switch to @v1 once tagged
+    uses: Fadil369/B.I.Lab/.github/workflows/claude-code.yml@51ca213d45387a2fc21d24dd9e2436f5bcc5f2c4 # switch to @v1 once tagged
     with:
       mode: mention
     secrets:
