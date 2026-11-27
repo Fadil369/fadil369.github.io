@@ -11,27 +11,20 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify:
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          node-version: '24'
-          cache: npm
-      - run: npm ci --include=dev
-      - run: npm test
-      - run: npm run verify:clinical-marketplace
-      - run: npm run test:acp
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-          extensions: pdo_sqlite, curl, mbstring
-      - run: php build-apply/tests/run.php
-      - run: npm run landing && git diff --exit-code -- index.html ar/index.html
-      - run: npm run build
-      - run: npm run verify:published
-      - run: npx playwright install --with-deps chromium
-      - run: npm run verify:bpr-ux
-      - run: npm run verify:experience
-      - run: npm audit --include=dev --audit-level=high
+    uses: Fadil369/B.I.Lab/.github/workflows/node-site.yml@v1
+    with:
+      node-version: '24'
+      pre-browser-commands: |
+        npm test
+        npm run verify:clinical-marketplace
+        npm run test:acp
+        npm run landing && git diff --exit-code -- index.html ar/index.html
+        npm run build
+        npm run verify:published
+      php-version: '8.3'
+      php-extensions: pdo_sqlite, curl, mbstring
+      php-commands: php build-apply/tests/run.php
+      browser-commands: |
+        npm run verify:bpr-ux
+        npm run verify:experience
+      audit-level: high
