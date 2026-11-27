@@ -133,7 +133,7 @@ export default function ShopifyAccountPanel() {
                   {ar
                     ? 'تعذّر التحقق من اشتراكاتك الآن. هذا لا يعني إلغاء اشتراكك. راجع طلباتك أعلاه أو تواصل مع الدعم.'
                     : 'We cannot verify your subscriptions right now. This does not mean your subscription is cancelled. Check your orders above or contact support.'}
-                  {' '}<a href="mailto:info@brainsait.org">{ar ? 'تواصل مع الدعم' : 'Contact support'}</a>
+                  {' '}<a href="mailto:hello@brainsait.de">{ar ? 'تواصل مع الدعم' : 'Contact support'}</a>
                 </p>
               ) : entitlements === null ? (
                 <p className="muted">{ar ? 'جارِ تحميل…' : 'Loading…'}</p>

@@ -10,7 +10,7 @@ export default function JourneyFlow() {
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 10000);
     let active = true;
-    fetch('https://hub.brainsait.org/health', { signal: controller.signal })
+    fetch('https://hub.brainsait.de/health', { signal: controller.signal })
       .then(async (r) => {
         if (!r.ok) throw new Error('Hub unavailable');
         const health = await r.json();
