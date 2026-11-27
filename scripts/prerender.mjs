@@ -204,6 +204,7 @@ Facts for agents:
 - [Flagship 03 — BOS (BrainSAIT & Doctor OS)](${ORIGIN}/bpr/ai/): PHI-firewalled clinical copilot (15 exact calculators, PubMed/FDA/trials verification, encrypted doctor vault) & Level-3 Tiny Software Factory
 - [CV](${ORIGIN}/cv/): one-page CV; PDFs in [English](${ORIGIN}/assets/Dr_Mohamed_El_Fadil_CV_2026_Redesigned.pdf) and [Arabic](${ORIGIN}/assets/Dr_Mohamed_El_Fadil_CV_2026_AR.pdf)
 - [Business card](${ORIGIN}/card/)
+- [BrainSAIT Innovation Lab (B.I.Lab)](${ORIGIN}/bilab/): bilingual healthcare AI incubation landing in Riyadh (House for Doctors spatial simulation, BPR readiness on FHIR R4 / NPHIES); the Princess Nourah University collaboration is proposed, not a confirmed partnership. Also reachable at ${ORIGIN}/workflow.github.io/ (redirects here)
 - ORCID: https://orcid.org/0009-0003-7485-3575 · BPR SPID: ${OWNER_SPID}
 
 ## Standalone tools (synthetic data, run in the browser)
