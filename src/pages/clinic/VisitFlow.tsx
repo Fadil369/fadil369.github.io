@@ -279,7 +279,7 @@ export function FrontDesk({ lang, t }: { lang: Lang; t: Record<string, string> }
       <section className="clinic-panel">
         <div className="clinic-panel-head"><h2>{v.appointments}</h2></div>
         {!appointments.length ? <p className="clinic-empty">{v.emptyAppts}</p> : (
-          <div className="clinic-table-scroll">
+          <div className="clinic-table-scroll" role="region" aria-label={v.appointments} tabIndex={0}>
             <table>
               <thead><tr>{['patientCol', 'when', 'statusCol', 'actions'].map((k) => <th key={k} scope="col">{v[k]}</th>)}</tr></thead>
               <tbody>

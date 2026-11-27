@@ -13,7 +13,8 @@ Bilingual (English/Arabic) professional profile and the **BrainSAIT Provider Reg
 | `src/pages/clinic/`, `src/lib/clinic*.ts` | Synthetic-data clinic reception and doctor workspace at `/bpr/clinic`. See [docs/CLINIC_WORKSPACE.md](docs/CLINIC_WORKSPACE.md). |
 | `deploy/acp/` | systemd unit, Apache vhost and runbook for hosting the ACP service. See [deploy/acp/README.md](deploy/acp/README.md). |
 | `docs/` | Operational notes: [BPR public data](docs/BPR_PUBLIC_DATA.md), [Shopify](docs/SHOPIFY_INTEGRATION.md), [commerce automation](docs/COMMERCE_AUTOMATION.md), [testing workflows](docs/TESTING_WORKFLOWS.md). |
-| Repo root HTML/route folders | **Committed build output.** GitHub Pages serves `main` directly, so rebuilt files are committed. Do not edit them by hand. |
+| `standalone/` | Hand-authored pages outside the React app: `/bos/`, `/showcase/`, `/offline/`, `/bpr/wizard/`, `/bpr/validate/` and `/bpr/clinic/encounter/`. Edit them here, never in the repo root. `scripts/standalone.mjs` lists them; publishing writes the English page and its Arabic twin (`lang="ar" dir="rtl"`; from `standalone/ar/<route>/` when a page has its own Arabic source) with canonical, hreflang and share tags, and keeps them out of the app's Content Security Policy. |
+| Repo root HTML/route folders | **Committed build output.** GitHub Pages serves `main` directly, so rebuilt files are committed. Do not edit them by hand: the next publish overwrites them. |
 
 ## Develop
 
@@ -37,7 +38,9 @@ node scripts/publish.mjs # flatten dist/ into the repo root and routes
 node scripts/prerender.mjs  # no-JS content, canonical/hreflang, JSON-LD, sitemap (needs Chromium via Playwright)
 ```
 
-Skipping `prerender.mjs` strips SEO and no-JS content from every page, so always run all three. `npm run deploy` runs the full chain, including data snapshots, OG images and the CV PDF.
+Skipping `prerender.mjs` strips SEO and no-JS content from every page, so always run all three. Then run `npm run verify:published`, which CI also runs: it fails when an Arabic page lacks `lang="ar" dir="rtl"`, an inline script does not parse, a local link is broken, or a standalone page's script looks up an element the page does not have.
+
+The web app manifest is generated from `public/manifest.webmanifest`; edit shortcuts there, not in the root copy. `npm run deploy` runs the full chain, including data snapshots, OG images and the CV PDF.
 
 Build-time variables must be in the **process environment**. Vite's root is `src/`, so a repo-root `.env` is not read. For example, to link the BPR AI page to the clinical assistant:
 

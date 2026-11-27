@@ -20,6 +20,13 @@ Facts for agents:
 - [Business card](https://fadil369.github.io/card/)
 - ORCID: https://orcid.org/0009-0003-7485-3575 · BPR SPID: SA-PHY-000003
 
+## Standalone tools (synthetic data, run in the browser)
+- [ClinicFlow encounter walkthrough — BPR](https://fadil369.github.io/bpr/clinic/encounter/): A five-step synthetic-data visit: look up a BPR provider, triage, assessment, medications and a FHIR R4 export. No patient data leaves your browser.
+- [BPR registration wizard — BrainSAIT Provider Registry](https://fadil369.github.io/bpr/wizard/): Prepare your BPR provider profile step by step: ORCID, profession, licence and credentials. Drafts stay on your device until you submit.
+- [FHIR R4 pre-validation — BPR](https://fadil369.github.io/bpr/validate/): Check a provider FHIR R4 Bundle against BPR and NPHIES-aligned rules on your device before you submit it.
+- [BOS — BrainSAIT Back Office System](https://fadil369.github.io/bos/): A demo back office for the BPR ecosystem: provider directory, users, audit log and settings, stored only in this browser.
+- [BrainSAIT showcase — BPR · ClinicFlow · BOS](https://fadil369.github.io/showcase/): The three BrainSAIT flagships in one place: the BPR provider registry, the ClinicFlow reception pilot and the BOS back office.
+
 ## BPR pages
 - [Overview](https://fadil369.github.io/bpr/)
 - [Dr. Mohamed El Fadil — BPR record](https://fadil369.github.io/bpr/record/): standalone showcase of SA-PHY-000003, every check live

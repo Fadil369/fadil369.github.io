@@ -612,7 +612,8 @@ function Dashboard({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string> }
             <button key={s} className={filter === s ? 'clinic-btn active' : 'clinic-btn outline'} aria-pressed={filter === s} onClick={() => setFilter(s)}>{s === 'all' ? t.all : visitStatusLabel(lang, s)} <span>{s === 'all' ? requests.length : counts[s]}</span></button>
           ))}
         </div>
-        <div className="clinic-table-scroll">
+        {/* Focusable so keyboard users can scroll the table sideways on narrow screens. */}
+        <div className="clinic-table-scroll" role="region" aria-label={t.requests} tabIndex={0}>
           <table>
             <thead><tr>{['request', 'service', 'date', 'status', 'action'].map((key) => <th key={key} scope="col">{t[key]}</th>)}</tr></thead>
             <tbody>
@@ -939,6 +940,12 @@ function ClinicStatus({ lang, t }: { lang: 'ar' | 'en'; t: Record<string, string
           <h3>{lang === 'ar' ? 'وكيل الاستقبال الصوتي وفحص QA' : 'Reception voice agent & QA harness'}</h3>
           <p>{lang === 'ar' ? 'الإدخال الصوتي غير مفعّل في المتصفح العام (تعمل القراءة الصوتية للإجابات المعتمدة محليًا). لفحص وكلاء الاستقبال الصوتي عبر الهاتف، نوفر منظومة Patient Voice Bot QA (LiveKit SIP + Deepgram + OpenAI) عبر 15 سيناريو للمرضى.' : 'Browser microphone capture is disabled on this public page (device read-aloud works locally). For phone-based reception testing, Patient Voice Bot QA runs 15 automated patient call scenarios via LiveKit SIP, Deepgram and OpenAI.'}</p>
           <a href="https://github.com/Fadil369/patient-voice-bot-qa" target="_blank" rel="noreferrer">{lang === 'ar' ? 'استكشف منظومة Patient Voice Bot QA' : 'Inspect Patient Voice Bot QA on GitHub'} <ArrowUpRight size={14}/></a>
+        </article>
+        <article className="clinic-ops-card">
+          <div className="clinic-ops-icon"><Stethoscope size={18}/></div>
+          <h3>{lang === 'ar' ? 'مسار الزيارة من خمس خطوات' : 'Five-step encounter walkthrough'}</h3>
+          <p>{lang === 'ar' ? 'من البحث عن مقدم الرعاية في BPR إلى الفرز والتقييم والأدوية وتصدير FHIR R4، ببيانات اصطناعية تبقى في متصفحك.' : 'From BPR provider lookup to triage, assessment, medications and a FHIR R4 export, on synthetic data that stays in your browser.'}</p>
+          <a href={localized('/bpr/clinic/encounter/')}>{lang === 'ar' ? 'افتح مسار الزيارة' : 'Open the encounter walkthrough'} <ArrowRight size={14}/></a>
         </article>
         <article className="clinic-ops-card">
           <div className="clinic-ops-icon"><Monitor size={18}/></div>

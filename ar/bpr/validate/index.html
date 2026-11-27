@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FHIR R4 Pre-Validation — BPR</title>
-<meta name="description" content="Validate NPHIES-aligned FHIR R4 Bundles before submission. Practitioner · Organization · PractitionerRole. Bilingual EN/AR.">
+<title>التحقق المسبق من FHIR R4 — BPR</title>
 <style>
-  :root{--emerald:#10b981;--teal:#0d9488;--slate:#1e293b;--ink:#0f172a;--muted:#64748b;--bg:#f8fafc;--amber:#f59e0b;--rose:#f43f5e;--indigo:#4338ca;}
+  *,*::before,*::after{box-sizing:border-box}
+  :root{--emerald:#047857;--teal:#0f766e;--slate:#1e293b;--ink:#0f172a;--muted:#475569;--bg:#f8fafc;--amber:#f59e0b;--rose:#f43f5e;--indigo:#4338ca;}
   html[dir="rtl"] body{font-family:'Almarai','Amiri','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
   html:not([dir="rtl"]) body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
   body{background:var(--bg);color:var(--ink);line-height:1.7}
@@ -79,6 +79,25 @@
   .hidden{display:none}
   @media (max-width:640px){.wrap{margin:0}.card{margin:20px;padding:18px}}
 </style>
+<!-- standalone:meta -->
+<meta name="bs-page" content="standalone">
+<meta name="description" content="افحص حزمة FHIR R4 لمقدم الرعاية مقابل قواعد BPR المتوافقة مع نفيس على جهازك قبل إرسالها.">
+<link rel="canonical" href="https://fadil369.github.io/ar/bpr/validate/">
+<link rel="alternate" hreflang="en" href="https://fadil369.github.io/bpr/validate/">
+<link rel="alternate" hreflang="ar" href="https://fadil369.github.io/ar/bpr/validate/">
+<link rel="alternate" hreflang="x-default" href="https://fadil369.github.io/bpr/validate/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BrainSAIT">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:title" content="التحقق المسبق من FHIR R4 — BPR">
+<meta property="og:description" content="افحص حزمة FHIR R4 لمقدم الرعاية مقابل قواعد BPR المتوافقة مع نفيس على جهازك قبل إرسالها.">
+<meta property="og:url" content="https://fadil369.github.io/ar/bpr/validate/">
+<meta property="og:image" content="https://fadil369.github.io/assets/og/bpr.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="التحقق المسبق من FHIR R4 — BPR">
+<meta name="twitter:description" content="افحص حزمة FHIR R4 لمقدم الرعاية مقابل قواعد BPR المتوافقة مع نفيس على جهازك قبل إرسالها.">
+<meta name="twitter:image" content="https://fadil369.github.io/assets/og/bpr.png">
+<!-- /standalone:meta -->
 </head>
 <body>
 <div class="wrap">
@@ -103,7 +122,7 @@
     <h2 id="hInput">Input FHIR Bundle</h2>
     <p class="subtitle" id="subInput">Paste a Bundle JSON or upload a file. Validation runs client-side — nothing leaves your device.</p>
     <div class="form-group">
-      <label id="lblBundle">FHIR Bundle JSON</label>
+      <label for="bundleInput" id="lblBundle">FHIR Bundle JSON</label>
       <textarea id="bundleInput" placeholder='{
   "resourceType": "Bundle",
   "identifier": {...},
@@ -112,9 +131,9 @@
 }'></textarea>
     </div>
     <div class="actions">
-      <button class="btn btn--primary" onclick="val.validate()">Run validation</button>
-      <button class="btn btn--outline" onclick="val.loadExample()">Load example (valid)</button>
-      <button class="btn btn--danger" onclick="val.clear()">Clear</button>
+      <button type="button" class="btn btn--primary" id="btnValidate" onclick="val.validate()">Run validation</button>
+      <button type="button" class="btn btn--outline" id="btnExample" onclick="val.loadExample()">Load example (valid)</button>
+      <button type="button" class="btn btn--danger" id="btnClear" onclick="val.clear()">Clear</button>
       <input type="file" id="bundleFile" accept=".json,.fhir+json" style="display:none" onchange="val.loadFile(this)">
       <button class="btn btn--outline" type="button" onclick="document.getElementById('bundleFile').click()">Upload file</button>
     </div>
@@ -327,6 +346,10 @@ val.showFlash=function(msg,type){const el=document.getElementById('valFlash');el
   window.addEventListener('offline',function(){setOnline(false);});
   setOnline(navigator.onLine);
 })();
+</script>
+<script>
+// /ar/ pages open in Arabic.
+if (/^\/ar(\/|$)/.test(location.pathname)) val.setLang('ar');
 </script>
 </body>
 </html>

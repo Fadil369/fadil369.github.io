@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BOS — BrainSAIT Back Office System</title>
-<meta name="description" content="BrainSAIT Back Office: provider directory, user management, audit log, settings. Bilingual EN/AR · BPR-integrated.">
 <style>
-  :root{--emerald:#10b981;--teal:#0d9488;--slate:#1e293b;--ink:#0f172a;--muted:#64748b;--bg:#f8fafc;--amber:#f59e0b;--rose:#f43f5e;--indigo:#4338ca;}
+  *,*::before,*::after{box-sizing:border-box}
+  :root{--emerald:#047857;--teal:#0f766e;--slate:#1e293b;--ink:#0f172a;--muted:#475569;--bg:#f8fafc;--amber:#f59e0b;--rose:#f43f5e;--indigo:#4338ca;}
   html[dir="rtl"] body{font-family:'Almarai','Amiri','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
   html:not([dir="rtl"]) body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
   body{background:var(--bg);color:var(--ink);line-height:1.7}
@@ -45,6 +45,8 @@
   .btn--outline:hover{background:#f8fafc}
   .btn--danger{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
   .btn--sm{padding:6px 10px;font-size:12px}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:10px;border-radius:12px}
+  .table-scroll table{margin-top:0}
   table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;margin-top:10px}
   th,td{padding:12px 14px;text-align:left;border-bottom:1px solid #e2e8f0;font-size:13.5px}
   th{background:#f8fafc;color:var(--muted);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
@@ -87,6 +89,25 @@
   .hidden{display:none}
   @media (max-width:640px){.wrap{margin:0}.stat-row{grid-template-columns:1fr}.search{width:100%}}
 </style>
+<!-- standalone:meta -->
+<meta name="bs-page" content="standalone">
+<meta name="description" content="A demo back office for the BPR ecosystem: provider directory, users, audit log and settings, stored only in this browser.">
+<link rel="canonical" href="https://fadil369.github.io/bos/">
+<link rel="alternate" hreflang="en" href="https://fadil369.github.io/bos/">
+<link rel="alternate" hreflang="ar" href="https://fadil369.github.io/ar/bos/">
+<link rel="alternate" hreflang="x-default" href="https://fadil369.github.io/bos/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BrainSAIT">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="BOS — BrainSAIT Back Office System">
+<meta property="og:description" content="A demo back office for the BPR ecosystem: provider directory, users, audit log and settings, stored only in this browser.">
+<meta property="og:url" content="https://fadil369.github.io/bos/">
+<meta property="og:image" content="https://fadil369.github.io/assets/og/bpr.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BOS — BrainSAIT Back Office System">
+<meta name="twitter:description" content="A demo back office for the BPR ecosystem: provider directory, users, audit log and settings, stored only in this browser.">
+<meta name="twitter:image" content="https://fadil369.github.io/assets/og/bpr.png">
+<!-- /standalone:meta -->
 </head>
 <body>
 <div class="wrap">
@@ -108,10 +129,10 @@
   </header>
 
   <div class="tabs">
-    <button class="tab active" onclick="bos.openTab('directory')">Provider Directory</button>
-    <button class="tab" onclick="bos.openTab('users')">Users</button>
-    <button class="tab" onclick="bos.openTab('audit')">Audit Log</button>
-    <button class="tab" onclick="bos.openTab('settings')">Settings</button>
+    <button type="button" class="tab active" data-tab="directory" aria-pressed="true" onclick="bos.openTab('directory')">Provider Directory</button>
+    <button type="button" class="tab" data-tab="users" aria-pressed="false" onclick="bos.openTab('users')">Users</button>
+    <button type="button" class="tab" data-tab="audit" aria-pressed="false" onclick="bos.openTab('audit')">Audit Log</button>
+    <button type="button" class="tab" data-tab="settings" aria-pressed="false" onclick="bos.openTab('settings')">Settings</button>
   </div>
 
   <!-- Directory -->
@@ -125,10 +146,10 @@
       <input type="text" class="search" id="dirSearch" placeholder="Search name, ORCID, profession…">
       <button class="btn btn--primary btn--sm" onclick="bos.exportDirectory()">Export CSV</button>
     </div>
-    <table id="dirTable">
+    <div class="table-scroll" role="region" aria-label="Provider directory" tabindex="0"><table id="dirTable">
       <thead><tr><th>Provider</th><th>ORCID</th><th>Profession</th><th>License</th><th>Status</th><th>Credentials</th><th>Actions</th></tr></thead>
       <tbody></tbody>
-    </table>
+    </table></div>
     <div id="dirEmpty" class="empty hidden">No providers match your search.</div>
   </div>
 
@@ -137,10 +158,10 @@
     <div class="toolbar">
       <button class="btn btn--primary" onclick="bos.openUserModal()">+ Add User</button>
     </div>
-    <table id="usersTable">
+    <div class="table-scroll" role="region" aria-label="Users" tabindex="0"><table id="usersTable">
       <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead>
       <tbody></tbody>
-    </table>
+    </table></div>
     <div id="usersEmpty" class="empty hidden">No users yet.</div>
   </div>
 
@@ -183,10 +204,10 @@
     <div class="form-card" style="max-width:460px;width:100;background:#fff">
       <h3 id="mTitle">Add User</h3>
       <div class="form-grid">
-        <div class="form-group"><label id="mLblName">Full name</label><input type="text" id="mName"></div>
-        <div class="form-group"><label id="mLblEmail">Email</label><input type="email" id="mEmail"></div>
-        <div class="form-group"><label id="mLblRole">Role</label><select id="mRole"><option value="clinician">Clinician</option><option value="admin">Administrator</option><option value="viewer">Viewer</option></select></div>
-        <div class="form-group"><label id="mLblStatus">Status</label><select id="mStatus"><option value="active">Active</option><option value="inactive">Inactive</option></select></div>
+        <div class="form-group"><label for="mName" id="mLblName">Full name</label><input type="text" id="mName"></div>
+        <div class="form-group"><label for="mEmail" id="mLblEmail">Email</label><input type="email" id="mEmail"></div>
+        <div class="form-group"><label for="mRole" id="mLblRole">Role</label><select id="mRole"><option value="clinician">Clinician</option><option value="admin">Administrator</option><option value="viewer">Viewer</option></select></div>
+        <div class="form-group"><label for="mStatus" id="mLblStatus">Status</label><select id="mStatus"><option value="active">Active</option><option value="inactive">Inactive</option></select></div>
       </div>
       <div class="actions" style="justify-content:flex-end;margin-top:18px">
         <button class="btn btn--outline" onclick="bos.closeUserModal()">Cancel</button>
@@ -200,6 +221,7 @@
 
 <script>
 const bos = {};
+const esc=(v)=>String(v??'').replace(/[&<>"']/g,(c)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 bos.lang='en';
 bos.LANG={
  en:{
@@ -221,6 +243,7 @@ bos.LANG={
   credVerified:'verified', credReceived:'received',
   flashUserAdded:'User added.', flashUserRemoved:'User removed.', flashSettingsSaved:'Settings saved.',
   flashAuditCleared:'Audit log cleared.',
+  prof_physician:'Physician', prof_dentist:'Dentist', prof_nurse:'Nurse',
   about:'BOS v1.0 · Back Office System · BrainSAIT · Demo/localStorage · BPR-integrated'
  },
  ar:{
@@ -242,6 +265,7 @@ bos.LANG={
   credVerified:'موثق', credReceived:'تم الاستلام',
   flashUserAdded:'تمت إضافة المستخدم.', flashUserRemoved:'تم حذف المستخدم.', flashSettingsSaved:'تم حفظ الإعدادات.',
   flashAuditCleared:'تم مسح سجل التدقيق.',
+  prof_physician:'طبيب', prof_dentist:'طبيب أسنان', prof_nurse:'ممرض/ممرضة',
   about:'نظام خلفي v1.0 · BOS · BrainSAIT · تجربة/تخزين محلي · متكامل مع BPR'
  }
 };
@@ -275,8 +299,9 @@ bos.applyLang=function(){
   document.getElementById('mStatus').querySelector('option[value="inactive"]').textContent=bos.t('statusInactive');
 };
 bos.renderCurrent=function(){
+  // Re-render the open tab by its key; its visible label changes with the language.
   const t=document.querySelector('.tab.active');
-  if(t)bos.openTab(t.textContent.trim());
+  bos.openTab(t?t.dataset.tab:'directory');
 };
 
 // seed data from BPR samples
@@ -295,8 +320,7 @@ bos.audit=[
 ];
 
 bos.openTab=function(name){
-  document.querySelectorAll('.tab').forEach(el=>el.classList.remove('active'));
-  event&&event.target&&event.target.classList.add('active');
+  document.querySelectorAll('.tab').forEach(el=>{const on=el.dataset.tab===name;el.classList.toggle('active',on);el.setAttribute('aria-pressed',on?'true':'false');});
   document.querySelectorAll('.panel').forEach(el=>el.classList.remove('active'));
   document.getElementById('p-'+name).classList.add('active');
   if(name==='directory')bos.renderDirectory();
@@ -318,13 +342,13 @@ bos.renderDirectory=function(){
   rows.forEach(p=>{
     const nm=bos.lang==='ar'&&p.name_ar?p.name+' ('+p.name_ar+')':p.name;
     tb.innerHTML+=`<tr>
-      <td><b>${nm}</b></td>
-      <td>${p.orcid}</td>
-      <td>${bos.t('role'+p.profession)||p.profession}</td>
-      <td>${p.licence}</td>
+      <td><b>${esc(nm)}</b></td>
+      <td>${esc(p.orcid)}</td>
+      <td>${bos.LANG[bos.lang]['prof_'+p.profession]||p.profession}</td>
+      <td>${esc(p.licence)}</td>
       <td><span class="badge bg-${p.status}">${bos.t('status'+p.status)}</span></td>
-      <td>${p.credentials} attached</td>
-      <td><button class="btn btn--sm btn--outline" onclick="bos.viewProvider('${p.orcid}')">View</button></td>
+      <td>${esc(p.credentials)} attached</td>
+      <td><button class="btn btn--sm btn--outline" onclick="bos.viewProvider('${esc(p.orcid)}')">View</button></td>
     </tr>`;
   });
 };
@@ -336,11 +360,11 @@ bos.renderUsers=function(){
   empty.classList.add('hidden');
   bos.users.forEach(u=>{
     tb.innerHTML+=`<tr>
-      <td>${u.name}</td>
-      <td>${u.email}</td>
-      <td><span class="badge role-${u.role}">${bos.t('role'+u.role)}</span></td>
+      <td>${esc(u.name)}</td>
+      <td>${esc(u.email)}</td>
+      <td><span class="badge role-${u.role}">${bos.t('role'+u.role.charAt(0).toUpperCase()+u.role.slice(1))}</span></td>
       <td><span class="badge bg-${u.status==='active'?'active':'inactive'}">${bos.t('status'+u.status)}</span></td>
-      <td>${u.joined}</td>
+      <td>${esc(u.joined)}</td>
       <td><button class="btn btn--sm btn--danger" onclick="bos.removeUser('${u.id}')">Remove</button></td>
     </tr>`;
   });
@@ -349,7 +373,7 @@ bos.renderAudit=function(){
   const el=document.getElementById('auditList');
   el.innerHTML=bos.audit.slice().reverse().map(a=>`
     <div class="audit-item">
-      <div><div class="audit-actor">${a.actor}</div><div class="audit-act">${a.action}</div></div>
+      <div><div class="audit-actor">${esc(a.actor)}</div><div class="audit-act">${esc(a.action)}</div></div>
       <div class="audit-time">${new Date(a.time).toLocaleString()}</div>
     </div>`).join('')||'<div class="empty">No audit entries.</div>';
 };

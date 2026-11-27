@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<title>Offline — BrainSAIT</title>
+<title>غير متصل — BrainSAIT</title>
 <meta name="theme-color" content="#090a08">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23090a08'/%3E%3Ctext x='50' y='62' font-family='Arial,sans-serif' font-size='36' fill='%23edf34a' text-anchor='middle'%3EEF%3C/text%3E%3C/svg%3E">
 <style>
   :root{--bg:#090a08;--card:#11120e;--ink:#f4f3e9;--muted:#a7a8a0;--emerald:#10b981;--teal:#0d9488;--accent:#edf34a;}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+  body{font-family:'Almarai','Segoe UI',Tahoma,-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
   .card{background:var(--card);border:1px solid #1c1d1a;border-radius:20px;padding:40px 32px;text-align:center;max-width:460px;box-shadow:0 20px 40px -10px rgba(0,0,0,.5)}
   .dot{width:12px;height:12px;background:var(--emerald);border-radius:50%;box-shadow:0 0 0 4px rgba(16,185,129,.35);display:inline-block;margin-bottom:16px;animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
@@ -30,33 +30,49 @@
   .lang a{color:var(--muted);text-decoration:none;margin:0 12px;font-size:13px}
   .lang a:hover{color:var(--ink)}
 </style>
+<!-- standalone:meta -->
+<meta name="bs-page" content="standalone">
+<meta name="description" content="أنت غير متصل. الصفحات المحفوظة والمسودات المحلية ما تزال متاحة على هذا الجهاز.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BrainSAIT">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:title" content="غير متصل — BrainSAIT">
+<meta property="og:description" content="أنت غير متصل. الصفحات المحفوظة والمسودات المحلية ما تزال متاحة على هذا الجهاز.">
+<meta property="og:url" content="https://fadil369.github.io/ar/offline/">
+<meta property="og:image" content="https://fadil369.github.io/assets/og/bpr.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="غير متصل — BrainSAIT">
+<meta name="twitter:description" content="أنت غير متصل. الصفحات المحفوظة والمسودات المحلية ما تزال متاحة على هذا الجهاز.">
+<meta name="twitter:image" content="https://fadil369.github.io/assets/og/bpr.png">
+<!-- /standalone:meta -->
 </head>
 <body>
 <div class="card">
-  <div class="dot"></div>
-  <h1 id="title">You’re offline</h1>
-  <p id="subtitle">No internet connection. Your data stays on this device — open a cached page or reconnect to continue.</p>
-  <div class="status" id="status"><span class="led"></span>Offline</div>
+  <div class="dot" aria-hidden="true"></div>
+  <h1 id="title">أنت غير متصل</h1>
+  <p id="subtitle">لا يوجد اتصال بالإنترنت. تبقى بياناتك على هذا الجهاز — افتح صفحة محفوظة أو أعد الاتصال للمتابعة.</p>
+  <div class="status" id="status" role="status"><span class="led" aria-hidden="true"></span>غير متصل</div>
   <div class="actions">
-    <a href="/" class="btn btn--primary">Go home</a>
-    <button class="btn btn--outline" onclick="location.reload()" id="retryBtn">Try again</button>
+    <a href="/ar/" class="btn btn--primary">الصفحة الرئيسية</a>
+    <button type="button" class="btn btn--outline" id="retryBtn">أعد المحاولة</button>
   </div>
-  <p class="hint" id="hint">Drafts and filled forms are saved locally. They’ll sync when you’re back online.</p>
+  <p class="hint" id="hint">المسودات والنماذج المعبأة محفوظة على جهازك، وتُزامن عند عودة الاتصال.</p>
   <div class="lang">
-    <a href="/ar/offline/">العربية</a> · <a href="/">English</a>
+    <a href="/offline/" lang="en">English</a> · <a href="/ar/">العربية</a>
   </div>
 </div>
 <script>
-// Auto-retry when connection returns
-let checked = false;
+// Leave this page once the connection is back. Reloading /offline/ itself would loop every few seconds.
+const HOME = location.pathname.startsWith('/ar/') ? '/ar/' : '/';
 async function checkOnline(){
   try{
-    const res = await fetch(new URL(window.location.href).origin + '/manifest.webmanifest', {cache:'no-store'});
-    if(res.ok && !checked){ checked = true; location.reload(); }
+    const res = await fetch('/manifest.webmanifest', {cache:'no-store'});
+    if(res.ok) location.replace(HOME);
   }catch(e){ /* still offline */ }
 }
-setInterval(checkOnline, 3000);
-window.addEventListener('online', ()=>location.reload());
+setInterval(checkOnline, 5000);
+window.addEventListener('online', checkOnline);
+document.getElementById('retryBtn').addEventListener('click', checkOnline);
 </script>
 </body>
 </html>

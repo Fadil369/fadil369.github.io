@@ -1,434 +1,90 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClinicFlow — Reception Encounter</title>
-<meta name="description" content="ClinicFlow synthetic-data reception pilot: BPR-verified provider intake, triage, encounter, FHIR R4 export. Bilingual EN/AR.">
-<style>
-  :root{--emerald:#10b981;--teal:#0d9488;--slate:#1e293b;--ink:#0f172a;--muted:#64748b;--bg:#f8fafc;--amber:#f59e0b;--rose:#f43f5e;}
-  html[dir="rtl"] body{font-family:'Almarai','Amiri','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
-  html:not([dir="rtl"]) body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
-  body{background:var(--bg);color:var(--ink);line-height:1.7}
-  .wrap{max-width:900px;margin:0 auto;padding:0}
-  .header{background:linear-gradient(135deg,var(--emerald),var(--teal));color:#fff;padding:40px 28px}
-  .header .brand{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-  .brand .dot{width:10px;height:10px;background:#fff;border-radius:50%;box-shadow:0 0 0 4px rgba(255,255,255,.35)}
-  .header h1{font-size:26px;font-weight:800;letter-spacing:-.025em}
-  .header p{opacity:.92;font-size:14px;margin-top:6px}
-  .langbar{display:flex;justify-content:flex-end;padding:6px 28px;gap:8px}
-  .langbtn{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:4px 10px;font-size:12px;cursor:pointer}
-  .langbtn.active{background:#fff;color:#0d9488;font-weight:800}
-  .card{background:#fff;border-radius:12px;padding:26px;margin:20px 28px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
-  .card h2{font-size:19px;margin-bottom:10px;color:var(--slate);text-transform:uppercase;letter-spacing:.04em;font-weight:800}
-  .subtitle{color:var(--muted);font-size:13.5px;margin-bottom:16px}
-  .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-  .form-group{display:flex;flex-direction:column;gap:6px}
-  label{font-size:11.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-  input,select,textarea{width:100%;padding:10px 12px;border:1px solid #e2e8f0;border-radius:10px;font-size:14px;background:#fafbfc}
-  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--emerald);background:#fff}
-  textarea{min-height:96px;resize:vertical}
-  .actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
-  .btn{flex:1;min-width:150px;padding:12px 18px;border:none;border-radius:11px;font-size:14.5px;font-weight:800;cursor:pointer}
-  .btn--primary{background:linear-gradient(135deg,var(--emerald),var(--teal));color:#fff}
-  .btn--primary:hover{filter:brightness(1.08)}
-  .btn--outline{background:#fff;color:var(--slate);border:1px solid #e2e8f0}
-  .btn--outline:hover{background:#f8fafc}
-  .btn--danger{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
-  .btn--save{background:var(--slate);color:#fff}
-  .btn:disabled{opacity:.6;cursor:not-allowed}
-  .triage-chip{display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
-  .chip-low{background:#dcfce7;color:#166534}
-  .chip-mid{background:#fef3c7;color:#92400e}
-  .chip-high{background:#fee2e2;color:#991b1b}
-  .patient-bar{display:flex;gap:12px;align-items:flex-start;padding:14px 18px;background:#f0fdf4;border:1px solid #86efac;border-radius:10px;margin-bottom:16px}
-  .patient-bar .flex-1{flex:1}
-  .patient-name{font-size:17px;font-weight:800}
-  .patient-meta{font-size:12px;color:var(--muted)}
-  .vitals-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:10px}
-  .vital{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px}
-  .vital .v-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-  .vital .v-value{font-size:16px;font-weight:800;color:var(--ink)}
-  .rx-list{border:1px solid #e2e8f0;border-radius:10px;background:#fafbfc;padding:14px;margin-top:10px}
-  .rx-item{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #e2e8f0}
-  .rx-item:last-child{border-bottom:none}
-  .rx-med{flex:1;font-weight:700}
-  .flash{padding:10px 14px;border-radius:9px;font-size:13px;margin-top:12px;display:none}
-  .flash--ok{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
-  .flash--err{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
-  .out{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:18px;margin-top:20px;display:none}
-  .out h3{font-size:13px;font-weight:800;color:var(--slate);margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em}
-  pre{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;font-size:11.5px;overflow:auto;max-height:300px}
-  .dlrow{display:flex;gap:8px;margin-top:14px}
-  .dln{flex:1}
-  .stepper{display:flex;gap:8px;margin-bottom:18px}
-  .step{flex:1;text-align:center;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-  .step.active{color:var(--teal);font-weight:800}
-  .step.done{color:var(--emerald);font-weight:800}
-  .smart-triage{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:10px;padding:14px;margin-top:12px}
-  .smart-triage h4{font-size:12px;font-weight:800;color:var(--slate);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
-  .smart-triage p{font-size:13px;color:var(--muted);margin:0}
-  footer{padding:22px 28px;border-top:1px solid #e2e8f0;color:var(--muted);font-size:11.5px}
-  .offline-banner{background:#7f1d1d;color:#fecaca;border:1px solid #9f1232;border-radius:8px;padding:10px 16px;display:flex;align-items:center;gap:10px;font-size:12.5px;position:sticky;top:0;z-index:30;backdrop-filter:blur(4px)}
-  .offline-banner.hidden{display:none}
-  .offline-banner .dot{width:8px;height:8px;background:#f43f5e;border-radius:50%;animation:blink 1.5s infinite;flex-shrink:0}
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
-  .hidden{display:none}
-  @media (max-width:640px){.wrap{margin:0}.card{margin:20px;padding:18px}}
-</style>
-</head>
-<body>
-<div class="wrap">
-  <div id="offlineBanner" class="offline-banner hidden">
-    <span class="dot"></span>
-    <span id="offlineMsg">Working offline — encounter saved locally, exports when reconnected</span>
-    <button class="btn btn--outline btn--sm" onclick="location.reload()" id="offlineRetry">Retry</button>
-  </div>
-  <div class="langbar">
-    <button class="langbtn active" id="langEn" onclick="cf.setLang('en')">English</button>
-    <button class="langbtn" id="langAr" onclick="cf.setLang('ar')">العربية</button>
-  </div>
-  <div class="header">
-    <div class="brand"><div class="dot"></div><b id="cfBrand">ClinicFlow</b></div>
-    <h1 id="cfTitle">Reception Encounter</h1>
-    <p id="cfSub">Synthetic-data reception pilot · BPR-verified provider · triage → encounter → FHIR R4 export</p>
-  </div>
+<html lang="en" dir="ltr" data-theme="dark">
+  <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Ui7XUfbR+P+DEsWCdfEfKIqyl1qyvbCVOvQnWe7XNpE=' 'sha256-76B3uuAmLKf9DWTLb2/ECQJIf8xohMh5xxTqgEbRoWU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://registry.brainsait.de https://api.brainsait.de https://api.kfmc.med.sa https://open.data.gov.sa https://fadil369-clinic-flow.hf.space; frame-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Step 1: BPR provider lookup -->
-  <div class="card">
-    <h2 id="hLookup">Step 1 — Look up BPR provider</h2>
-    <p class="subtitle" id="subLookup">Enter an ORCID iD to pre-fill the encounter from a registered BPR provider.</p>
-    <div class="form-group">
-      <label id="lblOrcid">ORCID iD</label>
-      <input type="text" id="cfOrcid" placeholder="0000-0000-0000-0000" value="0009-0003-7485-3575">
-    </div>
-    <div class="actions" style="margin-top:8px">
-      <button class="btn btn--primary" onclick="cf.lookupProvider()" id="btnLookup">Lookup &amp; load provider</button>
-      <button class="btn btn--outline" onclick="cf.skipLookup()">Skip &amp; start fresh</button>
-    </div>
-    <div id="cfLookupFlash" class="flash"></div>
-  </div>
+    <meta name="description" content="A synthetic-data reception pilot with separate BPR credential checks and integration status." />
+    <meta name="author" content="Dr. Mohamed El Fadil" />
+    <meta name="google-site-verification" content="IEcCC9-RV2DFTkwj_zkaOtiYtPBl7lnZPjfyAb13gAU" />
+    <meta name="theme-color" content="#090a08" />
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="alternate" type="text/plain" title="Summary for AI agents" href="/llms.txt" />
 
-  <!-- Patient bar (shown after lookup) -->
-  <div id="cfPatientBar" class="patient-bar hidden">
-    <div class="flex-1">
-      <div class="patient-name" id="cfPatientName">—</div>
-      <div class="patient-meta" id="cfPatientMeta">ORCID · profession · status</div>
-    </div>
-    <div class="triage-chip chip-low" id="cfTriageChip">Routine</div>
-  </div>
-
-  <!-- Step 2: Triage & vitals -->
-  <div class="card">
-    <h2 id="hTriage">Step 2 — Triage &amp; vitals</h2>
-    <p class="subtitle" id="subTriage">Record chief complaint, triage priority, and vital signs.</p>
-    <div class="form-grid">
-      <div class="form-group">
-        <label id="lblChief">Chief complaint</label>
-        <textarea id="cfChief" placeholder="e.g. chest pain, follow-up, fever…"></textarea>
-      </div>
-      <div class="form-group">
-        <label id="lblVisit">Visit type</label>
-        <select id="cfVisit"><option>General consultation</option><option>Follow-up</option><option>Specialist referral</option><option>Telemedicine</option></select>
-      </div>
-      <div class="form-group">
-        <label id="lblPriority">Triage priority (auto)</label>
-        <select id="cfPriority"><option>Routine</option><option>Urgent</option><option>Emergency</option></select>
-      </div>
-    </div>
-    <div class="vitals-grid" id="cfVitals">
-      <div class="vital"><div class="v-label">Temperature (°C)</div><div class="v-value" id="vTemp">36.8</div></div>
-      <div class="vital"><div class="v-label">Heart rate (bpm)</div><div class="v-value" id="vHr">72</div></div>
-      <div class="vital"><div class="v-label">BP systolic</div><div class="v-value" id="vBp">120</div></div>
-      <div class="vital"><div class="v-label">SpO₂ (%)</div><div class="v-value" id="vSpo2">98</div></div>
-    </div>
-    <div class="smart-triage">
-      <h4 id="hSmart">Smart triage suggestion</h4>
-      <p id="pSmart">Enter a chief complaint to get an AI-style triage suggestion.</p>
-    </div>
-  </div>
-
-  <!-- Step 3: Encounter assessment & plan -->
-  <div class="card">
-    <h2 id="hAssess">Step 3 — Assessment &amp; plan</h2>
-    <p class="subtitle" id="subAssess">Document findings, diagnosis, and treatment plan.</p>
-    <div class="form-grid">
-      <div class="form-group" style="grid-column:span 2">
-        <label id="lblFindings">Clinical findings</label>
-        <textarea id="cfFindings" placeholder="Objective findings from examination…"></textarea>
-      </div>
-      <div class="form-group" style="grid-column:span 2">
-        <label id="lblAssessment">Assessment / diagnosis</label>
-        <textarea id="cfAssessment" placeholder="Working diagnosis…"></textarea>
-      </div>
-      <div class="form-group" style="grid-column:span 2">
-        <label id="lblPlan">Treatment plan</label>
-        <textarea id="cfPlan" placeholder="Medications, referrals, follow-up…"></textarea>
-      </div>
-    </div>
-  </div>
-
-  <!-- Step 4: Prescriptions -->
-  <div class="card">
-    <h2 id="hRx">Step 4 — Medications</h2>
-    <p class="subtitle" id="subRx">Add prescribed medications (exported as MedicationRequest).</p>
-    <div class="form-grid">
-      <div class="form-group"><label id="lblMed">Medication</label><input type="text" id="cfMed" placeholder="e.g. Paracetamol 500mg"></div>
-      <div class="form-group"><label id="lblSig">Sig / directions</label><input type="text" id="cfSig" placeholder="e.g. 1 tablet twice daily"></div>
-      <div class="form-group"><label id="lblDays">Days supply</label><input type="number" id="cfDays" value="7" min="1"></div>
-    </div>
-    <div class="actions" style="margin-top:8px"><button class="btn btn--primary" type="button" onclick="cf.addMed()">+ Add medication</button></div>
-    <div class="rx-list" id="cfRxList"></div>
-  </div>
-
-  <!-- Step 5: Review & export -->
-  <div class="card">
-    <h2 id="hReview">Step 5 — Review &amp; export</h2>
-    <p class="subtitle" id="subReview">Confirm and export the encounter as a FHIR R4 Bundle.</p>
-    <div id="cfReviewSummary"></div>
-    <div class="actions">
-      <button class="btn btn--primary" onclick="cf.exportEncounter()">Export FHIR R4 Bundle</button>
-      <button class="btn btn--save" onclick="cf.saveDraft()">Save draft locally</button>
-      <button class="btn btn--outline" onclick="cf.resetEncounter()">Start over</button>
-    </div>
-  </div>
-
-  <div id="cfOut" class="out">
-    <h3 id="hOut">FHIR R4 Encounter Bundle</h3>
-    <pre id="cfFhirPreview">{}</pre>
-    <div class="dlrow">
-      <button class="btn btn--outline dln" onclick="cf.downloadFHIR()">⬇ Download Encounter Bundle</button>
-      <button class="btn btn--outline dln" onclick="cf.downloadSummary()">⬇ Download Visit Summary</button>
-    </div>
-  </div>
-  <div id="cfFlash" class="flash"></div>
-
-  <footer>ClinicFlow · Reception pilot · Synthetic data · BPR-integrated · FHIR R4 · v1.0</footer>
-</div>
-
-<script>
-const cf = {};
-cf.lang='en';
-cf.LANG={
- en:{
-  brand:'ClinicFlow', title:'Reception Encounter', sub:'Synthetic-data reception pilot · BPR-verified provider · triage → encounter → FHIR R4 export',
-  hLookup:'Step 1 — Look up BPR provider', subLookup:'Enter an ORCID iD to pre-fill the encounter from a registered BPR provider.',
-  lblOrcid:'ORCID iD', btnLookup:'Lookup &amp; load provider', btnSkip:'Skip &amp; start fresh',
-  flashLoaded:'Provider loaded from BPR.', flashNotFound:'Provider not found in BPR dataset (demo mode).',
-  hTriage:'Step 2 — Triage &amp; vitals', subTriage:'Record chief complaint, triage priority, and vital signs.',
-  lblChief:'Chief complaint', lblVisit:'Visit type', lblPriority:'Triage priority (auto)',
-  hSmart:'Smart triage suggestion', pSmart:'Enter a chief complaint to get an AI-style triage suggestion.',
-  hAssess:'Step 3 — Assessment &amp; plan', subAssess:'Document findings, diagnosis, and treatment plan.',
-  lblFindings:'Clinical findings', lblAssessment:'Assessment / diagnosis', lblPlan:'Treatment plan',
-  hRx:'Step 4 — Medications', subRx:'Add prescribed medications (exported as MedicationRequest).',
-  lblMed:'Medication', lblSig:'Sig / directions', lblDays:'Days supply', btnAdd:'+ Add medication',
-  hReview:'Step 5 — Review &amp; export', subReview:'Confirm and export the encounter as a FHIR R4 Bundle.',
-  btnExport:'Export FHIR R4 Bundle', btnSave:'Save draft locally', btnReset:'Start over',
-  hOut:'FHIR R4 Encounter Bundle', btnDlFHIR:'⬇ Download Encounter Bundle', btnDlSum:'⬇ Download Visit Summary',
-  flashExported:'Encounter exported as FHIR R4 Bundle.', flashSaved:'Draft saved locally.', flashReset:'Encounter reset.',
-  provider:'Provider', orcid:'ORCID', profession:'Profession', status:'Status', credentials:'Credentials',
-  visitType:'Visit type', chiefComplaint:'Chief complaint', priority:'Priority', vitals:'Vitals',
-  findings:'Findings', assessment:'Assessment', plan:'Plan', medications:'Medications',
- },
- ar:{
-  brand:'ClinicFlow', title:'لقاء استقبال العيادة', sub:'تجربة استقبال بالبيانات الاصطناعية · مقدم رعاية معتمد من BPR · الفرز → المقابلة → تصدير FHIR R4',
-  hLookup:'الخطوة 1 — البحث عن مقدم رعاية في BPR', subLookup:'أدخل معرف ORCID لتعبئة المقابلة مسبقاً من مقدم رعاية مسجل في BPR.',
-  lblOrcid:'معرف ORCID', btnLookup:'البحث وتحميل الموفر', btnSkip:'تخطي والبدء من جديد',
-  flashLoaded:'تم تحميل مقدم الرعاية من BPR.', flashNotFound:'الموفر غير موجود في مجموعة بيانات BPR (وضع تجريبي).',
-  hTriage:'الخطوة 2 — الفرز والعلامات الحيوية', subTriage:'سجل الشكوى الرئيسية وأولوية الفرز والعلامات الحيوية.',
-  lblChief:'الشكوى الرئيسية', lblVisit:'نوع الزيارة', lblPriority:'أولوية الفرز (تلقائي)',
-  hSmart:'اقتراح الفرز الذكي', pSmart:'أدخل الشكوى الرئيسية للحصول على اقتراح فرز بالذكاء الاصطناعي.',
-  hAssess:'الخطوة 3 — التقييم والخطة', subAssess:'توثيق النتائج والتشخيص وخطة العلاج.',
-  lblFindings:'النتائج السريرية', lblAssessment:'التقييم / التشخيص', lblPlan:'خطة العلاج',
-  hRx:'الخطوة 4 — الأدوية', subRx:'أضف الأدوية الموصوفة (يُصدر ك MedicationRequest).',
-  lblMed:'الدواء', lblSig:'طريقة الاستخدام', lblDays:'مدة العلاج بالأيام', btnAdd:'+ إضافة دواء',
-  hReview:'الخطوة 5 — المراجعة والتصدير', subReview:'تأكيد وتصدير المقابلة كحزمة FHIR R4.',
-  btnExport:'تصدير حزمة FHIR R4', btnSave:'حفظ المسودة محلياً', btnReset:'البدء من جديد',
-  hOut:'حزمة FHIR R4 للمقابلة', btnDlFHIR:'⬇ تنزيل حزمة المقابلة', btnDlSum:'⬇ تنزيل ملخص الزيارة',
-  flashExported:'تم تصدير المقابلة كحزمة FHIR R4.', flashSaved:'تم حفظ المسودة محلياً.', flashReset:'تم إعادة تعيين المقابلة.',
-  provider:'مقدم الرعاية', orcid:'معرف ORCID', profession:'المهنة', status:'الحالة', credentials:'الشهادات',
-  visitType:'نوع الزيارة', chiefComplaint:'الشكوى الرئيسية', priority:'الأولوية', vitals:'العلامات الحيوية',
-  findings:'النتائج', assessment:'التقييم', plan:'الخطة', medications:'الأدوية',
- }
-};
-cf.t = function(k){ return cf.LANG[cf.lang][k] || k; };
-cf.setLang=function(l){ cf.lang=l; document.documentElement.lang=l; document.documentElement.dir=l==='ar'?'rtl':'ltr'; document.getElementById('langEn').classList.toggle('active',l==='en'); document.getElementById('langAr').classList.toggle('active',l==='ar'); cf.applyLang(); };
-cf.applyLang=function(){
-  document.getElementById('cfBrand').textContent=cf.t('brand');
-  document.getElementById('cfTitle').textContent=cf.t('title');
-  document.getElementById('cfSub').textContent=cf.t('sub');
-  document.getElementById('hLookup').textContent=cf.t('hLookup');
-  document.getElementById('subLookup').textContent=cf.t('subLookup');
-  document.getElementById('lblOrcid').textContent=cf.t('lblOrcid');
-  document.getElementById('btnLookup').innerHTML=cf.t('btnLookup');
-  document.getElementById('hTriage').textContent=cf.t('hTriage');
-  document.getElementById('subTriage').textContent=cf.t('subTriage');
-  document.getElementById('lblChief').textContent=cf.t('lblChief');
-  document.getElementById('lblVisit').textContent=cf.t('lblVisit');
-  document.getElementById('lblPriority').textContent=cf.t('lblPriority');
-  document.getElementById('hSmart').textContent=cf.t('hSmart');
-  document.getElementById('hAssess').textContent=cf.t('hAssess');
-  document.getElementById('subAssess').textContent=cf.t('subAssess');
-  document.getElementById('lblFindings').textContent=cf.t('lblFindings');
-  document.getElementById('lblAssessment').textContent=cf.t('lblAssessment');
-  document.getElementById('lblPlan').textContent=cf.t('lblPlan');
-  document.getElementById('hRx').textContent=cf.t('hRx');
-  document.getElementById('subRx').textContent=cf.t('subRx');
-  document.getElementById('lblMed').textContent=cf.t('lblMed');
-  document.getElementById('lblSig').textContent=cf.t('lblSig');
-  document.getElementById('lblDays').textContent=cf.t('lblDays');
-  document.getElementById('hReview').textContent=cf.t('hReview');
-  document.getElementById('subReview').textContent=cf.t('subReview');
-  document.getElementById('hOut').textContent=cf.t('hOut');
-  cf.renderReview();
-};
-
-// state
-cf.provider=null;
-cf.encounter={id:'cf-'+Math.random().toString(36).slice(2,8), medications:[], vitals:{}, created_at:new Date().toISOString()};
-
-// BPR provider lookup (simulated from dataset samples)
-cf.BPR_SAMPLES=[
- {orcid:'0009-0003-7485-3575',name:'Dr. Mohamed Elfadil',name_ar:'د. محمد Elfadil',profession:'physician',licence_no:'SCFHS-123456',status:'approved',credentials:[{kind:'mbbs',title:'MBBS Certificate',status:'verified'},{kind:'scfhs',title:'SCFHS Classification',status:'verified'}]},
- {orcid:'0000-0002-1234-5678',name:'Dr. Fatima Ali',name_ar:'د. فاطمة علي',profession:'dentist',licence_no:'SCFHS-789012',status:'approved',credentials:[{kind:'mbbs',title:'BDS Certificate',status:'verified'},{kind:'registration',title:'Dentist License',status:'verified'}]},
- {orcid:'0000-0003-9999-8888',name:'Nurse Layla Hassan',name_ar:'ممرضة ليلى حسن',profession:'nurse',licence_no:'SCFHS-345678',status:'pending',credentials:[{kind:'registration',title:'Nursing License',status:'received'}]}
-];
-cf.lookupProvider=function(){
-  const orcid=document.getElementById('cfOrcid').value.trim();
-  const p=cf.BPR_SAMPLES.find(s=>s.orcid===orcid);
-  if(!p){ cf.showFlash(cf.t('flashNotFound'),'err'); return; }
-  cf.provider=p;
-  document.getElementById('cfPatientBar').classList.remove('hidden');
-  document.getElementById('cfPatientName').textContent = cf.lang==='ar'&&p.name_ar ? p.name+' ('+p.name_ar+')' : p.name;
-  document.getElementById('cfPatientMeta').textContent = p.orcid+' · '+(cf.t('profession'))+': '+(cf.lang==='ar'?p.name_ar||p.name:'')+' · '+p.status;
-  const chip=document.getElementById('cfTriageChip');
-  chip.textContent = p.status==='approved'?'BPR Verified':'Pending review';
-  chip.className='triage-chip '+(p.status==='approved'?'chip-low':'chip-mid');
-  cf.showFlash(cf.t('flashLoaded'),'ok');
-  cf.saveDraft();
-};
-cf.skipLookup=function(){ cf.provider=null; document.getElementById('cfPatientBar').classList.add('hidden'); cf.showFlash('Started fresh encounter.','ok'); };
-
-// Smart triage based on chief complaint keywords
-cf.autoTriage=function(){
-  const chief=document.getElementById('cfChief').value.toLowerCase();
-  const p=document.getElementById('cfPriority');
-  const smart=document.getElementById('pSmart');
-  let level='Routine', chip='chip-low', msg='';
-  if(/chest pain|heart attack|cardiac|unconscious|severe bleeding|cannot breathe|stroke/.test(chief)){ level='Emergency'; chip='chip-high'; msg='Emergency — escalate immediately.'; }
-  else if(/fever|high temp|severe pain|shortness|injury|fracture/.test(chief)){ level='Urgent'; chip='chip-mid'; msg='Urgent — same-day clinician review.'; }
-  else if(chief.trim()){ level='Routine'; chip='chip-low'; msg='Routine — standard consultation.'; } else { msg='Enter a chief complaint to get a triage suggestion.'; }
-  p.value=level;
-  smart.textContent=msg;
-  const chipEl=document.getElementById('cfTriageChip');
-  if(chipEl){ chipEl.textContent=level; chipEl.className='triage-chip '+chip; }
-  return {level,chip};
-};
-document.getElementById('cfChief').addEventListener('input', cf.autoTriage);
-document.getElementById('cfVisit').addEventListener('change', cf.autoTriage);
-
-// vitals live capture
-['vTemp','vHr','vBp','vSpo2'].forEach(id=>{
-  document.getElementById(id).addEventListener('input',function(){ cf.encounter.vitals[id]=this.value; });
-});
-
-// medications
-cf.addMed=function(){
-  const med=document.getElementById('cfMed').value.trim(); const sig=document.getElementById('cfSig').value.trim(); const days=document.getElementById('cfDays').value;
-  if(!med){ cf.showFlash('Enter a medication name.','err'); return; }
-  cf.encounter.medications.push({med,sig,days});
-  document.getElementById('cfMed').value=''; document.getElementById('cfSig').value='';
-  cf.renderMeds();
-};
-cf.renderMeds=function(){
-  const el=document.getElementById('cfRxList');
-  el.innerHTML=cf.encounter.medications.map((m,i)=>`<div class="rx-item"><div class="rx-med">${m.med}</div><span style="font-size:12px;color:var(--muted)">${m.sig||'—'} · ${m.days} days</span><span class="cred-remove" onclick="cf.removeMed(${i})" style="color:var(--rose)">×</span></div>`).join('');
-};
-cf.removeMed=function(i){ cf.encounter.medications.splice(i,1); cf.renderMeds(); };
-
-cf.renderReview=function(){
-  const s=document.getElementById('cfReviewSummary');
-  if(!s) return;
-  const p=cf.provider;
-  const name = (cf.lang==='ar'&&p&&p.name_ar) ? p.name+' ('+p.name_ar+')' : (p?p.name:'—');
-  const status = p?(p.status==='approved'?'BPR Verified':'BPR Pending'):'No provider';
-  s.innerHTML=`
-   <div style="display:flex;gap:10px;align-items:center"><span class="badge">${status}</span><b>${cf.t('provider')}:</b> ${name}</div>
-   <div><b>${cf.t('chiefComplaint')}:</b> ${document.getElementById('cfChief').value||'—'}</div>
-   <div><b>${cf.t('priority')}:</b> ${document.getElementById('cfPriority').value}</div>
-   <div><b>${cf.t('vitals')}:</b> T ${cf.encounter.vitals.vTemp}°C · HR ${cf.encounter.vitals.vHr} · BP ${cf.encounter.vitals.vBp} · SpO₂ ${cf.encounter.vitals.vSpo2}%</div>
-   <div><b>${cf.t('assessment')}:</b> ${document.getElementById('cfAssessment').value||'—'}</div>
-   <div><b>${cf.t('plan')}:</b> ${document.getElementById('cfPlan').value||'—'}</div>
-   <div><b>${cf.t('medications')}:</b> ${cf.encounter.medications.length||'none'}</div>
-  `;
-};
-cf.exportEncounter=function(){
-  const p=cf.provider;
-  const encounter={
-    resourceType:'Encounter', id:cf.encounter.id, status:'finished', class:{code:'ambulatory',display:'ambulatory'},
-    subject:p?{reference:'Practitioner/bpr-'+p.orcid.replace(/[^a-z0-9]/gi,'_'),display:p.name}:{display:'Unknown patient'},
-    period:{start:new Date().toISOString()},
-    type:[{coding:[{system:'http://terminology.hl7.org/CodeSystem/v3-ActCode',code:'AMB',display:'ambulatory'}]}],
-    reasonText:document.getElementById('cfChief').value||'',
-    diagnosis:[{condition:{reference:'Condition/primary',display:document.getElementById('cfAssessment').value||'Working diagnosis'}}],
-    hospitalization:{dischargeDisposition:{text:'Routine discharge'}}
-  };
-  const observations=[];
-  const vit=cf.encounter.vitals;
-  const obsEntries=[{code:'8310-5',label:'Body temperature',value:vit.vTemp,unit:'Cel'},
-                    {code:'8867-4',label:'Heart rate',value:vit.vHr,unit:'beats per minute'},
-                    {code:'8480-6',label:'Blood pressure systolic',value:vit.vBp,unit:'mm[Hg]'},
-                    {code:'2708-6',label:'Oxygen saturation',value:vit.vSpo2,unit:'%'}];
-  obsEntries.forEach((o,i)=>{
-    if(o.value) observations.push({resourceType:'Observation',id:'obs-'+i,status:'final',code:{coding:[{system:'http://loinc.org',code:o.code,display:o.label}]},valueQuantity:{value:Number(o.value),unit:o.unit},subject:p?{reference:'Practitioner/bpr-'+p.orcid.replace(/[^a-z0-9]/gi,'_')}:{display:'Unknown'},effectiveDateTime:new Date().toISOString()});
-  });
-  const medReqs=cf.encounter.medications.map((m,i)=>({resourceType:'MedicationRequest',id:'med-'+i,status:'active',intent:'order',medicationCodeableConcept:{coding:[{system:'http://www.nlm.nih.gov/research/umls/rxnorm',display:m.med}],text:m.med},subject:p?{reference:'Practitioner/bpr-'+p.orcid.replace(/[^a-z0-9]/gi,'_')}:{display:'Unknown'},dosageInstruction:[{text:m.sig+' · '+m.days+' days'}]}));
-  const bundle={resourceType:'Bundle',id:'cf-bundle-'+cf.encounter.id,type:'collection',timestamp:new Date().toISOString(),
-    entry:[{resource:encounter,fullUrl:'Encounter/'+cf.encounter.id}].concat(observations.map(o=>({resource:o,fullUrl:'Observation/'+o.id}))).concat(medReqs.map(m=>({resource:m,fullUrl:'MedicationRequest/'+m.id}))),
-    meta:{source:'https://fadil369.github.io/bpr/clinic/'}};
-  document.getElementById('cfFhirPreview').textContent=JSON.stringify(bundle,null,2);
-  document.getElementById('cfOut').style.display='block';
-  cf.showFlash(cf.t('flashExported'),'ok');
-  cf.saveDraft();
-};
-cf.downloadFHIR=function(){
-  const txt=document.getElementById('cfFhirPreview').textContent;
-  if(txt==='{}'){ cf.showFlash('Export first.','err'); return; }
-  const blob=new Blob([txt],{type:'application/fhir+json'}); const url=URL.createObjectURL(blob);
-  const a=document.createElement('a'); a.href=url; a.download='clinicflow_encounter_'+cf.encounter.id+'.json'; a.click(); URL.revokeObjectURL(url);
-};
-cf.downloadSummary=function(){
-  const p=cf.provider||{};
-  const html=`<!DOCTYPE html><html lang="${cf.lang}" dir="${cf.lang==='ar'?'rtl':'ltr'}"><head><meta charset="UTF-8"><title>ClinicFlow Visit Summary</title><style>body{font-family:system-ui,sans-serif;background:#f8fafc;color:#0f172a;padding:40px} .card{background:#fff;border-radius:16px;padding:28px;max-width:640px;margin:0 auto} h1{color:#0d9488} table{width:100%;border-collapse:collapse;margin-top:16px} th,td{padding:10px;border-bottom:1px solid #e2e8f0;text-align:left} .badge{background:#ecfdf5;color:#10b981;padding:4px 10px;border-radius:20px;font-size:11px} .muted{color:#64748b;font-size:12px}</style></head><body><div class="card"><h1>🏥 ClinicFlow — Visit Summary</h1><div class="badge">FHIR R4 · Synthetic</div><table><tr><td><b>Provider</b></td><td>${p.name||'—'}</td></tr><tr><td><b>ORCID</b></td><td>${p.orcid||'—'}</td></tr><tr><td><b>Chief complaint</b></td><td>${document.getElementById('cfChief').value||'—'}</td></tr><tr><td><b>Assessment</b></td><td>${document.getElementById('cfAssessment').value||'—'}</td></tr><tr><td><b>Plan</b></td><td>${document.getElementById('cfPlan').value||'—'}</td></tr><tr><td><b>Medications</b></td><td>${cf.encounter.medications.length||'none'}</td></tr></table></div></body></html>`;
-  const blob=new Blob([html],{type:'text/html'}); const url=URL.createObjectURL(blob);
-  const a=document.createElement('a'); a.href=url; a.download='clinicflow_visit_summary_'+cf.encounter.id+'.html'; a.click(); URL.revokeObjectURL(url);
-};
-cf.saveDraft=function(){ try{ localStorage.setItem('clinicflow_draft_v1',JSON.stringify({provider:cf.provider,encounter:cf.encounter})); cf.showFlash(cf.t('flashSaved'),'ok'); }catch(e){ cf.showFlash('Could not save draft.','err'); } };
-cf.resetEncounter=function(){ cf.encounter={id:'cf-'+Math.random().toString(36).slice(2,8),medications:[],vitals:{},created_at:new Date().toISOString()}; document.getElementById('cfChief').value=''; document.getElementById('cfFindings').value=''; document.getElementById('cfAssessment').value=''; document.getElementById('cfPlan').value=''; document.getElementById('cfMed').value=''; document.getElementById('cfSig').value=''; cf.encounter.vitals={vTemp:'36.8',vHr:'72',vBp:'120',vSpo2:'98'}; ['vTemp','vHr','vBp','vSpo2'].forEach(id=>{document.getElementById(id).value=cf.encounter.vitals[id];}); cf.renderMeds(); cf.renderReview(); document.getElementById('cfOut').style.display='none'; cf.showFlash(cf.t('flashReset'),'ok'); };
-cf.showFlash=function(msg,type){ const el=document.getElementById('cfFlash'); el.textContent=msg; el.className='flash flash--'+type; el.style.display='block'; setTimeout(()=>el.style.display='none',4000); };
-
-// ── Offline-first PWA: service worker + offline banner ──
-(function(){
-  if('serviceWorker' in navigator){
-    navigator.serviceWorker.register('/sw.js').then(function(r){console.log('SW registered',r.scope);}).catch(function(e){console.log('SW register failed',e);});
-  }
-  var banner=document.getElementById('offlineBanner');
-  var msg=document.getElementById('offlineMsg');
-  var isOnline=navigator.onLine;
-  function setOnline(on){
-    isOnline=on;
-    if(banner) banner.classList.toggle('hidden',on);
-    var dot=banner&&banner.querySelector('.dot');
-    if(dot) dot.style.background=on?'#166534':'#f43f5e';
-    if(msg) msg.textContent=on?'Back online — ready to export.':'Working offline — encounter saved locally, exports when reconnected.';
-  }
-  window.addEventListener('online',function(){setOnline(true);});
-  window.addEventListener('offline',function(){setOnline(false);});
-  setOnline(navigator.onLine);
-})();
-
-// init
-(function(){ const d=localStorage.getItem('clinicflow_draft_v1'); if(d){ try{ const j=JSON.parse(d); if(j.provider)cf.provider=j.provider; if(j.encounter)cf.encounter=j.encounter; if(cf.provider){ document.getElementById('cfPatientBar').classList.remove('hidden'); document.getElementById('cfPatientName').textContent=cf.provider.name; } }catch(e){} } cf.applyLang(); cf.renderReview(); cf.renderMeds(); })();
-</script>
-</body>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23090a08'/%3E%3Ctext x='50' y='62' font-family='Arial,sans-serif' font-size='36' fill='%23edf34a' text-anchor='middle'%3EEF%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Almarai:wght@300;400;700;800&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Analytics (GTM, Meta Pixel, GA; shared with store.brainsait.de) load everywhere except the
+         BPR registry pages (/bpr and /ar/bpr), where the URL carries the SPID someone is checking. -->
+    <script>
+      (function (w, d) {
+        if (/^\/(ar\/)?bpr(\/|$)/.test(w.location.pathname)) return;
+        function load(src) { var j = d.createElement('script'); j.async = true; j.src = src; d.head.appendChild(j); }
+        w.dataLayer = w.dataLayer || [];
+        w.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        load('https://www.googletagmanager.com/gtm.js?id=GTM-TP24GSTF');
+        var n = (w.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); });
+        if (!w._fbq) w._fbq = n;
+        n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+        load('https://connect.facebook.net/en_US/fbevents.js');
+        n.disablePushState = true; // landing page view only; in-app navigation is not sent to Meta
+        w.fbq('init', '850048551165707');
+        w.fbq('track', 'PageView');
+        load('https://www.googletagmanager.com/gtag/js?id=G-75ZCDM8R74');
+        w.gtag = function () { w.dataLayer.push(arguments); };
+        w.gtag('js', new Date());
+        w.gtag('config', 'G-75ZCDM8R74');
+        // GA's per-property kill switch, set from the destination URL before GA sees the change.
+        var guard = function (url) { w['ga-disable-G-75ZCDM8R74'] = /^\/(ar\/)?bpr(\/|$)/.test(new URL(url || w.location.href, w.location.href).pathname); };
+        ['pushState', 'replaceState'].forEach(function (k) {
+          var orig = history[k];
+          history[k] = function (state, title, url) { guard(url); return orig.apply(this, arguments); };
+        });
+        w.addEventListener('popstate', function () { guard(); });
+      })(window, document);
+    </script>
+    <script>
+      /* Set theme before first paint to avoid flash — dark is the default luxury mode */
+      (function () {
+        try {
+          var t = localStorage.getItem('bs-theme');
+          if (t !== 'light' && t !== 'dark') t = 'dark';
+          document.documentElement.setAttribute('data-theme', t);
+          // Language is the URL (/ar/... = Arabic). A visitor who chose Arabic and opens an English
+          // URL goes to its Arabic twin; crawlers carry no preference, so their URLs stay stable.
+          var p = location.pathname, isAr = /^\/ar(\/|$)/.test(p);
+          if (!isAr && localStorage.getItem('bs-lang') === 'ar' && !/^\/(assets|bpr\/embed)\//.test(p)) {
+            location.replace('/ar' + (p === '/' ? '/' : p) + location.search + location.hash);
+          }
+          if (isAr) { document.documentElement.lang = 'ar'; document.documentElement.dir = 'rtl'; }
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-CF4MF2Yr.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-B6jBxVJH.css">
+      <title>Clinic Reception — BPR</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BrainSAIT" />
+    <meta property="og:title" content="Clinic Reception — BPR" />
+    <meta property="og:description" content="A synthetic-data reception pilot with separate BPR credential checks and integration status." />
+    <meta property="og:url" content="https://fadil369.github.io/bpr/clinic/" />
+    <meta property="og:image" content="https://fadil369.github.io/assets/og/bpr.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Clinic Reception — BPR" />
+    <meta name="twitter:description" content="A synthetic-data reception pilot with separate BPR credential checks and integration status." />
+    <meta name="twitter:image" content="https://fadil369.github.io/assets/og/bpr.png" />
+      <link rel="alternate" hreflang="en" href="https://fadil369.github.io/bpr/clinic/" />
+    <link rel="alternate" hreflang="ar" href="https://fadil369.github.io/ar/bpr/clinic/" />
+    <link rel="alternate" hreflang="x-default" href="https://fadil369.github.io/bpr/clinic/" />
+      <link rel="canonical" href="https://fadil369.github.io/bpr/clinic/" />
+    <script type="application/ld+json" data-route>{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://fadil369.github.io/bpr/clinic/#page","url":"https://fadil369.github.io/bpr/clinic/","name":"Clinic Reception — BPR","inLanguage":"en","isPartOf":{"@type":"WebSite","@id":"https://fadil369.github.io/#site","name":"Dr. Mohamed El Fadil · BPR","url":"https://fadil369.github.io/"}},{"mainEntity":{"@id":"https://fadil369.github.io/bpr#registry"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BPR","item":"https://fadil369.github.io/bpr/"},{"@type":"ListItem","position":2,"name":"Clinic reception","item":"https://fadil369.github.io/bpr/clinic/"}]}]}</script>
+  </head>
+  <body>
+    <div id="root"></div><noscript data-prerendered><p style="padding:16px;margin:0;background:#11120e;color:#f4f3e9">Static build snapshot. Enable JavaScript to run independent, current checks on your device.</p><main id="pr-main-content"><div class="profile-page bpr-app" id="pr-top"><header class="profile-head"><a class="profile-brand" aria-label="Dr. Mohamed El Fadil" href="/profile" data-discover="true"><span>EF</span><strong>Dr. El Fadil</strong></a><nav id="pr-profile-nav" data-open="false" aria-label="Main navigation"><a class="" href="/profile" data-discover="true">Profile</a><a class="" href="/cv" data-discover="true">CV</a><a class="" href="/card" data-discover="true">Card</a><a aria-current="page" class="active" href="/bpr" data-discover="true">BPR</a></nav><div class="profile-controls"><a href="/" aria-label="BrainSAIT platform" title="BrainSAIT platform">↗</a><button class="profile-cmdk" aria-label="Command palette (Ctrl+K)" aria-keyshortcuts="Control+K Meta+K"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-command"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"></path></svg><span>K</span></button><button aria-label="Light mode"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></button><button aria-label="التبديل إلى العربية"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-languages"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg><span>ع</span></button><button class="profile-menu" aria-expanded="false" aria-controls="profile-nav" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button></div></header><nav class="bpr-subnav" aria-label="BPR apps"><span class="bpr-subnav-mark" aria-hidden="true">BPR</span><div tabindex="0" aria-label="Scroll to see all apps"><a class="" href="/bpr" data-discover="true">Overview</a><a class="" href="/bpr/workspace" data-discover="true">Workspace</a><a class="" href="/bpr/providers" data-discover="true">Directory</a><a class="" href="/slots" data-discover="true">Hospital slots</a><a class="" href="/bpr/nphies" data-discover="true">NPHIES desk</a><a class="" href="/bpr/ai" data-discover="true">AI &amp; models</a><a aria-current="page" class="active" href="/bpr/clinic" data-discover="true">Clinic reception</a><a class="" href="/bpr/saudi" data-discover="true">For organizations</a><a class="" href="/bpr/verify" data-discover="true">Verify</a><a class="" href="/bpr/ledger" data-discover="true">Ledger</a><a class="" href="/bpr/research" data-discover="true">Research</a><a class="" href="/bpr/developers" data-discover="true">FHIR &amp; API</a><a class="" href="/bpr/join" data-discover="true">Join</a></div></nav><div class="bpr-app-body"><header class="bpr-app-head"><div class="profile-eyebrow"><span></span>Clinic Reception</div><h1>Smart clinic reception</h1><p>Explore reception with synthetic data. BPR identity and integration status have separate checks; AI configuration does not establish voice readiness.</p><div class="profile-actions"><button class="profile-button primary">Open reception<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button><a href="/bpr/nphies/" class="profile-button secondary">NPHIES Desk</a></div></header><div class="clinic-app-shell"><aside class="clinic-sidebar"><div class="clinic-brand"><span class="clinic-brand-name" dir="ltr">BrainSAIT<span class="clinic-brand-dot">.</span></span><span>Clinic Reception</span></div><nav aria-label="Clinic navigation"><button class="clinic-nav-item active" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg><span>Overview</span></button><button class="clinic-nav-item "><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><span>Requests</span></button><button class="clinic-nav-item "><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings2"><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg><span>Clinic setup</span></button><button class="clinic-nav-item "><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg><span>Patient reception</span></button><button class="clinic-nav-item "><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-check"><path d="M18 6 7 17l-5-5"></path><path d="m22 10-7.5 7.5L13 16"></path></svg><span>Front desk</span></button><button class="clinic-nav-item "><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-stethoscope"><path d="M11 2v2"></path><path d="M5 2v2"></path><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"></path><path d="M8 15a6 6 0 0 0 12 0v-3"></path><circle cx="20" cy="10" r="2"></circle></svg><span>Doctor room</span></button></nav><div class="clinic-sidebar-bottom"><div><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg><span>Demo workspace</span></div><a class="clinic-leave" href="/bpr/">Leave demo</a></div></aside><div class="clinic-main-content" id="pr-clinic-main-content" tabindex="-1"><header class="clinic-page-header"><div><div class="clinic-title-line"><h2>Reception overview</h2><span class="clinic-sample-label">Sample data</span></div><p>A calmer front desk. Every request in one place.</p></div><div class="clinic-header-actions"><button class="clinic-btn primary"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> Open reception</button></div></header><section class="clinic-panel clinic-identity-card"><div class="clinic-panel-head"><h2>Provider Identity</h2><span class="clinic-badge clinic-badge-pending">Pending</span></div><div class="clinic-identity-grid"><div class="clinic-identity-field"><label>SPID</label><div class="clinic-identity-value" dir="ltr">SA-PHY-000003</div></div><div class="clinic-identity-field"><label>OID Namespace</label><div class="clinic-identity-value" dir="ltr">1.3.6.1.4.1.61026</div></div><div class="clinic-identity-field"><label>Signed Credential</label><div class="clinic-identity-value" dir="ltr">did:web:registry.brainsait.de</div></div><div class="clinic-identity-field"><label>Dr. Mohamed El Fadil</label><div class="clinic-identity-value">Dr. Mohamed El Fadil</div></div><div class="clinic-identity-field"><label>Provider Name · Arabic</label><div class="clinic-identity-value" dir="rtl">د. محمد الفاضل</div></div><div class="clinic-identity-field"><label>OpenEMR Workspace</label><div class="clinic-identity-value">Private access · not checked here</div></div><div class="clinic-identity-field"><label>Clinical Copilot</label><div class="clinic-identity-value">Approved-answer demo · local rules · no model calls</div></div><div class="clinic-identity-field"><label>NPHIES Integration</label><div class="clinic-identity-value">NPHIES Reference Only</div></div><div class="clinic-identity-field"><label>Brev HQ Agents</label><div class="clinic-identity-value">Brev HQ Disconnected</div></div></div><div class="clinic-identity-actions"><a href="/bpr/verify/?spid=SA-PHY-000003" class="clinic-btn primary">Refresh</a><a href="https://demo.emr.brainsait.de/" target="_blank" rel="noreferrer" class="clinic-btn outline">OpenEMR Workspace</a></div></section><section class="clinic-panel"><h2>Clinic Status</h2><div class="clinic-status-grid"><div class="clinic-status-item"><div class="clinic-status-label">Registry</div><span class="clinic-status-badge clinic-status-down">Clinic Pending</span></div><div class="clinic-status-item"><div class="clinic-status-label">Model gateway</div><span class="clinic-status-badge clinic-status-down">Clinic Pending</span></div><div class="clinic-status-item"><div class="clinic-status-label">OpenEMR</div><span class="clinic-status-badge clinic-status-down">Clinic Pending</span></div><div class="clinic-status-item"><div class="clinic-status-label">WhatsApp relay</div><span class="clinic-status-badge clinic-status-down">Clinic Pending</span></div><div class="clinic-status-item"><div class="clinic-status-label">NPHIES</div><span class="clinic-status-badge clinic-status-reference">NPHIES Reference Only</span></div><div class="clinic-status-item"><div class="clinic-status-label">Reception AI</div><span class="clinic-status-badge clinic-status-reference">Local approved answers</span></div><div class="clinic-status-item"><div class="clinic-status-label">Clinic</div><span class="clinic-status-badge clinic-status-reference">Pilot workflow</span></div></div><div class="clinic-ops-grid"><article class="clinic-ops-card"><div class="clinic-ops-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></div><h3>Reception, with guardrails</h3><p>Approved administrative answers with staff handoff. No diagnosis and no model calls.</p><span>Demo entries stay in this browser</span></article><article class="clinic-ops-card"><div class="clinic-ops-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-headphones"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path></svg></div><h3>Reception voice agent &amp; QA harness</h3><p>Browser microphone capture is disabled on this public page (device read-aloud works locally). For phone-based reception testing, Patient Voice Bot QA runs 15 automated patient call scenarios via LiveKit SIP, Deepgram and OpenAI.</p><a href="https://github.com/Fadil369/patient-voice-bot-qa" target="_blank" rel="noreferrer">Inspect Patient Voice Bot QA on GitHub <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a></article><article class="clinic-ops-card"><div class="clinic-ops-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-stethoscope"><path d="M11 2v2"></path><path d="M5 2v2"></path><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"></path><path d="M8 15a6 6 0 0 0 12 0v-3"></path><circle cx="20" cy="10" r="2"></circle></svg></div><h3>Five-step encounter walkthrough</h3><p>From BPR provider lookup to triage, assessment, medications and a FHIR R4 export, on synthetic data that stays in your browser.</p><a href="/bpr/clinic/encounter/">Open the encounter walkthrough <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a></article><article class="clinic-ops-card"><div class="clinic-ops-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg></div><h3>OpenEMR</h3><p>Open the synthetic-data demo. This page has no EMR connection or appointment write-back.</p><a href="https://demo.emr.brainsait.de/" target="_blank" rel="noreferrer">Open the OpenEMR demo <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a></article><article class="clinic-ops-card"><div class="clinic-ops-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-pulse"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"></path></svg></div><h3>Copilot and models</h3><p>Service checks and model inventory do not prove inference. This public site sends no clinical data to models.</p><a href="/bpr/ai/">Review model gateway status <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a></article><article class="clinic-ops-card"><div class="clinic-ops-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg></div><h3>NPHIES desk</h3><p>Reference material and an on-device message pre-check; no eligibility, authorisation, or claims are sent to NPHIES.</p><a href="/bpr/nphies/">Open NPHIES desk <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a></article></div></section><section class="clinic-panel"><div class="clinic-panel-head"><h2>ClinicFlow Opportunity Model &amp; 15-Scenario Voice Bot QA</h2><span class="clinic-badge clinic-badge-pending">Illustrative model · calibrate with clinic logs</span></div><p class="clinic-hint">Interactive calculator estimating the financial impact of recovering after-hours inquiries, paired with the 15 automated test scenarios executed by Patient Voice Bot QA.</p><div class="clinic-form-grid"><label>Inbound inquiries / day: 60<input type="range" min="10" max="250" step="5" value="60"></label><label>Share arriving after hours: 45%<input type="range" min="10" max="80" step="5" value="45"></label><label>Inquiry → booking conversion: 30%<input type="range" min="5" max="60" step="5" value="30"></label><label>ClinicFlow recovery of lost: 35%<input type="range" min="10" max="70" step="5" value="35"></label><label>Avg. visit value (SAR)<input type="number" min="50" max="5000" step="25" value="350"></label><label>Monthly platform fee (SAR)<input type="number" min="0" max="25000" step="250" value="2500"></label></div><div class="clinic-metrics" style="margin-top: 14px;"><div class="clinic-metric"><div><span>Forgone / month (modeled)</span></div><strong dir="ltr">SAR 85,050</strong></div><div class="clinic-metric"><div><span>Net recovered / month</span></div><strong dir="ltr">SAR 27,268</strong></div><div class="clinic-metric"><div><span>Setup payback window</span></div><strong dir="ltr">13 days</strong></div></div><details class="visit-history" style="margin-top: 14px;"><summary>Inspect the 15 Patient Voice Bot QA test scenarios (LiveKit SIP + Deepgram + OpenAI)</summary><ul><li><strong dir="ltr">#01</strong> <span>New dermatology appointment booking (Arabic White Dialect)</span></li><li><strong dir="ltr">#02</strong> <span>After-hours laser session pricing &amp; Moyasar deposit link</span></li><li><strong dir="ltr">#03</strong> <span>Urgent chest pain / dyspnea red-flag emergency deflection</span></li><li><strong dir="ltr">#04</strong> <span>Dental follow-up rescheduling &amp; double-booking guard</span></li><li><strong dir="ltr">#05</strong> <span>NPHIES insurance coverage &amp; pre-authorisation inquiry</span></li><li><strong dir="ltr">#06</strong> <span>Prescription refill request → safe clinician callback handoff</span></li><li><strong dir="ltr">#07</strong> <span>ZATCA Phase-2 tax invoice &amp; VAT receipt request</span></li><li><strong dir="ltr">#08</strong> <span>PDPL data privacy &amp; recording consent inquiry</span></li><li><strong dir="ltr">#09</strong> <span>Pediatric vaccination schedule administrative FAQ</span></li><li><strong dir="ltr">#10</strong> <span>Lab results readiness check → authenticated portal routing</span></li><li><strong dir="ltr">#11</strong> <span>Bilingual caller code-switching (Arabic ↔ English mid-call)</span></li><li><strong dir="ltr">#12</strong> <span>Noisy background / speech interruption recovery test</span></li><li><strong dir="ltr">#13</strong> <span>Prompt-injection / clinical diagnosis refusal guard test</span></li><li><strong dir="ltr">#14</strong> <span>Same-day walk-in queue availability &amp; clinic hours check</span></li><li><strong dir="ltr">#15</strong> <span>Cancellation &amp; deposit refund policy escalation to staff</span></li></ul></details></section><div class="clinic-metrics"><div class="clinic-metric"><div><span>Booked</span><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock3"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16.5 12"></polyline></svg></div><strong>0</strong></div><div class="clinic-metric"><div><span>Waiting</span><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div><strong>0</strong></div><div class="clinic-metric"><div><span>In consultation</span><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-stethoscope"><path d="M11 2v2"></path><path d="M5 2v2"></path><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"></path><path d="M8 15a6 6 0 0 0 12 0v-3"></path><circle cx="20" cy="10" r="2"></circle></svg></div><strong>0</strong></div><div class="clinic-metric"><div><span>Completed</span><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-check"><path d="M18 6 7 17l-5-5"></path><path d="m22 10-7.5 7.5L13 16"></path></svg></div><strong>0</strong></div></div><section class="clinic-panel"><div class="clinic-panel-head"><h2>Appointment requests</h2><div class="clinic-search"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input aria-label="Search requests…" placeholder="Search requests…" value=""></div></div><div class="clinic-filters"><button class="clinic-btn active" aria-pressed="true">All <span>0</span></button><button class="clinic-btn outline" aria-pressed="false">Booked <span>0</span></button><button class="clinic-btn outline" aria-pressed="false">Waiting <span>0</span></button><button class="clinic-btn outline" aria-pressed="false">In consultation <span>0</span></button><button class="clinic-btn outline" aria-pressed="false">Completed <span>0</span></button><button class="clinic-btn outline" aria-pressed="false">No-show <span>0</span></button><button class="clinic-btn outline" aria-pressed="false">Cancelled <span>0</span></button></div><div class="clinic-table-scroll" role="region" aria-label="Requests" tabindex="0"><table><thead><tr><th scope="col">Request</th><th scope="col">Service</th><th scope="col">Preferred date</th><th scope="col">Status</th><th scope="col">Action</th></tr></thead><tbody></tbody></table></div><p class="clinic-empty">No requests match your search.</p></section><dialog class="clinic-dialog" aria-labelledby="clinic-dialog-title"><div class="clinic-dialog-content"><div class="clinic-panel-head"><h2 id="pr-clinic-dialog-title">Request details</h2><button class="clinic-icon-button" aria-label="Close details"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button></div></div></dialog><footer><span>Managed by BrainSAIT.</span><span>Synthetic demo only. Do not enter patient information.</span></footer></div></div></div><footer class="bpr-footer"><div class="bpr-footer-main"><div class="bpr-footer-brand"><strong>BPR</strong><p>Signed professional identity, a public directory and tools with each integration status made clear.</p></div><nav aria-label="BPR footer navigation"><div><strong>Explore</strong><a href="/bpr/providers" data-discover="true">Provider directory</a><a href="/slots" data-discover="true">Hospital slots</a><a href="/bpr/research" data-discover="true">Research footprint</a></div><div><strong>Build &amp; verify</strong><a href="/bpr/verify" data-discover="true">Public verification</a><a href="/trust/">Trust &amp; certificates</a><a href="/bpr/developers" data-discover="true">FHIR &amp; API</a><a href="/bpr/workspace" data-discover="true">Provider workspace</a></div><div><strong>BrainSAIT</strong><a href="/profile" data-discover="true">Professional profile</a><a href="https://calendar.app.google/rAqiE6pNumtECdnd7" target="_blank" rel="noreferrer">Book a demo <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a><a href="/bpr/join" data-discover="true">Join BPR</a><a href="https://registry.brainsait.de" target="_blank" rel="noreferrer">registry.brainsait.de <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a></div></nav></div><div class="bpr-footer-base"><span>© 2026 BrainSAIT · BPR</span><span class="bpr-footer-snap">Offline snapshot · 16 Nov 2026, 15:17</span></div></footer></div></main></noscript>
+  </body>
 </html>
