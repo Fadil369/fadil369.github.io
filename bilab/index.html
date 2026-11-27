@@ -149,6 +149,7 @@
         <a href="#pnu-hub" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_pnu">التعاون المقترح مع PNU</a>
         <a href="#doctors-house" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_doctors">بيت الأطباء (VisionOS)</a>
         <a href="#bpr-portal" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_bpr">جاهزية BPR</a>
+        <a href="#acc-console" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_acc">الوصول (NVDA)</a>
         <a href="#ai-concierge" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_ai">المستشار الذكي</a>
         <button id="openApplyMobileBtn" type="button" class="mt-1 inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-teal-500 to-cyan-500 px-4 py-2.5 text-sm font-bold text-slate-950">
           <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /><path d="M20 3v4" /><path d="M22 5h-4" /><path d="M4 17v2" /><path d="M5 18H3" /></svg>
@@ -549,6 +550,89 @@
       </div>
     </section>
 
+    <!-- Section 3b: Accessible Clinical Console (ACC), proposed NVDA-native accessibility track -->
+    <section id="acc-console" class="relative border-t border-white/10 py-16 lg:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-200">
+            <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="16" cy="4" r="1" /><path d="m18 19 1-7-6 1" /><path d="m5 8 3-3 5.5 3-2.36 3.5" /><path d="M4.24 14.5a5 5 0 0 0 6.88 6" /><path d="M13.76 17.5a5 5 0 0 0-6.88-6" /></svg>
+            <span data-i18n="acc_badge">مسار مقترح • إمكانية الوصول السريري</span>
+          </span>
+          <h2 class="mt-3 text-2xl font-bold text-white sm:text-4xl" data-i18n="acc_title">وحدة التحكم السريرية الميسّرة (ACC): قارئ الشاشة NVDA طبقةً للتحكم في الوصول</h2>
+          <p class="mt-2.5 text-sm leading-relaxed text-slate-300 sm:text-base" data-i18n="acc_desc">بدلاً من الاكتفاء بسؤال «هل تعمل واجهاتنا مع NVDA؟»، يقترح هذا المسار أن يكون قارئ الشاشة المفتوح المصدر NVDA مشاركاً فعلياً في سير العمل السريري: تُنطق التنبيهات وتسليمات الوكلاء الذكية عبره، ويسمع الطبيب الكفيف كل خطوة يتخذها الوكيل نيابةً عنه، ويُختبر كل إصدار بقارئ شاشة حقيقي قبل وصوله إلى المستخدم.</p>
+          <p class="mt-4 rounded-xl border border-amber-400/25 bg-amber-500/5 px-3.5 py-2.5 text-xs leading-relaxed text-amber-100" data-i18n="acc_disclaimer">تنويه: ACC مسار مقترح لم يُبنَ بعد، ولا يرتبط رسمياً بمنظمة NV Access. تفصل الشارات أدناه بين ما يتيحه NVDA وأدواته اليوم وما يخطط المختبر لبنائه.</p>
+        </div>
+
+        <div class="mt-10 grid gap-4 sm:grid-cols-2">
+            <div class="glass-panel rounded-2xl p-5">
+              <div class="flex items-center justify-between gap-2">
+                <svg class="h-5 w-5 text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" /><path d="M16 9a5 5 0 0 1 0 6" /><path d="M19.364 18.364a9 9 0 0 0 0-12.728" /></svg>
+                <div class="flex flex-wrap justify-end gap-1.5">
+                  <span class="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-300" data-i18n="acc_st_avail">متاح اليوم</span>
+                  <span class="rounded-full bg-amber-500/15 px-2.5 py-0.5 text-[11px] font-semibold text-amber-200" data-i18n="acc_st_planned">مخطط في ACC</span>
+                </div>
+              </div>
+              <h3 class="mt-3 text-sm font-bold text-white sm:text-base" data-i18n="acc_c1_t">النطق السريري البرمجي</h3>
+              <p class="mt-1.5 text-xs leading-relaxed text-slate-300 sm:text-sm" data-i18n="acc_c1_d">تتيح واجهة NVDA Controller Client لأي تطبيق نطق نص أو عرض رسالة على سطر برايل مباشرة، وتدعم SSML منذ NVDA 2024.1. سيستخدمها ACC لإعلان تنبيهات NPHIES وتسليم المهام بين الوكلاء دون انتظار المستخدم للوصول إلى منطقة التنبيه.</p>
+              <p class="mt-3 font-mono text-[11px] text-slate-400" dir="ltr">nvdaControllerClient.dll · speakText · speakSsml</p>
+            </div>
+            <div class="glass-panel rounded-2xl p-5">
+              <div class="flex items-center justify-between gap-2">
+                <svg class="h-5 w-5 text-cyan-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 8V4H8" /><rect width="16" height="12" x="4" y="8" rx="2" /><path d="M2 14h2" /><path d="M20 14h2" /><path d="M15 13v2" /><path d="M9 13v2" /></svg>
+                <div class="flex flex-wrap justify-end gap-1.5">
+                  <span class="rounded-full bg-cyan-500/15 px-2.5 py-0.5 text-[11px] font-semibold text-cyan-200" data-i18n="acc_st_community">مشروع مجتمعي</span>
+                  <span class="rounded-full bg-amber-500/15 px-2.5 py-0.5 text-[11px] font-semibold text-amber-200" data-i18n="acc_st_planned">مخطط في ACC</span>
+                </div>
+              </div>
+              <h3 class="mt-3 text-sm font-bold text-white sm:text-base" data-i18n="acc_c2_t">جسر بين الوكيل الذكي والطبيب عبر MCP</h3>
+              <p class="mt-1.5 text-xs leading-relaxed text-slate-300 sm:text-sm" data-i18n="acc_c2_d">يتصل خادم nvda-mcp المجتمعي (وليس من منتجات NV Access) بقارئ NVDA عبر ميزة Remote المدمجة، فيرسل ضغطات المفاتيح ويقرأ مخرجات النطق وبرايل. بذلك يمكن لوكيل ذكي أن يعمل نيابةً عن طبيب كفيف بينما يسمع الطبيب كل خطوة.</p>
+              <p class="mt-3 font-mono text-[11px] text-slate-400" dir="ltr">nvda-mcp (community) · NVDA Remote</p>
+            </div>
+            <div class="glass-panel rounded-2xl p-5">
+              <div class="flex items-center justify-between gap-2">
+                <svg class="h-5 w-5 text-amber-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13 5h8" /><path d="M13 12h8" /><path d="M13 19h8" /><path d="m3 17 2 2 4-4" /><path d="m3 7 2 2 4-4" /></svg>
+                <div class="flex flex-wrap justify-end gap-1.5">
+                  <span class="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-300" data-i18n="acc_st_avail">متاح اليوم</span>
+                  <span class="rounded-full bg-amber-500/15 px-2.5 py-0.5 text-[11px] font-semibold text-amber-200" data-i18n="acc_st_planned">مخطط في ACC</span>
+                </div>
+              </div>
+              <h3 class="mt-3 text-sm font-bold text-white sm:text-base" data-i18n="acc_c3_t">بوابة اختبار بقارئ شاشة حقيقي في CI</h3>
+              <p class="mt-1.5 text-xs leading-relaxed text-slate-300 sm:text-sm" data-i18n="acc_c3_d">تشغّل مكتبة Guidepup قارئ NVDA على Windows وتعيد سجل العبارات المنطوقة، ولها إجراء إعداد جاهز لـ GitHub Actions. يمكن أن تصبح سير عمل قابلاً لإعادة الاستخدام في مكتبة B.I.Lab يقارن النطق الفعلي بنص متوقع في كل طلب دمج.</p>
+              <p class="mt-3 font-mono text-[11px] text-slate-400" dir="ltr">Guidepup · spokenPhraseLog · guidepup/setup-action</p>
+            </div>
+            <div class="glass-panel rounded-2xl p-5">
+              <div class="flex items-center justify-between gap-2">
+                <svg class="h-5 w-5 text-emerald-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6" /><path d="m4 14 6-6 2-3" /><path d="M2 5h12" /><path d="M7 2h1" /><path d="m22 22-5-10-5 10" /><path d="M14 18h6" /></svg>
+                <div class="flex flex-wrap justify-end gap-1.5">
+                  <span class="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-300" data-i18n="acc_st_avail">متاح اليوم</span>
+                  <span class="rounded-full bg-amber-500/15 px-2.5 py-0.5 text-[11px] font-semibold text-amber-200" data-i18n="acc_st_planned">مخطط في ACC</span>
+                </div>
+              </div>
+              <h3 class="mt-3 text-sm font-bold text-white sm:text-base" data-i18n="acc_c4_t">تكافؤ عربي ودعم لضعاف البصر</h3>
+              <p class="mt-1.5 text-xs leading-relaxed text-slate-300 sm:text-sm" data-i18n="acc_c4_d">واجهة NVDA متاحة بأكثر من 55 لغة منها العربية، وأضاف الإصدار 2026.2 مكبّراً مدمجاً مع فلاتر ألوان. سيتحقق ACC من نطق المحتوى العربي الممزوج برموز سريرية إنجليزية، ومن وضوح لوحات الحالة لضعاف البصر.</p>
+              <p class="mt-3 font-mono text-[11px] text-slate-400" dir="ltr">NVDA 2026.2 · Magnifier · colour filters</p>
+            </div>
+        </div>
+
+        <div class="mt-6 glass-panel rounded-2xl p-5">
+          <h3 class="text-sm font-bold text-teal-300" data-i18n="acc_fit_title">أين يرتبط ACC بأقسام هذا المختبر</h3>
+          <ul class="mt-3 grid gap-3 text-xs leading-relaxed text-slate-300 sm:grid-cols-3 sm:text-sm">
+            <li><a href="#bpr-portal" class="font-semibold text-cyan-200 underline decoration-cyan-400/40 underline-offset-4 hover:text-cyan-100" data-i18n="nav_bpr">جاهزية BPR</a> <span data-i18n="acc_fit_bpr">إعلان كل خطوة (البحث، التسجيل، إصدار الاعتماد) ونتيجة التحقق صوتياً وعلى برايل.</span></li>
+            <li><a href="#doctors-house" class="font-semibold text-cyan-200 underline decoration-cyan-400/40 underline-offset-4 hover:text-cyan-100" data-i18n="nav_doctors">بيت الأطباء (VisionOS)</a> <span data-i18n="acc_fit_doc">نطق حالة سيناريو المحاكاة للمتدربين الذين يتابعون الجلسة سماعياً.</span></li>
+            <li><a href="#ai-concierge" class="font-semibold text-cyan-200 underline decoration-cyan-400/40 underline-offset-4 hover:text-cyan-100" data-i18n="nav_ai">المستشار الذكي</a> <span data-i18n="acc_fit_ai">سجل المحادثة منطقة حية (aria-live) بالفعل؛ يضيف ACC اختباره بنطق NVDA الفعلي.</span></li>
+          </ul>
+        </div>
+
+        <p class="mt-6 text-[11px] leading-relaxed text-slate-400">
+          <span data-i18n="acc_sources">المصادر:</span>
+          <a href="https://github.com/nvaccess/nvda/blob/master/extras/controllerClient/readme.md" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-teal-300">NVDA Controller Client</a> ·
+          <a href="https://github.com/bramd/nvda-mcp" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-teal-300">nvda-mcp</a> ·
+          <a href="https://github.com/guidepup/guidepup" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-teal-300">Guidepup</a> ·
+          <a href="https://www.nvaccess.org/about-nvda/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-teal-300">NV Access</a>
+        </p>
+      </div>
+    </section>
+
     <!-- Section 4: Native Arabic AI Lab Concierge -->
     <section id="ai-concierge" class="relative border-t border-white/10 bg-[#070d1e]/90 py-16 lg:py-24">
       <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -763,6 +847,27 @@
         alt_hero: 'تصوّر لمقر مختبر برينسايت للابتكار في الرياض',
         alt_pnu: 'تصوّر لاستوديو حاضنة الابتكار المشتركة (مقترحة)',
         alt_doctors: 'تصوّر لمختبر بيت الأطباء للمحاكاة على Apple Vision Pro',
+        nav_acc: 'الوصول (NVDA)',
+        acc_badge: 'مسار مقترح • إمكانية الوصول السريري',
+        acc_title: 'وحدة التحكم السريرية الميسّرة (ACC): قارئ الشاشة NVDA طبقةً للتحكم في الوصول',
+        acc_desc: 'بدلاً من الاكتفاء بسؤال «هل تعمل واجهاتنا مع NVDA؟»، يقترح هذا المسار أن يكون قارئ الشاشة المفتوح المصدر NVDA مشاركاً فعلياً في سير العمل السريري: تُنطق التنبيهات وتسليمات الوكلاء الذكية عبره، ويسمع الطبيب الكفيف كل خطوة يتخذها الوكيل نيابةً عنه، ويُختبر كل إصدار بقارئ شاشة حقيقي قبل وصوله إلى المستخدم.',
+        acc_disclaimer: 'تنويه: ACC مسار مقترح لم يُبنَ بعد، ولا يرتبط رسمياً بمنظمة NV Access. تفصل الشارات أدناه بين ما يتيحه NVDA وأدواته اليوم وما يخطط المختبر لبنائه.',
+        acc_st_avail: 'متاح اليوم',
+        acc_st_community: 'مشروع مجتمعي',
+        acc_st_planned: 'مخطط في ACC',
+        acc_c1_t: 'النطق السريري البرمجي',
+        acc_c1_d: 'تتيح واجهة NVDA Controller Client لأي تطبيق نطق نص أو عرض رسالة على سطر برايل مباشرة، وتدعم SSML منذ NVDA 2024.1. سيستخدمها ACC لإعلان تنبيهات NPHIES وتسليم المهام بين الوكلاء دون انتظار المستخدم للوصول إلى منطقة التنبيه.',
+        acc_c2_t: 'جسر بين الوكيل الذكي والطبيب عبر MCP',
+        acc_c2_d: 'يتصل خادم nvda-mcp المجتمعي (وليس من منتجات NV Access) بقارئ NVDA عبر ميزة Remote المدمجة، فيرسل ضغطات المفاتيح ويقرأ مخرجات النطق وبرايل. بذلك يمكن لوكيل ذكي أن يعمل نيابةً عن طبيب كفيف بينما يسمع الطبيب كل خطوة.',
+        acc_c3_t: 'بوابة اختبار بقارئ شاشة حقيقي في CI',
+        acc_c3_d: 'تشغّل مكتبة Guidepup قارئ NVDA على Windows وتعيد سجل العبارات المنطوقة، ولها إجراء إعداد جاهز لـ GitHub Actions. يمكن أن تصبح سير عمل قابلاً لإعادة الاستخدام في مكتبة B.I.Lab يقارن النطق الفعلي بنص متوقع في كل طلب دمج.',
+        acc_c4_t: 'تكافؤ عربي ودعم لضعاف البصر',
+        acc_c4_d: 'واجهة NVDA متاحة بأكثر من 55 لغة منها العربية، وأضاف الإصدار 2026.2 مكبّراً مدمجاً مع فلاتر ألوان. سيتحقق ACC من نطق المحتوى العربي الممزوج برموز سريرية إنجليزية، ومن وضوح لوحات الحالة لضعاف البصر.',
+        acc_fit_title: 'أين يرتبط ACC بأقسام هذا المختبر',
+        acc_fit_bpr: 'إعلان كل خطوة (البحث، التسجيل، إصدار الاعتماد) ونتيجة التحقق صوتياً وعلى برايل.',
+        acc_fit_doc: 'نطق حالة سيناريو المحاكاة للمتدربين الذين يتابعون الجلسة سماعياً.',
+        acc_fit_ai: 'سجل المحادثة منطقة حية (aria-live) بالفعل؛ يضيف ACC اختباره بنطق NVDA الفعلي.',
+        acc_sources: 'المصادر:',
         chat_placeholder: 'اكتب سؤالك هنا حول المختبر أو بيت الأطباء أو BPR...'
       },
       en: {
@@ -852,6 +957,27 @@
         alt_hero: 'Concept render of the BrainSAIT Innovation Lab in Riyadh',
         alt_pnu: 'Concept render of the joint innovation incubation studio',
         alt_doctors: 'Concept render of the House for Doctors Apple Vision Pro simulation lab',
+        nav_acc: 'ACC (NVDA)',
+        acc_badge: 'Proposed track • Clinical accessibility',
+        acc_title: 'Accessible Clinical Console (ACC): NVDA as an accessibility control plane',
+        acc_desc: 'Instead of only asking whether our interfaces work with NVDA, this track makes the open-source NVDA screen reader a participant in the clinical workflow: alerts and AI agent handoffs are spoken through it, a blind clinician hears every step an agent takes on their behalf, and each release is checked against a real screen reader before it reaches users.',
+        acc_disclaimer: 'Note: ACC is a proposed track that has not been built yet and is not affiliated with NV Access. The tags below separate what NVDA and its tooling offer today from what the lab plans to build.',
+        acc_st_avail: 'Available today',
+        acc_st_community: 'Community project',
+        acc_st_planned: 'Planned for ACC',
+        acc_c1_t: 'Programmatic clinical speech',
+        acc_c1_d: "NVDA's Controller Client API lets an application speak text or push a braille message directly, with SSML support since NVDA 2024.1. ACC would use it to announce NPHIES alerts and agent handoffs without waiting for the user to reach an alert region.",
+        acc_c2_t: 'Agent-to-clinician bridge over MCP',
+        acc_c2_d: "The community nvda-mcp server (not an NV Access product) connects through NVDA's built-in Remote feature to send keystrokes and read speech and braille output. An AI agent could act for a blind clinician while the clinician hears every step.",
+        acc_c3_t: 'A real screen-reader gate in CI',
+        acc_c3_d: 'Guidepup drives NVDA on Windows and returns the spoken phrase log, with a ready-made setup action for GitHub Actions. It could become a reusable workflow in the B.I.Lab library that diffs real speech against an expected transcript on every pull request.',
+        acc_c4_t: 'Arabic parity and low-vision support',
+        acc_c4_d: "NVDA's interface is available in more than 55 languages including Arabic, and NVDA 2026.2 added a built-in Magnifier with colour filters. ACC would check how Arabic content mixed with English clinical codes is spoken, and that status dashboards stay legible for low-vision users.",
+        acc_fit_title: 'Where ACC connects to this lab',
+        acc_fit_bpr: 'Announce each step (search, enroll, issue credential) and its validation result in speech and braille.',
+        acc_fit_doc: 'Speak the simulation scenario state for trainees following a session by audio.',
+        acc_fit_ai: 'The chat log is already an aria-live region; ACC would test it against real NVDA speech.',
+        acc_sources: 'Sources:',
         chat_placeholder: 'Ask about B.I.Lab, House for Doctors, PNU, or BPR...'
       }
     };
@@ -1319,6 +1445,12 @@
       const q = promptText.toLowerCase();
       const isEn = state.lang === 'en' && !/[\u0600-\u06FF]/.test(promptText);
 
+      if (/nvda|acc\b|accessib|screen reader|braille|a11y/.test(q) || /الوصول|قارئ الشاشة|برايل|كفيف|المكفوفين|ضعاف البصر/.test(promptText)) {
+        return isEn
+          ? 'Accessible Clinical Console (ACC) is a proposed B.I.Lab track that makes the NVDA screen reader part of the clinical workflow: alerts spoken through NVDA\'s Controller Client API, AI agents acting for blind clinicians through the community nvda-mcp server, and a Guidepup-based CI gate that checks real NVDA speech. It has not been built yet and is not affiliated with NV Access.'
+          : 'وحدة التحكم السريرية الميسّرة (ACC) مسار مقترح في B.I.Lab يجعل قارئ الشاشة NVDA جزءاً من سير العمل السريري: نطق التنبيهات عبر واجهة NVDA Controller Client، وعمل الوكلاء الذكيين نيابةً عن الأطباء المكفوفين عبر خادم nvda-mcp المجتمعي، وبوابة اختبار في CI تعتمد على Guidepup للتحقق من نطق NVDA الفعلي. لم يُبنَ المسار بعد ولا يرتبط رسمياً بمنظمة NV Access.';
+      }
+
       if (q.includes('pnu') || q.includes('نورة') || q.includes('جامعة') || q.includes('شراكة')) {
         return isEn
           ? 'The proposed PNU collaboration would align B.I.Lab incubation with PNU’s Clinical Skills & Simulation Center (including the VR Surgical Training Lab), Nourah Biobank near KAAUH, and the Robotics & Data Analytics Labs.'
@@ -1360,8 +1492,8 @@
       log.scrollTop = log.scrollHeight;
 
       const chips = state.lang === 'ar'
-        ? ['ما هو التعاون المقترح مع جامعة الأميرة نورة؟', 'ما هي تطبيقات بيت الأطباء على Apple Vision Pro؟', 'كيف تعمل منظومة BPR مع FHIR R4؟']
-        : ['What is the proposed PNU collaboration?', 'What apps are in House for Doctors?', 'Explain BPR & FHIR R4 readiness'];
+        ? ['ما هو التعاون المقترح مع جامعة الأميرة نورة؟', 'ما هي تطبيقات بيت الأطباء على Apple Vision Pro؟', 'كيف تعمل منظومة BPR مع FHIR R4؟', 'ما هو مسار الوصول الميسّر ACC مع NVDA؟']
+        : ['What is the proposed PNU collaboration?', 'What apps are in House for Doctors?', 'Explain BPR & FHIR R4 readiness', 'What is the ACC accessibility track with NVDA?'];
 
       document.getElementById('aiQuickChips').innerHTML = chips.map((c) => `
         <button type="button" class="ai-chip rounded-full border border-teal-400/25 bg-teal-500/10 px-3 py-1 text-[11px] font-medium text-teal-200 hover:bg-teal-500/20 transition">${c}</button>
