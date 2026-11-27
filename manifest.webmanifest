@@ -17,7 +17,7 @@
   "shortcuts": [
     { "name": "Verify a provider", "url": "/bpr/verify", "description": "Check a BPR credential on this device" },
     { "name": "Provider wizard", "url": "/bpr/wizard/", "description": "Register a clinician — ORCID, credentials, FHIR R4 export" },
-    { "name": "ClinicFlow reception", "url": "/bpr/clinic/", "description": "Synthetic-data reception encounter → FHIR R4" },
+    { "name": "ClinicFlow reception", "url": "/bpr/clinic/", "description": "Synthetic-data reception, visit flow and encounter walkthrough" },
     { "name": "BOS back office", "url": "/bos/", "description": "Provider directory, users, audit log, settings" },
     { "name": "FHIR validator", "url": "/bpr/validate/", "description": "Validate FHIR R4 bundles before submission" },
     { "name": "CV", "url": "/cv" },
