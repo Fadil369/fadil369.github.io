@@ -126,6 +126,7 @@
         <a href="#doctors-house" class="transition hover:text-teal-300" data-i18n="nav_doctors">بيت الأطباء (VisionOS)</a>
         <a href="#bpr-portal" class="transition hover:text-teal-300" data-i18n="nav_bpr">جاهزية BPR</a>
         <a href="#ai-concierge" class="transition hover:text-teal-300" data-i18n="nav_ai">المستشار الذكي</a>
+        <a href="#dev-hub" class="transition hover:text-teal-300" data-i18n="nav_dev">للمطورين</a>
       </nav>
 
       <div class="flex items-center gap-2.5">
@@ -150,6 +151,7 @@
         <a href="#doctors-house" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_doctors">بيت الأطباء (VisionOS)</a>
         <a href="#bpr-portal" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_bpr">جاهزية BPR</a>
         <a href="#ai-concierge" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_ai">المستشار الذكي</a>
+        <a href="#dev-hub" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_dev">للمطورين</a>
         <button id="openApplyMobileBtn" type="button" class="mt-1 inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-teal-500 to-cyan-500 px-4 py-2.5 text-sm font-bold text-slate-950">
           <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /><path d="M20 3v4" /><path d="M22 5h-4" /><path d="M4 17v2" /><path d="M5 18H3" /></svg>
           <span data-i18n="nav_apply">احتضن مشروعك</span>
@@ -586,6 +588,92 @@
         </div>
       </div>
     </section>
+
+    <!-- Developer Hub: B.I.Lab submodules -->
+    <section id="dev-hub" class="relative py-16 lg:py-24" aria-labelledby="devHubTitle">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto">
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-500/10 px-3.5 py-1 text-xs font-semibold text-amber-200">
+            <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="18" cy="18" r="3" /><circle cx="6" cy="6" r="3" /><path d="M6 21V9a9 9 0 0 0 9 9" /></svg>
+            <span data-i18n="dev_badge">للمطورين</span>
+          </span>
+          <h2 id="devHubTitle" class="mt-3 text-2xl font-bold text-white sm:text-3xl" data-i18n="dev_title">مشاريع المختبر كوحدات Git فرعية</h2>
+          <p class="mt-2 text-sm text-slate-300" data-i18n="dev_desc">يجمع مستودع B.I.Lab مشاريع BrainSAIT العامة كـ submodules: كل مشروع يبقى في مستودعه، والمختبر يثبّت إصداراً محدداً منه. هذه الأوامر تكفي للبدء.</p>
+        </div>
+
+        <div class="mt-6 flex flex-wrap justify-center gap-2" aria-label="Submodules">
+            <a href="https://github.com/Fadil369/agent-visibility" target="_blank" rel="noopener noreferrer" class="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] text-slate-300 hover:border-teal-400/40 hover:text-teal-200" dir="ltr">projects/agent-visibility</a>
+            <a href="https://github.com/Fadil369/brainsait-superagent" target="_blank" rel="noopener noreferrer" class="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] text-slate-300 hover:border-teal-400/40 hover:text-teal-200" dir="ltr">projects/brainsait-superagent</a>
+            <a href="https://github.com/Fadil369/brainsait-ai-automation" target="_blank" rel="noopener noreferrer" class="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] text-slate-300 hover:border-teal-400/40 hover:text-teal-200" dir="ltr">projects/brainsait-ai-automation</a>
+            <a href="https://github.com/Fadil369/fadil369.github.io" target="_blank" rel="noopener noreferrer" class="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] text-slate-300 hover:border-teal-400/40 hover:text-teal-200" dir="ltr">projects/fadil369.github.io</a>
+        </div>
+
+        <ol class="mt-8 grid gap-4 sm:grid-cols-2">
+          <li class="glass-panel min-w-0 rounded-2xl p-4">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h3 class="text-sm font-bold text-white" data-i18n="dev_s1">١. استنساخ المختبر مع كل المشاريع</h3>
+                <p class="mt-1 text-xs text-slate-400" data-i18n="dev_s1_d">ينزّل المستودع ومشاريعه الفرعية في خطوة واحدة.</p>
+              </div>
+              <button type="button" class="dev-copy inline-flex shrink-0 items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-slate-300 hover:text-white" aria-describedby="dev_s1-cmd">
+                <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
+                <span data-i18n="dev_copy">نسخ</span>
+              </button>
+            </div>
+            <pre dir="ltr" class="mt-3 overflow-x-auto rounded-xl border border-white/10 bg-slate-950/80 p-3 text-left font-mono text-[12px] leading-relaxed text-teal-200"><code id="dev_s1-cmd">git clone --recurse-submodules https://github.com/Fadil369/B.I.Lab.git</code></pre>
+          </li>
+          <li class="glass-panel min-w-0 rounded-2xl p-4">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h3 class="text-sm font-bold text-white" data-i18n="dev_s2">٢. استنساخ سابق بدون المشاريع؟</h3>
+                <p class="mt-1 text-xs text-slate-400" data-i18n="dev_s2_d">يجلب المشاريع الفرعية لنسخة موجودة.</p>
+              </div>
+              <button type="button" class="dev-copy inline-flex shrink-0 items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-slate-300 hover:text-white" aria-describedby="dev_s2-cmd">
+                <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
+                <span data-i18n="dev_copy">نسخ</span>
+              </button>
+            </div>
+            <pre dir="ltr" class="mt-3 overflow-x-auto rounded-xl border border-white/10 bg-slate-950/80 p-3 text-left font-mono text-[12px] leading-relaxed text-teal-200"><code id="dev_s2-cmd">git submodule update --init --recursive</code></pre>
+          </li>
+          <li class="glass-panel min-w-0 rounded-2xl p-4">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h3 class="text-sm font-bold text-white" data-i18n="dev_s3">٣. تحديث مشروع إلى آخر إصدار</h3>
+                <p class="mt-1 text-xs text-slate-400" data-i18n="dev_s3_d">ينقل المؤشر إلى أحدث commit ثم يثبّته في المختبر.</p>
+              </div>
+              <button type="button" class="dev-copy inline-flex shrink-0 items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-slate-300 hover:text-white" aria-describedby="dev_s3-cmd">
+                <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
+                <span data-i18n="dev_copy">نسخ</span>
+              </button>
+            </div>
+            <pre dir="ltr" class="mt-3 overflow-x-auto rounded-xl border border-white/10 bg-slate-950/80 p-3 text-left font-mono text-[12px] leading-relaxed text-teal-200"><code id="dev_s3-cmd">git submodule update --remote projects/agent-visibility
+git add projects/agent-visibility
+git commit -m "chore: bump agent-visibility"</code></pre>
+          </li>
+          <li class="glass-panel min-w-0 rounded-2xl p-4">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h3 class="text-sm font-bold text-white" data-i18n="dev_s4">٤. فحص حالة المؤشرات</h3>
+                <p class="mt-1 text-xs text-slate-400" data-i18n="dev_s4_d">يعرض الـ commit المثبّت لكل مشروع.</p>
+              </div>
+              <button type="button" class="dev-copy inline-flex shrink-0 items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-slate-300 hover:text-white" aria-describedby="dev_s4-cmd">
+                <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
+                <span data-i18n="dev_copy">نسخ</span>
+              </button>
+            </div>
+            <pre dir="ltr" class="mt-3 overflow-x-auto rounded-xl border border-white/10 bg-slate-950/80 p-3 text-left font-mono text-[12px] leading-relaxed text-teal-200"><code id="dev_s4-cmd">git submodule status</code></pre>
+          </li>
+        </ol>
+
+        <div class="mt-6 flex flex-col items-center gap-2 text-center">
+          <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules" target="_blank" rel="noopener noreferrer" hreflang="en" class="inline-flex items-center gap-2 rounded-xl border border-amber-400/35 bg-amber-500/10 px-4 py-2.5 text-xs font-bold text-amber-200 hover:bg-amber-500/20">
+            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 7v14" /><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" /></svg>
+            <span data-i18n="dev_guide">اقرأ الدليل الكامل: Pro Git — Submodules</span>
+          </a>
+          <p class="text-[11px] text-slate-500" data-i18n="dev_guide_note">الدليل باللغة الإنجليزية، من كتاب Pro Git المجاني.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Footer -->
@@ -603,7 +691,7 @@
           <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg>
           <span>Fadil369/B.I.Lab</span>
         </a>
-        <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules" target="_blank" rel="noopener noreferrer" hreflang="en" class="inline-flex items-center gap-1.5 hover:text-orange-300">
+        <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules" target="_blank" rel="noopener noreferrer" hreflang="en" class="inline-flex items-center gap-1.5 hover:text-amber-300">
           <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 7v14" /><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" /></svg>
           <span data-i18n="footer_submodules">دليل Git Submodules (Pro Git)</span>
         </a>
@@ -746,6 +834,22 @@
         ai_title: 'مستشار مختبر B.I.Lab الذكي',
         ai_desc: 'اسأل بالعربية أو الإنجليزية عن احتضان المشاريع، التعاون المقترح مع جامعة الأميرة نورة، تطبيقات Apple Vision Pro، أو ربط BPR مع FHIR R4.',
         ai_send: 'إرسال',
+        dev_s1: '١. استنساخ المختبر مع كل المشاريع',
+        dev_s1_d: 'ينزّل المستودع ومشاريعه الفرعية في خطوة واحدة.',
+        dev_s2: '٢. استنساخ سابق بدون المشاريع؟',
+        dev_s2_d: 'يجلب المشاريع الفرعية لنسخة موجودة.',
+        dev_s3: '٣. تحديث مشروع إلى آخر إصدار',
+        dev_s3_d: 'ينقل المؤشر إلى أحدث commit ثم يثبّته في المختبر.',
+        dev_s4: '٤. فحص حالة المؤشرات',
+        dev_s4_d: 'يعرض الـ commit المثبّت لكل مشروع.',
+        nav_dev: 'للمطورين',
+        dev_badge: 'للمطورين',
+        dev_title: 'مشاريع المختبر كوحدات Git فرعية',
+        dev_desc: 'يجمع مستودع B.I.Lab مشاريع BrainSAIT العامة كـ submodules: كل مشروع يبقى في مستودعه، والمختبر يثبّت إصداراً محدداً منه. هذه الأوامر تكفي للبدء.',
+        dev_copy: 'نسخ',
+        dev_guide: 'اقرأ الدليل الكامل: Pro Git — Submodules',
+        dev_guide_note: 'الدليل باللغة الإنجليزية، من كتاب Pro Git المجاني.',
+        dev_copied: 'تم نسخ الأمر.',
         footer_submodules: 'دليل Git Submodules (Pro Git)',
         footer_sub: 'بقيادة د. محمد الفاضل • BrainSAIT Ltd. — حلول ذكية، مؤتمتة، متكاملة • الرياض، المملكة العربية السعودية',
         modal_title: 'التقديم لاحتضان مشروع أو الانضمام لبيت الأطباء',
@@ -836,6 +940,22 @@
         ai_title: 'B.I.Lab Intelligent Concierge',
         ai_desc: 'Ask in Arabic or English about project incubation, the proposed PNU collaboration, Apple Vision Pro apps, or BPR & FHIR R4 integration.',
         ai_send: 'Send',
+        dev_s1: '1. Clone the lab with every project',
+        dev_s1_d: 'Pulls the repository and its submodules in one step.',
+        dev_s2: '2. Already cloned without them?',
+        dev_s2_d: 'Fetches the submodules into an existing checkout.',
+        dev_s3: '3. Bump one project to its latest commit',
+        dev_s3_d: 'Moves the pointer forward, then records it in the lab.',
+        dev_s4: '4. Check pointer status',
+        dev_s4_d: 'Shows the pinned commit for each project.',
+        nav_dev: 'Developers',
+        dev_badge: 'For developers',
+        dev_title: 'Lab projects as Git submodules',
+        dev_desc: 'The B.I.Lab repository gathers public BrainSAIT projects as submodules: each project lives in its own repo, and the lab pins an exact version of it. These commands are all you need to start.',
+        dev_copy: 'Copy',
+        dev_guide: 'Read the full guide: Pro Git — Submodules',
+        dev_guide_note: 'From the free Pro Git book.',
+        dev_copied: 'Command copied.',
         footer_submodules: 'Git Submodules guide (Pro Git)',
         footer_sub: 'Led by Dr. Mohamed El Fadil • BrainSAIT Ltd. — Solutions, Automated, Integrated • Riyadh, Saudi Arabia',
         modal_title: 'Apply for Incubation or House for Doctors',
@@ -1541,6 +1661,25 @@
         document.body.removeChild(ta);
       }
       showToast(state.lang === 'ar' ? 'تم نسخ حمولة FHIR R4 بنجاح.' : 'FHIR R4 payload copied.');
+    });
+
+    document.getElementById('dev-hub').addEventListener('click', (e) => {
+      const btn = e.target.closest('.dev-copy');
+      if (!btn) return;
+      const code = document.getElementById(btn.getAttribute('aria-describedby'));
+      const text = code ? code.textContent : '';
+      const done = () => showToast(I18N[state.lang].dev_copied);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(() => {});
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        done();
+      }
     });
 
     document.getElementById('aiQuickChips').addEventListener('click', (e) => {
