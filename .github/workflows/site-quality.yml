@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify:
-    uses: Fadil369/B.I.Lab/.github/workflows/node-site.yml@c4fa07d0969927a0fe225b3b33d8ce807c0ab706 # switch to @v1 once tagged
+    uses: Fadil369/B.I.Lab/.github/workflows/node-site.yml@51ca213d45387a2fc21d24dd9e2436f5bcc5f2c4 # switch to @v1 once tagged
     with:
       node-version: '24'
       pre-browser-commands: |
