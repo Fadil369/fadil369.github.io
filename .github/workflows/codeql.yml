@@ -14,6 +14,6 @@ jobs:
       packages: read
       actions: read
       contents: read
-    uses: Fadil369/B.I.Lab/.github/workflows/codeql.yml@v1
+    uses: Fadil369/B.I.Lab/.github/workflows/codeql.yml@c4fa07d0969927a0fe225b3b33d8ce807c0ab706 # switch to @v1 once tagged
     with:
       languages: '["javascript-typescript"]'
