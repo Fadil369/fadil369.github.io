@@ -30,33 +30,49 @@
   .lang a{color:var(--muted);text-decoration:none;margin:0 12px;font-size:13px}
   .lang a:hover{color:var(--ink)}
 </style>
+<!-- standalone:meta -->
+<meta name="bs-page" content="standalone">
+<meta name="description" content="You are offline. Cached pages and local drafts are still available on this device.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BrainSAIT">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Offline — BrainSAIT">
+<meta property="og:description" content="You are offline. Cached pages and local drafts are still available on this device.">
+<meta property="og:url" content="https://fadil369.github.io/offline/">
+<meta property="og:image" content="https://fadil369.github.io/assets/og/bpr.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Offline — BrainSAIT">
+<meta name="twitter:description" content="You are offline. Cached pages and local drafts are still available on this device.">
+<meta name="twitter:image" content="https://fadil369.github.io/assets/og/bpr.png">
+<!-- /standalone:meta -->
 </head>
 <body>
 <div class="card">
-  <div class="dot"></div>
+  <div class="dot" aria-hidden="true"></div>
   <h1 id="title">You’re offline</h1>
   <p id="subtitle">No internet connection. Your data stays on this device — open a cached page or reconnect to continue.</p>
-  <div class="status" id="status"><span class="led"></span>Offline</div>
+  <div class="status" id="status" role="status"><span class="led" aria-hidden="true"></span>Offline</div>
   <div class="actions">
     <a href="/" class="btn btn--primary">Go home</a>
-    <button class="btn btn--outline" onclick="location.reload()" id="retryBtn">Try again</button>
+    <button type="button" class="btn btn--outline" id="retryBtn">Try again</button>
   </div>
   <p class="hint" id="hint">Drafts and filled forms are saved locally. They’ll sync when you’re back online.</p>
   <div class="lang">
-    <a href="/ar/offline/">العربية</a> · <a href="/">English</a>
+    <a href="/ar/offline/" lang="ar">العربية</a> · <a href="/">English</a>
   </div>
 </div>
 <script>
-// Auto-retry when connection returns
-let checked = false;
+// Leave this page once the connection is back. Reloading /offline/ itself would loop every few seconds.
+const HOME = location.pathname.startsWith('/ar/') ? '/ar/' : '/';
 async function checkOnline(){
   try{
-    const res = await fetch(new URL(window.location.href).origin + '/manifest.webmanifest', {cache:'no-store'});
-    if(res.ok && !checked){ checked = true; location.reload(); }
+    const res = await fetch('/manifest.webmanifest', {cache:'no-store'});
+    if(res.ok) location.replace(HOME);
   }catch(e){ /* still offline */ }
 }
-setInterval(checkOnline, 3000);
-window.addEventListener('online', ()=>location.reload());
+setInterval(checkOnline, 5000);
+window.addEventListener('online', checkOnline);
+document.getElementById('retryBtn').addEventListener('click', checkOnline);
 </script>
 </body>
 </html>
