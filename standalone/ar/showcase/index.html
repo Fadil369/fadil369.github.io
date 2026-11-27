@@ -32,17 +32,20 @@
       .meta{margin-top:50px;padding-top:24px;border-top:1px solid #1c1d1a;color:var(--muted);font-size:12px;text-align:center}
       h2.sub{font-family:Amiri,'Amiri Quran',serif;font-size:28px;color:var(--ink);margin:48px 0 16px}
       p.lead{color:var(--muted);font-size:16px;max-width:720px;margin:0 auto 32px}
-      .grid-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+      .grid-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:24px}
       .note{background:var(--card);border-left:3px solid var(--emerald);padding:16px 20px;border-radius:0 12px 12px 0;margin-top:24px;color:var(--muted);font-size:14px}
-    </style>
+          .hidden{display:none!important}
+      .offline-banner{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0;padding:10px 14px;border:1px solid #3a2a12;border-radius:12px;background:#1d1609;color:#f4f3e9;font-size:13px}
+      .offline-banner .dot{width:8px;height:8px;border-radius:50%;background:#f43f5e;flex:none}
+</style>
     <title>عرض منتجات BrainSAIT — BPR · ClinicFlow · BOS</title>
   </head>
   <body>
     <div class="wrap">
   <div id="offlineBanner" class="offline-banner hidden">
-    <span class="dot"></span>
-    <span id="offlineMsg">Working offline — data saved locally, syncs when reconnected</span>
-    <button class="btn btn--outline btn--sm" onclick="location.reload()" id="offlineRetry">Retry</button>
+    <span class="dot" aria-hidden="true"></span>
+    <span id="offlineMsg" role="status">Working offline — data saved locally, syncs when reconnected</span>
+    <button type="button" class="btn btn--outline btn--sm" onclick="location.reload()" id="offlineRetry">Retry</button>
   </div>
       <header>
         <h1>عرض منتجات BrainSAIT</h1>
@@ -88,7 +91,7 @@
       </div>
 
       <div class="lang">
-        <a href="/showcase/">English</a> · <a href="/">العربية</a>
+        <a href="/showcase/" lang="en">English</a> · <a href="/ar/">العربية</a>
       </div>
 
       <div class="meta">
