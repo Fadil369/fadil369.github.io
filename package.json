@@ -14,7 +14,7 @@
     "sync:store": "python3 scripts/sync-catalog-from-woocommerce.py && bash scripts/verify-catalog-provenance.sh",
     "verify:catalog": "bash scripts/verify-catalog-provenance.sh",
     "snapshot:bpr": "node scripts/snapshot-bpr.mjs",
-    "deploy": "npm run landing && node scripts/snapshot-bpr.mjs && node scripts/render-og.mjs && npm run build && node scripts/publish.mjs && node scripts/prerender.mjs && node scripts/render-cv-pdf.mjs",
+    "deploy": "npm run landing && node scripts/snapshot-bpr.mjs && node scripts/render-og.mjs && npm run build && node scripts/publish.mjs && node scripts/prerender.mjs && node scripts/prune-assets.mjs --apply && node scripts/render-cv-pdf.mjs",
     "sync:shopify": "python3 scripts/sync-catalog-from-shopify.py --write",
     "sync:shopify:dry": "python3 scripts/sync-catalog-from-shopify.py",
     "landing": "node scripts/render-landing.mjs",
@@ -27,6 +27,7 @@
     "acp:server": "node acp/server.mjs",
     "test:acp": "node --test acp/*.test.mjs",
     "test:acp:e2e": "node acp/e2e.mjs",
+    "prune:assets": "node scripts/prune-assets.mjs",
     "verify:clinic-flow": "node scripts/verify-clinic-flow.mjs"
   },
   "dependencies": {
