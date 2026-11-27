@@ -168,6 +168,7 @@ ${STANDALONE.filter((sp) => !sp.noindex).flatMap((sp) => [`/${sp.route}/`, `/ar/
     <xhtml:link rel="alternate" hreflang="en" href="${ORIGIN}${en}"/><xhtml:link rel="alternate" hreflang="ar" href="${ORIGIN}${ar}"/><xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}${en}"/></url>`;
   })).join('\n')}
   <url><loc>${ORIGIN}/trust/</loc><lastmod>${today}</lastmod><priority>0.6</priority></url>
+  <url><loc>${ORIGIN}/bilab/</loc><lastmod>${today}</lastmod><priority>0.6</priority></url>
 </urlset>
 `);
 
