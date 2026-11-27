@@ -4,5 +4,6 @@ Allow: /
 Disallow: /scripts/
 Disallow: /src/
 Disallow: /docs/
+Disallow: /standalone/
 
 Sitemap: https://fadil369.github.io/sitemap.xml

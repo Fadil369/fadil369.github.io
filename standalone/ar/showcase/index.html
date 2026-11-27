@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="عرض منتجات BrainSAIT الرائدة — BPR و ClinicFlow و BOS. منصة رعاية صحية بالذكاء الاصطناعي للسوق السعودي." />
+    <meta name="author" content="د. محمد Elfadil" />
+    <meta name="theme-color" content="#090a08" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23090a08'/%3E%3Ctext x='50' y='62' font-family='Arial,sans-serif' font-size='36' fill='%23edf34a' text-anchor='middle'%3EEF%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Almarai:wght@300;400;700;800&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root{--bg:#090a08;--card:#11120e;--ink:#f4f3e9;--muted:#a7a8a0;--emerald:#10b981;--teal:#0d9488;--accent:#edf34a;}
+      *{box-sizing:border-box;margin:0;padding:0}
+      body{font-family:Manrope,'Almarai',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.8}
+      .wrap{max-width:980px;margin:0 auto;padding:40px 20px}
+      header{text-align:center;margin-bottom:60px}
+      header h1{font-family:Amiri,'Amiri Quran',serif;font-size:42px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px;color:var(--accent)}
+      header p{color:var(--muted);font-size:17px}
+      .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-bottom:60px}
+      .card{background:var(--card);border:1px solid #1c1d1a;border-radius:16px;padding:32px;transition:transform .2s,border-color .2s}
+      .card:hover{border-color:var(--emerald);transform:translateY(-4px)}
+      .card h2{font-family:Amiri,'Amiri Quran',serif;font-size:24px;margin-bottom:8px;color:var(--accent)}
+      .card p{color:var(--muted);font-size:15px;margin-bottom:18px;line-height:1.7}
+      .tag{display:inline-block;background:#141512;color:var(--emerald);border:1px solid #232420;border-radius:999px;padding:4px 12px;font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-right:6px;margin-bottom:6px}
+      .btn{display:inline-block;background:linear-gradient(135deg,var(--emerald),var(--teal));color:#000;border:none;border-radius:11px;padding:14px 26px;font-weight:800;font-size:15px;text-decoration:none;cursor:pointer;transition:filter .2s}
+      .btn:hover{filter:brightness(1.08)}
+      .btn.secondary{background:transparent;border:1px solid #232420;color:var(--ink);margin-left:8px}
+      .lang{margin-top:40px;text-align:center}
+      .lang a{color:var(--muted);text-decoration:none;margin:0 12px;font-size:14px}
+      .lang a:hover{color:var(--ink)}
+      .meta{margin-top:50px;padding-top:24px;border-top:1px solid #1c1d1a;color:var(--muted);font-size:12px;text-align:center}
+      h2.sub{font-family:Amiri,'Amiri Quran',serif;font-size:28px;color:var(--ink);margin:48px 0 16px}
+      p.lead{color:var(--muted);font-size:16px;max-width:720px;margin:0 auto 32px}
+      .grid-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:24px}
+      .note{background:var(--card);border-left:3px solid var(--emerald);padding:16px 20px;border-radius:0 12px 12px 0;margin-top:24px;color:var(--muted);font-size:14px}
+          .hidden{display:none!important}
+      .offline-banner{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0;padding:10px 14px;border:1px solid #3a2a12;border-radius:12px;background:#1d1609;color:#f4f3e9;font-size:13px}
+      .offline-banner .dot{width:8px;height:8px;border-radius:50%;background:#f43f5e;flex:none}
+</style>
+    <title>عرض منتجات BrainSAIT — BPR · ClinicFlow · BOS</title>
+  </head>
+  <body>
+    <div class="wrap">
+  <div id="offlineBanner" class="offline-banner hidden">
+    <span class="dot" aria-hidden="true"></span>
+    <span id="offlineMsg" role="status">Working offline — data saved locally, syncs when reconnected</span>
+    <button type="button" class="btn btn--outline btn--sm" onclick="location.reload()" id="offlineRetry">Retry</button>
+  </div>
+      <header>
+        <h1>عرض منتجات BrainSAIT</h1>
+        <p>منصة رعاية صحية بالذكاء الاصطناعي · عربي + إنجليزي · السوق السعودي · NPHIES · FHIR R4</p>
+      </header>
+
+      <div class="projects">
+        <article class="card">
+          <div style="margin-bottom:12px">
+            <span class="tag">BPR</span><span class="tag">سجل مقدمي الرعاية</span><span class="tag">FHIR R4</span>
+          </div>
+          <h2>سجل مقدمي الرعاية (BPR)</h2>
+          <p>هوية موقع لكل طبيب: دليل، تحقق على الجهاز، سجل透明ية، أثر بحثي، وتصدير حزمة FHIR R4 متوافقة مع NPHIES.</p>
+          <a href="/ar/bpr/" class="btn">فتح BPR</a>
+          <a href="https://huggingface.co/datasets/Fadil369/bpr-providers-registry" class="btn secondary">مجموعة البيانات</a>
+        </article>
+
+        <article class="card">
+          <div style="margin-bottom:12px">
+            <span class="tag">ClinicFlow</span><span class="tag">تجربة استقبال</span><span class="tag">بيانات اصطناعية</span>
+          </div>
+          <h2>ClinicFlow</h2>
+          <p>تجربة استقبال بالبيانات الاصطناعية مع فحوصات اعتماد منفصلة من BPR وحالة التكامل. مسار الاستقبال → المقابلة → تصدير FHIR.</p>
+          <a href="/ar/bpr/clinic/" class="btn">فتح ClinicFlow</a>
+        </article>
+
+        <article class="card">
+          <div style="margin-bottom:12px">
+            <span class="tag">BOS</span><span class="tag">النظام الخلفي</span><span class="tag">مباشر</span>
+          </div>
+          <h2>BOS — النظام الخلفي</h2>
+          <p>طبقة مكتب خلفي مشتركة: دليل مقدمي الرعاية، إدارة المستخدمين، سجل التدقيق، الإعدادات لـ BPR و ClinicFlow.</p>
+          <a href="/ar/bos/" class="btn">فتح BOS</a>
+        </article>
+      </div>
+
+      <h2 class="sub">منصة واحدة، ثلاثة منتجات</h2>
+      <p class="lead">BrainSAit منصة رعاية صحية ثنائية اللغة (عربي/إنجليزي) للسوق السعودي، مبنية حول NPHIES و FHIR R4. يُثبت BPR هوية الطبيب؛ ويدير ClinicFlow المقابلة الطبية؛ ويوفر BOS المكتب الخلفي المشترك.</p>
+
+      <div class="grid-two">
+        <div class="note"><strong>الحالة:</strong> BPR مباشر على GitHub Pages مع مجموعة بيانات على HF (3 إعدادات، حزم FHIR R4، Wizard قابل للنشر). ClinicFlow صفحة تجريبية واحدة. نطاق BOS قيد التعريف.</div>
+        <div class="note"><strong>التالي:</strong> تحسين معالج BPR والملفات الشخصية → توسيع ClinicFlow → بناء نسخة أولية من BOS → إطلاق مشترك.</div>
+      </div>
+
+      <div class="lang">
+        <a href="/showcase/" lang="en">English</a> · <a href="/ar/">العربية</a>
+      </div>
+
+      <div class="meta">
+        د. محمد Elfadil · BrainSAIT · registry.brainsait.de · CC-BY-4.0
+      </div>
+    </div>
+  </div>
+  <script>
+  // خدمة العامل + لافتة عدم الاتصال
+  (function(){
+    if('serviceWorker' in navigator){
+      navigator.serviceWorker.register('/sw.js').then(function(r){console.log('SW registered',r.scope);}).catch(function(e){console.log('SW register failed',e);});
+    }
+    var banner=document.getElementById('offlineBanner');
+    var msg=document.getElementById('offlineMsg');
+    var isOnline=navigator.onLine;
+    function setOnline(on){
+      isOnline=on;
+      if(banner) banner.classList.toggle('hidden',on);
+      var dot=banner&&banner.querySelector('.dot');
+      if(dot) dot.style.background=on?'#166534':'#f43f5e';
+      if(msg) msg.textContent=on?'عاد الاتصال — جاهز.':'غير متصل — البيانات محفوظة محلياً، تتم المزامنة عند إعادة الاتصال.';
+    }
+    window.addEventListener('online',function(){setOnline(true);});
+    window.addEventListener('offline',function(){setOnline(false);});
+    setOnline(navigator.onLine);
+  })();
+  </script>
+  </body>
+</html>

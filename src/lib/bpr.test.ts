@@ -27,16 +27,18 @@ test('signature check accepts authentic Ed25519 and rejects tampering and alg su
 
 test('credential absence is only reported when both registry and snapshot return 404', async () => {
  const originalFetch = globalThis.fetch;
+ // Hostname equality, not substring matching: snapshot fetches are relative paths and must not parse as the registry.
+ const isRegistry = (input: unknown) => { try { return new URL(String(input)).hostname === 'registry.brainsait.de'; } catch { return false; } };
  try {
   globalThis.fetch = async () => new Response(null, {status:404});
   await assert.rejects(checkCredential('SA-PHY-900001'), CredentialNotFoundError);
   globalThis.fetch = async (input) => {
-   if (String(input).startsWith('https://registry.brainsait.de')) throw new TypeError('network unavailable');
+   if (isRegistry(input)) throw new TypeError('network unavailable');
    return new Response(null, {status:404});
   };
   await assert.rejects(checkCredential('SA-PHY-900002'), (error: unknown) => error instanceof Error && !(error instanceof CredentialNotFoundError));
   globalThis.fetch = async (input) => {
-   if (String(input).startsWith('https://registry.brainsait.de')) return new Response(null, {status:404});
+   if (isRegistry(input)) return new Response(null, {status:404});
    throw new TypeError('snapshot unavailable');
   };
   await assert.rejects(checkCredential('SA-PHY-900003'), (error: unknown) => error instanceof Error && !(error instanceof CredentialNotFoundError));

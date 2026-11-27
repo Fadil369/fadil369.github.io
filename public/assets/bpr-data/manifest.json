@@ -1,67 +1,67 @@
 {
  "source": "https://registry.brainsait.de",
- "snapshotAt": "2026-11-03T19:22:20.546Z",
- "attemptedAt": "2026-11-03T19:22:20.546Z",
+ "snapshotAt": "2026-11-16T12:17:55.158Z",
+ "attemptedAt": "2026-11-16T12:17:55.158Z",
  "complete": true,
  "files": {
   "providers.json": {
-   "fetchedAt": "2026-11-03T19:22:21.287Z",
+   "fetchedAt": "2026-11-16T12:17:55.794Z",
    "refreshed": true
   },
   "did.json": {
-   "fetchedAt": "2026-11-03T19:22:21.732Z",
+   "fetchedAt": "2026-11-16T12:17:55.932Z",
    "refreshed": true
   },
   "transparency/log.json": {
-   "fetchedAt": "2026-11-03T19:22:21.744Z",
+   "fetchedAt": "2026-11-16T12:17:55.932Z",
    "refreshed": true
   },
   "fhir/metadata.json": {
-   "fetchedAt": "2026-11-03T19:22:22.002Z",
+   "fetchedAt": "2026-11-16T12:17:56.106Z",
    "refreshed": true
   },
   "status.json": {
-   "fetchedAt": "2026-11-03T19:22:21.608Z",
+   "fetchedAt": "2026-11-16T12:17:56.112Z",
    "refreshed": true
   },
   "organizations.json": {
-   "fetchedAt": "2026-11-03T19:22:22.010Z",
+   "fetchedAt": "2026-11-16T12:17:56.113Z",
    "refreshed": true
   },
   "specialties.json": {
-   "fetchedAt": "2026-11-03T19:22:22.011Z",
+   "fetchedAt": "2026-11-16T12:17:56.113Z",
    "refreshed": true
   },
   "providers/SA-PHY-000001.json": {
-   "fetchedAt": "2026-11-03T19:22:22.332Z",
+   "fetchedAt": "2026-11-16T12:17:56.428Z",
    "refreshed": true
   },
   "fhir/Practitioner/SA-PHY-000001.json": {
-   "fetchedAt": "2026-11-03T19:22:22.653Z",
+   "fetchedAt": "2026-11-16T12:17:56.827Z",
    "refreshed": true
   },
   "providers/SA-PHY-000002.json": {
-   "fetchedAt": "2026-11-03T19:22:23.048Z",
+   "fetchedAt": "2026-11-16T12:17:57.139Z",
    "refreshed": true
   },
   "fhir/Practitioner/SA-PHY-000002.json": {
-   "fetchedAt": "2026-11-03T19:22:23.374Z",
+   "fetchedAt": "2026-11-16T12:17:57.453Z",
    "refreshed": true
   },
   "providers/SA-PHY-000003.json": {
-   "fetchedAt": "2026-11-03T19:22:23.696Z",
+   "fetchedAt": "2026-11-16T12:17:57.763Z",
    "refreshed": true
   },
   "fhir/Practitioner/SA-PHY-000003.json": {
-   "fetchedAt": "2026-11-03T19:22:24.103Z",
+   "fetchedAt": "2026-11-16T12:17:58.079Z",
    "refreshed": true
   },
   "research/SA-PHY-000003.json": {
-   "fetchedAt": "2026-11-03T19:22:24.639Z",
+   "fetchedAt": "2026-11-16T12:17:58.598Z",
    "refreshed": true
   },
   "vc/SA-PHY-000003.json": {
-   "fetchedAt": "2026-11-03T19:22:24.785Z",
+   "fetchedAt": "2026-11-16T12:17:58.738Z",
    "refreshed": true
   }
  },

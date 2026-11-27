@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FHIR R4 pre-validation — BPR</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  :root{--emerald:#047857;--teal:#0f766e;--slate:#1e293b;--ink:#0f172a;--muted:#475569;--bg:#f8fafc;--amber:#f59e0b;--rose:#f43f5e;--indigo:#4338ca;}
+  html[dir="rtl"] body{font-family:'Almarai','Amiri','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
+  html:not([dir="rtl"]) body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
+  body{background:var(--bg);color:var(--ink);line-height:1.7}
+  .wrap{max-width:1100px;margin:0 auto;padding:0}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:10}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand .dot{width:10px;height:10px;background:#fff;border-radius:50%;box-shadow:0 0 0 4px rgba(255,255,255,.35)}
+  .brand b{color:var(--teal);font-weight:800}
+  .brand small{color:var(--muted);font-size:12px}
+  .langbar{display:flex;gap:8px}
+  .langbtn{background:rgba(15,23,42,.05);color:var(--ink);border:1px solid #e2e8f0;border-radius:8px;padding:4px 10px;font-size:12px;cursor:pointer}
+  .langbtn.active{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+  header{padding:32px 28px 12px}
+  header h1{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+  header p{color:var(--muted);font-size:14px}
+  .card{background:#fff;border-radius:12px;padding:26px;margin:20px 28px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+  .card h2{font-size:18px;font-weight:800;color:var(--slate);margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
+  .subtitle{color:var(--muted);font-size:13.5px;margin-bottom:16px}
+  .form-group{margin-bottom:14px}
+  label{display:block;font-size:11.5px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em}
+  textarea{width:100%;min-height:220px;padding:12px 14px;border:1px solid #e2e8f0;border-radius:10px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;background:#fafbfc}
+  textarea:focus{outline:none;border-color:var(--emerald);background:#fff}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .btn{padding:10px 18px;border:none;border-radius:10px;font-size:14px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+  .btn--primary{background:linear-gradient(135deg,var(--emerald),var(--teal));color:#fff}
+  .btn--primary:hover{filter:brightness(1.08)}
+  .btn--outline{background:#fff;color:var(--slate);border:1px solid #e2e8f0}
+  .btn--outline:hover{background:#f8fafc}
+  .btn--danger{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
+  .result{margin-top:20px;border-radius:10px;overflow:hidden;display:none}
+  .result--pass{border:1px solid #bbf7d0;background:#ecfdf5}
+  .result--fail{border:1px solid #fecaca;background:#fef2f2}
+  .result-head{display:flex;align-items:center;gap:10px;padding:14px 18px;font-weight:800;font-size:15px}
+  .result--pass .result-head{color:#166534;background:#dcfce7}
+  .result--fail .result-head{color:#991b1b;background:#fee2e2}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+  .dot--pass{background:#166534;box-shadow:0 0 0 4px rgba(22,101,52,.2)}
+  .dot--fail{background:#991b1b;box-shadow:0 0 0 4px rgba(153,27,27,.2)}
+  .result-body{padding:16px 18px}
+  .issues{list-style:none;margin:0;padding:0}
+  .issue{display:flex;gap:10px;padding:10px 12px;border-bottom:1px solid #f1f5f9;font-size:13px}
+  .issue:last-child{border-bottom:none}
+  .issue--error{border-left:3px solid #fecaca;background:#fef2f2}
+  .issue--warn{border-left:3px solid #fde68a;background:#fef3c7}
+  .issue--ok{border-left:3px solid #bbf7d0;background:#ecfdf5}
+  .issue-kind{font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;min-width:64px}
+  .issue--error .issue-kind{color:#991b1b}
+  .issue--warn .issue-kind{color:#92400e}
+  .issue--ok .issue-kind{color:#166534}
+  .issue-msg{flex:1}
+  .issue-ref{font-family:ui-monospace,monospace;font-size:11px;color:var(--muted)}
+  .summary{display:flex;gap:14px;margin-bottom:14px}
+  .stat{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;text-align:center}
+  .stat .s-num{font-size:22px;font-weight:800;color:var(--ink)}
+  .stat .s-lab{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:4px}
+  .rules{margin-top:14px;padding-top:14px;border-top:1px solid #e2e8f0}
+  .rules h3{font-size:13px;font-weight:800;color:var(--slate);margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
+  .rules ul{list-style:disc;padding-left:20px;color:var(--muted);font-size:13px}
+  .rules li{margin-bottom:4px}
+  .example{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:10px;padding:14px;margin-top:14px;font-size:12.5px;color:var(--muted)}
+  .example pre{font-size:11.5px;margin-top:6px;overflow:auto;max-height:140px}
+  .flash{padding:10px 14px;border-radius:9px;font-size:13px;margin-top:12px;display:none}
+  .flash--ok{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
+
+  .offline-banner{background:#7f1d1d;color:#fecaca;border:1px solid #9f1232;border-radius:8px;padding:10px 16px;display:flex;align-items:center;gap:10px;font-size:12.5px;position:sticky;top:0;z-index:30;backdrop-filter:blur(4px)}
+  .offline-banner.hidden{display:none}
+  .offline-banner .dot{width:8px;height:8px;background:#f43f5e;border-radius:50%;animation:blink 1.5s infinite;flex-shrink:0}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+  footer{padding:26px 28px;border-top:1px solid #e2e8f0;color:var(--muted);font-size:11.5px}
+  .hidden{display:none}
+  @media (max-width:640px){.wrap{margin:0}.card{margin:20px;padding:18px}}
+</style>
+<!-- standalone:meta -->
+<meta name="bs-page" content="standalone">
+<meta name="description" content="Check a provider FHIR R4 Bundle against BPR and NPHIES-aligned rules on your device before you submit it.">
+<link rel="canonical" href="https://fadil369.github.io/bpr/validate/">
+<link rel="alternate" hreflang="en" href="https://fadil369.github.io/bpr/validate/">
+<link rel="alternate" hreflang="ar" href="https://fadil369.github.io/ar/bpr/validate/">
+<link rel="alternate" hreflang="x-default" href="https://fadil369.github.io/bpr/validate/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BrainSAIT">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="FHIR R4 pre-validation — BPR">
+<meta property="og:description" content="Check a provider FHIR R4 Bundle against BPR and NPHIES-aligned rules on your device before you submit it.">
+<meta property="og:url" content="https://fadil369.github.io/bpr/validate/">
+<meta property="og:image" content="https://fadil369.github.io/assets/og/bpr.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FHIR R4 pre-validation — BPR">
+<meta name="twitter:description" content="Check a provider FHIR R4 Bundle against BPR and NPHIES-aligned rules on your device before you submit it.">
+<meta name="twitter:image" content="https://fadil369.github.io/assets/og/bpr.png">
+<!-- /standalone:meta -->
+</head>
+<body>
+<div class="wrap">
+  <div id="offlineBanner" class="offline-banner hidden">
+    <span class="dot"></span>
+    <span id="offlineMsg">Working offline — data saved locally, syncs when reconnected</span>
+    <button class="btn btn--outline btn--sm" onclick="location.reload()" id="offlineRetry">Retry</button>
+  </div>
+  <div class="topbar">
+    <div class="brand"><div class="dot"></div><b>BPR</b><small>· FHIR R4 Pre-Validation</small></div>
+    <div class="langbar">
+      <button class="langbtn active" id="langEn" onclick="val.setLang('en')">English</button>
+      <button class="langbtn" id="langAr" onclick="val.setLang('ar')">العربية</button>
+    </div>
+  </div>
+  <header>
+    <h1 id="hTitle">FHIR R4 Pre-Validation</h1>
+    <p id="hSub">Validate NPHIES-aligned FHIR R4 Bundles before submission — Practitioner · Organization · PractitionerRole</p>
+  </header>
+
+  <div class="card">
+    <h2 id="hInput">Input FHIR Bundle</h2>
+    <p class="subtitle" id="subInput">Paste a Bundle JSON or upload a file. Validation runs client-side — nothing leaves your device.</p>
+    <div class="form-group">
+      <label for="bundleInput" id="lblBundle">FHIR Bundle JSON</label>
+      <textarea id="bundleInput" placeholder='{
+  "resourceType": "Bundle",
+  "identifier": {...},
+  "type": "collection",
+  "entry": [...]
+}'></textarea>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn btn--primary" id="btnValidate" onclick="val.validate()">Run validation</button>
+      <button type="button" class="btn btn--outline" id="btnExample" onclick="val.loadExample()">Load example (valid)</button>
+      <button type="button" class="btn btn--danger" id="btnClear" onclick="val.clear()">Clear</button>
+      <input type="file" id="bundleFile" accept=".json,.fhir+json" style="display:none" onchange="val.loadFile(this)">
+      <button class="btn btn--outline" type="button" onclick="document.getElementById('bundleFile').click()">Upload file</button>
+    </div>
+    <div id="valFlash" class="flash"></div>
+  </div>
+
+  <div id="valResult" class="result"></div>
+
+  <div class="card">
+    <div class="summary">
+      <div class="stat"><div class="s-num" id="sErrors">0</div><div class="s-lab" id="labErrors">Errors</div></div>
+      <div class="stat"><div class="s-num" id="sWarnings">0</div><div class="s-lab" id="sWarningsLab">Warnings</div></div>
+      <div class="stat"><div class="s-num" id="sPassed">0</div><div class="s-lab" id="sPassedLab">Checks passed</div></div>
+    </div>
+    <div id="valIssues"></div>
+  </div>
+
+  <div class="card rules">
+    <h3 id="hRules">Validation rules (NPHIES / FHIR R4)</h3>
+    <ul id="rulesList"></ul>
+  </div>
+
+  <footer>BPR · FHIR R4 Pre-Validation · Client-side only · NPHIES aligned · BrainSAIT</footer>
+</div>
+
+<script>
+const val = {};
+val.lang='en';
+val.LANG={
+ en:{
+  hTitle:'FHIR R4 Pre-Validation', hSub:'Validate NPHIES-aligned FHIR R4 Bundles before submission — Practitioner · Organization · PractitionerRole',
+  hInput:'Input FHIR Bundle', subInput:'Paste a Bundle JSON or upload a file. Validation runs client-side — nothing leaves your device.',
+  lblBundle:'FHIR Bundle JSON', btnValidate:'Run validation', btnExample:'Load example (valid)', btnClear:'Clear', btnUpload:'Upload file',
+  flashPaste:'Paste a Bundle JSON first.', flashValid:'Bundle is valid JSON.',
+  sErrors:'Errors', sWarnings:'Warnings', sPassed:'Checks passed',
+  hRules:'Validation rules (NPHIES / FHIR R4)',
+  ruleBundle:'Bundle: resourceType=Bundle, type=collection, identifier + timestamp present',
+  rulePractitioner:'Practitioner: active flag, name.text, ORCID identifier, telecom email',
+  ruleOrg:'Organization: name + organization-type coding',
+  ruleRole:'PractitionerRole: practitioner + organization references, role code, active flag',
+  ruleCreds:'Credentials: NPHIES credential-kind codes (MBBS, Prometric, SCFHS, Registration, Post-graduate, Experience)',
+  ruleStatus:'Status values: draft | pending | approved | declined',
+  pass:'Bundle passed all NPHIES/FHIR R4 checks — safe to submit.',
+  fail:'Bundle has issues — fix before submitting to BPR.',
+  issueKindError:'error', issueKindWarn:'warning', issueKindOk:'ok',
+  issueRefPrefix:'entry[',
+  about:'Client-side validation · nothing leaves your device · NPHIES aligned'
+ },
+ ar:{
+  hTitle:'التحقق المسبق من FHIR R4', hSub:'تحقق من حزم FHIR R4 متوافقة مع NPHIES قبل الإرسال — ممارس · منظمة · دور الممارس',
+  hInput:'إدخال حزمة FHIR', subInput:'ألصق حزمة JSON أو raise ملف. التحقق يعمل من جانب العميل فقط — لا يغادر شيء جهازك.',
+  lblBundle:'JSON حزمة FHIR', btnValidate:'إجراء التحقق', btnExample:'تحميل مثال (صالح)', btnClear:'مسح', btnUpload:'تحميل ملف',
+  flashPaste:'ألصق JSON حزمة أولاً.', flashValid:'الحزمة JSON صالحة.',
+  sErrors:'أخطاء', sWarnings:'تحذيرات', sPassed:'فحوصات ناجحة',
+  hRules:'قواعد التحقق (NPHIES / FHIR R4)',
+  ruleBundle:'الحزمة: resourceType=Bundle، type=collection، معرّف + طابع زمني موجودان',
+  rulePractitioner:'الممارس: علم 활성، اسم نصي، معرف ORCID، بريد إلكتروني في telecom',
+  ruleOrg:'المنظمة: اسم + ترميز نوع المنظمة',
+  ruleRole:'دور الممارس: إحالات الممارس والمنظمة، رمز الدور، علم 활성',
+  ruleCreds:'الشهادات: أكواد أنواع الاعتمادات في NPHIES (MBBS، Prometric، SCFHS، التسجيل، دراسات عليا، خبرة)',
+  ruleStatus:'قيم الحالة: draft | pending | approved | declined',
+  pass:'اجتازت الحزمة جميع فحوصات NPHIES/FHIR R4 — آمنة للإرسال.',
+  fail:'تحتوي الحزمة على مشكلات — أصلحها قبل الإرسال إلى BPR.',
+  issueKindError:'خطأ', issueKindWarn:'تحذير', issueKindOk:'ناجح',
+  issueRefPrefix:'entry[',
+  about:'تحقق من جانب العميل فقط · لا يغادر شيء جهازك · متوافق مع NPHIES'
+ }
+};
+val.t=function(k){return val.LANG[val.lang][k]||k;};
+val.setLang=function(l){val.lang=l;document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';document.getElementById('langEn').classList.toggle('active',l==='en');document.getElementById('langAr').classList.toggle('active',l==='ar');val.applyLang();};
+val.applyLang=function(){
+  document.getElementById('hTitle').textContent=val.t('hTitle');
+  document.getElementById('hSub').textContent=val.t('hSub');
+  document.getElementById('hInput').textContent=val.t('hInput');
+  document.getElementById('subInput').textContent=val.t('subInput');
+  document.getElementById('lblBundle').textContent=val.t('lblBundle');
+  document.getElementById('bundleInput').placeholder=val.lang==='ar'?'ألصق حزمة JSON هنا...':`{
+  "resourceType": "Bundle",
+  "identifier": {...},
+  "type": "collection",
+  "entry": [...]
+}`;
+  document.getElementById('btnValidate').textContent=val.t('btnValidate');
+  document.getElementById('btnExample').textContent=val.t('btnExample');
+  document.getElementById('btnClear').textContent=val.t('btnClear');
+  document.getElementById('hRules').textContent=val.t('hRules');
+  const rules=[val.t('ruleBundle'),val.t('rulePractitioner'),val.t('ruleOrg'),val.t('ruleRole'),val.t('ruleCreds'),val.t('ruleStatus')];
+  document.getElementById('rulesList').innerHTML=rules.map(r=>'<li>'+r+'</li>').join('');
+};
+
+// credential-kind codes aligned to NPHIES / BPR schema
+val.CRED_KINDS=['mbbs','prometric','scfhs','registration','postgraduate','experience'];
+val.VALID_STATUS=['draft','pending','approved','declined'];
+
+val.validate=function(){
+  const raw=document.getElementById('bundleInput').value.trim();
+  if(!raw){ val.showFlash(val.t('flashPaste'),'err'); return; }
+  let bundle;
+  try{ bundle=JSON.parse(raw); }catch(e){ val.showFlash('Invalid JSON: '+e.message,'err'); return; }
+  val.showFlash(val.t('flashValid'),'ok');
+  const issues=val.checkBundle(bundle);
+  val.renderResult(bundle,issues);
+};
+
+val.checkBundle=function(b){
+  const issues=[];
+  // Bundle level
+  if(b.resourceType!=='Bundle') issues.push({kind:'error',ref:'Bundle',msg:'resourceType must be "Bundle"'});
+  if(b.type!=='collection') issues.push({kind:'error',ref:'Bundle.type',msg:'type must be "collection"'});
+  if(!b.identifier) issues.push({kind:'error',ref:'Bundle.identifier',msg:'identifier is required'});
+  if(!b.timestamp) issues.push({kind:'error',ref:'Bundle.timestamp',msg:'timestamp is required'});
+  if(!Array.isArray(b.entry)) issues.push({kind:'error',ref:'Bundle.entry',msg:'entry must be an array'});
+  else {
+    const resTypes=b.entry.map(e=>e.resource&&e.resource.resourceType).filter(Boolean);
+    const hasPractitioner=resTypes.includes('Practitioner');
+    const hasOrganization=resTypes.includes('Organization');
+    const hasRole=resTypes.includes('PractitionerRole');
+    if(!hasPractitioner) issues.push({kind:'error',ref:'Bundle.entry',msg:'Missing required resource: Practitioner'});
+    if(!hasOrganization) issues.push({kind:'warn',ref:'Bundle.entry',msg:'Recommended: Organization resource'});
+    if(!hasRole) issues.push({kind:'warn',ref:'Bundle.entry',msg:'Recommended: PractitionerRole resource'});
+    b.entry.forEach((e,i)=>{
+      const r=e.resource; if(!r) return;
+      const ref='entry['+i+']'+(r.resourceType?'.'+r.resourceType:'');
+      if(r.resourceType==='Practitioner'){
+        if(!r.active!==false && r.active===undefined) issues.push({kind:'warn',ref,msg:'Practitioner.active not set'});
+        if(!r.name||!r.name.some(n=>n.text)) issues.push({kind:'error',ref,msg:'Practitioner.name[].text is required'});
+        const orcid=r.identifier&&r.identifier.find(id=>id.system&&id.system.includes('orcid'));
+        if(!orcid) issues.push({kind:'error',ref,msg:'ORCID identifier required for Practitioner'});
+        else{ const re=/^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$/i; if(!re.test(orcid.value)) issues.push({kind:'error',ref,msg:'ORCID format invalid (0000-0000-0000-0000)'}); }
+        if(r.telecom&&!r.telecom.some(t=>t.system==='email')) issues.push({kind:'warn',ref,msg:'Practitioner telecom email recommended'});
+      }
+      if(r.resourceType==='Organization'){
+        if(!r.name) issues.push({kind:'error',ref,msg:'Organization.name is required'});
+        if(!r.type||!r.type.some(t=>t.coding&&t.coding.length)) issues.push({kind:'warn',ref,msg:'Organization.type coding recommended'});
+      }
+      if(r.resourceType==='PractitionerRole'){
+        if(!r.practitioner||!r.practitioner.reference) issues.push({kind:'error',ref,msg:'PractitionerRole.practitioner.reference is required'});
+        if(!r.organization||!r.organization.reference) issues.push({kind:'error',ref,msg:'PractitionerRole.organization.reference is required'});
+        if(!r.code||!r.code.some(c=>c.coding&&c.coding.length)) issues.push({kind:'warn',ref,msg:'PractitionerRole.code coding recommended'});
+        if(r.active===undefined) issues.push({kind:'warn',ref,msg:'PractitionerRole.active not set'});
+      }
+    });
+  }
+  return issues;
+};
+
+val.renderResult=function(b,issues){
+  const el=document.getElementById('valResult');
+  const errors=issues.filter(i=>i.kind==='error').length;
+  const warns=issues.filter(i=>i.kind==='warn').length;
+  const ok=issues.filter(i=>i.kind==='ok').length;
+  document.getElementById('sErrors').textContent=errors;
+  document.getElementById('sWarnings').textContent=warns;
+  document.getElementById('sPassed').textContent=ok;
+  document.getElementById('sWarningsLab').textContent=val.t('sWarnings');
+  const pass=errors===0;
+  el.className='result '+(pass?'result--pass':'result--fail');
+  el.style.display='block';
+  const head=document.createElement('div'); head.className='result-head';
+  head.innerHTML=`<span class="dot ${pass?'dot--pass':'dot--fail'}"></span><strong>${pass?val.t('pass'):val.t('fail')}</strong>`;
+  el.innerHTML=''; el.appendChild(head);
+  const body=document.createElement('div'); body.className='result-body';
+  if(issues.length===0){ body.innerHTML='<p style="color:var(--muted)">No issues found.</p>'; }
+  else {
+    const ul=document.createElement('ul'); ul.className='issues';
+    issues.forEach(issue=>{
+      const li=document.createElement('li'); li.className='issue issue--'+issue.kind;
+      li.innerHTML=`<span class="issue-kind">${issue.kind}</span><span class="issue-msg">${issue.msg}</span>${issue.ref?'<span class="issue-ref">'+issue.ref+'</span>':''}`;
+      ul.appendChild(li);
+    });
+    body.appendChild(ul);
+  }
+  el.appendChild(body);
+};
+
+val.loadExample=function(){
+  const ex={resourceType:'Bundle',identifier:{system:'urn:uuid:bpr-bundle',value:'ex-'+Math.random().toString(36).slice(2,8)},type:'collection',timestamp:new Date().toISOString(),entry:[
+    {resource:{resourceType:'Practitioner',id:'p-1',active:true,name:[{text:'Dr. Mohamed Elfadil',use:'official'}],identifier:[{system:'http://orcid.org',value:'0009-0003-7485-3575'}],telecom:[{system:'email',value:'m.elfadil@brainsait.de',use:'work'}]},fullUrl:'Practitioner/p-1'},
+    {resource:{resourceType:'Organization',id:'org-1',active:true,name:'BrainSAIT Provider Registry',type:[{coding:[{system:'http://terminology.hl7.org/CodeSystem/organization-type',code:'prov',display:'Healthcare Provider'}]}]},fullUrl:'Organization/org-1'},
+    {resource:{resourceType:'PractitionerRole',id:'role-1',active:true,practitioner:{reference:'Practitioner/p-1'},organization:{reference:'Organization/org-1'},code:[{coding:[{system:'http://terminology.hl7.org/CodeSystem/practitioner-role',code:'physician',display:'Physician'}]}]},fullUrl:'PractitionerRole/role-1'}
+  ],meta:{source:'https://registry.brainsait.de'}};
+  document.getElementById('bundleInput').value=JSON.stringify(ex,null,2);
+  val.showFlash('Example loaded.','ok');
+};
+val.clear=function(){ document.getElementById('bundleInput').value=''; document.getElementById('valResult').style.display='none'; val.showFlash('Cleared.','ok'); };
+val.loadFile=function(input){
+  const f=input.files[0]; if(!f)return; const r=new FileReader(); r.onload=()=>{ document.getElementById('bundleInput').value=r.target.result; val.showFlash('File loaded.','ok'); }; r.readAsText(f);
+};
+val.showFlash=function(msg,type){const el=document.getElementById('valFlash');el.textContent=msg;el.className='flash flash--'+type;el.style.display='block';setTimeout(()=>el.style.display='none',4000);};
+
+// init
+(function(){ val.applyLang(); const rules=[val.t('ruleBundle'),val.t('rulePractitioner'),val.t('ruleOrg'),val.t('ruleRole'),val.t('ruleCreds'),val.t('ruleStatus')]; document.getElementById('rulesList').innerHTML=rules.map(r=>'<li>'+r+'</li>').join(''); })();
+
+// ── Offline-first PWA: service worker + offline banner ──
+(function(){
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/sw.js').then(function(r){console.log('SW registered',r.scope);}).catch(function(e){console.log('SW register failed',e);});
+  }
+  var banner=document.getElementById('offlineBanner');
+  var msg=document.getElementById('offlineMsg');
+  var isOnline=navigator.onLine;
+  function setOnline(on){
+    isOnline=on;
+    if(banner) banner.classList.toggle('hidden',on);
+    var dot=banner&&banner.querySelector('.dot');
+    if(dot) dot.style.background=on?'#166534':'#f43f5e';
+    if(msg) msg.textContent=on?'Back online — ready.':'Working offline — data saved locally, syncs when reconnected.';
+  }
+  window.addEventListener('online',function(){setOnline(true);});
+  window.addEventListener('offline',function(){setOnline(false);});
+  setOnline(navigator.onLine);
+})();
+</script>
+<script>
+// /ar/ pages open in Arabic.
+if (/^\/ar(\/|$)/.test(location.pathname)) val.setLang('ar');
+</script>
+</body>
+</html>

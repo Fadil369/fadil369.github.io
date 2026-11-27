@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { AlertTriangle, ArrowRight, ArrowUpRight, CheckCircle2, ClipboardCheck, FileSearch, Info, Lock, Printer, Search, ShieldCheck, Stethoscope, UploadCloud, XCircle, Building2, Workflow, PlugZap } from 'lucide-react';
+import { AlertTriangle, ArrowRight, ArrowUpRight, CheckCircle2, ClipboardCheck, Copy, FileSearch, FileText, Info, Lock, Printer, Search, ShieldCheck, Stethoscope, UploadCloud, XCircle, Building2, Workflow, PlugZap } from 'lucide-react';
 import { useI18n } from '../../i18n';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { BprLayout, Failed, Loading } from '../../components/BprKit';
@@ -8,6 +8,7 @@ import { REGISTRY, SNAPSHOT } from '../../lib/bpr';
 import { CheckResult, checkBundle, Finding, makeSpec, Spec } from '../../utils/nphiesCheck';
 import { brokenDemoBundle, demoBundle } from '../../data/nphiesDemo';
 import { Billing, Facility, FACILITIES, RELEASES, STAGES, STEPS } from '../../data/nphiesReadiness';
+import { buildNphiesAppealLetter } from '../../lib/bosSandbox';
 
 // The NPHIES desk: an independent, bilingual reference built from public-labelled NPHIES documents.
 // It explains and pre-checks. It does not connect to NPHIES, and status text here must stay true to
@@ -93,6 +94,16 @@ function ReasonCard({ r, data, open }: { r: Reason; data: Reasons; open: boolean
   const { ar } = useI18n();
   const route = data.routes[r.route];
   const owner = data.owners[r.owner];
+  const [showAppeal, setShowAppeal] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const appealText = useMemo(() => (showAppeal ? buildNphiesAppealLetter(r, ar) : ''), [showAppeal, r, ar]);
+  const copyAppeal = () => {
+    if (!appealText || !navigator.clipboard) return;
+    navigator.clipboard.writeText(appealText).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }, () => {});
+  };
   return (
     <details className="nph-reason" open={open} id={`r-${r.code}`}>
       <summary>
@@ -107,6 +118,25 @@ function ReasonCard({ r, data, open }: { r: Reason; data: Reasons; open: boolean
           <div><dt>{ar ? 'المسار' : 'Route'}</dt><dd><strong>{ar ? route.ar : route.en}.</strong> {ar ? route.detailAr : route.detailEn} <small dir="ltr">{route.source}</small></dd></div>
           <div><dt>{ar ? 'النص الرسمي' : 'Official wording'}</dt><dd dir="ltr" className="nph-official">{r.official}</dd></div>
         </dl>
+        <div className="bpr-result-actions">
+          <button type="button" className="profile-button secondary" onClick={() => setShowAppeal((s) => !s)}>
+            <FileText size={14} aria-hidden="true" />
+            {showAppeal
+              ? ar ? 'إخفاء مسودة خطاب الاعتراض' : 'Hide appeal draft'
+              : ar ? 'إنشاء مسودة خطاب اعتراض حتمي' : 'Draft deterministic appeal letter'}
+          </button>
+          {showAppeal && (
+            <button type="button" className="profile-button secondary" onClick={copyAppeal}>
+              <Copy size={14} aria-hidden="true" />
+              {copied ? (ar ? 'نُسخ الخطاب' : 'Copied') : (ar ? 'نسخ المسودة' : 'Copy draft')}
+            </button>
+          )}
+        </div>
+        {showAppeal && (
+          <pre className="nph-pre" dir={ar ? 'rtl' : 'ltr'} style={{ textAlign: ar ? 'right' : 'left', whiteSpace: 'pre-wrap' }}>
+            {appealText}
+          </pre>
+        )}
         {r.bpr && <p className="nph-note"><Link to="/bpr/nphies?tab=clinician">{ar ? 'تحقق من جاهزية بيانات الممارس' : 'Check a clinician’s data readiness'}</Link>{ar ? '. يعرض BPR حالة الترخيص «لم تُقيَّم» إلى أن يكتمل التكامل مع الهيئة.' : '. BPR shows licence status as “not assessed” until the SCFHS integration is complete.'}</p>}
       </div>
     </details>

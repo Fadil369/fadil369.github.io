@@ -1,11 +1,9 @@
 {
- "checked_at": "2026-11-03T19:20:02+00:00",
+ "checked_at": "2026-11-16T12:15:03+00:00",
  "sites": {
   "https://brainsait.de/": "ok",
   "https://brainsait.de/connect/": "ok",
   "https://brainsait.de/bpr/": "ok",
-  "https://givc.de/": "down",
-  "https://nphies.de/": "down",
   "https://registry.brainsait.de/api/health": "ok",
   "https://registry.brainsait.de/.well-known/did.json": "ok",
   "https://sa-phy-000003.emr.brainsait.de/": "ok",
@@ -14,14 +12,13 @@
   "https://naracafe.de/": "ok",
   "https://hub.brainsait.de/": "ok",
   "https://elfadil.brainsait.de/": "ok",
-  "https://verify.brainsait.de/SA-PHY-000001": "ok",
-  "https://dr.fadi-ghareeb.givc.de/": "down"
+  "https://verify.brainsait.de/SA-PHY-000001": "ok"
  },
  "operations": {
-  "verdict": "failing",
-  "checked_at": "2026-11-03T19:20:01+00:00",
+  "verdict": "healthy",
+  "checked_at": "2026-11-16T12:10:02+00:00",
   "checks": {
-   "sites": "fail",
+   "sites": "ok",
    "integrity": "ok",
    "consistency": "ok",
    "emr": "ok",
@@ -44,7 +41,7 @@
    "network": "ok",
    "premium": "ok",
    "disk": "ok",
-   "code": "warn"
+   "code": "ok"
   }
  },
  "note": "Server-side checks every 5 minutes from registry.brainsait.de. ok, down or cert_expiring. Operations: ok, off, warn or fail per scheduled job."

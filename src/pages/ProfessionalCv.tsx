@@ -53,12 +53,12 @@ const experience = [
 ];
 
 const capabilities = [
+  ['CCIO & Clinical AI Governance', 'حوكمة الذكاء السريري والقيادة الطبية (CCIO)'],
   ['Revenue cycle & claims review', 'دورة الإيرادات ومراجعة المطالبات'],
   ['Healthcare quality improvement', 'تحسين جودة الرعاية الصحية'],
-  ['FHIR R4 · HL7', 'FHIR R4 · HL7'],
-  ['NPHIES · Ongoing integration', 'نفيس · تكامل جارٍ'],
-  ['Clinical AI & decision support', 'الذكاء السريري ودعم القرار'],
-  ['Provider identity & verification', 'هوية مقدمي الرعاية والتحقق'],
+  ['FHIR R4 · HL7 · NPHIES (ongoing)', 'FHIR R4 · HL7 · نفيس (تكامل جارٍ)'],
+  ['BPR · ClinicFlow · BOS Architecture', 'بنية BPR وClinicFlow وBOS'],
+  ['Provider identity & W3C verification', 'هوية مقدمي الرعاية والتحقق (W3C VC)'],
   ['Bilingual product leadership', 'قيادة المنتجات ثنائية اللغة'],
 ];
 
@@ -106,7 +106,7 @@ export default function ProfessionalCv() {
           <div className="cv-name">
             <span className="cv-kicker">CURRICULUM VITAE · 2026</span>
             <h1>{ar ? 'د. محمد الفاضل' : 'Dr. Mohamed El Fadil'}</h1>
-            <p>{ar ? 'طبيب · مؤسس BrainSAIT · مستشار تحسين ذكي للرعاية الصحية ودورة الإيرادات' : 'Physician · BrainSAIT Founder · RCM, Healthcare Intelligent Improvement Advisor'}</p>
+            <p>{ar ? 'طبيب · مؤسس BrainSAIT · مستشار حوكمة الذكاء السريري (CCIO) وتحسين دورة الإيرادات' : 'Physician · BrainSAIT Founder · CCIO, RCM & Healthcare Intelligent Improvement Advisor'}</p>
           </div>
           <div className="cv-contact">
             <span>{ar ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia'}</span>

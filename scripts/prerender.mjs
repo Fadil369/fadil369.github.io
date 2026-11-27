@@ -11,6 +11,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 import { serve } from './lib-serve.mjs';
+import { STANDALONE } from './standalone.mjs';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const ORIGIN = 'https://fadil369.github.io';
@@ -161,6 +162,11 @@ ${live.map(([p, , pr]) => {
     return `  <url><loc>${ORIGIN}${p}</loc><lastmod>${today}</lastmod><priority>${pr.toFixed(1)}</priority>
     <xhtml:link rel="alternate" hreflang="en" href="${ORIGIN}${en}"/><xhtml:link rel="alternate" hreflang="ar" href="${ORIGIN}${ar}"/><xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}${en}"/></url>`;
   }).join('\n')}
+${STANDALONE.filter((sp) => !sp.noindex).flatMap((sp) => [`/${sp.route}/`, `/ar/${sp.route}/`].map((p) => {
+    const en = `/${sp.route}/`, ar = `/ar/${sp.route}/`;
+    return `  <url><loc>${ORIGIN}${p}</loc><lastmod>${today}</lastmod><priority>${sp.priority.toFixed(1)}</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="${ORIGIN}${en}"/><xhtml:link rel="alternate" hreflang="ar" href="${ORIGIN}${ar}"/><xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}${en}"/></url>`;
+  })).join('\n')}
   <url><loc>${ORIGIN}/trust/</loc><lastmod>${today}</lastmod><priority>0.6</priority></url>
 </urlset>
 `);
@@ -171,6 +177,7 @@ Allow: /
 Disallow: /scripts/
 Disallow: /src/
 Disallow: /docs/
+Disallow: /standalone/
 
 Sitemap: ${ORIGIN}/sitemap.xml
 `);
@@ -189,11 +196,17 @@ Facts for agents:
 - [Demo EMR](https://demo.emr.brainsait.de/): a public OpenEMR with 12 synthetic patients (Arabic-first, ICD-10-AM-compatible diagnoses, LOINC labs, CHI-style coverage, one inpatient episode with AR-DRG grouper input). Login demo / BrainSAIT-Demo-2026, non-admin; all data resets nightly.
 - Data on these pages comes live from ${REGISTRY}; a build snapshot (dated) is the fallback.
 
-## Person
-- [Profile](${ORIGIN}/): physician-founder profile, live BPR credential state, selected work, research
+## Person & Three Super Flagships (BPR · ClinicFlow · BOS)
+- [Profile](${ORIGIN}/profile/): physician-founder & CCIO advisor profile, live BPR credential state, selected work across BPR, ClinicFlow, BOS, and Patient Voice Bot QA
+- [Flagship 01 — BPR (Provider Registry)](${ORIGIN}/bpr/): signed W3C Ed25519 provider identity (SPID), hash-chained transparency log, ORCID/DOI research footprint, FHIR R4 API and NPHIES rejection desk
+- [Flagship 02 — ClinicFlow & Voice Bot QA](${ORIGIN}/bpr/clinic/): bilingual WhatsApp/Moyasar/ZATCA reception relay with live no-PHI telemetry, synthetic clinic workspace, and automated 15-scenario [Patient Voice Bot QA](https://github.com/Fadil369/patient-voice-bot-qa)
+- [Flagship 03 — BOS (BrainSAIT & Doctor OS)](${ORIGIN}/bpr/ai/): PHI-firewalled clinical copilot (15 exact calculators, PubMed/FDA/trials verification, encrypted doctor vault) & Level-3 Tiny Software Factory
 - [CV](${ORIGIN}/cv/): one-page CV; PDFs in [English](${ORIGIN}/assets/Dr_Mohamed_El_Fadil_CV_2026_Redesigned.pdf) and [Arabic](${ORIGIN}/assets/Dr_Mohamed_El_Fadil_CV_2026_AR.pdf)
 - [Business card](${ORIGIN}/card/)
 - ORCID: https://orcid.org/0009-0003-7485-3575 · BPR SPID: ${OWNER_SPID}
+
+## Standalone tools (synthetic data, run in the browser)
+${STANDALONE.filter((sp) => !sp.noindex).map((sp) => `- [${sp.en[0]}](${ORIGIN}/${sp.route}/): ${sp.en[1]}`).join('\n')}
 
 ## BPR pages
 - [Overview](${ORIGIN}/bpr/)
