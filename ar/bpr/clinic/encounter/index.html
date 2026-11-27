@@ -378,12 +378,12 @@ cf.renderReview=function(){
   const name = (cf.lang==='ar'&&p&&p.name_ar) ? p.name+' ('+p.name_ar+')' : (p?p.name:'—');
   const status = p?(p.status==='approved'?'BPR Verified':'BPR Pending'):'No provider';
   s.innerHTML=`
-   <div style="display:flex;gap:10px;align-items:center"><span class="badge">${status}</span><b>${cf.t('provider')}:</b> ${name}</div>
-   <div><b>${cf.t('chiefComplaint')}:</b> ${document.getElementById('cfChief').value||'—'}</div>
-   <div><b>${cf.t('priority')}:</b> ${document.getElementById('cfPriority').value}</div>
-   <div><b>${cf.t('vitals')}:</b> T ${cf.encounter.vitals.vTemp}°C · HR ${cf.encounter.vitals.vHr} · BP ${cf.encounter.vitals.vBp} · SpO₂ ${cf.encounter.vitals.vSpo2}%</div>
-   <div><b>${cf.t('assessment')}:</b> ${document.getElementById('cfAssessment').value||'—'}</div>
-   <div><b>${cf.t('plan')}:</b> ${document.getElementById('cfPlan').value||'—'}</div>
+   <div style="display:flex;gap:10px;align-items:center"><span class="badge">${esc(status)}</span><b>${cf.t('provider')}:</b> ${esc(name)}</div>
+   <div><b>${cf.t('chiefComplaint')}:</b> ${esc(document.getElementById('cfChief').value||'—')}</div>
+   <div><b>${cf.t('priority')}:</b> ${esc(document.getElementById('cfPriority').value)}</div>
+   <div><b>${cf.t('vitals')}:</b> T ${esc(cf.encounter.vitals.vTemp)}°C · HR ${esc(cf.encounter.vitals.vHr)} · BP ${esc(cf.encounter.vitals.vBp)} · SpO₂ ${esc(cf.encounter.vitals.vSpo2)}%</div>
+   <div><b>${cf.t('assessment')}:</b> ${esc(document.getElementById('cfAssessment').value||'—')}</div>
+   <div><b>${cf.t('plan')}:</b> ${esc(document.getElementById('cfPlan').value||'—')}</div>
    <div><b>${cf.t('medications')}:</b> ${cf.encounter.medications.length||'none'}</div>
   `;
 };

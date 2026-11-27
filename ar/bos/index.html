@@ -221,6 +221,7 @@
 
 <script>
 const bos = {};
+const esc=(v)=>String(v??'').replace(/[&<>"']/g,(c)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 bos.lang='en';
 bos.LANG={
  en:{
@@ -341,13 +342,13 @@ bos.renderDirectory=function(){
   rows.forEach(p=>{
     const nm=bos.lang==='ar'&&p.name_ar?p.name+' ('+p.name_ar+')':p.name;
     tb.innerHTML+=`<tr>
-      <td><b>${nm}</b></td>
-      <td>${p.orcid}</td>
+      <td><b>${esc(nm)}</b></td>
+      <td>${esc(p.orcid)}</td>
       <td>${bos.LANG[bos.lang]['prof_'+p.profession]||p.profession}</td>
-      <td>${p.licence}</td>
+      <td>${esc(p.licence)}</td>
       <td><span class="badge bg-${p.status}">${bos.t('status'+p.status)}</span></td>
-      <td>${p.credentials} attached</td>
-      <td><button class="btn btn--sm btn--outline" onclick="bos.viewProvider('${p.orcid}')">View</button></td>
+      <td>${esc(p.credentials)} attached</td>
+      <td><button class="btn btn--sm btn--outline" onclick="bos.viewProvider('${esc(p.orcid)}')">View</button></td>
     </tr>`;
   });
 };
@@ -359,11 +360,11 @@ bos.renderUsers=function(){
   empty.classList.add('hidden');
   bos.users.forEach(u=>{
     tb.innerHTML+=`<tr>
-      <td>${u.name}</td>
-      <td>${u.email}</td>
+      <td>${esc(u.name)}</td>
+      <td>${esc(u.email)}</td>
       <td><span class="badge role-${u.role}">${bos.t('role'+u.role.charAt(0).toUpperCase()+u.role.slice(1))}</span></td>
       <td><span class="badge bg-${u.status==='active'?'active':'inactive'}">${bos.t('status'+u.status)}</span></td>
-      <td>${u.joined}</td>
+      <td>${esc(u.joined)}</td>
       <td><button class="btn btn--sm btn--danger" onclick="bos.removeUser('${u.id}')">Remove</button></td>
     </tr>`;
   });
@@ -372,7 +373,7 @@ bos.renderAudit=function(){
   const el=document.getElementById('auditList');
   el.innerHTML=bos.audit.slice().reverse().map(a=>`
     <div class="audit-item">
-      <div><div class="audit-actor">${a.actor}</div><div class="audit-act">${a.action}</div></div>
+      <div><div class="audit-actor">${esc(a.actor)}</div><div class="audit-act">${esc(a.action)}</div></div>
       <div class="audit-time">${new Date(a.time).toLocaleString()}</div>
     </div>`).join('')||'<div class="empty">No audit entries.</div>';
 };
