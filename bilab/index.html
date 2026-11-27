@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مختبر برينسايت للابتكار | BrainSAIT Innovation Lab (B.I.Lab)</title>
+  <meta name="description" content="مختبر برينسايت للابتكار (B.I.Lab) — حاضنة الذكاء الاصطناعي الصحي في الرياض: بيت الأطباء للمحاكاة المكانية على Apple Vision Pro، وجاهزية السجل الصحي الشخصي BPR وفق FHIR R4 وNPHIES." />
+  <meta name="theme-color" content="#050914" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="BrainSAIT Innovation Lab (B.I.Lab)" />
+  <meta property="og:description" content="Healthcare AI incubation in Riyadh: House for Doctors spatial simulation lab, BPR readiness on FHIR R4 / NPHIES, and a native Arabic lab concierge." />
+  <link rel="canonical" href="https://fadil369.github.io/bilab/" />
+  <meta property="og:url" content="https://fadil369.github.io/bilab/" />
+  <meta property="og:image" content="https://fadil369.github.io/bilab/img/hero-riyadh-lab.jpg" />
+  <meta property="og:locale" content="ar_SA" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23050914'/%3E%3Ctext x='16' y='21' font-family='Arial' font-size='13' font-weight='700' text-anchor='middle' fill='%235eead4'%3EBI%3C/text%3E%3C/svg%3E" />
+  <link rel="preload" as="image" href="img/hero-riyadh-lab.webp" imagesrcset="img/hero-riyadh-lab-sm.webp 688w, img/hero-riyadh-lab.webp 1376w" imagesizes="(min-width: 1024px) 50vw, 100vw" type="image/webp" fetchpriority="high" />
+  <link rel="stylesheet" href="bilab.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-obsidian: #050914;
+      --bg-surface: #0b1326;
+      --accent-teal: #14b8a6;
+      --accent-cyan: #22d3ee;
+      --accent-gold: #e5b84b;
+    }
+    html[dir="rtl"] body {
+      font-family: 'IBM Plex Sans Arabic', 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    html[dir="ltr"] body {
+      font-family: 'Inter', 'IBM Plex Sans Arabic', system-ui, -apple-system, sans-serif;
+    }
+    body {
+      background-color: var(--bg-obsidian);
+      color: #f1f5f9;
+      overflow-x: hidden;
+    }
+    .glass-panel {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.78), rgba(8, 15, 32, 0.88));
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(45, 212, 191, 0.16);
+      box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.75);
+    }
+    .vision-glass {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(15, 23, 42, 0.55));
+      backdrop-filter: blur(26px);
+      -webkit-backdrop-filter: blur(26px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    }
+    .hero-glow {
+      background: radial-gradient(circle at 75% 20%, rgba(20, 184, 166, 0.18), transparent 45%),
+                  radial-gradient(circle at 20% 70%, rgba(229, 184, 75, 0.12), transparent 45%),
+                  radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.12), transparent 50%);
+    }
+    .gold-gradient-text {
+      background: linear-gradient(95deg, #f8fafc 0%, #5eead4 48%, #f3d27a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .najdi-grid {
+      background-image:
+        linear-gradient(rgba(45, 212, 191, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(45, 212, 191, 0.05) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+    @keyframes pulseRing {
+      0%, 100% { opacity: 0.45; transform: scale(1); }
+      50% { opacity: 0.95; transform: scale(1.06); }
+    }
+    .animate-ring {
+      animation: pulseRing 3.6s ease-in-out infinite;
+    }
+    .code-scroll::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .code-scroll::-webkit-scrollbar-thumb {
+      background: rgba(94, 234, 212, 0.25);
+      border-radius: 999px;
+    }
+    .skip-link { position: absolute; inset-inline-start: 1rem; top: -4rem; z-index: 60; }
+    .skip-link:focus { top: 1rem; }
+    :focus-visible { outline: 2px solid #5eead4; outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto !important; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-teal-500/30 selection:text-teal-200">
+  <a href="#top" class="skip-link rounded-lg bg-teal-400 px-4 py-2 text-sm font-bold text-slate-950" data-i18n="skip_link">تخطَّ إلى المحتوى</a>
+
+  <!-- Top Navigation -->
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-[#050914]/85 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
+      <a href="#top" class="flex items-center gap-3 group">
+        <div class="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-teal-400 via-cyan-500 to-amber-300 p-[1.5px] shadow-lg shadow-teal-500/20">
+          <div class="flex h-full w-full items-center justify-center rounded-[10px] bg-[#060c1b]">
+            <svg class="h-5 w-5 text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" /><path d="M9 13a4.5 4.5 0 0 0 3-4" /><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5" /><path d="M3.477 10.896a4 4 0 0 1 .585-.396" /><path d="M6 18a4 4 0 0 1-1.967-.516" /><path d="M12 13h4" /><path d="M12 18h6a2 2 0 0 1 2 2v1" /><path d="M12 8h8" /><path d="M16 8V5a2 2 0 0 1 2-2" /><circle cx="16" cy="13" r=".5" /><circle cx="18" cy="3" r=".5" /><circle cx="20" cy="21" r=".5" /><circle cx="20" cy="8" r=".5" /></svg>
+          </div>
+        </div>
+        <div class="leading-tight">
+          <div class="flex items-center gap-2">
+            <span class="text-base font-bold tracking-tight text-white" data-i18n="brand_name">مختبر برينسايت للابتكار</span>
+            <span class="rounded-md border border-teal-400/30 bg-teal-500/10 px-1.5 py-0.5 text-[11px] font-semibold text-teal-300">B.I.Lab</span>
+          </div>
+          <p class="text-[11px] text-slate-400" data-i18n="brand_sub">حاضنة الذكاء الاصطناعي الصحي • الرياض</p>
+        </div>
+      </a>
+
+      <nav aria-label="الأقسام / Sections" class="hidden items-center gap-6 text-sm font-medium text-slate-300 lg:flex">
+        <a href="#pnu-hub" class="transition hover:text-teal-300" data-i18n="nav_pnu">شراكة جامعة الأميرة نورة</a>
+        <a href="#doctors-house" class="transition hover:text-teal-300" data-i18n="nav_doctors">بيت الأطباء (VisionOS)</a>
+        <a href="#bpr-portal" class="transition hover:text-teal-300" data-i18n="nav_bpr">جاهزية BPR</a>
+        <a href="#ai-concierge" class="transition hover:text-teal-300" data-i18n="nav_ai">المستشار الذكي</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5">
+        <button id="langToggleBtn" type="button" lang="en" aria-label="Switch language / تبديل اللغة" class="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-teal-400/50 hover:bg-teal-500/10">
+          <svg class="h-4 w-4 text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6" /><path d="m4 14 6-6 2-3" /><path d="M2 5h12" /><path d="M7 2h1" /><path d="m22 22-5-10-5 10" /><path d="M14 18h6" /></svg>
+          <span id="langToggleLabel">English</span>
+        </button>
+        <button id="openApplyNavBtn" type="button" class="hidden sm:inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-teal-500 to-cyan-500 px-4 py-2 text-xs font-bold text-slate-950 shadow-lg shadow-teal-500/25 transition hover:brightness-110">
+          <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /><path d="M20 3v4" /><path d="M22 5h-4" /><path d="M4 17v2" /><path d="M5 18H3" /></svg>
+          <span data-i18n="nav_apply">احتضن مشروعك</span>
+        </button>
+        <button id="mobileMenuBtn" type="button" aria-label="القائمة / Menu" aria-expanded="false" aria-controls="mobileMenu" class="inline-flex items-center justify-center rounded-lg border border-white/15 bg-white/5 p-2 text-slate-200 lg:hidden">
+          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav Drawer -->
+    <div id="mobileMenu" class="hidden border-t border-white/10 bg-[#070d1d] px-4 py-4 lg:hidden">
+      <div class="flex flex-col gap-3 text-sm font-medium text-slate-200">
+        <a href="#pnu-hub" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_pnu">شراكة جامعة الأميرة نورة</a>
+        <a href="#doctors-house" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_doctors">بيت الأطباء (VisionOS)</a>
+        <a href="#bpr-portal" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_bpr">جاهزية BPR</a>
+        <a href="#ai-concierge" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_ai">المستشار الذكي</a>
+        <button id="openApplyMobileBtn" type="button" class="mt-1 inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-teal-500 to-cyan-500 px-4 py-2.5 text-sm font-bold text-slate-950">
+          <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /><path d="M20 3v4" /><path d="M22 5h-4" /><path d="M4 17v2" /><path d="M5 18H3" /></svg>
+          <span data-i18n="nav_apply">احتضن مشروعك</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden hero-glow najdi-grid border-b border-white/10">
+      <div class="mx-auto max-w-7xl px-4 pb-16 pt-12 sm:px-6 lg:px-8 lg:pb-24 lg:pt-16">
+        <div class="grid items-center gap-10 lg:grid-cols-12">
+          <!-- Copy Column -->
+          <div class="lg:col-span-6 space-y-6">
+            <div class="inline-flex flex-wrap items-center gap-2 rounded-full border border-teal-400/30 bg-teal-500/10 px-3.5 py-1.5 text-xs font-medium text-teal-200">
+              <span class="h-2 w-2 rounded-full bg-teal-400 animate-pulse"></span>
+              <span data-i18n="hero_badge">ذكاء اصطناعي أصيل بالعربية • الرياض — متوافق مع رؤية السعودية 2030</span>
+            </div>
+
+            <h1 class="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+              <span class="gold-gradient-text" data-i18n="hero_title_1">مختبر برينسايت للابتكار</span>
+              <span class="mt-2 block text-slate-100" data-i18n="hero_title_2">حاضنة الإبداع الطبي وبيت الأطباء للمحاكاة المكانية</span>
+            </h1>
+
+            <p class="max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg" data-i18n="hero_desc">
+              منصة ابتكار صحية سيادية تجمع بين <strong class="text-teal-300">برينسايت (BrainSAIT)</strong> وشراكة استراتيجية مع <strong class="text-amber-300">جامعة الأميرة نورة بنت عبدالرحمن (PNU)</strong>؛ لاحتضان الحلول الإبداعية، وتدريب الأطباء عبر تطبيقات <strong class="text-white">Apple Vision Pro</strong>، وتجهيز منظومة <strong class="text-cyan-300">السجل الصحي الشخصي (BPR)</strong> على <code class="rounded bg-white/10 px-1.5 py-0.5 text-xs text-teal-200">fadil369.github.io</code>.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 pt-1">
+              <a href="#doctors-house" class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-300 px-5 py-3 text-sm font-bold text-slate-950 shadow-xl shadow-teal-500/20 transition hover:brightness-110">
+                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="6" cy="15" r="4" /><circle cx="18" cy="15" r="4" /><path d="M14 15a2 2 0 0 0-2-2 2 2 0 0 0-2 2" /><path d="M2.5 13 5 7c.7-1.3 1.4-2 3-2" /><path d="M21.5 13 19 7c-.7-1.3-1.5-2-3-2" /></svg>
+                <span data-i18n="hero_cta_vision">استكشف بيت الأطباء (VisionOS)</span>
+              </a>
+              <a href="#bpr-portal" class="inline-flex items-center gap-2 rounded-xl border border-cyan-400/35 bg-cyan-500/10 px-5 py-3 text-sm font-semibold text-cyan-200 transition hover:bg-cyan-500/20">
+                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg>
+                <span data-i18n="hero_cta_bpr">محاكي جاهزية BPR</span>
+              </a>
+              <button id="openApplyHeroBtn" type="button" class="inline-flex items-center gap-2 rounded-xl border border-amber-400/35 bg-amber-500/10 px-5 py-3 text-sm font-semibold text-amber-200 transition hover:bg-amber-500/20">
+                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" /><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" /><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" /></svg>
+                <span data-i18n="hero_cta_apply">تقدم للاحتضان</span>
+              </button>
+            </div>
+
+            <!-- Grounded Standard Pills -->
+            <div class="grid grid-cols-2 gap-3 pt-4 sm:grid-cols-4">
+              <div class="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+                <div class="text-[11px] text-slate-400" data-i18n="pill_oid_label">معرّف BPR الرسمي</div>
+                <div class="mt-1 font-mono text-xs font-semibold text-teal-300">1.3.6.1.4.1.61026</div>
+              </div>
+              <div class="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+                <div class="text-[11px] text-slate-400" data-i18n="pill_fhir_label">التوافقية الوطنية</div>
+                <div class="mt-1 text-xs font-semibold text-cyan-200">FHIR R4 • NPHIES</div>
+              </div>
+              <div class="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+                <div class="text-[11px] text-slate-400" data-i18n="pill_gov_label">الحوكمة والسيادة</div>
+                <div class="mt-1 text-xs font-semibold text-amber-200">PDPL • SDAIA • CHI</div>
+              </div>
+              <div class="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+                <div class="text-[11px] text-slate-400" data-i18n="pill_partner_label">الشريك الأكاديمي</div>
+                <div class="mt-1 text-xs font-semibold text-white" data-i18n="pill_partner_val">جامعة الأميرة نورة</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nano Banana Hero Visual Column -->
+          <div class="lg:col-span-6">
+            <div class="relative rounded-3xl border border-teal-400/25 bg-slate-950/60 p-2 shadow-2xl shadow-teal-950/70">
+              <div class="relative overflow-hidden rounded-2xl">
+                <picture>
+                  <source type="image/webp" srcset="img/hero-riyadh-lab-sm.webp 688w, img/hero-riyadh-lab.webp 1376w" sizes="(min-width: 1024px) 50vw, 100vw" />
+                  <img src="img/hero-riyadh-lab.jpg" width="1376" height="768" fetchpriority="high" decoding="async"
+                    alt="تصوّر لمقر مختبر برينسايت للابتكار في الرياض" data-i18n-alt="alt_hero"
+                    class="w-full h-auto object-cover aspect-[16/9] transition duration-700 hover:scale-[1.02]" />
+                </picture>
+                <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050914] via-transparent to-transparent opacity-80"></div>
+                <div class="absolute bottom-3 inset-x-3 flex flex-wrap items-center justify-between gap-2 rounded-xl vision-glass px-4 py-2.5">
+                  <div class="flex items-center gap-2.5">
+                    <span class="flex h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_12px_#34d399]"></span>
+                    <span class="text-xs font-semibold text-white" data-i18n="hero_img_caption">مقر مختبر B.I.Lab التصوّري — الرياض • الذكاء الاصطناعي والحوسبة المكانية</span>
+                  </div>
+                  <span class="rounded-md bg-teal-500/20 px-2 py-0.5 font-mono text-[10px] font-semibold text-teal-200">Nano Banana Visual</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1: PNU Strategic Partnership & Innovation Incubation Hub -->
+    <section id="pnu-hub" class="relative py-16 lg:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid items-center gap-10 lg:grid-cols-12">
+          <!-- Visual -->
+          <div class="lg:col-span-5">
+            <div class="relative overflow-hidden rounded-3xl border border-amber-400/25 bg-slate-900/60 p-2 shadow-2xl">
+              <picture>
+                <source type="image/webp" srcset="img/pnu-incubation-studio-sm.webp 600w, img/pnu-incubation-studio.webp 1200w" sizes="(min-width: 1024px) 40vw, 100vw" />
+                <img src="img/pnu-incubation-studio.jpg" width="1200" height="896" loading="lazy" decoding="async"
+                  alt="تصوّر لاستوديو حاضنة الابتكار المشتركة" data-i18n-alt="alt_pnu"
+                  class="w-full h-auto rounded-2xl object-cover aspect-[4/3]" />
+              </picture>
+              <div class="mt-3 flex items-center justify-between px-2 pb-1">
+                <div>
+                  <p class="text-xs font-bold text-amber-300" data-i18n="pnu_card_tag">حاضنة الابتكار المشتركة</p>
+                  <p class="text-xs text-slate-300" data-i18n="pnu_card_sub">جامعة الأميرة نورة بنت عبدالرحمن × BrainSAIT</p>
+                </div>
+                <a href="https://pnu.edu.sa/en/Pages/Home.aspx" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 rounded-lg border border-amber-400/30 bg-amber-500/10 px-3 py-1.5 text-xs font-semibold text-amber-200 transition hover:bg-amber-500/20">
+                  <span data-i18n="pnu_visit">بوابة PNU</span>
+                  <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content & Interactive Track Switcher -->
+          <div class="lg:col-span-7 space-y-6">
+            <div>
+              <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-200">
+                <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m11 17 2 2a1 1 0 1 0 3-3" /><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" /><path d="m21 3 1 11h-2" /><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" /><path d="M3 4h8" /></svg>
+                <span data-i18n="pnu_badge">الشراكة الأكاديمية والبحثية</span>
+              </span>
+              <h2 class="mt-3 text-2xl font-bold text-white sm:text-3xl" data-i18n="pnu_title">احتضان الإبداع الصحي بالتكامل مع جامعة الأميرة نورة (PNU)</h2>
+              <p class="mt-2.5 text-sm leading-relaxed text-slate-300 sm:text-base" data-i18n="pnu_desc">
+                يربط مختبر B.I.Lab منظومة وكلاء برينسايت الذكية مع البنية التحتية البحثية والسريرية الرائدة في جامعة الأميرة نورة بنت عبدالرحمن؛ لتحويل الأفكار البحثية والسريرية إلى تطبيقات طبية جاهزة للإطلاق.
+              </p>
+            </div>
+
+            <!-- Real PNU Facilities Cards -->
+            <div class="grid gap-3 sm:grid-cols-3">
+              <div class="glass-panel rounded-2xl p-4">
+                <svg class="h-5 w-5 text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2" /></svg>
+                <h3 class="mt-2.5 text-sm font-bold text-white" data-i18n="pnu_fac_1_t">مركز المهارات والمحاكاة السريرية</h3>
+                <p class="mt-1 text-xs leading-relaxed text-slate-400" data-i18n="pnu_fac_1_d">مسارح المحاكاة السريرية ومختبر التدريب الجراحي بالواقع الافتراضي وتدريب الإجراءات الطبية.</p>
+              </div>
+              <div class="glass-panel rounded-2xl p-4">
+                <svg class="h-5 w-5 text-cyan-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10 16 1.5 1.5" /><path d="m14 8-1.5-1.5" /><path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993" /><path d="m16.5 10.5 1 1" /><path d="m17 6-2.891-2.891" /><path d="M2 15c6.667-6 13.333 0 20-6" /><path d="m20 9 .891.891" /><path d="M3.109 14.109 4 15" /><path d="m6.5 12.5 1 1" /><path d="m7 18 2.891 2.891" /><path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993" /></svg>
+                <h3 class="mt-2.5 text-sm font-bold text-white" data-i18n="pnu_fac_2_t">بنك نورة الحيوي والأبحاث الصحية</h3>
+                <p class="mt-1 text-xs leading-relaxed text-slate-400" data-i18n="pnu_fac_2_d">مركز أبحاث العلوم الطبيعية والصحية بجوار مستشفى الملك عبدالله الجامعي (KAAUH).</p>
+              </div>
+              <div class="glass-panel rounded-2xl p-4">
+                <svg class="h-5 w-5 text-amber-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="16" height="16" x="4" y="4" rx="2" /><rect width="6" height="6" x="9" y="9" rx="1" /><path d="M15 2v2" /><path d="M15 20v2" /><path d="M2 15h2" /><path d="M2 9h2" /><path d="M20 15h2" /><path d="M20 9h2" /><path d="M9 2v2" /><path d="M9 20v2" /></svg>
+                <h3 class="mt-2.5 text-sm font-bold text-white" data-i18n="pnu_fac_3_t">مختبرات الحاسب والذكاء الاصطناعي</h3>
+                <p class="mt-1 text-xs leading-relaxed text-slate-400" data-i18n="pnu_fac_3_d">مختبر الروبوتات والذكاء الاصطناعي، ومختبر تحليل البيانات، ومختبر الأمن السيبراني.</p>
+              </div>
+            </div>
+
+            <!-- Interactive Incubation Tracks -->
+            <div class="glass-panel rounded-2xl p-5">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
+                <span class="text-xs font-bold text-teal-300" data-i18n="tracks_label">مسارات الاحتضان في B.I.Lab</span>
+                <div id="trackTabs" role="group" aria-label="Incubation tracks" class="flex flex-wrap gap-1.5">
+                  <button type="button" data-track="clinical-ai" class="track-btn rounded-lg px-3 py-1.5 text-xs font-semibold transition"></button>
+                  <button type="button" data-track="spatial-xr" class="track-btn rounded-lg px-3 py-1.5 text-xs font-semibold transition"></button>
+                  <button type="button" data-track="bpr-fhir" class="track-btn rounded-lg px-3 py-1.5 text-xs font-semibold transition"></button>
+                  <button type="button" data-track="ventures" class="track-btn rounded-lg px-3 py-1.5 text-xs font-semibold transition"></button>
+                </div>
+              </div>
+              <div id="trackDetailPanel" class="mt-4 space-y-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: House for Doctors — Apple Vision Pro Training & Simulator Lab -->
+    <section id="doctors-house" class="relative border-y border-white/10 bg-[#070d1e]/90 py-16 lg:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3.5 py-1 text-xs font-semibold text-cyan-200">
+            <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3" /><circle cx="19" cy="5" r="2" /><circle cx="5" cy="19" r="2" /><path d="M10.4 21.9a10 10 0 0 0 9.941-15.416" /><path d="M13.5 2.1a10 10 0 0 0-9.841 15.416" /></svg>
+            <span data-i18n="doc_badge">بيت الأطباء • Apple Vision Pro & visionOS</span>
+          </span>
+          <h2 class="mt-3 text-2xl font-bold text-white sm:text-4xl" data-i18n="doc_title">بيت الأطباء: مختبر المحاكاة والتدريب المكاني بـ Apple Vision Pro</h2>
+          <p class="mt-3 text-sm leading-relaxed text-slate-300 sm:text-base" data-i18n="doc_desc">
+            بيئة سريرية غامرة صُممت للأطباء والممارسين الصحيين لتجربة التشريح ثلاثي الأبعاد، محاكاة الإجراءات الجراحية، والتفاعل الصوتي المباشر مع المساعد السريري العربي داخل فضاء visionOS.
+          </p>
+        </div>
+
+        <!-- Visual + Interactive Spatial HUD -->
+        <div class="mt-10 grid gap-8 lg:grid-cols-12">
+          <!-- Left/Start: Nano Banana Visual + Spatial Overlay Controls -->
+          <div class="lg:col-span-7 space-y-4">
+            <div class="relative overflow-hidden rounded-3xl border border-cyan-400/30 bg-slate-950 p-2 shadow-2xl shadow-cyan-950/50">
+              <div class="relative overflow-hidden rounded-2xl">
+                <picture>
+                  <source type="image/webp" srcset="img/doctors-house-vision-lab-sm.webp 688w, img/doctors-house-vision-lab.webp 1376w" sizes="(min-width: 1024px) 58vw, 100vw" />
+                  <img src="img/doctors-house-vision-lab.jpg" width="1376" height="768" loading="lazy" decoding="async"
+                    alt="تصوّر لمختبر بيت الأطباء للمحاكاة على Apple Vision Pro" data-i18n-alt="alt_doctors"
+                    class="w-full h-auto object-cover aspect-[16/9]" />
+                </picture>
+                <!-- Interactive VisionOS Spatial HUD Overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-[#050914]/90 via-transparent to-[#050914]/40 p-4 flex flex-col justify-between">
+                  <div class="flex flex-wrap items-center justify-between gap-2">
+                    <div class="vision-glass rounded-full px-3.5 py-1.5 flex items-center gap-2 text-xs font-semibold text-white">
+                      <span class="h-2 w-2 rounded-full bg-cyan-400 animate-ping"></span>
+                      <span id="hudActiveAppTitle">NeuroAtlas 3D Spatial</span>
+                    </div>
+                    <div class="vision-glass rounded-full px-3 py-1 text-[11px] font-mono text-teal-200" id="hudLayerBadge">
+                      Layer: Neural + CNS
+                    </div>
+                  </div>
+
+                  <div class="vision-glass rounded-2xl p-3.5 sm:p-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                      <div>
+                        <p class="text-xs font-bold text-cyan-200" id="hudScenarioHeading"></p>
+                        <p class="mt-0.5 text-xs text-slate-200" id="hudScenarioDesc"></p>
+                      </div>
+                      <span id="hudLevelPill" class="rounded-lg border border-teal-400/40 bg-teal-500/20 px-2.5 py-1 text-[11px] font-bold text-teal-200"></span>
+                    </div>
+                    <div class="mt-3 flex flex-wrap gap-2" id="simLayerButtons"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- App Selector Cards -->
+            <div class="grid gap-3 sm:grid-cols-2" id="visionAppsGrid"></div>
+          </div>
+
+          <!-- Right/End: Interactive Clinical Competency & Simulation Console -->
+          <div class="lg:col-span-5 flex flex-col gap-4">
+            <div class="glass-panel rounded-3xl p-6 flex-1 flex flex-col justify-between">
+              <div class="space-y-5">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-base font-bold text-white flex items-center gap-2">
+                    <svg class="h-4 w-4 text-teal-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><line x1="21" x2="14" y1="4" y2="4" /><line x1="10" x2="3" y1="4" y2="4" /><line x1="21" x2="12" y1="12" y2="12" /><line x1="8" x2="3" y1="12" y2="12" /><line x1="21" x2="16" y1="20" y2="20" /><line x1="12" x2="3" y1="20" y2="20" /><line x1="14" x2="14" y1="2" y2="6" /><line x1="8" x2="8" y1="10" y2="14" /><line x1="16" x2="16" y1="18" y2="22" /></svg>
+                    <span data-i18n="sim_console_title">وحدة التحكم بالمحاكاة السريرية</span>
+                  </h3>
+                  <span class="rounded-md bg-white/10 px-2 py-0.5 font-mono text-[11px] text-cyan-200">visionOS SDK</span>
+                </div>
+
+                <!-- Difficulty Selector -->
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-2" data-i18n="sim_diff_label">مستوى التدريب السريري</label>
+                  <div class="grid grid-cols-3 gap-2" id="simDifficultyBtns"></div>
+                </div>
+
+                <!-- Dynamic Module Specs -->
+                <div class="rounded-2xl border border-white/10 bg-slate-950/60 p-4 space-y-2.5">
+                  <div class="flex items-center justify-between text-xs">
+                    <span class="text-slate-400" data-i18n="sim_spec_engine">المحرك السريري</span>
+                    <span class="font-semibold text-teal-300" id="simSpecEngine"></span>
+                  </div>
+                  <div class="flex items-center justify-between text-xs">
+                    <span class="text-slate-400" data-i18n="sim_spec_pnu">التكامل مع PNU</span>
+                    <span class="font-semibold text-amber-200" id="simSpecPnu"></span>
+                  </div>
+                  <div class="flex items-center justify-between text-xs">
+                    <span class="text-slate-400" data-i18n="sim_spec_lang">دعم اللغة الصوتية</span>
+                    <span class="font-semibold text-cyan-200">العربية (ar-SA) • English</span>
+                  </div>
+                </div>
+
+                <!-- Interactive Competency Checklist -->
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-semibold text-slate-300" data-i18n="sim_checklist_title">قائمة الكفاءات التدريبية التفاعلية</span>
+                    <span id="simProgressText" class="font-mono text-xs font-bold text-teal-300">0/4</span>
+                  </div>
+                  <div class="h-2 w-full overflow-hidden rounded-full bg-white/10 mb-3">
+                    <div id="simProgressBar" class="h-full rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 transition-all duration-300" style="width: 0%"></div>
+                  </div>
+                  <div id="simChecklist" class="space-y-2"></div>
+                </div>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-2">
+                <button id="simResetBtn" type="button" class="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-300 hover:bg-white/10">
+                  <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg>
+                  <span data-i18n="sim_reset">إعادة ضبط الجلسة</span>
+                </button>
+                <button id="simBookBtn" type="button" class="inline-flex items-center gap-1.5 rounded-lg bg-teal-500 px-4 py-2 text-xs font-bold text-slate-950 hover:bg-teal-400">
+                  <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v4" /><path d="M16 2v4" /><path d="M21 13V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8" /><path d="M3 10h18" /><path d="M16 19h6" /><path d="M19 16v6" /></svg>
+                  <span data-i18n="sim_book">احجز تجربة في بيت الأطباء</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: BPR Readiness Portal on fadil369.github.io -->
+    <section id="bpr-portal" class="relative py-16 lg:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <div class="max-w-3xl">
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-teal-400/30 bg-teal-500/10 px-3.5 py-1 text-xs font-semibold text-teal-200">
+              <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v2" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10.29 10.7a2.43 2.43 0 0 0-2.66-.52c-.29.12-.56.3-.78.53l-.35.34-.35-.34a2.43 2.43 0 0 0-2.65-.53c-.3.12-.56.3-.79.53-.95.94-1 2.53.2 3.74L6.5 18l3.6-3.55c1.2-1.21 1.14-2.8.19-3.74Z" /></svg>
+              <span data-i18n="bpr_badge">الاستعداد للإطلاق على fadil369.github.io</span>
+            </span>
+            <h2 class="mt-3 text-2xl font-bold text-white sm:text-4xl" data-i18n="bpr_title">منظومة السجل الصحي الشخصي (BPR) — معيار HL7 FHIR R4 وNPHIES</h2>
+            <p class="mt-2.5 text-sm leading-relaxed text-slate-300 sm:text-base" data-i18n="bpr_desc">
+              بنية معيارية منفصلة الأدوار لتطبيق الطبيب (<code class="text-teal-300">:app-clinician</code>) وتطبيق المريض/BPR (<code class="text-cyan-300">:app-patient</code>) فوق طبقة FHIR R4 تعمل دون اتصال ومساعد ذكي عربي أصيل.
+            </p>
+          </div>
+          <a href="https://fadil369.github.io" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-xl border border-teal-400/35 bg-teal-500/10 px-4 py-2.5 text-xs font-bold text-teal-200 hover:bg-teal-500/20">
+            <span>fadil369.github.io</span>
+            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+          </a>
+        </div>
+
+        <div class="mt-10 grid gap-8 lg:grid-cols-12">
+          <!-- Architecture Modules -->
+          <div class="lg:col-span-5 space-y-3">
+            <div class="glass-panel rounded-2xl p-4 border-teal-400/25">
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs font-bold text-teal-300">:core-fhir</span>
+                <span class="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-300" data-i18n="status_verified">جاهز ومُختبر</span>
+              </div>
+              <p class="mt-1.5 text-xs leading-relaxed text-slate-300" data-i18n="mod_fhir_desc">نماذج HL7 FHIR R4 ثنائية اللغة، أدوات NPHIES، التحقق وإخفاء الهوية/الإقامة، وتدفقات BPR (البحث، التسجيل، إصدار الاعتماد) مع مستودع OfflineFirstFhirRepository.</p>
+            </div>
+
+            <div class="glass-panel rounded-2xl p-4">
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs font-bold text-cyan-300">:core-ai</span>
+                <span class="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-300" data-i18n="status_verified">جاهز ومُختبر</span>
+              </div>
+              <p class="mt-1.5 text-xs leading-relaxed text-slate-300" data-i18n="mod_ai_desc">مساعد الطبيب (ClinicalAssistant) ومساعد المريض (PatientAssistant) مع إطار السلامة السريرية SafetyFraming وتحويل الصوت العربي السعودي (ar-SA).</p>
+            </div>
+
+            <div class="glass-panel rounded-2xl p-4">
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs font-bold text-amber-300">:app-clinician &amp; :app-patient</span>
+                <span class="rounded-full bg-amber-500/15 px-2.5 py-0.5 text-[11px] font-semibold text-amber-200" data-i18n="status_staging">تهيئة الإطلاق</span>
+              </div>
+              <p class="mt-1.5 text-xs leading-relaxed text-slate-300" data-i18n="mod_apps_desc">تطبيقان مستقلان بواجهة RTL عربية كاملة، وتكامل Health Connect، وربط مباشر مع معرّف BPR الرسمي (OID 1.3.6.1.4.1.61026).</p>
+            </div>
+          </div>
+
+          <!-- Interactive BPR Enrollment Flow Simulator -->
+          <div class="min-w-0 lg:col-span-7 glass-panel rounded-3xl p-6 space-y-5">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4">
+              <div>
+                <h3 class="text-base font-bold text-white" data-i18n="bpr_sim_title">محاكي تدفق BPR التفاعلي (PDPL + FHIR R4)</h3>
+                <p class="text-xs text-slate-400" data-i18n="bpr_sim_sub">اختبر خطوات البحث والتسجيل وإصدار اعتماد السجل الصحي الشخصي مع إخفاء الهوية التلقائي</p>
+              </div>
+              <span class="rounded-lg border border-teal-400/30 bg-teal-500/10 px-2.5 py-1 font-mono text-[11px] text-teal-200">OID 1.3.6.1.4.1.61026</span>
+            </div>
+
+            <!-- Stepper -->
+            <div class="grid grid-cols-3 gap-2" id="bprStepper"></div>
+
+            <!-- Controls -->
+            <div class="grid gap-3 sm:grid-cols-12">
+              <div class="sm:col-span-7">
+                <label for="bprIdInput" class="block text-xs font-semibold text-slate-300 mb-1.5" data-i18n="bpr_id_label">رقم الهوية الوطنية (يبدأ بـ 1) أو الإقامة (يبدأ بـ 2) — تجريبي</label>
+                <input
+                  id="bprIdInput"
+                  type="text"
+                  inputmode="numeric"
+                  dir="ltr"
+                  maxlength="10"
+                  value="1048291735"
+                  class="w-full rounded-xl border border-white/15 bg-slate-950/80 px-3.5 py-2.5 font-mono text-sm text-white outline-none focus:border-teal-400"
+                />
+              </div>
+              <div class="sm:col-span-5">
+                <label for="bprRoleSelect" class="block text-xs font-semibold text-slate-300 mb-1.5" data-i18n="bpr_role_label">وضع التطبيق</label>
+                <select id="bprRoleSelect" class="w-full rounded-xl border border-white/15 bg-slate-950/80 px-3.5 py-2.5 text-sm text-white outline-none focus:border-teal-400">
+                  <option value="patient" data-i18n="bpr_role_patient">تطبيق المريض (:app-patient)</option>
+                  <option value="clinician" data-i18n="bpr_role_clinician">تطبيق الطبيب (:app-clinician)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2.5">
+              <button id="bprRunStepBtn" type="button" class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 px-4 py-2.5 text-xs font-bold text-slate-950 hover:brightness-110">
+                <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="6 3 20 12 6 21 6 3" /></svg>
+                <span id="bprRunStepLabel">تنفيذ الخطوة التالية</span>
+              </button>
+              <button id="bprResetBtn" type="button" class="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-xs font-semibold text-slate-300 hover:bg-white/10">
+                <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" /></svg>
+                <span data-i18n="bpr_reset">إعادة المحاكاة</span>
+              </button>
+              <span id="bprValidationMsg" class="text-xs font-medium text-teal-300"></span>
+            </div>
+
+            <!-- Live FHIR R4 JSON Output -->
+            <div class="rounded-2xl border border-white/10 bg-[#030712] p-4">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-mono text-[11px] font-semibold text-cyan-300">FHIR R4 / PDPL-Masked Payload</span>
+                <button id="copyFhirBtn" type="button" class="inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-slate-300 hover:text-white">
+                  <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
+                  <span data-i18n="copy_json">نسخ JSON</span>
+                </button>
+              </div>
+              <pre id="bprJsonOutput" dir="ltr" tabindex="0" aria-label="FHIR R4 JSON" class="code-scroll max-h-56 overflow-auto font-mono text-xs leading-relaxed text-emerald-300"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Native Arabic AI Lab Concierge -->
+    <section id="ai-concierge" class="relative border-t border-white/10 bg-[#070d1e]/90 py-16 lg:py-24">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto">
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-teal-400/30 bg-teal-500/10 px-3.5 py-1 text-xs font-semibold text-teal-200">
+            <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 8V4H8" /><rect width="16" height="12" x="4" y="8" rx="2" /><path d="M2 14h2" /><path d="M20 14h2" /><path d="M15 13v2" /><path d="M9 13v2" /></svg>
+            <span data-i18n="ai_badge">ذكاء اصطناعي أصيل باللغة العربية</span>
+          </span>
+          <h2 class="mt-3 text-2xl font-bold text-white sm:text-3xl" data-i18n="ai_title">مستشار مختبر B.I.Lab الذكي</h2>
+          <p class="mt-2 text-sm text-slate-300" data-i18n="ai_desc">اسأل بالعربية أو الإنجليزية عن احتضان المشاريع، شراكة جامعة الأميرة نورة، تطبيقات Apple Vision Pro، أو ربط BPR مع FHIR R4.</p>
+        </div>
+
+        <div class="mt-8 glass-panel rounded-3xl overflow-hidden">
+          <!-- Chat Log -->
+          <div id="aiChatLog" role="log" aria-live="polite" class="max-h-80 overflow-y-auto p-5 space-y-3.5"></div>
+
+          <!-- Quick Prompt Chips -->
+          <div class="border-t border-white/10 bg-slate-950/40 px-5 py-3 flex flex-wrap gap-2" id="aiQuickChips"></div>
+
+          <!-- Input Row -->
+          <form id="aiChatForm" class="border-t border-white/10 p-4 flex items-center gap-2.5 bg-slate-950/70">
+            <input
+              id="aiChatInput"
+              aria-label="سؤالك / Your question"
+              type="text"
+              autocomplete="off"
+              class="flex-1 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-slate-400 outline-none focus:border-teal-400"
+              placeholder="اكتب سؤالك هنا حول المختبر أو بيت الأطباء أو BPR..."
+            />
+            <button type="submit" class="inline-flex items-center gap-1.5 rounded-xl bg-teal-500 px-4 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-teal-400">
+              <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" /><path d="m21.854 2.147-10.94 10.939" /></svg>
+              <span data-i18n="ai_send">إرسال</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 bg-[#040711] py-10">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-base font-bold text-white" data-i18n="brand_name">مختبر برينسايت للابتكار</span>
+          <span class="rounded bg-teal-500/15 px-2 py-0.5 font-mono text-xs text-teal-300">B.I.Lab</span>
+        </div>
+        <p class="mt-1 text-xs text-slate-400" data-i18n="footer_sub">بقيادة د. محمد الفاضل • BrainSAIT Ltd. — حلول ذكية، مؤتمتة، متكاملة • الرياض، المملكة العربية السعودية</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-4 text-xs font-medium text-slate-300">
+        <a href="https://github.com/Fadil369/B.I.Lab" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 hover:text-teal-300">
+          <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg>
+          <span>Fadil369/B.I.Lab</span>
+        </a>
+        <a href="https://fadil369.github.io" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 hover:text-cyan-300">
+          <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></svg>
+          <span>fadil369.github.io</span>
+        </a>
+        <a href="https://pnu.edu.sa/en/Pages/Home.aspx" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 hover:text-amber-300">
+          <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /><path d="M22 10v6" /><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></svg>
+          <span>PNU</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Incubation & Doctors House Application Modal -->
+  <div id="applyModal" role="dialog" aria-modal="true" aria-labelledby="applyModalTitle" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/75 p-4 backdrop-blur-sm">
+    <div class="glass-panel relative w-full max-w-lg rounded-3xl p-6 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3.5">
+        <h3 id="applyModalTitle" class="text-lg font-bold text-white" data-i18n="modal_title">التقديم لاحتضان مشروع أو الانضمام لبيت الأطباء</h3>
+        <button id="closeModalBtn" type="button" aria-label="Close" class="rounded-lg p-1.5 text-slate-400 hover:bg-white/10 hover:text-white">
+          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+        </button>
+      </div>
+
+      <form id="applyForm" class="mt-4 space-y-4">
+        <div>
+          <label for="appName" class="block text-xs font-semibold text-slate-300 mb-1" data-i18n="modal_name">الاسم الكامل / اللقب العلمي</label>
+          <input id="appName" type="text" required class="w-full rounded-xl border border-white/15 bg-slate-950/80 px-3.5 py-2.5 text-sm text-white outline-none focus:border-teal-400" placeholder="د. سارة العتيبي" />
+        </div>
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div>
+            <label for="appRole" class="block text-xs font-semibold text-slate-300 mb-1" data-i18n="modal_role">الصفة</label>
+            <select id="appRole" class="w-full rounded-xl border border-white/15 bg-slate-950/80 px-3 py-2.5 text-sm text-white outline-none focus:border-teal-400">
+              <option value="physician" data-i18n="role_doc">طبيب / ممارس صحي</option>
+              <option value="pnu" data-i18n="role_pnu">باحثة / طالبة — جامعة الأميرة نورة</option>
+              <option value="engineer" data-i18n="role_eng">مهندس ذكاء اصطناعي / VisionOS</option>
+              <option value="founder" data-i18n="role_founder">رائد أعمال صحي</option>
+            </select>
+          </div>
+          <div>
+            <label for="appTrack" class="block text-xs font-semibold text-slate-300 mb-1" data-i18n="modal_track">المسار المطلوب</label>
+            <select id="appTrack" class="w-full rounded-xl border border-white/15 bg-slate-950/80 px-3 py-2.5 text-sm text-white outline-none focus:border-teal-400">
+              <option value="spatial-xr" data-i18n="tr_spatial">بيت الأطباء (Apple Vision Pro)</option>
+              <option value="clinical-ai" data-i18n="tr_ai">الذكاء الاصطناعي السريري</option>
+              <option value="bpr-fhir" data-i18n="tr_bpr">السجل الصحي الشخصي (BPR / FHIR)</option>
+              <option value="ventures" data-i18n="tr_ventures">حاضنة الابتكار PNU × BrainSAIT</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="appIdea" class="block text-xs font-semibold text-slate-300 mb-1" data-i18n="modal_idea">وصف مختصر للفكرة أو التطبيق</label>
+          <textarea id="appIdea" rows="3" required class="w-full rounded-xl border border-white/15 bg-slate-950/80 px-3.5 py-2.5 text-sm text-white outline-none focus:border-teal-400" placeholder="تطبيق محاكاة جراحية على Apple Vision Pro متكامل مع بيانات FHIR R4..."></textarea>
+        </div>
+
+        <div class="flex items-center justify-end gap-2.5 pt-2">
+          <button id="cancelModalBtn" type="button" class="rounded-xl border border-white/15 px-4 py-2 text-xs font-semibold text-slate-300 hover:bg-white/5" data-i18n="modal_cancel">إلغاء</button>
+          <button type="submit" class="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 px-5 py-2.5 text-xs font-bold text-slate-950 hover:brightness-110">
+            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg>
+            <span data-i18n="modal_submit">إرسال الطلب عبر البريد</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastBanner" role="status" aria-live="polite" class="fixed bottom-5 left-1/2 z-50 hidden -translate-x-1/2 items-center gap-2.5 rounded-2xl border border-teal-400/40 bg-[#071525]/95 px-5 py-3 text-xs font-semibold text-teal-100 shadow-2xl">
+    <svg class="h-4 w-4 text-teal-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.801 10A10 10 0 1 1 17 3.335" /><path d="m9 11 3 3L22 4" /></svg>
+    <span id="toastText"></span>
+  </div>
+
+  <script>
+    const BILAB_CONTACT_EMAIL = 'elfadil369@icloud.com';
+
+    const I18N = {
+      ar: {
+        brand_name: 'مختبر برينسايت للابتكار',
+        brand_sub: 'حاضنة الذكاء الاصطناعي الصحي • الرياض',
+        nav_pnu: 'شراكة جامعة الأميرة نورة',
+        nav_doctors: 'بيت الأطباء (VisionOS)',
+        nav_bpr: 'جاهزية BPR',
+        nav_ai: 'المستشار الذكي',
+        nav_apply: 'احتضن مشروعك',
+        hero_badge: 'ذكاء اصطناعي أصيل بالعربية • الرياض — متوافق مع رؤية السعودية 2030',
+        hero_title_1: 'مختبر برينسايت للابتكار',
+        hero_title_2: 'حاضنة الإبداع الطبي وبيت الأطباء للمحاكاة المكانية',
+        hero_desc: 'منصة ابتكار صحية سيادية تجمع بين برينسايت (BrainSAIT) وشراكة استراتيجية مع جامعة الأميرة نورة بنت عبدالرحمن (PNU)؛ لاحتضان الحلول الإبداعية، وتدريب الأطباء عبر تطبيقات Apple Vision Pro، وتجهيز منظومة السجل الصحي الشخصي (BPR) على fadil369.github.io.',
+        hero_cta_vision: 'استكشف بيت الأطباء (VisionOS)',
+        hero_cta_bpr: 'محاكي جاهزية BPR',
+        hero_cta_apply: 'تقدم للاحتضان',
+        pill_oid_label: 'معرّف BPR الرسمي',
+        pill_fhir_label: 'التوافقية الوطنية',
+        pill_gov_label: 'الحوكمة والسيادة',
+        pill_partner_label: 'الشريك الأكاديمي',
+        pill_partner_val: 'جامعة الأميرة نورة',
+        hero_img_caption: 'مقر مختبر B.I.Lab التصوّري — الرياض • الذكاء الاصطناعي والحوسبة المكانية',
+        pnu_card_tag: 'حاضنة الابتكار المشتركة',
+        pnu_card_sub: 'جامعة الأميرة نورة بنت عبدالرحمن × BrainSAIT',
+        pnu_visit: 'بوابة PNU',
+        pnu_badge: 'الشراكة الأكاديمية والبحثية',
+        pnu_title: 'احتضان الإبداع الصحي بالتكامل مع جامعة الأميرة نورة (PNU)',
+        pnu_desc: 'يربط مختبر B.I.Lab منظومة وكلاء برينسايت الذكية مع البنية التحتية البحثية والسريرية الرائدة في جامعة الأميرة نورة بنت عبدالرحمن؛ لتحويل الأفكار البحثية والسريرية إلى تطبيقات طبية جاهزة للإطلاق.',
+        pnu_fac_1_t: 'مركز المهارات والمحاكاة السريرية',
+        pnu_fac_1_d: 'مسارح المحاكاة السريرية ومختبر التدريب الجراحي بالواقع الافتراضي وتدريب الإجراءات الطبية.',
+        pnu_fac_2_t: 'بنك نورة الحيوي والأبحاث الصحية',
+        pnu_fac_2_d: 'مركز أبحاث العلوم الطبيعية والصحية بجوار مستشفى الملك عبدالله الجامعي (KAAUH).',
+        pnu_fac_3_t: 'مختبرات الحاسب والذكاء الاصطناعي',
+        pnu_fac_3_d: 'مختبر الروبوتات والذكاء الاصطناعي، ومختبر تحليل البيانات، ومختبر الأمن السيبراني.',
+        tracks_label: 'مسارات الاحتضان في B.I.Lab',
+        doc_badge: 'بيت الأطباء • Apple Vision Pro & visionOS',
+        doc_title: 'بيت الأطباء: مختبر المحاكاة والتدريب المكاني بـ Apple Vision Pro',
+        doc_desc: 'بيئة سريرية غامرة صُممت للأطباء والممارسين الصحيين لتجربة التشريح ثلاثي الأبعاد، محاكاة الإجراءات الجراحية، والتفاعل الصوتي المباشر مع المساعد السريري العربي داخل فضاء visionOS.',
+        sim_console_title: 'وحدة التحكم بالمحاكاة السريرية',
+        sim_diff_label: 'مستوى التدريب السريري',
+        sim_spec_engine: 'المحرك السريري',
+        sim_spec_pnu: 'التكامل مع PNU',
+        sim_spec_lang: 'دعم اللغة الصوتية',
+        sim_checklist_title: 'قائمة الكفاءات التدريبية التفاعلية',
+        sim_reset: 'إعادة ضبط الجلسة',
+        sim_book: 'احجز تجربة في بيت الأطباء',
+        bpr_badge: 'الاستعداد للإطلاق على fadil369.github.io',
+        bpr_title: 'منظومة السجل الصحي الشخصي (BPR) — معيار HL7 FHIR R4 وNPHIES',
+        bpr_desc: 'بنية معيارية منفصلة الأدوار لتطبيق الطبيب (:app-clinician) وتطبيق المريض/BPR (:app-patient) فوق طبقة FHIR R4 تعمل دون اتصال ومساعد ذكي عربي أصيل.',
+        status_verified: 'جاهز ومُختبر',
+        status_staging: 'تهيئة الإطلاق',
+        mod_fhir_desc: 'نماذج HL7 FHIR R4 ثنائية اللغة، أدوات NPHIES، التحقق وإخفاء الهوية/الإقامة، وتدفقات BPR (البحث، التسجيل، إصدار الاعتماد) مع مستودع OfflineFirstFhirRepository.',
+        mod_ai_desc: 'مساعد الطبيب (ClinicalAssistant) ومساعد المريض (PatientAssistant) مع إطار السلامة السريرية SafetyFraming وتحويل الصوت العربي السعودي (ar-SA).',
+        mod_apps_desc: 'تطبيقان مستقلان بواجهة RTL عربية كاملة، وتكامل Health Connect، وربط مباشر مع معرّف BPR الرسمي (OID 1.3.6.1.4.1.61026).',
+        bpr_sim_title: 'محاكي تدفق BPR التفاعلي (PDPL + FHIR R4)',
+        bpr_sim_sub: 'اختبر خطوات البحث والتسجيل وإصدار اعتماد السجل الصحي الشخصي مع إخفاء الهوية التلقائي',
+        bpr_id_label: 'رقم الهوية الوطنية (يبدأ بـ 1) أو الإقامة (يبدأ بـ 2) — تجريبي',
+        bpr_role_label: 'وضع التطبيق',
+        bpr_role_patient: 'تطبيق المريض (:app-patient)',
+        bpr_role_clinician: 'تطبيق الطبيب (:app-clinician)',
+        bpr_reset: 'إعادة المحاكاة',
+        copy_json: 'نسخ JSON',
+        ai_badge: 'ذكاء اصطناعي أصيل باللغة العربية',
+        ai_title: 'مستشار مختبر B.I.Lab الذكي',
+        ai_desc: 'اسأل بالعربية أو الإنجليزية عن احتضان المشاريع، شراكة جامعة الأميرة نورة، تطبيقات Apple Vision Pro، أو ربط BPR مع FHIR R4.',
+        ai_send: 'إرسال',
+        footer_sub: 'بقيادة د. محمد الفاضل • BrainSAIT Ltd. — حلول ذكية، مؤتمتة، متكاملة • الرياض، المملكة العربية السعودية',
+        modal_title: 'التقديم لاحتضان مشروع أو الانضمام لبيت الأطباء',
+        modal_name: 'الاسم الكامل / اللقب العلمي',
+        modal_role: 'الصفة',
+        role_doc: 'طبيب / ممارس صحي',
+        role_pnu: 'باحثة / طالبة — جامعة الأميرة نورة',
+        role_eng: 'مهندس ذكاء اصطناعي / VisionOS',
+        role_founder: 'رائد أعمال صحي',
+        modal_track: 'المسار المطلوب',
+        tr_spatial: 'بيت الأطباء (Apple Vision Pro)',
+        tr_ai: 'الذكاء الاصطناعي السريري',
+        tr_bpr: 'السجل الصحي الشخصي (BPR / FHIR)',
+        tr_ventures: 'حاضنة الابتكار PNU × BrainSAIT',
+        modal_idea: 'وصف مختصر للفكرة أو التطبيق',
+        modal_cancel: 'إلغاء',
+        modal_submit: 'إرسال الطلب عبر البريد',
+        lang_btn: 'English',
+        skip_link: 'تخطَّ إلى المحتوى',
+        alt_hero: 'تصوّر لمقر مختبر برينسايت للابتكار في الرياض',
+        alt_pnu: 'تصوّر لاستوديو حاضنة الابتكار المشتركة',
+        alt_doctors: 'تصوّر لمختبر بيت الأطباء للمحاكاة على Apple Vision Pro',
+        chat_placeholder: 'اكتب سؤالك هنا حول المختبر أو بيت الأطباء أو BPR...'
+      },
+      en: {
+        brand_name: 'BrainSAIT Innovation Lab',
+        brand_sub: 'Healthcare AI Incubator • Riyadh',
+        nav_pnu: 'PNU Partnership',
+        nav_doctors: 'House for Doctors (VisionOS)',
+        nav_bpr: 'BPR Readiness',
+        nav_ai: 'AI Concierge',
+        nav_apply: 'Incubate Project',
+        hero_badge: 'Native Arabic AI • Riyadh — Aligned with Saudi Vision 2030',
+        hero_title_1: 'BrainSAIT Innovation Lab',
+        hero_title_2: 'Creative Health Incubator & House for Doctors Spatial Lab',
+        hero_desc: 'A sovereign healthcare innovation hub uniting BrainSAIT with a strategic partnership at Princess Nourah bint Abdulrahman University (PNU) to incubate creative work, train physicians with Apple Vision Pro simulator apps, and prepare BPR on fadil369.github.io.',
+        hero_cta_vision: 'Explore House for Doctors (VisionOS)',
+        hero_cta_bpr: 'BPR Readiness Simulator',
+        hero_cta_apply: 'Apply for Incubation',
+        pill_oid_label: 'Official BPR OID',
+        pill_fhir_label: 'National Standards',
+        pill_gov_label: 'Sovereign Governance',
+        pill_partner_label: 'Academic Partner',
+        pill_partner_val: 'Princess Nourah Univ.',
+        hero_img_caption: 'B.I.Lab Architectural Concept — Riyadh • Sovereign AI & Spatial Medicine',
+        pnu_card_tag: 'Joint Innovation Incubator',
+        pnu_card_sub: 'Princess Nourah bint Abdulrahman University × BrainSAIT',
+        pnu_visit: 'Visit PNU',
+        pnu_badge: 'Academic & Research Partnership',
+        pnu_title: 'Incubating Creative Healthcare Innovation with PNU',
+        pnu_desc: 'B.I.Lab connects BrainSAIT’s autonomous LINC agents with PNU’s clinical simulation, biobank, and computing infrastructure to turn clinical research into launch-ready health products.',
+        pnu_fac_1_t: 'Clinical Skills & Simulation Center',
+        pnu_fac_1_d: 'Simulation theaters, Virtual Reality Surgical Training Lab, and procedural task simulators.',
+        pnu_fac_2_t: 'Nourah Biobank & Health Research',
+        pnu_fac_2_d: 'Natural and Health Sciences Research Center adjacent to King Abdullah University Hospital (KAAUH).',
+        pnu_fac_3_t: 'CS & AI Research Laboratories',
+        pnu_fac_3_d: 'Robotics & AI Lab, Data Analytics Lab, and Cybersecurity Lab at the College of Computer & Information Sciences.',
+        tracks_label: 'B.I.Lab Incubation Tracks',
+        doc_badge: 'House for Doctors • Apple Vision Pro & visionOS',
+        doc_title: 'House for Doctors: Apple Vision Pro Spatial Training & Simulator Lab',
+        doc_desc: 'An immersive clinical sanctuary engineered for physicians to master 3D anatomy, rehearse surgical procedures, and collaborate with a bilingual Arabic/English AI copilot inside visionOS.',
+        sim_console_title: 'Clinical Simulation Control Console',
+        sim_diff_label: 'Clinical Training Tier',
+        sim_spec_engine: 'Clinical Engine',
+        sim_spec_pnu: 'PNU Lab Synergy',
+        sim_spec_lang: 'Voice AI Support',
+        sim_checklist_title: 'Interactive Competency Checklist',
+        sim_reset: 'Reset Session',
+        sim_book: 'Book a VisionOS Session',
+        bpr_badge: 'Launch Readiness on fadil369.github.io',
+        bpr_title: 'BrainSAIT Personal Record (BPR) — HL7 FHIR R4 & NPHIES',
+        bpr_desc: 'Role-based architecture separating Clinician (:app-clinician) and Patient/BPR (:app-patient) experiences over offline-first HL7 FHIR R4 and native Arabic AI.',
+        status_verified: 'Verified & Tested',
+        status_staging: 'Launch Staging',
+        mod_fhir_desc: 'Bilingual HL7 FHIR R4 models, Saudi NPHIES helpers, PDPL ID/Iqama validation & masking, and BPR flows (search, enroll, issueCredential) on OfflineFirstFhirRepository.',
+        mod_ai_desc: 'Bilingual ClinicalAssistant and PatientAssistant powered by SafetyFraming and native Saudi Arabic (ar-SA) voice pipelines.',
+        mod_apps_desc: 'Dedicated RTL-native apps with Health Connect integration bound directly to BrainSAIT’s registered BPR OID (1.3.6.1.4.1.61026).',
+        bpr_sim_title: 'Interactive BPR Flow Simulator (PDPL + FHIR R4)',
+        bpr_sim_sub: 'Test search, enroll, and issueCredential flows with automatic PDPL National ID / Iqama masking',
+        bpr_id_label: 'Saudi National ID (starts with 1) or Iqama (starts with 2) — Demo',
+        bpr_role_label: 'App Role Mode',
+        bpr_role_patient: 'Patient App (:app-patient)',
+        bpr_role_clinician: 'Clinician App (:app-clinician)',
+        bpr_reset: 'Reset Flow',
+        copy_json: 'Copy JSON',
+        ai_badge: 'Native Arabic AI Architecture',
+        ai_title: 'B.I.Lab Intelligent Concierge',
+        ai_desc: 'Ask in Arabic or English about project incubation, PNU partnership, Apple Vision Pro apps, or BPR & FHIR R4 integration.',
+        ai_send: 'Send',
+        footer_sub: 'Led by Dr. Mohamed El Fadil • BrainSAIT Ltd. — Solutions, Automated, Integrated • Riyadh, Saudi Arabia',
+        modal_title: 'Apply for Incubation or House for Doctors',
+        modal_name: 'Full Name / Title',
+        modal_role: 'Role',
+        role_doc: 'Physician / Clinician',
+        role_pnu: 'PNU Researcher / Student',
+        role_eng: 'AI / visionOS Engineer',
+        role_founder: 'Healthcare Founder',
+        modal_track: 'Target Track',
+        tr_spatial: 'House for Doctors (Apple Vision Pro)',
+        tr_ai: 'Clinical AI Agents',
+        tr_bpr: 'BPR / HL7 FHIR R4',
+        tr_ventures: 'PNU × BrainSAIT Incubator',
+        modal_idea: 'Brief Description of Your Idea or App',
+        modal_cancel: 'Cancel',
+        modal_submit: 'Send application by email',
+        lang_btn: 'العربية',
+        skip_link: 'Skip to content',
+        alt_hero: 'Concept render of the BrainSAIT Innovation Lab in Riyadh',
+        alt_pnu: 'Concept render of the joint innovation incubation studio',
+        alt_doctors: 'Concept render of the House for Doctors Apple Vision Pro simulation lab',
+        chat_placeholder: 'Ask about B.I.Lab, House for Doctors, PNU, or BPR...'
+      }
+    };
+
+    const TRACKS = {
+      'clinical-ai': {
+        ar: {
+          label: 'الذكاء الاصطناعي السريري',
+          title: 'وكلاء الذكاء الاصطناعي السريري بالعربية الأصيلة',
+          desc: 'تطوير وتقييم وكلاء سريريين متوافقين مع أنظمة PDPL وCHI باستخدام معمارية BEOS ووكلاء MASTERLINC وClinicalLinc وComplianceLinc.',
+          agents: ['MASTERLINC', 'ClinicalLinc', 'ComplianceLinc'],
+          pnu: 'مختبر تحليل البيانات والأمن السيبراني — كلية علوم الحاسب بجامعة الأميرة نورة'
+        },
+        en: {
+          label: 'Clinical AI',
+          title: 'Native Arabic Clinical AI Agents',
+          desc: 'Build and evaluate PDPL & CHI compliant clinical agents on BEOS architecture using MASTERLINC, ClinicalLinc, and ComplianceLinc.',
+          agents: ['MASTERLINC', 'ClinicalLinc', 'ComplianceLinc'],
+          pnu: 'Data Analytics & Cybersecurity Labs — PNU College of Computer & Information Sciences'
+        }
+      },
+      'spatial-xr': {
+        ar: {
+          label: 'الحوسبة المكانية (VisionOS)',
+          title: 'تطبيقات التدريب والمحاكاة الطبية على Apple Vision Pro',
+          desc: 'تصميم بيئات تشريحية وجراحية ثلاثية الأبعاد للأطباء بالتكامل مع NeuroAtlas 3D ومختبر التدريب الجراحي بالواقع الافتراضي.',
+          agents: ['DoctorLinc', 'NeuroAtlas 3D', 'visionOS SDK'],
+          pnu: 'مركز المهارات والمحاكاة السريرية ومختبر التدريب الجراحي بالواقع الافتراضي — PNU'
+        },
+        en: {
+          label: 'Spatial XR',
+          title: 'Apple Vision Pro Medical Simulators',
+          desc: 'Design volumetric 3D anatomical and surgical training modules connected with NeuroAtlas 3D and VR Surgical Training Labs.',
+          agents: ['DoctorLinc', 'NeuroAtlas 3D', 'visionOS SDK'],
+          pnu: 'PNU Clinical Skills & Simulation Center + VR Surgical Training Lab'
+        }
+      },
+      'bpr-fhir': {
+        ar: {
+          label: 'السجل الصحي BPR وFHIR',
+          title: 'التوافقية الصحية الوطنية وإطلاق BPR على fadil369.github.io',
+          desc: 'بناء تطبيقات السجل الصحي الشخصي المتصلة بمعيار HL7 FHIR R4 ومنصة نفيس (NPHIES) مع إمكانية العمل دون اتصال.',
+          agents: ['BridgeLinc', ':core-fhir', 'BPR OID 61026'],
+          pnu: 'بنك نورة الحيوي ومركز أبحاث العلوم الطبيعية والصحية بجوار مستشفى KAAUH'
+        },
+        en: {
+          label: 'BPR & FHIR R4',
+          title: 'National Interoperability & BPR Launch on fadil369.github.io',
+          desc: 'Develop offline-first personal health record apps aligned with HL7 FHIR R4, NPHIES, and BrainSAIT BPR OID 1.3.6.1.4.1.61026.',
+          agents: ['BridgeLinc', ':core-fhir', 'BPR OID 61026'],
+          pnu: 'Nourah Biobank & Natural and Health Sciences Research Center next to KAAUH'
+        }
+      },
+      'ventures': {
+        ar: {
+          label: 'ريادة الأعمال الصحية',
+          title: 'تحويل الأبحاث والمشاريع مفتوحة المصدر إلى شركات صحية ناشئة',
+          desc: 'احتضان الفرق الإبداعية من الأطباء وطالبات وباحثات جامعة الأميرة نورة لتحويل النماذج الأولية إلى منتجات قابلة للتوسع وفق رؤية 2030.',
+          agents: ['BEOS Factory', 'GitHub Pages', 'ComplianceLinc'],
+          pnu: 'منظومة الابتكار وريادة الأعمال وبراءات الاختراع — جامعة الأميرة نورة'
+        },
+        en: {
+          label: 'Health Ventures',
+          title: 'Research & Open-Source to Sovereign Health Ventures',
+          desc: 'Incubate physician-founders and PNU researchers to transform prototypes into scalable Vision 2030 healthcare products.',
+          agents: ['BEOS Factory', 'GitHub Pages', 'ComplianceLinc'],
+          pnu: 'PNU Research, Innovation, Entrepreneurship & Patent Ecosystem'
+        }
+      }
+    };
+
+    const VISION_APPS = [
+      {
+        id: 'neuroatlas',
+        icon: 'brain',
+        ar: {
+          name: 'NeuroAtlas 3D Spatial',
+          tag: '12 جهازاً حيوياً',
+          short: 'أطلس تشريحي عصبي مكاني ثلاثي الأبعاد يبدأ بالدماغ والجهاز العصبي المركزي.',
+          scenarioTitle: 'استكشاف الدماغ والجهاز العصبي المركزي ثلاثي الأبعاد',
+          scenarioDesc: 'تفاعل باليدين والعينين مع الطبقات العصبية والوعائية بوضوح مكاني فائق داخل visionOS.',
+          engine: 'NeuroAtlas 3D + RealityKit',
+          pnu: 'مركز المهارات والمحاكاة السريرية',
+          checks: [
+            'تحديد الفصوص القشرية والمسارات العصبية الرئيسية',
+            'عزل الشبكة الوعائية الدماغية (Circle of Willis)',
+            'استدعاء الملاحظات السريرية العربية صوتياً',
+            'تصدير تقرير التقييم التشريحي إلى ملف المتدرب'
+          ]
+        },
+        en: {
+          name: 'NeuroAtlas 3D Spatial',
+          tag: '12 Body Systems',
+          short: 'Volumetric 3D neuro-anatomy atlas starting with Brain & CNS for physician mastery.',
+          scenarioTitle: 'Volumetric Brain & CNS Exploration',
+          scenarioDesc: 'Manipulate neural and vascular anatomical layers with hand & eye tracking inside visionOS.',
+          engine: 'NeuroAtlas 3D + RealityKit',
+          pnu: 'PNU Clinical Skills & Simulation Center',
+          checks: [
+            'Identify cortical lobes & primary neural pathways',
+            'Isolate cerebral vascular network (Circle of Willis)',
+            'Invoke bilingual Arabic/English voice clinical notes',
+            'Export competency assessment to trainee profile'
+          ]
+        }
+      },
+      {
+        id: 'surgical-xr',
+        icon: 'scissors',
+        ar: {
+          name: 'Surgical XR Theater',
+          tag: 'محاكاة جراحية',
+          short: 'تدريب متدرج الصعوبة على الإجراءات السريرية والجراحية الدقيقة بأمان تام.',
+          scenarioTitle: 'غرفة العمليات الافتراضية للإجراءات السريرية',
+          scenarioDesc: 'محاكاة إدارة مجرى الهواء، البزل القطني، والإجراءات الوريدية مع قياس دقة الأداء.',
+          engine: 'visionOS Spatial Physics',
+          pnu: 'مختبر التدريب الجراحي بالواقع الافتراضي — PNU',
+          checks: [
+            'التحقق من قائمة السلامة الجراحية قبل الإجراء',
+            'محاكاة إدارة مجرى الهواء بدقة زاوية الأدوات',
+            'إتمام إجراء البزل القطني ضمن هامش الأمان',
+            'مراجعة التغذية الراجعة الفورية مع المشرف السريري'
+          ]
+        },
+        en: {
+          name: 'Surgical XR Theater',
+          tag: 'Surgical Sim',
+          short: 'Progressive difficulty training for clinical and surgical procedures in a safe XR theater.',
+          scenarioTitle: 'Virtual Operating Theater for Clinical Procedures',
+          scenarioDesc: 'Practice airway management, lumbar puncture, and IV procedures with real-time precision feedback.',
+          engine: 'visionOS Spatial Physics',
+          pnu: 'PNU Virtual Reality Surgical Training Lab',
+          checks: [
+            'Complete pre-procedure surgical safety checklist',
+            'Execute airway management within angle tolerance',
+            'Perform lumbar puncture trajectory verification',
+            'Review immediate debrief metrics with clinical faculty'
+          ]
+        }
+      },
+      {
+        id: 'doctorlinc-xr',
+        icon: 'stethoscope',
+        ar: {
+          name: 'DoctorLinc Spatial Copilot',
+          tag: 'مساعد الطبيب الذكي',
+          short: 'واجهة سريرية صوتية عائمة بالعربية تعرض ملخصات FHIR R4 وBPR أثناء الجولات.',
+          scenarioTitle: 'المساعد السريري الصوتي داخل فضاء الطبيب',
+          scenarioDesc: 'عرض مؤشرات المريض من BPR وتلخيص الملاحظات السريرية بالعربية دون لمس الشاشة.',
+          engine: 'DoctorLinc + :core-ai (ar-SA)',
+          pnu: 'مستشفى الملك عبدالله الجامعي (KAAUH)',
+          checks: [
+            'تفعيل الإملاء الصوتي السريري بالعربية (ar-SA)',
+            'استعراض ملف المريض المعياري عبر HL7 FHIR R4',
+            'التحقق التلقائي من السلامة الدوائية (SafetyFraming)',
+            'اعتماد الملاحظة السريرية ومزامنتها بأمان PDPL'
+          ]
+        },
+        en: {
+          name: 'DoctorLinc Spatial Copilot',
+          tag: 'Clinical AI HUD',
+          short: 'Hands-free bilingual Arabic/English spatial HUD displaying FHIR R4 & BPR summaries.',
+          scenarioTitle: 'Voice-First Spatial Clinical Copilot',
+          scenarioDesc: 'Surface patient vitals from BPR and dictate structured Arabic/English notes hands-free.',
+          engine: 'DoctorLinc + :core-ai (ar-SA)',
+          pnu: 'King Abdullah University Hospital (KAAUH)',
+          checks: [
+            'Activate Saudi Arabic clinical speech-to-text (ar-SA)',
+            'Inspect HL7 FHIR R4 patient summary in spatial HUD',
+            'Run automated SafetyFraming clinical checks',
+            'Sign off note with PDPL-compliant sync'
+          ]
+        }
+      },
+      {
+        id: 'icu-twin',
+        icon: 'heart-pulse',
+        ar: {
+          name: 'Emergency ICU Twin',
+          tag: 'توأم العناية المركزة',
+          short: 'توأم رقمي تفاعلي لأجهزة التنفس والمراقبة الحيوية وتخطيط القلب ECG للفرق الطبية.',
+          scenarioTitle: 'محاكاة الاستجابة السريعة في العناية المركزة',
+          scenarioDesc: 'سيناريوهات فسيولوجية متكاملة تشمل أجهزة التنفس ومراقبة العلامات الحيوية وECG.',
+          engine: 'PhysioTwin + BridgeLinc',
+          pnu: 'مسارح المحاكاة السريرية (ICU / ER) — PNU',
+          checks: [
+            'قراءة تخطيط القلب (ECG) والمؤشرات الحيوية الفورية',
+            'ضبط إعدادات جهاز التنفس الصناعي حسب الحالة',
+            'تنسيق أدوار الفريق الطبي في سيناريو الطوارئ',
+            'توثيق الاستجابة ومقارنتها بالبروتوكول المعتمد'
+          ]
+        },
+        en: {
+          name: 'Emergency ICU Twin',
+          tag: 'ICU Digital Twin',
+          short: 'Interactive digital twin of ventilators, vital monitors, and ECGs for rapid-response teams.',
+          scenarioTitle: 'Rapid-Response ICU Team Simulation',
+          scenarioDesc: 'Multi-device physiological scenarios integrating ventilators, vital signs, and 12-lead ECG.',
+          engine: 'PhysioTwin + BridgeLinc',
+          pnu: 'PNU Simulation Theaters (ICU & ER)',
+          checks: [
+            'Interpret live ECG and vital sign waveforms',
+            'Calibrate ventilator parameters for acute distress',
+            'Coordinate multi-clinician emergency roles',
+            'Log response timeline against clinical protocol'
+          ]
+        }
+      }
+    ];
+
+    const LAYERS = {
+      ar: [
+        { id: 'neural', label: 'الشبكة العصبية (CNS)' },
+        { id: 'vascular', label: 'الأوعية الدموية' },
+        { id: 'surgical', label: 'مسار الإجراء الجراحي' },
+        { id: 'fhir-hud', label: 'طبقة FHIR R4 الحية' }
+      ],
+      en: [
+        { id: 'neural', label: 'Neural (CNS)' },
+        { id: 'vascular', label: 'Vascular Layer' },
+        { id: 'surgical', label: 'Surgical Path' },
+        { id: 'fhir-hud', label: 'Live FHIR R4 HUD' }
+      ]
+    };
+
+    const DIFFICULTIES = {
+      ar: [
+        { id: 'resident', label: 'طبيب مقيم' },
+        { id: 'fellow', label: 'زمالة تخصصية' },
+        { id: 'consultant', label: 'استشاري متقدم' }
+      ],
+      en: [
+        { id: 'resident', label: 'Resident' },
+        { id: 'fellow', label: 'Fellow' },
+        { id: 'consultant', label: 'Consultant' }
+      ]
+    };
+
+    const BPR_STEPS = [
+      { id: 0, key: 'search', ar: '1. بحث وتحقق (search)', en: '1. Search & Verify' },
+      { id: 1, key: 'enroll', ar: '2. تسجيل BPR (enroll)', en: '2. Enroll BPR' },
+      { id: 2, key: 'issueCredential', ar: '3. إصدار الاعتماد (issueCredential)', en: '3. Issue Credential' }
+    ];
+
+    const state = {
+      lang: 'ar',
+      activeTrack: 'clinical-ai',
+      activeSimApp: 'neuroatlas',
+      simLayer: 'neural',
+      simDifficulty: 'resident',
+      checkedItems: {},
+      bprStep: 0,
+      bprRole: 'patient',
+      bprId: '1048291735',
+      chatMessages: [],
+      submissions: []
+    };
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastBanner');
+      const text = document.getElementById('toastText');
+      text.textContent = msg;
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex');
+      }, 3200);
+    }
+
+    function applyStaticTranslations() {
+      const dict = I18N[state.lang];
+      document.documentElement.lang = state.lang;
+      document.documentElement.dir = state.lang === 'ar' ? 'rtl' : 'ltr';
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const k = el.getAttribute('data-i18n');
+        if (dict[k]) el.textContent = dict[k];
+      });
+      document.getElementById('langToggleLabel').textContent = dict.lang_btn;
+      document.getElementById('aiChatInput').placeholder = dict.chat_placeholder;
+      document.querySelectorAll('[data-i18n-alt]').forEach((el) => {
+        const k = el.getAttribute('data-i18n-alt');
+        if (dict[k]) el.alt = dict[k];
+      });
+    }
+
+    function renderTracks() {
+      const btns = document.querySelectorAll('.track-btn');
+      btns.forEach((btn) => {
+        const key = btn.getAttribute('data-track');
+        const info = TRACKS[key][state.lang];
+        btn.textContent = info.label;
+        btn.setAttribute('aria-pressed', String(key === state.activeTrack));
+        if (key === state.activeTrack) {
+          btn.className = 'track-btn rounded-lg px-3 py-1.5 text-xs font-bold transition bg-teal-500 text-slate-950 shadow-md shadow-teal-500/25';
+        } else {
+          btn.className = 'track-btn rounded-lg px-3 py-1.5 text-xs font-semibold transition border border-white/10 bg-white/5 text-slate-300 hover:bg-white/10';
+        }
+      });
+
+      const active = TRACKS[state.activeTrack][state.lang];
+      const agentsLabel = state.lang === 'ar' ? 'المنظومة والوكلاء:' : 'Stack & Agents:';
+      const pnuLabel = state.lang === 'ar' ? 'نقطة التكامل مع PNU:' : 'PNU Synergy:';
+      document.getElementById('trackDetailPanel').innerHTML = `
+        <h3 class="text-base font-bold text-white">${active.title}</h3>
+        <p class="text-xs sm:text-sm leading-relaxed text-slate-300">${active.desc}</p>
+        <div class="flex flex-wrap items-center gap-2 pt-1">
+          <span class="text-xs font-semibold text-slate-400">${agentsLabel}</span>
+          ${active.agents.map((a) => `<span class="rounded-md border border-teal-400/30 bg-teal-500/10 px-2.5 py-0.5 font-mono text-[11px] font-semibold text-teal-200">${a}</span>`).join('')}
+        </div>
+        <div class="rounded-xl border border-amber-400/20 bg-amber-500/5 px-3.5 py-2.5 text-xs text-amber-200">
+          <strong class="text-amber-300">${pnuLabel}</strong> ${active.pnu}
+        </div>
+      `;
+    }
+
+    function renderVisionLab() {
+      const appObj = VISION_APPS.find((a) => a.id === state.activeSimApp) || VISION_APPS[0];
+      const app = appObj[state.lang];
+      const layers = LAYERS[state.lang];
+      const diffs = DIFFICULTIES[state.lang];
+      const currentLayer = layers.find((l) => l.id === state.simLayer) || layers[0];
+      const currentDiff = diffs.find((d) => d.id === state.simDifficulty) || diffs[0];
+
+      document.getElementById('hudActiveAppTitle').textContent = app.name;
+      document.getElementById('hudLayerBadge').textContent = `${state.lang === 'ar' ? 'الطبقة:' : 'Layer:'} ${currentLayer.label}`;
+      document.getElementById('hudScenarioHeading').textContent = app.scenarioTitle;
+      document.getElementById('hudScenarioDesc').textContent = app.scenarioDesc;
+      document.getElementById('hudLevelPill').textContent = currentDiff.label;
+      document.getElementById('simSpecEngine').textContent = app.engine;
+      document.getElementById('simSpecPnu').textContent = app.pnu;
+
+      // Layer buttons
+      const layerContainer = document.getElementById('simLayerButtons');
+      layerContainer.innerHTML = layers.map((l) => `
+        <button type="button" data-layer="${l.id}" aria-pressed="${l.id === state.simLayer}" class="sim-layer-btn rounded-lg px-2.5 py-1 text-[11px] font-semibold transition ${l.id === state.simLayer ? 'bg-cyan-400 text-slate-950' : 'border border-white/15 bg-white/10 text-slate-200 hover:bg-white/20'}">
+          ${l.label}
+        </button>
+      `).join('');
+
+      // App selector grid
+      const grid = document.getElementById('visionAppsGrid');
+      grid.innerHTML = VISION_APPS.map((item) => {
+        const t = item[state.lang];
+        const active = item.id === state.activeSimApp;
+        return `
+          <button type="button" data-sim-app="${item.id}" aria-pressed="${active}" class="sim-app-btn text-start rounded-2xl p-4 transition border ${active ? 'border-cyan-400/60 bg-cyan-500/15 shadow-lg shadow-cyan-500/10' : 'border-white/10 bg-white/[0.03] hover:border-white/25 hover:bg-white/[0.06]'}">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-sm font-bold text-white">${t.name}</span>
+              <span class="rounded-md bg-white/10 px-2 py-0.5 text-[10px] font-semibold text-cyan-200">${t.tag}</span>
+            </div>
+            <p class="mt-1.5 text-xs leading-relaxed text-slate-300">${t.short}</p>
+          </button>
+        `;
+      }).join('');
+
+      // Difficulty buttons
+      const diffContainer = document.getElementById('simDifficultyBtns');
+      diffContainer.innerHTML = diffs.map((d) => `
+        <button type="button" data-diff="${d.id}" aria-pressed="${d.id === state.simDifficulty}" class="sim-diff-btn rounded-xl py-2 text-xs font-semibold transition border ${d.id === state.simDifficulty ? 'border-teal-400 bg-teal-500/20 text-teal-200' : 'border-white/10 bg-white/5 text-slate-300 hover:bg-white/10'}">
+          ${d.label}
+        </button>
+      `).join('');
+
+      // Checklist
+      if (!state.checkedItems[appObj.id]) {
+        state.checkedItems[appObj.id] = [true, false, false, false];
+      }
+      const checks = state.checkedItems[appObj.id];
+      const completed = checks.filter(Boolean).length;
+      const total = app.checks.length;
+      const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+      document.getElementById('simProgressText').textContent = `${completed}/${total}`;
+      document.getElementById('simProgressBar').style.width = `${pct}%`;
+
+      document.getElementById('simChecklist').innerHTML = app.checks.map((label, idx) => {
+        const isDone = Boolean(checks[idx]);
+        return `
+          <button type="button" data-check-idx="${idx}" aria-pressed="${isDone}" class="sim-check-btn w-full flex items-center gap-3 rounded-xl border px-3.5 py-2.5 text-start text-xs transition ${isDone ? 'border-teal-400/40 bg-teal-500/15 text-teal-100' : 'border-white/10 bg-white/[0.03] text-slate-300 hover:bg-white/[0.06]'}">
+            <span class="flex h-4 w-4 shrink-0 items-center justify-center rounded border ${isDone ? 'border-teal-400 bg-teal-400 text-slate-950 font-bold' : 'border-slate-500'}"><span aria-hidden="true">${isDone ? '✓' : ''}</span></span>
+            <span class="${isDone ? 'line-through opacity-85' : ''}">${label}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function maskSaudiId(raw) {
+      const digits = (raw || '').replace(/\D/g, '');
+      if (digits.length !== 10 || (digits[0] !== '1' && digits[0] !== '2')) {
+        return { valid: false, masked: 'INVALID_ID', type: 'unknown' };
+      }
+      return {
+        valid: true,
+        masked: `${digits.slice(0, 2)}****${digits.slice(6)}`,
+        type: digits[0] === '1' ? 'Saudi National ID' : 'Iqama Resident ID'
+      };
+    }
+
+    function renderBprSimulator() {
+      const stepper = document.getElementById('bprStepper');
+      stepper.innerHTML = BPR_STEPS.map((s) => {
+        const active = s.id === state.bprStep;
+        const done = s.id < state.bprStep;
+        return `
+          <button type="button" data-bpr-step="${s.id}" aria-current="${active ? 'step' : 'false'}" class="bpr-step-btn rounded-xl border px-2.5 py-2 text-[11px] font-semibold transition ${active ? 'border-teal-400 bg-teal-500/20 text-teal-200' : done ? 'border-emerald-400/30 bg-emerald-500/10 text-emerald-300' : 'border-white/10 bg-white/5 text-slate-400'}">
+            ${s[state.lang]}
+          </button>
+        `;
+      }).join('');
+
+      const info = maskSaudiId(state.bprId);
+      const valEl = document.getElementById('bprValidationMsg');
+      if (!info.valid) {
+        valEl.className = 'text-xs font-medium text-rose-400';
+        valEl.textContent = state.lang === 'ar'
+          ? 'أدخل 10 أرقام تبدأ بـ 1 (هوية وطنية) أو 2 (إقامة).'
+          : 'Enter 10 digits starting with 1 (National ID) or 2 (Iqama).';
+      } else {
+        valEl.className = 'text-xs font-medium text-teal-300';
+        valEl.textContent = state.lang === 'ar'
+          ? `تم التحقق وإخفاء الهوية وفق PDPL: ${info.masked}`
+          : `PDPL validated & masked: ${info.masked}`;
+      }
+
+      const stepKey = BPR_STEPS[state.bprStep].key;
+      const runLabel = document.getElementById('bprRunStepLabel');
+      if (state.bprStep < 2) {
+        runLabel.textContent = state.lang === 'ar' ? `الانتقال إلى ${BPR_STEPS[state.bprStep + 1].key}` : `Advance to ${BPR_STEPS[state.bprStep + 1].key}`;
+      } else {
+        runLabel.textContent = state.lang === 'ar' ? 'تم إصدار اعتماد BPR بنجاح' : 'BPR Credential Issued';
+      }
+
+      const payload = {
+        resourceType: stepKey === 'issueCredential' ? 'Basic' : 'Patient',
+        meta: {
+          profile: ['https://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/patient'],
+          source: 'https://fadil369.github.io/bpr',
+          tag: [{ system: 'urn:oid:1.3.6.1.4.1.61026', code: `BPR_${stepKey.toUpperCase()}` }]
+        },
+        bprFlow: {
+          step: stepKey,
+          appModule: state.bprRole === 'patient' ? ':app-patient' : ':app-clinician',
+          repository: 'OfflineFirstFhirRepository',
+          pdplMaskedIdentifier: info.masked,
+          identifierCategory: info.type,
+          language: state.lang === 'ar' ? 'ar-SA' : 'en-US'
+        },
+        status: info.valid ? (stepKey === 'issueCredential' ? 'credential-active' : 'verified') : 'validation-error',
+        credential: stepKey === 'issueCredential' && info.valid ? {
+          oid: '1.3.6.1.4.1.61026',
+          issuer: 'BrainSAIT Innovation Lab (B.I.Lab)',
+          healthConnectReady: state.bprRole === 'patient'
+        } : undefined
+      };
+
+      document.getElementById('bprJsonOutput').textContent = JSON.stringify(payload, null, 2);
+    }
+
+    function getAiReply(promptText) {
+      const q = promptText.toLowerCase();
+      const isEn = state.lang === 'en' && !/[\u0600-\u06FF]/.test(promptText);
+
+      if (q.includes('pnu') || q.includes('نورة') || q.includes('جامعة') || q.includes('شراكة')) {
+        return isEn
+          ? 'Our PNU partnership aligns B.I.Lab incubation with PNU’s Clinical Skills & Simulation Center (including the VR Surgical Training Lab), Nourah Biobank near KAAUH, and the Robotics & Data Analytics Labs.'
+          : 'ترتكز شراكة مختبر B.I.Lab مع جامعة الأميرة نورة بنت عبدالرحمن (PNU) على التكامل مع مركز المهارات والمحاكاة السريرية ومختبر التدريب الجراحي بالواقع الافتراضي، وبنك نورة الحيوي بجوار مستشفى الملك عبدالله الجامعي، ومختبرات الذكاء الاصطناعي وتحليل البيانات.';
+      }
+      if (q.includes('vision') || q.includes('فيجن') || q.includes('طبيب') || q.includes('أطباء') || q.includes('محاكاة')) {
+        return isEn
+          ? 'House for Doctors is our Apple Vision Pro spatial lab featuring NeuroAtlas 3D Spatial (12 body systems), Surgical XR Theater, DoctorLinc Spatial Copilot, and Emergency ICU Twin with Arabic/English voice support.'
+          : 'بيت الأطباء هو مختبر المحاكاة المكانية على Apple Vision Pro، ويضم تطبيق NeuroAtlas 3D (12 جهازاً حيوياً بدءاً من الدماغ والجهاز العصبي)، وغرفة العمليات الجراحية XR، ومساعد DoctorLinc الصوتي بالعربية، وتوأم العناية المركزة.';
+      }
+      if (q.includes('bpr') || q.includes('fhir') || q.includes('سجل') || q.includes('github') || q.includes('نفيس')) {
+        return isEn
+          ? 'BPR on fadil369.github.io builds on BrainSAIT’s registered OID 1.3.6.1.4.1.61026, role-separated :app-clinician and :app-patient apps, offline-first HL7 FHIR R4 / NPHIES layers, and PDPL-masked search → enroll → issueCredential flows.'
+          : 'منظومة السجل الصحي الشخصي (BPR) المهيأة على fadil369.github.io تعتمد على معرّف BrainSAIT الرسمي (OID 1.3.6.1.4.1.61026)، وتفصل بين تطبيق الطبيب (:app-clinician) وتطبيق المريض (:app-patient) فوق طبقة HL7 FHIR R4 وNPHIES مع دعم العمل دون اتصال وإخفاء الهوية وفق PDPL.';
+      }
+      return isEn
+        ? 'Welcome to BrainSAIT Innovation Lab (B.I.Lab)! You can test the Apple Vision Pro simulator above, validate a BPR FHIR R4 flow, or click "Incubate Project" to submit your healthcare innovation proposal.'
+        : 'أهلاً بك في مختبر برينسايت للابتكار (B.I.Lab)! يمكنك استكشاف مسارات الاحتضان مع جامعة الأميرة نورة، أو تجربة وحدة محاكاة Apple Vision Pro في بيت الأطباء، أو اختبار تدفق BPR المعياري، أو الضغط على «احتضن مشروعك» لتسجيل فكرتك.';
+    }
+
+    function renderChat() {
+      const log = document.getElementById('aiChatLog');
+      if (state.chatMessages.length === 0) {
+        state.chatMessages.push({
+          role: 'ai',
+          text: state.lang === 'ar'
+            ? 'مرحباً بك في مختبر برينسايت للابتكار (B.I.Lab). أنا مستشارك الذكي باللغة العربية الأصيلة — كيف أساعدك اليوم في شراكة جامعة الأميرة نورة، بيت الأطباء (Apple Vision Pro)، أو تجهيز بوابة BPR؟'
+            : 'Welcome to BrainSAIT Innovation Lab (B.I.Lab). How can I help you explore our PNU partnership, House for Doctors (Apple Vision Pro), or BPR launch readiness?'
+        });
+      }
+
+      log.innerHTML = state.chatMessages.map((m) => `
+        <div class="flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}">
+          <div class="max-w-[85%] rounded-2xl px-4 py-3 text-xs sm:text-sm leading-relaxed ${m.role === 'user' ? 'bg-teal-500 text-slate-950 font-semibold' : 'border border-white/10 bg-white/[0.05] text-slate-200'}">
+            ${escapeHtml(m.text)}
+          </div>
+        </div>
+      `).join('');
+      log.scrollTop = log.scrollHeight;
+
+      const chips = state.lang === 'ar'
+        ? ['كيف نتكامل مع جامعة الأميرة نورة؟', 'ما هي تطبيقات بيت الأطباء على Apple Vision Pro؟', 'كيف تعمل منظومة BPR مع FHIR R4؟']
+        : ['How does the PNU partnership work?', 'What apps are in House for Doctors?', 'Explain BPR & FHIR R4 readiness'];
+
+      document.getElementById('aiQuickChips').innerHTML = chips.map((c) => `
+        <button type="button" class="ai-chip rounded-full border border-teal-400/25 bg-teal-500/10 px-3 py-1 text-[11px] font-medium text-teal-200 hover:bg-teal-500/20 transition">${c}</button>
+      `).join('');
+    }
+
+    let lastFocus = null;
+
+    function openModal(presetTrack) {
+      if (presetTrack) document.getElementById('appTrack').value = presetTrack;
+      lastFocus = document.activeElement;
+      const modal = document.getElementById('applyModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.getElementById('appName').focus();
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('applyModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    document.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('applyModal');
+      if (modal.classList.contains('hidden')) return;
+      if (e.key === 'Escape') { closeModal(); return; }
+      if (e.key === 'Tab') {
+        const items = modal.querySelectorAll('button, input, select, textarea, a[href]');
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+
+    document.getElementById('applyModal').addEventListener('click', (e) => {
+      if (e.target.id === 'applyModal') closeModal();
+    });
+
+    function renderAll() {
+      applyStaticTranslations();
+      renderTracks();
+      renderVisionLab();
+      renderBprSimulator();
+      renderChat();
+    }
+
+    // Event Delegation & Handlers
+    document.getElementById('langToggleBtn').addEventListener('click', () => {
+      state.lang = state.lang === 'ar' ? 'en' : 'ar';
+      state.chatMessages = [];
+      renderAll();
+    });
+
+    function setMobileMenu(open) {
+      document.getElementById('mobileMenu').classList.toggle('hidden', !open);
+      document.getElementById('mobileMenuBtn').setAttribute('aria-expanded', String(open));
+    }
+
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+      setMobileMenu(document.getElementById('mobileMenu').classList.contains('hidden'));
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        setMobileMenu(false);
+      });
+    });
+
+    document.getElementById('trackTabs').addEventListener('click', (e) => {
+      const btn = e.target.closest('.track-btn');
+      if (!btn) return;
+      state.activeTrack = btn.getAttribute('data-track');
+      renderTracks();
+    });
+
+    document.getElementById('visionAppsGrid').addEventListener('click', (e) => {
+      const btn = e.target.closest('.sim-app-btn');
+      if (!btn) return;
+      state.activeSimApp = btn.getAttribute('data-sim-app');
+      renderVisionLab();
+    });
+
+    document.getElementById('simLayerButtons').addEventListener('click', (e) => {
+      const btn = e.target.closest('.sim-layer-btn');
+      if (!btn) return;
+      state.simLayer = btn.getAttribute('data-layer');
+      renderVisionLab();
+    });
+
+    document.getElementById('simDifficultyBtns').addEventListener('click', (e) => {
+      const btn = e.target.closest('.sim-diff-btn');
+      if (!btn) return;
+      state.simDifficulty = btn.getAttribute('data-diff');
+      renderVisionLab();
+    });
+
+    document.getElementById('simChecklist').addEventListener('click', (e) => {
+      const btn = e.target.closest('.sim-check-btn');
+      if (!btn) return;
+      const idx = Number(btn.getAttribute('data-check-idx'));
+      state.checkedItems[state.activeSimApp][idx] = !state.checkedItems[state.activeSimApp][idx];
+      renderVisionLab();
+    });
+
+    document.getElementById('simResetBtn').addEventListener('click', () => {
+      state.checkedItems[state.activeSimApp] = [false, false, false, false];
+      renderVisionLab();
+      showToast(state.lang === 'ar' ? 'تمت إعادة ضبط جلسة المحاكاة.' : 'Simulation session reset.');
+    });
+
+    document.getElementById('simBookBtn').addEventListener('click', () => openModal('spatial-xr'));
+    document.getElementById('openApplyNavBtn').addEventListener('click', () => openModal('ventures'));
+    document.getElementById('openApplyMobileBtn').addEventListener('click', () => {
+      setMobileMenu(false);
+      openModal('ventures');
+    });
+    document.getElementById('openApplyHeroBtn').addEventListener('click', () => openModal('ventures'));
+    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+    document.getElementById('cancelModalBtn').addEventListener('click', closeModal);
+
+    document.getElementById('bprStepper').addEventListener('click', (e) => {
+      const btn = e.target.closest('.bpr-step-btn');
+      if (!btn) return;
+      state.bprStep = Number(btn.getAttribute('data-bpr-step'));
+      renderBprSimulator();
+    });
+
+    document.getElementById('bprIdInput').addEventListener('input', (e) => {
+      state.bprId = e.target.value;
+      renderBprSimulator();
+    });
+
+    document.getElementById('bprRoleSelect').addEventListener('change', (e) => {
+      state.bprRole = e.target.value;
+      renderBprSimulator();
+    });
+
+    document.getElementById('bprRunStepBtn').addEventListener('click', () => {
+      const info = maskSaudiId(state.bprId);
+      if (!info.valid) {
+        showToast(state.lang === 'ar' ? 'يرجى إدخال رقم هوية/إقامة صالح من 10 أرقام.' : 'Please enter a valid 10-digit ID/Iqama.');
+        return;
+      }
+      if (state.bprStep < 2) {
+        state.bprStep += 1;
+        renderBprSimulator();
+      } else {
+        showToast(state.lang === 'ar' ? 'اعتماد BPR مُصدر ونشط على OID 1.3.6.1.4.1.61026' : 'BPR Credential active on OID 1.3.6.1.4.1.61026');
+      }
+    });
+
+    document.getElementById('bprResetBtn').addEventListener('click', () => {
+      state.bprStep = 0;
+      renderBprSimulator();
+    });
+
+    document.getElementById('copyFhirBtn').addEventListener('click', () => {
+      const text = document.getElementById('bprJsonOutput').textContent;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(() => {});
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      showToast(state.lang === 'ar' ? 'تم نسخ حمولة FHIR R4 بنجاح.' : 'FHIR R4 payload copied.');
+    });
+
+    document.getElementById('aiQuickChips').addEventListener('click', (e) => {
+      const chip = e.target.closest('.ai-chip');
+      if (!chip) return;
+      const q = chip.textContent.trim();
+      state.chatMessages.push({ role: 'user', text: q });
+      state.chatMessages.push({ role: 'ai', text: getAiReply(q) });
+      renderChat();
+    });
+
+    document.getElementById('aiChatForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = document.getElementById('aiChatInput');
+      const q = input.value.trim();
+      if (!q) return;
+      state.chatMessages.push({ role: 'user', text: q });
+      state.chatMessages.push({ role: 'ai', text: getAiReply(q) });
+      input.value = '';
+      renderChat();
+    });
+
+    document.getElementById('applyForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const entry = {
+        name: document.getElementById('appName').value.trim(),
+        role: document.getElementById('appRole').value,
+        track: document.getElementById('appTrack').value,
+        idea: document.getElementById('appIdea').value.trim(),
+        submittedAt: new Date().toISOString()
+      };
+      // BRAINSAIT: no applicant data is stored in the browser; the visitor sends it from their own mail app.
+      const sel = (id) => document.getElementById(id);
+      const roleLabel = sel('appRole').selectedOptions[0].textContent.trim();
+      const trackLabel = sel('appTrack').selectedOptions[0].textContent.trim();
+      const subject = `B.I.Lab application — ${trackLabel}`;
+      const body = [
+        `Name / الاسم: ${entry.name}`,
+        `Role / الصفة: ${roleLabel}`,
+        `Track / المسار: ${trackLabel}`,
+        '',
+        'Idea / الفكرة:',
+        entry.idea,
+        '',
+        `Sent from the B.I.Lab page • ${entry.submittedAt}`
+      ].join('\n');
+      window.location.href = `mailto:${BILAB_CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      document.getElementById('applyForm').reset();
+      closeModal();
+      showToast(state.lang === 'ar'
+        ? `تم تجهيز رسالة طلبك في تطبيق البريد يا ${entry.name} — اضغط «إرسال» لإتمامه.`
+        : `Your application email is ready, ${entry.name} — press Send in your mail app to finish.`);
+    });
+
+    renderAll();
+  </script>
+</body>
+</html>
