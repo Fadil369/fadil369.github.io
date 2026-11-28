@@ -665,6 +665,63 @@ git commit -m "chore: bump agent-visibility"</code></pre>
           </li>
         </ol>
 
+        <div class="mt-10 glass-panel rounded-3xl p-5" aria-labelledby="mcpBridgeTitle">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="rounded bg-teal-500/15 px-2 py-0.5 font-mono text-xs text-teal-300" dir="ltr">MCP Apps</span>
+            <h3 id="mcpBridgeTitle" class="text-lg font-bold text-white" data-i18n="mcp_title">تضمين تطبيقات MCP التفاعلية عبر AppBridge</h3>
+          </div>
+          <p class="mt-2 text-sm text-slate-300" data-i18n="mcp_desc">AppBridge هو الجسر في جهة المضيف: يتوسط بين تطبيق المحادثة وواجهة تطبيق MCP داخل iframe، وينقل أدوات الخادم وموارده ومطالباته إلى الواجهة، ويتولى مصافحة التهيئة.</p>
+          <ol class="mt-4 flex flex-wrap gap-2" aria-label="AppBridge lifecycle">
+              <li class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-slate-300"><span class="font-mono text-teal-300" aria-hidden="true">1</span><span data-i18n="mcp_step1">إنشاء الجسر مع عميل MCP</span></li>
+              <li class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-slate-300"><span class="font-mono text-teal-300" aria-hidden="true">2</span><span data-i18n="mcp_step2">الاتصال عبر الدالة connect</span></li>
+              <li class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-slate-300"><span class="font-mono text-teal-300" aria-hidden="true">3</span><span data-i18n="mcp_step3">انتظار التهيئة</span></li>
+              <li class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-slate-300"><span class="font-mono text-teal-300" aria-hidden="true">4</span><span data-i18n="mcp_step4">إرسال بيانات الأداة</span></li>
+              <li class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-slate-300"><span class="font-mono text-teal-300" aria-hidden="true">5</span><span data-i18n="mcp_step5">الإزالة قبل إغلاق الإطار</span></li>
+          </ol>
+          <div class="mt-4 grid gap-4 sm:grid-cols-2">
+            <div class="glass-panel min-w-0 rounded-2xl p-4">
+              <div class="flex items-start justify-between gap-3">
+                <div>
+                  <h4 class="text-sm font-bold text-white" data-i18n="mcp_install">التثبيت</h4>
+                  <p class="mt-1 text-xs text-slate-400" data-i18n="mcp_install_d">يتطلب Node.js 20 أو أحدث.</p>
+                </div>
+                <button type="button" class="dev-copy inline-flex shrink-0 items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-slate-300 hover:text-white" aria-describedby="mcp-install-cmd">
+                  <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
+                  <span data-i18n="dev_copy">نسخ</span>
+                </button>
+              </div>
+              <pre dir="ltr" class="mt-3 overflow-x-auto rounded-xl border border-white/10 bg-slate-950/80 p-3 text-left font-mono text-[12px] leading-relaxed text-teal-200"><code id="mcp-install-cmd">npm install @modelcontextprotocol/ext-apps \
+  @modelcontextprotocol/client@^2.0.0 zod@^4.2.0</code></pre>
+            </div>
+            <div class="glass-panel min-w-0 rounded-2xl p-4">
+              <div class="flex items-start justify-between gap-3">
+                <div>
+                  <h4 class="text-sm font-bold text-white" data-i18n="mcp_usage">ربط الواجهة في المضيف</h4>
+                  <p class="mt-1 text-xs text-slate-400" data-i18n="mcp_usage_d">مبسّط من مثال التوثيق الرسمي.</p>
+                </div>
+                <button type="button" class="dev-copy inline-flex shrink-0 items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-slate-300 hover:text-white" aria-describedby="mcp-usage-cmd">
+                  <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>
+                  <span data-i18n="dev_copy">نسخ</span>
+                </button>
+              </div>
+              <pre dir="ltr" class="mt-3 overflow-x-auto rounded-xl border border-white/10 bg-slate-950/80 p-3 text-left font-mono text-[12px] leading-relaxed text-teal-200"><code id="mcp-usage-cmd">import { AppBridge } from "@modelcontextprotocol/ext-apps/app-bridge";
+
+// client: your connected MCP client, transport: PostMessageTransport to the iframe
+const bridge = new AppBridge(
+  client,
+  { name: "BrainSAIT Host", version: "1.0.0" },
+  { openLinks: {}, serverTools: {}, logging: {} },
+);
+
+bridge.oninitialized = () =&gt; {
+  bridge.sendToolInput({ arguments: { city: "Riyadh" } });
+};
+
+await bridge.connect(transport);</code></pre>
+            </div>
+          </div>
+        </div>
+
         <div class="mt-6 flex flex-col items-center gap-2 text-center">
           <div class="flex flex-wrap justify-center gap-3">
           <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules" target="_blank" rel="noopener noreferrer" hreflang="en" class="inline-flex items-center gap-2 rounded-xl border border-amber-400/35 bg-amber-500/10 px-4 py-2.5 text-xs font-bold text-amber-200 hover:bg-amber-500/20">
@@ -854,6 +911,17 @@ git commit -m "chore: bump agent-visibility"</code></pre>
         dev_desc: 'يجمع مستودع B.I.Lab مشاريع BrainSAIT العامة كـ submodules: كل مشروع يبقى في مستودعه، والمختبر يثبّت إصداراً محدداً منه. هذه الأوامر تكفي للبدء.',
         dev_copy: 'نسخ',
         dev_guide: 'اقرأ الدليل الكامل: Pro Git — Submodules',
+        mcp_title: 'تضمين تطبيقات MCP التفاعلية عبر AppBridge',
+        mcp_desc: 'AppBridge هو الجسر في جهة المضيف: يتوسط بين تطبيق المحادثة وواجهة تطبيق MCP داخل iframe، وينقل أدوات الخادم وموارده ومطالباته إلى الواجهة، ويتولى مصافحة التهيئة.',
+        mcp_install: 'التثبيت',
+        mcp_install_d: 'يتطلب Node.js 20 أو أحدث.',
+        mcp_usage: 'ربط الواجهة في المضيف',
+        mcp_usage_d: 'مبسّط من مثال التوثيق الرسمي.',
+        mcp_step1: 'إنشاء الجسر مع عميل MCP',
+        mcp_step2: 'الاتصال عبر الدالة connect',
+        mcp_step3: 'انتظار التهيئة',
+        mcp_step4: 'إرسال بيانات الأداة',
+        mcp_step5: 'الإزالة قبل إغلاق الإطار',
         dev_mcp: 'مرجع MCP Apps: وحدة App Bridge',
         dev_guide_note: 'المرجعان باللغة الإنجليزية: كتاب Pro Git المجاني، وتوثيق واجهة MCP Apps لدمج التطبيقات التفاعلية.',
         dev_copied: 'تم نسخ الأمر.',
@@ -961,6 +1029,17 @@ git commit -m "chore: bump agent-visibility"</code></pre>
         dev_desc: 'The B.I.Lab repository gathers public BrainSAIT projects as submodules: each project lives in its own repo, and the lab pins an exact version of it. These commands are all you need to start.',
         dev_copy: 'Copy',
         dev_guide: 'Read the full guide: Pro Git — Submodules',
+        mcp_title: 'Embed interactive MCP Apps with AppBridge',
+        mcp_desc: 'AppBridge is the host-side bridge: it sits between your chat client and an MCP App view running in an iframe, forwards server tools, resources and prompts to the view, and handles the initialization handshake.',
+        mcp_install: 'Install',
+        mcp_install_d: 'Requires Node.js 20 or later.',
+        mcp_usage: 'Connect a view from your host',
+        mcp_usage_d: 'Trimmed from the official docs example.',
+        mcp_step1: 'Create the bridge with an MCP client',
+        mcp_step2: 'Connect with connect()',
+        mcp_step3: 'Wait for initialization',
+        mcp_step4: 'Send tool data',
+        mcp_step5: 'Tear down before unmounting',
         dev_mcp: 'MCP Apps reference: App Bridge module',
         dev_guide_note: 'From the free Pro Git book, and the API docs for MCP Apps, the Model Context Protocol extension for interactive UIs.',
         dev_copied: 'Command copied.',
