@@ -7,3 +7,6 @@
 .text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity))}
 .hover\:text-teal-200:hover{--tw-text-opacity:1;color:rgb(153 246 228/var(--tw-text-opacity))}
 .hover\:border-teal-400\/40:hover{border-color:rgba(45,212,191,.4)}
+
+/* Keep in-page anchor targets clear of the sticky header (about 91px on phones) */
+html{scroll-padding-top:6rem}
