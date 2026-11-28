@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>مختبر برينسايت للابتكار | BrainSAIT Innovation Lab (B.I.Lab)</title>
-  <meta name="description" content="مختبر برينسايت للابتكار (B.I.Lab) — حاضنة الذكاء الاصطناعي الصحي في الرياض: بيت الأطباء للمحاكاة المكانية على Apple Vision Pro، وجاهزية السجل الصحي الشخصي BPR وفق FHIR R4 وNPHIES." />
+  <title>تحديات مختبر برينسايت | B.I.Lab Challenges — BrainSAIT Innovation Lab</title>
+  <meta name="description" content="تحديات مختبر برينسايت (B.I.Lab): مسابقات ذكاء اصطناعي صحي بمواعيد محددة في FHIR R4 وNPHIES والترميز السريري العربي وإتاحة الوصول، ببيانات اصطناعية ولوحات صدارة مفتوحة. إلى جانب بيت الأطباء على Apple Vision Pro وجاهزية BPR." />
   <meta name="theme-color" content="#050914" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="BrainSAIT Innovation Lab (B.I.Lab)" />
-  <meta property="og:description" content="Healthcare AI incubation in Riyadh: House for Doctors spatial simulation lab, BPR readiness on FHIR R4 / NPHIES, and a native Arabic lab concierge." />
+  <meta property="og:title" content="B.I.Lab Challenges — BrainSAIT Innovation Lab" />
+  <meta property="og:description" content="Time-boxed healthcare AI challenges from Riyadh: FHIR R4 / NPHIES validation, Arabic clinical coding, accessibility and secure CI, on synthetic data with open leaderboards. Plus the House for Doctors spatial lab and BPR readiness." />
   <link rel="canonical" href="https://fadil369.github.io/bilab/" />
   <meta property="og:url" content="https://fadil369.github.io/bilab/" />
   <meta property="og:image" content="https://fadil369.github.io/bilab/img/hero-riyadh-lab.jpg" />
@@ -121,11 +121,11 @@
         </div>
       </a>
 
-      <nav aria-label="الأقسام / Sections" class="hidden items-center gap-6 text-sm font-medium text-slate-300 lg:flex">
-        <a href="#pnu-hub" class="transition hover:text-teal-300" data-i18n="nav_pnu">التعاون المقترح مع PNU</a>
+      <nav aria-label="الأقسام / Sections" class="hidden items-center gap-5 text-sm font-medium text-slate-300 lg:flex">
+        <a href="#challenges" class="font-semibold text-teal-200 transition hover:text-teal-300" data-i18n="nav_challenges">التحديات</a>
+        <a href="#season" class="transition hover:text-teal-300" data-i18n="nav_season">الجدول الزمني</a>
+        <a href="#leaderboard" class="transition hover:text-teal-300" data-i18n="nav_leaderboard">لوحة الصدارة</a>
         <a href="#doctors-house" class="transition hover:text-teal-300" data-i18n="nav_doctors">بيت الأطباء (VisionOS)</a>
-        <a href="#bpr-portal" class="transition hover:text-teal-300" data-i18n="nav_bpr">جاهزية BPR</a>
-        <a href="#ai-concierge" class="transition hover:text-teal-300" data-i18n="nav_ai">المستشار الذكي</a>
         <a href="#dev-hub" class="transition hover:text-teal-300" data-i18n="nav_dev">للمطورين</a>
       </nav>
 
@@ -147,6 +147,9 @@
     <!-- Mobile Nav Drawer -->
     <div id="mobileMenu" class="hidden border-t border-white/10 bg-[#070d1d] px-4 py-4 lg:hidden">
       <div class="flex flex-col gap-3 text-sm font-medium text-slate-200">
+        <a href="#challenges" class="mobile-nav-link rounded-lg px-3 py-2 font-semibold text-teal-200 hover:bg-white/5" data-i18n="nav_challenges">التحديات</a>
+        <a href="#season" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_season">الجدول الزمني</a>
+        <a href="#leaderboard" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_leaderboard">لوحة الصدارة</a>
         <a href="#pnu-hub" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_pnu">التعاون المقترح مع PNU</a>
         <a href="#doctors-house" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_doctors">بيت الأطباء (VisionOS)</a>
         <a href="#bpr-portal" class="mobile-nav-link rounded-lg px-3 py-2 hover:bg-white/5" data-i18n="nav_bpr">جاهزية BPR</a>
@@ -161,34 +164,32 @@
   </header>
 
   <main id="top">
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden hero-glow najdi-grid border-b border-white/10">
-      <div class="mx-auto max-w-7xl px-4 pb-16 pt-12 sm:px-6 lg:px-8 lg:pb-24 lg:pt-16">
+    <!-- Hero: challenge arena (BILINGUAL: every string comes from I18N; dates are computed live) -->
+    <section class="relative overflow-hidden hero-glow najdi-grid border-b border-white/10" aria-labelledby="heroTitle">
+      <div class="mx-auto max-w-7xl px-4 pb-14 pt-10 sm:px-6 lg:px-8 lg:pb-20 lg:pt-14">
         <div class="grid items-center gap-10 lg:grid-cols-12">
           <!-- Copy Column -->
           <div class="lg:col-span-6 space-y-6">
             <div class="inline-flex flex-wrap items-center gap-2 rounded-full border border-teal-400/30 bg-teal-500/10 px-3.5 py-1.5 text-xs font-medium text-teal-200">
               <span class="h-2 w-2 rounded-full bg-teal-400 animate-pulse"></span>
-              <span data-i18n="hero_badge">ذكاء اصطناعي أصيل بالعربية • الرياض — متوافق مع رؤية السعودية 2030</span>
+              <span data-i18n="hero_badge">ساحة تحديات الذكاء الاصطناعي الصحي • الرياض</span>
             </div>
 
-            <h1 class="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-              <span class="gold-gradient-text" data-i18n="hero_title_1">مختبر برينسايت للابتكار</span>
-              <span class="mt-2 block text-slate-100" data-i18n="hero_title_2">حاضنة الإبداع الطبي وبيت الأطباء للمحاكاة المكانية</span>
+            <h1 id="heroTitle" class="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+              <span class="gold-gradient-text" data-i18n="hero_title_1">تحديات مختبر برينسايت</span>
+              <span class="mt-2 block text-slate-100" data-i18n="hero_title_2">تنافس، ابتكر، وابنِ رعاية صحية أذكى بالعربية</span>
             </h1>
 
-            <p class="max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg" data-i18n-html="hero_desc">
-              منصة ابتكار صحية سيادية تجمع بين <strong class="text-teal-300">برينسايت (BrainSAIT)</strong> وتعاون أكاديمي مقترح مع <strong class="text-amber-300">جامعة الأميرة نورة بنت عبدالرحمن (PNU)</strong>؛ لاحتضان الحلول الإبداعية، وتدريب الأطباء عبر تطبيقات <strong class="text-white">Apple Vision Pro</strong>، وتجهيز منظومة <strong class="text-cyan-300">السجل الصحي الشخصي (BPR)</strong> على <code class="rounded bg-white/10 px-1.5 py-0.5 text-xs text-teal-200">fadil369.github.io</code>.
-            </p>
+            <p class="max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg" data-i18n-html="hero_desc">مسابقات بمواعيد محددة في <strong class="text-teal-300">FHIR R4 وNPHIES</strong>، و<strong class="text-amber-300">معالجة اللغة العربية السريرية</strong>، و<strong class="text-white">إتاحة الوصول</strong>، و<strong class="text-cyan-300">سير عمل CI الآمنة</strong>. بيانات اصطناعية فقط، ولوحات صدارة مفتوحة، وتقدير للفرق المتميزة، ضمن بيئة احتضان برينسايت وتعاون أكاديمي مقترح مع جامعة الأميرة نورة.</p>
 
             <div class="flex flex-wrap items-center gap-3 pt-1">
-              <a href="#doctors-house" class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-300 px-5 py-3 text-sm font-bold text-slate-950 shadow-xl shadow-teal-500/20 transition hover:brightness-110">
-                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="6" cy="15" r="4" /><circle cx="18" cy="15" r="4" /><path d="M14 15a2 2 0 0 0-2-2 2 2 0 0 0-2 2" /><path d="M2.5 13 5 7c.7-1.3 1.4-2 3-2" /><path d="M21.5 13 19 7c-.7-1.3-1.5-2-3-2" /></svg>
-                <span data-i18n="hero_cta_vision">استكشف بيت الأطباء (VisionOS)</span>
+              <a href="#challenges" class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-300 px-5 py-3 text-sm font-bold text-slate-950 shadow-xl shadow-teal-500/20 transition hover:brightness-110">
+                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" /><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" /><path d="M4 22h16" /><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" /><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" /><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" /></svg>
+                <span data-i18n="hero_cta_browse">تصفّح التحديات</span>
               </a>
-              <a href="#bpr-portal" class="inline-flex items-center gap-2 rounded-xl border border-cyan-400/35 bg-cyan-500/10 px-5 py-3 text-sm font-semibold text-cyan-200 transition hover:bg-cyan-500/20">
-                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg>
-                <span data-i18n="hero_cta_bpr">محاكي جاهزية BPR</span>
+              <a href="#season" class="inline-flex items-center gap-2 rounded-xl border border-cyan-400/35 bg-cyan-500/10 px-5 py-3 text-sm font-semibold text-cyan-200 transition hover:bg-cyan-500/20">
+                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v4" /><path d="M16 2v4" /><rect width="18" height="18" x="3" y="4" rx="2" /><path d="M3 10h18" /></svg>
+                <span data-i18n="hero_cta_season">الجدول الزمني للموسم</span>
               </a>
               <button id="openApplyHeroBtn" type="button" class="inline-flex items-center gap-2 rounded-xl border border-amber-400/35 bg-amber-500/10 px-5 py-3 text-sm font-semibold text-amber-200 transition hover:bg-amber-500/20">
                 <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" /><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" /><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" /></svg>
@@ -196,46 +197,189 @@
               </button>
             </div>
 
-            <!-- Grounded Standard Pills -->
-            <div class="grid grid-cols-2 gap-3 pt-4 sm:grid-cols-4">
-              <div class="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                <div class="text-[11px] text-slate-400" data-i18n="pill_oid_label">معرّف BPR الرسمي</div>
-                <div class="mt-1 font-mono text-xs font-semibold text-teal-300">1.3.6.1.4.1.61026</div>
+            <!-- Live season stats -->
+            <dl class="grid grid-cols-2 gap-3 pt-2 sm:grid-cols-4">
+              <div class="rounded-xl border border-emerald-400/20 bg-emerald-500/[0.06] p-3">
+                <dt class="text-[11px] text-slate-400" data-i18n="stat_active">تحديات نشطة</dt>
+                <dd id="statActive" class="mt-1 text-2xl font-bold text-emerald-300">0</dd>
+              </div>
+              <div class="rounded-xl border border-cyan-400/20 bg-cyan-500/[0.06] p-3">
+                <dt class="text-[11px] text-slate-400" data-i18n="stat_upcoming">تحديات قادمة</dt>
+                <dd id="statUpcoming" class="mt-1 text-2xl font-bold text-cyan-300">0</dd>
+              </div>
+              <div class="rounded-xl border border-amber-400/20 bg-amber-500/[0.06] p-3">
+                <dt class="text-[11px] text-slate-400" data-i18n="stat_tracks">مسارات</dt>
+                <dd id="statTracks" class="mt-1 text-2xl font-bold text-amber-200">0</dd>
               </div>
               <div class="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                <div class="text-[11px] text-slate-400" data-i18n="pill_fhir_label">التوافقية الوطنية</div>
-                <div class="mt-1 text-xs font-semibold text-cyan-200">FHIR R4 • NPHIES</div>
+                <dt class="text-[11px] text-slate-400" data-i18n="stat_data">بيانات التحديات</dt>
+                <dd class="mt-1 text-sm font-bold text-white" data-i18n="stat_data_val">اصطناعية 100٪ — بلا PHI</dd>
               </div>
-              <div class="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                <div class="text-[11px] text-slate-400" data-i18n="pill_gov_label">الحوكمة والسيادة</div>
-                <div class="mt-1 text-xs font-semibold text-amber-200">PDPL • SDAIA • CHI</div>
-              </div>
-              <div class="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                <div class="text-[11px] text-slate-400" data-i18n="pill_partner_label">الشريك الأكاديمي المقترح</div>
-                <div class="mt-1 text-xs font-semibold text-white" data-i18n="pill_partner_val">جامعة الأميرة نورة</div>
-              </div>
-            </div>
+            </dl>
           </div>
 
-          <!-- Nano Banana Hero Visual Column -->
+          <!-- Featured challenge -->
           <div class="lg:col-span-6">
-            <div class="relative rounded-3xl border border-teal-400/25 bg-slate-950/60 p-2 shadow-2xl shadow-teal-950/70">
+            <article id="featuredCard" class="relative rounded-3xl border border-teal-400/25 bg-slate-950/60 p-2 shadow-2xl shadow-teal-950/70" aria-labelledby="featuredTitle">
               <div class="relative overflow-hidden rounded-2xl">
                 <picture>
                   <source type="image/webp" srcset="img/hero-riyadh-lab-sm.webp 688w, img/hero-riyadh-lab.webp 1376w" sizes="(min-width: 1024px) 50vw, 100vw" />
                   <img src="img/hero-riyadh-lab.jpg" width="1376" height="768" fetchpriority="high" decoding="async"
                     alt="تصوّر لمقر مختبر برينسايت للابتكار في الرياض" data-i18n-alt="alt_hero"
-                    class="w-full h-auto object-cover aspect-[16/9] transition duration-700 hover:scale-[1.02]" />
+                    class="w-full h-auto object-cover aspect-[16/7]" />
                 </picture>
-                <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050914] via-transparent to-transparent opacity-80"></div>
-                <div class="absolute bottom-3 inset-x-3 flex flex-wrap items-center justify-between gap-2 rounded-xl vision-glass px-4 py-2.5">
-                  <div class="flex items-center gap-2.5">
-                    <span class="flex h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_12px_#34d399]"></span>
-                    <span class="text-xs font-semibold text-white" data-i18n="hero_img_caption">مقر مختبر B.I.Lab التصوّري — الرياض • الذكاء الاصطناعي والحوسبة المكانية</span>
-                  </div>
-                  <span class="rounded-md bg-teal-500/20 px-2 py-0.5 font-mono text-[10px] font-semibold text-teal-200">Nano Banana Visual</span>
+                <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050914] via-[#050914]/40 to-transparent"></div>
+                <div class="absolute top-3 inset-x-3 flex flex-wrap items-center justify-between gap-2">
+                  <span class="vision-glass rounded-full px-3 py-1 text-[11px] font-bold text-amber-200" data-i18n="featured_label">التحدي المميز</span>
+                  <span id="featuredStatus"></span>
                 </div>
               </div>
+              <div class="space-y-4 p-4 sm:p-5">
+                <div>
+                  <span id="featuredTrack"></span>
+                  <h2 id="featuredTitle" class="mt-2 text-xl font-bold text-white sm:text-2xl"></h2>
+                  <p id="featuredSummary" class="mt-1.5 text-sm leading-relaxed text-slate-300"></p>
+                </div>
+                <div>
+                  <p id="featuredCountdownLabel" class="text-[11px] font-semibold uppercase tracking-wide text-slate-400"></p>
+                  <!-- Ticking digits are hidden from screen readers; featuredCountdownSr gives a calm, minute-level summary. -->
+                  <div class="mt-2 grid grid-cols-4 gap-2" aria-hidden="true">
+                    <div class="rounded-xl border border-white/10 bg-white/[0.04] py-2 text-center"><div id="cdD" class="font-mono text-2xl font-bold text-white">00</div><div class="text-[10px] text-slate-400" data-i18n="cd_days">يوم</div></div>
+                    <div class="rounded-xl border border-white/10 bg-white/[0.04] py-2 text-center"><div id="cdH" class="font-mono text-2xl font-bold text-white">00</div><div class="text-[10px] text-slate-400" data-i18n="cd_hours">ساعة</div></div>
+                    <div class="rounded-xl border border-white/10 bg-white/[0.04] py-2 text-center"><div id="cdM" class="font-mono text-2xl font-bold text-white">00</div><div class="text-[10px] text-slate-400" data-i18n="cd_minutes">دقيقة</div></div>
+                    <div class="rounded-xl border border-white/10 bg-white/[0.04] py-2 text-center"><div id="cdS" class="font-mono text-2xl font-bold text-teal-300">00</div><div class="text-[10px] text-slate-400" data-i18n="cd_seconds">ثانية</div></div>
+                  </div>
+                  <p id="featuredCountdownSr" class="sr-only"></p>
+                </div>
+                <div id="featuredTimeline"></div>
+                <div class="flex flex-wrap gap-2.5">
+                  <button id="featuredDetailsBtn" type="button" class="inline-flex items-center gap-1.5 rounded-xl bg-teal-500 px-4 py-2.5 text-xs font-bold text-slate-950 hover:bg-teal-400" data-i18n="ch_details">التفاصيل والقواعد</button>
+                  <button id="featuredRegisterBtn" type="button" class="inline-flex items-center gap-1.5 rounded-xl border border-amber-400/35 bg-amber-500/10 px-4 py-2.5 text-xs font-bold text-amber-200 hover:bg-amber-500/20" data-i18n="ch_register">سجّل اهتمامك</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Grounded Standard Pills -->
+        <div class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div class="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+            <div class="text-[11px] text-slate-400" data-i18n="pill_oid_label">معرّف BPR الرسمي</div>
+            <div class="mt-1 font-mono text-xs font-semibold text-teal-300">1.3.6.1.4.1.61026</div>
+          </div>
+          <div class="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+            <div class="text-[11px] text-slate-400" data-i18n="pill_fhir_label">التوافقية الوطنية</div>
+            <div class="mt-1 text-xs font-semibold text-cyan-200">FHIR R4 • NPHIES</div>
+          </div>
+          <div class="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+            <div class="text-[11px] text-slate-400" data-i18n="pill_gov_label">الحوكمة والسيادة</div>
+            <div class="mt-1 text-xs font-semibold text-amber-200">PDPL • SDAIA • CHI</div>
+          </div>
+          <div class="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+            <div class="text-[11px] text-slate-400" data-i18n="pill_partner_label">الشريك الأكاديمي المقترح</div>
+            <div class="mt-1 text-xs font-semibold text-white" data-i18n="pill_partner_val">جامعة الأميرة نورة</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Challenges: filterable, timelined contest grid -->
+    <section id="challenges" class="relative scroll-mt-20 py-14 lg:py-20" aria-labelledby="chTitle">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div class="max-w-3xl">
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-teal-400/30 bg-teal-500/10 px-3 py-1 text-xs font-semibold text-teal-200" data-i18n="ch_badge">التحديات</span>
+            <h2 id="chTitle" class="mt-3 text-2xl font-bold text-white sm:text-3xl" data-i18n="ch_title">تحديات بمواعيد محددة، ونتائج مفتوحة</h2>
+            <p class="mt-2 text-sm leading-relaxed text-slate-300" data-i18n="ch_desc">اختر تحدياً، ابنِ حلّك على بيانات اصطناعية، وتابع ترتيبك في لوحة الصدارة.</p>
+          </div>
+          <span class="inline-flex w-fit items-center rounded-lg border border-amber-400/30 bg-amber-500/10 px-3 py-1.5 text-xs font-bold text-amber-200" data-i18n="season_name">الموسم صفر • مقترح</span>
+        </div>
+
+        <p role="note" class="mt-5 rounded-2xl border border-amber-400/30 bg-amber-500/[0.07] px-4 py-3 text-xs leading-relaxed text-amber-100" data-i18n="ch_sample_note">تنويه: التحديات والمواعيد والتقديرات في هذه الصفحة عيّنات مقترحة.</p>
+
+        <!-- Toolbar -->
+        <div class="mt-6 glass-panel rounded-2xl p-4">
+          <div class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+            <div id="chStatusTabs" role="group" aria-label="Status" class="flex flex-wrap gap-1.5"></div>
+            <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
+              <label for="chSearch" class="sr-only" data-i18n="ch_search_label">ابحث في التحديات</label>
+              <input id="chSearch" type="search" autocomplete="off" class="w-full rounded-xl border border-white/15 bg-slate-950/80 px-3.5 py-2 text-sm text-white outline-none focus:border-teal-400 sm:w-64" />
+              <label for="chSort" class="sr-only" data-i18n="ch_sort_label">ترتيب</label>
+              <select id="chSort" class="rounded-xl border border-white/15 bg-slate-950/80 px-3 py-2 text-sm text-white outline-none focus:border-teal-400">
+                <option value="deadline" data-i18n="sort_deadline">الأقرب موعداً</option>
+                <option value="start" data-i18n="sort_start">تاريخ البدء</option>
+                <option value="title" data-i18n="sort_title">الاسم</option>
+              </select>
+            </div>
+          </div>
+          <div id="chTrackChips" role="group" aria-label="Tracks" class="mt-3 flex flex-wrap gap-1.5 border-t border-white/10 pt-3"></div>
+        </div>
+
+        <p id="chCount" class="mt-4 text-xs text-slate-400" aria-live="polite"></p>
+        <div id="chGrid" class="mt-3 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+        <div id="chEmpty" class="mt-3 hidden rounded-2xl border border-dashed border-white/15 p-8 text-center text-sm text-slate-400"></div>
+      </div>
+    </section>
+
+    <!-- Season timeline (Gantt) -->
+    <section id="season" class="relative scroll-mt-20 border-y border-white/10 bg-[#070d1e]/90 py-14 lg:py-20" aria-labelledby="seasonTitle">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-200" data-i18n="season_badge">الجدول الزمني</span>
+        <h2 id="seasonTitle" class="mt-3 text-2xl font-bold text-white sm:text-3xl" data-i18n="season_title">خريطة الموسم</h2>
+        <p class="mt-2 max-w-3xl text-sm leading-relaxed text-slate-300" data-i18n="season_desc">كل تحدٍّ له نافذة تسجيل وتقديم وإعلان نتائج.</p>
+        <div class="mt-6 glass-panel rounded-2xl p-4 sm:p-5">
+          <div class="code-scroll overflow-x-auto" tabindex="0" role="region" aria-labelledby="seasonTitle">
+            <div id="seasonGantt" class="min-w-[760px]"></div>
+          </div>
+          <div class="mt-4 flex flex-wrap items-center gap-4 text-[11px] text-slate-400">
+            <span class="inline-flex items-center gap-1.5"><span class="h-2.5 w-6 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400"></span><span data-i18n="legend_window">نافذة التقديم</span></span>
+            <span class="inline-flex items-center gap-1.5"><span class="h-2.5 w-6 rounded-full border border-dashed border-amber-300/70"></span><span data-i18n="legend_review">المراجعة وإعلان النتائج</span></span>
+            <span class="inline-flex items-center gap-1.5"><span class="h-3 w-0.5 bg-rose-400"></span><span data-i18n="legend_today">اليوم</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leaderboard, ranks and how it works -->
+    <section id="leaderboard" class="relative scroll-mt-20 py-14 lg:py-20" aria-labelledby="lbTitle">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-12">
+          <div class="min-w-0 lg:col-span-7">
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-200" data-i18n="lb_badge">لوحة الصدارة</span>
+            <h2 id="lbTitle" class="mt-3 text-2xl font-bold text-white sm:text-3xl" data-i18n="lb_title">لوحة الصدارة العامة</h2>
+            <div class="mt-5 glass-panel rounded-2xl p-4 sm:p-5">
+              <label for="lbSelect" class="block text-xs font-semibold text-slate-300 mb-1.5" data-i18n="lb_select">اختر التحدي</label>
+              <select id="lbSelect" class="w-full rounded-xl border border-white/15 bg-slate-950/80 px-3 py-2.5 text-sm text-white outline-none focus:border-teal-400"></select>
+              <div class="mt-4 overflow-x-auto">
+                <table class="w-full min-w-[480px] text-sm">
+                  <caption id="lbCaption" class="sr-only"></caption>
+                  <thead>
+                    <tr class="border-b border-white/10 text-start text-[11px] uppercase tracking-wide text-slate-400">
+                      <th scope="col" class="py-2 pe-3 text-start font-semibold" data-i18n="lb_rank">#</th>
+                      <th scope="col" class="py-2 pe-3 text-start font-semibold" data-i18n="lb_team">الفريق</th>
+                      <th scope="col" class="py-2 pe-3 text-start font-semibold" data-i18n="lb_score">النتيجة</th>
+                      <th scope="col" class="py-2 text-start font-semibold" data-i18n="lb_kind">النوع</th>
+                    </tr>
+                  </thead>
+                  <tbody id="lbBody"></tbody>
+                </table>
+              </div>
+              <p id="lbNote" class="mt-3 text-[11px] leading-relaxed text-slate-400"></p>
+            </div>
+          </div>
+
+          <div class="min-w-0 lg:col-span-5 space-y-6">
+            <div class="glass-panel rounded-2xl p-5">
+              <h3 class="text-base font-bold text-white" data-i18n="how_title">كيف تعمل التحديات</h3>
+              <ol id="howSteps" class="mt-4 space-y-3"></ol>
+            </div>
+            <div class="glass-panel rounded-2xl p-5">
+              <div class="flex items-center justify-between gap-2">
+                <h3 class="text-base font-bold text-white" data-i18n="ranks_title">رتب المختبر</h3>
+                <span class="rounded-md border border-amber-400/30 bg-amber-500/10 px-2 py-0.5 text-[10px] font-bold text-amber-200" data-i18n="proposed_tag">مقترح</span>
+              </div>
+              <p class="mt-1 text-xs text-slate-400" data-i18n="ranks_desc">تتدرّج الرتب بالأوسمة.</p>
+              <ol id="rankLadder" class="mt-4 space-y-2"></ol>
             </div>
           </div>
         </div>
@@ -801,6 +945,7 @@ await bridge.connect(transport);</code></pre>
               <option value="spatial-xr" data-i18n="tr_spatial">بيت الأطباء (Apple Vision Pro)</option>
               <option value="clinical-ai" data-i18n="tr_ai">الذكاء الاصطناعي السريري</option>
               <option value="bpr-fhir" data-i18n="tr_bpr">السجل الصحي الشخصي (BPR / FHIR)</option>
+              <option value="challenges" data-i18n="tr_challenges">تحدٍّ من تحديات المختبر</option>
               <option value="ventures" data-i18n="tr_ventures">حاضنة الابتكار PNU × BrainSAIT (مقترحة)</option>
             </select>
           </div>
@@ -818,6 +963,26 @@ await bridge.connect(transport);</code></pre>
           </button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- Challenge detail dialog -->
+  <div id="chDialog" role="dialog" aria-modal="true" aria-labelledby="chDialogTitle" class="fixed inset-0 z-50 hidden items-end justify-center bg-black/75 p-0 backdrop-blur-sm sm:items-center sm:p-4">
+    <div class="glass-panel relative flex max-h-[92vh] w-full max-w-2xl flex-col rounded-t-3xl sm:rounded-3xl">
+      <div class="flex items-start justify-between gap-3 border-b border-white/10 p-5">
+        <div>
+          <div id="chDialogMeta" class="flex flex-wrap items-center gap-2"></div>
+          <h3 id="chDialogTitle" class="mt-2 text-lg font-bold text-white sm:text-xl"></h3>
+        </div>
+        <button id="chDialogClose" type="button" class="rounded-lg p-1.5 text-slate-400 hover:bg-white/10 hover:text-white" data-i18n-aria="close_label" aria-label="إغلاق">
+          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+        </button>
+      </div>
+      <div id="chDialogBody" class="code-scroll space-y-5 overflow-y-auto p-5 text-sm text-slate-300"></div>
+      <div class="flex flex-wrap items-center justify-end gap-2.5 border-t border-white/10 p-4">
+        <button id="chDialogShare" type="button" class="rounded-xl border border-white/15 px-4 py-2 text-xs font-semibold text-slate-300 hover:bg-white/5" data-i18n="ch_copy_link">نسخ الرابط</button>
+        <button id="chDialogRegister" type="button" class="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 px-5 py-2.5 text-xs font-bold text-slate-950 hover:brightness-110" data-i18n="ch_register">سجّل اهتمامك</button>
+      </div>
     </div>
   </div>
 
@@ -1537,6 +1702,11 @@ await bridge.connect(transport);</code></pre>
       const q = promptText.toLowerCase();
       const isEn = state.lang === 'en' && !/[\u0600-\u06FF]/.test(promptText);
 
+      if (/challenge|contest|compet|leaderboard|prize|تحد|مسابق|صدارة|جائز/.test(q)) {
+        return isEn
+          ? 'B.I.Lab Challenges are time-boxed competitions on synthetic data: NPHIES claim validation, Arabic clinical coding (ICD-10-AM), secure reusable CI, accessibility, visionOS scenarios and a PHI red team. Season 0 is a proposed sample: dates and recognition are not confirmed and there are no cash prizes. Use "Register interest" on any challenge card.'
+          : 'تحديات B.I.Lab مسابقات بمواعيد محددة على بيانات اصطناعية: التحقق من مطالبات NPHIES، والترميز السريري العربي (ICD-10-AM)، وسير عمل CI الآمنة، وإتاحة الوصول، وسيناريوهات visionOS، والفريق الأحمر لتسرّب البيانات. الموسم صفر عيّنة مقترحة: المواعيد والتقديرات غير مؤكدة ولا توجد جوائز مالية. استخدم «سجّل اهتمامك» في بطاقة أي تحدٍّ.';
+      }
       if (q.includes('pnu') || q.includes('نورة') || q.includes('جامعة') || q.includes('شراكة')) {
         return isEn
           ? 'The proposed PNU collaboration would align B.I.Lab incubation with PNU’s Clinical Skills & Simulation Center (including the VR Surgical Training Lab), Nourah Biobank near KAAUH, and the Robotics & Data Analytics Labs.'
@@ -1578,8 +1748,8 @@ await bridge.connect(transport);</code></pre>
       log.scrollTop = log.scrollHeight;
 
       const chips = state.lang === 'ar'
-        ? ['ما هو التعاون المقترح مع جامعة الأميرة نورة؟', 'ما هي تطبيقات بيت الأطباء على Apple Vision Pro؟', 'كيف تعمل منظومة BPR مع FHIR R4؟']
-        : ['What is the proposed PNU collaboration?', 'What apps are in House for Doctors?', 'Explain BPR & FHIR R4 readiness'];
+        ? ['ما هي تحديات المختبر؟', 'ما هو التعاون المقترح مع جامعة الأميرة نورة؟', 'ما هي تطبيقات بيت الأطباء على Apple Vision Pro؟', 'كيف تعمل منظومة BPR مع FHIR R4؟']
+        : ['What are the lab challenges?', 'What is the proposed PNU collaboration?', 'What apps are in House for Doctors?', 'Explain BPR & FHIR R4 readiness'];
 
       document.getElementById('aiQuickChips').innerHTML = chips.map((c) => `
         <button type="button" class="ai-chip rounded-full border border-teal-400/25 bg-teal-500/10 px-3 py-1 text-[11px] font-medium text-teal-200 hover:bg-teal-500/20 transition">${c}</button>
@@ -1621,12 +1791,777 @@ await bridge.connect(transport);</code></pre>
       if (e.target.id === 'applyModal') closeModal();
     });
 
+    // ---------------------------------------------------------------------------
+    // Challenge arena. BILINGUAL: all copy lives here or in I18N.
+    // Every challenge, date, baseline score and recognition below is a SAMPLE /
+    // PROPOSED placeholder for "Season 0" until the lab owner confirms it.
+    // No sponsors, cash prizes or participant numbers are claimed.
+    // ---------------------------------------------------------------------------
+    Object.assign(I18N.ar, {
+      nav_challenges: 'التحديات',
+      nav_season: 'الجدول الزمني',
+      nav_leaderboard: 'لوحة الصدارة',
+      hero_badge: 'ساحة تحديات الذكاء الاصطناعي الصحي • الرياض — الموسم صفر (مقترح)',
+      hero_title_1: 'تحديات مختبر برينسايت',
+      hero_title_2: 'تنافس، ابتكر، وابنِ رعاية صحية أذكى بالعربية',
+      hero_desc: 'مسابقات بمواعيد محددة في <strong class="text-teal-300">FHIR R4 وNPHIES</strong>، و<strong class="text-amber-300">معالجة اللغة العربية السريرية</strong>، و<strong class="text-white">إتاحة الوصول</strong>، و<strong class="text-cyan-300">سير عمل CI الآمنة</strong>. بيانات اصطناعية فقط، ولوحات صدارة مفتوحة، وتقدير للفرق المتميزة، ضمن بيئة احتضان برينسايت وتعاون أكاديمي مقترح مع جامعة الأميرة نورة.',
+      hero_cta_browse: 'تصفّح التحديات',
+      hero_cta_season: 'الجدول الزمني للموسم',
+      stat_active: 'تحديات نشطة',
+      stat_upcoming: 'تحديات قادمة',
+      stat_tracks: 'مسارات',
+      stat_data: 'بيانات التحديات',
+      stat_data_val: 'اصطناعية 100٪ — بلا بيانات مرضى',
+      featured_label: 'التحدي المميز',
+      cd_days: 'يوم', cd_hours: 'ساعة', cd_minutes: 'دقيقة', cd_seconds: 'ثانية',
+      ch_badge: 'التحديات',
+      ch_title: 'تحديات بمواعيد محددة، ونتائج مفتوحة',
+      ch_desc: 'اختر تحدياً، وابنِ حلّك على بيانات اصطناعية، وتابع ترتيبك في لوحة الصدارة. كل تحدٍّ مرتبط بمشروع حقيقي في المختبر.',
+      season_name: 'الموسم صفر • مقترح',
+      ch_sample_note: 'تنويه: كل التحديات والمواعيد وخطوط الأساس والتقديرات في هذه الصفحة عيّنات مقترحة لم تُعلن رسمياً بعد. لا توجد جهات راعية أو جوائز مالية مؤكدة، ولم يُفتح باب التقديم. سجّل اهتمامك لنبلغك عند الإطلاق.',
+      ch_search_label: 'ابحث في التحديات',
+      ch_search_ph: 'ابحث: FHIR، عربي، NVDA...',
+      ch_sort_label: 'ترتيب التحديات',
+      sort_deadline: 'الأقرب موعداً', sort_start: 'تاريخ البدء', sort_title: 'الاسم',
+      st_all: 'الكل', st_active: 'نشط', st_upcoming: 'قادم', st_completed: 'منتهٍ', st_closing: 'يُغلق قريباً',
+      tr_all: 'كل المسارات',
+      ch_details: 'التفاصيل والقواعد',
+      ch_register: 'سجّل اهتمامك',
+      ch_copy_link: 'نسخ الرابط',
+      ch_link_copied: 'تم نسخ رابط التحدي.',
+      ch_sample: 'عيّنة',
+      ch_ends_in: 'ينتهي خلال',
+      ch_starts_in: 'يبدأ خلال',
+      ch_ended: 'انتهى في',
+      ch_metric: 'التقييم',
+      ch_recog: 'التقدير',
+      ch_level: 'المستوى',
+      ch_count: (n, t) => `${n} من ${t} تحديات`,
+      ch_empty: 'لا توجد تحديات مطابقة. جرّب حالة أو مساراً آخر.',
+      ch_empty_completed: 'لم يكتمل أي تحدٍّ بعد. سيظهر أول تحدٍّ منتهٍ هنا مع نتائجه بعد انتهاء نافذته.',
+      d_overview: 'نظرة عامة', d_timeline: 'المراحل', d_eval: 'التقييم', d_data: 'البيانات',
+      d_rules: 'القواعد', d_recog: 'التقدير (مقترح)', d_submit: 'طريقة التقديم',
+      d_ph_open: 'فتح التسجيل والتقديم', d_ph_close: 'آخر موعد للتقديم', d_ph_results: 'إعلان النتائج (مخطط)',
+      d_rules_list: [
+        'بيانات اصطناعية فقط. يُمنع رفع أي معلومات صحية محمية (PHI) أو بيانات مرضى حقيقية.',
+        'يُفحص كل تقديم آلياً بأداة phi-scan من مكتبة B.I.Lab قبل التقييم.',
+        'الحلول مفتوحة المصدر برخصة MIT أو Apache-2.0 ما لم يُذكر غير ذلك.',
+        'فرق من 1 إلى 4 أعضاء. يحق لكل فريق 5 تقديمات يومياً كحد أقصى.',
+        'تُراجع الحلول الفائزة يدوياً قبل اعتماد الترتيب النهائي.'
+      ],
+      d_submit_txt: 'بوابة التقديم لم تُفتح بعد. المخطط المقترح: طلب دمج (Pull Request) إلى مستودع التحدي على GitHub، تُشغّل عليه سير العمل القابلة لإعادة الاستخدام في B.I.Lab للتحقق والتقييم. سجّل اهتمامك لنرسل لك الرابط عند الإطلاق.',
+      season_badge: 'الجدول الزمني',
+      season_title: 'خريطة الموسم صفر',
+      season_desc: 'نافذة التقديم لكل تحدٍّ، ثم أسبوعان للمراجعة وإعلان النتائج. الخط الأحمر هو اليوم (بتوقيت الرياض). المواعيد مقترحة.',
+      legend_window: 'نافذة التقديم', legend_review: 'المراجعة وإعلان النتائج', legend_today: 'اليوم',
+      lb_badge: 'لوحة الصدارة',
+      lb_title: 'لوحة الصدارة العامة',
+      lb_select: 'اختر التحدي',
+      lb_rank: '#', lb_team: 'الفريق / الحل', lb_score: 'النتيجة', lb_kind: 'النوع',
+      lb_baseline: 'خط أساس توضيحي',
+      lb_note_scores: 'لا توجد تقديمات عامة بعد. الأرقام أعلاه خطوط أساس توضيحية من المختبر لتحديد مستوى البداية، وليست نتائج مقيسة أو فرقاً مشاركة.',
+      lb_note_upcoming: 'تُفتح لوحة الصدارة مع بدء التحدي. لا توجد خطوط أساس منشورة بعد.',
+      lb_caption: (t) => `لوحة صدارة: ${t}`,
+      how_title: 'كيف تعمل التحديات',
+      how_steps: [
+        ['سجّل اهتمامك', 'اختر تحدياً وأرسل طلباً قصيراً عبر البريد. لا نخزّن بياناتك في المتصفح.'],
+        ['ابنِ على بيانات اصطناعية', 'حزم FHIR وملاحظات سريرية مولّدة في المختبر، بلا أي بيانات مرضى.'],
+        ['قدّم عبر طلب دمج', 'تتحقق سير عمل B.I.Lab من الحل وتفحصه بحثاً عن PHI ثم تحسب النتيجة.'],
+        ['اصعد في الترتيب', 'تتحدث لوحة الصدارة، ثم تُراجع أفضل الحلول يدوياً قبل اعتماد النتائج.']
+      ],
+      proposed_tag: 'مقترح',
+      ranks_title: 'رتب المختبر',
+      ranks_desc: 'سلّم مستوحى من التدرّج الطبي، تُكتسب درجاته بالأوسمة في التحديات.',
+      ranks: [
+        ['متدرّب', 'أول تقديم صالح في أي تحدٍّ'],
+        ['مقيم', 'وسام برونزي واحد'],
+        ['زميل', 'وسامان فضّيان'],
+        ['استشاري', 'وسام ذهبي ووسامان فضّيان'],
+        ['بروفيسور', 'خمسة أوسمة ذهبية، منها واحد فردي']
+      ],
+      levels: { beginner: 'مبتدئ', intermediate: 'متوسط', advanced: 'متقدم' },
+      tr_challenges: 'تحدٍّ من تحديات المختبر',
+      close_label: 'إغلاق'
+    });
+    Object.assign(I18N.en, {
+      nav_challenges: 'Challenges',
+      nav_season: 'Timeline',
+      nav_leaderboard: 'Leaderboard',
+      hero_badge: 'Healthcare AI challenge arena • Riyadh — Season 0 (proposed)',
+      hero_title_1: 'B.I.Lab Challenges',
+      hero_title_2: 'Compete, create, and build smarter Arabic-first healthcare',
+      hero_desc: 'Time-boxed competitions in <strong class="text-teal-300">FHIR R4 & NPHIES</strong>, <strong class="text-amber-300">Arabic clinical NLP</strong>, <strong class="text-white">accessibility</strong>, and <strong class="text-cyan-300">secure reusable CI</strong>. Synthetic data only, open leaderboards, and recognition for standout teams, inside BrainSAIT’s incubator and a proposed academic collaboration with Princess Nourah University.',
+      hero_cta_browse: 'Browse challenges',
+      hero_cta_season: 'Season timeline',
+      stat_active: 'Active challenges',
+      stat_upcoming: 'Upcoming',
+      stat_tracks: 'Tracks',
+      stat_data: 'Challenge data',
+      stat_data_val: '100% synthetic, no patient data',
+      featured_label: 'Featured challenge',
+      cd_days: 'days', cd_hours: 'hours', cd_minutes: 'min', cd_seconds: 'sec',
+      ch_badge: 'Challenges',
+      ch_title: 'Timelined challenges, open results',
+      ch_desc: 'Pick a challenge, build on synthetic data, and track your rank on the leaderboard. Every challenge maps to a real lab project.',
+      season_name: 'Season 0 • proposed',
+      ch_sample_note: 'Note: every challenge, date, baseline and recognition on this page is a proposed sample and has not been announced. There are no confirmed sponsors or cash prizes, and entries are not open yet. Register your interest and we will tell you at launch.',
+      ch_search_label: 'Search challenges',
+      ch_search_ph: 'Search: FHIR, Arabic, NVDA...',
+      ch_sort_label: 'Sort challenges',
+      sort_deadline: 'Closest deadline', sort_start: 'Start date', sort_title: 'Name',
+      st_all: 'All', st_active: 'Active', st_upcoming: 'Upcoming', st_completed: 'Completed', st_closing: 'Closing soon',
+      tr_all: 'All tracks',
+      ch_details: 'Details & rules',
+      ch_register: 'Register interest',
+      ch_copy_link: 'Copy link',
+      ch_link_copied: 'Challenge link copied.',
+      ch_sample: 'Sample',
+      ch_ends_in: 'Ends in',
+      ch_starts_in: 'Starts in',
+      ch_ended: 'Ended on',
+      ch_metric: 'Evaluation',
+      ch_recog: 'Recognition',
+      ch_level: 'Level',
+      ch_count: (n, t) => `${n} of ${t} challenges`,
+      ch_empty: 'No challenges match. Try another status or track.',
+      ch_empty_completed: 'No challenge has finished yet. The first completed challenge will appear here with its results once its window closes.',
+      d_overview: 'Overview', d_timeline: 'Phases', d_eval: 'Evaluation', d_data: 'Data',
+      d_rules: 'Rules', d_recog: 'Recognition (proposed)', d_submit: 'How to submit',
+      d_ph_open: 'Registration and submissions open', d_ph_close: 'Final submission deadline', d_ph_results: 'Results announced (planned)',
+      d_rules_list: [
+        'Synthetic data only. Never upload protected health information (PHI) or real patient data.',
+        'Every submission is scanned with the B.I.Lab phi-scan tool before scoring.',
+        'Solutions are open source under MIT or Apache-2.0 unless stated otherwise.',
+        'Teams of 1 to 4. At most 5 submissions per team per day.',
+        'Top solutions are reviewed by hand before the final ranking is confirmed.'
+      ],
+      d_submit_txt: 'The submission portal is not open yet. Proposed flow: a pull request to the challenge repository on GitHub, where B.I.Lab reusable workflows validate and score it. Register your interest and we will send you the link at launch.',
+      season_badge: 'Timeline',
+      season_title: 'Season 0 map',
+      season_desc: 'Each challenge has a submission window followed by two weeks of review and results. The red line is today (Riyadh time). Dates are proposed.',
+      legend_window: 'Submission window', legend_review: 'Review & results', legend_today: 'Today',
+      lb_badge: 'Leaderboard',
+      lb_title: 'Public leaderboard',
+      lb_select: 'Choose a challenge',
+      lb_rank: '#', lb_team: 'Team / solution', lb_score: 'Score', lb_kind: 'Type',
+      lb_baseline: 'Illustrative baseline',
+      lb_note_scores: 'No public submissions yet. The rows above are illustrative lab baselines that set a starting bar; they are not measured results or participating teams.',
+      lb_note_upcoming: 'The leaderboard opens when the challenge starts. No baselines are published yet.',
+      lb_caption: (t) => `Leaderboard: ${t}`,
+      how_title: 'How challenges work',
+      how_steps: [
+        ['Register interest', 'Pick a challenge and send a short request by email. Nothing is stored in your browser.'],
+        ['Build on synthetic data', 'Lab-generated FHIR bundles and clinical notes, with no patient data at all.'],
+        ['Submit by pull request', 'B.I.Lab workflows validate your solution, scan it for PHI, then compute the score.'],
+        ['Climb the ranks', 'The leaderboard updates, and top solutions are reviewed by hand before results are final.']
+      ],
+      proposed_tag: 'Proposed',
+      ranks_title: 'Lab ranks',
+      ranks_desc: 'A ladder modelled on medical training, climbed with challenge medals.',
+      ranks: [
+        ['Intern', 'First valid submission in any challenge'],
+        ['Resident', 'One bronze medal'],
+        ['Fellow', 'Two silver medals'],
+        ['Consultant', 'One gold and two silver medals'],
+        ['Professor', 'Five gold medals, one of them solo']
+      ],
+      levels: { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' },
+      tr_challenges: 'A B.I.Lab challenge',
+      close_label: 'Close'
+    });
+
+    // NEURAL: track accents use the BrainSAIT teal/cyan/amber family plus a few supporting hues.
+    const CH_TRACKS = {
+      fhir:     { ar: 'FHIR وNPHIES', en: 'FHIR & NPHIES', bar: 'from-teal-400 to-cyan-400', chip: 'border-teal-400/30 bg-teal-500/10 text-teal-200' },
+      nlp:      { ar: 'لغة عربية سريرية', en: 'Arabic clinical NLP', bar: 'from-amber-300 to-orange-500', chip: 'border-amber-400/30 bg-amber-500/10 text-amber-200' },
+      a11y:     { ar: 'إتاحة الوصول', en: 'Accessibility', bar: 'from-violet-400 to-fuchsia-500', chip: 'border-violet-400/30 bg-violet-500/10 text-violet-200' },
+      devops:   { ar: 'CI قابل لإعادة الاستخدام', en: 'Reusable CI', bar: 'from-sky-400 to-blue-600', chip: 'border-sky-400/30 bg-sky-500/10 text-sky-200' },
+      spatial:  { ar: 'محاكاة مكانية', en: 'Spatial simulation', bar: 'from-cyan-300 to-indigo-500', chip: 'border-indigo-400/30 bg-indigo-500/10 text-indigo-200' },
+      security: { ar: 'خصوصية وأمن', en: 'Privacy & security', bar: 'from-rose-400 to-orange-500', chip: 'border-rose-400/30 bg-rose-500/10 text-rose-200' }
+    };
+
+    // Dates are Riyadh time (UTC+3). Results = planned announcement date.
+    const CHALLENGES = [
+      {
+        id: 'nphies-claims', track: 'fhir', level: 'intermediate',
+        start: '2026-11-15', end: '2027-01-15', results: '2027-01-29',
+        tags: ['FHIR R4', 'NPHIES', 'Claim'], higherBetter: true,
+        ar: {
+          title: 'مُدقّق حزم مطالبات NPHIES',
+          summary: 'اكتشف الأخطاء في حزم مطالبات FHIR R4 الاصطناعية قبل وصولها إلى بوابة NPHIES: معرّفات ناقصة، وأنظمة ترميز خاطئة، ومراجع مكسورة.',
+          metric: 'متوسط F1 على فئات الأخطاء',
+          data: 'حزم Claim وCoverage وPatient اصطناعية يولّدها المختبر، مع ملف تعريف الأخطاء المزروعة.',
+          recog: 'عرض الحل على صفحة المختبر ومقابلة احتضان'
+        },
+        en: {
+          title: 'NPHIES Claim Bundle Validator',
+          summary: 'Catch the errors in synthetic FHIR R4 Claim bundles before they reach the NPHIES gateway: missing identifiers, wrong code systems, broken references.',
+          metric: 'Macro F1 over error classes',
+          data: 'Lab-generated synthetic Claim, Coverage and Patient bundles, with a manifest of the seeded errors.',
+          recog: 'Featured write-up on the lab page and an incubation interview'
+        },
+        baselines: [
+          { ar: 'فحص مخطط FHIR فقط', en: 'FHIR schema check only', score: 0.58 },
+          { ar: 'المخطط مع قواعد ملفات NPHIES', en: 'Schema plus NPHIES profile rules', score: 0.71 }
+        ]
+      },
+      {
+        id: 'ar-clinical-coding', track: 'nlp', level: 'advanced',
+        start: '2026-11-01', end: '2026-12-20', results: '2027-01-03',
+        tags: ['ICD-10-AM', 'Arabic NLP', 'Coding'], higherBetter: true,
+        ar: {
+          title: 'الترميز السريري بالعربية (ICD-10-AM)',
+          summary: 'عيّن رموز تشخيص ICD-10-AM لملخصات خروج قصيرة اصطناعية مكتوبة بالعربية أو بمزيج من العربية والإنجليزية.',
+          metric: 'Micro F1 على مستوى الرمز',
+          data: 'ملخصات خروج اصطناعية كتبها المختبر مع رموزها المرجعية. لا ملاحظات حقيقية.',
+          recog: 'دعوة لعرض الحل في يوم المختبر التجريبي'
+        },
+        en: {
+          title: 'Arabic Clinical Coding (ICD-10-AM)',
+          summary: 'Assign ICD-10-AM diagnosis codes to short synthetic discharge notes written in Arabic or mixed Arabic and English.',
+          metric: 'Micro F1 at code level',
+          data: 'Lab-written synthetic discharge notes with reference codes. No real notes.',
+          recog: 'Invitation to present at the lab demo day'
+        },
+        baselines: [
+          { ar: 'مطابقة الكلمات المفتاحية', en: 'Keyword matcher', score: 0.42 },
+          { ar: 'تضمينات متعددة اللغات + أقرب جار', en: 'Multilingual embeddings + kNN', score: 0.55 }
+        ]
+      },
+      {
+        id: 'ci-workflow-sprint', track: 'devops', level: 'beginner',
+        start: '2026-12-07', end: '2027-01-07', results: '2027-01-21',
+        tags: ['GitHub Actions', 'actionlint', 'phi-scan'], higherBetter: true,
+        ar: {
+          title: 'سباق سير العمل الآمنة القابلة لإعادة الاستخدام',
+          summary: 'أضف سير عمل GitHub Actions قابلاً لإعادة الاستخدام إلى مكتبة B.I.Lab يجتاز actionlint والفحوص الأمنية الثابتة وفحص PHI نظيفاً بأقل صلاحيات ممكنة.',
+          metric: 'قائمة تحقق من 100: الفحص، تثبيت SHA، أقل صلاحيات، التوثيق',
+          data: 'مستودع B.I.Lab العام وأمثلته. لا أسرار ولا بيانات حقيقية.',
+          recog: 'دمج سير العمل في المكتبة مع نسبة المساهمة'
+        },
+        en: {
+          title: 'Secure Reusable Workflow Sprint',
+          summary: 'Add a reusable GitHub Actions workflow to the B.I.Lab library that passes actionlint, the static security checks and a clean PHI scan, with least-privilege permissions.',
+          metric: '100-point checklist: lint, SHA pins, least privilege, docs',
+          data: 'The public B.I.Lab repository and its examples. No secrets, no real data.',
+          recog: 'Workflow merged into the library with contributor credit'
+        },
+        baselines: []
+      },
+      {
+        id: 'acc-console', track: 'a11y', level: 'intermediate',
+        start: '2027-01-10', end: '2027-02-21', results: '2027-03-07',
+        tags: ['WCAG 2.2', 'NVDA', 'RTL'], higherBetter: true,
+        ar: {
+          title: 'تحدي الواجهة السريرية ميسّرة الوصول',
+          summary: 'ابنِ شاشة سريرية ثنائية الاتجاه (عربي/إنجليزي) بلا مخالفات axe-core، يستطيع مستخدم قارئ الشاشة (NVDA أو VoiceOver) إنهاء ثلاث مهام محددة فيها.',
+          metric: 'مخالفات axe-core مع معيار زمني لمهام قارئ الشاشة',
+          data: 'بيانات مرضى اصطناعية بصيغة FHIR ونصوص مهام الاختبار.',
+          recog: 'اعتماد الواجهة كمرجع لمسار إتاحة الوصول في المختبر'
+        },
+        en: {
+          title: 'Accessible Clinical Console Jam',
+          summary: 'Build a bilingual RTL/LTR clinical screen with zero axe-core violations, where a screen reader user (NVDA or VoiceOver) can finish three set tasks.',
+          metric: 'axe-core violations plus a timed screen reader task rubric',
+          data: 'Synthetic FHIR patient data and the test task scripts.',
+          recog: 'Adopted as the reference UI for the lab accessibility track'
+        },
+        baselines: []
+      },
+      {
+        id: 'spatial-scenario', track: 'spatial', level: 'intermediate',
+        start: '2027-02-14', end: '2027-03-28', results: '2027-04-11',
+        tags: ['visionOS', 'Simulation', 'Medical education'], higherBetter: true,
+        ar: {
+          title: 'تحدي سيناريوهات بيت الأطباء',
+          summary: 'صمّم سيناريو تدريب على visionOS لمهارة سريرية واحدة (لوحة قصة ونموذج أولي)، تقيّمه لجنة من أطباء ومهندسين.',
+          metric: 'معيار اللجنة: الدقة السريرية، تصميم التعلّم، إتاحة الوصول',
+          data: 'نماذج تشريحية مفتوحة الترخيص وحالات سريرية اصطناعية.',
+          recog: 'تطوير السيناريو داخل بيت الأطباء'
+        },
+        en: {
+          title: 'House for Doctors Scenario Jam',
+          summary: 'Design a visionOS training scenario for one clinical skill (storyboard plus prototype), judged by a panel of clinicians and engineers.',
+          metric: 'Jury rubric: clinical accuracy, learning design, accessibility',
+          data: 'Openly licensed anatomy models and synthetic clinical cases.',
+          recog: 'Scenario developed further inside House for Doctors'
+        },
+        baselines: []
+      },
+      {
+        id: 'phi-red-team', track: 'security', level: 'advanced',
+        start: '2027-03-01', end: '2027-04-15', results: '2027-04-29',
+        tags: ['phi-scan', 'PDPL', 'Red team'], higherBetter: true,
+        ar: {
+          title: 'الفريق الأحمر لتسرّب البيانات الصحية',
+          summary: 'اصنع مستندات اصطناعية تتجاوز قواعد phi-scan في B.I.Lab، ثم اقترح القاعدة التي تكشفها. كل ثغرة تُكتشف تقوّي الأداة.',
+          metric: 'نقاط: تجاوزات صالحة مع جودة الإصلاح المقترح',
+          data: 'أداة phi-scan مفتوحة المصدر ومجموعة اختباراتها الاصطناعية.',
+          recog: 'إدراج اسمك في سجل المساهمين في أمان الأداة'
+        },
+        en: {
+          title: 'PHI Leak Red Team',
+          summary: 'Craft synthetic documents that slip past the B.I.Lab phi-scan heuristics, then propose the rule that catches them. Every finding hardens the scanner.',
+          metric: 'Points: valid bypasses plus quality of the proposed fix',
+          data: 'The open-source phi-scan tool and its synthetic test corpus.',
+          recog: 'Credit in the scanner’s security acknowledgements'
+        },
+        baselines: []
+      }
+    ];
+
+    const DAY = 86400000;
+    // Start of day / end of day, Riyadh (UTC+3).
+    const chStart = (c) => Date.parse(`${c.start}T00:00:00+03:00`);
+    const chEnd = (c) => Date.parse(`${c.end}T23:59:59+03:00`);
+    const chResults = (c) => Date.parse(`${c.results}T23:59:59+03:00`);
+
+    function chStatus(c, now = Date.now()) {
+      if (now < chStart(c)) return 'upcoming';
+      if (now > chEnd(c)) return 'completed';
+      return 'active';
+    }
+
+    const chUi = { status: 'all', track: 'all', query: '', sort: 'deadline', openId: null, lastFocus: null };
+
+    function fmtDate(iso) {
+      const loc = state.lang === 'ar' ? 'ar-SA-u-ca-gregory-nu-latn' : 'en-GB';
+      return new Intl.DateTimeFormat(loc, { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Riyadh' })
+        .format(new Date(`${iso}T12:00:00+03:00`));
+    }
+
+    // BILINGUAL: Arabic counted nouns (1, 2, 3–10, 11+).
+    function arCount(n, one, two, few, many) {
+      if (n === 1) return one;
+      if (n === 2) return two;
+      if (n >= 3 && n <= 10) return `${n} ${few}`;
+      return `${n} ${many}`;
+    }
+
+    function fmtSpan(ms) {
+      const d = Math.floor(ms / DAY);
+      const h = Math.floor((ms % DAY) / 3600000);
+      const m = Math.floor((ms % 3600000) / 60000);
+      if (state.lang === 'ar') {
+        const days = arCount(d, 'يوم واحد', 'يومين', 'أيام', 'يوماً');
+        const hours = arCount(h, 'ساعة', 'ساعتين', 'ساعات', 'ساعة');
+        const mins = arCount(m, 'دقيقة', 'دقيقتين', 'دقائق', 'دقيقة');
+        if (d > 0) return h > 0 ? `${days} و${hours}` : days;
+        if (h > 0) return m > 0 ? `${hours} و${mins}` : hours;
+        return m > 0 ? mins : 'أقل من دقيقة';
+      }
+      const p = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
+      if (d > 0) return h > 0 ? `${p(d, 'day')} ${p(h, 'hour')}` : p(d, 'day');
+      if (h > 0) return `${p(h, 'hour')} ${p(m, 'minute')}`;
+      return m > 0 ? p(m, 'minute') : 'less than a minute';
+    }
+
+    function countdownText(c, now = Date.now()) {
+      const t = I18N[state.lang];
+      const st = chStatus(c, now);
+      if (st === 'upcoming') return `${t.ch_starts_in} ${fmtSpan(chStart(c) - now)}`;
+      if (st === 'active') return `${t.ch_ends_in} ${fmtSpan(chEnd(c) - now)}`;
+      return `${t.ch_ended} ${fmtDate(c.end)}`;
+    }
+
+    function statusPill(c, now = Date.now()) {
+      const t = I18N[state.lang];
+      const st = chStatus(c, now);
+      const closing = st === 'active' && chEnd(c) - now < 14 * DAY;
+      const map = {
+        active: closing ? ['border-amber-400/40 bg-amber-500/15 text-amber-200', t.st_closing] : ['border-emerald-400/40 bg-emerald-500/15 text-emerald-200', t.st_active],
+        upcoming: ['border-cyan-400/40 bg-cyan-500/15 text-cyan-200', t.st_upcoming],
+        completed: ['border-slate-400/30 bg-slate-500/15 text-slate-300', t.st_completed]
+      };
+      const [cls, label] = map[st];
+      const dot = st === 'active' ? '<span class="h-1.5 w-1.5 rounded-full bg-current animate-pulse"></span>' : '';
+      return `<span class="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-bold ${cls}">${dot}${escapeHtml(label)}</span>`;
+    }
+
+    function trackChip(c) {
+      const tr = CH_TRACKS[c.track];
+      return `<span class="inline-flex items-center rounded-md border px-2 py-0.5 text-[11px] font-semibold ${tr.chip}">${escapeHtml(tr[state.lang])}</span>`;
+    }
+
+    function sampleTag() {
+      return `<span class="rounded-md border border-amber-400/30 bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-bold text-amber-200">${escapeHtml(I18N[state.lang].ch_sample)}</span>`;
+    }
+
+    // Mini timeline: elapsed share of the submission window, flows with reading direction.
+    function timelineBar(c, now = Date.now()) {
+      const pct = Math.max(0, Math.min(100, ((now - chStart(c)) / (chEnd(c) - chStart(c))) * 100));
+      const tr = CH_TRACKS[c.track];
+      return `
+        <div>
+          <div class="h-1.5 w-full overflow-hidden rounded-full bg-white/10" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(pct)}" aria-label="${escapeHtml(countdownText(c, now))}">
+            <div class="h-full rounded-full bg-gradient-to-r ${tr.bar}" style="width:${pct.toFixed(1)}%"></div>
+          </div>
+          <div class="mt-1.5 flex justify-between text-[10px] text-slate-400"><span>${escapeHtml(fmtDate(c.start))}</span><span>${escapeHtml(fmtDate(c.end))}</span></div>
+        </div>`;
+    }
+
+    function filteredChallenges(now = Date.now()) {
+      const q = chUi.query.trim().toLowerCase();
+      const list = CHALLENGES.filter((c) => {
+        if (chUi.status !== 'all' && chStatus(c, now) !== chUi.status) return false;
+        if (chUi.track !== 'all' && c.track !== chUi.track) return false;
+        if (!q) return true;
+        const hay = [c.ar.title, c.en.title, c.ar.summary, c.en.summary, CH_TRACKS[c.track].ar, CH_TRACKS[c.track].en, ...c.tags].join(' ').toLowerCase();
+        return hay.includes(q);
+      });
+      const rank = { active: 0, upcoming: 1, completed: 2 };
+      const key = {
+        deadline: (c) => [rank[chStatus(c, now)], chStatus(c, now) === 'upcoming' ? chStart(c) : chEnd(c) * (chStatus(c, now) === 'completed' ? -1 : 1)],
+        start: (c) => [chStart(c), 0],
+        title: (c) => [c[state.lang].title, 0]
+      }[chUi.sort];
+      return list.sort((a, b) => {
+        const ka = key(a); const kb = key(b);
+        for (let i = 0; i < 2; i += 1) {
+          if (ka[i] < kb[i]) return -1;
+          if (ka[i] > kb[i]) return 1;
+        }
+        return 0;
+      });
+    }
+
+    function renderChallengeFilters(now = Date.now()) {
+      const t = I18N[state.lang];
+      const counts = { all: CHALLENGES.length, active: 0, upcoming: 0, completed: 0 };
+      CHALLENGES.forEach((c) => { counts[chStatus(c, now)] += 1; });
+      document.getElementById('chStatusTabs').innerHTML = ['all', 'active', 'upcoming', 'completed'].map((s) => {
+        const on = chUi.status === s;
+        return `<button type="button" data-ch-status="${s}" aria-pressed="${on}" class="rounded-lg border px-3 py-1.5 text-xs font-semibold transition ${on ? 'border-teal-400/60 bg-teal-500/20 text-teal-100' : 'border-white/10 bg-white/[0.03] text-slate-300 hover:bg-white/10'}">${escapeHtml(t['st_' + s])} <span class="ms-1 rounded bg-black/30 px-1.5 font-mono text-[10px]">${counts[s]}</span></button>`;
+      }).join('');
+      document.getElementById('chTrackChips').innerHTML = ['all', ...Object.keys(CH_TRACKS)].map((k) => {
+        const on = chUi.track === k;
+        const label = k === 'all' ? t.tr_all : CH_TRACKS[k][state.lang];
+        return `<button type="button" data-ch-track="${k}" aria-pressed="${on}" class="rounded-full border px-3 py-1 text-[11px] font-semibold transition ${on ? 'border-amber-300/60 bg-amber-400/15 text-amber-100' : 'border-white/10 text-slate-300 hover:bg-white/10'}">${escapeHtml(label)}</button>`;
+      }).join('');
+      const search = document.getElementById('chSearch');
+      search.placeholder = t.ch_search_ph;
+      document.getElementById('chSort').value = chUi.sort;
+      document.getElementById('statActive').textContent = String(counts.active);
+      document.getElementById('statUpcoming').textContent = String(counts.upcoming);
+      document.getElementById('statTracks').textContent = String(Object.keys(CH_TRACKS).length);
+    }
+
+    function renderChallengeGrid(now = Date.now()) {
+      const t = I18N[state.lang];
+      const list = filteredChallenges(now);
+      document.getElementById('chCount').textContent = t.ch_count(list.length, CHALLENGES.length);
+      const empty = document.getElementById('chEmpty');
+      empty.classList.toggle('hidden', list.length > 0);
+      empty.textContent = chUi.status === 'completed' && !chUi.query && chUi.track === 'all' ? t.ch_empty_completed : t.ch_empty;
+      document.getElementById('chGrid').innerHTML = list.map((c) => {
+        const L = c[state.lang];
+        const tr = CH_TRACKS[c.track];
+        return `
+        <article id="c-${c.id}" class="glass-panel flex flex-col overflow-hidden rounded-2xl transition hover:-translate-y-0.5 hover:border-teal-400/40" aria-labelledby="t-${c.id}">
+          <div class="h-1.5 bg-gradient-to-r ${tr.bar}"></div>
+          <div class="flex flex-1 flex-col gap-3 p-5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex flex-wrap items-center gap-1.5">${trackChip(c)}${sampleTag()}</div>
+              ${statusPill(c, now)}
+            </div>
+            <h3 id="t-${c.id}" class="text-base font-bold leading-snug text-white">${escapeHtml(L.title)}</h3>
+            <p class="text-xs leading-relaxed text-slate-300">${escapeHtml(L.summary)}</p>
+            <div class="flex flex-wrap gap-1.5">${c.tags.map((g) => `<span dir="ltr" class="rounded bg-white/5 px-1.5 py-0.5 font-mono text-[10px] text-slate-300">${escapeHtml(g)}</span>`).join('')}</div>
+            ${timelineBar(c, now)}
+            <dl class="grid grid-cols-2 gap-2 text-[11px]">
+              <div class="rounded-lg bg-white/[0.04] p-2"><dt class="text-slate-400">${escapeHtml(chStatus(c, now) === 'completed' ? t.st_completed : chStatus(c, now) === 'upcoming' ? t.ch_starts_in : t.ch_ends_in)}</dt><dd class="mt-0.5 font-semibold text-white" data-countdown="${c.id}">${escapeHtml(countdownText(c, now).replace(chStatus(c, now) === 'upcoming' ? t.ch_starts_in : chStatus(c, now) === 'active' ? t.ch_ends_in : t.ch_ended, '').trim())}</dd></div>
+              <div class="rounded-lg bg-white/[0.04] p-2"><dt class="text-slate-400">${escapeHtml(t.ch_level)}</dt><dd class="mt-0.5 font-semibold text-white">${escapeHtml(t.levels[c.level])}</dd></div>
+              <div class="col-span-2 rounded-lg bg-white/[0.04] p-2"><dt class="text-slate-400">${escapeHtml(t.ch_metric)}</dt><dd class="mt-0.5 font-semibold text-white">${escapeHtml(L.metric)}</dd></div>
+            </dl>
+            <div class="mt-auto flex flex-wrap gap-2 pt-1">
+              <button type="button" data-ch-open="${c.id}" class="inline-flex items-center gap-1.5 rounded-lg bg-teal-500 px-3.5 py-2 text-xs font-bold text-slate-950 hover:bg-teal-400">${escapeHtml(t.ch_details)}<span class="sr-only">: ${escapeHtml(L.title)}</span></button>
+              <button type="button" data-ch-register="${c.id}" class="inline-flex items-center gap-1.5 rounded-lg border border-amber-400/35 bg-amber-500/10 px-3.5 py-2 text-xs font-bold text-amber-200 hover:bg-amber-500/20">${escapeHtml(t.ch_register)}<span class="sr-only">: ${escapeHtml(L.title)}</span></button>
+            </div>
+          </div>
+        </article>`;
+      }).join('');
+    }
+
+    function featuredChallenge(now = Date.now()) {
+      const active = CHALLENGES.filter((c) => chStatus(c, now) === 'active').sort((a, b) => chEnd(a) - chEnd(b));
+      if (active.length) return active[0];
+      const upcoming = CHALLENGES.filter((c) => chStatus(c, now) === 'upcoming').sort((a, b) => chStart(a) - chStart(b));
+      return upcoming[0] || CHALLENGES[CHALLENGES.length - 1];
+    }
+
+    function renderFeatured(now = Date.now()) {
+      const c = featuredChallenge(now);
+      const t = I18N[state.lang];
+      const st = chStatus(c, now);
+      document.getElementById('featuredStatus').innerHTML = statusPill(c, now);
+      document.getElementById('featuredTrack').innerHTML = `${trackChip(c)} ${sampleTag()}`;
+      document.getElementById('featuredTitle').textContent = c[state.lang].title;
+      document.getElementById('featuredSummary').textContent = c[state.lang].summary;
+      document.getElementById('featuredCountdownLabel').textContent = st === 'upcoming' ? t.ch_starts_in : st === 'active' ? t.ch_ends_in : t.ch_ended;
+      document.getElementById('featuredCountdownSr').textContent = countdownText(c, now);
+      document.getElementById('featuredTimeline').innerHTML = timelineBar(c, now);
+      document.getElementById('featuredCard').dataset.challenge = c.id;
+      tickFeatured(now);
+    }
+
+    function tickFeatured(now = Date.now()) {
+      const id = document.getElementById('featuredCard').dataset.challenge;
+      const c = CHALLENGES.find((x) => x.id === id);
+      if (!c) return;
+      const st = chStatus(c, now);
+      const target = st === 'upcoming' ? chStart(c) : chEnd(c);
+      const ms = st === 'completed' ? 0 : Math.max(0, target - now);
+      const pad = (n) => String(n).padStart(2, '0');
+      document.getElementById('cdD').textContent = pad(Math.floor(ms / DAY));
+      document.getElementById('cdH').textContent = pad(Math.floor((ms % DAY) / 3600000));
+      document.getElementById('cdM').textContent = pad(Math.floor((ms % 3600000) / 60000));
+      document.getElementById('cdS').textContent = pad(Math.floor((ms % 60000) / 1000));
+    }
+
+    // Gantt: positions use inset-inline-start so the season reads right-to-left in Arabic.
+    function renderSeason(now = Date.now()) {
+      const t = I18N[state.lang];
+      // Month grid from the calendar dates themselves (not UTC instants), so 1 Nov Riyadh stays in November.
+      const ym = (iso) => iso.slice(0, 7);
+      const firstYm = CHALLENGES.map((c) => ym(c.start)).sort()[0].split('-').map(Number);
+      const lastYm = CHALLENGES.map((c) => ym(c.results)).sort().pop().split('-').map(Number);
+      const from = Date.UTC(firstYm[0], firstYm[1] - 1, 1) - 3 * 3600000;
+      const to = Date.UTC(lastYm[0], lastYm[1], 1) - 3 * 3600000;
+      const span = to - from;
+      const pos = (ms) => ((ms - from) / span) * 100;
+      const months = [];
+      for (let y = firstYm[0], mo = firstYm[1] - 1; Date.UTC(y, mo, 1) - 3 * 3600000 < to; mo += 1) {
+        const d = new Date(Date.UTC(y, mo, 1));
+        const at = Date.UTC(y, mo, 1) - 3 * 3600000;
+        const next = Date.UTC(y, mo + 1, 1) - 3 * 3600000;
+        months.push({ left: pos(at), width: pos(next) - pos(at), label: new Intl.DateTimeFormat(state.lang === 'ar' ? 'ar-SA-u-ca-gregory-nu-latn' : 'en-GB', { month: 'short', year: '2-digit', timeZone: 'UTC' }).format(d) });
+      }
+      const todayIn = now >= from && now <= to;
+      const todayLine = todayIn ? `<div class="pointer-events-none absolute inset-y-0 w-0.5 bg-rose-400/90" style="inset-inline-start:${pos(now).toFixed(2)}%"></div>` : '';
+      const rows = [...CHALLENGES].sort((a, b) => chStart(a) - chStart(b)).map((c) => {
+        const tr = CH_TRACKS[c.track];
+        const L = c[state.lang];
+        const w0 = pos(chStart(c)); const w1 = pos(chEnd(c)); const r1 = pos(chResults(c));
+        return `
+          <div class="grid grid-cols-[13rem_1fr] items-center gap-3 border-t border-white/5 py-2.5">
+            <button type="button" data-ch-open="${c.id}" class="truncate text-start text-xs font-semibold text-slate-200 hover:text-teal-300" title="${escapeHtml(L.title)}">${escapeHtml(L.title)}</button>
+            <div class="relative h-6">
+              <div class="absolute inset-y-1 rounded-full bg-gradient-to-r ${tr.bar} shadow-lg" style="inset-inline-start:${w0.toFixed(2)}%;width:${(w1 - w0).toFixed(2)}%" title="${escapeHtml(fmtDate(c.start))} – ${escapeHtml(fmtDate(c.end))}"></div>
+              <div class="absolute inset-y-1.5 rounded-full border border-dashed border-amber-300/70" style="inset-inline-start:${w1.toFixed(2)}%;width:${(r1 - w1).toFixed(2)}%"></div>
+              <span class="sr-only">${escapeHtml(`${fmtDate(c.start)} – ${fmtDate(c.end)}; ${t.d_ph_results}: ${fmtDate(c.results)}`)}</span>
+            </div>
+          </div>`;
+      }).join('');
+      document.getElementById('seasonGantt').innerHTML = `
+        <div class="grid grid-cols-[13rem_1fr] gap-3 pb-2">
+          <div></div>
+          <div class="relative h-5 text-[10px] text-slate-400">
+            ${months.map((m) => `<span class="absolute top-0 border-s border-white/10 ps-1" style="inset-inline-start:${m.left.toFixed(2)}%;width:${m.width.toFixed(2)}%">${escapeHtml(m.label)}</span>`).join('')}
+          </div>
+        </div>
+        <div class="relative">
+          ${rows}
+          <div class="pointer-events-none absolute inset-0 grid grid-cols-[13rem_1fr] gap-3"><div></div><div class="relative">${todayLine}</div></div>
+        </div>`;
+    }
+
+    function renderLeaderboard() {
+      const t = I18N[state.lang];
+      const sel = document.getElementById('lbSelect');
+      const current = sel.value || featuredChallenge().id;
+      sel.innerHTML = CHALLENGES.map((c) => `<option value="${c.id}">${escapeHtml(c[state.lang].title)}</option>`).join('');
+      sel.value = current;
+      const c = CHALLENGES.find((x) => x.id === sel.value) || CHALLENGES[0];
+      document.getElementById('lbCaption').textContent = t.lb_caption(c[state.lang].title);
+      const rows = [...c.baselines].sort((a, b) => (c.higherBetter ? b.score - a.score : a.score - b.score));
+      const body = document.getElementById('lbBody');
+      if (!rows.length) {
+        body.innerHTML = `<tr><td colspan="4" class="py-6 text-center text-xs text-slate-400">${escapeHtml(t.lb_note_upcoming)}</td></tr>`;
+        document.getElementById('lbNote').textContent = '';
+        return;
+      }
+      body.innerHTML = rows.map((r, i) => `
+        <tr class="border-b border-white/5">
+          <td class="py-2.5 pe-3 font-mono text-xs text-slate-400">${i + 1}</td>
+          <td class="py-2.5 pe-3 text-xs font-semibold text-slate-200">${escapeHtml(r[state.lang])}</td>
+          <td class="py-2.5 pe-3 font-mono text-xs font-bold text-teal-300" dir="ltr">${r.score.toFixed(2)}</td>
+          <td class="py-2.5"><span class="rounded-md border border-amber-400/30 bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-bold text-amber-200">${escapeHtml(t.lb_baseline)}</span></td>
+        </tr>`).join('');
+      document.getElementById('lbNote').textContent = t.lb_note_scores;
+    }
+
+    function renderHowAndRanks() {
+      const t = I18N[state.lang];
+      document.getElementById('howSteps').innerHTML = t.how_steps.map(([h, d], i) => `
+        <li class="flex gap-3">
+          <span class="flex h-7 w-7 flex-none items-center justify-center rounded-lg border border-teal-400/30 bg-teal-500/10 font-mono text-xs font-bold text-teal-200">${i + 1}</span>
+          <div><p class="text-sm font-semibold text-white">${escapeHtml(h)}</p><p class="text-xs leading-relaxed text-slate-400">${escapeHtml(d)}</p></div>
+        </li>`).join('');
+      const tones = ['text-slate-300 border-slate-400/30', 'text-orange-200 border-orange-400/30', 'text-slate-100 border-slate-200/40', 'text-amber-200 border-amber-300/50', 'text-teal-200 border-teal-300/50'];
+      document.getElementById('rankLadder').innerHTML = t.ranks.map(([n, d], i) => `
+        <li class="flex items-center gap-3 rounded-xl border bg-white/[0.03] px-3 py-2 ${tones[i]}">
+          <span class="font-mono text-[11px] font-bold">${'★'.repeat(i + 1)}</span>
+          <div><p class="text-sm font-bold">${escapeHtml(n)}</p><p class="text-[11px] text-slate-400">${escapeHtml(d)}</p></div>
+        </li>`).join('');
+    }
+
+    function renderChallengeDialog() {
+      if (!chUi.openId) return;
+      const c = CHALLENGES.find((x) => x.id === chUi.openId);
+      const t = I18N[state.lang];
+      const L = c[state.lang];
+      const now = Date.now();
+      document.getElementById('chDialogTitle').textContent = L.title;
+      document.getElementById('chDialogMeta').innerHTML = `${trackChip(c)} ${statusPill(c, now)} ${sampleTag()}`;
+      const phase = (label, iso, done) => `
+        <li class="flex items-center gap-3">
+          <span class="h-2.5 w-2.5 flex-none rounded-full ${done ? 'bg-teal-400' : 'border border-white/30'}"></span>
+          <span class="flex-1 text-xs text-slate-300">${escapeHtml(label)}</span>
+          <span class="text-xs font-semibold text-white">${escapeHtml(fmtDate(iso))}</span>
+        </li>`;
+      const sec = (h, inner) => `<section><h4 class="text-xs font-bold uppercase tracking-wide text-teal-300">${escapeHtml(h)}</h4><div class="mt-2">${inner}</div></section>`;
+      document.getElementById('chDialogBody').innerHTML = [
+        sec(t.d_overview, `<p class="leading-relaxed">${escapeHtml(L.summary)}</p><p class="mt-2 text-xs font-semibold text-amber-200">${escapeHtml(countdownText(c, now))}</p>`),
+        sec(t.d_timeline, `<ol class="space-y-2">${phase(t.d_ph_open, c.start, now >= chStart(c))}${phase(t.d_ph_close, c.end, now > chEnd(c))}${phase(t.d_ph_results, c.results, now > chResults(c))}</ol>`),
+        sec(t.d_eval, `<p>${escapeHtml(L.metric)}</p>`),
+        sec(t.d_data, `<p>${escapeHtml(L.data)}</p>`),
+        sec(t.d_rules, `<ul class="list-disc space-y-1 ps-5 text-xs leading-relaxed">${t.d_rules_list.map((r) => `<li>${escapeHtml(r)}</li>`).join('')}</ul>`),
+        sec(t.d_recog, `<p>${escapeHtml(L.recog)}</p>`),
+        sec(t.d_submit, `<p class="text-xs leading-relaxed">${escapeHtml(t.d_submit_txt)}</p>`)
+      ].join('');
+    }
+
+    function openChallenge(id) {
+      if (!CHALLENGES.some((c) => c.id === id)) return;
+      chUi.openId = id;
+      chUi.lastFocus = document.activeElement;
+      renderChallengeDialog();
+      const dlg = document.getElementById('chDialog');
+      dlg.classList.remove('hidden');
+      dlg.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      try { history.replaceState(null, '', `#c-${id}`); } catch (_) {}
+      document.getElementById('chDialogClose').focus();
+    }
+
+    function closeChallenge() {
+      const dlg = document.getElementById('chDialog');
+      if (dlg.classList.contains('hidden')) return;
+      dlg.classList.add('hidden');
+      dlg.classList.remove('flex');
+      document.body.style.overflow = '';
+      chUi.openId = null;
+      try { history.replaceState(null, '', `${location.pathname}${location.search}#challenges`); } catch (_) {}
+      if (chUi.lastFocus && chUi.lastFocus.focus) chUi.lastFocus.focus();
+    }
+
+    function registerFor(id) {
+      const c = CHALLENGES.find((x) => x.id === id);
+      closeChallenge();
+      openModal('challenges');
+      if (c) {
+        const idea = document.getElementById('appIdea');
+        const tag = `[${c.en.title}] `;
+        if (!idea.value.startsWith(tag)) idea.value = tag + idea.value;
+      }
+    }
+
+    function renderChallenges() {
+      const now = Date.now();
+      const t = I18N[state.lang];
+      document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
+        const k = el.getAttribute('data-i18n-aria');
+        if (t[k]) el.setAttribute('aria-label', t[k]);
+      });
+      renderChallengeFilters(now);
+      renderChallengeGrid(now);
+      renderFeatured(now);
+      renderSeason(now);
+      renderLeaderboard();
+      renderHowAndRanks();
+      renderChallengeDialog();
+    }
+
+    document.getElementById('chStatusTabs').addEventListener('click', (e) => {
+      const b = e.target.closest('[data-ch-status]');
+      if (!b) return;
+      chUi.status = b.getAttribute('data-ch-status');
+      renderChallengeFilters();
+      renderChallengeGrid();
+    });
+    document.getElementById('chTrackChips').addEventListener('click', (e) => {
+      const b = e.target.closest('[data-ch-track]');
+      if (!b) return;
+      chUi.track = b.getAttribute('data-ch-track');
+      renderChallengeFilters();
+      renderChallengeGrid();
+    });
+    document.getElementById('chSearch').addEventListener('input', (e) => {
+      chUi.query = e.target.value;
+      renderChallengeGrid();
+    });
+    document.getElementById('chSort').addEventListener('change', (e) => {
+      chUi.sort = e.target.value;
+      renderChallengeGrid();
+    });
+    document.getElementById('lbSelect').addEventListener('change', renderLeaderboard);
+
+    // One delegated handler for every "details" / "register" button (grid, Gantt, featured).
+    document.addEventListener('click', (e) => {
+      const open = e.target.closest('[data-ch-open]');
+      if (open) { openChallenge(open.getAttribute('data-ch-open')); return; }
+      const reg = e.target.closest('[data-ch-register]');
+      if (reg) registerFor(reg.getAttribute('data-ch-register'));
+    });
+    document.getElementById('featuredDetailsBtn').addEventListener('click', () => openChallenge(document.getElementById('featuredCard').dataset.challenge));
+    document.getElementById('featuredRegisterBtn').addEventListener('click', () => registerFor(document.getElementById('featuredCard').dataset.challenge));
+    document.getElementById('chDialogClose').addEventListener('click', closeChallenge);
+    document.getElementById('chDialogRegister').addEventListener('click', () => registerFor(chUi.openId));
+    document.getElementById('chDialogShare').addEventListener('click', () => {
+      const url = `${location.origin}${location.pathname}?lang=${state.lang}#c-${chUi.openId}`;
+      const done = () => showToast(I18N[state.lang].ch_link_copied);
+      if (navigator.clipboard) navigator.clipboard.writeText(url).then(done, done); else done();
+    });
+    document.getElementById('chDialog').addEventListener('click', (e) => {
+      if (e.target.id === 'chDialog') closeChallenge();
+    });
+    document.addEventListener('keydown', (e) => {
+      const dlg = document.getElementById('chDialog');
+      if (dlg.classList.contains('hidden')) return;
+      if (e.key === 'Escape') { closeChallenge(); return; }
+      if (e.key === 'Tab') {
+        const items = dlg.querySelectorAll('button, a[href], [tabindex="0"]');
+        const first = items[0]; const last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+
+    // Countdown: seconds tick only for the featured card; the rest refresh each minute.
+    let chMinute = new Date().getMinutes();
+    setInterval(() => {
+      const now = Date.now();
+      tickFeatured(now);
+      const m = new Date(now).getMinutes();
+      if (m !== chMinute) {
+        chMinute = m;
+        document.getElementById('featuredCountdownSr').textContent = countdownText(featuredChallenge(now), now);
+        document.querySelectorAll('[data-countdown]').forEach((el) => {
+          const c = CHALLENGES.find((x) => x.id === el.getAttribute('data-countdown'));
+          const t = I18N[state.lang];
+          const st = chStatus(c, now);
+          el.textContent = countdownText(c, now).replace(st === 'upcoming' ? t.ch_starts_in : st === 'active' ? t.ch_ends_in : t.ch_ended, '').trim();
+        });
+      }
+    }, 1000);
+
     function renderAll() {
       applyStaticTranslations();
       renderTracks();
       renderVisionLab();
       renderBprSimulator();
       renderChat();
+      renderChallenges();
     }
 
     // Event Delegation & Handlers
@@ -1833,6 +2768,8 @@ await bridge.connect(transport);</code></pre>
       if (pref === 'en' || pref === 'ar') state.lang = pref;
     })();
     renderAll();
+    // Deep link: #c-<challenge-id> opens that challenge's details.
+    if (location.hash.startsWith('#c-')) openChallenge(location.hash.slice(3));
   </script>
 </body>
 </html>
